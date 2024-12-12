@@ -1,0 +1,224 @@
+---
+title: "Control Flow: Loops"
+format: html
+editor: visual
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+We want to look at how to control the execution of our code. The three main things we are looking at here are
+
+-   `if/then/else` logic and syntax
+-   looping to repeatedly execute code
+-   vectorized functions for improved efficiency
+
+This section looks at how to do loops (repeated execution of code) in R.
+
+## Looping in R
+
+There are a number of ways to do looping in R
+
+-   `for()`
+-   `while()`
+-   `repeat()`
+
+The idea of each is to run some code repeatedly; often changing something with each execution of the code.
+
+### For Loops
+
+The syntax for a `for` loop (most commonly used loop in R) is
+
+```{r,eval=FALSE}
+for(index in values){
+  code to be run
+}
+```
+
+where
+
+-   index defines 'counter' or variable that varies
+-   'values' define which values index takes on
+
+For example, our index below is `i` and the values it can take on are the integers from 1 to 10 (`1:10`)
+
+```{r}
+for (i in 1:10){
+  print(i)
+}
+```
+
+The values don't need to take on numbers and the object you use for the index can be changed:
+
+```{r}
+for (index in c("cat","hat","worm")){
+  print(index)
+}
+```
+
+Of course, the idea is to use the changing values in some meaningful way. Here is a quick example of printing out a particular string based on inputs.
+
+Create two vectors of length 5.
+
+```{r}
+words<-c("first", "second", "third", "fourth", "fifth")
+data <- runif(5)
+```
+
+-   Loop through the elements of these and print out the phrase
+
+"The (#ed) data point is (# from data vector)."
+
+-   To put character strings together with other R objects (which will be coerced to strings) we can use the `paste()` function. Checking the help we see:
+
+`paste (..., sep = " ", collapse = NULL, recycle0 = FALSE)`
+
+where `...` 'is one or more R objects, to be converted to character vectors.' and the `sep =` argument determines the value by which to separate these objects.
+
+```{r}
+paste("The ", words[2], " data point is ", data[2], ".", sep = "&")
+```
+
+```{r}
+paste("The ", words[1], " data point is ", data[1], ".", sep = "")
+```
+
+Note: `sep = ""` is equivalent to using the `paste0()` function.
+
+Ok, let's put this into a loop!
+
+```{r}
+for (i in 1:5){
+  print(paste0("The ", words[i], " data point is ", data[i], "."))
+}
+```
+
+-   As `i` iterates from 1 to 5, we pull out the corresponding elements of `words` and `data` to make our sentence!
+
+A more useful example would be finding summary statistics about different numeric columns of a data frame (recall this is a 2D structure we often use to store datasets).
+
+-   Consider a dataset on batting of Major League Baseball (MLB) players.
+
+    -   You may need to run `install.packages("Lahman")` once on your machine before you can run this code
+
+```{r}
+library(Lahman)
+my_batting <- Batting[, c("playerID", "teamID", "G", "AB", "R", "H", "X2B", "X3B", "HR")]
+head(my_batting)
+```
+
+-   Let's say we want to find the `summary()` for each numeric column of this data set.
+
+```{r}
+summary(my_batting[ , "G"])
+```
+
+```{r}
+summary(my_batting[ , "AB"])
+```
+
+That's fine but we want to do it for all the numeric columns. Let's use a for loop!
+
+```{r}
+dim(my_batting)
+```
+
+We could do a loop that takes on values of `3:9` (or programmatically `3:dim(my_batting)[2]`).
+
+```{r}
+for (i in 3:dim(my_batting)[2]){
+  print(summary(my_batting[ , i]))
+}
+```
+
+Alternatively, the `seq_along()` function can be useful. This looks at the length of the object and creates a sequence from 1 to that length. Remember that a data frame is truly a list of equal length vectors (usually). The length of a list is number of elements. Here that is the number of columns!
+
+```{r}
+length(my_batting)
+seq_along(my_batting)
+```
+
+Now we can just remove the 1st and 2nd entries of that vector (as they are not numeric columns) and use that as our values to iterate across.
+
+```{r}
+for (i in seq_along(my_batting)[-1:-2]){
+  print(summary(my_batting[ , i]))
+}
+```
+
+We likely don't enjoy this format. Although we'll see much easier ways to deal with this, let's initialize a data frame to store our results in. We can initialize the type of data to store in a particular column using `character()`, `numeric()`, `logical()`, etc.
+
+```{r}
+summary_df <- data.frame(stat = character(), 
+                         min = numeric(),
+                         Q1 = numeric(),
+                         Median = numeric(),
+                         Mean = numeric(),
+                         Q3 = numeric(),
+                         Max  = numeric())
+summary_df
+```
+
+Ok, now let's fill this in as we loop (note we use `i-2` to start filling in at row 1 and we grab the statistic we are summarizing from the `colnames` of the `my_batting` data frame).
+
+```{r}
+for (i in seq_along(my_batting)[-1:-2]){
+  summary_df[i-2, ] <- c(colnames(my_batting[i]),
+                         summary(my_batting[ , i]))
+}
+summary_df
+```
+
+### While Loops
+
+-   Should know about these too!
+
+```{r, eval = FALSE}
+while(cond) {
+	expr
+}
+```
+
+-   If `cond` is `FALSE` then the loop never executes.
+-   We won't use these much.
+
+### Other Loop Things
+
+-   Sometimes we need to jump out of a loop. `break` kicks you out of the loop.
+
+```{r}
+for (i in 1:5){
+  if (i == 3) break #can put code to execute on the same line
+  print(paste0("The ", words[i], " data point is ", data[i], "."))
+}
+```
+
+-   Sometimes we need to skip an iteration. `next` jumps to the next iteration of the loop.
+
+```{r}
+for (i in 1:5){
+	if (i == 3) next
+  print(paste0("The ", words[i], " data point is ", data[i], "."))
+}
+```
+
+### Quick R Video
+
+Please pop this video out and watch it in the full panopto player!
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=a87e6ae2-1bc7-4b6c-9020-b1710155c319&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="12 - Loops" ></iframe>
+```
+### Recap!
+
+-   Loops provide a mechanism to run the same code repeatedly
+
+```{r,eval = FALSE}
+for(index in values){
+  #code to evaluate
+}
+```
+
+-   index is the variable that changes during each iteration
+
+-   values are the values the index takes on

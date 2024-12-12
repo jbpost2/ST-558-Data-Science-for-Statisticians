@@ -1,0 +1,238 @@
+---
+title: "Base R Data Structures: Lists"
+format: html
+editor: visual
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+# Common Data Structures
+
+A data scientist needs to deal with data! We need to have a firm foundation in the ways that we can store our data in R. This section goes through the most commonly used 'built-in' R objects that we'll use.
+
+-   There are five major data structures used in R
+
+    1.  Atomic Vector (1d)
+    2.  Matrix (2d)
+    3.  Array (nd)
+    4.  Data Frame (2d)
+    5.  List (1d)
+
+| Dimension | Homogeneous (elements all the same) | Heterogeneous (elements may differ) |
+|--------------------|--------------------------|--------------------------|
+| 1d        | Atomic Vector                       | List                                |
+| 2d        | Matrix                              | Data Frame                          |
+| nd        | Array                               |                                     |
+
+## List
+
+-   A vector that can have differing elements! (still **1D**)
+
+```{r, echo = FALSE, out.width = "600px", fig.align= 'center'}
+knitr::include_graphics("img/listVisualF.png")
+```
+
+-   An ordered set of objects (ordering starts at 1)
+
+-   Useful for more complex types of data
+
+### Creating a List
+
+-   Create with `list()`
+
+-   The help gives:
+
+`list(...)`
+
+where `...` is
+
+> objects, possibly named.
+
+-   We can essentially take any objects and store them as elements of our list!
+
+```{r}
+my_df <- data.frame(number = 1:5, letter = c("a", "b", "c", "d", "e"))
+my_list <- list(my_df, rnorm(4), c("!", "?"))
+my_list
+```
+
+-   Similar to creating a data frame, we can add names to the list elements upon creation
+
+```{r}
+my_list <- list(my_data_frame = my_df, normVals = rnorm(4), punctuation = c("!", "?"))
+my_list
+```
+
+### Common Attributes of Lists
+
+The most common attribute for a list is similar to a data frame, the `names`.
+
+```{r}
+str(my_list)
+```
+
+```{r}
+attributes(my_list)
+```
+
+-   The names function gives us quick access to the names.
+
+```{r}
+names(my_list)
+```
+
+### Accessing List Elements
+
+There are many ways to access list elements!
+
+-   Use single square brackets `[ ]` for multiple list elements to be returned
+
+```{r}
+my_list
+```
+
+```{r}
+my_list[2:3]
+```
+
+-   Use double square brackets `[[ ]]` (or `[ ]`) for a single list element
+
+```{r }
+my_list[1]
+```
+
+```{r}
+my_list[[1]]
+```
+
+-   Notice the difference in how these are returned!
+
+    -   `[]` returns a list with a named element (`my_data_frame)`
+    -   `[[]]` returns just the element itself (the data frame)
+
+```{r}
+str(my_list[1])
+```
+
+```{r}
+str(my_list[[1]])
+```
+
+-   We can do multiple subsets on a single line!
+
+```{r}
+my_list[[2]]
+```
+
+```{r}
+my_list[[2]][3:4]
+```
+
+-   If we have named list elements, we can use `$` just like with data frames!
+
+```{r}
+str(my_list)
+```
+
+```{r}
+my_list$normVals
+```
+
+-   Note that the `attributes()` function actually returns a list!
+
+```{r}
+attributes(my_list)
+```
+
+```{r}
+str(attributes(my_list))
+```
+
+- That means we can access the named list element `names` via the `$` operator.
+
+```{r}
+attributes(my_list)$names
+```
+
+## Lists & Data Frames
+
+-   Big Connection: A Data Frame is a *list* of equal length vectors!
+
+-   This can be seen in the similar nature of the structure of these two objects.
+
+```{r }
+str(my_list)
+is.list(my_list)
+```
+
+```{r}
+str(iris)
+is.list(iris)
+```
+
+-   That means we can access parts of a data frame in the same way we did with a list. To get the 2nd column (list element) of `iris` we can do:
+
+```{r}
+head(iris[2])
+```
+
+```{r}
+head(iris[[2]])
+```
+
+-   Notice again the change in simplification between the two methods for accessing list elements. Think of `[]` as preserving and `[[]]` as simplifying!
+
+-   We can also look at the `typeof()` each of these objects
+
+```{r }
+typeof(my_list)
+```
+
+```{r}
+typeof(iris)
+```
+
+### Quick R example
+
+Please pop this video out and watch it in the full panopto player!
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=d86020f1-baf0-4773-ad53-b1710150852d&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="10 - Lists" ></iframe>
+```
+### Recap!
+
+List (1D group of objects with ordering)
+
+-   A vector that can have differing elements
+
+-   Create with `list()`
+
+-   More flexible than a Data Frame!
+
+-   Useful for more complex types of data
+
+-   Access with `[ ]`, `[[ ]]`, or `$`
+
+## Big Recap!
+
+We now know how we'll handle data using R. We will end up using vectors, lists, and data frames a lot (although we'll use a special form of a data frame called a tibble).
+
+| Dimension | Homogeneous   | Heterogeneous |
+|-----------|---------------|---------------|
+| 1d        | Atomic Vector | List          |
+| 2d        | Matrix        | Data Frame    |
+| nd        | Array         |               |
+
+Common Attributes exist
+
+-   `dimnames` for matrices
+-   `names` for vectors, data frames, and lists
+-   Note: `colnames()` is a function that generically tries to get at the names, whether you have a matrix or data frame (`rownames()` exists as well!)
+
+Basic access via
+
+-   Atomic vectors - `x[ ]`
+-   Matrices - `x[ , ]`
+-   Data Frames - `x[ , ]` or `x$name`
+-   Lists - `x[ ]`, `x[[ ]]`, or `x$name`

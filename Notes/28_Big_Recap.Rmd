@@ -1,0 +1,87 @@
+---
+title: "Big Recap!"
+author: "Justin Post"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, "css/ncsu.css", "css/ncsu-fonts.css", "css/mycss.css"]
+    nature:
+      beforeInit: ["js/ncsu-scale.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+    includes:
+      in_header: "partials/header.html"
+editor_options: 
+  chunk_output_type: console
+---
+
+
+layout: true
+
+<div class="my-footer"><img src="img/logo.png" style="height: 60px;"/></div> 
+
+```{r, include=FALSE,warning=FALSE,message=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  dev = "svg",
+  fig.align = "center",
+  #fig.width = 11,
+  #fig.height = 5
+  cache = TRUE
+)
+
+# define vars
+om = par("mar")
+lowtop = c(om[1],om[2],0.1,om[4])
+library(tidyverse)
+library(knitr)
+#use_python("C:\\python\\python.exe")
+options(dplyr.print_min = 5)
+```
+
+---
+
+# What do we want to be able to do?
+
+.left45[
+Data Science!
+
+- Read in raw data and manipulate it
+
+- Combine data sources
+
+- Summarize data to glean insights
+
+- Apply common analysis methods
+
+- Communicate Effectively
+]
+
+.right45[
+- Git/GitHub/R Projects
+- Quarto
+- BaseR Data Structures
+- Control Flow
+- Writing Functions
+- Tidyverse
+
+    + Reading in Data
+    + Manipulating Data/SQL basics
+- EDA
+]
+
+---
+
+# Where To Now?!?
+
+- Look at other really useful R related programming techniques
+
+- Learn R Shiny
+
+- Get the basics of Predictive Modeling & Machine Learning
+
+- Understand how containerization can be useful and how to do it at a basic level

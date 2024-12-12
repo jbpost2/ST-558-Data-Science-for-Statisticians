@@ -1,0 +1,82 @@
+---
+title: "Tidyverse Essentials"
+format: html
+editor: visual
+toc: TRUE
+editor_options: 
+  chunk_output_type: console
+---
+
+One of the big impediments to learning R in the past was the vast ecosystem of packages.
+
+-   Many ways to do the same task via competing R packages
+-   Most packages written by different people
+-   Different syntax was used in different packages
+-   Required lots of reading of help pages to understand how to use each package/function
+
+Along came the `tidyverse` collection of packages! While not the most efficient method for programming, the `tidyverse` provides a coherent ecosystem for almost all common data tasks! That is,
+
+-   (Almost) all packages have functions with the same syntax
+-   Functions are built to work together
+-   A plethora of help documentation and vignettes exists
+
+## `tidyverse` Syntax
+
+As the `tidyverse` is mostly concerned with the analysis and manipulation of data, the main data object used is a special version of a data frame called a **tibble**.
+
+```{r}
+iris_tbl <- dplyr::as_tibble(iris)
+class(iris_tbl)
+```
+
+You can see the classes of a tibble include a data frame. When R functions do method dispatch, they look through the class list from first to last. If there is a method for `tbl_df` it uses that, if not, it looks for a method for a `tbl`. If that doesn't exist, it uses a method for `data.frame`s.
+
+```{r}
+str(iris_tbl)
+```
+
+We see the structure looks very similar to that of a `data.frame`.
+
+```{r}
+iris_tbl
+```
+
+However, we can see the default `print()` method for a tibble (which is used when you just type an R object into the console) is not the same. We get *fancy* printing that is more useful for us and doesn't clog up our output space. We get information on the number of observations, the columns, and see only the first few rows/columns.
+
+**Almost all of the `tidyverse` functions are built to work on a tibble. That is, they usually take in a tibble and output a tibble.**
+
+-   (Almost) all functions have similar syntax!\
+    `function_name(tibble, other_arg, ...)`
+
+-   Makes them perfect for chaining!
+
+```         
+tibble |>
+    function(other_arg, ...) |>
+    ...
+```
+
+Note: you'll often see the chain from the `magrittr` package used (`%>%`). Due to the popularity of this operator, R implemented its own pipe recently (`|>`). At this point, the functionality is almost the same so we'll use the `BaseR` pipe since it doesn't require a package load.
+
+## `tidyverse` Packages
+
+The `tidyverse` consists of a large number of packages. However, `library(tidyverse)` loads only the eight core packages (which sometimes load other packages of course). Those are ([from their website](https://www.tidyverse.org/packages/)):
+
+-   `ggplot2` - ggplot2 is a system for declaratively creating graphics, based on The Grammar of Graphics. You provide the data, tell ggplot2 how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details
+-   `dplyr` - dplyr provides a grammar of data manipulation, providing a consistent set of verbs that solve the most common data manipulation challenges
+-   `tidyr` - tidyr provides a set of functions that help you get to tidy data. Tidy data is data with a consistent form: in brief, every variable goes in a column, and every column is a variable
+-   `readr` - readr provides a fast and friendly way to read rectangular data (like csv, tsv, and fwf). It is designed to flexibly parse many types of data found in the wild, while still cleanly failing when data unexpectedly changes
+-   `purrr` - purrr enhances R’s functional programming (FP) toolkit by providing a complete and consistent set of tools for working with functions and vectors. Once you master the basic concepts, purrr allows you to replace many for loops with code that is easier to write and more expressive
+-   `tibble` - tibble is a modern re-imagining of the data frame, keeping what time has proven to be effective, and throwing out what it has not. Tibbles are data.frames that are lazy and surly: they do less and complain more forcing you to confront problems earlier, typically leading to cleaner, more expressive code
+-   `stringr` - stringr provides a cohesive set of functions designed to make working with strings as easy as possible. It is built on top of stringi, which uses the ICU C library to provide fast, correct implementations of common string manipulations
+-   `forcats` - forcats provides a suite of useful tools that solve common problems with factors. R uses factors to handle categorical variables, variables that have a fixed and known set of possible values
+
+We'll spend a good bit of time on `ggplot2`, `dplry`, `tidyr`, and `readr`. `tibble` will get used implicitly along the way
+
+## Recap!
+
+`tidyverse` provides a coherent ecosystem for almost all common data tasks!
+
+-   Works on `tibbles` (special data frames)
+-   (Almost) all packages have functions with the same syntax
+-   A plethora of help documentation and vignettes exist

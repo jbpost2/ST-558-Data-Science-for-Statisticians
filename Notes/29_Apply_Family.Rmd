@@ -1,0 +1,219 @@
+---
+title: "Apply Family of Functions"
+author: "Justin Post"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, "css/ncsu.css", "css/ncsu-fonts.css", "css/mycss.css"]
+    nature:
+      beforeInit: ["js/ncsu-scale.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+    includes:
+      in_header: "partials/header.html"
+editor_options: 
+  chunk_output_type: console
+---
+
+
+layout: true
+
+<div class="my-footer"><img src="img/logo.png" style="height: 60px;"/></div> 
+
+```{r, include=FALSE,warning=FALSE,message=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  dev = "svg",
+  fig.align = "center",
+  #fig.width = 11,
+  #fig.height = 5
+  cache = TRUE
+)
+
+# define vars
+om = par("mar")
+lowtop = c(om[1],om[2],0.1,om[4])
+library(tidyverse)
+library(knitr)
+#use_python("C:\\python\\python.exe")
+options(dplyr.print_min = 5)
+```
+
+---
+
+# Efficient Code  
+
+For loops vs Vectorized Functions
+
+
+---
+
+# `apply()` Family
+
+- `apply()` family of functions *pretty* fast
+
+- Check `help(apply)`!
+
+    + We'll look at `apply()`, `sapply()`, `lapply()`
+
+
+---
+
+# `apply()` Family
+
+- `apply()` family of functions *pretty* fast
+
+- Check `help(apply)`!
+
+    + We'll look at `apply()`, `sapply()`, `lapply()`
+
+- Consider our Batting data set
+
+```{r}
+library(Lahman)
+my_batting <- Batting[, c("playerID", "teamID", "G", "AB", "R", "H", "X2B", "X3B", "HR")] |>
+  as_tibble()
+my_batting
+```
+
+
+---
+
+# `apply()` Family
+
+- Use `apply()` to find summary for the batting data
+
+```{r}
+apply(X = my_batting, 
+      MARGIN = 2, 
+      FUN = summary,
+      na.rm = TRUE)
+```
+
+
+---
+
+# `apply()` Family
+
+- Let's try it with just numeric data!
+
+```{r}
+batting_summary <- apply(X = my_batting |>
+                           select(where(is.numeric)), 
+                         MARGIN = 2, 
+                         FUN = summary,
+                         na.rm = TRUE)
+batting_summary
+```
+
+---
+
+# Anonymous Functions
+
+- We often use our own custom functions with the `apply()` family
+
+    + Called anonymous functions or lambda functions
+
+
+---
+
+# Anonymous Functions
+
+- We often use our own custom functions with the `apply()` family
+
+    + Called anonymous functions or lambda functions
+    
+```{r}
+custom_batting_summary <- apply(X = my_batting |>
+                                  select(where(is.numeric)), 
+                                MARGIN = 2,
+                                FUN = function(x){
+                                  temp <- c(mean(x), sd(x))
+                                  names(temp) <- c("mean", "sd")
+                                  temp
+                                }
+)
+custom_batting_summary
+```
+
+
+---
+
+# Anonymous Functions
+
+- Anonymous functions can take other arguments
+    
+```{r}
+custom_batting_summary <- apply(X = my_batting |>
+                                  select(where(is.numeric)), 
+                                MARGIN = 2,
+                                FUN = function(x, trim){
+                                  temp <- c(mean(x, trim), sd(x))
+                                  names(temp) <- c("mean", "sd")
+                                  temp
+                                },
+                                trim = 0.1
+)
+custom_batting_summary
+```
+---
+
+# `lapply()`
+
+- Use `lapply()` to apply function to lists
+
+- Obtain a list object  
+
+```{r}
+set.seed(10)
+my_list <- list(rnorm(100), runif(10), rgamma(40, shape = 1, rate = 1))
+```
+
+---
+
+# `lapply()`
+
+- Apply `mean()` function to each list element
+
+```{r}
+lapply(X = my_list, FUN = mean)
+```
+
+
+---
+
+# `lapply()`
+
+- To give additional arguments to `FUN` we add them on afterward
+
+```{r}
+lapply(X = my_list, FUN = mean, trim = 0.1, na.rm = TRUE)
+```
+
+---
+
+# `sapply()`
+
+- Similar function but it attempts to simplify when possible
+
+```{r}
+sapply(X = my_list, FUN = mean, trim = 0.1, na.rm = TRUE)
+```
+
+
+---
+
+# Recap!
+
+- Vectorized functions fast!
+
+- `apply()` family is sort of vectorized
+
+- `lapply()` and `sapply()` to apply a function to a list
+
+- `aggregate()`, `replicate()`, `tapply()` `vapply()`, and `mapply()` also exist!
+

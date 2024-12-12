@@ -1,0 +1,378 @@
+---
+title: "Modeling with the `tidymodels` Framework"
+author: "Justin Post"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, "css/ncsu.css", "css/ncsu-fonts.css", "css/mycss.css"]
+    nature:
+      beforeInit: ["js/ncsu-scale.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+    includes:
+      in_header: "partials/header.html"
+editor_options: 
+  chunk_output_type: console
+---
+  
+  
+```{r, include=FALSE,warning=FALSE,message=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  dev = "svg",
+  fig.align = "center",
+  #fig.width = 11,
+  #fig.height = 5
+  cache = FALSE
+)
+
+# define vars
+om = par("mar")
+lowtop = c(om[1],om[2],0.1,om[4])
+library(tidyverse)
+library(knitr)
+#library(reticulate)
+#use_python("C:\\Users\\jbpost2\\AppData\\Local\\Programs\\Python\\Python310\\python.exe")
+#use_python("C:\\python\\python.exe")
+#use_python("C:\\ProgramData\\Anaconda3\\python.exe")
+options(dplyr.print_min = 5)
+#options(reticulate.repl.quiet = TRUE)
+set.seed(10)
+```
+
+
+# Modeling Process
+
+Given a model, we **fit** the model using data
+
+- Must determine how well the model predicts on **new** data 
+- Create a test set or use CV (or perhaps both...)
+- Judge effectiveness using a **metric** on predictions made from the model
+
+---
+  
+# Preparing the Data
+
+General flow for modeling
+
+- Read data in
+- EDA (or perhaps after train/test split...)
+- Split data into train and test (do response transform first!)
+- Modify training data set predictors as needed
+
+    + Center/scale
+    + Create factors & dummy variables
+    + Create interactions/quadratics/etc.
+    + Log transform
+    + ...
+    
+- Fit model(s) on training data
+- Use same transformations on the test data or in CV process (*exactly* as done in training set)
+- Predict on the test set
+
+
+---
+
+# Convert Data
+
+- We saw the use of `rsample::initial_split()` 
+
+    - **If doing a *non-learned* transformation, do those first outside of `tidymodels`**
+
+```{r, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(tidymodels)
+bike_data <- read_csv("https://www4.stat.ncsu.edu/~online/datasets/bikeDetails.csv") |>
+  mutate(log_selling_price = log(selling_price)) |>
+  select(-selling_price)
+#save creation of new variables for now!
+bike_split <- initial_split(bike_data, prop = 0.7)
+bike_train <- training(bike_split)
+bike_test <- testing(bike_split)
+```
+
+- `initial_split()` allows for stratified sampling too!
+
+---
+
+# Data Prepration with `tidymodels`
+
+- `recipes` package within `tidymodels` allows for transformations
+
+    + Process keeps track of proper values to use for you!
+    
+    + Start with ``recipe()` call
+    
+        - Denote formula for response/predictors and datato use
+        - `summary()` describes current setup (we don't want all of these as predictors)
+    
+```{r}
+recipe(log_selling_price ~ ., data = bike_train) |>
+  summary()
+```
+
+
+---
+
+# Data Prepration with `tidymodels`
+
+- `recipes` package within `tidymodels` allows for transformations
+
+    + `update_role()` allows you to declare types of variables (such as `ID`)
+    + This keeps the variable around even when not used in a model
+    
+```{r}
+recipe(log_selling_price ~ ., data = bike_train) |>
+  update_role(name, new_role = "ID") |>
+  summary()
+```
+
+---
+
+# Now Add Transformation Steps
+
+- Many `step_*` functions to consider
+
+    + `step_log()` to create our `log_km_driven` variable
+    + `step_rm()` to remove a variable
+    + `step_dummy()` to create dummy values for categorical variables
+    + `step_normalize()` to center and scale numeric predictors
+
+```{r}
+recipe(log_selling_price ~ ., data = bike_train) |>
+  update_role(name, new_role = "ID") |>
+  step_log(km_driven) |>
+  step_rm(ex_showroom_price) |>#too many nas
+  step_dummy(owner, seller_type) |>
+  step_normalize(all_numeric(), -all_outcomes()) 
+```
+
+---
+
+# `prep()` & `bake()` the Recipe
+
+- If you have at least one preprocessing operation, `prep()` 'estimates the required parameters from a training set that can be later applied to other data sets'
+- `bake()` applies the computations to data
+
+```{r}
+recipe(log_selling_price ~ ., data = bike_train) |>
+  update_role(name, new_role = "ID") |>
+  step_log(km_driven) |>
+  step_rm(ex_showroom_price) |>
+  step_dummy(owner, seller_type) |>
+  step_normalize(all_numeric(), -all_outcomes()) |>
+  prep(training = bike_train) |>
+  bake(bike_train)
+```
+
+
+---
+
+# `parsnip` for Creating a Model
+
+- `prep()` and `bake()` steps are not required but help us debug/see what things look like
+
+- Once we have our `recipe()` ready, we also need do our modeling setup
+
+    + Use `parsnip` package to specify a model
+    
+    + `parsnip` abstracts away the individual package syntax
+    
+    + Specify the model type and model engine
+
+    + [This page](https://www.tidymodels.org/find/parsnip/) allows us to search for a model type so we can see which `model` and `engine` we want to specify!
+
+
+---
+
+# Creating a Model with `tidymodels`
+
+- Fit MLR model with `linear_reg()`
+
+- Engine set to `lm` for basic models
+
+- [Info page](https://parsnip.tidymodels.org//reference/details_linear_reg_lm.html)
+
+```{r}
+linear_reg() %>% 
+  set_engine("lm") %>% 
+  translate()
+```
+
+
+---
+
+# Creating a Model with `tidymodels`
+
+- Set up our model and recipes
+
+```{r}
+bike_rec <- recipe(log_selling_price ~ ., data = bike_train) |>
+  update_role(name, new_role = "ID") |>
+  step_log(km_driven) |>
+  step_rm(ex_showroom_price) |>
+  step_dummy(owner, seller_type) |>
+  step_normalize(all_numeric(), -all_outcomes())
+
+bike_mod <- linear_reg() %>% 
+  set_engine("lm")
+```
+
+
+
+---
+
+# `workflow()`s with `tidymodels`
+
+- Now we can create a `workflow()` 
+
+    + Add our recipe and model with their corresponding functions
+
+```{r}
+bike_wfl <- workflow() |>
+  add_recipe(bike_rec) |>
+  add_model(bike_mod)
+bike_wfl
+```
+
+---
+
+# `fit()` That Model!
+
+- Finally, `fit()` allows us to fit our model to a data set!
+
+- `tidy()` puts the results into a `tibble`
+    
+```{r}
+bike_fit <- bike_wfl |>
+  fit(bike_train)
+bike_fit |>
+  tidy()
+```
+
+---
+
+# Find Test Set Metric(s)
+
+- Here we don't have a bunch of models we are comparing, only one is fit
+- Can use `last_fit()` on the original `initial_split()` object to see how it performs
+- `collect_metrics()` returns the metrics on the test set!
+
+```{r}
+bike_fit |>
+  last_fit(bike_split) |>
+  collect_metrics()
+```
+
+---
+
+# Find Test Set Metric(s)
+
+- Here we don't have a bunch of models we are comparing, only one is fit
+- Can use `last_fit()` on the original `initial_split()` object to see how it performs
+- `collect_metrics()` returns the metrics on the test set!
+
+```{r}
+bike_fit |>
+  last_fit(bike_split) |>
+  collect_metrics()
+```
+
+**The same transformations from the training set are used on the test set!**
+
+
+---
+
+# Fitting the Model with Cross-Validation
+
+- Let's use 10 fold CV in the training set instead
+
+    + Compare to another model's CV fit on the training set
+    
+    + Send best model to test set
+
+---
+
+# Fitting the Model with Cross-Validation
+
+- Let's use 10 fold CV in the training set instead
+
+    + Compare to another model's CV fit on the training set
+    
+    + Send best model to test set
+
+- Use `vfold_cv()` to split the data up and use `fit_resamples()` to fit the model appropriately
+
+```{r}
+bike_10_fold <- vfold_cv(bike_train, 10)
+bike_CV_fits <- bike_wfl |>
+  fit_resamples(bike_10_fold)
+bike_CV_fits
+```
+
+---
+
+# Fitting the Model with Cross-Validation
+
+- Combine the metrics using `collect_metrics()`
+
+```{r}
+bike_CV_fits |> 
+   collect_metrics()
+```
+
+- This is our CV error on the training set!
+
+
+---
+
+# Fit another Model with Cross-Validation for Comparison
+
+- Let's build another recipe that includes interaction terms
+
+```{r}
+bike_int_rec <- recipe(log_selling_price ~ ., data = bike_train) |>
+  update_role(name, new_role = "ID") |>
+  step_log(km_driven) |>
+  step_rm(ex_showroom_price) |>
+  step_dummy(owner, seller_type) |>
+  step_normalize(all_numeric(), -all_outcomes()) |>
+  step_interact(terms = ~km_driven*year*starts_with("seller_type"))
+```
+
+
+---
+
+# Fit another Model with Cross-Validation for Comparison
+
+- Fit the model to the resamples and see our metric
+
+```{r}
+bike_int_CV_fits <- workflow() |>
+  add_recipe(bike_int_rec) |>
+  add_model(bike_mod) |>
+  fit_resamples(bike_10_fold)
+rbind(bike_CV_fits |> collect_metrics(),
+      bike_int_CV_fits |> collect_metrics())
+```
+
+- Simpler model is better here
+- Could now compare its perofrmance on the test set to some other 'best' models
+
+
+---
+
+# Recap
+
+- `tidymodels` provides a framework for predictive modeling
+
+- Define a recipe
+
+- Define a model and engine
+
+- Fit the models (perhaps using cross-validation) and investigate metrics
+

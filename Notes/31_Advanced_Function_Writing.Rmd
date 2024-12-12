@@ -1,0 +1,614 @@
+---
+title: "Advanced Function Writing"
+author: "Justin Post"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, "css/ncsu.css", "css/ncsu-fonts.css", "css/mycss.css"]
+    nature:
+      beforeInit: ["js/ncsu-scale.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+    includes:
+      in_header: "partials/header.html"
+editor_options: 
+  chunk_output_type: console
+---
+
+
+layout: true
+
+<div class="my-footer"><img src="img/logo.png" style="height: 60px;"/></div> 
+
+```{r, include=FALSE,warning=FALSE,message=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  dev = "svg",
+  fig.align = "center",
+  #fig.width = 11,
+  #fig.height = 5
+  cache = TRUE
+)
+
+# define vars
+om = par("mar")
+lowtop = c(om[1],om[2],0.1,om[4])
+library(tidyverse)
+library(knitr)
+#use_python("C:\\python\\python.exe")
+options(dplyr.print_min = 5)
+```
+
+---
+
+# Recap!
+
+- Function writing opens R up!
+- Syntax
+```{r,eval=FALSE}
+nameOfFunction <- function(input1, input2, ...) {
+  #code
+  #return something with return()
+  #or returns last value
+}
+```
+- Can set defaults in function definition
+- Can return a named list
+- Can give unnamed arguments for use
+
+
+---
+
+# Going Further
+
+A few more useful topics:
+
+- `...` for unnamed arguments
+
+- Writing `tidyverse` style functions
+
+- Lazy evaluation
+
+- Environments and lexical scoping
+
+---
+
+# Unnamed Arguments
+
+- Sometimes we want to 
+
+    + supply arguments to functions used in the body of our function
+    + allow the user to specify more than one argument (say column)
+    
+- Consider the first argument of `data.frame()`
+
+```{r}
+data.frame
+```
+
+
+---
+
+# Our `standardize()` Function
+
+Recall the function we wrote a while back:
+
+```{r}
+standardize <- function(vector, center = TRUE, scale = TRUE) {
+  mean <- mean(vector)
+  stdev <- sd(vector)
+  if (center) {
+    vector <- vector - mean
+    }
+  if (scale) {
+    vector <- vector / stdev
+    }
+  return(list(result = vector, mean = mean, sd = stdev))
+  }
+```
+
+
+---
+
+# Unnamed Arguments
+
+- Add unnamed arguments to our function for use with `sd()` and `mean()`  
+
+```{r}
+sd
+mean.default
+```
+
+
+---
+
+# Unnamed Arguments
+
+- Add `...` as an argument
+
+```{r}
+standardize <- function(vector, center = TRUE, scale = TRUE, ...) {
+	mean <- mean(vector, ...)
+	stdev <- sd(vector, ...)
+	if (center) {
+		vector <- vector - mean
+	}
+	if (scale) {
+		vector <- vector / stdev
+	}
+	return(list(result = vector, mean = mean, sd = stdev))
+}
+```
+
+
+---
+
+# Apply Our Function to Data
+
+- `airquality` has a column called `Ozone` with missing values
+
+```{r}
+airquality$Ozone
+```
+
+
+---
+
+# Apply Our Function to Data
+
+- `airquality` has a column called `Ozone` with missing values
+
+```{r}
+standard_Ozone <- standardize(airquality$Ozone, na.rm = TRUE)
+standard_Ozone$mean
+standard_Ozone$sd
+```
+
+
+---
+
+# Dealing with `...`
+
+- Note: You can get at the unnamed arguments with `list(...)`  
+
+```{r}
+f <- function(x, ...){
+	unnamed <- list(...)
+	modifyX <- x^2  
+	return(list(newX = modifyX, elipses = unnamed))
+}
+f(x = 10, a = 1, b = list(char = "hey there", num = 1:3))
+```
+
+---
+
+# Dealing with `...`
+
+- Alternatively, just grab the names
+
+```{r}
+f <- function(x, ...){
+	unnamed <- names(list(...))
+	modifyX <- x^2  
+	return(list(newX = modifyX, elipses_names = unnamed))
+}
+f(x = 10, a = 1, b = list(char = "hey there", num = 1:3))
+```
+
+---
+
+# `tidyverse` Style Functions
+
+(This section is distilled from [Modern R with `tidyverse`](https://modern-rstats.eu/defining-your-own-functions.html#functions-that-take-columns-of-data-as-arguments))
+
+- We've seen the usefulness of functions such as `filter()` and `select()`
+
+- We may want to write functions in a similar manner so they work well with the `tidyverse`
+
+- Specifically, how can we write functions that take columns of data as arguments in the `tidyverse` framework?
+
+---
+
+# Motivation
+
+- Function to find group means
+
+```{r}
+iris |>
+  group_by(Species) |>
+  summarize(across(where(is.numeric), 
+                   list("mean" = mean), 
+                   .names = "{.fn}_{.col}"))
+```
+
+
+---
+
+# Motivation
+
+- Function to find group means
+
+```{r, error = TRUE}
+find_group_mean <- function(.df, group){
+  .df |>
+    group_by(group) |>
+    summarize(across(where(is.numeric), 
+                     list("mean" = mean), 
+                     .names = "{.fn}_{.col}"))
+}
+find_group_mean(iris, Species)
+```
+
+
+---
+
+# Motivation
+
+- Function to find group means
+
+```{r, error = TRUE}
+find_group_mean <- function(.df, group){
+  .df |>
+    group_by(group) |>
+    summarize(across(where(is.numeric), 
+                     list("mean" = mean), 
+                     .names = "{.fn}_{.col}"))
+}
+find_group_mean(iris, "Species")
+```
+
+---
+
+# Selecting Columns in `tidy` Style Functions
+
+- Two approaches:
+
+    + `enquo()` with `!!()` (injection operator)
+    + `{{}}`
+    
+---
+
+# Selecting Columns in `tidy` Style Functions
+
+- Two approaches:
+
+    + `enquo()` with `!!()` (injection operator)
+    + `{{}}`
+
+```{r}
+find_group_mean <- function(.df, group){
+  group_name <- enquo(group)
+  .df |>
+    group_by(!!group_name) |>
+    summarize(across(where(is.numeric), 
+                     list("mean" = mean), 
+                     .names = "{.fn}_{.col}"))
+}
+find_group_mean(iris, Species)
+```
+
+---
+
+# Selecting Columns in `tidy` Style Functions
+
+- Two approaches:
+
+    + `enquo()` with `!!()` (injection operator)
+    + `{{}}`
+
+```{r}
+find_group_mean <- function(.df, group){
+  .df |>
+    group_by({{group}}) |>
+    summarize(across(where(is.numeric), 
+                     list("mean" = mean), 
+                     .names = "{.fn}_{.col}"))
+}
+find_group_mean(iris, Species)
+```
+
+
+---
+
+# Combining with `...`
+
+- We can allow for multiple columns with `...`
+- Must use `quos()` and `!!!()` instead
+
+
+```{r}
+find_group_mean <- function(.df, ...){
+  group_vars <- quos(...)
+  .df |>
+    group_by(!!!group_vars) |>
+    summarize(across(where(is.numeric), 
+                     list("mean" = mean), 
+                     .names = "{.fn}_{.col}"))
+}
+find_group_mean(CO2, Type, Treatment)
+```
+
+---
+
+# `as_label()` for `tidyverse` Style Functions
+
+- We may want to name a variable using a column passed
+- `as_label()` can be used!
+- Must use "Walrus" operator, `:=`
+
+```{r}
+find_group_mean <- function(.df, group, column){
+  group_name <- enquo(group)
+  column_name <- enquo(column)
+  column_label <- paste0("mean_", as_label(column_name))
+  .df |>
+    group_by(!!group_name) |>
+    summarize(!!(column_label) := mean(!!column_name))
+}
+find_group_mean(iris, Species, Sepal.Length)
+```
+
+---
+
+# Pipeable functions  
+
+- Piping is great - we may want to make sure our functions are pipeable!
+
+- Two types of pipeable functions:  
+
+    1. **transformations**  
+    2. **side-effects**  
+    
+
+---
+
+# Pipeable functions  
+
+- Piping is great - we may want to make sure our functions are pipeable!
+
+- Two types of pipeable functions:  
+
+    1. **transformations**  
+    2. **side-effects**  
+    
+- transformations naturally return the modified argument (df)  
+- side-effects don't
+
+    + Solution: Silently return the DF with `invisible()`
+
+
+---
+
+# Pipeable functions  
+
+- Example: Side-effect function to print info
+
+```{r, error = TRUE}
+print_num_obs <- function(.df) {
+	cat("The number of observations in the data set is ", 
+	    nrow(.df), 
+	    "\n", 
+	    sep = "")
+}
+iris |> 
+  print_num_obs() |>
+  summarize(mean = mean(Sepal.Length))
+```
+
+---
+
+# Pipeable functions  
+
+- Example: Side-effect function to print info
+
+```{r, error = TRUE}
+print_num_obs <- function(.df) {
+	cat("The number of observations in the data set is ", 
+	    nrow(.df), 
+	    "\n", 
+	    sep = "")
+  invisible(.df)
+}
+iris |> 
+  print_num_obs() |>
+  summarize(mean = mean(Sepal.Length))
+```
+
+---
+
+# Lazy Evaluation  
+
+- R evaluates arguments only when needed! 
+
+- Consider the silly function below:
+
+```{r}
+run <- function(x){
+  3
+}
+run(stop("stop now!"))
+```
+
+---
+
+# Lazy Evaluation  
+
+- R evaluates arguments only when needed! 
+
+    + Force evaluation by writing the argument or `force(arg)`
+    
+```{r, error = TRUE}
+run <- function(x){
+  force(x) #or just x, this just makes it explicit it wasn't a typo!
+  3
+}
+run(stop("stop now!"))
+```
+
+
+---
+
+# Lazy Evaluation On Comparisons
+
+- This is true for compound `if` statements as well!
+
+.left45[
+```{r, error = TRUE}
+x <- NULL
+x > 0
+if(x > 0){
+  print("hey")
+}
+```
+]
+
+.right45[
+```{r}
+!is.null(x)
+if (!is.null(x) && x > 0) {
+  print("hey")
+}
+```
+]
+
+
+---
+
+# Environments and Lexical Scoping
+
+- R objects live in an environment  
+
+- You can think of it as a "bag of names" that point to things in memory  
+
+- Like a list but with no ordering (and other things)  
+
+
+---
+
+# Environments and Lexical Scoping  
+
+- Environments have 'parents' and 'children'  
+
+    + Global environment is where our created function objects live  
+
+    + Search path has all packages loaded in (most recent package is the parent of the global environment) 
+    
+    + Base environment is the child of the ultimate ancestor, the empty environment  
+
+```{r, out.width=800, echo = FALSE}
+knitr::include_graphics("img/search-path.png")
+```
+
+---
+
+# Environments and Lexical Scoping  
+
+- We can see the 'search' path using `search()` 
+
+```{r, out.width=800, echo = FALSE}
+search()
+```
+
+
+---
+
+# Environments and Lexical Scoping  
+
+- Don't need to fully understand environments but some things are important
+
+```{r,message = FALSE}
+library(pryr) #install if needed
+x <- "hey"
+where("x")
+where("mean")
+```
+
+
+---
+
+# Environments and Lexical Scoping  
+
+- When you call a function, it creates temporary function environments  
+
+- This is why variables in functions don't overwrite things!
+
+```{r}
+f <- function(x){
+  mean <- paste0(x, " is a value")
+  mean
+}
+f(1:3)
+mean
+```
+
+
+---
+
+# Environments and Lexical Scoping  
+
+- When you call a function, it creates temporary function environments  
+
+- This is why variables in functions don't exist outside the function
+
+```{r}
+g <- function(x) {
+  if (!exists("a", inherits = FALSE)) {
+    message("Defining a")
+    a <- 1
+  } else {
+    a <- a + 1
+  }
+  a
+}
+g(10)
+g(10)
+```
+
+
+---
+
+# Environments and Lexical Scoping  
+
+- When you call a function, it creates temporary function environments  
+
+- This is why variables can have the same name in a function and in your global environment  
+
+```{r}
+y <- 10
+f <- function(x){
+  y <- 1
+  x + y
+}
+f(15)
+```
+
+---
+
+# Environments and Lexical Scoping  
+
+- **Important**: If R doesn't find an object in the current environment, it will search up the path  
+
+```{r}
+y <- 1
+f <- function(x){
+	x + y
+}
+f(10)
+```
+
+
+---
+
+# Recap!  
+
+- `...` for unnamed arguments
+
+- Writing `tidyverse` style functions
+
+- Lazy evaluation
+
+- Environments and lexical scoping

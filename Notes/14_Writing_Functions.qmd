@@ -1,0 +1,462 @@
+---
+title: "Writing Functions"
+format: html
+editor: visual
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+## Writing Functions
+
+Next up we take on writing our own functions (we'll revisit this later on to go deeper). Knowing how to write functions vital to custom analyses!
+
+-   Function writing syntax
+
+```{r,eval=FALSE}
+nameOfFunction <- function(input1, input2, ...) {
+  #code
+  #return something with return()
+  #or returns last value
+}
+```
+
+One nice thing is that you can generally look at the code for the functions you use by typing the function without `()` into the console.
+
+```{r}
+var
+```
+
+```{r}
+colMeans
+```
+
+For some functions, they are generic and they won't show anything useful.
+
+```{r}
+mean
+```
+
+For those, you can pick a particular version of the function:
+
+```{r}
+mean.default
+```
+
+Ok, now you've seen some functions. Let's write our own!
+
+Goal: Create a `standardize()` function (creating z-scores for a vector essentially)
+
+-   Take vector of values
+
+    -   subtract mean\
+    -   divide by standard deviation
+
+-   Formula: For value i,\
+    $$\frac{(value[i]-mean(value))}{sd(value)}$$
+
+Let's take our generic syntax and apply it here.
+
+```{r,eval=FALSE}
+nameOfFunction <- function(input1, input2, ...) {
+  #code
+  #return something with return()
+  #or returns last value
+}
+```
+
+```{r}
+standardize <- function(vector) {
+  return((vector - mean(vector)) / sd(vector))
+}
+```
+
+-   Now use it! Create some data:
+
+```{r}
+set.seed(10)
+data <- runif(15)
+data
+```
+
+-   Apply the function:
+
+```{r}
+result <- standardize(data)
+result
+```
+
+-   Check result has mean 0 and sd 1
+
+```{r}
+mean(result)
+sd(result)
+```
+
+Goal: Add more inputs
+
+-   Make centering optional\
+-   Make scaling optional
+
+```{r}
+standardize <- function(vector, center, scale) {
+  if (center) {
+    vector <- vector - mean(vector)
+    }
+  if (scale) {
+    vector <- vector / sd(vector)
+    }
+  return(vector)
+  }
+```
+
+Here we've added arguments that should implicitly be `TRUE` or `FALSE` values (it would be better to give a default value so people using the function would know what is expected).
+
+```{r}
+result <- standardize(data, center = TRUE, scale = TRUE)
+result
+```
+
+```{r}
+result <- standardize(data, center = FALSE, scale = TRUE)
+result
+```
+
+-   Give center and scale default arguments
+
+```{r}
+standardize <- function(vector, center = TRUE, scale = TRUE) {
+  if (center) {
+    vector <- vector - mean(vector)
+    }
+  if (scale) {
+    vector <- vector / sd(vector)
+    }
+  return(vector)
+  }
+```
+
+-   Apply it! The defaults will be used and aren't necessary if you don't want to change things.
+
+```{r}
+standardize(data, center = TRUE, scale = TRUE)
+standardize(data)
+```
+
+Goal: Also return
+
+-   `mean()` of original data\
+-   `sd()` of original data
+
+Return more than 1 object by returning a list (so we return one object, but a very flexible object that easily contains other objects!)
+
+```{r}
+standardize <- function(vector, center = TRUE, scale = TRUE) {
+  mean <- mean(vector) #save these so we can return them
+  stdev <- sd(vector)
+  if (center) {
+    vector <- vector - mean
+    }
+  if (scale) {
+    vector <- vector / stdev
+    }
+  return(list(vector, mean, stdev))
+  }
+```
+
+-   Apply it!
+
+```{r}
+result <- standardize(data)
+result  
+result[[2]]
+```
+
+-   We can fancy up what we return by giving names to the list elements!
+
+```{r}
+standardize <- function(vector, center = TRUE, scale = TRUE) {
+  mean <- mean(vector)
+  stdev <- sd(vector)
+  if (center) {
+    vector <- vector - mean
+    }
+  if (scale) {
+    vector <- vector / stdev
+    }
+  return(list(result = vector, mean = mean, sd = stdev))
+  }
+```
+
+-   Apply it!
+
+```{r}
+result <- standardize(data, center = TRUE, scale = TRUE)
+result  
+result$sd
+```
+
+### `stop()` and `switch()`
+
+Often you want to check on inputs to make sure they are of the right form (that's good practice if you are going to share your code). You can use `if()` or `switch()` to do this check.
+
+Here we'll write a function to create a summary (mean, median, or trimmed mean).
+
+-   First we check the input to make sure it is a numeric vector.
+-   Then we use `stop()` to jump out if that condition isn't met.
+-   If the condition is met, we use `switch()` an alternative to `if/then/else` to pick which function to apply.
+
+```{r, error = TRUE}
+summarizer <- function(vec, type, trim = 0.05) {
+  if(!is.vector(vec) | !is.numeric(vec)){
+    stop("Not a vector or not numeric my friend.")
+  }
+  switch(type, 
+         mean = mean(vec),
+         median = median(vec),
+         trimmed = mean(vec, trim),
+         stop("Mistake!")
+         )
+}
+summarizer(letters, "mean")
+summarizer(c(1,1,1,6,10), "mean")
+summarizer(c(1,1,1,6,10), "trimmed", 0.2)
+summarizer(c(1,1,1,6,10), "means")
+```
+
+### Naming conventions
+
+That's the basics of function writing. Let's talk about a framework to make coherent code!
+
+Use of consistent naming schemes is important!
+
+Generally, naming objects must:
+
+-   start with a letter\
+-   only have letters, numbers, `_`, and `.`
+
+When we write functions and create objects we should try to follow this advice:
+
+-   Functions named using verbs
+
+    -   `standardize()` or `find_mean()` or `renderDataTable()`
+
+-   Data objects named using nouns
+
+    -   `my_df` or `weather_df`
+
+Naming things is actually really tough... You should try to follow a common naming scheme:
+
+-   snake_case_used\
+-   camelCaseUsed\
+-   UpperCamelCase\
+-   use.of.periods
+
+You'll also need to name inputs to your functions. Try to stick to these when possible:
+
+-   x, y, z: vectors\
+-   w: a vector of weights\
+-   df: a data frame
+-   i, j: numeric indices (typically rows and columns)
+-   n: length, or number of rows
+-   p: number of columns
+
+Otherwise, consider matching names of arguments in existing R functions. For example, use `na.rm` to determine if missing values should be removed.
+
+**There are some readings on this available in the weekly overview!**
+
+### Input Matching
+
+You might wonder why sometimes we name our arguments when we call our functions and sometimes we don't. Generally, we don't name the first 2-3 arguments but name ones after that. However, that is just convention. In R, you can use positional matching for everything or name each input, or combine the two ideas!
+
+Let's look at some examples. Consider the inputs of the `cor()` function
+
+```{r, eval = FALSE}
+function (x, y = NULL, use = "everything", method = c("pearson", 
+    "kendall", "spearman")) 
+```
+
+-   Apply it to `iris` data using positional matching (first argument to `x` second to `y`):
+
+```{r}
+cor(iris$Sepal.Length, iris$Sepal.Width)
+```
+
+-   R will use positional matching for all inputs not explicitly named. Here it applies `iris$Sepal.Width` to the first input of the function that wasn't specified, here `y`.
+
+```{r}
+cor(x = iris$Sepal.Length, method = "spearman", iris$Sepal.Width)
+```
+
+-   R will also do partial matching but you should avoid this generally.
+
+```{r, eval = FALSE}
+cor(iris$Sepal.Length, iris$Sepal.Width, met = "spearman")
+```
+
+### Infix functions
+
+Lastly, let's take up the idea of an **infix** function. An infix function is a function that goes between arguments (as opposed to prefix that goes prior to the arguments - what we usually do).
+
+```{r}
+mean(3:5) #prefix
+3 + 5 #+ is infix
+`+`(3, 5) #used as a prefix function
+```
+
+Common *built-in* infix functions include:
+
+-   `::` (look directly in a package for a function)
+-   `$` (grab a column)
+-   `^`
+-   `*`
+-   `/`
+-   `+`
+-   `-`
+-   `>`
+-   `>=`
+-   `<`
+-   `<=`
+-   `==`
+-   `!=`
+-   `&` (and)
+-   `|` (or)
+-   `<-` (storage arrow)
+-   `|>` (pipe!)
+
+Others infix operators use `%symbol%` syntax:
+
+-   `%*%` (matrix multiplication)
+-   `%in%` (check if LHS value(s) is(are) *in* RHS value(s)
+
+We can call infix functions like prefix functions if we need to using the backtick symbol \`\`\` (top left of the keyboard usually)
+
+```{r}
+cars <- as.matrix(cars)
+t(cars) %*% cars
+```
+
+```{r}
+`%*%`(t(cars), cars)
+```
+
+You can also write your own infix function!
+
+```{r}
+`%+%` <- function(a, b) paste0(a, b)
+"new" %+% " string"
+```
+
+R actually allows you to overwrite `+` and other operators: just don't do that... that wouldn't be good
+
+With infix functions we can use precedence rules to save typing:
+
+```{r, error = TRUE, eval = FALSE}
+x <- y <- 2
+`<-`(x, `<-`(y, 2)) #interpretation of above code!
+
+x <- y = 2# error! <- has higher precedence
+`=`(`<-`(x, y), 2) #interpretation of above code!
+
+x = y <- 2 # this will work!
+`=`(x, `<-`(y, 2)) #interpretation of above code!
+```
+
+This is one of the major differences between `=` and `<-` usage. You can't do
+
+```{r, eval = FALSE}
+x = y = 2
+```
+
+but can do it with the storage arrow.
+
+There is a weird difference between how infix functions are evaluated. For user defined infix functions, they evaluate left to right. For built-in ones, they evaluate right to left!
+
+-   User defined example:
+
+```{r}
+`%-%` <- function(a, b) {
+	paste0("(", a, " %-% ", b, ")")
+}
+"a" %-% "b" %-% "c" #user defined infix are evaluated left to right!
+`%-%`(`%-%`("a", "b"), "c")  #interpretation of above code!
+```
+
+-   Built-in example:
+
+```{r}
+x <- y <- 2
+`<-`(x, `<-`(y, 2)) #interpretation of above code!
+```
+
+### Base R Pipe
+
+This one deserves its own section! The pipe operator (`%>%`) was made popular by the `tidyverse` and the `magrittr` package. You would need to read in `dplyr` (part of the tidyverse) or `magrittr` to have access to the pipe.
+
+Due to the popularity, R created a baseR pipe (`|>`). The idea of the pipe is to make code more readable! Essentially, you can read code left to right when using a pipe instead of inside out.
+
+Consider the code below:
+
+```{r}
+library(dplyr)
+arrange(select(filter(as_tibble(Lahman::Batting), teamID == "PIT"), playerID, G, X2B), desc(X2B))
+```
+
+-   Forget what the functions do for a minute. To parse this we need to start on the inside.
+
+    -   The first function is `as_tibble(Lahman::Batting)`
+    -   The result of that is then the first argument to `filter()`
+    -   The result of this is then the first argument to `select()`
+    -   The result of that is then the first argument to `arrange()`
+
+-   Yikes. Piping makes thigns way easier to read!
+
+```{r}
+Lahman::Batting |> #read the pipe as "then"
+  as_tibble() |>
+  filter(teamID == "PIT") |>
+  select(playerID, G, X2B) |> 
+  arrange(desc(X2B)) 
+```
+
+-   This is easy to parse!
+
+    -   First take the Batting dataset and turn it into a tibble (special data frame)
+    -   Then filter it
+    -   Then select from that
+    -   Then arrange that
+
+Generically, `|>` does the following
+
+-   `x |> f(y)` turns into `f(x,y)`\
+-   `x |> f(y) |> g(z)` turns into `g(f(x, y), z)`
+
+We'll be using this a lot from here on out!
+
+### Quick R Video
+
+Please pop this video out and watch it in the full panopto player!
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=f8033683-1370-47ac-b822-b171015bf166&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="14 - Writing Functions" ></iframe>
+```
+
+### Recap!
+
+Functions allow you to customize your code
+
+-   Can specify default values and return multiple objects using a named list
+
+-   Much more to know!
+
+    -   Unnamed arguments
+    -   Input matching, environments, and lazy evaluation
+    -   Writing pipeable functions & side-effect functions
+    -   Infix functions
+    -   Helper functions and function writing strategy
+
+-   Naming conventions and input matching
+
+-   `stop()` and `switch()`
+
+-   infix functions

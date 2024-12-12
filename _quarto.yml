@@ -1,0 +1,74 @@
+project:
+  type: website
+  render: 
+    - index.qmd
+    - about.qmd
+    - Notes/00-Week1_Overview.qmd
+    - Notes/01-What_is_Data_Science.qmd
+    - Notes/02-Workflows_Git_GitHub_Basics_Landing.qmd
+    - Notes/03-Git_GitHub_Practice.qmd
+    - Notes/04-R_Basics_Landing.qmd
+    - Notes/05-R_Projects_Connecting_with_GitHub.qmd
+    - Notes/06-Quarto.qmd
+
+website:
+  title: "ST-558-Data-Science-for-Statisticians"
+  navbar:
+    background: primary
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+    right:
+      - icon: github
+        href: https://github.com/jbpost2/ST-558-Data-Science-for-Statisticians
+  sidebar:
+    style: "docked"
+    search: true
+    collapse-level: 1
+    contents:
+      - index.qmd
+      - section: "Week 1"
+        contents:
+          - Notes/00-Week1_Overview.qmd
+          - Notes/01-What_is_Data_Science.qmd
+          - Notes/02-Workflows_Git_GitHub_Basics_Landing.qmd
+          - Notes/03-Git_GitHub_Practice.qmd
+          - Notes/04-R_Basics_Landing.qmd
+          - Notes/05-R_Projects_Connecting_with_GitHub.qmd
+          - Notes/06-Quarto.qmd
+      - section: "Week 2"
+      - section: "Week 3"
+      - section: "Week 4"
+      - section: "Week 5"
+      - section: "Week 6"
+        contents: 
+          - "No new material. Exam study time and project work time!"
+      - section: "Week 7"
+      - section: "Week 8"
+      - section: "Week 9"
+      - section: "Week 10"
+      - section: "Week 11"
+        contents: 
+          - "No new material. Project work time!"
+      - section: "Week 12"
+      - section: "Week 13"
+      - section: "Week 14"
+      - section: "Week 15-16"
+        contents: 
+          - "No new material. Final project work time!"
+  page-navigation: true
+  reader-mode: true
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+callout-appearance: simple
+
+date: today
+date-format: iso
+
+

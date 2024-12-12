@@ -1,0 +1,147 @@
+---
+title: "Numerical Variable Summaries"
+format: html
+editor: visual
+toc: TRUE
+editor_options: 
+  chunk_output_type: console
+---
+
+We now know how to summarize categorical data and we've learned the basics of `ggplot2`. Now we're ready to investigate how to summarize numeric variables. Recall:
+
++ Numeric (Quantitative) variable - entries are a numerical value where math can be performed
+
+As before, our goal is to describe the **distribution** of the variable. We talked about this briefly:
+
+- For a single numeric variable, describe the distribution via
+
+    + Shape: Histogram, Density plot, ...
+    + Measures of center: Mean, Median, ...
+    + Measures of spread: Variance, Standard Deviation, Quartiles, IQR, ...
+
+- For two numeric variables, describe the distribution via
+
+    + Shape: Scatter plot, ...
+    + Measures of linear relationship: Covariance, Correlation
+
+First, let's read in the appendicitis data from the previous lecture.
+
+```{r}
+library(tidyverse)
+library(readxl)
+app_data <- read_excel("app_data.xlsx", sheet = 1)
+app_data <- app_data |>
+  mutate(BMI = as.numeric(BMI),
+         US_Number = as.character(US_Number),
+         SexF = factor(Sex, levels = c("female", "male"), labels = c("Female", "Male")),
+         DiagnosisF = as.factor(Diagnosis),
+         SeverityF = as.factor(Severity))
+app_data
+```
+
+
+Let's dig in!
+
+## Numerical Summaries 
+
+We'll utilize the `summarize()` function along with `group_by()` to find most of our numerical summaries.
+
+As we discussed, we can't really describe the entire distribution with a single number so we try to summarize different aspects of the distribution. In particular, center and spread.
+
+### Measures of Center
+
+We can find the mean and median via the `mean()` and `median()` function.
+
+```{r}
+app_data |>
+  summarize(mean_BMI = mean(BMI, na.rm = TRUE), med_BMI = median(BMI, na.rm = TRUE))
+```
+
+We can try to get fancy and do it for all numeric columns. Recall we did this earlier with `across()` and `where(is.numeric)`:
+
+```{r}
+app_data |>
+  summarize(across(where(is.numeric), 
+                   list("mean" = mean, "median" = median), 
+                   .names = "{.fn}_{.col}"))
+```
+
+Oh, darn. That's right, we have missing values. We can remove those just for a particular column instead of removing all the rows (as we did with `drop_na()`). This is a bit more complicated but we can specify some additional arguments of the mean and median function in our named list.
+
+```{r}
+app_data |>
+  summarize(across(where(is.numeric), 
+                   list("mean" = ~ mean(.x, na.rm = TRUE), "median" = ~ median(.x, na.rm = TRUE)), 
+                   .names = "{.fn}_{.col}"))
+```
+
+The `~` is a quick way to write a *lambda* or *anonymous* function. Essentially, we are inline doing something like this
+
+```{r, eval = FALSE}
+my_fun <- function(x) {mean(x, na.rm = TRUE)}
+```
+
+But a *lambda* function is a shorthand for this where we don't need to give the function a name (since we aren't planning on using it again anyway).
+
+Of course we want these kinds of statistics across groups so we can compare them. We saw how to do this with `group_by()`
+
+```{r}
+app_data |>
+  group_by(Diagnosis, Sex) |>
+  drop_na(Diagnosis, Sex) |>
+  summarize(mean_BMI = mean(BMI, na.rm = TRUE), med_BMI = median(BMI, na.rm = TRUE))
+```
+
+We can do this similar thing with the fancier version too!
+
+```{r}
+app_data |>
+  group_by(Diagnosis, Sex) |>
+  drop_na(Diagnosis, Sex) |>
+  summarize(across(where(is.numeric), 
+                   list("mean" = ~ mean(.x, na.rm = TRUE), "median" = ~ median(.x, na.rm = TRUE)), 
+                   .names = "{.fn}_{.col}"))
+```
+
+Great, now we have an easy way to compare the centers of the distribution for each of these numeric variables!
+
+### Measures of Spread
+
+Same idea here but we can use the `sd()` and `IQR()` functions.
+
+```{r}
+app_data |>
+  group_by(Diagnosis, Sex) |>
+  drop_na(Diagnosis, Sex) |>
+  summarize(sd_BIM = sd(BMI, na.rm = TRUE), IQR_BMI = IQR(BMI, na.rm = TRUE))
+```
+
+### Measures of Association Between Two Numeric Variables
+
+We can find the linear associations between two numeric variables with `cor()`. 
+
+```{r}
+app_data |>
+  group_by(Diagnosis, Sex) |>
+  drop_na(Diagnosis, Sex) |>
+  summarize(correlation = cor(BMI, Age))
+```
+
+Oh yeah, missing values. Unfortunately, `BaseR` isn't that consistent. To deal with missing values appropriately, we can look at the help. 
+
+`use`
+
+> an optional character string giving a method for computing covariances in the presence of missing values. This must be (an abbreviation of) one of the strings "everything", "all.obs", "complete.obs", "na.or.complete", or "pairwise.complete.obs".
+
+```{r}
+app_data |>
+  group_by(Diagnosis, Sex) |>
+  drop_na(Diagnosis, Sex) |>
+  summarize(correlation = cor(BMI, Age, use = "pairwise.complete.obs"))
+```
+
+Great - we can do all our basic numerical summaries!
+
+### Recap!
+
+We tend to describe the center and spread of a numeric variable's distribution. Often we want to compare across groups and that can be done with `group_by()`.

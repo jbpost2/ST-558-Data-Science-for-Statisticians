@@ -1,0 +1,169 @@
+---
+title: "Base R Data Structures: Data Frames"
+format: html
+editor: visual
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+# Common Data Structures
+
+A data scientist needs to deal with data! We need to have a firm foundation in the ways that we can store our data in R. This section goes through the most commonly used 'built-in' R objects that we'll use.
+
+-   There are five major data structures used in R
+
+    1.  Atomic Vector (1d)
+    2.  Matrix (2d)
+    3.  Array (nd)
+    4.  Data Frame (2d)
+    5.  List (1d)
+
+| Dimension | Homogeneous (elements all the same) | Heterogeneous (elements may differ) |
+|------------------|---------------------------|---------------------------|
+| 1d        | Atomic Vector                       | List                                |
+| 2d        | Matrix                              | Data Frame                          |
+| nd        | Array                               |                                     |
+
+## Data Frame
+
+We've now gone through the common data structures that are homogeneous. Next we'll take on the data frame. These are 2D objects where the columns can be of different types!
+
+Data Frames
+
+-   A collection (list) of **vectors** of the same *length*
+
+-   Perfect for most data sets!
+
+```{r dfVis, echo = FALSE, out.width = "500px", fig.align= 'center', echo = FALSE}
+knitr::include_graphics("img/dfVisualF.png")
+```
+
+### Creating a Data Frame
+
+We can create a data frame using the `data.frame()` function. From the help:
+
+`data.frame(..., row.names = NULL, check.rows = FALSE,` `check.names = TRUE, fix.empty.names = TRUE,` `stringsAsFactors = FALSE)`
+
+The help isn't super clear on what the first argument `...` should be. Essentially, this syntax allows us to pass vectors (each of the same length) as the columns of our data frame.
+
+```{r}
+x <- c("a", "b", "c", "d", "e", "f")
+y <- c(1, 3, 4, -1, 5, 6)
+z <- 10:15
+my_df <- data.frame(x, y, z)
+my_df
+```
+
+### Data Frame Attributes
+
+Data frames have one attribute of note: `names`.
+
+```{r}
+str(my_df)
+```
+
+```{r}
+attributes(my_df)
+```
+
+-   Our data frame originally inherited the names from the data objects passed in.
+-   If we didn't pass in objects with names, we get some default nonsense.
+
+```{r}
+data.frame(1:5, c("a", "b", "c", "d", "e"))
+```
+
+-   We can set the names explicitly when we create the data frame.
+
+```{r}
+x <- c("a", "b", "c", "d", "e", "f")
+y <- c(1, 3, 4, -1, 5, 6)
+z <- 10:15
+my_df <- data.frame(char = x, data1 = y, data2 = z)
+my_df
+```
+
+```{r}
+data.frame(number = 1:5, letter = c("a", "b", "c", "d", "e"))
+```
+
+-   Note: A syntactically valid name consists of letters, numbers and the dot or underline characters. It must start with a letter or a dot not followed by a number.
+
+-   You shouldn't use `.` with names generally. Periods are often used for **methods** and other things in programming.
+
+-   You also should avoid reserved words: `if` `else` `repeat` `while` `function` `for` `in` `next` `break` `TRUE` `FALSE` `NULL` `Inf` `NaN` `NA` `NA_integer_` `NA_real_` `NA_complex_` `NA_character_` (type `?make.names` into the console for more details)
+
+### Accessing Elements of a Data Frame
+
+Let's check out the 'built-in' `iris` data frame
+
+```{r}
+str(iris)
+```
+
+-   This is a 2D structure and we can access just like a matrix!
+
+```{r}
+iris[1:4, 2:4] #returns a data frame
+```
+
+```{r}
+iris[1, ] #returns a data frame
+```
+
+```{r}
+iris[1:10, 1] #returns a vector
+```
+
+-   Note again that R simplifies objects sometimes! The last return was simplified to a vector.
+-   This behavior actually comes from using the `[` function. **Everything you do in R is a function call!**
+-   We can avoid the behavior by adding the `drop = FALSE` argument
+
+```{r}
+iris[1:10, 1, drop = FALSE] #return a data frame
+```
+
+-   Or we can call the `[` function as a **prefix** function (like our usual function calls)
+
+```{r}
+`[`(iris, 1:10, 1, drop = FALSE)
+```
+
+-   Usually data frames have *meaningful* column names. We can use these for subsetting
+
+```{r}
+iris[1:5 , c("Sepal.Length", "Species")]
+```
+
+-   **The most common way to access a single column is via the `$`** operator. This returns a vector.
+
+```{r}
+iris$Sepal.Length
+```
+
+-   RStudio fills in options for us!
+    -   Type `iris$`\
+    -   If no choices - hit tab
+    -   Hit tab again to choose
+
+### Quick R Video
+
+Please pop this video out and watch it in the full panopto player!
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=d0c4b48a-d2de-434a-baca-b171014d8595&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="09 - Data Frames" ></iframe>
+```
+### Recap!
+
+Data Frame (2D data structure)
+
+-   Collection (list) of **vectors** of the same *length*
+
+-   Create with `data.frame()` function
+
+-   Access with `[ , ]` or `$`
+
+-   Perfect for most data sets!
+
+-   Most functions that read 2D data store it as a `data frame` (or `tibble` - a special data frame covered later)

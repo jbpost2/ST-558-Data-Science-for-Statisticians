@@ -1,0 +1,623 @@
+---
+title: "Exploratory Data Analysis (EDA) Concepts"
+author: "Justin Post"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, "css/ncsu.css", "css/ncsu-fonts.css"]
+    nature:
+      beforeInit: ["js/ncsu-scale.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+    includes:
+      in_header: "partials/header.html"
+editor_options: 
+  chunk_output_type: console
+---
+
+
+layout: true
+
+<div class="my-footer"><img src="img/logo.png" style="height: 60px;"/></div> 
+
+```{r, include=FALSE,warning=FALSE,message=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  dev = "svg",
+  fig.align = "center",
+  #fig.width = 11,
+  #fig.height = 5
+  cache = TRUE
+)
+
+# define vars
+om = par("mar")
+lowtop = c(om[1],om[2],0.1,om[4])
+library(tidyverse)
+library(knitr)
+#use_python("C:\\python\\python.exe")
+options(dplyr.print_min = 5)
+```
+
+---
+
+# Recap!
+
+- Data Science!!
+- R Projects/Quarto/Git/GitHub for reproducibility/communication
+- R Data Structures
+
+    + Vectors, Matrices, Data Frames, Lists
+
+- R Control Flow
+
+    + if/then/else, loops, function writing
+    
+- Reading & Manipulating data with the tidyverse!
+- Next: Gain meaningful insights from data through EDA
+- Later: Dashboards, Predictive Modeling, & More
+
+---
+
+# EDA Basics
+
+- Get to know your data!
+
+- EDA generally consists of a few steps:
+
+    + Understand how your data is stored
+    + Do basic data validation
+    + Determine rate of missing values
+    + Clean data up data as needed
+    + Investigate distributions
+        - Univariate measures/graphs
+        - Multivariate measures/graphs
+    + Apply transformations and repeat previous step
+    
+---
+
+# Understand How Data is Stored
+
+Let's read in some data!
+
+- [Appendicitis Data](https://www4.stat.ncsu.edu/~online/datasets/app_data.xlsx)
+
+> This dataset was acquired in a retrospective study from a cohort of pediatric patients admitted with abdominal pain to Children’s Hospital St. Hedwig in Regensburg, Germany. ... Alongside multiple US images for each subject, the dataset includes information encompassing laboratory tests, physical examination results, clinical scores, such as Alvarado and pediatric appendicitis scores, and expert-produced ultrasonographic findings. Lastly, the subjects were labeled w.r.t. three target variables: diagnosis (appendicitis vs. no appendicitis), management (surgical vs. conservative) and severity (complicated vs. uncomplicated or no appendicitis). ...
+
+
+---
+
+# Understand How Data is Stored
+
+```{r, warning = FALSE, message = FALSE}
+#download data to local folder
+library(tidyverse)
+library(readxl)
+app_data <- read_excel("app_data.xlsx", sheet = 1)
+```
+
+- Column data types should make sense for what you expect!
+
+```{r}
+app_data
+```
+
+
+---
+
+# Understand How Data is Stored
+
+- Check the structure of the data!
+
+```{r}
+str(app_data)
+```
+
+
+---
+
+# Convert Columns Explicitly
+
+- `as.*()` family of functions can help coerce columns to the correct type
+
+```{r}
+app_data <- app_data |>
+  mutate(BMI = as.numeric(BMI),
+         US_Number = as.character(US_Number))
+app_data
+```
+
+
+---
+
+# Do Basic Data Validation
+
+- Can use the `psych::describe()` function
+- Check that the min's, max's, etc. all make sense!
+
+```{r}
+psych::describe(app_data)
+```
+
+
+---
+
+# Determine Rate of Missing Values
+
+- Use `is.na()` 
+
+```{r}
+colSums(is.na(app_data))
+```
+
+---
+
+# Determine Rate of Missing Values
+
+- Stay in the `tidyverse`
+
+```{r}
+sum_na <- function(column){
+  sum(is.na(column))
+}
+na_counts <- app_data |>
+  summarize(across(everything(), sum_na))
+na_counts
+```
+
+
+---
+
+# Clean Up Data As Needed
+
+- Can remove rows with missing using `tidyr::drop_na()` function
+
+```{r}
+names(app_data)[na_counts < 30]
+```
+
+---
+
+# Clean Up Data As Needed
+
+- Can remove rows with missing using `tidyr::drop_na()` function
+
+```{r}
+app_data |> 
+  drop_na(names(app_data)[na_counts < 30])
+```
+
+
+---
+
+# May Want to Impute Values
+
+- We lose information when removing rows!
+
+- Can **impute** missing values with `tidyr::replace_na()`
+
+```{r}
+app_data <- app_data |> 
+  replace_na(list(BMI = mean(app_data$BMI, na.rm = TRUE),
+                  Height = mean(app_data$Height, na.rm = TRUE)))
+app_data
+```
+
+---
+
+# EDA Basics
+
+- Get to know your data!
+
+- EDA generally consists of a few steps:
+
+    + Understand how your data is stored
+    + Do basic data validation
+    + Determine rate of missing values
+    + Clean data up data as needed
+    + Investigate distributions
+        - Univariate measures/graphs
+        - Multivariate measures/graphs
+    + Apply transformations and repeat previous step
+    
+
+---
+
+# Investigate distributions  
+
+- How to summarize data depends on the type of data  
+
+  + Categorical (Qualitative) variable - entries are a label or attribute   
+  + Numeric (Quantitative) variable - entries are a numerical value where math can be performed
+
+---
+
+layout: false
+
+# Investigate distributions  
+
+- How to summarize data depends on the type of data  
+
+  + Categorical (Qualitative) variable - entries are a label or attribute   
+  + Numeric (Quantitative) variable - entries are a numerical value where math can be performed
+
+- Numerical summaries (across subgroups)  
+
+    + Contingency Tables (for categorical data)
+    + Mean/Median  
+    + Standard Deviation/Variance/IQR
+    + Quantiles/Percentiles
+
+- Graphical summaries (across subgroups)  
+
+    + Bar plots (for categorical data)
+    + Histograms  
+    + Box plots  
+    + Scatter plots
+
+---
+
+layout: true
+
+<div class="my-footer"><img src="img/logo.png" style="height: 60px;"/></div> 
+
+---
+
+# Categorical Data
+
+Goal: Describe the **distribution** of the variable  
+
+- Distribution = pattern and frequency with which you observe a variable  
+- Categorical variable - entries are a label or attribute   
+
+    + Describe the relative frequency (or count) for each category
+
+Variables of interest for this section:
+
+- `Sex`, `Diagnosis`, `Severity`
+
+
+---
+
+# Factors
+
+A factor variable is really useful for certain categorical variables!
+
+**Factor** - special class of vector with a `levels` attribute  
+
+- Can have more descriptive labels, ordering of categories, etc.
+- Levels define **all** possible values for that variable  
+
+    + Great for variable like `Day` (Monday, Tuesday, ..., Sunday)  
+    + Not great for variable like `Name` where new values may come up  
+
+- Great for plotting as you can order the levels and give nicer labels
+
+---
+
+# Factors
+
+- Let's create factor versions of our three variables
+
+```{r}
+unique(app_data$Sex)
+unique(app_data$Diagnosis)
+unique(app_data$Severity)
+```
+
+- Now we can use `factor()` or `as.factor()` to coerce the character variables
+
+
+---
+
+# Factors
+
+- Let's create factor versions of our three variables
+
+```{r}
+app_data |>
+  mutate(SexF = factor(Sex, levels = c("female", "male"), labels = c("Female", "Male")),
+         DiagnosisF = as.factor(Diagnosis),
+         SeverityF = as.factor(Severity)) |>
+  select(SexF, DiagnosisF, SeverityF)
+```
+
+```{r, echo = FALSE}
+app_data <- app_data |>
+  mutate(SexF = factor(Sex, levels = c("female", "male"), labels = c("Female", "Male")),
+         DiagnosisF = as.factor(Diagnosis),
+         SeverityF = as.factor(Severity))
+```
+
+
+---
+
+layout: false 
+
+# Contingency Tables
+
+- Summarize categorical data by looking at counts!
+
+```{r}
+app_data |>
+  group_by(SexF) |>
+  drop_na(SexF) |>
+  summarize(count = n())
+```
+
+```{r}
+app_data |>
+  group_by(DiagnosisF) |>
+  drop_na(DiagnosisF) |>
+  summarize(count = n())
+```
+
+---
+
+# Contingency Tables
+
+- Summarize categorical data by looking at counts across combinations of variables!
+
+```{r}
+app_data |>
+  group_by(SexF, DiagnosisF) |>
+  drop_na(SexF, DiagnosisF) |>
+  summarize(count = n()) |>
+  pivot_wider(names_from = DiagnosisF, values_from = count)
+```
+
+
+---
+
+# Contingency Tables
+
+- Summarize categorical data by looking at counts across combinations of variables!
+
+```{r}
+app_data |>
+  group_by(SexF, DiagnosisF, SeverityF) |>
+  drop_na(SexF, DiagnosisF, SeverityF) |>
+  summarize(count = n()) |>
+  pivot_wider(names_from = DiagnosisF, values_from = count)
+```
+
+
+---
+
+# Bar Charts
+
+- Main visual used is a bar plot! Simply displays our counts with bars.
+
+```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center'}
+ggplot(app_data |>
+  group_by(SexF) |>
+  drop_na(SexF) |>
+  summarize(count = n()), aes(x = SexF, y = count)) +
+  geom_bar(stat = "identity") +
+  labs(x = "Sex")
+```
+
+---
+
+# Bar Charts
+
+- Main visual used is a bar plot! Simply displays our counts with bars.
+
+```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center'}
+ggplot(app_data |>
+  group_by(SexF, DiagnosisF) |>
+  drop_na(SexF, DiagnosisF) |>
+  summarize(count = n()), aes(x = SexF, y = count, fill = DiagnosisF)) +
+  geom_bar(stat = "identity") + 
+  scale_fill_discrete("Diagnosis") +
+  labs(x = "Sex")
+```
+
+---
+
+# Bar Charts
+
+- Main visual used is a bar plot! Simply displays our counts with bars.
+
+```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center'}
+ggplot(app_data |>
+  group_by(SexF, DiagnosisF, SeverityF) |>
+  drop_na(SexF, DiagnosisF, SeverityF) |>
+  summarize(count = n()), aes(x = SexF, y = count, fill = SeverityF)) +
+  geom_bar(stat = "identity") + 
+  scale_fill_discrete("Severity") +
+  labs(x = "Sex") +
+  facet_wrap(~DiagnosisF)
+```
+
+
+---
+
+# Numeric Data
+
+Goal: Describe the **distribution** of the variable  
+
+- Distribution = pattern and frequency with which you observe a variable  
+- Numeric variable - entries are a numerical value where math can be performed
+
+For a single numeric variable, describe the distribution via
+
++ Shape: Histogram, Density plot, ...
++ Measures of center: Mean, Median, ...
++ Measures of spread: Variance, Standard Deviation, Quartiles, IQR, ...
+
+For two numeric variables, describe the distribution via
+
++ Shape: Scatter plot, ...
++ Measures of linear relationship: Covariance, Correlation
+
+
+---
+
+# Summarizing Center and Spread
+
+- We summarize center and spread for a numeric variable because it is difficult to compare entire distributions!
+
+    + Consider the distributions of `Weight` for those with appendicitis and those without
+
+```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center'}
+ggplot(app_data |> drop_na(Weight, Diagnosis), aes(x = Weight, fill = Diagnosis)) + 
+  geom_density(alpha = 0.5)
+```
+
+---
+
+# Summarizing Center and Spread
+
+- Mean and Median give good measures of the 'middle' type observations
+
+```{r}
+app_data |>
+  group_by(Diagnosis) |>
+  drop_na(Diagnosis, Weight) |>
+  summarize(mean_weight = mean(Weight), 
+            median_weight = median(Weight))
+```
+
+
+---
+
+# Summarizing Center and Spread
+
+- Of course we need to understand the variability we see as well! Variance, standard deviation, and IQR are good measures of that.
+
+```{r}
+app_data |>
+  group_by(Diagnosis) |>
+  drop_na(Diagnosis, Weight) |>
+  summarize(across(Weight, .fns = list("mean" = mean, 
+                                       "median" = median, 
+                                       "var" = var, 
+                                       "sd" = sd, 
+                                       "IQR" = IQR), .names = "{.fn}_{.col}"))
+```
+
+---
+
+# Summarizing Shape
+
+- Most easily done via histograms and density plots
+
+    + Histograms are more variable, which can be bad!
+
+<div style = "float:left; width = '40%'">
+```{r, echo = FALSE, out.width = "400px", fig.align='center'}
+ggplot(app_data |> drop_na(Weight, Diagnosis), aes(x = Weight, fill = Diagnosis)) + 
+  geom_density(alpha = 0.5)
+```
+</div>
+
+<div style = "float:right; width = '40%'">
+```{r, echo = FALSE, out.width = "400px", fig.align='center'}
+ggplot(app_data |> drop_na(Weight, Diagnosis), aes(x = Weight)) + 
+  geom_histogram() +
+  facet_wrap(~Diagnosis)
+```
+</div>
+
+
+---
+
+# Summarizing Two Numeric Variables
+
+- To look at the distribution of two numeric variables together, we usually look at a scatter plot!
+
+```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center'}
+ggplot(app_data |> drop_na(Weight, Age), aes(x = Age, y = Weight)) +
+  geom_point()
+```
+
+---
+
+# Summarizing Two Numeric Variables
+
+- Again, difficult to describe the relationship generally!
+
+    + Numerically we commonly describe the 'linear-ness' of the relationship
+    + Done through covariance and correlation
+    
+```{r}
+app_data |>
+  drop_na(Weight, Age) |>
+  summarize(cov = cov(Weight, Age), corr = cor(Weight, Age))
+```
+
+
+---
+
+# Summarizing Two Numeric Variables
+
+- Again, difficult to describe the relationship generally!
+
+    + Numerically we commonly describe the 'linear-ness' of the relationship
+    + Done through covariance and correlation
+    
+```{r}
+app_data |>
+  drop_na(Weight, Age) |>
+  summarize(cov = cov(Weight, Age), corr = cor(Weight, Age))
+```
+
+
+---
+
+# Summarizing Two Numeric Variables
+
+- Of course we want to bring in subgroups to compare them!
+
+```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center'}
+ggplot(app_data |> drop_na(Weight, Age, Diagnosis), aes(x = Age, y = Weight, color = Diagnosis)) +
+  geom_point()
+```
+
+
+---
+
+# Summarizing Two Numeric Variables
+
+- Summarize based on groups!
+    
+```{r}
+app_data |>
+  drop_na(Weight, Age, Diagnosis) |>
+  group_by(Diagnosis) |> 
+  summarize(cov = cov(Weight, Age), corr = cor(Weight, Age))
+```
+
+
+---
+
+# Summarizing Two Numeric Variables
+
+- We can do really interesting stuff to add in additional variables (like a third numeric variable)
+
+```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center'}
+ggplot(app_data |> drop_na(Weight, Age, Diagnosis, Length_of_Stay), aes(x = Age, y = Weight, color = Diagnosis, size = Length_of_Stay)) +
+  geom_point(alpha = 0.5)
+```
+
+
+---
+
+# Recap
+
+- EDA is often the first step to an analysis:
+
+    + Understand how your data is stored
+    + Do basic data validation
+    + Determine rate of missing values
+    + Clean data up data as needed
+    + Investigate distributions
+        - Univariate measures/graphs
+        - Multivariate measures/graphs
+    + Apply transformations and repeat previous step
+

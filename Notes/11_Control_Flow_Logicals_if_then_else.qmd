@@ -1,0 +1,256 @@
+---
+title: "Control Flow: Logicals & if/then/else"
+format: html
+editor: visual
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+Hopefully, you feel like you have an idea about programming in R. We've learned about the idea of R objects and how to investigate an R object via
+
+-   `class()`
+-   `typeof()`
+-   `str()`
+
+We see that R commonly uses the attributes of the object to determine how to apply (or dispatch) a function. We've looked at common R objects and how to access their elements:
+
+-   Atomic vectors - `x[ ]`
+-   Matrices - `x[ , ]`
+-   Data Frames - `x[ , ]` or `x$name`
+-   Lists - `x[[ ]]` or `x$name`
+
+and how to document our code by using a notebook environment such as Quarto (along with git/github for version control and sharing/collaborating).
+
+Now we want to look at how to control the execution of our code. The three main things we'll look at here are
+
+-   `if/then/else` logic and syntax
+-   looping to repeatedly execute code
+-   vectorized functions for improved efficiency
+
+Then we'll see how to write our own functions! We are already learning a lot of necessary material to be a data scientist. Let's go!!
+
+## Logical Statements
+
+A logical statement is a comparison of two quantities. It will resolve as `TRUE` or `FALSE` (note the all caps).
+
+-   To compare to things in R, we can use standard operators
+
+    -   `==` equality check (although this isn't always the best choice!)
+    -   `!=` not equal to
+    -   `>=`, `>`, `<`, `<=` operators
+
+```{r}
+#Strings must be exactly the same to be equivalent
+"hi" == "hi"
+"hi" == " hi"
+```
+
+```{r}
+4 >= 1
+4 != 1
+sqrt(3)^2  == 3
+```
+
+That last one should be true! The issue is the loss of precision with taking the square root of 3. Instead of using `==` we can use the `near()` function from the `dplyr` package. To call a function directly from a package we can use `::`
+
+```{r}
+dplyr::near(sqrt(3)^2, 3)
+```
+
+That's more like it!
+
+### `is.` Family
+
+In addition to the standard operators, R has a family of `is.` (read as "is dot") functions. These allow you to check a lot of things about an R object or value!
+
+```{r}
+is.numeric("Word")
+is.numeric(c(10, 12, 20))
+```
+
+```{r}
+is.character(c(10, 12, 20))
+is.character(c("10", "12"))
+is.na(c(1:2, NA, 3))
+```
+
+This last one is important!
+
+-   First, note that R applies the `is.na()` function element-wise to the vector. This is *not* common behavior.
+-   Second, `NA` is the missing value indicator in R. When we start to read in data we need to check for missing values. More on that later.
+-   `NA` differs from `NULL` which is the undefined value in R
+
+### Logical Statements for Subsetting Data
+
+Creating logical statements can be useful for subsetting data. We'll see how to do this in a streamlined fashion later, but for now, let's use `baseR` functionality to do some subsetting.
+
+Recall the `iris` data set. This has measurements on flowers.
+
+```{r}
+head(iris)
+```
+
+As R does comparisons element-wise, we can compare the `Species` column to a value. This returns a vector of `TRUE` `FALSE` values (a logical vector).
+
+```{r}
+iris$Species == 'setosa'
+```
+
+If we index an object with a logical vector, it returns the values where a `TRUE` occurred and doesn't return values where a `FALSE` occurred!
+
+```{r}
+iris[iris$Species == "setosa", ]
+```
+
+### Compound Logical Statements
+
+Of course there are times we want to check whether two conditions are both TRUE or at least one of the conditions is TRUE. The **Logical Operators** below help us with that:
+
+-   `&` 'and'
+-   `|` 'or'
+
+| Operator | A,B true       | A true, B false | A,B false       |
+|----------|----------------|-----------------|-----------------|
+| `&`      | `A & B = TRUE` | `A & B = FALSE` | `A & B = FALSE` |
+| `|`      | `A | B = TRUE` | `A | B = TRUE`  | `A | B = FALSE` |
+
+**Note!** `&&` and `||` are alternatives that look at only first comparison when given a vector of comparisons. This is used a lot in writing functions but is generally not what you want to use.
+
+In subsetting data, this let's us do a lot more!
+
+-   Only pull out large petal setosa flowers
+
+```{r}
+(iris$Petal.Length > 1.5) & (iris$Species == "setosa")
+```
+
+```{r}
+iris[(iris$Petal.Length > 1.5) & (iris$Species == "setosa"), ]
+```
+
+The parentheses are not required but are useful to keep things straight. For example, we might want only long petal or skinny petal, setosa flowers.
+
+```{r}
+iris[((iris$Petal.Length > 1.5) | (iris$Petal.Width < 0.4)) & (iris$Species == "setosa"), ]
+```
+
+## Quick Aside on Implicit Coercion
+
+R attempts to coerce data into usable form when necessary. Unfortunately, it doesn't always let us know it is doing so. This means we need to be careful and understand how R works.
+
+Recall the behavior of combining elements together into an atomic vector. R coerces to the more flexible data type.
+
+```{r}
+#coerce numeric to string
+c("hi", 10)
+```
+
+In this way, R will treat `TRUE` as a 1 and `FALSE` as a 0 when math is done.
+
+```{r}
+#coerce TRUE/FALSE to numeric
+c(TRUE, FALSE) + 0
+c(TRUE, FALSE) + 10
+as.numeric(c(TRUE, FALSE, TRUE))
+mean(c(TRUE, FALSE, TRUE))
+```
+
+The order of coercion (from least flexible to most)
+
+-   logical
+-   integer
+-   double
+-   character.
+
+## Conditional Execution via `if/then/else`
+
+We often want to execute statements conditionally. For instance, we might want to create a variable that takes on different values depending on whether or not some condition is met.
+
+-   `if` `then` `else` syntax
+
+```{r,eval=FALSE}
+if (condition) {
+  then execute code
+} 
+
+#if then else
+if (condition) {
+  execute this code  
+} else {
+  execute this code
+}
+```
+
+```{r,eval=FALSE}
+#Or more if statements
+if (condition) {
+  execute this code  
+} else if (condition2) {
+  execute this code
+} else if (condition3) {
+  execute this code
+} else {
+  #if no conditions met
+  execute this code
+}
+```
+
+**Note!** You should keep the `{` on the lines as you see here. There are some occassions where something like this would work:
+
+```{r eval = FALSE}
+if (condition) 
+  {
+  execute this code  
+} else 
+  {
+  execute this code
+}
+```
+
+but it generally won't! So just mind the positioning.
+
+As an example of using `if/then/else` consider the built-in data set `airquality`. This data has daily air quality measurements in New York from May (Day 1) to September (Day 153) in 1973.
+
+```{r}
+head(airquality)
+```
+
+We may want to code a wind category variable as follows:
+
+-   high wind days (wind $\geq$ 15mph)\
+-   windy days (10mph $\leq$ wind \< 15mph)\
+-   lightwind days (6mph $\leq$ wind \< 10mph)\
+-   calm days (wind $\leq$ 6mph)
+
+For a given value we can do a check and assign a new value.
+
+```{r, error = TRUE, message = TRUE, warning = TRUE}
+airquality$Wind[1]
+if(airquality$Wind[1] >= 15) { 
+  "High Wind"
+} else if (airquality$Wind[1] >= 10){
+  "Windy"
+} else if (airquality$Wind[1] >= 6) {
+  "Light Wind"
+} else if (airquality$Wind[1] >= 0) {
+  "Calm"
+} else {
+  "Error"
+}
+```
+
+Unfortunately, to apply this to each observation requires a loop or the use of a vectorized function. We'll cover those shortly!
+
+### Quick R video
+
+Please pop this video out and watch it in the full panopto player!
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=794c72ec-d2df-4321-8b23-b1710153a923&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="11 - if/then/else" ></iframe>
+```
+### Recap
+
+-   Logical comparisons resolve as `TRUE` or `FALSE`
+-   Compound logical operators are `&` (and) and `|` (or)
+-   `if/then/else` logic to conditionally execute code

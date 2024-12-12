@@ -1,0 +1,403 @@
+---
+title: "Regression & Classification Trees"
+format: html
+editor: source
+toc: TRUE
+editor_options: 
+  chunk_output_type: console
+html-math-method: mathml
+---
+
+We've looked to two very common models:
+
+- Multiple Linear Regression: Commonly used model with a numeric response
+- Logistic Regression: Commonly used model with a binary response
+
+These models are great ways to try and understand relationships between variables. One thing that can be a drawback (or benefit, depending) when using these models is that they are highly structured. Recall, in the MLR case we are essentially fitting some high dimensional plane to our data. If our data doesn't follow this type of structure, the models fit can do a poor job predicting in some cases.
+
+Instead of these structured models, we can use models that are more flexible. Let's talk about one such type of model, the regression/classification tree!
+
+
+## Tree Based Methods
+
+Tree based methods are very flexible. They attempt to **split up predictor space into regions**. On each region, a different prediction can then be made. Adjacent regions need not have predictions close to each other!
+
+Recall that we have two separate tasks we could do in a supervised learning situation, regression or classification. Depending on the situation, we can create a regression or classification tree!
+
+- *Classification* tree if the goal is to classify (predict) group membership  
+
+    + Usually use **most prevalent class** in region as the prediction  
+
+- *Regression* tree if the goal is to predict a continuous response
+
+    + Usually use **mean of observations** in region as the prediction  
+
+These models are very easy for people to interpret! For instance, consider the tree below relating a predictor (`speed`) to stopping distance (`dist`).
+
+```{r, fig.align='center', out.width='400px'}
+library(tree) #rpart is also often used
+fitTree <- tree(dist ~ speed, data = cars) #default splitting is deviance
+plot(fitTree)
+text(fitTree)
+```
+
+We can compare this to the simple linear regression fit to see the increased flexibility of a regression tree model.
+
+```{r, message = FALSE, warning = FALSE, fig.align='center', out.width='400px'}
+library(tidyverse)
+ggplot(cars, aes(x = speed, y = dist)) + 
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, size = 2) + 
+  geom_segment(x = 0, xend = 9.5, y = 10.67, yend = 10.67, col = "Orange", size = 2) +
+  geom_segment(x = 9.5, xend = 12.5, y = 23.22, yend = 23.22, col = "Orange", size = 2) +
+  geom_segment(x = 12.5, xend = 17.5, y = 39.75, yend = 39.75, col = "Orange", size = 2) +
+  geom_segment(x = 17.5, xend = 23.5, y = 55.71, yend = 55.71, col = "Orange", size = 2) +
+  geom_segment(x = 23.5, xend = max(cars$speed), y = 92, yend = 92, col = "Orange", size = 2)
+```
+
+### How Is a Regression Tree Fit?
+
+Recall: Once we've chosen our model form, we need to fit the model to data. Generally, we can write the fitting process as the minimization of some loss function over the training data. How do we pick our splits of the predictor space in this case?  
+
++ Fit using recursive binary splitting - a greedy algorithm
++ For every possible value of each predictor, we find the squared error loss based on splitting our data around that point. We then try to minimize that  
+
+   - Consider having one variable $x$. For a given observed value, call it $s$, we can think of having two regions (recall $|$ is read as 'given'):
+   $$R_1(s) = \{x|x < s\}\mbox{ and }R_2(s) = \{x|x \geq s\}$$
+   - We seek the value of $s$ that minimize the equation
+   $$\sum_{\mbox{all }x\mbox{ in }R_1(s)}(y_i-\bar{y}_{R_1})^2+\sum_{\mbox{all }x\mbox{ in }R_2(s)}(y_i-\bar{y}_{R_2})^2$$
+   - Written more mathematically, we could say we want minimize
+   $$min_{s} \sum_{i:x_i\in R_1(s)}(y_i-\bar{y}_{R_1})^2+\sum_{i:x_i\in R_2(s)}(y_i-\bar{y}_{R_2})^2$$
+
+Let's visualize this idea! Consider that basic `cars` data set that has a response of `dist` (stopping distance) and a predictor of `speed`. Let's find the value of the loss functions for different splits of our `speed` variable.
+
+```{r, echo = FALSE}
+find_SSE <- function(df, response, predictor, split){
+  index <- df[[predictor]] <= split
+  lower <- df[[response]][index]
+  higher <- df[[response]][!index]
+  lowmean = mean(lower, na.rm = TRUE)
+  highmean = mean(higher, na.rm = TRUE)
+  RSS = sum((lower - lowmean)^2, na.rm = TRUE) + sum((higher - highmean)^2, na.rm = TRUE)
+  return(list(info = data.frame(min = min(df[[predictor]]), max = max(df[[predictor]]), lowmean = lowmean, highmean = highmean, RSS = RSS, split = split, response = response, predictor = predictor), df))
+}
+```
+
+
+```{r, fig.align='center', out.width='400px'}
+ggplot(cars, aes(x = speed, y = dist)) + 
+  geom_point()
+```
+
+```{r, echo = FALSE}
+#find lower and upper means
+vals <- c(7, 12, 15, 20)
+SSE1 <- find_SSE(df = cars, response = "dist", predictor = "speed", split = vals[1])
+SSE2 <- find_SSE(df = cars, response = "dist", predictor = "speed", split = vals[2])
+SSE3 <- find_SSE(df = cars, response = "dist", predictor = "speed", split = vals[3])
+SSE4 <- find_SSE(df = cars, response = "dist", predictor = "speed", split = vals[4])
+#best split
+SSE <- find_SSE(df = cars, response = "dist", predictor = "speed", split = 17.5)
+```
+
+Let's first try a split at `speed` = `r vals[1]`. The sum of squared errors based on this split is `r round(SSE1$info$RSS, 2)`.
+
+```{r, echo = FALSE, fig.align='center', out.width='400px'}
+#plot and put on split
+g <- ggplot(data = cars, aes(x = speed, y = dist)) + 
+  geom_point(size = 0.75, alpha = 0.75) +
+  geom_segment(data = SSE1$info, aes(x = min, xend = split, y = lowmean, yend = lowmean), lwd = 2, color = "Blue") +
+  geom_segment(data = SSE1$info, aes(x = split, xend = max, y = highmean, yend = highmean), lwd = 2, color = "Blue") + 
+  geom_text(color = "Blue", x = vals[1], y = 110, label = paste("SSE = ", round(SSE1$info$RSS, 1))) + 
+  geom_text(data = SSE1$info, color = "Blue", aes(x = split, label = split), y = 100)
+g
+```
+
+Again, this is found by taking all the points in the first region, finding the residual (from the mean, represented by the blue line here), squaring those, and summing the values. Then we repeat for the 2nd region. The sum of those two values is then the sum of squared errors (SSE) if we were to use this split.
+
+Is that the smallest it could be? Likely not! Let's try some other splits and see what SSE they give.
+
+```{r, echo = FALSE, fig.align='center', out.width='400px'}
+#plot and put on   
+g <- g + 
+  geom_segment(data = SSE2$info, aes(x = min, xend = split, y = lowmean, yend = lowmean), lwd = 2, color = "Red") +
+  geom_segment(data = SSE2$info, aes(x = split, xend = max, y = highmean, yend = highmean), lwd = 2, color = "Red") + 
+  geom_text(color = "Red", x = vals[2], y = 110, label = paste("SSE = ", round(SSE2$info$RSS, 1))) + 
+  geom_text(data = SSE2$info, color = "Red", aes(x = split, label = split), y = 100)
+g <- g +   
+  geom_segment(data = SSE3$info, aes(x = min, xend = split, y = lowmean, yend = lowmean), lwd = 2, color = "Orange") +
+  geom_segment(data = SSE3$info, aes(x = split, xend = max, y = highmean, yend = highmean), lwd = 2, color = "Orange") + 
+  geom_text(color = "Orange", x = vals[3], y = 100, label = paste("SSE = ", round(SSE3$info$RSS, 1))) + 
+  geom_text(data = SSE3$info, color = "Orange", aes(x = split, label = split), y = 90)
+g <- g +   
+  geom_segment(data = SSE4$info, aes(x = min, xend = split, y = lowmean, yend = lowmean), lwd = 2, color = "Brown") +
+  geom_segment(data = SSE4$info, aes(x = split, xend = max, y = highmean, yend = highmean), lwd = 2, color = "Brown") + 
+  geom_text(color = "Brown", x = vals[4], y = 110, label = paste("SSE = ", round(SSE4$info$RSS, 1))) + 
+  geom_text(data = SSE4$info, color = "Brown", aes(x = split, label = split), y = 100)
+g
+```
+
+- We would try this for all possible splits (across each predictor) and choose the split that minimizes the sum of squared errors as our first split.  It turns out that `speed` = 17.5 is the optimal splitting point for this data set.
+
+```{r, echo = FALSE, fig.align='center', out.width='400px'}
+g2 <- ggplot(data = cars, aes(x = speed, y = dist)) + 
+  geom_point(size = 0.75, alpha = 0.75) +
+  geom_segment(data = SSE$info, aes(x = min, xend = split, y = lowmean, yend = lowmean), lwd = 2, color = "Blue") +
+  geom_segment(data = SSE$info, aes(x = split, xend = max, y = highmean, yend = highmean), lwd = 2, color = "Blue") + 
+  geom_text(color = "Blue", x = 17.5, y = 110, label = paste("SSE = ", round(SSE$info$RSS, 1))) + 
+  geom_text(data = SSE$info, color = "Blue", aes(x = split, label = split), y = 100)
+g2
+```
+
+- Next, we'd go down the first branch of that split to that 'node'. This node has all the observations corresponding to that branch. Now we repeat this process there!
+
+```{r, echo = FALSE, fig.align='center', out.width='400px'}
+cars_r1 <- cars |>
+  filter(speed < 17.5)
+vals <- c(7, 12, 15)
+SSE1 <- find_SSE(df = cars_r1, response = "dist", predictor = "speed", split = vals[1])
+SSE2 <- find_SSE(df = cars_r1, response = "dist", predictor = "speed", split = vals[2])
+SSE3 <- find_SSE(df = cars_r1, response = "dist", predictor = "speed", split = vals[3])
+
+
+g3 <- ggplot(data = cars, aes(x = speed, y = dist)) + 
+  geom_rect(aes(xmin = 3, xmax = 17.5, ymin = -Inf, ymax = Inf), fill = "pink", alpha = 0.03) +
+  geom_rect(aes(xmin = 17.5, xmax = 26, ymin = -Inf, ymax = Inf), fill = "light green", alpha = 0.03) +
+  geom_point(size = 0.75, alpha = 0.75) +
+  geom_segment(data = SSE1$info, aes(x = min, xend = split, y = lowmean, yend = lowmean), lwd = 2, color = "Red") +
+  geom_segment(data = SSE1$info, aes(x = split, xend = max, y = highmean, yend = highmean), lwd = 2, color = "Red") + 
+  geom_text(color = "Red", x = vals[1], y = 80, label = paste("SSE = ", round(SSE1$info$RSS, 1))) + 
+  geom_text(data = SSE1$info, color = "Red", aes(x = split, label = split), y = 70)
+g3 <- g3 +
+  geom_segment(data = SSE2$info, aes(x = min, xend = split, y = lowmean, yend = lowmean), lwd = 2, color = "Orange") +
+  geom_segment(data = SSE2$info, aes(x = split, xend = max, y = highmean, yend = highmean), lwd = 2, color = "Orange") + 
+  geom_text(color = "Orange", x = vals[2], y = 90, label = paste("SSE = ", round(SSE2$info$RSS, 1))) + 
+  geom_text(data = SSE2$info, color = "Orange", aes(x = split, label = split), y = 80)
+g3 <- g3 +
+  geom_segment(data = SSE3$info, aes(x = min, xend = split, y = lowmean, yend = lowmean), lwd = 2, color = "Brown") +
+  geom_segment(data = SSE3$info, aes(x = split, xend = max, y = highmean, yend = highmean), lwd = 2, color = "Brown") + 
+  geom_text(color = "Brown", x = vals[3], y = 110, label = paste("SSE = ", round(SSE3$info$RSS, 1))) + 
+  geom_text(data = SSE3$info, color = "Brown", aes(x = split, label = split), y = 100)
+g3
+```
+
+- Here the best split on the lower portion is 12.5. 
+
+- Likewise, we go down the second branch to the other node and repeat the process.
+
+- Generally, we grow a `large' tree (many nodes)
+
+- Trees can then be **pruned** back so as to not overfit the data (pruned back using some criterion like cost-complexity pruning)
+    
+- Generally, we can choose number of nodes/splits using the **training/test set or cross-validation**!
+
+
+### Fitting Regression Trees with `tidymodels`
+
+- Recall the Bike data and `log_selling_price` as our response
+
+```{r, warning = FALSE, message = FALSE}
+set.seed(10)
+library(tidyverse)
+library(tidymodels)
+bike_data <- read_csv("https://www4.stat.ncsu.edu/~online/datasets/bikeDetails.csv") |>
+  mutate(log_selling_price = log(selling_price)) |>
+  select(-selling_price)
+#save creation of new variables for now!
+bike_split <- initial_split(bike_data, prop = 0.7)
+bike_train <- training(bike_split)
+bike_test <- testing(bike_split)
+bike_train
+bike_CV_folds <- vfold_cv(bike_train, 10)
+```
+
+We can fit a regression tree model in a very similar way to how we fit our MLR models! 
+
+#### Create our Recipe for Data Preprocessing 
+
+First, let's create our recipe.
+
+```{r}
+tree_rec <- recipe(log_selling_price ~ ., data = bike_train) |>
+  update_role(name, new_role = "ID") |>
+  step_log(km_driven) |>
+  step_rm(ex_showroom_price) |>
+  step_dummy(owner, seller_type) |>
+  step_normalize(all_numeric(), -all_outcomes())
+tree_rec
+```
+
+Note: We don't need to include interaction terms in our tree based models! An interaction would imply that the effect of, say, `log_km_driven` depends on the `year` the bike was manufactured (and vice-versa). The tree structure inherently includes this type of relationship! For instance, suppose we first split on `log_km_driven` > 10. On the branch where `log_km_driven` > 10 we then split on `year` < 1990. Suppose those are our only two splits. We can see that the effect of `year` is different depending on our `log_km_driven`! For one side of the `log_km_driven` split we don't include `year` at all (hence it doesn't have an effect when considering those values of `log_km_driven`) and on the other side of that split we change our prediction based on `year`. This is exactly the idea of an interaction!
+
+#### Define our Model and Engine
+
+Next, let's define our model. The [info page](https://parsnip.tidymodels.org//reference/details_linear_reg_lm.html) here can be used to determine the right function to call and the possible engines to use for the fit.
+
+In this case, `decision_tree()` with `rpart` as the engine will do the trick. If we click on the [link for this model](https://parsnip.tidymodels.org//reference/details_decision_tree_rpart.html) we can see that there are three tuning parameters we can consider:
+
+- tree_depth: Tree Depth (type: integer, default: 30L)
+- min_n: Minimal Node Size (type: integer, default: 2L)
+- cost_complexity: Cost-Complexity Parameter (type: double, default: 0.01)
+
+If we want to use CV to choose one of these, we can set its value to `tune()` when creating the model. Let's use `tree_depth` and `cost_complexity` as our tuning parameters and set our `min_n` to 20. 
+
+In the case of `decision_tree()` we also need to tell tidymodels whether we are doing a *regression* task vs a *classification* task. This is done via `set_mode()`.
+
+```{r}
+tree_mod <- decision_tree(tree_depth = tune(),
+                          min_n = 20,
+                          cost_complexity = tune()) |>
+  set_engine("rpart") |>
+  set_mode("regression")
+```
+
+
+#### Create our Workflow
+
+Now we use `workflow()` to create an object to use in our fitting processes.
+
+```{r}
+tree_wkf <- workflow() |>
+  add_recipe(tree_rec) |>
+  add_model(tree_mod)
+```
+
+#### Use CV to Select our Tuning Parameters
+
+Now we can use `tune_grid()` on our `bike_CV_folds` object. We just need to create a tuning grid to fit our models with. If we don't specify one, the `dials` package tries to figure it out for us:
+
+```{r}
+temp <- tree_wkf |> 
+  tune_grid(resamples = bike_CV_folds)
+temp |> 
+  collect_metrics()
+```
+
+We can see that the `cost_complexity` parameter and `tree_depth` parameters are randomly varied and results are returned.
+
+If we want to set the number of the values ourselves, we can use `grid_regular()` instead. By specifying a vector or `levels` we can say how many of each tuning parameter we want. `grid_regular()` then finds all combinations of the values of each (here 10*5 = 50 combinations).
+
+```{r}
+tree_grid <- grid_regular(cost_complexity(),
+                          tree_depth(),
+                          levels = c(10, 5))
+```
+
+Now we use `tune_grid()` with this grid specified.
+
+```{r}
+tree_fits <- tree_wkf |> 
+  tune_grid(resamples = bike_CV_folds,
+            grid = tree_grid)
+tree_fits
+```
+
+Looking at the `tree_fits` object isn't super useful. It has all the info but we need to pull it out. As we see above, we can use `collect_metrics()` to combine the metrics across the folds.
+
+```{r}
+tree_fits |>
+  collect_metrics()
+```
+
+As done in the [tutorial](https://www.tidymodels.org/start/tuning/), we can plot these to gain some insight:
+
+```{r}
+tree_fits %>%
+  collect_metrics() %>%
+  mutate(tree_depth = factor(tree_depth)) %>%
+  ggplot(aes(cost_complexity, mean, color = tree_depth)) +
+  geom_line(size = 1.5, alpha = 0.6) +
+  geom_point(size = 2) +
+  facet_wrap(~ .metric, scales = "free", nrow = 2) +
+  scale_x_log10(labels = scales::label_number()) +
+  scale_color_viridis_d(option = "plasma", begin = .9, end = 0)
+```
+
+Ideally, we probably want to sort this by the smallest `rmse` value. Let's also filter down to just looking at `rmse`.
+
+```{r}
+tree_fits |>
+  collect_metrics() |>
+  filter(.metric == "rmse") |>
+  arrange(mean)
+```
+
+The function `select_best()` can be used to grab the best model's tuning parameter values. We also should specify which metric!
+
+```{r}
+tree_best_params <- select_best(tree_fits, "rmse")
+tree_best_params
+```
+
+(After this initial phase, we might also want to fit a finer grid of tuning parameter values near the current 'best' ones!) Now we can finalize our model on the training set by fitting this chosen model via `finalize_workflow()`.
+
+```{r}
+tree_final_wkf <- tree_wkf |>
+  finalize_workflow(tree_best_params)
+```
+
+Now that we've set up how to fit the final model, let's do it via `last_fit()` on the `bike_split` object.
+
+```{r}
+tree_final_fit <- tree_final_wkf |>
+  last_fit(bike_split)
+tree_final_fit
+```
+
+This object has information about how the final fitted model (fit on the entire training data set) performs on the test set. We can see the metrics more clearly using `collect_metrics()`.
+
+```{r}
+tree_final_fit |>
+  collect_metrics()
+```
+
+As done in the tutorial, we could pull out this fit and learn more about it.
+
+```{r}
+tree_final_model <- extract_workflow(tree_final_fit) 
+tree_final_model
+```
+
+Plotting is definitely the better way to view this!
+
+```{r}
+tree_final_model %>%
+  extract_fit_engine() %>%
+  rpart.plot::rpart.plot(roundint = FALSE)
+```
+
+### Comparing to Our LASSO and MLR Fits
+
+Recall, we fit MLR models and LASSO models to this data set. We can pull those back up to determine which model did the best overall on the test set. Then we can get an overall 'best' model and fit that model to the entire data set!
+  
+
+## Classification Trees
+    
+Classification trees are very similar to regression trees except, of course, our response is a categorical variable. This means that we don't use the same loss functions nor metrics, but we still split the predictor space up into regions. We then can make our prediction based on which bin an observation ends up in. Most often, we use the most prevalent class in a bin as our prediction.
+
+## Recap and Pros & Cons
+
+- Trees are a nonlinear model that can be more flexible than linear models. 
+
+Pros:  
+
+- Simple to understand and easy to interpret output  
+- Predictors don't need to be scaled. Unlike algorithms like the LASSO, having all the predictors on different scales makes no difference in the choosing of regions.
+- No statistical assumptions necessary to get the fit (although this is true for least squares regression as well)
+- Built in variable selection based on the algorithm!
+
+Cons:  
+
+- Small changes in data can vastly change tree
+
+    + The lack of 'sharing' information with nearby data points makes this algorithm more variable. Given a new data set from the same situation, the splits we get for the tree can differ quite a bit! That isn't ideal as we'd like to have stable results across data sets collected on the same population.
+
+- No optimal algorithm for choosing splits exists.
+
+    + We saw the use of a greedy algorithm to select our regions in the regression tree case. This is a greedy algorithm because it is only looking one step ahead to find the best split. There might be a split at this step that creates a great future split. However, we may never find it because we only ever look at the best thing we can do at the current split!
+    
+- Need to prune or use CV to determine the model. 
+
+    + With MLR models, CV isn't used at all. However, here we really need to prune the tree and/or use CV to figure out the optimal size of the tree to build!
+
+

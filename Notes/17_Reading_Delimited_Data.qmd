@@ -1,0 +1,341 @@
+---
+title: "Reading Delimited Data"
+format: html
+editor: visual
+toc: TRUE
+editor_options: 
+  chunk_output_type: console
+---
+
+As one of our goals is to read in and wrangle data, we need to learn how to effectively take raw data (data not in R) and bring it into R. For most of our data sources, we'll store the data as a data frame (usually a tibble). For some types of data we'll need to read it in as a character string or as a list and then parse it with R.
+
+## Data Formats
+
+Data comes in many formats such as
+
+-   'Delimited' data: Character (such as [','](https://www4.stat.ncsu.edu/~online/datasets/scoresFull.csv) , ['\>'](https://www4.stat.ncsu.edu/~online/datasets/umps2012.txt), or \[' '\]) separated data
+-   [Fixed field](https://www4.stat.ncsu.edu/~online/datasets/cigarettes.txt) data
+-   [Excel](https://www4.stat.ncsu.edu/~online/datasets/Dry_Bean_Dataset.xlsx) data
+-   From other statistical software, Ex: [SPSS formatted](https://www4.stat.ncsu.edu/~online/datasets/bodyFat.sav) data or [SAS data sets](https://www4.stat.ncsu.edu/~online/datasets/house.sas7bdat)
+-   From a database
+-   From an Application Programming Interface (API)
+
+As with many tasks in R, there are many ways to read in data from these sources.
+
+-   We could stick with `BaseR` (use functions like `read.csv()`)
+-   Use functions from a particular ecosystem (`tidyverse` or `data.table`)
+
+We'll use the `tidyverse` due to its popularity and ease of functionality.
+
+-   Make sure `tidyverse` package is installed (this can take a while)
+
+```{r, eval=FALSE}
+install.packages("tidyverse")
+```
+
+-   Load the library into your current session
+
+```{r}
+library(tidyverse)
+```
+
+- You can see this loads in the eight core packages mentioned previously. The warnings can easily be ignored but we should take care with the conflicts. We've overwritten some functions from `BaseR`. Recall, we can call those functions explicitly if we'd like (`stats::filter()`).
+
+## Locating Files
+
+-   Once our library is loaded, check `help(read_csv)` in your console. This brings up help for a suite of functions useful for reading in **delimited** data.
+
+-   Focus on *file* argument as everything else has defaults. Notice a *path to a file, a connection, or literal data* must be given.
+
+Before we start reading in data, let's recap how R finds files.
+
+-   We can give a *full path name* to the file
+
+    -   ex: `C:/Users/jbpost2/Documents/Repos/ST-558/datasets/`
+    -   ex: `C:\\\\Users\\\\jbpost2\\\\Documents\\\\Repos\\\\ST-558\\\\datasets`
+
+-   Full path names are not good to use generally!
+
+    -   If you share your code with someone else, they don't have the same folder structure, username, etc.
+    -   Instead, use a *relative* path. That is, a path from `R`'s current working directory (the place it looks by default)
+
+-   It is recommend to do everything in an R project!
+
+    -   When you create an R project, you might note that it gets associated with a directory (or folder or repo). That folder is what the project uses as the working directory.
+
+    -   **You should try to always use relative paths from your project's working directory.**
+
+    -   **Note: When you render a `.qmd` (or `.Rmd`) file, the working directory for that rendering is the folder in which the `.qmd` (or `.Rmd`) file lives in.**
+
+## Plan
+
+-   Go though examples of reading different types of data raw data
+
+| Type of file       | Package  | Function                                                                  |
+|----------------------------|------------------|---------------------------|
+| Delimited          | `readr`  | `read_csv()`, `read_tsv()`,`read_table()`, `read_delim(...,delim = ,...)` |
+| Excel (.xls,.xlsx) | `readxl` | `read_excel()`                                                              |
+| SPSS (.sav)        | `haven`  | `read_spss()`                                                               |
+| SAS (.sas7bdat)    | `haven`  | `read_sas()`                                                                |
+
+### Reading CSV Files
+
+Let's start by considering a comma separated value (or CSV) file. This is a common basic format for raw data in which the delimiter is a comma (`,`).
+
+Suppose we want to read in the file called `bikeDetails.csv` available at: <https://www4.stat.ncsu.edu/~online/datasets/bikeDetails.csv>
+
+-   We can download the file and store it locally, reading it in from there
+-   Or, for this type of file, we can also read it directly from the web!
+
+We'll use the `read_csv()` function from the `readr` package. The inputs are:
+
+```         
+read_csv(
+  file,
+  col_names = TRUE,
+  col_types = NULL,
+  col_select = NULL,
+  id = NULL,
+  locale = default_locale(),
+  na = c("", "NA"),
+  quoted_na = TRUE,
+  quote = "\"",
+  comment = "",
+  trim_ws = TRUE,
+  skip = 0,
+  n_max = Inf,
+  guess_max = min(1000, n_max),
+  name_repair = "unique",
+  num_threads = readr_threads(),
+  progress = show_progress(),
+  show_col_types = should_show_types(),
+  skip_empty_rows = TRUE,
+  lazy = should_read_lazy()
+)
+```
+
+We really only need to specify the `file` argument but we see there are a few others that might be useful. We'll cover some important arguments shortly. Let's start with a basic call and see how it works:
+
+```{r}
+bike_details <- read_csv("https://www4.stat.ncsu.edu/~online/datasets/bikeDetails.csv")
+bike_details
+```
+
+Notice the fancy printing! As we read the data in with a function from the `tidyverse`, we have our data in the form of a `tibble` (special data frame).
+
+Aside from the special printing, `tibble`s have one other important difference from data frames: **they do not coerce down to a vector when you subset to only one column using `[`**
+
+```{r}
+bike_details[1:10,1]
+```
+
+```{r}
+as.data.frame(bike_details)[1:10 ,1]
+```
+
+If we use our usual `$` operator we do coerce to a vector though
+
+```{r}
+bike_details$name[1:10]
+```
+
+The function commonly used from the tidyverse to grab a single column and return it as a vector is the `pull()` function from `dplyr`.
+
+```{r}
+bike_details[1:10, ] |>
+  pull(name)
+```
+
+Ok, back to the main task - reading the data in. We see in the fancy printing that R has each column stored in a particular format. How did R determine the column types?
+
+From the help under `col_types` we see the following:
+
+> One of NULL, a cols() specification, or a string. See vignette("readr") for more details.\
+> If NULL, all column types will be inferred from guess_max rows of the input, interspersed throughout the file. This is convenient (and fast), but not robust. If the guessed types are wrong, you'll need to increase guess_max or supply the correct types yourself.\
+> Column specifications created by list() or cols() must contain one column specification for each column. If you only want to read a subset of the columns, use cols_only().\
+> Alternatively, you can use a compact string representation where each character represents one column:\
+> c = character\
+> i = integer\
+> n = number\
+> d = double\
+> l = logical\
+> f = factor\
+> D = date\
+> T = date time\
+> t = time\
+> ? = guess\
+> \_ or - = skip\
+> By default, reading a file without a column specification will print a message showing what readr guessed they were. To remove this message, set show_col_types = FALSE or set 'options(readr.show_col_types = FALSE).
+
+Ahh, so the `guess_max` argument tells our function to scan the first `x` number of rows and try to determine the column type. Note it says you may need to increase that argument to make sure data can be read in.
+
+-   **Checking column type is a basic data validation step!**
+-   You should check that each column was read in the way you would expect. If not, you may need to clean the data and convert the column to the appropriate data type.
+
+### Reading in Any Delimited File
+
+-   Functions from *readr* and their purpose
+
+| Delimiter      | Function                                                                         |
+|------------------------|------------------------------------------------|
+| comma ','      | read_csv()                                                                       |
+| tab            | read_tsv()                                                                       |
+| space ' '      | read_table()                                                                     |
+| semi-colon ';' | read_csv2() (This uses `;` instead of commas, which is common in many countries) |
+| other          | read_delim(...,delim = ,...)                                                     |
+
+Consider the `umps.txt` file available at: <https://www4.stat.ncsu.edu/~online/datasets/umps2012.txt>
+
+-   Download the file or open it in your browser.
+-   Note that the delimiter is a `>` sign!
+-   Note that there are no column names provided:
+    -   `Year` `Month` `Day` `Home` `Away` `HPUmpire` are the appropriate column names
+
+We can use `read_delim()` to read in a generic delimited raw data file! Let's check the help:
+
+```         
+read_delim(
+  file,
+  delim = NULL,
+  quote = "\"",
+  escape_backslash = FALSE,
+  escape_double = TRUE,
+  col_names = TRUE,
+  col_types = NULL,
+  col_select = NULL,
+  id = NULL,
+  locale = default_locale(),
+  na = c("", "NA"),
+  quoted_na = TRUE,
+  comment = "",
+  trim_ws = FALSE,
+  skip = 0,
+  n_max = Inf,
+  guess_max = min(1000, n_max),
+  name_repair = "unique",
+  num_threads = readr_threads(),
+  progress = show_progress(),
+  show_col_types = should_show_types(),
+  skip_empty_rows = TRUE,
+  lazy = should_read_lazy()
+)
+```
+
+We see two arguments we need to worry about right off:
+
+-   `file` (path to file)
+
+-   `delim` the delimiter used in the raw data file
+
+    -   Single character used to separate fields within a record.
+    -   We want to specify a character string with the delimiter for this.
+
+As we don't have column names we should also consider the `col_names` argument. This is set to `TRUE` by default. The help says:
+
+> Either TRUE, FALSE or a character vector of column names.\
+> If TRUE, the first row of the input will be used as the column names, and will not be included in the data frame. If FALSE, column names will be generated automatically: X1, X2, X3 etc.\
+> If col_names is a character vector, the values will be used as the names of the columns, and the first row of the input will be read into the first row of the output data frame.\
+> Missing (NA) column names will generate a warning, and be filled in with dummy names ...1, ...2 etc. Duplicate column names will generate a warning and be made unique, see name_repair to control how this is done.
+
+-   This means we want to set the value to `FALSE` or supply a character vector with the corresponding names!
+
+```{r}
+ump_data <- read_delim("https://www4.stat.ncsu.edu/~online/datasets/umps2012.txt", 
+                       delim = ">",
+                       col_names = c("Year", "Month", "Day", "Home", "Away", "HPUmpire")
+)
+ump_data
+```
+
+#### Quick Aside: Date data
+
+We see that the first three columns represent a `Year`, `Month`, and `Day`. These are currently stored as `dbl` (numeric data). Obviously, that's not great. We can't easily subtract two dates to get the difference in time or anything like that.
+
+Insert the `lubridate` package. This is the `tidyverse` package for dealing with dates!
+
+```{r, eval = FALSE}
+install.packages("lubridate") #only do this once!
+```
+
+```{r}
+library(lubridate) #do this each session
+```
+
+If we look at `help(lubridate)` you can see under the section for parsing dates:
+
+> Lubridate's parsing functions read strings into R as POSIXct date-time objects. Users should choose the function whose name models the order in which the year ('y'), month ('m') and day ('d') elements appear the string to be parsed: dmy(), myd(), ymd(), ydm(), dym(), mdy(), ymd_hms()). A very flexible and user friendly parser is provided by parse_date_time().
+
+Ok, so we want to use `ymd()` or a variant and pass it a character string of the date to parse! No problem, we know how to do that :)
+
+Under the help for the `ymd()` function, examples are given at the bottom of how to use the function. One example is
+
+```{r}
+x <- c("09-01-01", "09-01-02", "09-01-03")
+ymd(x)
+```
+
+Let's write a quick loop to loop through our observations, create this type of character string, and output a date variable!
+
+We'll see a better way to do this once we get into `dplyr` but for now, let's initialize column to store date in and give it a date value.
+
+```{r}
+ump_data$date <- ymd("2012-01-01")
+ump_data
+```
+
+Now we'll loop through, paste together the three columns, and parse the date (storing it appropriately).
+
+```{r}
+for (i in 1:nrow(ump_data)){
+  ump_data$date[i] <- ymd(paste(ump_data$Year[i],
+                                ump_data$Month[i],
+                                ump_data$Day[i], 
+                                sep = "-"))
+}
+ump_data
+```
+
+Great! Now we can subtract dates and do other useful things with date data. We'll cover this kind of code shortly but we might want to know the days between being home plate umpire:
+
+```{r}
+ump_data |>
+  filter(HPUmpire == "Marty Foster") |>
+  mutate(days_off = date - lag(date))
+```
+
+This is easily done as we can take a date and subtract another date (via `lag(data)`, which grabs the date from the previous row).
+
+### Reading in Tricky Raw Data Files
+
+Sometimes our raw data will be in a `.txt` type file but not in a super nice format. In that case, we have a few functions that can help us out:
+
+-   `read_file()`
+
+    -   reads an entire file into a single string
+
+-   `read_lines()`
+
+    -   reads a file into a character vector with one element per line
+
+Once the data is read into an R object, we can then usually parse it with [**regular expressions**](https://en.wikipedia.org/wiki/Regular_expression). Hopefully, that's not something you need to do very often!
+
+### Quick R Video
+
+Please pop this video out and watch it in the full panopto player!
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=4f5a88ef-0eff-4381-9278-b17c0102cbd3&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="17 - Reading Delimited Data" ></iframe>
+```
+### Recap!
+
+The `tidyverse` has a package called `readr` that has many functions for reading in delimited data (raw data separated by a character string)
+
+| Delimiter      | Function                                                                         |
+|------------------------|------------------------------------------------|
+| comma ','      | read_csv()                                                                       |
+| tab            | read_tsv()                                                                       |
+| space ' '      | read_table()                                                                     |
+| semi-colon ';' | read_csv2() (This uses `;` instead of commas, which is common in many countries) |
+| other          | read_delim(...,delim = ,...)                                                     |
+
+`lubridate` is another package in the `tidyverse` that is really useful for dealing with date-type data!

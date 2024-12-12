@@ -1,0 +1,376 @@
+---
+title: "LASSO Models & Selecting Models Using Both Cross Validation and a Test Set"
+format: html
+editor: source
+toc: TRUE
+toc-depth: 4
+editor_options: 
+  chunk_output_type: console
+html-math-method: mathml
+---
+
+We've seen that using a training/test split can give us a way to judge our model's effectiveness on data it wasn't trained on.
+
+Alternatively, we've seen that cross-validation can be used to judge our model's effectiveness without doing the training/test split. We might do this if we have a smaller data set.
+
+A third option is to use both CV and a training/test split. We might do this if we had a number of different *classes* or *families* of models we were fitting. We could use CV to choose the best from each family solely on the training data. Then we could compare only the best models from each class on the test set.
+
+For instance, we might have the following families of models:
+  
+- MLR models (say some with interactions, some without)
+- A LASSO model (type of MLR model with penalization)
+- A random forest model (studied later)
+- A kNN (k nearest neighbor) model (we won't study this one)
+
+The latter three model types all have **tuning** parameters that must be selected when fitting the model. CV on the training set is often used to select those tuning parameters! We can also use CV on the training set to determine the best MLR model (or use some other model selection technique).
+
+Using this process, we would get a best model of each type (or family) using the training set only. Then we can compare the best model from each family of models on the test set to select an overall best model!
+  
+Let's introduce the LASSO model and then use both CV (on the training set) to select the tuning parameter. We'll similarly compare some competing MLR models using CV on the training set. Once we have our best LASSO and best MLR model, we'll then go to the test set to determine an overall best model. 
+
+## Fitting Models on our `bike_data`
+
+First, a training/test split on our `bike_data`:
+
+```{r, warning = FALSE, message = FALSE}
+library(tidyverse)
+library(tidymodels)
+set.seed(10)
+bike_data <- read_csv("https://www4.stat.ncsu.edu/~online/datasets/bikeDetails.csv")
+bike_data <- bike_data |> 
+  mutate(log_selling_price = log(selling_price), 
+         log_km_driven = log(km_driven),
+         owners = ifelse(owner == "1st owner", "single", "multiple")) |>
+  select(log_km_driven, log_selling_price, everything())
+#use tidymodel functions for splitting the data
+bike_split <- initial_split(bike_data, prop = 0.7)
+bike_train <- training(bike_split)
+bike_test <- testing(bike_split)
+```
+
+Now we'll proceed with finding our best LASSO model and best MLR model on just the `bike_train` data.
+
+### Selecting the Best MLR Model Using CV
+
+Again, it isn't necessary to use CV to select an MLR model (there are tons of ways to choose between candidate MLR models - AIC, BIC, backward selection, Mallow's Cp, ...). However, CV is a perfectly valid way to choose between MLR models.
+
+Let's compare the following models
+
+- MLR model 1: `log_selling_price ~ log_km_driven + owners + year` (fits different intercept based on `owners` being "single" or "multiple" and slope terms for `log_km_driven` and `year`)
+
+- MLR model 2: `log_selling_price ~ log_km_driven + owners + log_km_driven*owners` (fits different SLR models between `log_selling_price` and `log_km_driven` (different slopes and intercepts) for each setting of `owners`)
+
+- MLR model 3: `log_selling_price ~ (log_km_driven + owners + year)^2` (fits different a model with all pairwise interactions and main effects - essentially two separate MLR models for each setting of `owners` using `log_km_driven` and `year` as predictors)
+
+We want to just use the training data here and 10 fold CV. First, let's create our CV folds:
+
+```{r}
+#create folds
+bike_CV_folds <- vfold_cv(bike_train, 10)
+```
+
+Remember to use `tidymodels` we want to set up our model (and engine) and create our recipes. Those go into a workflow that can then be fit on the above folds.
+
+Let's define our basic linear model:
+
+```{r}
+#set up how we'll fit our linear model
+MLR_spec <- linear_reg() |>
+  set_engine("lm")
+```
+
+Now define our recipes for the three models. Note: we created the `log_km_driven` variable earlier. This is ok because this isn't a *learned* transform. That is, there is no danger of training/test set data leakage issues since we know how to do the natural log transform, regardless of the data.
+
+```{r}
+#define our MLR models
+MLR_recipe1 <- recipe(log_selling_price ~ log_km_driven + owners + year, 
+                      data = bike_train) |>
+  step_dummy(owners)
+MLR_recipe2 <- recipe(log_selling_price ~ log_km_driven + owners,
+                      data = bike_train) |>
+  step_dummy(owners) |>
+  step_interact(~log_km_driven:starts_with("owner"))
+
+MLR_recipe3 <- recipe(log_selling_price ~ log_km_driven + owners + year,
+                      data = bike_train) |>
+  step_dummy(owners) |>
+  step_interact(~log_km_driven:starts_with("owner") + log_km_driven:year + starts_with("owner"):year)
+```
+
+Now we create our workflows for each model:
+
+```{r}
+MLR_wkf1 <- workflow() |>
+  add_recipe(MLR_recipe1) |>
+  add_model(MLR_spec)
+
+MLR_wkf2 <- workflow() |>
+  add_recipe(MLR_recipe2) |>
+  add_model(MLR_spec)
+
+MLR_wkf3 <- workflow() |>
+  add_recipe(MLR_recipe3) |>
+  add_model(MLR_spec)
+```
+
+Let's fit these models to our CV folds and see how they perform!
+
+```{r}
+MLR_fit1 <-  MLR_wkf1 |>
+  fit_resamples(bike_CV_folds)
+
+MLR_fit2 <- MLR_wkf2 |>
+  fit_resamples(bike_CV_folds) 
+
+MLR_fit3 <- MLR_wkf3 |>
+  fit_resamples(bike_CV_folds)
+```
+
+Combine the metrics across the folds and create a final data frame with the results
+
+```{r}
+rbind(MLR_fit1 |> collect_metrics() |> filter(.metric == "rmse"),
+      MLR_fit2 |> collect_metrics() |> filter(.metric == "rmse"),
+      MLR_fit3 |> collect_metrics() |> filter(.metric == "rmse")) |> 
+  mutate(Model = c("Model 1", "Model 2", "Model 3")) |>
+  select(Model, mean, n, std_err)
+```
+
+Based on RMSE, we see that the last model is the best MLR model of the three we fit! Note again, we've chosen between the three models from the *family* of models (MLR models) using just CV on the training data.
+
+Let's refit that on the entire training set.
+
+```{r}
+MLR_final <-  MLR_wkf3 |>
+  fit(bike_train)
+tidy(MLR_final)
+```
+
+
+### Fit a LASSO Model Using CV
+
+A similar model to the MLR model that involves a **tuning** parameter is the LASSO model. 
+
+- [Least Angle Subset and Selection Operator](https://www.jstor.org/stable/2346178) or LASSO
+
+    + Similar to Least Squares but a penalty is placed on the sum of the absolute values of the regression coefficients
+    + $\alpha$ (>0) is called a tuning parameter
+  
+    $$\min\limits_{\beta's}\sum_{i=1}^{n}(y_i-(\beta_0+\beta_1x_{1i}+...+\beta_px_{pi}))^2 + \alpha\sum_{j=1}^{p}|\beta_j|$$
+  
+  + Sets coefficients to 0 as you 'shrink' (have a larger and larger $\alpha$)!
+  
+```{r, echo = FALSE, fig.align = 'center', out.width = "450px"}
+knitr::include_graphics("img/lasso_path.png")
+```
+
+- When choosing the tuning parameter ($\alpha$), we are really considering a **family of models** for a given set of predictors!
+  
+  - Consider the MLR model with different intercepts based on `owners` that includes both `log_km_driven` and `year` as predictors. The plot here gives the coefficient profiles (estimates) as a function of $\alpha$
+  
+```{r, warning = FALSE, message = FALSE, echo = FALSE}
+library(glmnet)
+fit_lasso_1 <- glmnet(bike_train[c("log_km_driven", "year", "owners")],
+                      bike_train$log_selling_price, 
+                      alpha = 0.1)#note this is not our alpha
+#this is a model fit over many different values of our alpha
+plot(fit_lasso_1)
+```
+
+To read this plot, note that each line represents the value of one of the 'slope' coefficients in the model. All the way on the right we have the unconstrained solution (the usual MLR solution). Compare the values there to 
+
+```{r}
+lm(log_selling_price ~ log_km_driven + year + owners, data = bike_train)$coef
+```
+
+As we move to the left on the graph (as $\alpha$ increases) we see that our coefficients are shrunk towards 0, eventually being set to 0!
+  
+We want to choose which level of shrinkage is appropriate. That is, which value of $\alpha$ gives us the best model for predicting! A perfect case for using CV!
+
+
+#### Create our Recipe
+
+Let's use 10 fold CV to choose our $\alpha$ value (i.e. figure out our best LASSO model with these three predictors). As we are penalizing the magnitude of the slope estimates, LASSO models should really be fit on standardized predictors. Let's include that step in our recipe!
+
+```{r, warning = FALSE, message = FALSE}
+#set up how we'll fit our LASSO model
+#code modified from https://juliasilge.com/blog/lasso-the-office/
+LASSO_recipe <- recipe(log_selling_price ~ log_km_driven + owners + year, 
+                      data = bike_train) |>
+  step_dummy(owners) |>
+  step_normalize(log_km_driven, year)
+```
+
+#### Create a Model Instance with `tune()`
+
+Great, now we need to specify a LASSO model. Recall [this page](https://www.tidymodels.org/find/parsnip/) allows us to find a type of model to fit along with how to specify it and the engine used to fit the model.
+
+In this case, we still want `linear_reg()` but we want to use the 'glmnet' engine. We also want to specify the `penalty` parameter (corresponds to a form of $\alpha$ we mentioned above). "glmnet" actually allows us to fit a more complicated model (the elastic net) so there is a second tuning parameter to deal with (called `mixture`).
+
+- We set `mixture = 1` to turn this into a LASSO model (rather than an elastic net model)
+- We set `penalty = tune()` to tell `tidymodels` we are going to use a resampling method to choose this parameter
+    
+    
+```{r}
+LASSO_spec <- linear_reg(penalty = tune(), mixture = 1) |>
+  set_engine("glmnet")
+```
+
+Sweet - now we create our workflow.
+
+```{r}
+LASSO_wkf <- workflow() |>
+  add_recipe(LASSO_recipe) |>
+  add_model(LASSO_spec)
+LASSO_wkf
+```
+
+
+#### Fit the Model with `tune_grid()` and `grid_regular()`
+
+We saw how to fit a workflow to a set of CV folds with `fit_resample()`. Since we have a tuning parameter here, we don't want to use that function. Instead, we use `tune_grid()`. This function allows us to fit the model to CV folds but specify the set of tuning parameters to consider. 
+
+- **This implies we are actually doing a bunch of model fits on the CV folds!** One for each tuning parameter we specify. 
+- In the `tune_grid()` function we can specify the values of the tuning parameter with the `grid =` argument. 
+- `grid_regular()` is a function that can be used to choose a grid of reasonable values
+
+```{r}
+#A warning will occur for one value of the tuning parameter, safe to ignore
+LASSO_grid <- LASSO_wkf |>
+  tune_grid(resamples = bike_CV_folds,
+            grid = grid_regular(penalty(), levels = 200)) 
+LASSO_grid
+```
+
+This may look like it only has one fit per fold but the list columns hide the fact that we actually have fit 200 separate LASSO models (one for each tuning parameter specified by `grid_regular()`). Notice this:
+
+```{r}
+LASSO_grid[1, ".metrics"][[1]]
+```
+
+This is actually a `tibble` with 400 metrics (200 `rmse` values and 200 `rsq` values).
+
+Of course, we want to have these metrics computed across the folds for each of our 200 values of the tuning parameter. We use `collect_metrics()` as before!
+
+```{r}
+LASSO_grid |>
+  collect_metrics() |>
+  filter(.metric == "rmse")
+```
+
+Ok, but it is tough to see the values there. Let's plot it instead.
+
+```{r}
+LASSO_grid |>
+  collect_metrics() |>
+  filter(.metric == "rmse") |>
+  ggplot(aes(penalty, mean, color = .metric)) +
+  geom_line()
+```
+
+This plot is essentially reversed from the plots we looked at previously. For small values of the penalty (left side of the graph) we have no shrinkage. As our penalty gets bigger we have to shrink our coefficients more (further right on the graph has more shrinkage). Having little to no shrinkage is associated with the lower RMSE values based on our CV results!
+
+#### Pull Out the 'Best' Model with `select_best()` and `finalize_workflow()`
+
+We can get the tuning parameter corresponding to the best RMSE value and determine which coefficients that model has using `select_best()` and `finalize_workflow()`.
+
+```{r}
+lowest_rmse <- LASSO_grid |>
+  select_best(metric = "rmse")
+lowest_rmse
+```
+
+Now fit that 'best' LASSO model on the entire training set. `finalize_workflow()` tells R to finish our training with a specific setting of the terms we set to `tune()` in our model definition. We can supply the result from the previous code chunk to get the best model.
+
+```{r}
+LASSO_wkf |>
+  finalize_workflow(lowest_rmse)
+#fit it to the entire training set to see the model fit
+LASSO_final <- LASSO_wkf |>
+  finalize_workflow(lowest_rmse) |>
+  fit(bike_train)
+tidy(LASSO_final)
+```
+
+
+### Comparing Chosen Models on the Test Set
+
+Now we have our best model from each 'family' of models (one MLR and one LASSO model). Let's take them to the test set and see how they perform on this data!
+
+- We can use `last_fit()` on the `bike_split` object as we did in the previous section of notes
+- This uses the **training set** transformations on the test set and does predictions
+
+```{r}
+MLR_wkf3 |>
+  last_fit(bike_split) |>
+  collect_metrics()
+```
+
+```{r}
+LASSO_wkf |>
+  finalize_workflow(lowest_rmse) |>
+  last_fit(bike_split) |>
+  collect_metrics()
+```
+
+We see that the MLR model outperforms the LASSO model! This would be our overall best model.
+
+- Just to relate this to how we found this previously, note that we can do this ourselves in the usual manner. That is, use `predict()` and `rmse_vec()` from `yardstick`:
+
+```{r}
+MLR_final |>
+  predict(bike_test) |>
+  pull() |>
+  rmse_vec(truth = bike_test$log_selling_price)
+LASSO_final |>
+  predict(bike_test) |>
+  pull() |>
+  rmse_vec(truth = bike_test$log_selling_price)
+```
+
+- As `MLR_final` and `LASSO_final` both have class `workflow`, using `predict()` actually uses `predict.workflow()`. This means it does the appropriate **training set** transformations prior to predicting on the test set! From the documentation for `predict.workflow()`:
+
+>This is the predict() method for a fit workflow object. The nice thing about predicting from a workflow is that it will:
+
+> - Preprocess new_data using the preprocessing method specified when the workflow was created and fit. This is accomplished using hardhat::forge(), which will apply any formula preprocessing or call recipes::bake() if a recipe was supplied.
+
+> - Call parsnip::predict.model_fit() for you using the underlying fit parsnip model.
+
+### Final Step
+
+Now that we have an overall best model from our set of best models :) We would now refit the best model on the full dataset for future use. Again, we want to apply the transformations laid out previously. However, any transforms that depend on the data should now be based on the full data, not just the training data. By using `tidymodels` this is taken care of for us! We simply `fit()` the model with the full data set.
+
+```{r}
+final_model <- MLR_wkf3 |>
+  fit(bike_data) 
+tidy(final_model)
+```
+
+If we want the final model fit in the usual `lm` form, we can use `extract_fit_parsnip()`
+
+```{r}
+almost_usual_fit <- extract_fit_parsnip(final_model)
+usual_fit <- almost_usual_fit$fit
+summary(usual_fit)
+```
+
+### Wrap-up
+  
+- If you are only considering one type of model, you can use just a training/test set or just use k-fold CV to select the best version of that model
+
+- When you have multiple types of models to choose from, we usually use both!
+  
+    + When we use the test set too much, we may have '**data leakage**'
+    + Essentially we end up training our models to the test set by using it too much
+    + Using CV with a training/test set helps us avoid this!
+  
+  
+## Recap
+  
+Cross-validation gives a way to use more of the data while still seeing how the model does on test data
+
+- Commonly 5 fold or 10 fold is done
+- Once a best model is chosen, model is refit on entire data set
+
+We can use CV with or without a training/test split, depending on how much data we have and whether or not we have tuning parameters!
+  

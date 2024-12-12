@@ -1,0 +1,297 @@
+---
+title: "Cross-Validation"
+format: html
+editor: source
+toc: TRUE
+editor_options: 
+  chunk_output_type: console
+html-math-method: mathml
+---
+
+We've discussed the idea of supervised learning. In this paradigm we have a **response** or **target** variable we are trying to predict. 
+
+- We posit some model for that variable that is a function of our predictor variables. 
+- We fit that model to data (usually can be seen as minimizing some *loss* function).
+- We judge how well our model does at predicting using some **metric.** 
+
+    + Usually we evaluate our metric on the test set after doing a training/test split.
+
+Recall our example of fitting an MLR model from the last section of notes. There we first split the data into a training and test set. We fit the model on the training set. Then we looked at the RMSE on the test set to judge how well the models did. 
+
+$$RMSE = \sqrt{\frac{1}{n_{test}}\sum_{i=1}^{n_{test}}(y_i-\hat{y}_i)^2}$$
+
+where $y_i$ is the actual response from the test set and $\hat{y}_i$ is the prediction for that response value using the model.
+
+Note: The terms metric and loss function are often used interchangeably. They are slightly different. 
+
+- **Loss function** is usually referred to as the criteria used to optimize or fit the model.
+
+    + For an MLR model we usually fit by minimizing the sum of squared errors (MSE or RMSE equivalently) which is the same as using maximum likelihood under the iid Normal, constant variance, error model.
+    + In this case, MSE or RMSE would be our loss function
+    
+- Our **metric** is the criteria for evaluating the model. When we have a numeric response, our most common criteria is RMSE! In this case the same as the common loss function for fitting the model.
+
+We could fit our MLR model using a different loss function (say minimizing the absolute deviations). We could also evaluate our model using a different metric (say the average of the absolute deviations). 
+
+## Cross Validation Video Introduction
+
+An alternative to the training test split is to use cross-validation. Check out the video below for a quick introduction to cross-validation. Please pop this video out and watch it in the full panopto player!
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=d8d88c75-f1b6-41f1-9bc0-b19b00a9ff3a&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="40 - Cross Validation" ></iframe>
+```
+
+[PDF of these notes.](40_Cross_Validation.pdf)
+
+## CV without a Training/Test Set Split
+
+Sometimes we don't have a lot of data so we don't want to split our data into a training and test set. In this setting, CV is often used by itself to select a final model.
+
+Consider our data set about the selling price of motorcycles:
+
+```{r, message = FALSE, warning = FALSE}
+library(tidyverse)
+bike_data <- read_csv("https://www4.stat.ncsu.edu/~online/datasets/bikeDetails.csv")
+bike_data <- bike_data |>
+  mutate(log_selling_price = log(selling_price),
+         log_km_driven = log(km_driven)) |>
+  select(log_km_driven, year, log_selling_price, everything())
+bike_data
+```
+
+- Let's consider our three linear regression models for the `log_selling_price`
+
+    + $\mbox{Model 1: log_selling_price = intercept + slope*year + Error}$
+    + $\mbox{Model 2: log_selling_price = intercept + slope*log_km_driven + Error}$
+    + $\mbox{Model 3: log_selling_price = intercept + slope*log_km_driven + slope*year + Error}$
+
+- We can use CV error to choose between these models without doing a training/test split.
+
+- We'll see how to do this within the `tidymodels` framework shortly. For now, let's do it by hand so we can make sure we understand the process CV uses!
+
+### Implementing 10 fold Cross-Validation Ourselves
+
+Let's start with dividing the data into separate (distinct) folds.
+
+1. Split the data into 10 separate folds (subsets)
+    
+    + We can do this by randomly reordering our observations and taking the first ten percent to be the first fold, 2nd ten percent to be the second fold, and so on.
+        
+```{r}
+nrow(bike_data)
+size_fold <- floor(nrow(bike_data)/10)
+```
+
+<ul>
+  <ul>
+    <li> Each fold will have `r size_fold` observations. There will be an extra observation in this case, we'll lump that into our last fold.</li>
+    <li>Let's get our folds by using `sample()` to reorder the indices.</li>
+    <li>Then we'll use a for loop to cycle through the pieces and save the folds in a `list`</li>
+  </ul>
+ </ul>
+
+```{r}
+set.seed(8)
+random_indices <- sample(1:nrow(bike_data), size = nrow(bike_data), replace = FALSE)
+#see the random reordering
+head(random_indices)
+#create a list to save our folds in
+folds <- list()
+#now cycle through our random indices vector and take the appropriate observations to each fold
+for(i in 1:10){
+  if (i < 10) {
+    fold_index <- seq(from = (i-1)*size_fold +1, to = i*size_fold, by = 1)
+    folds[[i]] <- bike_data[random_indices[fold_index], ]
+  } else {
+    fold_index <- seq(from = (i-1)*size_fold +1, to = length(random_indices), by = 1)
+    folds[[i]] <- bike_data[random_indices[fold_index], ]
+  }
+}
+folds[[1]]
+folds[[2]]
+```
+    
+<ul>
+  <ul>
+    <li>Let's put this process into our own function for splitting our data up!</li>
+    <li>This function will take in a data set and a number of folds (`num_folds`) and returns a list with the folds of the data.</li>
+  </ul>
+</ul>
+    
+```{r}
+get_cv_splits <- function(data, num_folds){
+  #get fold size
+  size_fold <- floor(nrow(data)/num_folds)
+  #get random indices to subset the data with
+  random_indices <- sample(1:nrow(data), size = nrow(data), replace = FALSE)
+  #create a list to save our folds in
+  folds <- list()
+  #now cycle through our random indices vector and take the appropriate observations to each fold
+  for(i in 1:num_folds){
+    if (i < num_folds) {
+      fold_index <- seq(from = (i-1)*size_fold +1, to = i*size_fold, by = 1)
+      folds[[i]] <- data[random_indices[fold_index], ]
+    } else {
+      fold_index <- seq(from = (i-1)*size_fold +1, to = length(random_indices), by = 1)
+      folds[[i]] <- data[random_indices[fold_index], ]
+    }
+  }
+  return(folds)
+}
+folds <- get_cv_splits(bike_data, 10)
+```
+        
+2. Now we can fit the data on nine of the folds and test on the tenth. Then switch which fold is left out and repeat the process. We'll use MSE rather than RMSE as our metric for now.
+    
+```{r}
+#set the test fold number
+test_number <- 10
+#pull out the testing fold
+test <- folds[[test_number]]
+test
+#remove the test fold from the list
+folds[[test_number]] <- NULL
+#note that folds is only length 9 now
+length(folds)
+```
+
+<ul>
+  <ul>
+    <li>Recall the `purrr:reduce()` function. This allows us to iteratively apply a function across an object. Here we'll use `reduce()` with `rbind()` to combine the tibbles saved in the different folds.</li>
+  </ul>
+</ul>
+
+```{r}
+#combine the other folds into train set
+train <- purrr::reduce(folds, rbind)
+#the other nine folds are now in train
+train
+```
+
+<ul>
+  <ul>
+    <li>Now we can fit our model and check the metric on the test set</li>
+  </ul>
+</ul>
+
+```{r}
+fit <- lm(log_selling_price ~ log_km_driven, data = train)
+#get test error (MSE - square RMSE)
+(yardstick::rmse_vec(test[["log_selling_price"]], 
+                     predict(fit, newdata = test)))^2
+```
+
+<ul>
+  <ul>
+    <li>Ok, let's wrap that into a function for ease! Let `y` be a string for the response, `x` a character vector of predictors, and `test_number` the fold to test on.</li>
+  </ul>
+</ul>
+
+```{r}
+find_test_metric <- function(y, x, folds, test_number){
+  #pull out the testing fold
+  test <- folds[[test_number]]
+  #remove the test fold from the list
+  folds[[test_number]] <- NULL
+  #combine the other folds into train set
+  train <- purrr::reduce(folds, rbind)
+  #fit our model. reformulate allows us to take strings and turn that into a formula
+  fit <- lm(reformulate(termlabels = x, response = y), data = train)
+  #get test error
+  (yardstick::rmse_vec(test[[y]], predict(fit, newdata = test)))^2
+}
+```
+
+<ul>
+  <ul>
+    <li>We can use the `purrr::map()` function to apply this function to `1:10`. This will use each fold as the test set once.</li>
+  </ul>
+</ul>
+        
+```{r}
+folds <- get_cv_splits(bike_data, 10)
+purrr::map(1:10, find_test_metric, 
+           y = "log_selling_price", 
+           x = "log_km_driven", 
+           folds = folds)
+```
+    
+3. Now we combine these into one value! We'll average the MSE values across the folds and then take the square root of that to obtain the RMSE (averaging square roots makes less sense, which is why we found MSE first)
+
+    + We can again use `reduce()` to combine all of these values into one number! We average it by dividing by the number of folds and finally find the square root to make it the RMSE!
+    
+```{r}
+sum_mse <- purrr::map(1:10, 
+                      find_test_metric, 
+                      y = "log_selling_price", 
+                      x = "log_km_driven", 
+                      folds = folds) |>
+  reduce(.f = sum)
+sqrt(sum_mse/10)
+```
+
+<ul>
+  <ul>
+    <li>Let's put it into a function and make it generic for the number of folds we have.</li>
+  </ul>
+</ul>
+    
+```{r}
+find_cv <- function(y, x, folds, num_folds){
+  sum_mse <- purrr::map(1:num_folds, 
+                        find_test_metric, 
+                        y = y, 
+                        x =x, 
+                        folds = folds) |>
+    reduce(.f = sum)
+  return(sqrt(sum_mse/num_folds))
+}
+find_cv("log_selling_price", "log_km_driven", folds, num_folds = 10)
+```
+        
+        
+### Compare Different Models Using Our CV Functions
+
+Now let's compare our three separate models via 10 fold CV! We can use the same `folds` with different models.
+
+1. First our model with just `year` as a predictor:
+
+```{r}
+folds <- get_cv_splits(bike_data, 10)
+cv_reg_1 <- find_cv("log_selling_price", "year", folds, num_folds = 10)
+```
+
+2. Now for our model with just `log_km_driven`:
+
+```{r}
+cv_reg_2 <- find_cv("log_selling_price", "log_km_driven", folds, num_folds = 10)
+```
+
+3. And for the model with both of these (main) effects:
+
+```{r}
+cv_reg_3 <- find_cv("log_selling_price", c("year", "log_km_driven"), folds, num_folds = 10)
+```
+
+We can then use these CV scores to compare across models and choose the 'best' one!
+
+```{r}
+c("year" = cv_reg_1, "log_km_driven" = cv_reg_2, "both" = cv_reg_3)
+```
+
+We see that the model that has both predictors has the lowest cross-validation RMSE!
+
+**We would now fit this 'best' model on the full data set!**
+
+```{r}
+best_fit <- lm(log_selling_price ~ year + log_km_driven, data = bike_data)
+best_fit
+```
+
+
+## CV Recap
+
+Nice! We've done a comparison of models on how well they predict on data they are not trained on without splitting our data into a train and test set! This is very useful when we don't have a lot of data.
+
+Again, we would choose our best model (model 3 here) and refit the model on the full data set! We'll see how to do this in the `tidymodels` framework shortly
+

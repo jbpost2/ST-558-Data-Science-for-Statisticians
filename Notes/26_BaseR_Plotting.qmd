@@ -1,0 +1,237 @@
+---
+title: "Databases and Basic SQL"
+format: html
+editor: visual
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+We've seen the use of flat files to store data (delimited data files). These files often have a file extension of `.csv`, `.txt`, or `.dat`.
+
+However, we often have multiple data sources around one problem. For instance, our `Lahman` package we've been using has information about Major League Baseball players' batting, pitching, and personal information.
+
+There are many data tables (essentially each could be a data frame). Below is information about the structure of these data tables and how they relate.
+
+```{r, out.width = "600px", echo = FALSE, fig.align='center'}
+knitr::include_graphics("img/dbDiagram.jpg")
+```
+
+-   When we have multiple data sets (or sources) a **database** is often used along with a database management system (DBMS)
+
+-   The data, the DBMS, and the applications associated with them are often simply called a **database**
+
+## Database - Organized Collection of Data
+
+For most standard databases, we usually think of a bunch of 2D tables that are related by keys. We might refer to this as a *relational database*.
+
+Consider the Lahman diagram:
+
+```{r, out.width = "600px", echo = FALSE, fig.align='center'}
+knitr::include_graphics("img/Lahman-db-diagram.jpg")
+```
+
+Each rectangle represents one data table. We can see that the `playerID` variable is common across many of these tables. This is a variable that relates the tables to each other. A common task is then to combine separate data tables in order to do an analysis.
+
+Currently, the Lahman data sets are not in a data base. They are simply stored in our package. We can put them into a database for some practice!
+
+### Databases Systems
+
+There are many common types of relational databases management systems (RDBMS). Some of the more popular database types are:
+
+-   [Oracle](https://docs.oracle.com/cd/E11882_01/server.112/e40540/intro.htm#CNCPT001)
+-   [MySQL](https://dev.mysql.com/doc/)
+-   [SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/databases/databases?view=sql-server-ver15)
+-   [PostgreSQL](https://www.postgresql.org/about/)
+-   [SQLite](https://www.sqlite.org/index.html)
+-   [Azure SQL](https://docs.microsoft.com/en-us/azure/azure-sql/)
+
+Most of these RDBMS have their own **Structured Query Language** (SQL) that provides a language for getting information from tables in the database. The SQL languages have the same core functionality and syntax that is vital to learn as a data scientist!
+
+### Actions on Databases
+
+There are a few common actions we often want to perform on a database (CRUD actions):
+
+-   Create data (add rows or a table to the database)
+-   Read data (return data from a table in the database)
+-   Update data
+-   Delete data
+-   Plus: Provide access control, monitoring, tuning, and backup/recovery
+
+The SQL code allows us to do these operations. Luckily, the logic for doing the querying is shared with the actions we do in `dplyr`! We'll be able to query databases using `dplyr` commands and compare that to the equivalent SQL commands. The big idea is to get the logic down. Once you have that, it is just learning the syntax.
+
+### Databases in R: Connecting
+
+The first step in dealing with a database is to connect your R session to it so you can do your CRUD actions. To connect we use the `DBI` package. The `dbConnect()` function allows us to connect to a database. Here is some generic code for using that function:
+
+```{r, eval = FALSE}
+library(DBI)
+con <- dbConnect(data_base_type_goes_here_usually_requires_a_package, 
+  host = "hostname.website",
+  user = "username",
+  password = rstudioapi::askForPassword("DB password")
+)
+```
+
+This code tells R where the connection exists (`host`) and, if you need to login to gain access, the way in which you could specify your username and password.
+
+The first argument specifies the type of database you are connecting to. Most commonly you'll need to download an appropriate package and put something like the following:
+
+-   `RSQLite::SQLite()` for RSQLite\
+-   `RMySQL::MySQL()` for RMySQL\
+-   `RPostgreSQL::PostgreSQL()` for RPostgreSQL\
+-   `odbc::odbc()` for Open Database Connectivity\
+-   `bigrquery::bigquery()` for google's bigQuery
+
+### Databases in R: Querying a Table
+
+Once connect, you can use `tbl()` to reference a table in the database. Notice our first argument is the connection we made above.
+
+```{r, eval = FALSE}
+new_data <- tbl(con, "name_of_table")
+```
+
+We can then use SQL code or `dplyr` code (which actually calls code from a package called `dbplyr`) to query things.
+
+### Databases in R: Ending Your Connection
+
+When done working, it is good practice to disconnect from the database via the `dbDisconnect()` function.
+
+```{r, eval = FALSE}
+dbDisconnect(con)
+```
+
+### Databases Example
+
+A Lahman `RSQLite` exists at <https://www4.stat.ncsu.edu/~online/datasets/lahman.db>. We'll do some practice with this! Make sure you install the `RSQLite` package if you don't have that already.
+
+You'll need to download the `.db` file and place it in a place you know (perhaps your project directory or the directory your `.qmd` file lives in.)
+
+Then you can run this code to connect to the database!
+
+```{r}
+library(DBI)
+con <- dbConnect(RSQLite::SQLite(), "lahman.db")
+```
+
+```{r, eval = FALSE, echo = FALSE}
+#this is for me to create this Lahman.sqlite file
+library(Lahman)
+dbWriteTable(con, "AllstarFull", AllstarFull, overwrite = TRUE)
+dbWriteTable(con, "Appearances", Appearances, overwrite = TRUE)
+dbWriteTable(con, "AwardsManagers", AwardsManagers, overwrite = TRUE)
+dbWriteTable(con, "AwardsPlayers", AwardsPlayers, overwrite = TRUE)
+dbWriteTable(con, "AwardsShareManagers", AwardsShareManagers, overwrite = TRUE)
+dbWriteTable(con, "AwardsSharePlayers", AwardsSharePlayers, overwrite = TRUE)
+dbWriteTable(con, "Batting", Batting, overwrite = TRUE)
+dbWriteTable(con, "BattingPost", BattingPost, overwrite = TRUE)
+dbWriteTable(con, "CollegePlaying", CollegePlaying, overwrite = TRUE)
+dbWriteTable(con, "Fielding", Fielding, overwrite = TRUE)
+dbWriteTable(con, "FieldingOF", FieldingOF, overwrite = TRUE)
+dbWriteTable(con, "FieldingOFsplit", FieldingOFsplit, overwrite = TRUE)
+dbWriteTable(con, "FieldingPost", FieldingPost, overwrite = TRUE)
+dbWriteTable(con, "HallOfFame", HallOfFame, overwrite = TRUE)
+dbWriteTable(con, "HomeGames", HomeGames, overwrite = TRUE)
+dbWriteTable(con, "LahmanData", LahmanData, overwrite = TRUE)
+dbWriteTable(con, "Managers", Managers, overwrite = TRUE)
+dbWriteTable(con, "ManagersHalf", ManagersHalf, overwrite = TRUE)
+dbWriteTable(con, "Parks", Parks, overwrite = TRUE)
+dbWriteTable(con, "People", People, overwrite = TRUE)
+dbWriteTable(con, "Pitching", Pitching, overwrite = TRUE)
+dbWriteTable(con, "PitchingPost", PitchingPost, overwrite = TRUE)
+dbWriteTable(con, "Salaries", Salaries, overwrite = TRUE)
+dbWriteTable(con, "Schools", Schools, overwrite = TRUE)
+dbWriteTable(con, "SeriesPost", SeriesPost, overwrite = TRUE)
+dbWriteTable(con, "Teams", Teams, overwrite = TRUE)
+dbWriteTable(con, "TeamsFranchises", TeamsFranchises, overwrite = TRUE)
+dbWriteTable(con, "TeamsHalf", TeamsHalf, overwrite = TRUE)
+dbWriteTable(con, "battingLabels", battingLabels, overwrite = TRUE)
+dbWriteTable(con, "fieldingLabels", fieldingLabels, overwrite = TRUE)
+dbWriteTable(con, "pitchingLabels", pitchingLabels, overwrite = TRUE)
+```
+
+First, let's list out the tables with `DBI::dbListTables()`
+
+```{r}
+dbListTables(con)
+```
+
+Great, now we can access one of these tables with the `dplyr::tbl()` function. From there, we can use all our usual `dplyr` code in place of SQL syntax!
+
+```{r}
+library(dplyr)
+tbl(con, "Pitching")
+```
+
+```{r}
+tbl(con, "Pitching") |>
+  select(ends_with("ID")) |>
+  filter(yearID == 2010) 
+```
+
+Notice the number of rows isn't actually calcuated here! This is called lazy evaluation. Until we store the result in an object or do some calculation that requires all of the rows, it won't do the computation.
+
+How `dplry` works with a database
+
+-   It never pulls data into R unless you explicitly ask for it
+
+-   It delays doing any work until the last possible moment - it collects together everything you want to do and then sends it to the database in one step (you can add `collect()` if you want all the data anyway)
+
+```{r}
+tbl(con, "Pitching") |>
+  select(ends_with("ID")) |>
+  filter(yearID == 2010) |>
+  collect()
+```
+
+We can actually get out some SQL code from our `dplyr` code if we use `show_query()`
+
+```{r}
+tbl(con, "Pitching") |>
+  select(ends_with("ID")) |>
+  filter(yearID == 2010) |>
+  show_query()
+```
+
+That's cool! If you have the logic of `dplyr` down you can just use that but also learn SQL syntax along the way!
+
+You can actually write straight SQL code as well (if you know that):
+
+```{r, eval = TRUE}
+tbl(con, sql(
+"SELECT `playerID`, `yearID`, `teamID`, `lgID`
+FROM `Pitching`
+WHERE (`yearID` = 2010.0)")
+)
+```
+
+There are a ton of online tutorials to learn SQL. It is highly recommended if you are looking for a job!
+
+We'll cover the basics of *Joins* (methods to combine more than one table (data frame)) shortly.
+
+We should disconnect from our database now that we are done!
+
+```{r}
+dbDisconnect(con)
+```
+
+### Quick R Video
+
+Please pop this video out and watch it in the full panopto player!
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=2109f930-6cc4-443b-85b5-b17e01004c9e&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="21 - Connecting to Databases" ></iframe>
+```
+
+
+### Recap!
+
+-   Databases are commonly used to store lots of data
+
+    -   The data, the DBMS, and the applications associated with them are often simply called a database
+
+-   Create data, Read data, Update data, Delete data (CRUD)
+
+-   `DBI` package has functionality to connect to many types of databases in R
+
+-   `tbl()` and common `dplyr` functions work for querying

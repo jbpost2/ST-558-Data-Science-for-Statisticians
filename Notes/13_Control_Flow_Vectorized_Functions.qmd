@@ -1,0 +1,163 @@
+---
+title: "Control Flow: Vectorized Functions"
+format: html
+editor: visual
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+## Vectorized Functions
+
+In the spirit of loops, vectorized functions give us a way to execute code on an entire 'vector' at once (although we can be a bit more general than just vectors). This tends to speed up computation in comparison to basic loops in R!
+
+This is because loops are inefficient in R. R is an interpreted language. This means that it does a lot of the work of figuring out what to do for you. (Think about function dispatch - it looks at the type of object and figures out which version of `plot()` or `summary()` to use.) This process tends to slow R down in comparison to a vectorized operation where it still runs a loop under the hood but a vector should have all the same type of elements in it. This means it can avoid figuring the same thing out repeatedly!
+
+### Vectorized Functions for Common Numeric Summaries
+
+There are some 'built-in' vectorized functions that are quite useful to apply to a 2D type object:
+
+-   `colMeans()`, `rowMeans()`
+-   `colSums()`, `rowSums()`
+-   `colSds()`, `colVars()`, `colMedians()` (must install the `matrixStats` package to get these)
+
+Let's go back to our batting dataset from the previous note set.
+
+```{r}
+library(Lahman)
+my_batting <- Batting[, c("playerID", "teamID", "G", "AB", "R", "H", "X2B", "X3B", "HR")]
+head(my_batting)
+```
+
+We can apply the `colMeans()` function easily!
+
+```{r}
+colMeans(my_batting[, 3:9])
+```
+
+If we **install** the `matrixStats` package (download the files from the internet), we can then use the `colMedians()` function to obtain the column medians in a quick fashion.
+
+```{r, error = TRUE}
+#install.packages("matrixStats") #only run this once on your machine!
+library(matrixStats)
+colMedians(my_batting[, 3:9])
+```
+
+Ah, this package requires the object passed to be a matrix or vector (homogenous). Although our data frame we pass is homogenous, the function doesn't have a check for that. No worries, we can convert to a matrix using `as.matrix()` (similar to the `is.` family of functions there is an `as.` family of functions (read as 'as dot')).
+
+```{r}
+colMedians(as.matrix(my_batting[, 3:9]))
+```
+
+Let's compare the speed of this code to the speed of a for loop!
+
+-   The `microbenchmark` package allows for easy recording of computing time.
+-   We just wrap the code we want to benchmark in the `microbenchmark()` function.
+-   Here we will grab all the numeric columns from the data
+-   Some columns contain `NA` or missing values. We'll add `na.rm = TRUE` to both function calls to ignore those values (this is where the for loop actually struggles in this case!)
+
+```{r}
+#install.packages("microbenchmark") #run only once on your machine!
+library(microbenchmark)
+my_numeric_batting <- Batting[, 6:22] #get all numeric columns
+vectorized_results <- microbenchmark(
+  colMeans(my_numeric_batting, na.rm = TRUE)
+)
+
+loop_results <- microbenchmark(
+  for(i in 1:17){
+    mean(my_numeric_batting[, i], na.rm = TRUE)
+  }
+)
+```
+
+-   Compare computational time
+
+```{r}
+vectorized_results
+```
+
+```{r}
+loop_results
+```
+
+### Vectorized `ifelse`
+
+We saw the limitation of using standard `if/then/else` logic for manipulating a data set. The `ifelse()` function is a vectorized form of if/then/else logic.
+
+Let's revisit our example that used the `airquality` dataset. We wanted to code a wind category variable:
+
+-   high wind days (15mph $\leq$ wind)\
+-   windy days (10mph $\leq$ wind \< 15mph)\
+-   lightwind days (6mph $\leq$ wind \< 10mph)\
+-   calm days (wind $\leq$ 6mph)
+
+The syntax for `ifelse` is:
+
+```{r,eval=FALSE}
+ifelse(vector_condition, if_true_do_this, if_false_do_this)
+```
+
+a vector is returned!
+
+```{r}
+ifelse(airquality$Wind >= 15, "HighWind",
+          ifelse(airquality$Wind >= 10, "Windy",
+                 ifelse(airquality$Wind >= 6, "LightWind", 
+                        ifelse(airquality$Wind >= 0, "Calm", "Error"))))
+```
+
+Whoa that was pretty easy! Nice.
+
+Let's compare this to using a for loop speed-wise.
+
+```{r}
+loopTime<-microbenchmark(
+  for (i in seq_len(nrow(airquality))){
+    if(airquality$Wind[i] >= 15){
+       "HighWind"
+    } else if (airquality$Wind[i] >= 10){
+      "Windy"
+    } else if (airquality$Wind[i] >= 6){
+      "LightWind"
+    } else if (airquality$Wind[i] >= 0){
+      "Calm"
+    } else{
+      "Error"
+    }
+  }
+, unit = "us")
+```
+
+```{r}
+vectorTime <- microbenchmark(
+  ifelse(airquality$Wind >= 15, "HighWind",
+         ifelse(airquality$Wind >= 10, "Windy",
+                ifelse(airquality$Wind >= 6, "LightWind", 
+                       ifelse(airquality$Wind >= 0, "Calm", "Error"))))
+)
+```
+
+Compare!
+
+```{r}
+loopTime
+vectorTime
+```
+
+**Note:** There is an `if_else()` function from the `dplry` package. This has more restrictions than `ifelse()` but otherwise is pretty similar.
+
+### Recap!
+
+-   Loops are slower in R
+
+-   Use vectorized functions if possible
+
+-   Common vectorized functions
+
+    -   `colMeans()`, `rowMeans()`
+    -   `colSums()`, `rowSums()`
+    -   `matrixStats::colSds()`, `matrixStats::colVars()`, `matrixStats::colMedians()`
+    -   `ifelse()` or `dplyr::if_else()`
+    -   `apply` family (covered soon)
+    -   `purrr` package (covered in a bit)

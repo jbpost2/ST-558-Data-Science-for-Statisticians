@@ -1,0 +1,271 @@
+---
+title: "Base R Data Structures: Matrices"
+format: html
+editor: visual
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+# Common Data Structures
+
+A data scientist needs to deal with data! We need to have a firm foundation in the ways that we can store our data in R. This section goes through the most commonly used 'built-in' R objects that we'll use.
+
+-   There are five major data structures used in R
+
+    1.  Atomic Vector (1d)
+    2.  Matrix (2d)
+    3.  Array (nd)
+    4.  Data Frame (2d)
+    5.  List (1d)
+
+| Dimension | Homogeneous (elements all the same) | Heterogeneous (elements may differ) |
+|--------------------|--------------------------|--------------------------|
+| 1d        | Atomic Vector                       | List                                |
+| 2d        | Matrix                              | Data Frame                          |
+| nd        | Array                               |                                     |
+
+## Matrix
+
+Vectors are useful to know about but generally not great for dealing with a dataset. When we think of a dataset, we often think about a spreadsheet having rows corresponding to **observations** and columns corresponding to **variables**.
+
+```{r,echo = FALSE}
+knitr::kable(head(iris))
+```
+
+Here the observations correspond to measurements on flowers. The variables that were measured on each flower are the columns.
+
+We can see that a vector is not really useful for handling this kind of 'standard' data since it is 1D. However, we can think of vectors as the building blocks for more complicated types of data.
+
+As matrices are homogeneous (all elements must be the same type), we can think of a matrix as a collection of vectors of the same **type and length** (although this is not formally how it works in R). Think of each vector as a column of the matrix.
+
+### Creating a Matrix
+
+-   We can create a matrix using the `matrix()` function. Looking at the help for `matrix` we see the function definition as:
+
+```{r eval = FALSE}
+matrix(data = NA, 
+       nrow = 1, 
+       ncol = 1, 
+       byrow = FALSE,
+       dimnames = NULL)
+```
+
+where `data` is
+
+> an optional data vector (including a list or expression vector). Non-atomic classed R objects are coerced by as.vector and all attributes discarded.
+
+Ok, so really we need to supply a **vector** of data. Then the `nrow` and `ncol` arguments define how many rows and columns. The `byrow` argument is a Boolean telling R whether or not to fill in the matrix by row or by column (the default). `dimnames` is an optional **attribute**. We'll look at that shortly.
+
+A basic call to `matrix()` might look like this:
+
+```{r}
+my_mat <- matrix(c(1, 3, 4, -1, 5, 6), 
+                 nrow = 3, 
+                 ncol = 2)
+my_mat
+```
+
+Notice how the values fill in the first column then the second column. This is the default behavior but can be changed via the `byrow` argument.
+
+```{r}
+my_mat <- matrix(c(1, 3, 4, -1, 5, 6), 
+                 nrow = 3, 
+                 ncol = 2,
+                 byrow = TRUE)
+my_mat
+```
+
+Let's think of a matrix as a collection of vectors of the same **type and length** (how you might think of a dataset). We could construct the matrix by giving appropriate vectors of the same type and length.
+
+```{r}
+#populate vectors
+x <- rep(0.2, times = 6)
+y <- c(1, 3, 4, -1, 5, 6)
+```
+
+-   Check they are the same `type` of element. In this case, as long as they are both `numeric`, we can put them together and not lose any precision (`integers` are coerced to `doubles` if needed).
+
+```{r}
+str(x)
+is.numeric(x)
+```
+
+```{r}
+str(y)
+is.numeric(y)
+```
+
+-   A `length()` function exists. We can use that to see the vectors have the same number of elements.
+
+```{r}
+#check 'length'
+length(x)
+length(y)
+```
+
+-   Now construct the matrix by *combining* the vectors together with `c()`.
+
+```{r}
+my_mat2 <- matrix(c(x, y), ncol = 2)
+my_mat2
+```
+
+As `byrow = FALSE` is the default, the vectors become the columns!
+
+That being said, the way to really think about the matrix is as a long vector we are giving dimensions to. In fact, if we coerce our matrix to a vector explicitly (via the `as.vector()` function), we see the original data vector we passed in.
+
+```{r}
+as.vector(my_mat2)
+```
+
+-   Matrices don't have to be made up of numeric data. As long as the elements are all the same type, we are good to go!
+
+```{r,echo=TRUE}
+x <- c("Hi", "There", "!")
+y <- c("a", "b", "c")
+z <- c("One", "Two", "Three")
+matrix(c(x, y, z), nrow = 3)
+```
+
+-   Notice that we don't need to specify the number of columns. R figures that out!
+
+-   We do need to be careful about how R **recycles** things:
+
+```{r}
+matrix(c(x, y, z), ncol = 2)
+```
+
+-   We were 1 element short of being able to fill a matrix with 2 columns and 5 rows (5 chosen to make sure all the data was included). R recycles the first element we passed to fill in the last value. This is a common thing that R does. It can be useful for shorthanding things but otherwise is just something we need to be aware of as a common error to be fixed!
+
+```{r}
+matrix(0, nrow = 2, ncol = 2)
+```
+
+### Matrix Attributes
+
+Similar to a vector, a matrix can have attributes (this is true of any R object!). The common attributes associated with a matrix are the `dim` or dimensions and the `dimnames` or dimension names.
+
+```{r}
+my_iris <- as.matrix(iris[, 1:4])
+head(my_iris)
+```
+
+```{r}
+str(my_iris)
+```
+
+```{r}
+attributes(my_iris)
+```
+
+We can access these attributes through functions designed for them:
+
+```{r}
+dim(my_iris)
+```
+
+```{r}
+dimnames(my_iris)
+```
+
+Here we can name the rows and the columns of a matrix by assigning a `list()` to the `dimnames` attribute. (Lists are covered shortly.)
+
+```{r}
+dimnames(my_iris) <- list(
+  1:150, #first list element is a vector for the row names
+  c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width") #second list element is a vector for column names
+)
+head(my_iris)
+```
+
+We can assign these when we create a matrix!
+
+```{r}
+my_mat3 <- matrix(c(runif(10), 
+                    rnorm(10),
+                    rgamma(10, shape = 1, scale = 1)),
+                  ncol = 3,
+                  dimnames = list(1:10, c("Uniform", "Normal", "Gamma")))
+my_mat3
+```
+
+### Accessing Elements of a Matrix
+
+We saw that `[]` allowed us to access the elements of a vector. We'll use the same syntax to get at elements of a matrix. However, we now have two dimensions! That means we need to specify which row elements and which column elements. This is done by using square brackets with a comma in between our indices.
+
+-   Notice the default row names and column names! This gives us hints on this syntax!
+
+```{r}
+mat <- matrix(c(1:4, 20:17), ncol = 2)
+mat
+```
+
+-   If we leave an index blank, we get the entirety of that index back.
+
+```{r}
+mat[2, 2]
+```
+
+```{r}
+mat[ , 1]
+```
+
+```{r}
+mat[2, ]
+```
+
+```{r}
+mat[2:4, 1]
+```
+
+```{r}
+mat[c(2, 4), ]
+```
+
+**Notice that R simplifies the result where possible.** That is, returns an atomic vector if you have only 1 dimension and a matrix if two.
+
+Also, if you only give a single value in the `[]` then R uses the count of the value in the matrix (essentially treating the matrix elements as a long vector). These counts go down columns first.
+
+-   If you do have `dimnames` associated, then you can access elements with those.
+
+```{r}
+mat <- matrix(c(1:4, 20:17), ncol = 2,
+          dimnames = list(NULL,
+                c("First", "Second"))
+        )
+mat
+```
+
+```{r}
+mat[, "First"]
+```
+
+## Arrays
+
+Arrays are the n-dimensional extension of matrices. Like matrices, they must have all elements of the same type.
+
+```{r}
+my_array <- array(1:24, dim = c(4, 2, 3))
+my_array
+```
+
+Accessing elements is similar to vectors and matrices!
+
+```{r}
+my_array[1, 1, 1]
+```
+
+```{r}
+my_array[4, 2, 1]
+```
+
+Arrays are often used in deep learning.
+
+### Recap!
+
+-   A 2D object where all elements are of the same type
+
+-   Access elements via `[ , ]`
+
+-   Not ideal for data since all elements must be the same type (see data frames!)

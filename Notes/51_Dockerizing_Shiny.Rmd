@@ -1,0 +1,96 @@
+---
+title: "Dockerizing a Shiny App"
+author: "Justin Post"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, "css/ncsu.css", "css/ncsu-fonts.css", "css/mycss.css"]
+    nature:
+      beforeInit: ["js/ncsu-scale.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+    includes:
+      in_header: "partials/header.html"
+editor_options: 
+  chunk_output_type: console
+---
+  
+  
+```{r, include=FALSE,warning=FALSE,message=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  dev = "svg",
+  fig.align = "center",
+  #fig.width = 11,
+  #fig.height = 5
+  cache = TRUE
+)
+
+# define vars
+om = par("mar")
+lowtop = c(om[1],om[2],0.1,om[4])
+library(tidyverse)
+library(knitr)
+options(dplyr.print_min = 5)
+set.seed(10)
+```
+
+# Docker  
+
+Recap
+
+- You have a model, app, etc.  
+
+- You want to share it or make it available  
+
+Docker - a 'container' to easily transport your code to others  
+
+- Include all relevant files (R, packages, etc.)  
+
+- No chance of code not running, bugs, etc. (if you've done things right!)  
+
+---
+
+# Dockerizing Shiny Apps
+
+[Article 1](https://juanitorduz.github.io/dockerize-a-shinyapp/) and [Article 2](https://www.statworx.com/en/blog/how-to-dockerize-shinyapps/) on commands needed to Dockerize a shiny app  
+
+- If you can host your app somewhere, not really a need to dockerize...  
+
+
+---
+
+# Dockerizing a Shiny App
+
+- Create app in a folder with all files needed (images, etc)  
+
+    + All paths relative!
+
+- Pull appropriate docker image 
+
+    + `docker pull rocker/shiny-verse`
+
+- Create the `DOCKERFILE`
+
+- Build the image
+
+    + `docker build -t <NAME> <DOCKERFILE PATH>`  
+    
+    + If in directory of `DOCKERFILE`, just put '.' for path  
+
+- Deploy the image  
+
+    + Ex: `docker run -p 3838:3838 <NAME>`
+    
+---
+
+# Example Dockerization  
+
+Let's Dockerize a basic app  
+
+- An app to visualize bayes theorem  
+

@@ -1,0 +1,63 @@
+---
+title: "What is Data Science?"
+format: html
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+<h4>Getting Comfortable with github</h4>
+<p>Hopefully you now have some idea about the purpose of git/github. Github is
+  an online hosting service for git repositories. If you've never used git and
+  github before it is really quite intimidating. We'll start small and build as
+  we go through the semester! Now you should do some practice!</p>
+<ul>
+  <li>First, go to <a href="http://github.com" target="_blank"
+      rel="noopener">github.com</a> and signup for a github account (if you
+    haven't already). </li>
+  <li>Once you have an account, <a
+      href="https://guides.github.com/activities/hello-world/" target="_blank"
+      rel="noopener">read this introduction to github</a> here (we'll look at
+    using git and the command line shortly - for now we'll stick to the web
+    editor). </li>
+  <li>Follow the steps to create your first repository and do some git actions!
+  </li>
+</ul>
+<p>Part of your first assignment will include creating a github repo and
+  corresponding webpage!</p>
+<p>Once you've completed the above part. You should download git to your
+  computer.</p>
+<ul>
+  <li>See the <a href="https://github.com/git-guides/install-git"
+      target="_blank" rel="noopener">installing git page</a> or the
+    corresponding chapter from <a href="https://happygitwithr.com/install-git"
+      target="_blank" rel="noopener">happy git with R</a> (this one includes
+    some troubleshooting as well).</li>
+  <li>For Windows, there aren't many things to select as you install but go
+    ahead and <strong>include the bash terminal</strong> if that's an option.
+  </li>
+</ul>
+<p>Now read through the <a href="https://happygitwithr.com/hello-git"
+    target="_blank" rel="noopener">introduce yourself to git</a> chapter of
+  happygitwithr. </p>
+<ul>
+  <li>For those that want to use the shell/terminal: Mac has a native
+    shell/terminal/command line interpreter (usually called terminal in your
+    launchpad area).  For windows folks, after you've installed git you'll have
+    access to the git bash terminal.  Access this by clicking on the start menu
+    and typing in bash. You can also use the command prompt in Windows (cmd in
+    the start menu). I'll use a bit of both the bash terminal and the Windows
+    command prompt. Commands differ but the functionality is very similar.</li>
+</ul>
+<p>Great, now try to work through <a href="https://happygitwithr.com/https-pat"
+    target="_blank" rel="noopener">chapters 9, 11, and 12</a>. </p>
+<ul>
+  <li>If you get stuck here, that's ok. Just move on! This part isn't really
+    required right now but should be figured out soon so that you can start
+    working seamlessly! </li>
+  <li>If stuck, there is a bit more material about git/github/R Studio this
+    week. Check that out and then maybe come back here.</li>
+  <li>Set up a meeting with me if you can't figure this part out (no rush!).
+  </li>
+</ul>
+

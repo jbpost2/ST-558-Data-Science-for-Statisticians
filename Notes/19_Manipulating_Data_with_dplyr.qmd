@@ -1,0 +1,429 @@
+---
+title: "Manipulating Data with `dplyr`"
+format: html
+editor: visual
+toc: TRUE
+editor_options: 
+  chunk_output_type: console
+---
+
+Thinking about our big goals (doing data science):
+
+-   Read in raw data and manipulate it
+-   Combine data sources
+-   Summarize data to glean insights
+-   Apply common analysis methods
+-   Communicate Effectively
+
+We now have a good idea about reading in certain types of data. Let's take a bit of time going through common data manipulation tasks before returning to reading data in.
+
+The two major tasks we'll consider are
+
+-   Row manipulations
+
+    -   **filtering** or subsetting our observations
+    -   **arranging** our observations in some order
+
+-   Column manipulations
+
+    -   **selecting** a subset of our variables
+    -   **rename** a column
+    -   **mutating** our data frame to create a new variable
+
+We can use BaseR for this (via `[` or the `subset()` function). However, the `tidyverse` has a more coherent set of functions to allow us to do all of our tasks without having to spend as much time learning syntax. So let's go that route!
+
+Recall the basic fundamentals about the `tidyverse`:
+
+-   (Almost) all functions take in `tibble`s (special data frames) and output `tibble`s
+
+-   (Almost) all functions have similar syntax!
+
+    `function(tibble, arguments, ...)`
+
+    -   Allows for easy chaining!
+
+```{r, eval = FALSE}
+my_data |>
+  select(var1:var10, var20) |>
+  filter(var1 == "first") |>
+  mutate(new_var = lag(var20)) |>
+  ...
+```
+
+## Coercing a Data Frame to a Tibble
+
+If you happen to have a data frame that isn't already a tibble, we can easily coerce it using the `as_tibble()` function.
+
+Consider a data set on major league baseball players (batting statistics):
+
+```{r}
+library(dplyr)
+library(Lahman)
+batting_tbl <- as_tibble(Batting)
+batting_tbl
+```
+
+Nice, now we can work on this `tibble`!
+
+## Row Manipulations with `dplyr`
+
+A common task is to only grab certain types of observations (**filter rows**)
+
+```{r, echo = FALSE, fig.align='center', out.width = "500px"}
+knitr::include_graphics("img/filterVisualF.png")
+```
+
+or rearrange the order of the observations (rows). The two functions from `dplyr` that help us here are
+
+-   `filter()` - subset **rows**
+-   `arrange()` - reorder **rows**
+
+### `filter()`
+
+`filter()` generally takes a `tibble` as its first argument and then a logical vector as the next (of the same length as the number of rows):
+
+-   Return observations where the number of games played is greater than 50 (the `G` column):
+
+```{r}
+filter(batting_tbl, G > 50)
+```
+
+Notice the number of observations is far less now!
+
+-   Of course, we'll do many operations so let's use chaining even in this simple case:
+
+```{r}
+batting_tbl |>
+  filter(G > 50)
+```
+
+-   If we want to return observations where than one condition is `TRUE` we can either pass additional arguments or use the compound logical operator `&` we discussed earlier.
+
+    -   Condition on those that played more than 50 games and played in 2018
+
+```{r}
+batting_tbl |>
+  filter(G > 50 & yearID == 2018)
+#equivalently
+batting_tbl |>
+  filter(G > 50, yearID == 2018)
+```
+
+-   Often we want to check if a variable is in a specific group of values. We might think this is the way:
+
+```{r}
+#wrong!
+batting_tbl |>
+  filter(G > 50, yearID == c(2018, 2019, 2020))
+```
+
+- Here, R uses *recycling* on the vector and actually compares the 1st element to 2018, the 2nd to 2019, the third to 2020, the fourth to 2018, the fifth to 2019, ...
+- Use `%in%` to choose any observations matching an element of a vector
+
+
+```{r}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020))
+```
+
+-   If we want an *or* condition, we use the compound logical operator for that
+
+    -   Here, grab those with either games greater than 50 or those that played in 2018, 2019, or 2020 (or both)
+
+```{r}
+batting_tbl |>
+  filter(G > 50 | yearID %in% c(2018, 2019, 2020))
+```
+
+-   Again, note the change in the observation count!
+
+### `arrange()`
+
+The other major observation (row) manipulation is to reorder the observations (rows). This is done through `arrange()` from `dplyr` (or `sort()` in `BaseR`)
+
+-   Let's take our result from above and reorder by `teamID`
+
+```{r}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  arrange(teamID)
+```
+
+-   Remember to read the pipe (`|>`) as 'then'. Here we would say:
+
+    -   Take the batting tibble and then
+
+    -   filter the rows to only include those with games greater than 50 and those that played in 2018-2020 and then
+
+    -   arrange the rows by the team name
+
+-   We can obtain a secondary arrangement by giving a second column
+
+```{r}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  arrange(teamID, playerID)
+```
+
+-   We can reorder descending on a variable
+
+```{r}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  arrange(desc(teamID), playerID)
+```
+
+## Column Manipulations with `dplyr`
+
+We may want to subset our variables, rename them, or create new variables.
+
+### `select()` - Subset Columns
+
+We call the subset of our variables **selecting** columns (or variables)
+
+```{r, echo = FALSE, fig.align='center', out.width = "400px"}
+knitr::include_graphics("img/selectVisualF.png")
+```
+
+-   To return a single (probably simplified) column we looked at the following methods (one of which is in the `tidyverse`):
+
+    -   `dplyr::pull()`
+    -   `$`
+    -   `[ , ]`
+
+When we want to look at pulling more than one column, `select()` is much better!
+
+-   Suppose we just wanted to look at the `playerID`, `teamID`, and hits type variables: `H`, `X2B` `X3B`, and `HR` of the players in our subset
+
+-   We can add in a `select()` function to our chain (thanks again coherent ecosystem!).
+
+    -   One way is to simply list the columns you want:
+
+```{r}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  arrange(desc(teamID), playerID) |>
+  select(playerID, teamID, H, X2B, X3B, HR)
+```
+
+-   Where we really gain here is the ability to use helper functions when selecting columns!
+
+    -   `:` to select all contiguous columns
+
+```{r}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  arrange(desc(teamID), playerID) |>
+  select(playerID, teamID, H:HR)
+```
+
+-   `starts_with()` and `ends_with()` are also really useful
+
+```{r}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  arrange(desc(teamID), playerID) |>
+  select(ends_with("ID"), G, AB, H:HR)
+```
+
+-   We can combine those two as well using `&` and `|` operators
+
+```{r}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  arrange(desc(teamID), playerID) |>
+  select(ends_with("ID") | starts_with("X"), G, AB, H, HR)
+```
+
+-   If our goal is really just to reorder the columns, we can use `everything()` after specifying the columns of interest
+
+```{r}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  arrange(desc(teamID), playerID) |>
+  select(playerID, H:HR, everything())
+```
+
+-   See the help for `select()` for more information about selection features (**these can usually be used in any `tidyverse` functions where you are selecting columns!**)
+
+### `rename()`
+
+We've seen the use of `colnames()` or `names()` to rename columns. Those are great but aren't easy to chain. `rename()` comes in handy in this case!
+
+```{r}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  arrange(desc(teamID), playerID) |>
+  select(playerID, teamID, H:HR) |>
+  rename("Doubles" = "X2B", "Triples" = "X3B")
+```
+
+### Creating New Variables with `dplyr`
+
+Often we want to create new variables!
+
+```{r, echo = FALSE, fig.align='center', out.width = "500px"}
+knitr::include_graphics("img/createVarVisualF.png")
+```
+
+This can be accomplished using `mutate()`. This function allows us to create one or more variables and append them to our tibble.
+
+-   For our dataset from above, suppose we wanted to create an "extra base hits" type column that is the sum of the doubles, triples, and home runs.
+
+```{r,eval=TRUE}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  arrange(desc(teamID), playerID) |>
+  select(playerID, teamID, H:HR) |>
+  rename("Doubles" = "X2B", "Triples" = "X3B") |>
+  mutate(Extra_Base_Hits = Doubles + Triples + HR)
+```
+
+-   If we want to add more than one variable, we just separate the variable definitions with a comma.
+
+    -   Let's add a `Singles` variable representing the number of hits minus the number of extra base hits
+
+```{r}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  arrange(desc(teamID), playerID) |>
+  select(playerID, teamID, H:HR) |>
+  rename("Doubles" = "X2B", "Triples" = "X3B") |>
+  mutate(Extra_Base_Hits = Doubles + Triples + HR,
+         Singles = H - Extra_Base_Hits) |>
+  select(playerID, teamID, Singles, Doubles:HR, H, Extra_Base_Hits)
+```
+
+-   We can of course use lots of functions when creating a new variable as well. Some common functions are `log()`, `lead()`, `lag()`, `percent_rank()`, `cumsum()`, etc. (see the help for `mutate` for a nice list).
+
+    -   Let's use `percent_rank()` to get a new column telling us where they rank for number of hits
+
+```{r}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  arrange(desc(teamID), playerID) |>
+  select(playerID, teamID, H:HR) |>
+  rename("Doubles" = "X2B", "Triples" = "X3B") |>
+  mutate(Extra_Base_Hits = Doubles + Triples + HR,
+         Singles = H - Extra_Base_Hits,
+         H_Percentile = percent_rank(H)) |>
+  select(playerID, teamID, H, H_Percentile, everything()) 
+```
+
+-   A common comparison we want to do is to take a particular value and compare it to its mean. Let's add in a mean variable for hits as well.
+
+```{r}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  arrange(desc(teamID), playerID) |>
+  select(playerID, teamID, H:HR) |>
+  rename("Doubles" = "X2B", "Triples" = "X3B") |>
+  mutate(Extra_Base_Hits = Doubles + Triples + HR,
+         Singles = H - Extra_Base_Hits,
+         H_Percentile = percent_rank(H),
+         H_Mean = mean(H)) |>
+  select(playerID, teamID, H, H_Mean, H_Percentile, everything()) 
+```
+
+-   Useful, but what if we want to show the mean by team? Easy to do in `dplyr` using `group_by()`!
+
+-   If we add `group_by()` in our chain, any summary statistics created will honor those groups (`ungroup()` exists if you want to remove a grouping).
+
+```{r}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  arrange(desc(teamID), playerID) |>
+  select(playerID, teamID, H:HR) |>
+  rename("Doubles" = "X2B", "Triples" = "X3B") |>
+  group_by(teamID)
+```
+
+-   Notice there is now an additional attribute associated with this `tibble`!
+
+```{r}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  arrange(desc(teamID), playerID) |>
+  select(playerID, teamID, H:HR) |>
+  rename("Doubles" = "X2B", "Triples" = "X3B") |>
+  group_by(teamID) |>
+  attributes()
+```
+
+-   Let's find our mean relative to each team using a `group_by()` in our chain (this finds the percentile by `teamID` as well).
+
+```{r}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  arrange(desc(teamID), playerID) |>
+  select(playerID, teamID, H:HR) |>
+  rename("Doubles" = "X2B", "Triples" = "X3B") |>
+  group_by(teamID) |>
+  mutate(Extra_Base_Hits = Doubles + Triples + HR,
+         Singles = H - Extra_Base_Hits,
+         H_Percentile = percent_rank(H),
+         H_Mean = mean(H)) |>
+  select(playerID, teamID, H, H_Mean, H_Percentile, everything()) |>
+  print(n = 50)
+```
+
+-   We can get a secondary grouping too! Let's group by year as well
+
+```{r}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  arrange(desc(teamID), playerID) |>
+  select(playerID, yearID, teamID, H:HR) |>
+  rename("Doubles" = "X2B", "Triples" = "X3B") |>
+  group_by(teamID, yearID) |>
+  mutate(Extra_Base_Hits = Doubles + Triples + HR,
+         Singles = H - Extra_Base_Hits,
+         H_Percentile = percent_rank(H),
+         H_Mean = mean(H)) |>
+  select(playerID, teamID, yearID, H, H_Mean, H_Percentile, everything())
+```
+
+We are really able to do a lot quickly with these functions! Nice. One other commonly used function in `mutate()` is `ifelse()` or `if_else()` (the `tidyverse` version with slightly more restrictive functionality).
+
+-   Let's add a new variable that compares a number of hits to the mean. If it is more than the mean we'll say "Great", if it is less than the mean we'll say "Needs some work".
+
+    -   Recall `ifelse()` takes in a vector of conditions as the first argument. The second argument is what to do when `TRUE` and the third what to do when `FALSE`.
+
+```{r}
+batting_tbl |>
+  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  arrange(desc(teamID), playerID) |>
+  select(playerID, yearID, teamID, H:HR) |>
+  rename("Doubles" = "X2B", "Triples" = "X3B") |>
+  group_by(teamID, yearID) |>
+  mutate(Extra_Base_Hits = Doubles + Triples + HR,
+         Singles = H - Extra_Base_Hits,
+         H_Percentile = percent_rank(H),
+         H_Mean = mean(H),
+         Status = ifelse(H > H_Mean, 
+                         "Great", 
+                         "Needs some work")) |>
+  select(playerID, teamID, yearID, H, H_Mean, Status, H_Percentile, everything())
+```
+
+### Quick R Video
+
+Please pop this video out and watch it in the full panopto player!
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=e6c52a4f-e12f-42b3-ba62-b17c010a973a&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="19 - Manipulating Data with dplyr" ></iframe>
+```
+### Recap!
+
+`dplyr` gives us a ton of functionality for doing common data manipulations
+
+-   `as_tibble()` - coerce a data frame to a tibble
+-   `filter()` - subset rows
+-   `arrange()` - reorder rows
+-   `select()` - subset/reorder columns
+-   `rename()` - rename columns
+-   `mutate()` - add new variables to the tibble
+
+The functionality of selecting columns described in the help for `select()` can be used in many places across the `tidyverse` and the functions `group_by()` and `ifelse()` are really useful as well!
+
+-   [`dplyr` Cheat Sheet](https://rstudio.github.io/cheatsheets/html/data-transformation.html) (PDF version on the right hand side of the page)

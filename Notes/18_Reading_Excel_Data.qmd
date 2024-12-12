@@ -1,0 +1,93 @@
+---
+title: "Reading Excel Data"
+format: html
+editor: visual
+toc: TRUE
+editor_options: 
+  chunk_output_type: console
+---
+
+Another really common type of data is Excel data. This is data that has a file extension of `.xls` or `.xlsx`. We often want to pull data from different *sheets* within these files.
+
+## `readxl` Package
+
+The `readxl` package is part of the tidyverse (not loaded by default) that has functionality for reading in this type of data!
+
+However, these types of files cannot be pulled from a URL. Instead, we'll need to download the files and provide a path to them.
+
+-   Download the dry beans data set available at: <https://www4.stat.ncsu.edu/~online/datasets/Dry_Bean_Dataset.xlsx>
+-   Store it in your R project folder, a datasets folder within there, or the folder with your `.qmd` file in it.
+-   Let's read it into R!
+
+If the file exists in your `.qmd` file's directory, we can read it in via:
+
+```{r}
+library(readxl)
+dry_bean_data <- read_excel("Dry_Bean_Dataset.xlsx")
+dry_bean_data
+```
+
+Great! Easy enough. If the file was in one folder up from your `.qmd` file, you could read it in via
+
+```{r, eval = FALSE}
+dry_bean_data <- read_excel("../Dry_Bean_Dataset.xlsx")
+```
+
+If the file had been in a folder called **datasets** located one folder up from your `.qmd` file, you could read it in via
+
+```{r, eval = FALSE}
+dry_bean_data <- read_excel("../datasets/Dry_Bean_Dataset.xlsx")
+```
+
+**Note: If you switch to have your chunk output in your console, the working directory used during the interactive modifying and submitting of code from your `.qmd` file will use your usual working directory for your R session.** This can be annoying! When you render it will use the `.qmd` file's location as the working directory.
+
+### Reading From a Particular Sheet
+
+We might want to programmatically look at the sheets available in the excel document. This can be done with the `excel_sheets()` function.
+
+```{r}
+excel_sheets("Dry_Bean_Dataset.xlsx")
+```
+
+We can pull in data from a specific sheet with the name or via integers (or `NULL` for 1st)
+
+```{r}
+citation_dry_bean_data <- read_excel("Dry_Bean_Dataset.xlsx", 
+                            sheet = excel_sheets("Dry_Bean_Dataset.xlsx")[2])
+citation_dry_bean_data
+```
+
+Notice that didn't read in correctly! There is only one entry there (the 1st cell, 1st column) and it is currently being treated as the column name. Similar to the `read_csv()` function we can use `col_names = FALSE` here (thanks coherent ecosystem!!).
+
+```{r}
+citation_dry_bean_data <- read_excel("Dry_Bean_Dataset.xlsx", 
+                            sheet = excel_sheets("Dry_Bean_Dataset.xlsx")[2],
+                            col_names = FALSE)
+citation_dry_bean_data
+```
+
+We can see there are some special characters in there (like line break). If we use `cat()` it will print that out nicely.
+
+```{r}
+cat(dplyr::pull(citation_dry_bean_data, 1))
+```
+
+### Reading Only Specific Cells
+
+Occasionally, we might want to read only some cells on a particular sheet. This can be done by specifying the `range` argument!
+
+-   Cells must be in a contiguous range
+
+```{r}
+dry_bean_range <- read_excel("Dry_Bean_Dataset.xlsx", 
+                   range = cell_cols("A:B")
+                   )
+dry_bean_range
+```
+
+### Recap!
+
+The `read_xl` package provides nice functionality for reading in excel type data.
+
+-   As it is part of the `tidyverse` it reads the data into a `tibble`
+-   Functionality to read in from different sheets or to read in particular ranges of data

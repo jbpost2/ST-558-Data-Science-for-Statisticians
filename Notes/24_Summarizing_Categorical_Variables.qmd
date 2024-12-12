@@ -1,0 +1,192 @@
+---
+title: "Creating Contingency Tables"
+format: html
+editor: visual
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+Now that we know how to get our raw data into R, we are ready to do the fun stuff - investigating our data!
+
+We discussed the main steps of an EDA and covered the most common data validation and basic manipulations for the data. The next few sets of notes dive into **how to find summarize our data**. Recall, how we summarize our data depends on the type of data we have!
+
++ Categorical (Qualitative) variable - entries are a label or attribute   
++ Numeric (Quantitative) variable - entries are a numerical value where math can be performed
+
+In either situation, we want to describe each variable's distribution, perhaps comparing across different subgroups!
+
+Let's start with summaries of strictly categorical data (or numeric variables with only a few values).
+
+- Categorical data is usually stored as a `character` or `factor` type
+
+## Categorical Data Summaries
+
+To summarize categorical variables numerically, we use contingency tables.
+
+To do so visually, we use bar plots.
+
+First, let's read in the appendicitis data from the previous lecture.
+
+```{r}
+library(tidyverse)
+library(readxl)
+app_data <- read_excel("app_data.xlsx", sheet = 1)
+app_data <- app_data |>
+  mutate(BMI = as.numeric(BMI),
+         US_Number = as.character(US_Number),
+         SexF = factor(Sex, levels = c("female", "male"), labels = c("Female", "Male")),
+         DiagnosisF = as.factor(Diagnosis),
+         SeverityF = as.factor(Severity))
+app_data
+```
+
+Let's go!
+
+### Contingency Tables
+
+We can use `BaseR` or the `tidyverse`.
+
+#### Via `BaseR`
+
+Honestly, the easiest way to make contingency tables is through BaseR's `table()` function.
+
+From the help
+
+```
+table(...,
+      exclude = if (useNA == "no") c(NA, NaN),
+      useNA = c("no", "ifany", "always"),
+      dnn = list.names(...), deparse.level = 1)
+```
+
+where `...` is
+
+> one or more objects which can be interpreted as factors (including numbers or character strings), or a list (such as a data frame) whose components can be so interpreted. 
+
+Ok, so we can just pass it the vectors we want or we could pass it a data frame (which remember, is just a list of equal length vectors!). 
+
+Let's create some contingency tables for the `SexF`, `DiagnosisF`, and `SeverityF` variables.
+
+```{r}
+table(app_data$SexF)
+```
+
+We can include `NA` if we want to via the `useNA` argument:
+
+```{r}
+table(app_data$SexF, useNA = "always")
+```
+
+We can create a two-way table (two-way for two variables) by adding the second variable in:
+
+```{r}
+table(app_data$SexF, app_data$DiagnosisF)
+```
+
+What is returned from when we create a table? An array! (homogenous data structure - 1D array is a vector, 2D is a matrix)
+
+That means we can subset them if want to! Let's return the *conditional* one-way table of Sex based on only those that had appendicitis:
+
+```{r}
+two_way_sex_diag <- table(app_data$SexF, app_data$DiagnosisF)
+two_way_sex_diag[,1]
+```
+
+Nice! Things do get more complicated if we add in a third variable as it is tough to display that info compactly.
+
+```{r}
+table(app_data$SexF, app_data$DiagnosisF, app_data$SeverityF)
+```
+
+If you look at the output you see `, , = complicated`. This is R hinting at how to access this 3D array!
+
+We can return the conditional two-way table of Sex and Diagnosis for only those with an uncomplicated situation:
+
+```{r}
+three_way <- table(app_data$SexF, app_data$DiagnosisF, app_data$SeverityF)
+three_way[, , "uncomplicated"]
+#or
+three_way[, , 2]
+```
+
+We can also get a one-way table conditional on two of the variables. Here is the one-way table for sex for only those with an uncomplicated situation and no appendicitis:
+
+```{r}
+three_way[, 2, 2]
+```
+
+Lastly, just note that you can supply a data frame instead of the individual vectors.
+
+```{r}
+table(app_data[, c("SexF", "DiagnosisF")])
+```
+
+#### Via the `tidyverse`
+
+Ok, great. But we might want to stay in the `tidyverse`. We can use the `dplyr::summarize()` function to compute summaries on a `tibble`. This generally outputs a `tibble` with fewer rows than the original (as we are summarizing the variables to view them in a more compact form). We often use `group_by()` to set a grouping variable. **Any summary done will respect the groupings!**
+
+Any of the common summarization functions you can think of are likely permissible in `summarize()`. The one for counting values is simply `n()`. Let's recreate all of our above tables under the `tidyverse` method.
+
+One-way table: 
+
+```{r}
+app_data |>
+  group_by(SexF) |>
+  summarize(count = n())
+```
+
+Notice that `NA` values are included by default (probably a good thing). We can remove those with `tidyr::drop_na()`.
+
+```{r}
+app_data |>
+  drop_na(SexF) |>
+  group_by(SexF) |>
+  summarize(count = n())
+```
+
+Two-way table: Simply add another grouping variable. The `summarize()` function respects these groups when counting!
+
+```{r}
+app_data |>
+  drop_na(SexF, DiagnosisF) |>
+  group_by(SexF, DiagnosisF) |>
+  summarize(count = n())
+```
+
+Nice. But that isn't in the best way for viewing (i.e. a wider format would be more compact for displaying). Let's use `tidyr::pivot_wider()` to fix that!
+
+```{r}
+app_data |>
+  drop_na(SexF, DiagnosisF) |>
+  group_by(SexF, DiagnosisF) |>
+  summarize(count = n()) |>
+  pivot_wider(names_from = DiagnosisF, values_from = count)
+```
+
+Three-way table: Again, just add more grouping variables!
+
+```{r}
+app_data |>
+  drop_na(SexF, DiagnosisF, SeverityF) |>
+  group_by(SexF, DiagnosisF, SeverityF) |>
+  summarize(count = n())
+```
+
+We can also pivot this, although there is no great way to get all the info there. We'll just move the severity variable across the top.
+
+```{r}
+app_data |>
+  drop_na(SexF, DiagnosisF, SeverityF) |>
+  group_by(SexF, DiagnosisF, SeverityF) |>
+  summarize(count = n()) |>
+  pivot_wider(names_from = SeverityF, values_from = count)
+```
+
+
+### Recap!
+
+Contingency tables summarize the distribution of one or more categorical variables. We can create them using
+
+- `table()` - returns an array of counts
+- `group_by()` along with `summarize()` and the `n()` function

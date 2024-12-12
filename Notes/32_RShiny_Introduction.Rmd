@@ -1,0 +1,188 @@
+---
+title: "Introduction to RShiny"
+author: "Justin Post"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, "css/ncsu.css", "css/ncsu-fonts.css", "css/mycss.css"]
+    nature:
+      beforeInit: ["js/ncsu-scale.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+    includes:
+      in_header: "partials/header.html"
+editor_options: 
+  chunk_output_type: console
+---
+
+
+layout: true
+
+<div class="my-footer"><img src="img/logo.png" style="height: 60px;"/></div> 
+
+```{r, include=FALSE,warning=FALSE,message=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  dev = "svg",
+  fig.align = "center",
+  #fig.width = 11,
+  #fig.height = 5
+  cache = FALSE
+)
+
+# define vars
+om = par("mar")
+lowtop = c(om[1],om[2],0.1,om[4])
+library(tidyverse)
+library(shiny)
+library(knitr)
+#use_python("C:\\python\\python.exe")
+options(dplyr.print_min = 5)
+```
+
+---
+
+# What do we want to be able to do?
+
+Data Science!
+
+- Read in raw data and manipulate it
+- Combine data sources
+- Summarize data to glean insights
+- Apply common analysis methods
+- Communicate Effectively
+
+Important considerations for data analysis workflow: 
+
+- **Reproducibility**  
+- **Version control**  
+- **Collaboration**  
+
+---
+
+# What is R Shiny?  
+
+- [R Shiny Package](https://shiny.posit.co/)  
+
+    + Developed by RStudio  
+    + Allows for creation of apps and dashboards  
+  
+- Usually a .R file (or two) with special code to create an app  
+  
+    + `ui.R` (User Interface)  
+    + `server.R` (R functions that run/respond to UI)
+    + `app.R` (both UI and server combined)  
+
+
+---
+
+# Example App
+
+[Example App](https://shiny.stat.ncsu.edu/jbpost2/BasicApp/)
+
+```{r eval = FALSE}
+library(...)
+ui <- fluidPage(
+  # Application title
+  titlePanel("Investigation of Mammal Sleep Data"),
+  # Sidebar with options for the data set
+  sidebarLayout(
+    sidebarPanel(
+      h3("Select the mammal's biological order:"),
+      selectizeInput("vore", 
+                     "Vore", 
+                     selected = "omni", 
+                     choices = levels(as.factor(msleep$vore))
+                     ),
+     ...
+    # Show outputs
+    mainPanel(
+      plotOutput("sleepPlot"),
+      textOutput("info"),
+      tableOutput("table")
+      )
+  )
+)
+```
+
+
+---
+
+# Example App
+
+[Example App](https://shiny.stat.ncsu.edu/jbpost2/BasicApp/)
+
+```{r eval = FALSE}
+server <- function(input, output, session) {
+  #get data for only order specified
+  getData <- reactive({
+    vores <- input$vore
+    msleep %>% filter(vore == vores)
+  })
+  #create plot
+  output$sleepPlot <- renderPlot({
+    #get data
+    sleepData <- getData()
+    #base plotting object
+    g <- ggplot(sleepData, aes(x = bodywt, y = sleep_total))
+    if (input$conservation) {
+      g + geom_point(size = input$size, aes(col = conservation))
+    } else {
+      g + geom_point(size = input$size)
+    }
+  })
+  ...
+```
+
+
+---
+
+# Example App
+
+[Example App](https://shiny.stat.ncsu.edu/jbpost2/BasicApp/)
+
+- This code goes below the `ui` and `server` objects
+
+```{r, eval = FALSE}
+# Run the application 
+shinyApp(ui = ui, server = server)
+```
+
+- Save file as `app.R` and RStudio knows it is a shiny app!
+- Let's create this app!
+
+
+---
+
+# How to Learn about Shiny?
+
+- Learn about user interface (UI) elements  
+
+    + UI layout
+    + Input widgets (sliders, numeric inputs, etc.)
+    + Formatting of text/HTML elements
+    + Outputs from server
+
+- Understand how the server (R) back-end works with the UI elements  
+
+    + Reactivity concepts
+    + Accessing UI inputs
+    + Creating outputs
+
+
+---
+
+# Create your first apps!
+
+- Read through the following pages of the Posit tutorial (**complete the `Your Turn` sections within these lessons** - no need to turn anything in, this is just to help you learn!)
+
+    - [Welcome to Shiny](https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/)
+    - [Build a user interface](https://shiny.posit.co/r/getstarted/shiny-basics/lesson2/)
+        + Note: You will need to install (and load in your script) the `bslib` library. They use `page_sidebar()`, `cards()`, and `value_box()` from this package to build their UI
+        
+    - [Add Control Widgets](https://shiny.posit.co/r/getstarted/shiny-basics/lesson3/)
+    
