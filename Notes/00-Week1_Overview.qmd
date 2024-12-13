@@ -25,7 +25,7 @@ After reading through the rest of this page, you should go through this week's m
 - [`R` projects and Connecting with `GitHub`](05-R_projects_Connecting_with_GitHub.html)
 - [`Quarto`](06-Quarto.html)
 
-There are also arrows at the bottom of each page to navigate to the previous page or the next page in the course!
+**There are also arrows at the bottom of each page to navigate to the previous page or the next page in the course!**
 
 ##  Additional Readings & Learning Materials
 
@@ -108,3 +108,6 @@ Upon completion of this week, students will be able to: (CO is the corresponding
     b.      run code in the markdown editor
 4.   produce common types of final documents using quarto (CO 1, 3, 6)
     a.      utilize both code, menus, and shortcuts to create a document type 
+    
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

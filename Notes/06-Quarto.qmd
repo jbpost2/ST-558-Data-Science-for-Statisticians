@@ -7,7 +7,7 @@ editor_options:
   chunk_output_type: inline
 ---
 
-# What do we want to be able to do?
+## What do we want to be able to do?
 
 Data Science!
 
@@ -190,5 +190,7 @@ The `include: false` tells `knitr` not to include the code or output of this chu
 Please pop this video out and watch it in the full panopto player!
 
 ```{=html}
-<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=80d700ad-db85-4809-ab36-b1710003c2ee&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="05 - Watch - R Projects &amp; Connecting with GitHub" ></iframe>
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=80d700ad-db85-4809-ab36-b1710003c2ee&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Quarto" ></iframe>
 ```
+
+This wraps up week 1!

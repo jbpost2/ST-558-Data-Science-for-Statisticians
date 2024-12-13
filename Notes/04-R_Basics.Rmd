@@ -1,5 +1,5 @@
 ---
-title: "R Basics"
+title: "`R` Basics"
 author: "Justin Post"
 output:
   xaringan::moon_reader:
@@ -35,15 +35,15 @@ layout: true
 -   Modeling data to make inference or predict outcomes
 -   Communicate our results via dashboards, documents, model files, etc.
 
-R is a great language for all of these!
+`R` is a great language for all of these!
 
 ---
 
-# R vs RStudio
+# `R` vs `RStudio`
 
-- R is our programming language
+- `R` is our programming language
 
-- Code in R through RStudio
+- Code in `R` through `RStudio`
 
 <div style = "float: left; width: 45%">
 ```{r, out.width='20%', echo = FALSE}
@@ -58,9 +58,9 @@ knitr::include_graphics("img/RStudio.png")
 
 ---
 
-# RStudio IDE
+# `RStudio` IDE
 
-In RStudio, four main locations
+In `RStudio`, four main locations
 
 -   Console (& Terminal)
 
@@ -150,9 +150,9 @@ hist(cars$speed)
 
 # Environment
 
--   We store **data/info/function/etc.** in R objects
+-   We store **data/info/function/etc.** in `R` objects
 
--   Create an R object via `<-` (recommended) or `=`
+-   Create an `R` object via `<-` (recommended) or `=`
 
 ```{r save,echo=TRUE}
 #save for later
@@ -179,9 +179,9 @@ head(cars, n = 3)
 
 ---
 
-# RStudio IDE
+# `RStudio` IDE
 
-In RStudio, four main locations
+In `RStudio`, four main locations
 
 -   Console (& Terminal)
 
@@ -197,20 +197,20 @@ knitr::include_graphics("img/RStudioSnip.png")
 
 ---
 
-# R Objects and Classes
+# `R` Objects and Classes
 
-How do we program in R? Using **objects** and **functions**
+How do we program in `R`? Using **objects** and **functions**
 
--   R has strong **O**bject **O**riented **P**rogramming (OOP) tools
+-   `R` has strong **O**bject **O**riented **P**rogramming (OOP) tools
 
 
 ---
 
-# R Objects and Classes
+# `R` Objects and Classes
 
-How do we program in R? Using **objects** and **functions**
+How do we program in `R`? Using **objects** and **functions**
 
--   R has strong **O**bject **O**riented **P**rogramming (OOP) tools
+-   `R` has strong **O**bject **O**riented **P**rogramming (OOP) tools
 
 -   Object: data structure with attributes (often a 'class')
 
@@ -218,13 +218,13 @@ How do we program in R? Using **objects** and **functions**
 
 ---
 
-# R Objects and Classes
+# `R` Objects and Classes
 
 Object: data structure with attributes (often a 'class')
 
 Method: procedures (often 'functions') act on object based on attributes
 
--   R functions like `plot()` act differently depending on object class
+-   `R` functions like `plot()` act differently depending on object class
 
 ```{r echo = TRUE}
 class(cars)
@@ -233,13 +233,13 @@ class(exp)
 
 ---
 
-# R Objects and Classes
+# `R` Objects and Classes
 
 Object: data structure with attributes (often a 'class')
 
 Method: procedures (often 'functions') act on object based on attributes
 
--   R functions like `plot()` act differently depending on object class
+-   `R` functions like `plot()` act differently depending on object class
 
 ```{r eval = FALSE, echo = TRUE}
 plot(cars)
@@ -262,9 +262,9 @@ plot(exp)
 
 ---
 
-# R Objects and Classes
+# `R` Objects and Classes
 
--   Create an R object via `<-` (recommended) or `=`
+-   Create an `R` object via `<-` (recommended) or `=`
 
     -   allocates memory to object
 
@@ -275,9 +275,9 @@ vec
 
 ---
 
-# R Objects and Classes
+# `R` Objects and Classes
 
--   Create an R object via `<-` (recommended) or `=`
+-   Create an `R` object via `<-` (recommended) or `=`
 
     -   allocates memory to object
 
@@ -288,7 +288,7 @@ fit
 
 ---
 
-# R Objects and Classes
+# `R` Objects and Classes
 
 -   Function that creates the object determines the object's class
 
@@ -299,7 +299,7 @@ summary(vec)
 
 ---
 
-# R Objects and Classes
+# `R` Objects and Classes
 
 -   Function that creates the object determines the object's class
 
@@ -312,11 +312,11 @@ summary(fit)
 
 # Investigating Objects
 
-Many functions to help understand an R Object
+Many functions to help understand an `R` Object
 
 -   `class()`
 
--   describes the `class` attribute of an R object
+-   describes the `class` attribute of an `R` object
 
 ```{r obj2, echo = TRUE}
 class(cars)
@@ -327,11 +327,11 @@ class(vec)
 
 # Investigating Objects
 
-Many functions to help understand an R Object
+Many functions to help understand an `R` Object
 
 -   `typeof()`
 
--   determines the (R internal) type or storage mode of any object
+-   determines the (`R` internal) type or storage mode of any object
 
 ```{r obj3, echo = TRUE}
 typeof(cars)
@@ -342,11 +342,11 @@ typeof(vec)
 
 # Investigating Objects
 
-Many functions to help understand an R Object
+Many functions to help understand an `R` Object
 
 -   `str()`
 
--   compactly displays the internal structure of an R object
+-   compactly displays the internal structure of an `R` object
 
 ```{r obj1, echo = TRUE}
 str(cars)
@@ -355,11 +355,11 @@ str(vec)
 
 ---
 
-# To R!
+# To `R`!
 
 Quick example
 
--   Customize the appearance of RStudio
+-   Customize the appearance of `RStudio`
 
 -   Check out the `help()` functionality
 
@@ -369,11 +369,11 @@ Quick example
 
 # Recap!
 
--   RStudio provides a nice environment for coding
+-   `RStudio` provides a nice environment for coding
 
--   R has functions that can be used to create objects
+-   `R` has functions that can be used to create objects
 
-    -   Create an R Object with `<-`
+    -   Create an `R` Object with `<-`
 
 -   Objects have attributes that determine how functions act!
 

@@ -16,13 +16,13 @@ When considering our data science workflow, we want to have a seamless way to
 
 All of this can be accomplished using R projects with git and github!
 
-## R Projects
+## `R` Projects
 
-First, it is important to know that we are going to be reading in some files *locally*. That is, from a folder somewhere on your computer (as opposed to reading a file in from the web). That means we need to be able to tell R where a file exists on our computer.
+First, it is important to know that we are going to be reading in some files *locally*. That is, from a folder somewhere on your computer (as opposed to reading a file in from the web). That means we need to be able to tell `R` where a file exists on our computer.
 
 ### Locating Files
 
-**How does R locate the file?**
+**How does `R` locate the file?**
 
 -   We can give a *full path name* to the file
 
@@ -76,9 +76,9 @@ knitr::include_graphics("img/setwd.png")
 
 -   Ok, but our goal is to share our code with others so they can run it. We could say to our collaborators, "just to update that one line of code to change your working directory and make sure to have all the files in the same directory that we use for this analysis." Clearly, that isn't an efficient way to work....
 
--   Instead we can use R projects!
+-   Instead we can use `R` projects!
 
-### Using an R Project
+### Using an `R` Project
 
 -   As we often have many files associated with each analysis, it can make keeping analysis separate difficult. The project feature in RStudio is made to alleviate this!
 
@@ -95,43 +95,43 @@ They are very easy to create!
 knitr::include_graphics("img/project.png")
 ```
 
--   When you create an R project, you might note that it gets associated with a directory (or folder or repo). That folder is what the project uses as the working directory.
+-   When you create an `R` project, you might note that it gets associated with a directory (or folder or repo). That folder is what the project uses as the working directory.
 
     -   This is important! This means if we can share an entire folder (with subfolders and everything else in the same *relative* place), another user can pick up an R project and the paths to things should work! (Assuming we've used relative paths for everything.)
 
-    -   That's exactly how we'll use R projects with github! Github is a remote folder (that can have subfolders and what-not). If we associate an R project with that folder and upload that, another user can download it and open that R project, allowing them to work seamlessly!
+    -   That's exactly how we'll use `R` projects with github! Github is a remote folder (that can have subfolders and what-not). If we associate an `R` project with that folder and upload that, another user can download it and open that `R` project, allowing them to work seamlessly!
 
 -   You might create a new project for materials related to this course or for each homework assignment etc. It is up to you how much clarity you want on a specific folder/project you are working on.
 
--   Note you can quickly switch between projects in the upper right hand of RStudio or via the File menu.
+-   Note you can quickly switch between projects in the upper right hand of `RStudio` or via the File menu.
 
 ```{r out.width = "300px",echo=FALSE, fig.align='right'}
 knitr::include_graphics("img/project_switch.png")
 ```
 
-## Connecting Git/GitHub with RStudio
+## Connecting Git/GitHub with `RStudio`
 
 Ideally we want to document our process, easily collaborate, and widely share our work
 
 -   For reproducibility, ideally we would save different versions of our analysis, write-up, etc. along the way
 
--   Remember that git is a version control software to help:
+-   Remember that `Git` is a version control software to help:
 
     -   Track the changes we `commit` to the files
     -   Allow multiple users to work on the **same** project
 
--   github is a hosting service that allows us to do Git-based projects on the internet and share them widely!
+-   `GitHub` is a hosting service that allows us to do Git-based projects on the internet and share them widely!
 
-Recall our basic workflow. First we create a repo on github (remotely). We then associate a folder on our local computer with that repo using git. Then we:
+Recall our basic workflow. First we create a repo on `GitHub` (remotely). We then associate a folder on our local computer with that repo using `Git`. Then we:
 
 -   Pull down most recent files (`git pull`) or do initial download (`git clone`)
 -   Add files you want to keep changes to (`git add`)
 -   Commit to the changes (`git commit`)
 -   Push the changes to the remote repo (`git push`)
 
-Let's go through some explicit steps to do this! **Make sure you've downloaded git to your machine already (see earlier material on git/github)!**
+Let's go through some explicit steps to do this! **Make sure you've downloaded `Git` to your machine already (see earlier material on `Git`/`GitHub`)!**
 
-### Cloning a Repo & Working in RStudio
+### Cloning a Repo & Working in `RStudio`
 
 We don't want to use github.com web interface as that is inefficient.
 
@@ -145,7 +145,7 @@ We don't want to use github.com web interface as that is inefficient.
 knitr::include_graphics("img/clone_repo_button.png")
 ```
 
--   Better to clone the repo via the URL and use RStudio! Open RStudio,
+-   Better to clone the repo via the URL and use `RStudio`! Open `RStudio`,
 
     -   go to File --\> new project
     -   select from version control
@@ -154,17 +154,17 @@ knitr::include_graphics("img/clone_repo_button.png")
     -   select a directory to save this repo in
     -   hit create project!
 
--   Now have the files locally and this associates an R project with a git repo!
+-   Now have the files locally and this associates an `R` project with a `Git` repo!
 
 -   Try it with my repo here: `https://github.com/jbpost2/ZScores.git`
 
     -   You won't have access to push files to this repository though!
 
-Try this out on your own! Create your own repo on github. Then try to download it as an R project.
+Try this out on your own! Create your own repo on `GitHub`. Then try to download it as an `R` project.
 
-### Communication Between Github and RStudio
+### Communication Between `GitHub` and `RStudio`
 
-We need to make sure RStudio and github can communicate. This can sometimes be tough to get working! Do the following:
+We need to make sure `RStudio` and github can communicate. This can sometimes be tough to get working! Do the following:
 
 -   Modify a file in the github repo you just created and downloaded (the one you own).
 -   Go to the `Git` tab in your `Environment` area
@@ -180,24 +180,26 @@ We need to make sure RStudio and github can communicate. This can sometimes be t
 
 When working by myself on a repo, I'm not worried about merge conflicts with other people's changes. As such, my workflow is as follows:
 
--   Open the appropriate project in RStudio
+-   Open the appropriate project in `RStudio`
 -   Go to the Terminal and type `git pull`
 -   Work... at a good spot for saving, back to the terminal
 -   Type `git add -A` to add all files that have been modified
 -   Type `git commit -m "Message"` to stage a commit
 -   Type `git push` to push the local changes to the remote repo
 
-### Creating a Repo From an Existing R Project
+### Creating a Repo From an Existing `R` Project
 
-Sometimes you'll have an R project that already exists but you don't have a corresponding repo on GitHub. The easiest way to get that project into a repo is to do the following:
+Sometimes you'll have an R project that already exists but you don't have a corresponding repo on `GitHub`. The easiest way to get that project into a repo is to do the following:
 
--   Create a new repository on GitHub
--   Clone it to your computer via RStudio new project (in a different folder than your current project)
--   Move all the files from the R Project you already have into the new project folder
+-   Create a new repository on `GitHub`
+-   Clone it to your computer via `RStudio` new project (in a different folder than your current project)
+-   Move all the files from the `R` Project you already have into the new project folder
 -   `add`, `commit`, and `push` up the files
 
 Please pop this video out and watch it in the full panopto player!
 
 ```{=html}
-<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=5fb1955e-a720-4739-a404-b170018a55ee&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="05 - Watch - R Projects &amp; Connecting with GitHub" ></iframe>
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=5fb1955e-a720-4739-a404-b170018a55ee&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="R Projects & Connecting with GitHub" ></iframe>
 ```
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

@@ -1,9 +1,22 @@
 ---
-title: "What is Data Science?"
+title: "`R` Basics"
 format: html
 toc: TRUE
 editor_options: 
   chunk_output_type: inline
 ---
 
-Landing...
+The video below discusses the basic use of `R` through `RStudio`. We discuss how to create an `R` object, how to learn more about `R` objects, and the basics of object oriented programming in `R`.
+
+I highly recommend watching the video using the 'full' Panopto player. There is a 'pop out' button in the bottom right of the video to enter this viewer.
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=4d760c53-2c2f-4f11-9d53-b17001802ff7&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="R Basics" ></iframe>
+```
+
+## Notes
+
+- <a href = "04-R_basics.html" target = "_blank">HTML version</a>
+- <a href = "PDFs/04-R_Basics.pdf" target = "_blank">PDF version</a>
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

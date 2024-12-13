@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-12-12">
+<meta name="dcterms.date" content="2024-12-13">
 
 <title>ST-558-Data-Science-for-Statisticians - R projects and Connecting with Github</title>
 <style>
@@ -205,13 +205,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/03-Git_GitHub_Practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">What is Data Science?</span></a>
+ <span class="menu-text"><code>Git</code> &amp; <code>GitHub</code> Practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/04-R_Basics_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">What is Data Science?</span></a>
+ <span class="menu-text"><code>R</code> Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -324,17 +324,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#r-projects" id="toc-r-projects" class="nav-link active" data-scroll-target="#r-projects">R Projects</a>
+  <li><a href="#r-projects" id="toc-r-projects" class="nav-link active" data-scroll-target="#r-projects"><code>R</code> Projects</a>
   <ul class="collapse">
   <li><a href="#locating-files" id="toc-locating-files" class="nav-link" data-scroll-target="#locating-files">Locating Files</a></li>
-  <li><a href="#using-an-r-project" id="toc-using-an-r-project" class="nav-link" data-scroll-target="#using-an-r-project">Using an R Project</a></li>
+  <li><a href="#using-an-r-project" id="toc-using-an-r-project" class="nav-link" data-scroll-target="#using-an-r-project">Using an <code>R</code> Project</a></li>
   </ul></li>
-  <li><a href="#connecting-gitgithub-with-rstudio" id="toc-connecting-gitgithub-with-rstudio" class="nav-link" data-scroll-target="#connecting-gitgithub-with-rstudio">Connecting Git/GitHub with RStudio</a>
+  <li><a href="#connecting-gitgithub-with-rstudio" id="toc-connecting-gitgithub-with-rstudio" class="nav-link" data-scroll-target="#connecting-gitgithub-with-rstudio">Connecting Git/GitHub with <code>RStudio</code></a>
   <ul class="collapse">
-  <li><a href="#cloning-a-repo-working-in-rstudio" id="toc-cloning-a-repo-working-in-rstudio" class="nav-link" data-scroll-target="#cloning-a-repo-working-in-rstudio">Cloning a Repo &amp; Working in RStudio</a></li>
-  <li><a href="#communication-between-github-and-rstudio" id="toc-communication-between-github-and-rstudio" class="nav-link" data-scroll-target="#communication-between-github-and-rstudio">Communication Between Github and RStudio</a></li>
+  <li><a href="#cloning-a-repo-working-in-rstudio" id="toc-cloning-a-repo-working-in-rstudio" class="nav-link" data-scroll-target="#cloning-a-repo-working-in-rstudio">Cloning a Repo &amp; Working in <code>RStudio</code></a></li>
+  <li><a href="#communication-between-github-and-rstudio" id="toc-communication-between-github-and-rstudio" class="nav-link" data-scroll-target="#communication-between-github-and-rstudio">Communication Between <code>GitHub</code> and <code>RStudio</code></a></li>
   <li><a href="#using-the-command-line-interface-cli" id="toc-using-the-command-line-interface-cli" class="nav-link" data-scroll-target="#using-the-command-line-interface-cli">Using the Command Line Interface (CLI)</a></li>
-  <li><a href="#creating-a-repo-from-an-existing-r-project" id="toc-creating-a-repo-from-an-existing-r-project" class="nav-link" data-scroll-target="#creating-a-repo-from-an-existing-r-project">Creating a Repo From an Existing R Project</a></li>
+  <li><a href="#creating-a-repo-from-an-existing-r-project" id="toc-creating-a-repo-from-an-existing-r-project" class="nav-link" data-scroll-target="#creating-a-repo-from-an-existing-r-project">Creating a Repo From an Existing <code>R</code> Project</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -355,7 +355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-12-12</p>
+      <p class="date">2024-12-13</p>
     </div>
   </div>
   
@@ -374,11 +374,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>All of this can be accomplished using R projects with git and github!</p>
 <section id="r-projects" class="level2">
-<h2 class="anchored" data-anchor-id="r-projects">R Projects</h2>
-<p>First, it is important to know that we are going to be reading in some files <em>locally</em>. That is, from a folder somewhere on your computer (as opposed to reading a file in from the web). That means we need to be able to tell R where a file exists on our computer.</p>
+<h2 class="anchored" data-anchor-id="r-projects"><code>R</code> Projects</h2>
+<p>First, it is important to know that we are going to be reading in some files <em>locally</em>. That is, from a folder somewhere on your computer (as opposed to reading a file in from the web). That means we need to be able to tell <code>R</code> where a file exists on our computer.</p>
 <section id="locating-files" class="level3">
 <h3 class="anchored" data-anchor-id="locating-files">Locating Files</h3>
-<p><strong>How does R locate the file?</strong></p>
+<p><strong>How does <code>R</code> locate the file?</strong></p>
 <ul>
 <li><p>We can give a <em>full path name</em> to the file</p>
 <ul>
@@ -437,11 +437,11 @@ I work at NC State.</code></pre>
 </div>
 <ul>
 <li><p>Ok, but our goal is to share our code with others so they can run it. We could say to our collaborators, “just to update that one line of code to change your working directory and make sure to have all the files in the same directory that we use for this analysis.” Clearly, that isn’t an efficient way to work….</p></li>
-<li><p>Instead we can use R projects!</p></li>
+<li><p>Instead we can use <code>R</code> projects!</p></li>
 </ul>
 </section>
 <section id="using-an-r-project" class="level3">
-<h3 class="anchored" data-anchor-id="using-an-r-project">Using an R Project</h3>
+<h3 class="anchored" data-anchor-id="using-an-r-project">Using an <code>R</code> Project</h3>
 <ul>
 <li>As we often have many files associated with each analysis, it can make keeping analysis separate difficult. The project feature in RStudio is made to alleviate this!</li>
 </ul>
@@ -459,13 +459,13 @@ I work at NC State.</code></pre>
 </div>
 </div>
 <ul>
-<li><p>When you create an R project, you might note that it gets associated with a directory (or folder or repo). That folder is what the project uses as the working directory.</p>
+<li><p>When you create an <code>R</code> project, you might note that it gets associated with a directory (or folder or repo). That folder is what the project uses as the working directory.</p>
 <ul>
 <li><p>This is important! This means if we can share an entire folder (with subfolders and everything else in the same <em>relative</em> place), another user can pick up an R project and the paths to things should work! (Assuming we’ve used relative paths for everything.)</p></li>
-<li><p>That’s exactly how we’ll use R projects with github! Github is a remote folder (that can have subfolders and what-not). If we associate an R project with that folder and upload that, another user can download it and open that R project, allowing them to work seamlessly!</p></li>
+<li><p>That’s exactly how we’ll use <code>R</code> projects with github! Github is a remote folder (that can have subfolders and what-not). If we associate an <code>R</code> project with that folder and upload that, another user can download it and open that <code>R</code> project, allowing them to work seamlessly!</p></li>
 </ul></li>
 <li><p>You might create a new project for materials related to this course or for each homework assignment etc. It is up to you how much clarity you want on a specific folder/project you are working on.</p></li>
-<li><p>Note you can quickly switch between projects in the upper right hand of RStudio or via the File menu.</p></li>
+<li><p>Note you can quickly switch between projects in the upper right hand of <code>RStudio</code> or via the File menu.</p></li>
 </ul>
 <div class="cell" data-layout-align="right">
 <div class="cell-output-display">
@@ -479,27 +479,27 @@ I work at NC State.</code></pre>
 </section>
 </section>
 <section id="connecting-gitgithub-with-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="connecting-gitgithub-with-rstudio">Connecting Git/GitHub with RStudio</h2>
+<h2 class="anchored" data-anchor-id="connecting-gitgithub-with-rstudio">Connecting Git/GitHub with <code>RStudio</code></h2>
 <p>Ideally we want to document our process, easily collaborate, and widely share our work</p>
 <ul>
 <li><p>For reproducibility, ideally we would save different versions of our analysis, write-up, etc. along the way</p></li>
-<li><p>Remember that git is a version control software to help:</p>
+<li><p>Remember that <code>Git</code> is a version control software to help:</p>
 <ul>
 <li>Track the changes we <code>commit</code> to the files</li>
 <li>Allow multiple users to work on the <strong>same</strong> project</li>
 </ul></li>
-<li><p>github is a hosting service that allows us to do Git-based projects on the internet and share them widely!</p></li>
+<li><p><code>GitHub</code> is a hosting service that allows us to do Git-based projects on the internet and share them widely!</p></li>
 </ul>
-<p>Recall our basic workflow. First we create a repo on github (remotely). We then associate a folder on our local computer with that repo using git. Then we:</p>
+<p>Recall our basic workflow. First we create a repo on <code>GitHub</code> (remotely). We then associate a folder on our local computer with that repo using <code>Git</code>. Then we:</p>
 <ul>
 <li>Pull down most recent files (<code>git pull</code>) or do initial download (<code>git clone</code>)</li>
 <li>Add files you want to keep changes to (<code>git add</code>)</li>
 <li>Commit to the changes (<code>git commit</code>)</li>
 <li>Push the changes to the remote repo (<code>git push</code>)</li>
 </ul>
-<p>Let’s go through some explicit steps to do this! <strong>Make sure you’ve downloaded git to your machine already (see earlier material on git/github)!</strong></p>
+<p>Let’s go through some explicit steps to do this! <strong>Make sure you’ve downloaded <code>Git</code> to your machine already (see earlier material on <code>Git</code>/<code>GitHub</code>)!</strong></p>
 <section id="cloning-a-repo-working-in-rstudio" class="level3">
-<h3 class="anchored" data-anchor-id="cloning-a-repo-working-in-rstudio">Cloning a Repo &amp; Working in RStudio</h3>
+<h3 class="anchored" data-anchor-id="cloning-a-repo-working-in-rstudio">Cloning a Repo &amp; Working in <code>RStudio</code></h3>
 <p>We don’t want to use github.com web interface as that is inefficient.</p>
 <ul>
 <li><p>We can <code>clone</code> the repo (i.e.&nbsp;download the entire repo locally).</p></li>
@@ -514,7 +514,7 @@ I work at NC State.</code></pre>
 </div>
 </div>
 <ul>
-<li><p>Better to clone the repo via the URL and use RStudio! Open RStudio,</p>
+<li><p>Better to clone the repo via the URL and use <code>RStudio</code>! Open <code>RStudio</code>,</p>
 <ul>
 <li>go to File –&gt; new project</li>
 <li>select from version control</li>
@@ -523,17 +523,17 @@ I work at NC State.</code></pre>
 <li>select a directory to save this repo in</li>
 <li>hit create project!</li>
 </ul></li>
-<li><p>Now have the files locally and this associates an R project with a git repo!</p></li>
+<li><p>Now have the files locally and this associates an <code>R</code> project with a <code>Git</code> repo!</p></li>
 <li><p>Try it with my repo here: <code>https://github.com/jbpost2/ZScores.git</code></p>
 <ul>
 <li>You won’t have access to push files to this repository though!</li>
 </ul></li>
 </ul>
-<p>Try this out on your own! Create your own repo on github. Then try to download it as an R project.</p>
+<p>Try this out on your own! Create your own repo on <code>GitHub</code>. Then try to download it as an <code>R</code> project.</p>
 </section>
 <section id="communication-between-github-and-rstudio" class="level3">
-<h3 class="anchored" data-anchor-id="communication-between-github-and-rstudio">Communication Between Github and RStudio</h3>
-<p>We need to make sure RStudio and github can communicate. This can sometimes be tough to get working! Do the following:</p>
+<h3 class="anchored" data-anchor-id="communication-between-github-and-rstudio">Communication Between <code>GitHub</code> and <code>RStudio</code></h3>
+<p>We need to make sure <code>RStudio</code> and github can communicate. This can sometimes be tough to get working! Do the following:</p>
 <ul>
 <li>Modify a file in the github repo you just created and downloaded (the one you own).</li>
 <li>Go to the <code>Git</code> tab in your <code>Environment</code> area</li>
@@ -550,7 +550,7 @@ I work at NC State.</code></pre>
 <h3 class="anchored" data-anchor-id="using-the-command-line-interface-cli">Using the Command Line Interface (CLI)</h3>
 <p>When working by myself on a repo, I’m not worried about merge conflicts with other people’s changes. As such, my workflow is as follows:</p>
 <ul>
-<li>Open the appropriate project in RStudio</li>
+<li>Open the appropriate project in <code>RStudio</code></li>
 <li>Go to the Terminal and type <code>git pull</code></li>
 <li>Work… at a good spot for saving, back to the terminal</li>
 <li>Type <code>git add -A</code> to add all files that have been modified</li>
@@ -559,16 +559,17 @@ I work at NC State.</code></pre>
 </ul>
 </section>
 <section id="creating-a-repo-from-an-existing-r-project" class="level3">
-<h3 class="anchored" data-anchor-id="creating-a-repo-from-an-existing-r-project">Creating a Repo From an Existing R Project</h3>
-<p>Sometimes you’ll have an R project that already exists but you don’t have a corresponding repo on GitHub. The easiest way to get that project into a repo is to do the following:</p>
+<h3 class="anchored" data-anchor-id="creating-a-repo-from-an-existing-r-project">Creating a Repo From an Existing <code>R</code> Project</h3>
+<p>Sometimes you’ll have an R project that already exists but you don’t have a corresponding repo on <code>GitHub</code>. The easiest way to get that project into a repo is to do the following:</p>
 <ul>
-<li>Create a new repository on GitHub</li>
-<li>Clone it to your computer via RStudio new project (in a different folder than your current project)</li>
-<li>Move all the files from the R Project you already have into the new project folder</li>
+<li>Create a new repository on <code>GitHub</code></li>
+<li>Clone it to your computer via <code>RStudio</code> new project (in a different folder than your current project)</li>
+<li>Move all the files from the <code>R</code> Project you already have into the new project folder</li>
 <li><code>add</code>, <code>commit</code>, and <code>push</code> up the files</li>
 </ul>
 <p>Please pop this video out and watch it in the full panopto player!</p>
-<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=5fb1955e-a720-4739-a404-b170018a55ee&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="05 - Watch - R Projects &amp; Connecting with GitHub"></iframe>
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=5fb1955e-a720-4739-a404-b170018a55ee&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="R Projects &amp; Connecting with GitHub"></iframe>
+<p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
 
 </section>
@@ -811,7 +812,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../Notes/04-R_Basics_Landing.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">What is Data Science?</span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><code>R</code> Basics</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
