@@ -293,7 +293,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#what-do-we-want-to-be-able-to-do" id="toc-what-do-we-want-to-be-able-to-do" class="nav-link active" data-scroll-target="#what-do-we-want-to-be-able-to-do">What do we want to be able to do?</a></li>
   <li><a href="#markdown-idea" id="toc-markdown-idea" class="nav-link" data-scroll-target="#markdown-idea">Markdown Idea</a></li>
-  <li><a href="#documenting-with-markdown-via-quarto" id="toc-documenting-with-markdown-via-quarto" class="nav-link" data-scroll-target="#documenting-with-markdown-via-quarto">Documenting with Markdown via quarto</a>
+  <li><a href="#documenting-with-markdown-via-quarto" id="toc-documenting-with-markdown-via-quarto" class="nav-link" data-scroll-target="#documenting-with-markdown-via-quarto">Documenting with Markdown via Quarto</a>
   <ul class="collapse">
   <li><a href="#yaml-header" id="toc-yaml-header" class="nav-link" data-scroll-target="#yaml-header">YAML Header</a></li>
   <li><a href="#markdown-syntax" id="toc-markdown-syntax" class="nav-link" data-scroll-target="#markdown-syntax">Markdown Syntax</a></li>
@@ -338,55 +338,55 @@ ul.task-list li input[type="checkbox"] {
 <li>Apply common analysis methods</li>
 <li>Communicate Effectively</li>
 </ul>
-<p>This entire process must be reproducible! Git and github certainly help but we also need to make sure that we document our thoughts and process as we work through cleaning our data, summarizing it, and fitting our models.</p>
-<p>There are two major tools to enhance how we program that work very well with RStudio:</p>
+<p>This entire process must be reproducible! <code>Git</code> and <code>GitHub</code> certainly help but we also need to make sure that we document our thoughts and process as we work through cleaning our data, summarizing it, and fitting our models.</p>
+<p>There are two major tools to enhance how we program that work very well with <code>RStudio</code>:</p>
 <ul>
-<li><p>R Markdown:</p>
+<li><p><code>R</code> Markdown:</p>
 <ul>
 <li>Allows for writing of thought processes, code, and interpretations</li>
 <li>Easy to create many types of final documents: HTML pages, PDFs, slideshows, and more!</li>
-<li>Created via a <code>.Rmd</code> (R markdown file)</li>
+<li>Created via a <code>.Rmd</code> (<code>R</code> markdown file)</li>
 </ul></li>
-<li><p>Quarto: Next generation version of R Markdown!</p>
+<li><p>Quarto: Next generation version of <code>R</code> Markdown!</p>
 <ul>
-<li>Built to use multiple programming languages (R, python, and Julia) easily</li>
-<li>Works with Jupyter Notebook format as well</li>
-<li>Created via a <code>.qmd</code> (quarto markdown file)</li>
-<li>Renders most .Rmd files as is!</li>
+<li>Built to use multiple programming languages (<code>R</code>, <code>python</code>, and <code>Julia</code>) easily</li>
+<li>Works with <code>Jupyter</code> Notebook format as well</li>
+<li>Created via a <code>.qmd</code> (Quarto markdown file)</li>
+<li>Renders most <code>.Rmd</code> files as is!</li>
 </ul></li>
 </ul>
-<p>We’ll go through the basics to get you started. Much more is available on the <a href="https://quarto.org/docs/get-started/hello/rstudio.html">quarto docs page</a>, the <a href="https://docs.posit.co/ide/user/ide/guide/documents/quarto-project.html">RStudio quarto integration page</a>, and in the <a href="https://r4ds.hadley.nz/quarto">R for Data Science book</a>.</p>
+<p>We’ll go through the basics to get you started. Much more is available on the <a href="https://Quarto.org/docs/get-started/hello/rstudio.html">Quarto docs page</a>, the <a href="https://docs.posit.co/ide/user/ide/guide/documents/Quarto-project.html"><code>RStudio</code> Quarto integration page</a>, and in the <a href="https://r4ds.hadley.nz/Quarto"><em><code>R</code> for Data Science book</em></a>.</p>
 </section>
 <section id="markdown-idea" class="level2">
 <h2 class="anchored" data-anchor-id="markdown-idea">Markdown Idea</h2>
 <p>Markdown is a simpler version of a markup language. HTML is the most commonly known markup language (HTML = Hypertext markup language). With HTML you use tags to specify things that a web browser like chrome interprets. For instance,</p>
 <p><code>&lt;h1&gt;My first level header&lt;/h1&gt;</code><br>
 <code>&lt;a href = "https://www.google.com"&gt;Link to a search engine.&lt;/a&gt;</code></p>
-<p>is HTML interpreted by your browser to be a header and a link. Markdown is a simpler version of this. There are many markdown languages (include quarto markdown, R markdown, and github markdown) but most have the same base structure. An equivalent way to write the above would be</p>
+<p>is HTML interpreted by your browser to be a header and a link. Markdown is a simpler version of this. There are many markdown languages (include Quarto markdown, <code>R</code> markdown, and <code>GitHub</code> markdown) but most have the same base structure. An equivalent way to write the above would be</p>
 <p><code># My first level header</code><br>
 <code>[Link to a search engine](https://www.google.com)</code></p>
-<p>Where R markdown and quarto go beyond is in the ability to weave R code into the equation!</p>
+<p>Where <code>R</code> markdown and Quarto go beyond is in the ability to weave <code>R</code> code into the equation!</p>
 <ul>
 <li>You can include <strong>code chunks</strong> in your markdown.</li>
-<li>You then render the markdown through RStudio (or the command line).</li>
-<li>The R code runs and output is included in the final document!</li>
+<li>You then render the markdown through <code>RStudio</code> (or the command line).</li>
+<li>The <code>R</code> code runs and output is included in the final document!</li>
 <li>It is very awesome.</li>
 </ul>
 </section>
 <section id="documenting-with-markdown-via-quarto" class="level2">
-<h2 class="anchored" data-anchor-id="documenting-with-markdown-via-quarto">Documenting with Markdown via quarto</h2>
-<p>Designed to be used in three ways (<a href="https://r4ds.hadley.nz/quarto">R for Data Science</a>)</p>
+<h2 class="anchored" data-anchor-id="documenting-with-markdown-via-quarto">Documenting with Markdown via Quarto</h2>
+<p>Designed to be used in three ways (<a href="https://r4ds.hadley.nz/Quarto"><em><code>R</code> for Data Science</em></a>)</p>
 <ul>
 <li><p>Communicating to decision makers (focus on conclusions not code)</p></li>
 <li><p>Collaborating with other data scientists (including future you!)</p></li>
 <li><p>As environment to do data science (documents what you did and what you were thinking)</p></li>
 </ul>
-<p>It is easy to create many types of documents in quarto! Go to file –&gt; New File –&gt; Quarto Document</p>
+<p>It is easy to create many types of documents in Quarto! Go to file –&gt; New File –&gt; Quarto Document</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/quarto_outputs.png" class="img-fluid figure-img" width="600"></p>
+<p><img src="img/Quarto_outputs.png" class="img-fluid figure-img" width="600"></p>
 </figure>
 </div>
 </div>
@@ -398,7 +398,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>Defines meta data about the document</li>
 </ul></li>
-<li><p>Chunks of R code</p>
+<li><p>Chunks of <code>R</code> code</p>
 <ul>
 <li>Code that may evaluate and produce output when <em>knitting</em> the document</li>
 </ul></li>
@@ -414,7 +414,7 @@ title: "Untitled"
 format: html
 editor: visual
 ---</code></pre>
-<p>If you render the document (which I’ll likely call Knitting as that is what it was called with R Markdown), it obeys these instructions for what to create.</p>
+<p>If you render the document (which I’ll likely call Knitting as that is what it was called with <code>R</code> Markdown), it obeys these instructions for what to create.</p>
 <ul>
 <li><p>Try to render the document and see if you can get the HTML output.</p>
 <ul>
@@ -429,32 +429,32 @@ editor: visual
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/source_quarto.png" class="img-fluid figure-img" width="600"></p>
+<p><img src="img/source_Quarto.png" class="img-fluid figure-img" width="600"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>The syntax is really easy to pick up. Below you’ll find some commonly used markdown syntax:</p>
 <ul>
-<li><code># R Markdown</code> <span class="math inline">\(\rightarrow\)</span> First level header</li>
+<li><code>#</code>R<code>Markdown</code> <span class="math inline">\(\rightarrow\)</span> First level header</li>
 <li><code>## Next</code> <span class="math inline">\(\rightarrow\)</span> Second level header</li>
 <li><code>**Knit**</code> or <code>__Knit__</code> <span class="math inline">\(\rightarrow\)</span> Bold font (<strong>Knit</strong>)</li>
 <li><code>*italic*</code> or <code>_italic_</code> <span class="math inline">\(\rightarrow\)</span> Italic font (<em>italic</em>)</li>
 <li><code>*__both__*</code> <span class="math inline">\(\rightarrow\)</span> Bold and italic (<strong><em>both</em></strong>)</li>
-<li><code>&lt;https://rstudio.github.io/cheatsheets/quarto.pdf&gt;</code> <span class="math inline">\(\rightarrow\)</span> A hyperlink: <a href="https://rstudio.github.io/cheatsheets/quarto.pdf" class="uri">https://rstudio.github.io/cheatsheets/quarto.pdf</a></li>
-<li><code>[Cheat Sheet link](https://rstudio.github.io/cheatsheets/quarto.pdf)</code> <span class="math inline">\(\rightarrow\)</span> <a href="https://rstudio.github.io/cheatsheets/quarto.pdf">Cheat Sheet link</a></li>
+<li><code>&lt;https://rstudio.github.io/cheatsheets/Quarto.pdf&gt;</code> <span class="math inline">\(\rightarrow\)</span> A hyperlink: <a href="https://rstudio.github.io/cheatsheets/Quarto.pdf" class="uri">https://rstudio.github.io/cheatsheets/Quarto.pdf</a></li>
+<li><code>[Cheat Sheet link](https://rstudio.github.io/cheatsheets/Quarto.pdf)</code> <span class="math inline">\(\rightarrow\)</span> <a href="https://rstudio.github.io/cheatsheets/Quarto.pdf">Cheat Sheet link</a></li>
 </ul>
-<p>Check <a href="https://quarto.org/docs/authoring/markdown-basics.html">this site for markdown basics</a>. (Headers can be used to easily create a table of contents (and is useful for accessibility of documents).)</p>
+<p>Check <a href="https://Quarto.org/docs/authoring/markdown-basics.html">this site for markdown basics</a>. (Headers can be used to easily create a table of contents (and is useful for accessibility of documents).)</p>
 </section>
 <section id="code-chunks" class="level3">
 <h3 class="anchored" data-anchor-id="code-chunks">Code Chunks</h3>
-<p>The real power of quarto and R markdown is the ability to run R code when rendering and having the output show in the final document. This saves so much time and makes updating reports/documents a breeze!</p>
+<p>The real power of Quarto and <code>R</code> markdown is the ability to run <code>R</code> code when rendering and having the output show in the final document. This saves so much time and makes updating reports/documents a breeze!</p>
 <p>A code chunk looks like the following:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/local_chunk_options_quarto.png" class="img-fluid figure-img" width="500"></p>
+<p><img src="img/local_chunk_options_Quarto.png" class="img-fluid figure-img" width="500"></p>
 </figure>
 </div>
 </div>
@@ -464,8 +464,8 @@ editor: visual
 <li><p>When rendering:</p>
 <ul>
 <li>Chunks run sequentially in the document</li>
-<li>Chunks share objects. Essentially an R environment is created when rendering a document and all objects created in chunks are stored in it.</li>
-<li>Can specify behavior of each code chunk (show R code or hide it, evaluate or don’t evaluate) and set global chunk behavior</li>
+<li>Chunks share objects. Essentially an <code>R</code> environment is created when rendering a document and all objects created in chunks are stored in it.</li>
+<li>Can specify behavior of each code chunk (show <code>R</code> code or hide it, evaluate or don’t evaluate) and set global chunk behavior</li>
 </ul></li>
 </ul>
 <p>To change the behavior of code chunks, we use chunk options:</p>
@@ -477,7 +477,7 @@ editor: visual
 <li>Have code evaluate, not show, and show no output with <code>include = TRUE/FALSE</code></li>
 <li>Turn on/off displaying of messages or warnings with <code>message = TRUE/FALSE</code> and <code>warning = TRUE/FALSE</code></li>
 </ul>
-<p>Specifying these options in the top part of the code chunk is the R Markdown way of doing things (still acceptable)</p>
+<p>Specifying these options in the top part of the code chunk is the <code>R</code> Markdown way of doing things (still acceptable)</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -489,18 +489,18 @@ editor: visual
 </div>
 <p>However, the new, better, way of doing it is via special comments.</p>
 <blockquote class="blockquote">
-<p>One important difference between R Markdown documents and Quarto documents is that in Quarto chunk options are typically included in special comments at the top of code chunks rather than within the line that begins the chunk. For example:</p>
+<p>One important difference between <code>R</code> Markdown documents and Quarto documents is that in Quarto chunk options are typically included in special comments at the top of code chunks rather than within the line that begins the chunk. For example:</p>
 </blockquote>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/local_chunk_options_quarto.png" class="img-fluid figure-img" width="500"></p>
+<p><img src="img/local_chunk_options_Quarto.png" class="img-fluid figure-img" width="500"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>With quarto, if you want to specify global chunk options the best way to do so is in the YAML header. <strong>Be very careful about spacing in YAML headers!</strong></p>
+<p>With Quarto, if you want to specify global chunk options the best way to do so is in the YAML header. <strong>Be very careful about spacing in YAML headers!</strong></p>
 <p>Here is an example that would make all code chunks be ‘collapsed’ by default.</p>
 <pre><code>---
 title: "My Document"
@@ -515,6 +515,9 @@ knitr:
 <p>The <code>include: false</code> tells <code>knitr</code> not to include the code or output of this chunk in the final document.</p>
 <p>Please pop this video out and watch it in the full panopto player!</p>
 <iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=80d700ad-db85-4809-ab36-b1710003c2ee&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="Quarto"></iframe>
+<ul>
+<li><a href="https://github.com/jbpost2/My_first_repo" target="_blank">Link to repo with files from video</a></li>
+</ul>
 <p>This wraps up week 1!</p>
 
 

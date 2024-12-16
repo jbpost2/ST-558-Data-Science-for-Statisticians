@@ -202,4 +202,6 @@ Please pop this video out and watch it in the full panopto player!
 <iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=5fb1955e-a720-4739-a404-b170018a55ee&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="R Projects & Connecting with GitHub" ></iframe>
 ```
 
+- <a href = "https://github.com/jbpost2/My_first_repo" target = "_blank">Link to repo with files from video</a>
+
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!
