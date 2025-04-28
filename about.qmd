@@ -2,8 +2,5 @@
 title: "About"
 ---
 
-About this site
+This website houses the learning materials for ST 558 - Data Science for Statisticians at NC State.
 
-```{r}
-1 + 1
-```

@@ -81,7 +81,7 @@ First, let's read in the appendicitis data from the previous lecture.
 ```{r}
 library(tidyverse)
 library(readxl)
-app_data <- read_excel("app_data.xlsx", sheet = 1)
+app_data <- read_excel("data/app_data.xlsx", sheet = 1)
 app_data <- app_data |>
   mutate(BMI = as.numeric(BMI),
          US_Number = as.character(US_Number),

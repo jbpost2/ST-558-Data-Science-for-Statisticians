@@ -4,16 +4,39 @@ project:
   render: 
     - index.qmd
     - about.qmd
-    - Notes/00-Week1_Overview.qmd
     - Notes/01-What_is_Data_Science.qmd
     - Notes/02-Workflows_Git_GitHub_Basics_Landing.qmd
     - Notes/03-Git_GitHub_Practice.qmd
     - Notes/04-R_Basics_Landing.qmd
     - Notes/05-R_Projects_Connecting_with_GitHub.qmd
     - Notes/06-Quarto.qmd
-
+    - Notes/07-Base_R_Data_Structures_Vectors.qmd
+    - Notes/08-Base_R_Data_Structures_Matrices.qmd
+    - Notes/09-Base_R_Data_Structures_Data_Frames.qmd
+    - Notes/10-Base_R_Data_Structures_Lists.qmd
+    - Notes/11-Control_Flow_Logicals_if_then_else.qmd
+    - Notes/12-Control_Flow_Loops.qmd
+    - Notes/13-Control_Flow_Vectorized_Functions.qmd
+    - Notes/14-Writing_Functions.qmd
+    - Notes/15-Packages_Landing.qmd
+    - Notes/16-Tidyverse_Essentials.qmd
+    - Notes/17-Reading_Delimited_Data.qmd
+    - Notes/18-Reading_Excel_Data.qmd
+    - Notes/19-Manipulating_Data_with_dplyr.qmd
+    - Notes/20-Manipulating_Data_with_tidyr.qmd
+    - Notes/21-Connecting_to_Databases.qmd
+    - Notes/22-SQL_Style_Joins_Landing.qmd
+    - Notes/23-Querying_APIs_Landing.qmd
+    - Notes/24-Summarizing_Categorical_Variables.qmd
+    - Notes/25-Barplots_ggplot_Basics_Landing.qmd
+    - Notes/26-Numerical_Variable_Summaries.qmd
+    - Notes/27-Numeric_Variable_Graphs_Landing.qmd
+    - Notes/28-Big_Recap_Landing.qmd
+    - Notes/29-Apply_Family_Landing.qmd
+    - Notes/30-purrr_Landing.qmd
+    - Notes/31-Advanced_Function_Writing_Landing.qmd
 website:
-  title: "ST-558-Data-Science-for-Statisticians"
+  title: "ST 558 Data Science for Statisticians (R)"
   navbar:
     background: primary
     left:
@@ -29,35 +52,43 @@ website:
     collapse-level: 1
     contents:
       - index.qmd
-      - section: "Week 1"
+      - section: "Topic 1: Data Science & R Basics"
         contents:
-          - Notes/00-Week1_Overview.qmd
           - Notes/01-What_is_Data_Science.qmd
           - Notes/02-Workflows_Git_GitHub_Basics_Landing.qmd
           - Notes/03-Git_GitHub_Practice.qmd
           - Notes/04-R_Basics_Landing.qmd
           - Notes/05-R_Projects_Connecting_with_GitHub.qmd
           - Notes/06-Quarto.qmd
-      - section: "Week 2"
-      - section: "Week 3"
-      - section: "Week 4"
-      - section: "Week 5"
-      - section: "Week 6"
-        contents: 
-          - "No new material. Exam study time and project work time!"
-      - section: "Week 7"
-      - section: "Week 8"
-      - section: "Week 9"
-      - section: "Week 10"
-      - section: "Week 11"
-        contents: 
-          - "No new material. Project work time!"
-      - section: "Week 12"
-      - section: "Week 13"
-      - section: "Week 14"
-      - section: "Week 15-16"
-        contents: 
-          - "No new material. Final project work time!"
+          - Notes/07-Base_R_Data_Structures_Vectors.qmd
+          - Notes/08-Base_R_Data_Structures_Matrices.qmd
+          - Notes/09-Base_R_Data_Structures_Data_Frames.qmd
+          - Notes/10-Base_R_Data_Structures_Lists.qmd
+          - Notes/11-Control_Flow_Logicals_if_then_else.qmd
+          - Notes/12-Control_Flow_Loops.qmd
+          - Notes/13-Control_Flow_Vectorized_Functions.qmd
+          - Notes/14-Writing_Functions.qmd
+          - Notes/15-Packages_Landing.qmd
+      - section: "Topic 2: Tidyverse & EDA"
+        contents:
+          - Notes/16-Tidyverse_Essentials.qmd
+          - Notes/17-Reading_Delimited_Data.qmd
+          - Notes/18-Reading_Excel_Data.qmd
+          - Notes/19-Manipulating_Data_with_dplyr.qmd
+          - Notes/20-Manipulating_Data_with_tidyr.qmd
+          - Notes/21-Connecting_to_Databases.qmd
+          - Notes/22-SQL_Style_Joins_Landing.qmd
+          - Notes/23-Querying_APIs_Landing.qmd
+          - Notes/24-Summarizing_Categorical_Variables.qmd
+          - Notes/25-Barplots_ggplot_Basics_Landing.qmd
+          - Notes/26-Numerical_Variable_Summaries.qmd
+          - Notes/27-Numeric_Variable_Graphs_Landing.qmd
+      - section: "Topic 3: Other Programming Topics"
+        contents:
+          - Notes/28-Big_Recap_Landing.qmd
+          - Notes/29-Apply_Family_Landing.qmd
+          - Notes/30-purrr_Landing.qmd
+          - Notes/31-Advanced_Function_Writing_Landing.qmd
   page-navigation: true
   reader-mode: true
 

@@ -23,7 +23,7 @@ If the file exists in your `.qmd` file's directory, we can read it in via:
 
 ```{r}
 library(readxl)
-dry_bean_data <- read_excel("Dry_Bean_Dataset.xlsx")
+dry_bean_data <- read_excel("data/Dry_Bean_Dataset.xlsx")
 dry_bean_data
 ```
 
@@ -46,22 +46,22 @@ dry_bean_data <- read_excel("../datasets/Dry_Bean_Dataset.xlsx")
 We might want to programmatically look at the sheets available in the excel document. This can be done with the `excel_sheets()` function.
 
 ```{r}
-excel_sheets("Dry_Bean_Dataset.xlsx")
+excel_sheets("data/Dry_Bean_Dataset.xlsx")
 ```
 
 We can pull in data from a specific sheet with the name or via integers (or `NULL` for 1st)
 
 ```{r}
-citation_dry_bean_data <- read_excel("Dry_Bean_Dataset.xlsx", 
-                            sheet = excel_sheets("Dry_Bean_Dataset.xlsx")[2])
+citation_dry_bean_data <- read_excel("data/Dry_Bean_Dataset.xlsx", 
+                            sheet = excel_sheets("data/Dry_Bean_Dataset.xlsx")[2])
 citation_dry_bean_data
 ```
 
 Notice that didn't read in correctly! There is only one entry there (the 1st cell, 1st column) and it is currently being treated as the column name. Similar to the `read_csv()` function we can use `col_names = FALSE` here (thanks coherent ecosystem!!).
 
 ```{r}
-citation_dry_bean_data <- read_excel("Dry_Bean_Dataset.xlsx", 
-                            sheet = excel_sheets("Dry_Bean_Dataset.xlsx")[2],
+citation_dry_bean_data <- read_excel("data/Dry_Bean_Dataset.xlsx", 
+                            sheet = excel_sheets("data/Dry_Bean_Dataset.xlsx")[2],
                             col_names = FALSE)
 citation_dry_bean_data
 ```
@@ -79,7 +79,7 @@ Occasionally, we might want to read only some cells on a particular sheet. This 
 -   Cells must be in a contiguous range
 
 ```{r}
-dry_bean_range <- read_excel("Dry_Bean_Dataset.xlsx", 
+dry_bean_range <- read_excel("data/Dry_Bean_Dataset.xlsx", 
                    range = cell_cols("A:B")
                    )
 dry_bean_range

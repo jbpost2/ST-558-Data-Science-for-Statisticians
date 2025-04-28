@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-04-28">
+
+<title>Reading Delimited Data – ST 558 Data Science for Statisticians (R)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../Notes/18-Reading_Excel_Data.html" rel="next">
+<link href="../Notes/16-Tidyverse_Essentials.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">ST 558 Data Science for Statisticians (R)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jbpost2/ST-558-Data-Science-for-Statisticians"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/16-Tidyverse_Essentials.html">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/17-Reading_Delimited_Data.html">Reading Delimited Data</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Science for Statisticians</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Topic 1: Data Science &amp; R Basics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/01-What_is_Data_Science.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is Data Science?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/02-Workflows_Git_GitHub_Basics_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Workflows &amp; `Git`/`GitHub` Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/03-Git_GitHub_Practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">`Git` &amp; `GitHub` Practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/04-R_Basics_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>R</code> Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/05-R_Projects_Connecting_with_GitHub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R projects and Connecting with Github</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/06-Quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quarto Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/07-Base_R_Data_Structures_Vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Base R Data Structures: Vectors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/08-Base_R_Data_Structures_Matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Base R Data Structures: Matrices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/09-Base_R_Data_Structures_Data_Frames.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Base R Data Structures: Data Frames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/10-Base_R_Data_Structures_Lists.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Base R Data Structures: Lists</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/11-Control_Flow_Logicals_if_then_else.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Flow: Logicals &amp; if/then/else</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/12-Control_Flow_Loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Flow: Loops</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/13-Control_Flow_Vectorized_Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Flow: Vectorized Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/14-Writing_Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Writing Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Topic 2: Tidyverse &amp; EDA</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/16-Tidyverse_Essentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tidyverse Essentials</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/17-Reading_Delimited_Data.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Reading Delimited Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/18-Reading_Excel_Data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading Excel Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/19-Manipulating_Data_with_dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Manipulating Data with <code>dplyr</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/20-Manipulating_Data_with_tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Manipulating Data with <code>tidyr</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/21-Connecting_to_Databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Databases and Basic SQL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/22-SQL_Style_Joins_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/23-Querying_APIs_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/24-Summarizing_Categorical_Variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creating Contingency Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/25-Barplots_ggplot_Basics_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/26-Numerical_Variable_Summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Numerical Variable Summaries</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/27-Numeric_Variable_Graphs_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Topic 3: Other Programming Topics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/28-Big_Recap_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/29-Apply_Family_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/30-purrr_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/31-Advanced_Function_Writing_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data-formats" id="toc-data-formats" class="nav-link active" data-scroll-target="#data-formats">Data Formats</a></li>
+  <li><a href="#locating-files" id="toc-locating-files" class="nav-link" data-scroll-target="#locating-files">Locating Files</a></li>
+  <li><a href="#plan" id="toc-plan" class="nav-link" data-scroll-target="#plan">Plan</a>
+  <ul class="collapse">
+  <li><a href="#reading-csv-files" id="toc-reading-csv-files" class="nav-link" data-scroll-target="#reading-csv-files">Reading CSV Files</a></li>
+  <li><a href="#reading-in-any-delimited-file" id="toc-reading-in-any-delimited-file" class="nav-link" data-scroll-target="#reading-in-any-delimited-file">Reading in Any Delimited File</a></li>
+  <li><a href="#reading-in-tricky-raw-data-files" id="toc-reading-in-tricky-raw-data-files" class="nav-link" data-scroll-target="#reading-in-tricky-raw-data-files">Reading in Tricky Raw Data Files</a></li>
+  <li><a href="#quick-r-video" id="toc-quick-r-video" class="nav-link" data-scroll-target="#quick-r-video">Quick R Video</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap!</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/16-Tidyverse_Essentials.html">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/17-Reading_Delimited_Data.html">Reading Delimited Data</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Reading Delimited Data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2025-04-28</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>As one of our goals is to read in and wrangle data, we need to learn how to effectively take raw data (data not in R) and bring it into R. For most of our data sources, we’ll store the data as a data frame (usually a tibble). For some types of data we’ll need to read it in as a character string or as a list and then parse it with R.</p>
+<section id="data-formats" class="level2">
+<h2 class="anchored" data-anchor-id="data-formats">Data Formats</h2>
+<p>Data comes in many formats such as</p>
+<ul>
+<li>‘Delimited’ data: Character (such as <a href="https://www4.stat.ncsu.edu/~online/datasets/scoresFull.csv">‘,’</a> , <a href="https://www4.stat.ncsu.edu/~online/datasets/umps2012.txt">‘&gt;’</a>, or [’ ’]) separated data</li>
+<li><a href="https://www4.stat.ncsu.edu/~online/datasets/cigarettes.txt">Fixed field</a> data</li>
+<li><a href="https://www4.stat.ncsu.edu/~online/datasets/Dry_Bean_Dataset.xlsx">Excel</a> data</li>
+<li>From other statistical software, Ex: <a href="https://www4.stat.ncsu.edu/~online/datasets/bodyFat.sav">SPSS formatted</a> data or <a href="https://www4.stat.ncsu.edu/~online/datasets/house.sas7bdat">SAS data sets</a></li>
+<li>From a database</li>
+<li>From an Application Programming Interface (API)</li>
+</ul>
+<p>As with many tasks in R, there are many ways to read in data from these sources.</p>
+<ul>
+<li>We could stick with <code>BaseR</code> (use functions like <code>read.csv()</code>)</li>
+<li>Use functions from a particular ecosystem (<code>tidyverse</code> or <code>data.table</code>)</li>
+</ul>
+<p>We’ll use the <code>tidyverse</code> due to its popularity and ease of functionality.</p>
+<ul>
+<li>Make sure <code>tidyverse</code> package is installed (this can take a while)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Load the library into your current session</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyverse' was built under R version 4.1.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>-- Attaching packages --------------------------------------- tidyverse 1.3.1 --</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>v ggplot2 3.5.1     v purrr   1.0.2
+v tibble  3.2.1     v dplyr   1.1.4
+v tidyr   1.3.1     v stringr 1.5.0
+v readr   2.1.2     v forcats 0.5.1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tibble' was built under R version 4.1.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readr' was built under R version 4.1.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'stringr' was built under R version 4.1.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'forcats' was built under R version 4.1.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()</code></pre>
+</div>
+</div>
+<ul>
+<li>You can see this loads in the eight core packages mentioned previously. The warnings can easily be ignored but we should take care with the conflicts. We’ve overwritten some functions from <code>BaseR</code>. Recall, we can call those functions explicitly if we’d like (<code>stats::filter()</code>).</li>
+</ul>
+</section>
+<section id="locating-files" class="level2">
+<h2 class="anchored" data-anchor-id="locating-files">Locating Files</h2>
+<ul>
+<li><p>Once our library is loaded, check <code>help(read_csv)</code> in your console. This brings up help for a suite of functions useful for reading in <strong>delimited</strong> data.</p></li>
+<li><p>Focus on <em>file</em> argument as everything else has defaults. Notice a <em>path to a file, a connection, or literal data</em> must be given.</p></li>
+</ul>
+<p>Before we start reading in data, let’s recap how R finds files.</p>
+<ul>
+<li><p>We can give a <em>full path name</em> to the file</p>
+<ul>
+<li>ex: <code>C:/Users/jbpost2/Documents/Repos/ST-558/datasets/</code></li>
+<li>ex: <code>C:\\\\Users\\\\jbpost2\\\\Documents\\\\Repos\\\\ST-558\\\\datasets</code></li>
+</ul></li>
+<li><p>Full path names are not good to use generally!</p>
+<ul>
+<li>If you share your code with someone else, they don’t have the same folder structure, username, etc.</li>
+<li>Instead, use a <em>relative</em> path. That is, a path from <code>R</code>’s current working directory (the place it looks by default)</li>
+</ul></li>
+<li><p>It is recommend to do everything in an R project!</p>
+<ul>
+<li><p>When you create an R project, you might note that it gets associated with a directory (or folder or repo). That folder is what the project uses as the working directory.</p></li>
+<li><p><strong>You should try to always use relative paths from your project’s working directory.</strong></p></li>
+<li><p><strong>Note: When you render a <code>.qmd</code> (or <code>.Rmd</code>) file, the working directory for that rendering is the folder in which the <code>.qmd</code> (or <code>.Rmd</code>) file lives in.</strong></p></li>
+</ul></li>
+</ul>
+</section>
+<section id="plan" class="level2">
+<h2 class="anchored" data-anchor-id="plan">Plan</h2>
+<ul>
+<li>Go though examples of reading different types of data raw data</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 24%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type of file</th>
+<th>Package</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Delimited</td>
+<td><code>readr</code></td>
+<td><code>read_csv()</code>, <code>read_tsv()</code>,<code>read_table()</code>, <code>read_delim(...,delim = ,...)</code></td>
+</tr>
+<tr class="even">
+<td>Excel (.xls,.xlsx)</td>
+<td><code>readxl</code></td>
+<td><code>read_excel()</code></td>
+</tr>
+<tr class="odd">
+<td>SPSS (.sav)</td>
+<td><code>haven</code></td>
+<td><code>read_spss()</code></td>
+</tr>
+<tr class="even">
+<td>SAS (.sas7bdat)</td>
+<td><code>haven</code></td>
+<td><code>read_sas()</code></td>
+</tr>
+</tbody>
+</table>
+<section id="reading-csv-files" class="level3">
+<h3 class="anchored" data-anchor-id="reading-csv-files">Reading CSV Files</h3>
+<p>Let’s start by considering a comma separated value (or CSV) file. This is a common basic format for raw data in which the delimiter is a comma (<code>,</code>).</p>
+<p>Suppose we want to read in the file called <code>bikeDetails.csv</code> available at: <a href="https://www4.stat.ncsu.edu/~online/datasets/bikeDetails.csv" class="uri">https://www4.stat.ncsu.edu/~online/datasets/bikeDetails.csv</a></p>
+<ul>
+<li>We can download the file and store it locally, reading it in from there</li>
+<li>Or, for this type of file, we can also read it directly from the web!</li>
+</ul>
+<p>We’ll use the <code>read_csv()</code> function from the <code>readr</code> package. The inputs are:</p>
+<pre><code>read_csv(
+  file,
+  col_names = TRUE,
+  col_types = NULL,
+  col_select = NULL,
+  id = NULL,
+  locale = default_locale(),
+  na = c("", "NA"),
+  quoted_na = TRUE,
+  quote = "\"",
+  comment = "",
+  trim_ws = TRUE,
+  skip = 0,
+  n_max = Inf,
+  guess_max = min(1000, n_max),
+  name_repair = "unique",
+  num_threads = readr_threads(),
+  progress = show_progress(),
+  show_col_types = should_show_types(),
+  skip_empty_rows = TRUE,
+  lazy = should_read_lazy()
+)</code></pre>
+<p>We really only need to specify the <code>file</code> argument but we see there are a few others that might be useful. We’ll cover some important arguments shortly. Let’s start with a basic call and see how it works:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>bike_details <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://www4.stat.ncsu.edu/~online/datasets/bikeDetails.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1061 Columns: 7
+-- Column specification --------------------------------------------------------
+Delimiter: ","
+chr (3): name, seller_type, owner
+dbl (4): selling_price, year, km_driven, ex_showroom_price
+
+i Use `spec()` to retrieve the full column specification for this data.
+i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>bike_details</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,061 x 7
+   name        selling_price  year seller_type owner km_driven ex_showroom_price
+   &lt;chr&gt;               &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;             &lt;dbl&gt;
+ 1 Royal Enfi~        175000  2019 Individual  1st ~       350                NA
+ 2 Honda Dio           45000  2017 Individual  1st ~      5650                NA
+ 3 Royal Enfi~        150000  2018 Individual  1st ~     12000            148114
+ 4 Yamaha Faz~         65000  2015 Individual  1st ~     23000             89643
+ 5 Yamaha SZ ~         20000  2011 Individual  2nd ~     21000                NA
+ 6 Honda CB T~         18000  2010 Individual  1st ~     60000             53857
+ 7 Honda CB H~         78500  2018 Individual  1st ~     17000             87719
+ 8 Royal Enfi~        180000  2008 Individual  2nd ~     39000                NA
+ 9 Hero Honda~         30000  2010 Individual  1st ~     32000                NA
+10 Bajaj Disc~         50000  2016 Individual  1st ~     42000             60122
+# i 1,051 more rows</code></pre>
+</div>
+</div>
+<p>Notice the fancy printing! As we read the data in with a function from the <code>tidyverse</code>, we have our data in the form of a <code>tibble</code> (special data frame).</p>
+<p>Aside from the special printing, <code>tibble</code>s have one other important difference from data frames: <strong>they do not coerce down to a vector when you subset to only one column using <code>[</code></strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>bike_details[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 x 1
+   name                                
+   &lt;chr&gt;                               
+ 1 Royal Enfield Classic 350           
+ 2 Honda Dio                           
+ 3 Royal Enfield Classic Gunmetal Grey 
+ 4 Yamaha Fazer FI V 2.0 [2016-2018]   
+ 5 Yamaha SZ [2013-2014]               
+ 6 Honda CB Twister                    
+ 7 Honda CB Hornet 160R                
+ 8 Royal Enfield Bullet 350 [2007-2011]
+ 9 Hero Honda CBZ extreme              
+10 Bajaj Discover 125                  </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(bike_details)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> ,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Royal Enfield Classic 350"           
+ [2] "Honda Dio"                           
+ [3] "Royal Enfield Classic Gunmetal Grey" 
+ [4] "Yamaha Fazer FI V 2.0 [2016-2018]"   
+ [5] "Yamaha SZ [2013-2014]"               
+ [6] "Honda CB Twister"                    
+ [7] "Honda CB Hornet 160R"                
+ [8] "Royal Enfield Bullet 350 [2007-2011]"
+ [9] "Hero Honda CBZ extreme"              
+[10] "Bajaj Discover 125"                  </code></pre>
+</div>
+</div>
+<p>If we use our usual <code>$</code> operator we do coerce to a vector though</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>bike_details<span class="sc">$</span>name[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Royal Enfield Classic 350"           
+ [2] "Honda Dio"                           
+ [3] "Royal Enfield Classic Gunmetal Grey" 
+ [4] "Yamaha Fazer FI V 2.0 [2016-2018]"   
+ [5] "Yamaha SZ [2013-2014]"               
+ [6] "Honda CB Twister"                    
+ [7] "Honda CB Hornet 160R"                
+ [8] "Royal Enfield Bullet 350 [2007-2011]"
+ [9] "Hero Honda CBZ extreme"              
+[10] "Bajaj Discover 125"                  </code></pre>
+</div>
+</div>
+<p>The function commonly used from the tidyverse to grab a single column and return it as a vector is the <code>pull()</code> function from <code>dplyr</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>bike_details[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, ] <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Royal Enfield Classic 350"           
+ [2] "Honda Dio"                           
+ [3] "Royal Enfield Classic Gunmetal Grey" 
+ [4] "Yamaha Fazer FI V 2.0 [2016-2018]"   
+ [5] "Yamaha SZ [2013-2014]"               
+ [6] "Honda CB Twister"                    
+ [7] "Honda CB Hornet 160R"                
+ [8] "Royal Enfield Bullet 350 [2007-2011]"
+ [9] "Hero Honda CBZ extreme"              
+[10] "Bajaj Discover 125"                  </code></pre>
+</div>
+</div>
+<p>Ok, back to the main task - reading the data in. We see in the fancy printing that R has each column stored in a particular format. How did R determine the column types?</p>
+<p>From the help under <code>col_types</code> we see the following:</p>
+<blockquote class="blockquote">
+<p>One of NULL, a cols() specification, or a string. See vignette(“readr”) for more details.<br>
+If NULL, all column types will be inferred from guess_max rows of the input, interspersed throughout the file. This is convenient (and fast), but not robust. If the guessed types are wrong, you’ll need to increase guess_max or supply the correct types yourself.<br>
+Column specifications created by list() or cols() must contain one column specification for each column. If you only want to read a subset of the columns, use cols_only().<br>
+Alternatively, you can use a compact string representation where each character represents one column:<br>
+c = character<br>
+i = integer<br>
+n = number<br>
+d = double<br>
+l = logical<br>
+f = factor<br>
+D = date<br>
+T = date time<br>
+t = time<br>
+? = guess<br>
+_ or - = skip<br>
+By default, reading a file without a column specification will print a message showing what readr guessed they were. To remove this message, set show_col_types = FALSE or set ’options(readr.show_col_types = FALSE).</p>
+</blockquote>
+<p>Ahh, so the <code>guess_max</code> argument tells our function to scan the first <code>x</code> number of rows and try to determine the column type. Note it says you may need to increase that argument to make sure data can be read in.</p>
+<ul>
+<li><strong>Checking column type is a basic data validation step!</strong></li>
+<li>You should check that each column was read in the way you would expect. If not, you may need to clean the data and convert the column to the appropriate data type.</li>
+</ul>
+</section>
+<section id="reading-in-any-delimited-file" class="level3">
+<h3 class="anchored" data-anchor-id="reading-in-any-delimited-file">Reading in Any Delimited File</h3>
+<ul>
+<li>Functions from <em>readr</em> and their purpose</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 66%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Delimiter</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>comma ‘,’</td>
+<td>read_csv()</td>
+</tr>
+<tr class="even">
+<td>tab</td>
+<td>read_tsv()</td>
+</tr>
+<tr class="odd">
+<td>space ’ ’</td>
+<td>read_table()</td>
+</tr>
+<tr class="even">
+<td>semi-colon ‘;’</td>
+<td>read_csv2() (This uses <code>;</code> instead of commas, which is common in many countries)</td>
+</tr>
+<tr class="odd">
+<td>other</td>
+<td>read_delim(…,delim = ,…)</td>
+</tr>
+</tbody>
+</table>
+<p>Consider the <code>umps.txt</code> file available at: <a href="https://www4.stat.ncsu.edu/~online/datasets/umps2012.txt" class="uri">https://www4.stat.ncsu.edu/~online/datasets/umps2012.txt</a></p>
+<ul>
+<li>Download the file or open it in your browser.</li>
+<li>Note that the delimiter is a <code>&gt;</code> sign!</li>
+<li>Note that there are no column names provided:
+<ul>
+<li><code>Year</code> <code>Month</code> <code>Day</code> <code>Home</code> <code>Away</code> <code>HPUmpire</code> are the appropriate column names</li>
+</ul></li>
+</ul>
+<p>We can use <code>read_delim()</code> to read in a generic delimited raw data file! Let’s check the help:</p>
+<pre><code>read_delim(
+  file,
+  delim = NULL,
+  quote = "\"",
+  escape_backslash = FALSE,
+  escape_double = TRUE,
+  col_names = TRUE,
+  col_types = NULL,
+  col_select = NULL,
+  id = NULL,
+  locale = default_locale(),
+  na = c("", "NA"),
+  quoted_na = TRUE,
+  comment = "",
+  trim_ws = FALSE,
+  skip = 0,
+  n_max = Inf,
+  guess_max = min(1000, n_max),
+  name_repair = "unique",
+  num_threads = readr_threads(),
+  progress = show_progress(),
+  show_col_types = should_show_types(),
+  skip_empty_rows = TRUE,
+  lazy = should_read_lazy()
+)</code></pre>
+<p>We see two arguments we need to worry about right off:</p>
+<ul>
+<li><p><code>file</code> (path to file)</p></li>
+<li><p><code>delim</code> the delimiter used in the raw data file</p>
+<ul>
+<li>Single character used to separate fields within a record.</li>
+<li>We want to specify a character string with the delimiter for this.</li>
+</ul></li>
+</ul>
+<p>As we don’t have column names we should also consider the <code>col_names</code> argument. This is set to <code>TRUE</code> by default. The help says:</p>
+<blockquote class="blockquote">
+<p>Either TRUE, FALSE or a character vector of column names.<br>
+If TRUE, the first row of the input will be used as the column names, and will not be included in the data frame. If FALSE, column names will be generated automatically: X1, X2, X3 etc.<br>
+If col_names is a character vector, the values will be used as the names of the columns, and the first row of the input will be read into the first row of the output data frame.<br>
+Missing (NA) column names will generate a warning, and be filled in with dummy names …1, …2 etc. Duplicate column names will generate a warning and be made unique, see name_repair to control how this is done.</p>
+</blockquote>
+<ul>
+<li>This means we want to set the value to <code>FALSE</code> or supply a character vector with the corresponding names!</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ump_data <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">"https://www4.stat.ncsu.edu/~online/datasets/umps2012.txt"</span>, </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">delim =</span> <span class="st">"&gt;"</span>,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"Month"</span>, <span class="st">"Day"</span>, <span class="st">"Home"</span>, <span class="st">"Away"</span>, <span class="st">"HPUmpire"</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 2359 Columns: 6
+-- Column specification --------------------------------------------------------
+Delimiter: "&gt;"
+chr (3): Home, Away, HPUmpire
+dbl (3): Year, Month, Day
+
+i Use `spec()` to retrieve the full column specification for this data.
+i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ump_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,359 x 6
+    Year Month   Day Home  Away  HPUmpire        
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;           
+ 1  2012     4    12 MIN   LAA   D.J. Reyburn    
+ 2  2012     4    12 SD    ARI   Marty Foster    
+ 3  2012     4    12 WSH   CIN   Mike Everitt    
+ 4  2012     4    12 PHI   MIA   Jeff Nelson     
+ 5  2012     4    12 CHC   MIL   Fieldin Culbreth
+ 6  2012     4    12 LAD   PIT   Wally Bell      
+ 7  2012     4    12 TEX   SEA   Doug Eddings    
+ 8  2012     4    12 COL   SF    Ron Kulpa       
+ 9  2012     4    12 DET   TB    Mark Carlson    
+10  2012     4    13 NYY   LAA   Mike DiMuro     
+# i 2,349 more rows</code></pre>
+</div>
+</div>
+<section id="quick-aside-date-data" class="level4">
+<h4 class="anchored" data-anchor-id="quick-aside-date-data">Quick Aside: Date data</h4>
+<p>We see that the first three columns represent a <code>Year</code>, <code>Month</code>, and <code>Day</code>. These are currently stored as <code>dbl</code> (numeric data). Obviously, that’s not great. We can’t easily subtract two dates to get the difference in time or anything like that.</p>
+<p>Insert the <code>lubridate</code> package. This is the <code>tidyverse</code> package for dealing with dates!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"lubridate"</span>) <span class="co">#only do this once!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate) <span class="co">#do this each session</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'lubridate'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    date, intersect, setdiff, union</code></pre>
+</div>
+</div>
+<p>If we look at <code>help(lubridate)</code> you can see under the section for parsing dates:</p>
+<blockquote class="blockquote">
+<p>Lubridate’s parsing functions read strings into R as POSIXct date-time objects. Users should choose the function whose name models the order in which the year (‘y’), month (‘m’) and day (‘d’) elements appear the string to be parsed: dmy(), myd(), ymd(), ydm(), dym(), mdy(), ymd_hms()). A very flexible and user friendly parser is provided by parse_date_time().</p>
+</blockquote>
+<p>Ok, so we want to use <code>ymd()</code> or a variant and pass it a character string of the date to parse! No problem, we know how to do that :)</p>
+<p>Under the help for the <code>ymd()</code> function, examples are given at the bottom of how to use the function. One example is</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"09-01-01"</span>, <span class="st">"09-01-02"</span>, <span class="st">"09-01-03"</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2009-01-01" "2009-01-02" "2009-01-03"</code></pre>
+</div>
+</div>
+<p>Let’s write a quick loop to loop through our observations, create this type of character string, and output a date variable!</p>
+<p>We’ll see a better way to do this once we get into <code>dplyr</code> but for now, let’s initialize column to store date in and give it a date value.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ump_data<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="st">"2012-01-01"</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>ump_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,359 x 7
+    Year Month   Day Home  Away  HPUmpire         date      
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;            &lt;date&gt;    
+ 1  2012     4    12 MIN   LAA   D.J. Reyburn     2012-01-01
+ 2  2012     4    12 SD    ARI   Marty Foster     2012-01-01
+ 3  2012     4    12 WSH   CIN   Mike Everitt     2012-01-01
+ 4  2012     4    12 PHI   MIA   Jeff Nelson      2012-01-01
+ 5  2012     4    12 CHC   MIL   Fieldin Culbreth 2012-01-01
+ 6  2012     4    12 LAD   PIT   Wally Bell       2012-01-01
+ 7  2012     4    12 TEX   SEA   Doug Eddings     2012-01-01
+ 8  2012     4    12 COL   SF    Ron Kulpa        2012-01-01
+ 9  2012     4    12 DET   TB    Mark Carlson     2012-01-01
+10  2012     4    13 NYY   LAA   Mike DiMuro      2012-01-01
+# i 2,349 more rows</code></pre>
+</div>
+</div>
+<p>Now we’ll loop through, paste together the three columns, and parse the date (storing it appropriately).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ump_data)){</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  ump_data<span class="sc">$</span>date[i] <span class="ot">&lt;-</span> <span class="fu">ymd</span>(<span class="fu">paste</span>(ump_data<span class="sc">$</span>Year[i],</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>                                ump_data<span class="sc">$</span>Month[i],</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>                                ump_data<span class="sc">$</span>Day[i], </span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">sep =</span> <span class="st">"-"</span>))</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>ump_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,359 x 7
+    Year Month   Day Home  Away  HPUmpire         date      
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;            &lt;date&gt;    
+ 1  2012     4    12 MIN   LAA   D.J. Reyburn     2012-04-12
+ 2  2012     4    12 SD    ARI   Marty Foster     2012-04-12
+ 3  2012     4    12 WSH   CIN   Mike Everitt     2012-04-12
+ 4  2012     4    12 PHI   MIA   Jeff Nelson      2012-04-12
+ 5  2012     4    12 CHC   MIL   Fieldin Culbreth 2012-04-12
+ 6  2012     4    12 LAD   PIT   Wally Bell       2012-04-12
+ 7  2012     4    12 TEX   SEA   Doug Eddings     2012-04-12
+ 8  2012     4    12 COL   SF    Ron Kulpa        2012-04-12
+ 9  2012     4    12 DET   TB    Mark Carlson     2012-04-12
+10  2012     4    13 NYY   LAA   Mike DiMuro      2012-04-13
+# i 2,349 more rows</code></pre>
+</div>
+</div>
+<p>Great! Now we can subtract dates and do other useful things with date data. We’ll cover this kind of code shortly but we might want to know the days between being home plate umpire:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>ump_data <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(HPUmpire <span class="sc">==</span> <span class="st">"Marty Foster"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">days_off =</span> date <span class="sc">-</span> <span class="fu">lag</span>(date))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 34 x 8
+    Year Month   Day Home  Away  HPUmpire     date       days_off
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;date&gt;     &lt;drtn&gt;  
+ 1  2012     4    12 SD    ARI   Marty Foster 2012-04-12 NA days 
+ 2  2012     4    16 SF    PHI   Marty Foster 2012-04-16  4 days 
+ 3  2012     4    21 KC    TOR   Marty Foster 2012-04-21  5 days 
+ 4  2012     4    25 TB    LAA   Marty Foster 2012-04-25  4 days 
+ 5  2012     4    29 BAL   OAK   Marty Foster 2012-04-29  4 days 
+ 6  2012     5     4 CHC   LAD   Marty Foster 2012-05-04  5 days 
+ 7  2012     5     8 HOU   MIA   Marty Foster 2012-05-08  4 days 
+ 8  2012     5    13 CIN   WSH   Marty Foster 2012-05-13  5 days 
+ 9  2012     5    17 DET   MIN   Marty Foster 2012-05-17  4 days 
+10  2012     5    21 MIL   SF    Marty Foster 2012-05-21  4 days 
+# i 24 more rows</code></pre>
+</div>
+</div>
+<p>This is easily done as we can take a date and subtract another date (via <code>lag(data)</code>, which grabs the date from the previous row).</p>
+</section>
+</section>
+<section id="reading-in-tricky-raw-data-files" class="level3">
+<h3 class="anchored" data-anchor-id="reading-in-tricky-raw-data-files">Reading in Tricky Raw Data Files</h3>
+<p>Sometimes our raw data will be in a <code>.txt</code> type file but not in a super nice format. In that case, we have a few functions that can help us out:</p>
+<ul>
+<li><p><code>read_file()</code></p>
+<ul>
+<li>reads an entire file into a single string</li>
+</ul></li>
+<li><p><code>read_lines()</code></p>
+<ul>
+<li>reads a file into a character vector with one element per line</li>
+</ul></li>
+</ul>
+<p>Once the data is read into an R object, we can then usually parse it with <a href="https://en.wikipedia.org/wiki/Regular_expression"><strong>regular expressions</strong></a>. Hopefully, that’s not something you need to do very often!</p>
+</section>
+<section id="quick-r-video" class="level3">
+<h3 class="anchored" data-anchor-id="quick-r-video">Quick R Video</h3>
+<p>Please pop this video out and watch it in the full panopto player!</p>
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=4f5a88ef-0eff-4381-9278-b17c0102cbd3&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="17 - Reading Delimited Data"></iframe>
+</section>
+<section id="recap" class="level3">
+<h3 class="anchored" data-anchor-id="recap">Recap!</h3>
+<p>The <code>tidyverse</code> has a package called <code>readr</code> that has many functions for reading in delimited data (raw data separated by a character string)</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 66%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Delimiter</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>comma ‘,’</td>
+<td>read_csv()</td>
+</tr>
+<tr class="even">
+<td>tab</td>
+<td>read_tsv()</td>
+</tr>
+<tr class="odd">
+<td>space ’ ’</td>
+<td>read_table()</td>
+</tr>
+<tr class="even">
+<td>semi-colon ‘;’</td>
+<td>read_csv2() (This uses <code>;</code> instead of commas, which is common in many countries)</td>
+</tr>
+<tr class="odd">
+<td>other</td>
+<td>read_delim(…,delim = ,…)</td>
+</tr>
+</tbody>
+</table>
+<p><code>lubridate</code> is another package in the <code>tidyverse</code> that is really useful for dealing with date-type data!</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../Notes/16-Tidyverse_Essentials.html" class="pagination-link" aria-label="Tidyverse Essentials">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tidyverse Essentials</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../Notes/18-Reading_Excel_Data.html" class="pagination-link" aria-label="Reading Excel Data">
+        <span class="nav-page-text">Reading Excel Data</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

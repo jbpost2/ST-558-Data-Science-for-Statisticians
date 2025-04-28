@@ -111,7 +111,7 @@ Then you can run this code to connect to the database!
 
 ```{r}
 library(DBI)
-con <- dbConnect(RSQLite::SQLite(), "lahman.db")
+con <- dbConnect(RSQLite::SQLite(), "data/lahman.db")
 ```
 
 ```{r, eval = FALSE, echo = FALSE}
@@ -222,7 +222,6 @@ Please pop this video out and watch it in the full panopto player!
 ```{=html}
 <iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=2109f930-6cc4-443b-85b5-b17e01004c9e&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="21 - Connecting to Databases" ></iframe>
 ```
-
 
 ### Recap!
 

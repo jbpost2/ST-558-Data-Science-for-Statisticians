@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-12-13">
+<meta name="dcterms.date" content="2025-04-28">
 
-<title>ST-558-Data-Science-for-Statisticians - Data Science for Statisticians</title>
+<title>Data Science for Statisticians – ST 558 Data Science for Statisticians (R)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./Notes/00-Week1_Overview.html" rel="next">
+<link href="./Notes/01-What_is_Data_Science.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,6 +62,7 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -70,35 +77,36 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">ST-558-Data-Science-for-Statisticians</span>
+    <span class="navbar-title">ST 558 Data Science for Statisticians (R)</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/jbpost2/ST-558-Data-Science-for-Statisticians" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/jbpost2/ST-558-Data-Science-for-Statisticians"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
@@ -106,18 +114,17 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Data Science for Statisticians</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Data Science for Statisticians</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -126,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
@@ -142,19 +149,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
- <span class="menu-text">Week 1</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Topic 1: Data Science &amp; R Basics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Notes/00-Week1_Overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Overview</span></a>
-  </div>
-</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Notes/01-What_is_Data_Science.html" class="sidebar-item-text sidebar-link">
@@ -164,13 +165,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Notes/02-Workflows_Git_GitHub_Basics_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Workflows &amp; <code>Git</code>/<code>GitHub</code> Basics</span></a>
+ <span class="menu-text">Workflows &amp; `Git`/`GitHub` Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./Notes/03-Git_GitHub_Practice.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><code>Git</code> &amp; <code>GitHub</code> Practice</span></a>
+ <span class="menu-text">`Git` &amp; `GitHub` Practice</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -191,98 +192,184 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Quarto Basics</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/07-Base_R_Data_Structures_Vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Base R Data Structures: Vectors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/08-Base_R_Data_Structures_Matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Base R Data Structures: Matrices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/09-Base_R_Data_Structures_Data_Frames.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Base R Data Structures: Data Frames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/10-Base_R_Data_Structures_Lists.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Base R Data Structures: Lists</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/11-Control_Flow_Logicals_if_then_else.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Flow: Logicals &amp; if/then/else</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/12-Control_Flow_Loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Flow: Loops</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/13-Control_Flow_Vectorized_Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Flow: Vectorized Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/14-Writing_Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Writing Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Week 2</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Week 3</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Week 4</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Week 5</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
- <span class="menu-text">Week 6</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Topic 2: Tidyverse &amp; EDA</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
- <span class="menu-text">No new material. Exam study time and project work time!</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/16-Tidyverse_Essentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tidyverse Essentials</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/17-Reading_Delimited_Data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading Delimited Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/18-Reading_Excel_Data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading Excel Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/19-Manipulating_Data_with_dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Manipulating Data with <code>dplyr</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/20-Manipulating_Data_with_tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Manipulating Data with <code>tidyr</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/21-Connecting_to_Databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Databases and Basic SQL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/22-SQL_Style_Joins_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/23-Querying_APIs_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/24-Summarizing_Categorical_Variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creating Contingency Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/25-Barplots_ggplot_Basics_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/26-Numerical_Variable_Summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Numerical Variable Summaries</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/27-Numeric_Variable_Graphs_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Week 7</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Week 8</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Week 9</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Week 10</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false">
- <span class="menu-text">Week 11</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Topic 3: Other Programming Topics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
- <span class="menu-text">No new material. Project work time!</span>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Week 12</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Week 13</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Week 14</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" aria-expanded="false">
- <span class="menu-text">Week 15-16</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth1 ">  
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/28-Big_Recap_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">No new material. Final project work time!</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/29-Apply_Family_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/30-purrr_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Notes/31-Advanced_Function_Writing_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -292,7 +379,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#course-learning-outcomes" id="toc-course-learning-outcomes" class="nav-link active" data-scroll-target="#course-learning-outcomes">Course Learning Outcomes</a></li>
   <li><a href="#weekly-to-do-list" id="toc-weekly-to-do-list" class="nav-link" data-scroll-target="#weekly-to-do-list">Weekly To-do List</a></li>
   <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">Getting Help!</a></li>
-  <li><a href="#fall-2024-course-schedule" id="toc-fall-2024-course-schedule" class="nav-link" data-scroll-target="#fall-2024-course-schedule">Fall 2024 Course Schedule</a></li>
+  <li><a href="#fall-2025-course-schedule" id="toc-fall-2025-course-schedule" class="nav-link" data-scroll-target="#fall-2025-course-schedule">Fall 2025 Course Schedule</a></li>
   </ul>
 </nav>
     </div>
@@ -312,7 +399,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024-12-13</p>
+      <p class="date">2025-04-28</p>
     </div>
   </div>
   
@@ -320,7 +407,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 <p>Welcome to ST 558 - Data Science for Statisticians!</p>
 <p>In this course we’ll look at common tasks done by data scientists:</p>
@@ -346,11 +435,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="weekly-to-do-list" class="level2">
 <h2 class="anchored" data-anchor-id="weekly-to-do-list">Weekly To-do List</h2>
-<p>Generally speaking, each week will have a few videos to watch and readings to do as well as corresponding homework assignments (see the syllabus on Moodle for homework policies).</p>
-<ul>
-<li>There will be two exams and the exam windows (days when you can take the exams) are available on the syllabus and course schedule.</li>
-<li>There will be three projects, the third of which will count as the final for the course. These will require a reasonably substantial time commitment.</li>
-</ul>
+<p>Generally speaking, each week will have a few videos to watch and readings to do as well as corresponding homework assignments. We’ll have some projects and exams as well. Please see the syllabus on Moodle for homework policies, project information, and exam information.</p>
 </section>
 <section id="getting-help" class="level2">
 <h2 class="anchored" data-anchor-id="getting-help">Getting Help!</h2>
@@ -362,132 +447,126 @@ ul.task-list li input[type="checkbox"] {
 <li>Zoom Office Hour Sessions - These sessions can be used to share screens and have multiple users. You can do text chat, voice, and video. They are great for a class like this!</li>
 </ul>
 </section>
-<section id="fall-2024-course-schedule" class="level2">
-<h2 class="anchored" data-anchor-id="fall-2024-course-schedule">Fall 2024 Course Schedule</h2>
-<table class="table">
+<section id="fall-2025-course-schedule" class="level2">
+<h2 class="anchored" data-anchor-id="fall-2025-course-schedule">Fall 2025 Course Schedule</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 65%">
+<col style="width: 16%">
+<col style="width: 0%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Topic/Week</th>
 <th>Learning Materials</th>
 <th>Assignments</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Week 1<br>
-8/19-8/23<br>
+8/18-8/22<br>
 M-F</td>
-<td><a href="Notes/00-Week1_Overview.html">Read - Week 1 Overview</a><br>
-<a href="Notes/01-What_is_Data_Science.html">01 - Read - What is Data Science?</a><br>
-<a href="Notes/02-Workflows_Git_GitHub_Basics_Landing.html">02 - Watch - Workflows &amp; Git/GitHub Basics</a><br>
-<a href="Notes/03-Git_GitHub_Practice.html">03 - Read - Git &amp; GitHub Practice</a><br>
-<a href="Notes/04-R_Basics_Landing.html">04 - Watch - R Basics</a><br>
-<a href="Notes/05-R_projects_Connecting_with_GitHub.html">05 - Read &amp; Watch - R projects and Connecting with Github</a><br>
-<a href="Notes/06-Quarto.html">06 - Read &amp; Watch - Quarto</a></td>
-<td>HW 1 due W, 8/28</td>
+<td>Read - Week 1 Overview<br>
+01 - Read - What is Data Science?<br>
+02 - Watch - Workflows &amp; Git/GitHub Basics<br>
+03 - Read - Git &amp; GitHub Practice<br>
+04 - Watch - R Basics<br>
+05 - Read &amp; Watch - R projects and Connecting with Github<br>
+06 - Read &amp; Watch - Quarto</td>
+<td>HW 1 due W, 8/27</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>Week 2<br>
-8/26-8/30<br>
+8/25-8/29<br>
 M-F</td>
 <td>07 - Base R Data Structures: Vectors<br>
 08 - Base R Data Structures: Matrices<br>
 09 - Base R Data Structures: Data Frames<br>
 10 - Base R Data Structures: Lists</td>
-<td>HW 2 due W, 9/4</td>
+<td>HW 2 due W, 9/3</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>Week 3<br>
-9/3-9/6<br>
+9/2-9/5<br>
 T-F (Off M)</td>
 <td>11 - Control Flow: Logicals &amp; if/then/else<br>
 12 - Control Flow: Loops<br>
 13 - Control Flow: Vectorized Functions<br>
 14 - Writing Functions</td>
-<td>HW 3 due W, 9/11</td>
+<td>HW 3 due W, 9/10</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>Week 4<br>
-9/9-9/13<br>
+9/8-9/12<br>
 M-F</td>
 <td>15 - Packages<br>
 16 - Tidyverse Essentials<br>
 17 - Reading Delimited Data<br>
 18 - Reading Excel Data<br>
 19 - Manipulating Data with dplyr</td>
-<td>HW 4 due W, 9/18</td>
+<td>HW 4 due W, 9/17</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>Week 5<br>
-9/16-9/20<br>
+9/15-9/19<br>
 M, W-F (Off T)</td>
 <td>20 - Manipulating Data with tidyr<br>
 21 - Connecting to Databases<br>
 22 - SQL Style Joins<br>
 23 - Querying APIs &amp; Dealing with JSON Data</td>
-<td>Project 1 due W, 10/2</td>
+<td>Project 1 due W, 10/1</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>Week 6<br>
-9/23-9/27<br>
+9/22-9/26<br>
 M-F</td>
 <td>No new material. Exam study time and project work time!</td>
-<td>Exam 1 - Th-F, 9/26-9/27</td>
+<td>Exam 1 - Th-F, 9/25-9/26</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td>Week 7<br>
-9/30-10/4<br>
+9/29-10/3<br>
 M-F</td>
 <td>24 - EDA Concepts<br>
 25 - Summarizing Categorical Variables<br>
 26 - Barplots &amp; ggplot2 Basics<br>
 27 - Numerical Variable Summaries<br>
 28 - Numerical Variable Graphs &amp; More ggplot2</td>
-<td>HW 5 due W, 10/9</td>
+<td>HW 5 due W, 10/8</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>Week 8<br>
-10/7-10/11<br>
+10/6-10/10<br>
 M-F</td>
 <td>28 - Big Recap<br>
 29 - Apply Family of Functions<br>
 30 - purrr &amp; List Columns<br>
 31 - Advanced Function Writing</td>
-<td>HW 6 due W, 10/16</td>
+<td>HW 6 due W, 10/15</td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>Week 9<br>
-1 0/16-10/18<br>
-Off M/T</td>
-<td>32 - Introduction to RShiny<br>
-32.5 - Selected Shiny Tutorials<br>
-33 - Connecting the UI and Server<br>
-33.5 - More selected Tutorials<br>
-34 - Reactivity<br>
-34.5 - Build an App Tutorial</td>
-<td>HW 7 due W, 10/23</td>
+<td colspan="4">Week 9&nbsp; | 32 - Introduction to RShiny&nbsp; | HW 7 due W, 10/22 | 10/15-10/17&nbsp; | 32.5 - Selected Shiny Tutorials&nbsp; | | Off M/T | 33 - Connecting the UI and Server&nbsp; | | | 33.5 - More selected Tutorials&nbsp; | | | 34 - Reactivity&nbsp; | | | 34.5 - Build an App Tutorial | |</td>
 </tr>
 <tr class="even">
-<td>Week 10<br>
-1 0/21-10/25<br>
-M-F</td>
-<td>35 - Dynamic UIs<br>
-36 - UI Layouts<br>
-36.1 - Sharing an App via shinyapps.io<br>
-36.2 - Sharing an App via GitHub<br>
-37 - Debugging &amp; Useful Things<br>
-37.1 - Control Reactivity with isolate()</td>
-<td>Project 2 due W, 11/6</td>
+<td colspan="4">Week 10&nbsp; | 35 - Dynamic UIs&nbsp; | Project 2 due W, 11/5 | 10/20-10/24&nbsp; | 36 - UI Layouts&nbsp; | | M-F | 36.1 - Sharing an App via shinyapps.io&nbsp; | | | 36.2 - Sharing an App via GitHub&nbsp; | | | 37 - Debugging &amp; Useful Things&nbsp; | | | 37.1 - Control Reactivity with isolate() | |</td>
 </tr>
 <tr class="odd">
-<td>Week 11<br>
-10/28-11/1</td>
-<td>No new material. Project work time!</td>
-<td></td>
+<td colspan="4">Week 11&nbsp; | No new material. Project work time! | | 10/27-10/31 | |</td>
 </tr>
 <tr class="even">
 <td>Week 12<br>
-11/4-11/8<br>
+11/3-11/7<br>
 M-F</td>
 <td>38 - Modeling Concepts: Inference vs Prediction<br>
 39 - Prediction &amp; Training/Test Set Ideas<br>
@@ -495,35 +574,17 @@ M-F</td>
 41 - Multiple Linear Regression Models<br>
 42 - Modeling with tidymodels<br>
 42.5 - tidymodels Tutorial</td>
-<td>HW 8 due W, 11/13</td>
+<td>HW 8 due W, 11/12</td>
+<td></td>
 </tr>
 <tr class="odd">
-<td>Week 13<br>
-1 1/11-11/15<br>
-M-F</td>
-<td>43 - LASSO Models &amp; Selecting Models with Both CV and a Test Set<br>
-44 - Modeling Recap<br>
-45 - Logistic Regression Models<br>
-46 - Regression &amp; Classification Trees<br>
-47 - Ensemble Learning: Bagged Trees &amp; Random Forests</td>
-<td>HW 9 due W, 11/20</td>
+<td colspan="4">Week 13&nbsp; | 43 - LASSO Models &amp; Selecting Models with Both CV and a Test Set&nbsp; | HW 9 due W, 11/19 | 11/10-11/14&nbsp; | 44 - Modeling Recap&nbsp; | | M-F | 45 - Logistic Regression Models&nbsp; | | | 46 - Regression &amp; Classification Trees&nbsp; | | | 47 - Ensemble Learning: Bagged Trees &amp; Random Forests | |</td>
 </tr>
 <tr class="even">
-<td>Week 14<br>
-1 1/18-11/22<br>
-M-F</td>
-<td>48 - Creating an API<br>
-49 - Docker Basics<br>
-50 - Building a Docker Image<br>
-51 - Dockerizing a Shiny App</td>
-<td>Exam 2 - Th-F, 11/21-11/22</td>
+<td colspan="4">Week 14&nbsp; | 48 - Creating an API&nbsp; | Exam 2 - Th-F, 11/20-11/21 | 11/17-11/21&nbsp; | 49 - Docker Basics&nbsp; | | M-F | 50 - Building a Docker Image&nbsp; | | | 51 - Dockerizing a Shiny App | |</td>
 </tr>
 <tr class="odd">
-<td>Week 15-16<br>
-1 1/25-11/26, 12/2-12/3<br>
-M-T, M-T</td>
-<td>No new material. Final project work time!</td>
-<td>Final Project due Th, 12/5</td>
+<td colspan="4">Week 15-16&nbsp; | No new material. Final project work time! | Final Project due Th, 12/4 | 11/24-11/25, 12/1-12/2&nbsp;| | | M-T, M-T | | |</td>
 </tr>
 </tbody>
 </table>
@@ -567,18 +628,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -610,11 +660,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -624,8 +713,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -637,7 +735,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -681,6 +902,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -706,6 +928,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -769,12 +1017,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Notes/00-Week1_Overview.html" class="pagination-link">
-        <span class="nav-page-text">Overview</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./Notes/01-What_is_Data_Science.html" class="pagination-link" aria-label="What is Data Science?">
+        <span class="nav-page-text">What is Data Science?</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

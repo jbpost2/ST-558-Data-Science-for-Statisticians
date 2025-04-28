@@ -117,9 +117,8 @@ batting_tbl |>
   filter(G > 50, yearID == c(2018, 2019, 2020))
 ```
 
-- Here, R uses *recycling* on the vector and actually compares the 1st element to 2018, the 2nd to 2019, the third to 2020, the fourth to 2018, the fifth to 2019, ...
-- Use `%in%` to choose any observations matching an element of a vector
-
+-   Here, R uses *recycling* on the vector and actually compares the 1st element to 2018, the 2nd to 2019, the third to 2020, the fourth to 2018, the fifth to 2019, ...
+-   Use `%in%` to choose any observations matching an element of a vector
 
 ```{r}
 batting_tbl |>
@@ -413,6 +412,7 @@ Please pop this video out and watch it in the full panopto player!
 ```{=html}
 <iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=e6c52a4f-e12f-42b3-ba62-b17c010a973a&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="19 - Manipulating Data with dplyr" ></iframe>
 ```
+
 ### Recap!
 
 `dplyr` gives us a ton of functionality for doing common data manipulations
