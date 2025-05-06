@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-04-28">
+<meta name="dcterms.date" content="2025-05-06">
 
 <title>Base R Data Structures: Matrices – ST 558 Data Science for Statisticians (R)</title>
 <style>
@@ -156,7 +156,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/01-What_is_Data_Science.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/08-Base_R_Data_Structures_Matrices.html">Base R Data Structures: Matrices</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/08-Base_R_Data_Structures_Matrices.html">Base R Data Structures: Matrices</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -191,6 +191,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/00-Welcome_to_the_Course.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome to the Course!</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/01-What_is_Data_Science.html" class="sidebar-item-text sidebar-link">
@@ -430,7 +436,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/01-What_is_Data_Science.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/08-Base_R_Data_Structures_Matrices.html">Base R Data Structures: Matrices</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/08-Base_R_Data_Structures_Matrices.html">Base R Data Structures: Matrices</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Base R Data Structures: Matrices</h1>
 </div>
@@ -443,7 +449,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-04-28</p>
+      <p class="date">2025-05-06</p>
     </div>
   </div>
   
@@ -803,17 +809,17 @@ NULL
 <span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">c</span>(<span class="st">"Uniform"</span>, <span class="st">"Normal"</span>, <span class="st">"Gamma"</span>)))</span>
 <span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>my_mat3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        Uniform      Normal      Gamma
-1  0.9831015381 -0.60733340 0.02168434
-2  0.7686282217  0.07359446 0.19080770
-3  0.1088051186 -2.44962178 0.57145346
-4  0.6510264620  1.40315276 0.32492510
-5  0.0004553471 -1.37185891 0.38314927
-6  0.1050714049 -1.29529259 1.07568787
-7  0.6180060643 -0.43747933 2.41405097
-8  0.2849840668  1.00128815 1.39370653
-9  0.1465573979 -1.16400431 2.18548736
-10 0.3217508607 -0.37852739 0.98393987</code></pre>
+<pre><code>     Uniform     Normal      Gamma
+1  0.9732036 -0.1036408 0.75307560
+2  0.0855706  0.9658294 0.04503094
+3  0.1068944 -0.6470105 0.60689112
+4  0.1891664  0.7970911 1.31115011
+5  0.7626169  0.1861978 0.65977117
+6  0.2178362 -0.4245775 1.44089910
+7  0.8419735  1.0813251 0.28209942
+8  0.2514939 -1.0818458 0.04059384
+9  0.7733307 -0.7523100 0.76781632
+10 0.4516449 -0.1217574 0.05795728</code></pre>
 </div>
 </div>
 </section>

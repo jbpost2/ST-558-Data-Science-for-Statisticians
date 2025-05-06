@@ -4,6 +4,7 @@ project:
   render: 
     - index.qmd
     - about.qmd
+    - Notes/00-Welcome_to_the_Course.qmd
     - Notes/01-What_is_Data_Science.qmd
     - Notes/02-Workflows_Git_GitHub_Basics_Landing.qmd
     - Notes/03-Git_GitHub_Practice.qmd
@@ -54,6 +55,7 @@ website:
       - index.qmd
       - section: "Topic 1: Data Science & R Basics"
         contents:
+          - Notes/00-Welcome_to_the_Course.qmd
           - Notes/01-What_is_Data_Science.qmd
           - Notes/02-Workflows_Git_GitHub_Basics_Landing.qmd
           - Notes/03-Git_GitHub_Practice.qmd

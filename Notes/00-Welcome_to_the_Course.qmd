@@ -1,0 +1,26 @@
+---
+title: "Welcome to the Course!"
+format: html
+editor: visual
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+This video describes how the course runs and how to navigate the course websites! 
+
+In this course we use the 'Panopto player' for our videos. When popped out into a new window, this is a great player for videos as you can search through the captions, focus on a given screen, etc. I highly recommend watching the video below using this 'full' Panopto player. There is a 'pop out' button in the bottom right of the video to enter this viewer.
+
+**update video!**
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=6bb5d60f-a161-44c8-abd0-b0f0014391fb&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="01-Course Goals" ></iframe>
+```
+
+## Syllabus and Other Useful Information
+
+You can find the syllabus, course schedule, how to install `R` and `RStudio`, and other administrative documents on the <a href = "https://wolfware.ncsu.edu/courses/my-wolfware/" target = "_blank">Moodle site for the course</a>.
+
+**There are also arrows at the bottom of each page to navigate to the previous page or the next page in the course!**
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

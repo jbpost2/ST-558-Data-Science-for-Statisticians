@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-04-28">
+<meta name="dcterms.date" content="2025-05-06">
 
 <title>Control Flow: Loops – ST 558 Data Science for Statisticians (R)</title>
 <style>
@@ -156,7 +156,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/01-What_is_Data_Science.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/12-Control_Flow_Loops.html">Control Flow: Loops</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/12-Control_Flow_Loops.html">Control Flow: Loops</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -191,6 +191,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/00-Welcome_to_the_Course.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome to the Course!</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/01-What_is_Data_Science.html" class="sidebar-item-text sidebar-link">
@@ -425,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/01-What_is_Data_Science.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/12-Control_Flow_Loops.html">Control Flow: Loops</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/12-Control_Flow_Loops.html">Control Flow: Loops</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Control Flow: Loops</h1>
 </div>
@@ -438,7 +444,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-04-28</p>
+      <p class="date">2025-05-06</p>
     </div>
   </div>
   
@@ -526,13 +532,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">"The "</span>, words[<span class="dv">2</span>], <span class="st">" data point is "</span>, data[<span class="dv">2</span>], <span class="st">"."</span>, <span class="at">sep =</span> <span class="st">"&amp;"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The &amp;second&amp; data point is &amp;0.188183501362801&amp;."</code></pre>
+<pre><code>[1] "The &amp;second&amp; data point is &amp;0.844363954849541&amp;."</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">"The "</span>, words[<span class="dv">1</span>], <span class="st">" data point is "</span>, data[<span class="dv">1</span>], <span class="st">"."</span>, <span class="at">sep =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The first data point is 0.527316740946844."</code></pre>
+<pre><code>[1] "The first data point is 0.796066750772297."</code></pre>
 </div>
 </div>
 <p>Note: <code>sep = ""</code> is equivalent to using the <code>paste0()</code> function.</p>
@@ -542,11 +548,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"The "</span>, words[i], <span class="st">" data point is "</span>, data[i], <span class="st">"."</span>))</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The first data point is 0.527316740946844."
-[1] "The second data point is 0.188183501362801."
-[1] "The third data point is 0.803744811797515."
-[1] "The fourth data point is 0.414847232401371."
-[1] "The fifth data point is 0.784050633898005."</code></pre>
+<pre><code>[1] "The first data point is 0.796066750772297."
+[1] "The second data point is 0.844363954849541."
+[1] "The third data point is 0.724824131000787."
+[1] "The fourth data point is 0.286100189900026."
+[1] "The fifth data point is 0.911279890220612."</code></pre>
 </div>
 </div>
 <ul>
@@ -715,8 +721,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"The "</span>, words[i], <span class="st">" data point is "</span>, data[i], <span class="st">"."</span>))</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The first data point is 0.527316740946844."
-[1] "The second data point is 0.188183501362801."</code></pre>
+<pre><code>[1] "The first data point is 0.796066750772297."
+[1] "The second data point is 0.844363954849541."</code></pre>
 </div>
 </div>
 <ul>
@@ -728,10 +734,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"The "</span>, words[i], <span class="st">" data point is "</span>, data[i], <span class="st">"."</span>))</span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The first data point is 0.527316740946844."
-[1] "The second data point is 0.188183501362801."
-[1] "The fourth data point is 0.414847232401371."
-[1] "The fifth data point is 0.784050633898005."</code></pre>
+<pre><code>[1] "The first data point is 0.796066750772297."
+[1] "The second data point is 0.844363954849541."
+[1] "The fourth data point is 0.286100189900026."
+[1] "The fifth data point is 0.911279890220612."</code></pre>
 </div>
 </div>
 </section>
