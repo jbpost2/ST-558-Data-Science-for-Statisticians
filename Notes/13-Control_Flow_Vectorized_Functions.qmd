@@ -1,7 +1,7 @@
 ---
 title: "Control Flow: Vectorized Functions"
 format: html
-editor: visual
+editor: source
 toc: TRUE
 editor_options: 
   chunk_output_type: inline
@@ -9,9 +9,9 @@ editor_options:
 
 ## Vectorized Functions
 
-In the spirit of loops, vectorized functions give us a way to execute code on an entire 'vector' at once (although we can be a bit more general than just vectors). This tends to speed up computation in comparison to basic loops in R!
+In the spirit of loops, vectorized functions give us a way to execute code on an entire 'vector' at once (although we can be a bit more general than just vectors). This tends to speed up computation in comparison to basic loops in `R`!
 
-This is because loops are inefficient in R. R is an interpreted language. This means that it does a lot of the work of figuring out what to do for you. (Think about function dispatch - it looks at the type of object and figures out which version of `plot()` or `summary()` to use.) This process tends to slow R down in comparison to a vectorized operation where it still runs a loop under the hood but a vector should have all the same type of elements in it. This means it can avoid figuring the same thing out repeatedly!
+This is because loops are inefficient in `R`. `R` is an interpreted language. This means that it does a lot of the work of figuring out what to do for you. (Think about function dispatch - it looks at the type of object and figures out which version of `plot()` or `summary()` to use.) This process tends to slow `R` down in comparison to a vectorized operation where it still runs a loop under the hood but a vector should have all the same type of elements in it. This means it can avoid figuring the same thing out repeatedly!
 
 ### Vectorized Functions for Common Numeric Summaries
 
@@ -23,7 +23,7 @@ There are some 'built-in' vectorized functions that are quite useful to apply to
 
 Let's go back to our batting dataset from the previous note set.
 
-```{r}
+```{r, warning = FALSE, message = FALSE}
 library(Lahman)
 my_batting <- Batting[, c("playerID", "teamID", "G", "AB", "R", "H", "X2B", "X3B", "HR")]
 head(my_batting)
@@ -53,8 +53,10 @@ Let's compare the speed of this code to the speed of a for loop!
 
 -   The `microbenchmark` package allows for easy recording of computing time.
 -   We just wrap the code we want to benchmark in the `microbenchmark()` function.
--   Here we will grab all the numeric columns from the data
--   Some columns contain `NA` or missing values. We'll add `na.rm = TRUE` to both function calls to ignore those values (this is where the for loop actually struggles in this case!)
+-   This repeatedly executes the code and reports summary stats on how long it took
+
+    -   Here we will grab all the numeric columns from the data
+    -   Some columns contain `NA` or missing values. We'll add `na.rm = TRUE` to both function calls to ignore those values (this is where the for loop actually struggles in this case!)
 
 ```{r}
 #install.packages("microbenchmark") #run only once on your machine!
@@ -99,6 +101,12 @@ ifelse(vector_condition, if_true_do_this, if_false_do_this)
 ```
 
 a vector is returned!
+
+```{r}
+ifelse(airquality$Wind >= 15, "HighWind", "Not HighWind")
+```
+
+We can use a second call to `ifelse()` to assign what to do in the `FALSE` condition!
 
 ```{r}
 ifelse(airquality$Wind >= 15, "HighWind",
@@ -161,3 +169,5 @@ vectorTime
     -   `ifelse()` or `dplyr::if_else()`
     -   `apply` family (covered soon)
     -   `purrr` package (covered in a bit)
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

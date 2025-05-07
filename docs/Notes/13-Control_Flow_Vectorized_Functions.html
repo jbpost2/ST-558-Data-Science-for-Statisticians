@@ -313,7 +313,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+ <span class="menu-text">Packages</span></a>
   </div>
 </li>
       </ul>
@@ -485,8 +485,8 @@ window.Quarto = {
 
 <section id="vectorized-functions" class="level2">
 <h2 class="anchored" data-anchor-id="vectorized-functions">Vectorized Functions</h2>
-<p>In the spirit of loops, vectorized functions give us a way to execute code on an entire ‘vector’ at once (although we can be a bit more general than just vectors). This tends to speed up computation in comparison to basic loops in R!</p>
-<p>This is because loops are inefficient in R. R is an interpreted language. This means that it does a lot of the work of figuring out what to do for you. (Think about function dispatch - it looks at the type of object and figures out which version of <code>plot()</code> or <code>summary()</code> to use.) This process tends to slow R down in comparison to a vectorized operation where it still runs a loop under the hood but a vector should have all the same type of elements in it. This means it can avoid figuring the same thing out repeatedly!</p>
+<p>In the spirit of loops, vectorized functions give us a way to execute code on an entire ‘vector’ at once (although we can be a bit more general than just vectors). This tends to speed up computation in comparison to basic loops in <code>R</code>!</p>
+<p>This is because loops are inefficient in <code>R</code>. <code>R</code> is an interpreted language. This means that it does a lot of the work of figuring out what to do for you. (Think about function dispatch - it looks at the type of object and figures out which version of <code>plot()</code> or <code>summary()</code> to use.) This process tends to slow <code>R</code> down in comparison to a vectorized operation where it still runs a loop under the hood but a vector should have all the same type of elements in it. This means it can avoid figuring the same thing out repeatedly!</p>
 <section id="vectorized-functions-for-common-numeric-summaries" class="level3">
 <h3 class="anchored" data-anchor-id="vectorized-functions-for-common-numeric-summaries">Vectorized Functions for Common Numeric Summaries</h3>
 <p>There are some ‘built-in’ vectorized functions that are quite useful to apply to a 2D type object:</p>
@@ -497,12 +497,9 @@ window.Quarto = {
 </ul>
 <p>Let’s go back to our batting dataset from the previous note set.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Lahman)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'Lahman' was built under R version 4.1.3</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>my_batting <span class="ot">&lt;-</span> Batting[, <span class="fu">c</span>(<span class="st">"playerID"</span>, <span class="st">"teamID"</span>, <span class="st">"G"</span>, <span class="st">"AB"</span>, <span class="st">"R"</span>, <span class="st">"H"</span>, <span class="st">"X2B"</span>, <span class="st">"X3B"</span>, <span class="st">"HR"</span>)]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_batting)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Lahman)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>my_batting <span class="ot">&lt;-</span> Batting[, <span class="fu">c</span>(<span class="st">"playerID"</span>, <span class="st">"teamID"</span>, <span class="st">"G"</span>, <span class="st">"AB"</span>, <span class="st">"R"</span>, <span class="st">"H"</span>, <span class="st">"X2B"</span>, <span class="st">"X3B"</span>, <span class="st">"HR"</span>)]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_batting)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   playerID teamID  G  AB  R  H X2B X3B HR
 1 abercda01    TRO  1   4  0  0   0   0  0
@@ -515,7 +512,7 @@ window.Quarto = {
 </div>
 <p>We can apply the <code>colMeans()</code> function easily!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(my_batting[, <span class="dv">3</span><span class="sc">:</span><span class="dv">9</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMeans</span>(my_batting[, <span class="dv">3</span><span class="sc">:</span><span class="dv">9</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         G         AB          R          H        X2B        X3B         HR 
  50.740488 139.241320  18.483496  36.388605   6.202024   1.247075   2.850150 </code></pre>
@@ -523,65 +520,68 @@ window.Quarto = {
 </div>
 <p>If we <strong>install</strong> the <code>matrixStats</code> package (download the files from the internet), we can then use the <code>colMedians()</code> function to obtain the column medians in a quick fashion.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("matrixStats") #only run this once on your machine!</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(matrixStats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("matrixStats") #only run this once on your machine!</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(matrixStats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'matrixStats' was built under R version 4.1.3</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMedians</span>(my_batting[, <span class="dv">3</span><span class="sc">:</span><span class="dv">9</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMedians</span>(my_batting[, <span class="dv">3</span><span class="sc">:</span><span class="dv">9</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in colMedians(my_batting[, 3:9]): Argument 'x' must be a matrix or a vector.</code></pre>
 </div>
 </div>
 <p>Ah, this package requires the object passed to be a matrix or vector (homogenous). Although our data frame we pass is homogenous, the function doesn’t have a check for that. No worries, we can convert to a matrix using <code>as.matrix()</code> (similar to the <code>is.</code> family of functions there is an <code>as.</code> family of functions (read as ‘as dot’)).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMedians</span>(<span class="fu">as.matrix</span>(my_batting[, <span class="dv">3</span><span class="sc">:</span><span class="dv">9</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colMedians</span>(<span class="fu">as.matrix</span>(my_batting[, <span class="dv">3</span><span class="sc">:</span><span class="dv">9</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 34 46  4  8  1  0  0</code></pre>
 </div>
 </div>
 <p>Let’s compare the speed of this code to the speed of a for loop!</p>
 <ul>
-<li>The <code>microbenchmark</code> package allows for easy recording of computing time.</li>
-<li>We just wrap the code we want to benchmark in the <code>microbenchmark()</code> function.</li>
+<li><p>The <code>microbenchmark</code> package allows for easy recording of computing time.</p></li>
+<li><p>We just wrap the code we want to benchmark in the <code>microbenchmark()</code> function.</p></li>
+<li><p>This repeatedly executes the code and reports summary stats on how long it took</p>
+<ul>
 <li>Here we will grab all the numeric columns from the data</li>
 <li>Some columns contain <code>NA</code> or missing values. We’ll add <code>na.rm = TRUE</code> to both function calls to ignore those values (this is where the for loop actually struggles in this case!)</li>
+</ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("microbenchmark") #run only once on your machine!</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>my_numeric_batting <span class="ot">&lt;-</span> Batting[, <span class="dv">6</span><span class="sc">:</span><span class="dv">22</span>] <span class="co">#get all numeric columns</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>vectorized_results <span class="ot">&lt;-</span> <span class="fu">microbenchmark</span>(</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colMeans</span>(my_numeric_batting, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>loop_results <span class="ot">&lt;-</span> <span class="fu">microbenchmark</span>(</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">17</span>){</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(my_numeric_batting[, i], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("microbenchmark") #run only once on your machine!</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>my_numeric_batting <span class="ot">&lt;-</span> Batting[, <span class="dv">6</span><span class="sc">:</span><span class="dv">22</span>] <span class="co">#get all numeric columns</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>vectorized_results <span class="ot">&lt;-</span> <span class="fu">microbenchmark</span>(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colMeans</span>(my_numeric_batting, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>loop_results <span class="ot">&lt;-</span> <span class="fu">microbenchmark</span>(</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">17</span>){</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(my_numeric_batting[, i], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Compare computational time</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>vectorized_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>vectorized_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
-                                       expr    min    lq     mean median
- colMeans(my_numeric_batting, na.rm = TRUE) 8.0964 8.611 11.09531 9.0113
-      uq     max neval
- 13.1494 25.6146   100</code></pre>
+                                       expr      min       lq     mean   median
+ colMeans(my_numeric_batting, na.rm = TRUE) 8.857601 10.03725 13.21978 11.26065
+       uq     max neval
+ 14.47175 45.9109   100</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>loop_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>loop_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
-                                                                expr     min
- for (i in 1:17) {     mean(my_numeric_batting[, i], na.rm = TRUE) } 22.3796
-       lq     mean   median      uq     max neval
- 30.21055 33.44838 32.63655 36.0131 84.5362   100</code></pre>
+                                                                expr   min
+ for (i in 1:17) {     mean(my_numeric_batting[, i], na.rm = TRUE) } 25.49
+       lq     mean  median       uq    max neval
+ 34.91915 37.35616 37.0259 39.75945 89.269   100</code></pre>
 </div>
 </div>
 </section>
@@ -600,9 +600,46 @@ window.Quarto = {
 </ul>
 <p>The syntax for <code>ifelse</code> is:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(vector_condition, if_true_do_this, if_false_do_this)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(vector_condition, if_true_do_this, if_false_do_this)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>a vector is returned!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(airquality<span class="sc">$</span>Wind <span class="sc">&gt;=</span> <span class="dv">15</span>, <span class="st">"HighWind"</span>, <span class="st">"Not HighWind"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+  [6] "Not HighWind" "Not HighWind" "Not HighWind" "HighWind"     "Not HighWind"
+ [11] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+ [16] "Not HighWind" "Not HighWind" "HighWind"     "Not HighWind" "Not HighWind"
+ [21] "Not HighWind" "HighWind"     "Not HighWind" "Not HighWind" "HighWind"    
+ [26] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+ [31] "Not HighWind" "Not HighWind" "Not HighWind" "HighWind"     "Not HighWind"
+ [36] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+ [41] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+ [46] "Not HighWind" "Not HighWind" "HighWind"     "Not HighWind" "Not HighWind"
+ [51] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+ [56] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+ [61] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+ [66] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+ [71] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+ [76] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+ [81] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+ [86] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+ [91] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+ [96] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+[101] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+[106] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+[111] "Not HighWind" "Not HighWind" "HighWind"     "Not HighWind" "Not HighWind"
+[116] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+[121] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+[126] "Not HighWind" "Not HighWind" "Not HighWind" "HighWind"     "Not HighWind"
+[131] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "HighWind"    
+[136] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+[141] "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind" "Not HighWind"
+[146] "Not HighWind" "Not HighWind" "HighWind"     "Not HighWind" "Not HighWind"
+[151] "Not HighWind" "Not HighWind" "Not HighWind"</code></pre>
+</div>
+</div>
+<p>We can use a second call to <code>ifelse()</code> to assign what to do in the <code>FALSE</code> condition!</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(airquality<span class="sc">$</span>Wind <span class="sc">&gt;=</span> <span class="dv">15</span>, <span class="st">"HighWind"</span>,</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>          <span class="fu">ifelse</span>(airquality<span class="sc">$</span>Wind <span class="sc">&gt;=</span> <span class="dv">10</span>, <span class="st">"Windy"</span>,</span>
@@ -671,16 +708,16 @@ window.Quarto = {
 <pre><code>Unit: microseconds
                                                                                                                                                                                                                                                                                                                                  expr
  for (i in seq_len(nrow(airquality))) {     if (airquality$Wind[i] &gt;= 15) {         "HighWind"     }     else if (airquality$Wind[i] &gt;= 10) {         "Windy"     }     else if (airquality$Wind[i] &gt;= 6) {         "LightWind"     }     else if (airquality$Wind[i] &gt;= 0) {         "Calm"     }     else {         "Error"     } }
-    min     lq     mean  median       uq     max neval
- 8320.6 9135.1 10954.39 9931.55 13026.65 16763.9   100</code></pre>
+      min      lq     mean  median      uq     max neval
+ 7501.701 11384.3 12819.77 12325.9 13971.3 26010.3   100</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>vectorTime</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
                                                                                                                                                                                   expr
  ifelse(airquality$Wind &gt;= 15, "HighWind", ifelse(airquality$Wind &gt;=      10, "Windy", ifelse(airquality$Wind &gt;= 6, "LightWind", ifelse(airquality$Wind &gt;=      0, "Calm", "Error"))))
-   min     lq    mean median     uq   max neval
- 219.6 234.65 356.991  410.5 424.95 575.4   100</code></pre>
+     min      lq     mean   median      uq     max neval
+ 144.702 152.001 182.4779 158.3005 183.101 382.501   100</code></pre>
 </div>
 </div>
 <p><strong>Note:</strong> There is an <code>if_else()</code> function from the <code>dplry</code> package. This has more restrictions than <code>ifelse()</code> but otherwise is pretty similar.</p>
@@ -700,6 +737,7 @@ window.Quarto = {
 <li><code>purrr</code> package (covered in a bit)</li>
 </ul></li>
 </ul>
+<p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
 
 </section>

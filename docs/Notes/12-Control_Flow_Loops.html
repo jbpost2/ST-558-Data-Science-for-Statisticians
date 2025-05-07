@@ -284,7 +284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+ <span class="menu-text">Packages</span></a>
   </div>
 </li>
       </ul>
@@ -417,7 +417,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#looping-in-r" id="toc-looping-in-r" class="nav-link active" data-scroll-target="#looping-in-r">Looping in R</a>
+  <li><a href="#looping-in-r" id="toc-looping-in-r" class="nav-link active" data-scroll-target="#looping-in-r">Looping in <code>R</code></a>
   <ul class="collapse">
   <li><a href="#for-loops" id="toc-for-loops" class="nav-link" data-scroll-target="#for-loops">For Loops</a></li>
   <li><a href="#while-loops" id="toc-while-loops" class="nav-link" data-scroll-target="#while-loops">While Loops</a></li>
@@ -462,10 +462,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>looping to repeatedly execute code</li>
 <li>vectorized functions for improved efficiency</li>
 </ul>
-<p>This section looks at how to do loops (repeated execution of code) in R.</p>
+<p>This section looks at how to do loops (repeated execution of code) in <code>R</code>.</p>
 <section id="looping-in-r" class="level2">
-<h2 class="anchored" data-anchor-id="looping-in-r">Looping in R</h2>
-<p>There are a number of ways to do looping in R</p>
+<h2 class="anchored" data-anchor-id="looping-in-r">Looping in <code>R</code></h2>
+<p>There are a number of ways to do looping in <code>R</code></p>
 <ul>
 <li><code>for()</code></li>
 <li><code>while()</code></li>
@@ -482,8 +482,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>where</p>
 <ul>
-<li>index defines ‘counter’ or variable that varies</li>
-<li>‘values’ define which values index takes on</li>
+<li>index defines a ‘counter’ or variable that varies</li>
+<li>‘values’ define which values the index takes on</li>
 </ul>
 <p>For example, our index below is <code>i</code> and the values it can take on are the integers from 1 to 10 (<code>1:10</code>)</p>
 <div class="cell">
@@ -525,20 +525,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>“The (#ed) data point is (# from data vector).”</p>
 <ul>
-<li>To put character strings together with other R objects (which will be coerced to strings) we can use the <code>paste()</code> function. Checking the help we see:</li>
+<li>To put character strings together with other <code>R</code> objects (which will be coerced to strings) we can use the <code>paste()</code> function. Checking the help we see:</li>
 </ul>
 <p><code>paste (..., sep = " ", collapse = NULL, recycle0 = FALSE)</code></p>
-<p>where <code>...</code> ‘is one or more R objects, to be converted to character vectors.’ and the <code>sep =</code> argument determines the value by which to separate these objects.</p>
+<p>where <code>...</code> ‘is one or more <code>R</code> objects, to be converted to character vectors.’ and the <code>sep =</code> argument determines the value by which to separate these objects.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">"The "</span>, words[<span class="dv">2</span>], <span class="st">" data point is "</span>, data[<span class="dv">2</span>], <span class="st">"."</span>, <span class="at">sep =</span> <span class="st">"&amp;"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The &amp;second&amp; data point is &amp;0.404187841108069&amp;."</code></pre>
+<pre><code>[1] "The &amp;second&amp; data point is &amp;0.268910296494141&amp;."</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">"The "</span>, words[<span class="dv">1</span>], <span class="st">" data point is "</span>, data[<span class="dv">1</span>], <span class="st">"."</span>, <span class="at">sep =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The first data point is 0.527177648618817."</code></pre>
+<pre><code>[1] "The first data point is 0.244574468350038."</code></pre>
 </div>
 </div>
 <p>Note: <code>sep = ""</code> is equivalent to using the <code>paste0()</code> function.</p>
@@ -548,11 +548,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"The "</span>, words[i], <span class="st">" data point is "</span>, data[i], <span class="st">"."</span>))</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The first data point is 0.527177648618817."
-[1] "The second data point is 0.404187841108069."
-[1] "The third data point is 0.16067525325343."
-[1] "The fourth data point is 0.183916494948789."
-[1] "The fifth data point is 0.513896069023758."</code></pre>
+<pre><code>[1] "The first data point is 0.244574468350038."
+[1] "The second data point is 0.268910296494141."
+[1] "The third data point is 0.70582342823036."
+[1] "The fourth data point is 0.564235993195325."
+[1] "The fifth data point is 0.213808582862839."</code></pre>
 </div>
 </div>
 <ul>
@@ -566,12 +566,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Lahman)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'Lahman' was built under R version 4.1.3</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>my_batting <span class="ot">&lt;-</span> Batting[, <span class="fu">c</span>(<span class="st">"playerID"</span>, <span class="st">"teamID"</span>, <span class="st">"G"</span>, <span class="st">"AB"</span>, <span class="st">"R"</span>, <span class="st">"H"</span>, <span class="st">"X2B"</span>, <span class="st">"X3B"</span>, <span class="st">"HR"</span>)]</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_batting)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Lahman)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>my_batting <span class="ot">&lt;-</span> Batting[, <span class="fu">c</span>(<span class="st">"playerID"</span>, <span class="st">"teamID"</span>, <span class="st">"G"</span>, <span class="st">"AB"</span>, <span class="st">"R"</span>, <span class="st">"H"</span>, <span class="st">"X2B"</span>, <span class="st">"X3B"</span>, <span class="st">"HR"</span>)]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_batting)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   playerID teamID  G  AB  R  H X2B X3B HR
 1 abercda01    TRO  1   4  0  0   0   0  0
@@ -586,14 +583,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Let’s say we want to find the <code>summary()</code> for each numeric column of this data set.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_batting[ , <span class="st">"G"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_batting[ , <span class="st">"G"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    1.00   12.00   34.00   50.74   79.00  165.00 </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_batting[ , <span class="st">"AB"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_batting[ , <span class="st">"AB"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
     0.0     4.0    46.0   139.2   224.0   716.0 </code></pre>
@@ -601,16 +598,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>That’s fine but we want to do it for all the numeric columns. Let’s use a for loop!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(my_batting)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(my_batting)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 108789      9</code></pre>
 </div>
 </div>
 <p>We could do a loop that takes on values of <code>3:9</code> (or programmatically <code>3:dim(my_batting)[2]</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="fu">dim</span>(my_batting)[<span class="dv">2</span>]){</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">summary</span>(my_batting[ , i]))</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="fu">dim</span>(my_batting)[<span class="dv">2</span>]){</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">summary</span>(my_batting[ , i]))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    1.00   12.00   34.00   50.74   79.00  165.00 
@@ -630,20 +627,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Alternatively, the <code>seq_along()</code> function can be useful. This looks at the length of the object and creates a sequence from 1 to that length. Remember that a data frame is truly a list of equal length vectors (usually). The length of a list is number of elements. Here that is the number of columns!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(my_batting)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(my_batting)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq_along</span>(my_batting)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq_along</span>(my_batting)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 2 3 4 5 6 7 8 9</code></pre>
 </div>
 </div>
 <p>Now we can just remove the 1st and 2nd entries of that vector (as they are not numeric columns) and use that as our values to iterate across.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(my_batting)[<span class="sc">-</span><span class="dv">1</span><span class="sc">:-</span><span class="dv">2</span>]){</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">summary</span>(my_batting[ , i]))</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(my_batting)[<span class="sc">-</span><span class="dv">1</span><span class="sc">:-</span><span class="dv">2</span>]){</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">summary</span>(my_batting[ , i]))</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    1.00   12.00   34.00   50.74   79.00  165.00 
@@ -663,14 +660,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>We likely don’t enjoy this format. Although we’ll see much easier ways to deal with this, let’s initialize a data frame to store our results in. We can initialize the type of data to store in a particular column using <code>character()</code>, <code>numeric()</code>, <code>logical()</code>, etc.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>summary_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">stat =</span> <span class="fu">character</span>(), </span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">min =</span> <span class="fu">numeric</span>(),</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Q1 =</span> <span class="fu">numeric</span>(),</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Median =</span> <span class="fu">numeric</span>(),</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Mean =</span> <span class="fu">numeric</span>(),</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Q3 =</span> <span class="fu">numeric</span>(),</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Max  =</span> <span class="fu">numeric</span>())</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>summary_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>summary_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">stat =</span> <span class="fu">character</span>(), </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">min =</span> <span class="fu">numeric</span>(),</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Q1 =</span> <span class="fu">numeric</span>(),</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Median =</span> <span class="fu">numeric</span>(),</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Mean =</span> <span class="fu">numeric</span>(),</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Q3 =</span> <span class="fu">numeric</span>(),</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">Max  =</span> <span class="fu">numeric</span>())</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>summary_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] stat   min    Q1     Median Mean   Q3     Max   
 &lt;0 rows&gt; (or 0-length row.names)</code></pre>
@@ -678,11 +675,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Ok, now let’s fill this in as we loop (note we use <code>i-2</code> to start filling in at row 1 and we grab the statistic we are summarizing from the <code>colnames</code> of the <code>my_batting</code> data frame).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(my_batting)[<span class="sc">-</span><span class="dv">1</span><span class="sc">:-</span><span class="dv">2</span>]){</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  summary_df[i<span class="dv">-2</span>, ] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">colnames</span>(my_batting[i]),</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">summary</span>(my_batting[ , i]))</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>summary_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(my_batting)[<span class="sc">-</span><span class="dv">1</span><span class="sc">:-</span><span class="dv">2</span>]){</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  summary_df[i<span class="dv">-2</span>, ] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">colnames</span>(my_batting[i]),</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">summary</span>(my_batting[ , i]))</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>summary_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  stat min Q1 Median             Mean  Q3 Max
 1    G   1 12     34 50.7404884685033  79 165
@@ -698,12 +695,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="while-loops" class="level3">
 <h3 class="anchored" data-anchor-id="while-loops">While Loops</h3>
 <ul>
-<li>Should know about these too!</li>
+<li>These provide an alternative way to loop when we don’t necessarily know how many iterations to do before we start.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(cond) {</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    expr</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span>(cond) {</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    expr</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>If <code>cond</code> is <code>FALSE</code> then the loop never executes.</li>
@@ -716,28 +713,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Sometimes we need to jump out of a loop. <code>break</code> kicks you out of the loop.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">==</span> <span class="dv">3</span>) <span class="cf">break</span> <span class="co">#can put code to execute on the same line</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"The "</span>, words[i], <span class="st">" data point is "</span>, data[i], <span class="st">"."</span>))</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">==</span> <span class="dv">3</span>) <span class="cf">break</span> <span class="co">#can put code to execute on the same line</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"The "</span>, words[i], <span class="st">" data point is "</span>, data[i], <span class="st">"."</span>))</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The first data point is 0.527177648618817."
-[1] "The second data point is 0.404187841108069."</code></pre>
+<pre><code>[1] "The first data point is 0.244574468350038."
+[1] "The second data point is 0.268910296494141."</code></pre>
 </div>
 </div>
 <ul>
 <li>Sometimes we need to skip an iteration. <code>next</code> jumps to the next iteration of the loop.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">==</span> <span class="dv">3</span>) <span class="cf">next</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"The "</span>, words[i], <span class="st">" data point is "</span>, data[i], <span class="st">"."</span>))</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">==</span> <span class="dv">3</span>) <span class="cf">next</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"The "</span>, words[i], <span class="st">" data point is "</span>, data[i], <span class="st">"."</span>))</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The first data point is 0.527177648618817."
-[1] "The second data point is 0.404187841108069."
-[1] "The fourth data point is 0.183916494948789."
-[1] "The fifth data point is 0.513896069023758."</code></pre>
+<pre><code>[1] "The first data point is 0.244574468350038."
+[1] "The second data point is 0.268910296494141."
+[1] "The fourth data point is 0.564235993195325."
+[1] "The fifth data point is 0.213808582862839."</code></pre>
 </div>
 </div>
 </section>
@@ -745,6 +742,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="quick-r-video">Quick R Video</h3>
 <p>Please pop this video out and watch it in the full panopto player!</p>
 <iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=a87e6ae2-1bc7-4b6c-9020-b1710155c319&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="12 - Loops"></iframe>
+<ul>
+<li><a href="https://github.com/jbpost2/My_first_repo" target="_blank">Link to repo with files from video</a></li>
+</ul>
 </section>
 <section id="recap" class="level3">
 <h3 class="anchored" data-anchor-id="recap">Recap!</h3>
@@ -752,14 +752,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Loops provide a mechanism to run the same code repeatedly</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(index <span class="cf">in</span> values){</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#code to evaluate</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(index <span class="cf">in</span> values){</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#code to evaluate</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p>index is the variable that changes during each iteration</p></li>
 <li><p>values are the values the index takes on</p></li>
 </ul>
+<p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
 
 </section>

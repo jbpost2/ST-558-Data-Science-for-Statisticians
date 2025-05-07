@@ -6,36 +6,26 @@ editor_options:
   chunk_output_type: inline
 ---
 
+# Week 1
+
 First, let's get some perspectives on what data science is, how statistics and computer science relate, and important items to consider when trying to understand data. To do so, we'll do some readings.
 
-- <a href="https://r4ds.hadley.nz/intro" target="_blank"
-      rel="noopener">Introduction of R for Data Science</a>
-- <a href="https://scientistcafe.com/ids/introduction#introduction"
-      target="_blank" rel="noopener">Chapters 1 and 2 of the Practitioner's Guide to Data Science</a>
+- <a href="https://r4ds.hadley.nz/intro" target="_blank">Introduction of R for Data Science</a>
+- <a href="https://scientistcafe.com/ids/introduction#introduction" target="_blank">Chapters 1 and 2 of the Practitioner's Guide to Data Science</a>
 - <a
       href="https://www.amstat.org/docs/default-source/amstat-documents/the-role-of-statistics-in-data-science-and-artificial-intelligence.pdf"
-      target="_blank" rel="noopener">The role of statistics in Data Science and Artificial Intelligence</a>
-- <a href="https://en.wikipedia.org/wiki/Data_science" target="_blank"
-      rel="noopener">Data Science wikipedia entry</a>
+      target="_blank">The role of statistics in Data Science and Artificial Intelligence</a>
+- <a href="https://en.wikipedia.org/wiki/Data_science" target="_blank">Data Science wikipedia entry</a>
 
 Some entries from some less reputable/reviewed places are below. Please read these as well but put less weight on the things mentioned in these articles - I'm just assigning these readings so you can see the different perspectives people may have.
 
-- <a
-        href="https://www.indeed.com/career-advice/finding-a-job/data-scientist-vs-statistician"
-        target="_blank"
-        rel="noopener">https://www.indeed.com/career-advice/finding-a-job/data-scientist-vs-statistician</a>
-- <a
-        href="https://www.simplilearn.com/data-science-vs-data-analytics-vs-machine-learning-article"
-        target="_blank" rel="noopener">Data Science vs. Data Analytics vs. Machine Learning - Expert Talk</a>
-- <a
-        href="https://scientistcafe.com/ids/comparison-between-statistician-and-data-scientist.html"
-        target="_blank"
-        rel="noopener">https://scientistcafe.com/ids/comparison-between-statistician-and-data-scientist.html</a>
+- <a href="https://www.indeed.com/career-advice/finding-a-job/data-scientist-vs-statistician" target="_blank">https://www.indeed.com/career-advice/finding-a-job/data-scientist-vs-statistician</a>
+- <a href="https://www.simplilearn.com/data-science-vs-data-analytics-vs-machine-learning-article" target="_blank">Data Science vs. Data Analytics vs. Machine Learning - Expert Talk</a>
+- <a href="https://scientistcafe.com/ids/comparison-between-statistician-and-data-scientist.html" target="_blank">https://scientistcafe.com/ids/comparison-between-statistician-and-data-scientist.html</a>
 
 You'll write about these ideas as part of your first homework assignment! For now, onto understanding data workflows and `Git` and `GitHub` basics!
 
-
-## Additional Readings & Learning Materials
+## Week 1 Additional Readings & Learning Materials
 
 -   `R` Projects and General `R` 
 

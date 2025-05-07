@@ -284,7 +284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+ <span class="menu-text">Packages</span></a>
   </div>
 </li>
       </ul>
@@ -417,10 +417,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#additional-readingslearning-materials" id="toc-additional-readingslearning-materials" class="nav-link active" data-scroll-target="#additional-readingslearning-materials">Additional Readings/Learning Materials</a></li>
+  <li><a href="#week-2" id="toc-week-2" class="nav-link active" data-scroll-target="#week-2">Week 2</a>
+  <ul class="collapse">
+  <li><a href="#week-2-additional-readingslearning-materials" id="toc-week-2-additional-readingslearning-materials" class="nav-link" data-scroll-target="#week-2-additional-readingslearning-materials">Week 2 Additional Readings/Learning Materials</a></li>
   <li><a href="#week-2-learning-objectives" id="toc-week-2-learning-objectives" class="nav-link" data-scroll-target="#week-2-learning-objectives">Week 2 Learning Objectives</a>
   <ul class="collapse">
   <li><a href="#r-basics" id="toc-r-basics" class="nav-link" data-scroll-target="#r-basics">R Basics</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#common-data-structures" id="toc-common-data-structures" class="nav-link" data-scroll-target="#common-data-structures">Common Data Structures</a>
   <ul class="collapse">
@@ -464,9 +467,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This second week we’ll go through a systematic view of the most common data objects you’ll see in <code>R</code>. We’ll see how to access these objects using <code>BaseR</code> commands.&nbsp;</p>
-<section id="additional-readingslearning-materials" class="level2">
-<h2 class="anchored" data-anchor-id="additional-readingslearning-materials">Additional Readings/Learning Materials</h2>
+<section id="week-2" class="level1">
+<h1>Week 2</h1>
+<p>This second week we’ll go through a systematic view of the most common data objects you’ll see in <code>R</code>. We’ll see how to access these objects using <code>Base R</code> commands.&nbsp;</p>
+<section id="week-2-additional-readingslearning-materials" class="level2">
+<h2 class="anchored" data-anchor-id="week-2-additional-readingslearning-materials">Week 2 Additional Readings/Learning Materials</h2>
 <p>Common Data Objects in R</p>
 <ul>
 <li><a href="https://r4ds.hadley.nz/logicals" target="_blank">Chapter 12 of R 4 Data Science</a></li>
@@ -485,6 +490,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol></li>
 <li><p>&nbsp; utilize R help and other resources to appropriately use and/or modify an R function or object (CO 3)</p></li>
 </ol>
+</section>
 </section>
 </section>
 <section id="common-data-structures" class="level1">
@@ -698,20 +704,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">4</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2521558 0.8323022 0.6544797 0.7821582</code></pre>
+<pre><code>[1] 0.85595160 0.50909977 0.11578420 0.08022558</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.06975435 0.12186046 0.64832950 0.09509835 0.50371835 0.19792140
- [7] 0.33502097 0.80478889 0.08321932 0.57549088</code></pre>
+<pre><code> [1] 0.82873138 0.69698187 0.03760678 0.06362741 0.36379630 0.79196359
+ [7] 0.23552058 0.62795274 0.04286688 0.92654874</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">5</span>, <span class="dv">20</span>, <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 20.85489 28.69948 26.75841 27.44677 20.67263</code></pre>
+<pre><code>[1] 25.08980 28.46312 29.63829 27.14747 26.09282</code></pre>
 </div>
 </div>
 <p>We’ll find this function really useful when we simulate different quantities!</p>

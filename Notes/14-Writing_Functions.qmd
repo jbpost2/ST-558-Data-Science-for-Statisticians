@@ -1,7 +1,7 @@
 ---
 title: "Writing Functions"
 format: html
-editor: visual
+editor: source
 toc: TRUE
 editor_options: 
   chunk_output_type: inline
@@ -17,19 +17,26 @@ Next up we take on writing our own functions (we'll revisit this later on to go 
 nameOfFunction <- function(input1, input2, ...) {
   #code
   #return something with return()
-  #or returns last value
+  #or the function returns last thing done
 }
 ```
 
 One nice thing is that you can generally look at the code for the functions you use by typing the function without `()` into the console.
 
+- Notice the arguments in the function definition
+- Notice that each of these functions return whatever is the last code run (no use of `return()`)
+
 ```{r}
 var
 ```
 
+- Unless the `if` statements cause the function to stop, the result of `.Call(C_cov, x, y, na.method, FALSE)` is returned.
+
 ```{r}
 colMeans
 ```
+
+- Unless the `if` statements cause the function to stop, `z` is the last code run and is what gets returned.
 
 For some functions, they are generic and they won't show anything useful.
 
@@ -71,7 +78,8 @@ standardize <- function(vector) {
 }
 ```
 
--   Now use it! Create some data:
+-   Note that vector is just the name of the argument! The user could pass something that isn't a vector and we may be in trouble.
+- Now let's use it! First, create some data:
 
 ```{r}
 set.seed(10)
@@ -86,7 +94,7 @@ result <- standardize(data)
 result
 ```
 
--   Check result has mean 0 and sd 1
+-   Check that the result has mean 0 and sd 1
 
 ```{r}
 mean(result)
@@ -226,11 +234,9 @@ summarizer(c(1,1,1,6,10), "means")
 
 ### Naming conventions
 
-That's the basics of function writing. Let's talk about a framework to make coherent code!
+That's the basics of function writing. Let's talk about a framework to make coherent code. Use of consistent naming schemes is important!
 
-Use of consistent naming schemes is important!
-
-Generally, naming objects must:
+Generally, when naming objects they must:
 
 -   start with a letter\
 -   only have letters, numbers, `_`, and `.`
@@ -250,7 +256,7 @@ Naming things is actually really tough... You should try to follow a common nami
 -   snake_case_used\
 -   camelCaseUsed\
 -   UpperCamelCase\
--   use.of.periods
+-   use.of.periods (not recommended)
 
 You'll also need to name inputs to your functions. Try to stick to these when possible:
 
@@ -261,13 +267,13 @@ You'll also need to name inputs to your functions. Try to stick to these when po
 -   n: length, or number of rows
 -   p: number of columns
 
-Otherwise, consider matching names of arguments in existing R functions. For example, use `na.rm` to determine if missing values should be removed.
+Otherwise, consider matching names of arguments in existing `R` functions. For example, use `na.rm` to determine if missing values should be removed.
 
-**There are some readings on this available in the weekly overview!**
+**There are some readings on this available in a previous lesson.**
 
 ### Input Matching
 
-You might wonder why sometimes we name our arguments when we call our functions and sometimes we don't. Generally, we don't name the first 2-3 arguments but name ones after that. However, that is just convention. In R, you can use positional matching for everything or name each input, or combine the two ideas!
+You might wonder why sometimes we name our arguments when we call our functions and sometimes we don't. Generally, we don't name the first 2-3 arguments but name ones after that. However, that is just convention. In `R`, you can use positional matching for everything or name each input, or combine the two ideas!
 
 Let's look at some examples. Consider the inputs of the `cor()` function
 
@@ -296,7 +302,7 @@ cor(iris$Sepal.Length, iris$Sepal.Width, met = "spearman")
 
 ### Infix functions
 
-Lastly, let's take up the idea of an **infix** function. An infix function is a function that goes between arguments (as opposed to prefix that goes prior to the arguments - what we usually do).
+Lastly, let's take up the idea of an **infix** function. An infix function is a function that goes between arguments (as opposed to prefix that goes prior to the arguments - which is what we usually do).
 
 ```{r}
 mean(3:5) #prefix
@@ -329,7 +335,7 @@ Others infix operators use `%symbol%` syntax:
 -   `%*%` (matrix multiplication)
 -   `%in%` (check if LHS value(s) is(are) *in* RHS value(s)
 
-We can call infix functions like prefix functions if we need to using the backtick symbol \`\`\` (top left of the keyboard usually)
+We can call infix functions like prefix functions if we need to using the backtick symbol \` (top left of the keyboard usually)
 
 ```{r}
 cars <- as.matrix(cars)
@@ -347,7 +353,7 @@ You can also write your own infix function!
 "new" %+% " string"
 ```
 
-R actually allows you to overwrite `+` and other operators: just don't do that... that wouldn't be good
+`R` actually allows you to overwrite `+` and other operators: just don't do that... that wouldn't be good (unless you really want to mess with someone)
 
 With infix functions we can use precedence rules to save typing:
 
@@ -389,15 +395,15 @@ x <- y <- 2
 `<-`(x, `<-`(y, 2)) #interpretation of above code!
 ```
 
-### Base R Pipe
+### `Base R` Pipe
 
 This one deserves its own section! The pipe operator (`%>%`) was made popular by the `tidyverse` and the `magrittr` package. You would need to read in `dplyr` (part of the tidyverse) or `magrittr` to have access to the pipe.
 
-Due to the popularity, R created a baseR pipe (`|>`). The idea of the pipe is to make code more readable! Essentially, you can read code left to right when using a pipe instead of inside out.
+Due to the popularity, `R` created a `Base R` pipe (`|>`). The idea of the pipe is to make code more readable! Essentially, you can read code left to right when using a pipe instead of inside out.
 
 Consider the code below:
 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 library(dplyr)
 arrange(select(filter(as_tibble(Lahman::Batting), teamID == "PIT"), playerID, G, X2B), desc(X2B))
 ```
@@ -409,7 +415,7 @@ arrange(select(filter(as_tibble(Lahman::Batting), teamID == "PIT"), playerID, G,
     -   The result of this is then the first argument to `select()`
     -   The result of that is then the first argument to `arrange()`
 
--   Yikes. Piping makes thigns way easier to read!
+-   Yikes. Piping makes things way easier to read!
 
 ```{r}
 Lahman::Batting |> #read the pipe as "then"
@@ -460,3 +466,5 @@ Functions allow you to customize your code
 -   `stop()` and `switch()`
 
 -   infix functions
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

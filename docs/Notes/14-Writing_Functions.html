@@ -313,7 +313,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+ <span class="menu-text">Packages</span></a>
   </div>
 </li>
       </ul>
@@ -452,7 +452,7 @@ window.Quarto = {
   <li><a href="#naming-conventions" id="toc-naming-conventions" class="nav-link" data-scroll-target="#naming-conventions">Naming conventions</a></li>
   <li><a href="#input-matching" id="toc-input-matching" class="nav-link" data-scroll-target="#input-matching">Input Matching</a></li>
   <li><a href="#infix-functions" id="toc-infix-functions" class="nav-link" data-scroll-target="#infix-functions">Infix functions</a></li>
-  <li><a href="#base-r-pipe" id="toc-base-r-pipe" class="nav-link" data-scroll-target="#base-r-pipe">Base R Pipe</a></li>
+  <li><a href="#base-r-pipe" id="toc-base-r-pipe" class="nav-link" data-scroll-target="#base-r-pipe"><code>Base R</code> Pipe</a></li>
   <li><a href="#quick-r-video" id="toc-quick-r-video" class="nav-link" data-scroll-target="#quick-r-video">Quick R Video</a></li>
   <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap!</a></li>
   </ul></li>
@@ -497,10 +497,14 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>nameOfFunction <span class="ot">&lt;-</span> <span class="cf">function</span>(input1, input2, ...) {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#code</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#return something with return()</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#or returns last value</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#or the function returns last thing done</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>One nice thing is that you can generally look at the code for the functions you use by typing the function without <code>()</code> into the console.</p>
+<ul>
+<li>Notice the arguments in the function definition</li>
+<li>Notice that each of these functions return whatever is the last code run (no use of <code>return()</code>)</li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>var</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -522,10 +526,13 @@ window.Quarto = {
     else stopifnot(is.atomic(y))
     .Call(C_cov, x, y, na.method, FALSE)
 }
-&lt;bytecode: 0x000000001f6b2780&gt;
+&lt;bytecode: 0x000000001f6cc8f0&gt;
 &lt;environment: namespace:stats&gt;</code></pre>
 </div>
 </div>
+<ul>
+<li>Unless the <code>if</code> statements cause the function to stop, the result of <code>.Call(C_cov, x, y, na.method, FALSE)</code> is returned.</li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>colMeans</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -550,17 +557,20 @@ window.Quarto = {
     else names(z) &lt;- dimnames(x)[[dims + 1L]]
     z
 }
-&lt;bytecode: 0x00000000160b64c0&gt;
+&lt;bytecode: 0x00000000160b9d88&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 </div>
+<ul>
+<li>Unless the <code>if</code> statements cause the function to stop, <code>z</code> is the last code run and is what gets returned.</li>
+</ul>
 <p>For some functions, they are generic and they won’t show anything useful.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>function (x, ...) 
 UseMethod("mean")
-&lt;bytecode: 0x000000001611ade8&gt;
+&lt;bytecode: 0x000000001612b2d0&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 </div>
@@ -592,7 +602,7 @@ UseMethod("mean")
     }
     .Internal(mean(x))
 }
-&lt;bytecode: 0x000000001386ac80&gt;
+&lt;bytecode: 0x0000000013873158&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 </div>
@@ -622,7 +632,8 @@ UseMethod("mean")
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>Now use it! Create some data:</li>
+<li>Note that vector is just the name of the argument! The user could pass something that isn’t a vector and we may be in trouble.</li>
+<li>Now let’s use it! First, create some data:</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
@@ -647,7 +658,7 @@ UseMethod("mean")
 </div>
 </div>
 <ul>
-<li>Check result has mean 0 and sd 1</li>
+<li>Check that the result has mean 0 and sd 1</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -849,9 +860,8 @@ $sd
 </section>
 <section id="naming-conventions" class="level3">
 <h3 class="anchored" data-anchor-id="naming-conventions">Naming conventions</h3>
-<p>That’s the basics of function writing. Let’s talk about a framework to make coherent code!</p>
-<p>Use of consistent naming schemes is important!</p>
-<p>Generally, naming objects must:</p>
+<p>That’s the basics of function writing. Let’s talk about a framework to make coherent code. Use of consistent naming schemes is important!</p>
+<p>Generally, when naming objects they must:</p>
 <ul>
 <li>start with a letter<br>
 </li>
@@ -876,7 +886,7 @@ $sd
 </li>
 <li>UpperCamelCase<br>
 </li>
-<li>use.of.periods</li>
+<li>use.of.periods (not recommended)</li>
 </ul>
 <p>You’ll also need to name inputs to your functions. Try to stick to these when possible:</p>
 <ul>
@@ -889,12 +899,12 @@ $sd
 <li>n: length, or number of rows</li>
 <li>p: number of columns</li>
 </ul>
-<p>Otherwise, consider matching names of arguments in existing R functions. For example, use <code>na.rm</code> to determine if missing values should be removed.</p>
-<p><strong>There are some readings on this available in the weekly overview!</strong></p>
+<p>Otherwise, consider matching names of arguments in existing <code>R</code> functions. For example, use <code>na.rm</code> to determine if missing values should be removed.</p>
+<p><strong>There are some readings on this available in a previous lesson.</strong></p>
 </section>
 <section id="input-matching" class="level3">
 <h3 class="anchored" data-anchor-id="input-matching">Input Matching</h3>
-<p>You might wonder why sometimes we name our arguments when we call our functions and sometimes we don’t. Generally, we don’t name the first 2-3 arguments but name ones after that. However, that is just convention. In R, you can use positional matching for everything or name each input, or combine the two ideas!</p>
+<p>You might wonder why sometimes we name our arguments when we call our functions and sometimes we don’t. Generally, we don’t name the first 2-3 arguments but name ones after that. However, that is just convention. In <code>R</code>, you can use positional matching for everything or name each input, or combine the two ideas!</p>
 <p>Let’s look at some examples. Consider the inputs of the <code>cor()</code> function</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="cf">function</span> (x, <span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">use =</span> <span class="st">"everything"</span>, <span class="at">method =</span> <span class="fu">c</span>(<span class="st">"pearson"</span>, </span>
@@ -927,7 +937,7 @@ $sd
 </section>
 <section id="infix-functions" class="level3">
 <h3 class="anchored" data-anchor-id="infix-functions">Infix functions</h3>
-<p>Lastly, let’s take up the idea of an <strong>infix</strong> function. An infix function is a function that goes between arguments (as opposed to prefix that goes prior to the arguments - what we usually do).</p>
+<p>Lastly, let’s take up the idea of an <strong>infix</strong> function. An infix function is a function that goes between arguments (as opposed to prefix that goes prior to the arguments - which is what we usually do).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>) <span class="co">#prefix</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -967,7 +977,7 @@ $sd
 <li><code>%*%</code> (matrix multiplication)</li>
 <li><code>%in%</code> (check if LHS value(s) is(are) <em>in</em> RHS value(s)</li>
 </ul>
-<p>We can call infix functions like prefix functions if we need to using the backtick symbol ``` (top left of the keyboard usually)</p>
+<p>We can call infix functions like prefix functions if we need to using the backtick symbol ` (top left of the keyboard usually)</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(cars)</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(cars) <span class="sc">%*%</span> cars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -993,7 +1003,7 @@ dist  38482 124903</code></pre>
 <pre><code>[1] "new string"</code></pre>
 </div>
 </div>
-<p>R actually allows you to overwrite <code>+</code> and other operators: just don’t do that… that wouldn’t be good</p>
+<p><code>R</code> actually allows you to overwrite <code>+</code> and other operators: just don’t do that… that wouldn’t be good (unless you really want to mess with someone)</p>
 <p>With infix functions we can use precedence rules to save typing:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> y <span class="ot">&lt;-</span> <span class="dv">2</span></span>
@@ -1036,27 +1046,13 @@ dist  38482 124903</code></pre>
 </div>
 </section>
 <section id="base-r-pipe" class="level3">
-<h3 class="anchored" data-anchor-id="base-r-pipe">Base R Pipe</h3>
+<h3 class="anchored" data-anchor-id="base-r-pipe"><code>Base R</code> Pipe</h3>
 <p>This one deserves its own section! The pipe operator (<code>%&gt;%</code>) was made popular by the <code>tidyverse</code> and the <code>magrittr</code> package. You would need to read in <code>dplyr</code> (part of the tidyverse) or <code>magrittr</code> to have access to the pipe.</p>
-<p>Due to the popularity, R created a baseR pipe (<code>|&gt;</code>). The idea of the pipe is to make code more readable! Essentially, you can read code left to right when using a pipe instead of inside out.</p>
+<p>Due to the popularity, <code>R</code> created a <code>Base R</code> pipe (<code>|&gt;</code>). The idea of the pipe is to make code more readable! Essentially, you can read code left to right when using a pipe instead of inside out.</p>
 <p>Consider the code below:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'dplyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
-
-    filter, lag</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(<span class="fu">select</span>(<span class="fu">filter</span>(<span class="fu">as_tibble</span>(Lahman<span class="sc">::</span>Batting), teamID <span class="sc">==</span> <span class="st">"PIT"</span>), playerID, G, X2B), <span class="fu">desc</span>(X2B))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(<span class="fu">select</span>(<span class="fu">filter</span>(<span class="fu">as_tibble</span>(Lahman<span class="sc">::</span>Batting), teamID <span class="sc">==</span> <span class="st">"PIT"</span>), playerID, G, X2B), <span class="fu">desc</span>(X2B))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4,920 x 3
    playerID      G   X2B
@@ -1082,14 +1078,14 @@ Attaching package: 'dplyr'</code></pre>
 <li>The result of this is then the first argument to <code>select()</code></li>
 <li>The result of that is then the first argument to <code>arrange()</code></li>
 </ul></li>
-<li><p>Yikes. Piping makes thigns way easier to read!</p></li>
+<li><p>Yikes. Piping makes things way easier to read!</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>Lahman<span class="sc">::</span>Batting <span class="sc">|&gt;</span> <span class="co">#read the pipe as "then"</span></span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(teamID <span class="sc">==</span> <span class="st">"PIT"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerID, G, X2B) <span class="sc">|&gt;</span> </span>
-<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(X2B)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>Lahman<span class="sc">::</span>Batting <span class="sc">|&gt;</span> <span class="co">#read the pipe as "then"</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(teamID <span class="sc">==</span> <span class="st">"PIT"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerID, G, X2B) <span class="sc">|&gt;</span> </span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(X2B)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4,920 x 3
    playerID      G   X2B
@@ -1146,6 +1142,7 @@ Attaching package: 'dplyr'</code></pre>
 <li><p><code>stop()</code> and <code>switch()</code></p></li>
 <li><p>infix functions</p></li>
 </ul>
+<p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
 
 </section>
@@ -1579,8 +1576,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Notes/15-Packages_Landing.html" class="pagination-link" aria-label="Course Goals &amp; Other Resources">
-        <span class="nav-page-text">Course Goals &amp; Other Resources</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../Notes/15-Packages_Landing.html" class="pagination-link" aria-label="Packages">
+        <span class="nav-page-text">Packages</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

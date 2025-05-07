@@ -7,9 +7,11 @@ editor_options:
   chunk_output_type: inline
 ---
 
-This second week we'll go through a systematic view of the most common data objects you'll see in `R`. We'll see how to access these objects using `BaseR` commands. 
+# Week 2
 
-## Additional Readings/Learning Materials
+This second week we'll go through a systematic view of the most common data objects you'll see in `R`. We'll see how to access these objects using `Base R` commands. 
+
+## Week 2 Additional Readings/Learning Materials
 
 Common Data Objects in R
 

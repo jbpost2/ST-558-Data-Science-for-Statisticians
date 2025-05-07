@@ -1,7 +1,7 @@
 ---
 title: "Control Flow: Loops"
 format: html
-editor: visual
+editor: source
 toc: TRUE
 editor_options: 
   chunk_output_type: inline
@@ -13,11 +13,11 @@ We want to look at how to control the execution of our code. The three main thin
 -   looping to repeatedly execute code
 -   vectorized functions for improved efficiency
 
-This section looks at how to do loops (repeated execution of code) in R.
+This section looks at how to do loops (repeated execution of code) in `R`.
 
-## Looping in R
+## Looping in `R`
 
-There are a number of ways to do looping in R
+There are a number of ways to do looping in `R`
 
 -   `for()`
 -   `while()`
@@ -37,8 +37,8 @@ for(index in values){
 
 where
 
--   index defines 'counter' or variable that varies
--   'values' define which values index takes on
+-   index defines a 'counter' or variable that varies
+-   'values' define which values the index takes on
 
 For example, our index below is `i` and the values it can take on are the integers from 1 to 10 (`1:10`)
 
@@ -69,11 +69,11 @@ data <- runif(5)
 
 "The (#ed) data point is (# from data vector)."
 
--   To put character strings together with other R objects (which will be coerced to strings) we can use the `paste()` function. Checking the help we see:
+-   To put character strings together with other `R` objects (which will be coerced to strings) we can use the `paste()` function. Checking the help we see:
 
 `paste (..., sep = " ", collapse = NULL, recycle0 = FALSE)`
 
-where `...` 'is one or more R objects, to be converted to character vectors.' and the `sep =` argument determines the value by which to separate these objects.
+where `...` 'is one or more `R` objects, to be converted to character vectors.' and the `sep =` argument determines the value by which to separate these objects.
 
 ```{r}
 paste("The ", words[2], " data point is ", data[2], ".", sep = "&")
@@ -101,7 +101,7 @@ A more useful example would be finding summary statistics about different numeri
 
     -   You may need to run `install.packages("Lahman")` once on your machine before you can run this code
 
-```{r}
+```{r warning = FALSE, message = FALSE}
 library(Lahman)
 my_batting <- Batting[, c("playerID", "teamID", "G", "AB", "R", "H", "X2B", "X3B", "HR")]
 head(my_batting)
@@ -171,7 +171,7 @@ summary_df
 
 ### While Loops
 
--   Should know about these too!
+-   These provide an alternative way to loop when we don't necessarily know how many iterations to do before we start. 
 
 ```{r, eval = FALSE}
 while(cond) {
@@ -209,6 +209,9 @@ Please pop this video out and watch it in the full panopto player!
 ```{=html}
 <iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=a87e6ae2-1bc7-4b6c-9020-b1710155c319&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="12 - Loops" ></iframe>
 ```
+
+- <a href = "https://github.com/jbpost2/My_first_repo" target = "_blank">Link to repo with files from video</a>
+
 ### Recap!
 
 -   Loops provide a mechanism to run the same code repeatedly
@@ -222,3 +225,5 @@ for(index in values){
 -   index is the variable that changes during each iteration
 
 -   values are the values the index takes on
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!
