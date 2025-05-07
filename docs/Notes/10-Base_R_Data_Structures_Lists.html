@@ -589,7 +589,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5      5      e
 
 [[2]]
-[1] -0.5758660  1.3193494  0.7480062 -0.5117647
+[1] -0.76536059  1.33282320  1.01177137  0.09618249
 
 [[3]]
 [1] "!" "?"</code></pre>
@@ -611,7 +611,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5      5      e
 
 $normVals
-[1] -1.2520884 -0.3417661 -1.1985552  0.7606399
+[1]  1.1854241  1.3727692 -0.1642471  1.4045185
 
 $punctuation
 [1] "!" "?"</code></pre>
@@ -628,7 +628,7 @@ $punctuation
  $ my_data_frame:'data.frame':  5 obs. of  2 variables:
   ..$ number: int [1:5] 1 2 3 4 5
   ..$ letter: chr [1:5] "a" "b" "c" "d" ...
- $ normVals     : num [1:4] -1.252 -0.342 -1.199 0.761
+ $ normVals     : num [1:4] 1.185 1.373 -0.164 1.405
  $ punctuation  : chr [1:2] "!" "?"</code></pre>
 </div>
 </div>
@@ -667,7 +667,7 @@ $punctuation
 5      5      e
 
 $normVals
-[1] -1.2520884 -0.3417661 -1.1985552  0.7606399
+[1]  1.1854241  1.3727692 -0.1642471  1.4045185
 
 $punctuation
 [1] "!" "?"</code></pre>
@@ -677,7 +677,7 @@ $punctuation
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$normVals
-[1] -1.2520884 -0.3417661 -1.1985552  0.7606399
+[1]  1.1854241  1.3727692 -0.1642471  1.4045185
 
 $punctuation
 [1] "!" "?"</code></pre>
@@ -739,13 +739,13 @@ $punctuation
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -1.2520884 -0.3417661 -1.1985552  0.7606399</code></pre>
+<pre><code>[1]  1.1854241  1.3727692 -0.1642471  1.4045185</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="dv">2</span>]][<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -1.1985552  0.7606399</code></pre>
+<pre><code>[1] -0.1642471  1.4045185</code></pre>
 </div>
 </div>
 <ul>
@@ -758,14 +758,14 @@ $punctuation
  $ my_data_frame:'data.frame':  5 obs. of  2 variables:
   ..$ number: int [1:5] 1 2 3 4 5
   ..$ letter: chr [1:5] "a" "b" "c" "d" ...
- $ normVals     : num [1:4] -1.252 -0.342 -1.199 0.761
+ $ normVals     : num [1:4] 1.185 1.373 -0.164 1.405
  $ punctuation  : chr [1:2] "!" "?"</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>normVals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -1.2520884 -0.3417661 -1.1985552  0.7606399</code></pre>
+<pre><code>[1]  1.1854241  1.3727692 -0.1642471  1.4045185</code></pre>
 </div>
 </div>
 <ul>
@@ -809,7 +809,7 @@ $punctuation
  $ my_data_frame:'data.frame':  5 obs. of  2 variables:
   ..$ number: int [1:5] 1 2 3 4 5
   ..$ letter: chr [1:5] "a" "b" "c" "d" ...
- $ normVals     : num [1:4] -1.252 -0.342 -1.199 0.761
+ $ normVals     : num [1:4] 1.185 1.373 -0.164 1.405
  $ punctuation  : chr [1:2] "!" "?"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.list</span>(my_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
