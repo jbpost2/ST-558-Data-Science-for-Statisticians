@@ -21,8 +21,8 @@ project:
     - Notes/12-Control_Flow_Loops.qmd
     - Notes/13-Control_Flow_Vectorized_Functions.qmd
     - Notes/14-Writing_Functions.qmd
+    - Notes/14_5-Week3_4.qmd
     - Notes/15-Packages_Landing.qmd
-    - Notes/15_5-Week3_4.qmd
     - Notes/16-Tidyverse_Essentials.qmd
     - Notes/17-Reading_Delimited_Data.qmd
     - Notes/18-Reading_Excel_Data.qmd
@@ -75,10 +75,10 @@ website:
           - Notes/12-Control_Flow_Loops.qmd
           - Notes/13-Control_Flow_Vectorized_Functions.qmd
           - Notes/14-Writing_Functions.qmd
-          - Notes/15-Packages_Landing.qmd
       - section: "Topic 2: Tidyverse & EDA"
         contents:
-          - Notes/15_5-Week3_4.qmd
+          - Notes/14_5-Week3_4.qmd
+          - Notes/15-Packages_Landing.qmd
           - Notes/16-Tidyverse_Essentials.qmd
           - Notes/17-Reading_Delimited_Data.qmd
           - Notes/18-Reading_Excel_Data.qmd
