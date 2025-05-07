@@ -263,8 +263,11 @@ window.Quarto = {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">Notes/06_5-Week2_3.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/06_5-Week1_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 2 Overview</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/07-Base_R_Data_Structures_Vectors.html" class="sidebar-item-text sidebar-link">
@@ -292,7 +295,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/10_5-Week2_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 3</span></a>
+ <span class="menu-text">Week 3 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -339,7 +342,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/15_5-Week3_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 4</span></a>
+ <span class="menu-text">Week 4 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -584,9 +587,9 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
                                        expr    min      lq     mean  median
- colMeans(my_numeric_batting, na.rm = TRUE) 5.7236 6.22805 8.169996 6.92555
-     uq     max neval
- 8.6254 18.6001   100</code></pre>
+ colMeans(my_numeric_batting, na.rm = TRUE) 5.0482 5.91105 7.845746 7.19375
+      uq     max neval
+ 8.31205 15.2254   100</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -594,9 +597,9 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
                                                                 expr     min
- for (i in 1:17) {     mean(my_numeric_batting[, i], na.rm = TRUE) } 17.8247
-       lq     mean   median     uq     max neval
- 24.50255 26.95935 26.72495 29.413 63.4474   100</code></pre>
+ for (i in 1:17) {     mean(my_numeric_batting[, i], na.rm = TRUE) } 15.1616
+      lq     mean  median       uq     max neval
+ 21.4422 24.28093 23.7144 26.36425 61.0298   100</code></pre>
 </div>
 </div>
 </section>
@@ -723,16 +726,16 @@ window.Quarto = {
 <pre><code>Unit: microseconds
                                                                                                                                                                                                                                                                                                                                  expr
  for (i in seq_len(nrow(airquality))) {     if (airquality$Wind[i] &gt;= 15) {         "HighWind"     }     else if (airquality$Wind[i] &gt;= 10) {         "Windy"     }     else if (airquality$Wind[i] &gt;= 6) {         "LightWind"     }     else if (airquality$Wind[i] &gt;= 0) {         "Calm"     }     else {         "Error"     } }
-    min     lq     mean  median     uq     max neval
- 5505.8 6027.4 8050.356 6889.25 9522.6 14987.6   100</code></pre>
+  min     lq     mean  median       uq   max neval
+ 6142 7150.4 8971.905 8905.35 10488.15 13193   100</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>vectorTime</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
                                                                                                                                                                                   expr
  ifelse(airquality$Wind &gt;= 15, "HighWind", ifelse(airquality$Wind &gt;=      10, "Windy", ifelse(airquality$Wind &gt;= 6, "LightWind", ifelse(airquality$Wind &gt;=      0, "Calm", "Error"))))
-   min    lq    mean median     uq   max neval
- 147.5 161.5 235.388  239.5 301.75 469.8   100</code></pre>
+   min  lq    mean median     uq   max neval
+ 150.9 164 252.829  286.4 297.45 650.8   100</code></pre>
 </div>
 </div>
 <p><strong>Note:</strong> There is an <code>if_else()</code> function from the <code>dplry</code> package. This has more restrictions than <code>ifelse()</code> but otherwise is pretty similar.</p>

@@ -1,5 +1,5 @@
 ---
-title: "Week 3"
+title: "Week 3 Overview"
 format: html
 toc: TRUE
 editor: source
@@ -8,8 +8,6 @@ editor_options:
 ---
 
 This wraps up the content for week 2. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your homework assignment for this week.
-
-# Week 3
 
 Hopefully, you feel like you have an idea about programming in R. We've learned about the idea of R objects and how to investigate an R object via
 

@@ -1,5 +1,5 @@
 ---
-title: "Week 4"
+title: "Week 4 Overview"
 format: html
 toc: TRUE
 editor: source
@@ -9,16 +9,16 @@ editor_options:
 
 This wraps up the content for week 3. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your homework assignment for this week.
 
-# Week 4
+We are now ready to really look at bringing data in and how to handle that data more seamlessly. We'll look at working within the `tidyverse`. This is a suite of packages that all work together and allow you to read in data and do most common data manipulations.
 
 ## Week 4 Additional Readings/Learning Materials
 
 ### Manipulating Data
 
-- Chapters 3, 4, and 5 of R 4 Data Science (opens in new window) (LO 4.1, 4.2, 4.4, 4.5, 4.6)
-- (Optional) R Packages book (opens in new window) (LO 3.5, 4.4)
-- (Optional) List of CRAN approved packages (opens in new window) (LO 3.5)
-- (Optional) List of useful R packages (opens in new window) (LO 4.4)
+- <a href="https://r4ds.hadley.nz/data-transform" target="_blank">Chapters 3, 4, and 5 of R 4 Data Science</a>
+- (Optional) <a href="https://r-pkgs.org/" target="_blank">R Packages book</a>
+- (Optional) <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html" target="_blank">List of CRAN approved packages</a>
+- (Optional) <a href="https://support.posit.co/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages" target="_blank"List of useful R packages</a>
   
 ### Reading Data
 

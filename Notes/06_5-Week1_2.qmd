@@ -1,5 +1,5 @@
 ---
-title: "Week 2"
+title: "Week 2 Overview"
 format: html
 toc: TRUE
 editor: source
@@ -9,7 +9,6 @@ editor_options:
 
 This wraps up the content for week 1. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your homework assignment for this week.
 
-# Week 2
 
 This second week we'll go through a systematic view of the most common data objects you'll see in `R`. We'll see how to access these objects using `Base R` commands. 
 

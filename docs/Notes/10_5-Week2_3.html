@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-05-07">
 
-<title>Week 3 – ST 558 Data Science for Statisticians (R)</title>
+<title>Week 3 Overview – ST 558 Data Science for Statisticians (R)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -122,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/10_5-Week2_3.html">Week 3</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/10_5-Week2_3.html">Week 3 Overview</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -200,8 +200,11 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">Notes/06_5-Week2_3.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/06_5-Week1_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 2 Overview</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/07-Base_R_Data_Structures_Vectors.html" class="sidebar-item-text sidebar-link">
@@ -229,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/10_5-Week2_3.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Week 3</span></a>
+ <span class="menu-text">Week 3 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -276,7 +279,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/15_5-Week3_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 4</span></a>
+ <span class="menu-text">Week 4 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -398,9 +401,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-3" id="toc-week-3" class="nav-link active" data-scroll-target="#week-3">Week 3</a>
-  <ul class="collapse">
-  <li><a href="#week-3-additional-readingslearning-materials" id="toc-week-3-additional-readingslearning-materials" class="nav-link" data-scroll-target="#week-3-additional-readingslearning-materials">Week 3 Additional Readings/Learning Materials</a>
+  <li><a href="#week-3-additional-readingslearning-materials" id="toc-week-3-additional-readingslearning-materials" class="nav-link active" data-scroll-target="#week-3-additional-readingslearning-materials">Week 3 Additional Readings/Learning Materials</a>
   <ul class="collapse">
   <li><a href="#writing-functions" id="toc-writing-functions" class="nav-link" data-scroll-target="#writing-functions">Writing Functions</a></li>
   <li><a href="#loops-and-vectorized-functions" id="toc-loops-and-vectorized-functions" class="nav-link" data-scroll-target="#loops-and-vectorized-functions">Loops and Vectorized Functions<br></a></li>
@@ -411,16 +412,15 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#for-loops-and-vectorized-functions" id="toc-for-loops-and-vectorized-functions" class="nav-link" data-scroll-target="#for-loops-and-vectorized-functions">For Loops and Vectorized Functions</a></li>
   <li><a href="#writing-functions-1" id="toc-writing-functions-1" class="nav-link" data-scroll-target="#writing-functions-1">Writing Functions</a></li>
   </ul></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/10_5-Week2_3.html">Week 3</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/10_5-Week2_3.html">Week 3 Overview</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Week 3</h1>
+<h1 class="title">Week 3 Overview</h1>
 </div>
 
 
@@ -444,8 +444,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>This wraps up the content for week 2. Now we require some practice! You should head back to our <a href="https://wolfware.ncsu.edu/" target="_blank">Moodle site</a> to check out your homework assignment for this week.</p>
-<section id="week-3" class="level1">
-<h1>Week 3</h1>
 <p>Hopefully, you feel like you have an idea about programming in R. We’ve learned about the idea of R objects and how to investigate an R object via</p>
 <ul>
 <li><code>class()</code></li>
@@ -531,7 +529,6 @@ c.&nbsp;&nbsp;&nbsp; create a custom infix function</code></pre>
 <p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
 
-</section>
 </section>
 </section>
 

@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-05-07">
 
-<title>Week 2 – ST 558 Data Science for Statisticians (R)</title>
+<title>Week 2 Overview – ST 558 Data Science for Statisticians (R)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,6 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../Notes/07-Base_R_Data_Structures_Vectors.html" rel="next">
+<link href="../Notes/06-Quarto.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -120,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Week 2</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/06_5-Week1_2.html">Week 2 Overview</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -148,13 +150,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Topic 1: Data Science &amp; R Basics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/00-Welcome_to_the_Course.html" class="sidebar-item-text sidebar-link">
@@ -198,8 +200,11 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">Notes/06_5-Week2_3.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/06_5-Week1_2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Week 2 Overview</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/07-Base_R_Data_Structures_Vectors.html" class="sidebar-item-text sidebar-link">
@@ -227,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/10_5-Week2_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 3</span></a>
+ <span class="menu-text">Week 3 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -274,7 +279,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/15_5-Week3_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 4</span></a>
+ <span class="menu-text">Week 4 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -396,13 +401,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-2" id="toc-week-2" class="nav-link active" data-scroll-target="#week-2">Week 2</a>
-  <ul class="collapse">
-  <li><a href="#week-2-additional-readingslearning-materials" id="toc-week-2-additional-readingslearning-materials" class="nav-link" data-scroll-target="#week-2-additional-readingslearning-materials">Week 2 Additional Readings/Learning Materials</a></li>
+  <li><a href="#week-2-additional-readingslearning-materials" id="toc-week-2-additional-readingslearning-materials" class="nav-link active" data-scroll-target="#week-2-additional-readingslearning-materials">Week 2 Additional Readings/Learning Materials</a></li>
   <li><a href="#week-2-learning-objectives" id="toc-week-2-learning-objectives" class="nav-link" data-scroll-target="#week-2-learning-objectives">Week 2 Learning Objectives</a>
   <ul class="collapse">
   <li><a href="#r-basics" id="toc-r-basics" class="nav-link" data-scroll-target="#r-basics">R Basics</a></li>
-  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -410,9 +412,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/06_5-Week1_2.html">Week 2 Overview</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Week 2</h1>
+<h1 class="title">Week 2 Overview</h1>
 </div>
 
 
@@ -436,8 +438,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>This wraps up the content for week 1. Now we require some practice! You should head back to our <a href="https://wolfware.ncsu.edu/" target="_blank">Moodle site</a> to check out your homework assignment for this week.</p>
-<section id="week-2" class="level1">
-<h1>Week 2</h1>
 <p>This second week we’ll go through a systematic view of the most common data objects you’ll see in <code>R</code>. We’ll see how to access these objects using <code>Base R</code> commands.&nbsp;</p>
 <section id="week-2-additional-readingslearning-materials" class="level2">
 <h2 class="anchored" data-anchor-id="week-2-additional-readingslearning-materials">Week 2 Additional Readings/Learning Materials</h2>
@@ -462,7 +462,6 @@ ul.task-list li input[type="checkbox"] {
 <p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
 
-</section>
 </section>
 </section>
 
@@ -887,6 +886,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../Notes/06-Quarto.html" class="pagination-link" aria-label="Quarto Basics">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Quarto Basics</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../Notes/07-Base_R_Data_Structures_Vectors.html" class="pagination-link" aria-label="Base R Data Structures: Vectors">
+        <span class="nav-page-text">Base R Data Structures: Vectors</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

@@ -65,7 +65,7 @@ website:
           - Notes/04-R_Basics_Landing.qmd
           - Notes/05-R_Projects_Connecting_with_GitHub.qmd
           - Notes/06-Quarto.qmd
-          - Notes/06_5-Week2_3.qmd
+          - Notes/06_5-Week1_2.qmd
           - Notes/07-Base_R_Data_Structures_Vectors.qmd
           - Notes/08-Base_R_Data_Structures_Matrices.qmd
           - Notes/09-Base_R_Data_Structures_Data_Frames.qmd
