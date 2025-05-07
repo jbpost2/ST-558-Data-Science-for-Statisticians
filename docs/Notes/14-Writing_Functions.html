@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../Notes/14_5-Week3_4.html" rel="next">
+<link href="../Notes/14_5-Week3_4.qmd" rel="next">
 <link href="../Notes/13-Control_Flow_Vectorized_Functions.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -185,7 +185,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/14-Writing_Functions.html">Writing Functions</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.qmd">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/14-Writing_Functions.html">Writing Functions</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -220,12 +220,6 @@ window.Quarto = {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Notes/00-Welcome_to_the_Course.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome to the Course!</span></a>
-  </div>
-</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/01-What_is_Data_Science.html" class="sidebar-item-text sidebar-link">
@@ -264,12 +258,6 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/06_5-Week1_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 2 Overview</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../Notes/07-Base_R_Data_Structures_Vectors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Base R Data Structures: Vectors</span></a>
   </div>
@@ -290,12 +278,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../Notes/10-Base_R_Data_Structures_Lists.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Base R Data Structures: Lists</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Notes/10_5-Week2_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 3 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -333,12 +315,6 @@ window.Quarto = {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Notes/14_5-Week3_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 4 Overview</span></a>
-  </div>
-</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link">
@@ -498,7 +474,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/14-Writing_Functions.html">Writing Functions</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.qmd">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/14-Writing_Functions.html">Writing Functions</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Writing Functions</h1>
 </div>
@@ -564,7 +540,7 @@ window.Quarto = {
         stopifnot(is.atomic(y))
     .Call(C_cov, x, y, na.method, FALSE)
 }
-&lt;bytecode: 0x0000022e3aa957d0&gt;
+&lt;bytecode: 0x000001b77689d4c0&gt;
 &lt;environment: namespace:stats&gt;</code></pre>
 </div>
 </div>
@@ -595,7 +571,7 @@ window.Quarto = {
     else names(z) &lt;- dimnames(x)[[dims + 1L]]
     z
 }
-&lt;bytecode: 0x0000022e42d7d458&gt;
+&lt;bytecode: 0x000001b774dbe458&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 </div>
@@ -608,7 +584,7 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>function (x, ...) 
 UseMethod("mean")
-&lt;bytecode: 0x0000022e3e743810&gt;
+&lt;bytecode: 0x000001b77a58a810&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 </div>
@@ -640,7 +616,7 @@ UseMethod("mean")
     }
     .Internal(mean(x))
 }
-&lt;bytecode: 0x0000022e4325ae28&gt;
+&lt;bytecode: 0x000001b775291e28&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 </div>
@@ -1603,8 +1579,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Notes/14_5-Week3_4.html" class="pagination-link" aria-label="Week 4 Overview">
-        <span class="nav-page-text">Week 4 Overview</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../Notes/14_5-Week3_4.qmd" class="pagination-link" aria-label="">
+        <span class="nav-page-text"></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -156,7 +156,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/08-Base_R_Data_Structures_Matrices.html">Base R Data Structures: Matrices</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.qmd">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/08-Base_R_Data_Structures_Matrices.html">Base R Data Structures: Matrices</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -191,12 +191,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Notes/00-Welcome_to_the_Course.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome to the Course!</span></a>
-  </div>
-</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/01-What_is_Data_Science.html" class="sidebar-item-text sidebar-link">
@@ -235,12 +229,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/06_5-Week1_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 2 Overview</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../Notes/07-Base_R_Data_Structures_Vectors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Base R Data Structures: Vectors</span></a>
   </div>
@@ -261,12 +249,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../Notes/10-Base_R_Data_Structures_Lists.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Base R Data Structures: Lists</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Notes/10_5-Week2_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 3 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -304,12 +286,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Notes/14_5-Week3_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 4 Overview</span></a>
-  </div>
-</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link">
@@ -472,7 +448,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/08-Base_R_Data_Structures_Matrices.html">Base R Data Structures: Matrices</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.qmd">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/08-Base_R_Data_Structures_Matrices.html">Base R Data Structures: Matrices</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Base R Data Structures: Matrices</h1>
 </div>
@@ -846,17 +822,17 @@ NULL
 <span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">c</span>(<span class="st">"Uniform"</span>, <span class="st">"Normal"</span>, <span class="st">"Gamma"</span>)))</span>
 <span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>my_mat3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      Uniform     Normal      Gamma
-1  0.83456213  1.3749034 2.45805692
-2  0.09298092 -0.4792693 0.43255200
-3  0.73752807  0.2906862 0.09111590
-4  0.08800579  0.1429692 0.14491743
-5  0.64743034  0.9715875 0.78401762
-6  0.68730852  0.6659250 0.06204756
-7  0.75423149  0.2325662 1.38905216
-8  0.22287952  1.6531183 0.32005742
-9  0.12582851  0.7776889 0.73225231
-10 0.21209531 -0.1706003 1.41142341</code></pre>
+<pre><code>      Uniform     Normal       Gamma
+1  0.25856240 -1.2883573 2.031684036
+2  0.28116761 -1.7308228 0.212013233
+3  0.08941339 -0.8814382 0.292763615
+4  0.94556584 -0.9666934 0.403481876
+5  0.35237266  2.2862158 2.320185921
+6  0.02273926 -0.4104967 0.005914036
+7  0.88881550 -1.6356587 1.023639335
+8  0.70552420 -0.2930662 1.568114416
+9  0.03773039  0.3085014 0.307124300
+10 0.83095046  0.7591784 0.889999138</code></pre>
 </div>
 </div>
 </section>

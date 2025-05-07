@@ -1,0 +1,86 @@
+---
+title: "Welcome to the Course!"
+format: html
+editor: visual
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+## Syllabus and Other Useful Information
+
+You can find the syllabus, course schedule, how to install `R` and `RStudio`, and other administrative documents on the <a href = "https://wolfware.ncsu.edu/courses/my-wolfware/" target = "_blank">Moodle site for the course</a>.
+
+## Week 1 Additional Readings & Learning Materials
+
+-   `R` Projects and General `R` 
+
+    -   <a href="https://r4ds.hadley.nz/workflow-scripts.html#projects"
+            target="_blank" rel="noopener">Chapter 6 from *R for Data Science*</a>
+
+-   `Quarto` readings:
+
+    -   <a href="https://r4ds.hadley.nz/quarto" target="_blank"
+            rel="noopener">Chapters 28 & 29 from *R for Data Science*</a>
+
+    -   (Optional) <a href="https://quarto.org/" target="_blank"
+            rel="noopener">Quarto documentation</a>. Specifically, the <a
+            href="https://quarto.org/docs/computations/r.html" target="_blank"
+            rel="noopener">using `R` portion</a>)
+
+    -   Quarto is the next generation of R Markdown. It will run most .Rmd (R markdown) files. Therefore, this <a
+            href="https://bookdown.org/yihui/rmarkdown/" target="_blank"
+            rel="noopener">awesome `R` Markdown book</a> is really useful.
+
+-   `Git`/`GitHub`
+
+    -   <a
+            href="https://docs.github.com/en/get-started/start-your-journey/hello-world"
+            target="_blank" rel="noopener">github's hello-world</a>
+    -   <a href="https://happygitwithr.com/install-intro" target="_blank"
+            rel="noopener">Chapter 1 and readings of your choice from *Happy Git and GitHub for the useR* (formerly happygitwithR)</a>
+
+## Week 1 Learning Objectives
+
+Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)
+
+### Data Science Ideas
+
+1.  list the common duties of a data scientist (CO 5, 6)
+
+2.  create a github repository (CO 6)
+
+3.  fork, edit, and push changes to a repository (CO 6)
+
+4.  connect R Studio with github (CO 6)
+
+    -   push, pull, fork, etc. using the terminal in R or the git tab
+
+### R Basics
+
+1.  utilize R as a calculator (CO 1)
+
+2.  describe the term object oriented program and the general idea of methods (CO 1)
+
+    -   store objects and change their attributes
+
+3.  describe the idea of an R package (CO 3)
+
+4.  describe the usefulness of R projects (CO 6)
+
+    -   save and load an R project
+    -   explain working directories, change a working directory, and specify paths to files
+
+### Quarto
+
+1.  list and describe the three major parts of a quarto document (YAML header, code chunks, and plain text with formatting syntax) (CO 1, 6) a. outline the idea of a markdown or markup language
+
+2.  create a quarto document (CO 1, 3, 6) a. write plain text in quarto markdown syntax b. create and change options for R code chunks c. explain what global chunk options are and how to set them d. add functionality (such as tables of contents) to outputs
+
+3.  describe the term digital notebook (CO 6) a. explain how R studio can be used as a notebook environment b. run code in the markdown editor
+
+4.  produce common types of final documents using quarto (CO 1, 3, 6) a. utilize both code, menus, and shortcuts to create a document type
+
+**There are also arrows at the bottom of each page to navigate to the previous page or the next page in the course!**
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!
