@@ -34,13 +34,13 @@ Note: The `\` character is called an *escape* character. This allows us to use d
 For example (cat is kind of like a different version of a print function):
 
 ```{r}
-cat("Hi my names is Justin. I work at NC State.")
+cat("Hi my name is Justin. I work at NC State.")
 ```
 
 with the `\n` in there we get a line break:
 
 ```{r}
-cat("Hi my names is Justin.\nI work at NC State.")
+cat("Hi my name is Justin.\nI work at NC State.")
 ```
 
 Therefore, when we specify a path to a file as a string, if we try to use a `\` we actually need two `\\` so that R knows we actually want a `\`! Confusing I know. But, we can just replace `\` with `/` in paths to files to avoid that.
@@ -70,17 +70,17 @@ setwd("C:/Users/jbpost2/Documents/Repos/ST-558/datasets/")
 
 -   We can also set it via menus:
 
-```{r, out.width = "800px",echo=FALSE}
+```{r, out.width = "800px",echo=FALSE, fig.alt = "Setting the working directory can be done by using the menus in R Studio. Choose 'session' followed by 'set working directory'."}
 knitr::include_graphics("img/setwd.png")
 ```
 
--   Ok, but our goal is to share our code with others so they can run it. We could say to our collaborators, "just to update that one line of code to change your working directory and make sure to have all the files in the same directory that we use for this analysis." Clearly, that isn't an efficient way to work....
+-   Ok, but our goal is to share our code with others so they can run it. We could say to our collaborators, "just to update that one line of code to change your working directory and make sure to have all the files in the same directory that we use for this analysis." Clearly, that leaves something to be desired....
 
 -   Instead we can use `R` projects!
 
 ### Using an `R` Project
 
--   As we often have many files associated with each analysis, it can make keeping analysis separate difficult. The project feature in RStudio is made to alleviate this!
+-   As we often have many files associated with each analysis, it can make keeping analyses separate difficult. The project feature in RStudio is made to alleviate this!
 
 R projects provide a straightforward way to divide your work into multiple contexts. Each with their own:
 
@@ -91,7 +91,7 @@ R projects provide a straightforward way to divide your work into multiple conte
 
 They are very easy to create!
 
-```{r project.png, out.width = "600px",echo=FALSE}
+```{r project.png, out.width = "600px",echo=FALSE, fig.alt = "An R project can be created using the the menus in R Studio. Choose 'file' followed by 'new project'."}
 knitr::include_graphics("img/project.png")
 ```
 
@@ -100,12 +100,14 @@ knitr::include_graphics("img/project.png")
     -   This is important! This means if we can share an entire folder (with subfolders and everything else in the same *relative* place), another user can pick up an R project and the paths to things should work! (Assuming we've used relative paths for everything.)
 
     -   That's exactly how we'll use `R` projects with github! Github is a remote folder (that can have subfolders and what-not). If we associate an `R` project with that folder and upload that, another user can download it and open that `R` project, allowing them to work seamlessly!
+    
+    - Caveat - all R packages and versions of `R` packages are not necessarily going to be the same on someone else's computer. There are ways to require certain versions (see <a href = "https://rstudio.github.io/renv/articles/renv.html" target = "_blank">`renv` files</a>) but we'll leave that for another time.
 
 -   You might create a new project for materials related to this course or for each homework assignment etc. It is up to you how much clarity you want on a specific folder/project you are working on.
 
 -   Note you can quickly switch between projects in the upper right hand of `RStudio` or via the File menu.
 
-```{r out.width = "300px",echo=FALSE, fig.align='right'}
+```{r out.width = "300px",echo=FALSE, fig.align='right', fig.alt = "An icon with a project name is available in the top right of the R Studio window. This can be selected to easily switch between R projects."}
 knitr::include_graphics("img/project_switch.png")
 ```
 
@@ -133,19 +135,18 @@ Let's go through some explicit steps to do this! **Make sure you've downloaded `
 
 ### Cloning a Repo & Working in `RStudio`
 
-We don't want to use github.com web interface as that is inefficient.
+We don't want to use the `github.com` web interface as that is kind of inefficient.
 
--   We can `clone` the repo (i.e. download the entire repo locally).
+-   One option is to `clone` the repo (i.e. download the entire repo locally).
 
--   Repo main page has a green button. Click on that.
-
+    -   Repo main page has a green button. Click on that.
     -   Can download a zip and unzip it to an appropriate folder
 
-```{r out.width = "600px",echo=FALSE}
+```{r out.width = "600px",echo=FALSE, fig.alt = "The '<> Code' button on the github repo website can be used to download the entire repo."}
 knitr::include_graphics("img/clone_repo_button.png")
 ```
 
--   Better to clone the repo via the URL and use `RStudio`! Open `RStudio`,
+-   A better option is to clone the repo via the URL and use `RStudio`! Open `RStudio`,
 
     -   go to File --\> new project
     -   select from version control
@@ -154,27 +155,23 @@ knitr::include_graphics("img/clone_repo_button.png")
     -   select a directory to save this repo in
     -   hit create project!
 
--   Now have the files locally and this associates an `R` project with a `Git` repo!
+-   Now you have the files locally and this associates an `R` project with a `Git` repo!
 
--   Try it with my repo here: `https://github.com/jbpost2/ZScores.git`
-
-    -   You won't have access to push files to this repository though!
-
-Try this out on your own! Create your own repo on `GitHub`. Then try to download it as an `R` project.
+Try this out on your own! Create your own repo on `GitHub`. Then try to download it as an `R` project. 
 
 ### Communication Between `GitHub` and `RStudio`
 
 We need to make sure `RStudio` and github can communicate. This can sometimes be tough to get working! Do the following:
 
--   Modify a file in the github repo you just created and downloaded (the one you own).
+-   Modify a file in the github repo you just created and downloaded.
 -   Go to the `Git` tab in your `Environment` area
--   You should see any files with changes
--   Can `add` files that you'd like to `commit` up to the remote repo
+-   You should see any files where you've made changes
+-   You can `add` files that you'd like to `commit` up to the remote repo
 -   Click on all of the boxes (equivalent to `git add -A` when using the command line) and click the `Commit` button
 -   A window pops up with a comparison of files. When satisfied, write a commit message in the box and click the `commit` button (equivalent to `git commit -m "message"` when using the command line)
 -   Hit close on that window
 -   Click the push button in the top right (equivalent to `git push` when using the command line)
--   You may be prompted to log-in in some way. If not, repo on gitub.com should show the changes!
+-   You may be prompted to log-in in some way. If successful, the repo on `gitub.com` should show the changes!
 
 ### Using the Command Line Interface (CLI)
 
@@ -183,9 +180,10 @@ When working by myself on a repo, I'm not worried about merge conflicts with oth
 -   Open the appropriate project in `RStudio`
 -   Go to the Terminal and type `git pull`
 -   Work... at a good spot for saving, back to the terminal
--   Type `git add -A` to add all files that have been modified
--   Type `git commit -m "Message"` to stage a commit
--   Type `git push` to push the local changes to the remote repo
+
+    -   Type `git add -A` to add all files that have been modified
+    -   Type `git commit -m "Message"` to stage a commit
+    -   Type `git push` to push the local changes to the remote repo
 
 ### Creating a Repo From an Existing `R` Project
 

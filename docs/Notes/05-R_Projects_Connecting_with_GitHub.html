@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-05-06">
+<meta name="dcterms.date" content="2025-05-07">
 
 <title>R projects and Connecting with Github – ST 558 Data Science for Statisticians (R)</title>
 <style>
@@ -448,7 +448,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-05-06</p>
+      <p class="date">2025-05-07</p>
     </div>
   </div>
   
@@ -484,16 +484,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Note: The <code>\</code> character is called an <em>escape</em> character. This allows us to use different symbols and things when we are working within a <strong>string</strong> of text. For instance, <code>\n</code> is a line break. The <code>\</code> tells <code>R</code> to interpret the next character(s) in a different way than usual.</p>
 <p>For example (cat is kind of like a different version of a print function):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Hi my names is Justin. I work at NC State."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Hi my name is Justin. I work at NC State."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Hi my names is Justin. I work at NC State.</code></pre>
+<pre><code>Hi my name is Justin. I work at NC State.</code></pre>
 </div>
 </div>
 <p>with the <code>\n</code> in there we get a line break:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Hi my names is Justin.</span><span class="sc">\n</span><span class="st">I work at NC State."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Hi my name is Justin.</span><span class="sc">\n</span><span class="st">I work at NC State."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Hi my names is Justin.
+<pre><code>Hi my name is Justin.
 I work at NC State.</code></pre>
 </div>
 </div>
@@ -529,20 +529,20 @@ I work at NC State.</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="img/setwd.png" class="img-fluid figure-img" width="800"></p>
+<p><img src="img/setwd.png" class="img-fluid figure-img" alt="Setting the working directory can be done by using the menus in R Studio. Choose 'session' followed by 'set working directory'." width="800"></p>
 </figure>
 </div>
 </div>
 </div>
 <ul>
-<li><p>Ok, but our goal is to share our code with others so they can run it. We could say to our collaborators, “just to update that one line of code to change your working directory and make sure to have all the files in the same directory that we use for this analysis.” Clearly, that isn’t an efficient way to work….</p></li>
+<li><p>Ok, but our goal is to share our code with others so they can run it. We could say to our collaborators, “just to update that one line of code to change your working directory and make sure to have all the files in the same directory that we use for this analysis.” Clearly, that leaves something to be desired….</p></li>
 <li><p>Instead we can use <code>R</code> projects!</p></li>
 </ul>
 </section>
 <section id="using-an-r-project" class="level3">
 <h3 class="anchored" data-anchor-id="using-an-r-project">Using an <code>R</code> Project</h3>
 <ul>
-<li>As we often have many files associated with each analysis, it can make keeping analysis separate difficult. The project feature in RStudio is made to alleviate this!</li>
+<li>As we often have many files associated with each analysis, it can make keeping analyses separate difficult. The project feature in RStudio is made to alleviate this!</li>
 </ul>
 <p>R projects provide a straightforward way to divide your work into multiple contexts. Each with their own:</p>
 <ul>
@@ -556,7 +556,7 @@ I work at NC State.</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="img/project.png" class="img-fluid figure-img" width="600"></p>
+<p><img src="img/project.png" class="img-fluid figure-img" alt="An R project can be created using the the menus in R Studio. Choose 'file' followed by 'new project'." width="600"></p>
 </figure>
 </div>
 </div>
@@ -566,6 +566,7 @@ I work at NC State.</code></pre>
 <ul>
 <li><p>This is important! This means if we can share an entire folder (with subfolders and everything else in the same <em>relative</em> place), another user can pick up an R project and the paths to things should work! (Assuming we’ve used relative paths for everything.)</p></li>
 <li><p>That’s exactly how we’ll use <code>R</code> projects with github! Github is a remote folder (that can have subfolders and what-not). If we associate an <code>R</code> project with that folder and upload that, another user can download it and open that <code>R</code> project, allowing them to work seamlessly!</p></li>
+<li><p>Caveat - all R packages and versions of <code>R</code> packages are not necessarily going to be the same on someone else’s computer. There are ways to require certain versions (see <a href="https://rstudio.github.io/renv/articles/renv.html" target="_blank"><code>renv</code> files</a>) but we’ll leave that for another time.</p></li>
 </ul></li>
 <li><p>You might create a new project for materials related to this course or for each homework assignment etc. It is up to you how much clarity you want on a specific folder/project you are working on.</p></li>
 <li><p>Note you can quickly switch between projects in the upper right hand of <code>RStudio</code> or via the File menu.</p></li>
@@ -574,7 +575,7 @@ I work at NC State.</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-right">
 <figure class="figure">
-<p><img src="img/project_switch.png" class="img-fluid quarto-figure quarto-figure-right figure-img" width="300"></p>
+<p><img src="img/project_switch.png" class="img-fluid quarto-figure quarto-figure-right figure-img" alt="An icon with a project name is available in the top right of the R Studio window. This can be selected to easily switch between R projects." width="300"></p>
 </figure>
 </div>
 </div>

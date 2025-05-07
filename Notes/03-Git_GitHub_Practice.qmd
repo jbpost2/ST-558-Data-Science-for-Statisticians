@@ -8,15 +8,13 @@ editor_options:
 
 ## Getting Comfortable with `GitHub`
 
-Hopefully you now have some idea about the purpose of `Git`/`GitHub`. `GitHub` is an online hosting service for `Git` repositories. If you've never used `Git` and `GitHub` before it is really quite intimidating. We'll start small and build as we go through the semester! Now you should do some practice!
+Hopefully you now have some idea about the purpose of `Git`/`GitHub`. `GitHub` is an online hosting service for `Git` repositories. If you've never used `Git` and `GitHub` before it is really quite intimidating. We'll start small and build as we go through the semester! Now let's do some practice.
 
 - First, go to <a href="http://github.com" target="_blank" rel="noopener">github.com</a> and signup for a `GitHub` account (if you haven't already).
 
-- Once you have an account, <a href="https://guides.github.com/activities/hello-world/" target="_blank" rel="noopener">read this introduction to `GitHub`</a> here (we'll look at using `Git` and the command line shortly - for now we'll stick to the web editor).
+- Once you have an account, <a href="https://guides.github.com/activities/hello-world/" target="_blank" rel="noopener">read this introduction to `GitHub`</a> (we'll look at using `Git` and the command line shortly - for now we'll stick to the web editor).
 
-- Follow the steps to create your first repository and do some `Git` actions!
-
-Part of your first assignment will include creating a `GitHub` repo and corresponding webpage!
+    + Follow the steps in the article to create your first repository and do some `Git` actions!
 
 Once you've completed the above part. You should download `Git` to your computer.
 
@@ -32,7 +30,7 @@ Great, now try to work through <a href="https://happygitwithr.com/https-pat" tar
 
 - If you get stuck here, that's ok. Just move on! This part isn't really required right now but should be figured out soon so that you can start working seamlessly!
 - If stuck, there is a bit more material about `Git`/`GitHub`/`RStudio` this week. Check that out and then maybe come back here.
-- Set up a meeting with me if you can't figure this part out (no rush!).
+- Set up a meeting with me if you can't figure this part out soon!
 
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

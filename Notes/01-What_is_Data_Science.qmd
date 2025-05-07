@@ -8,8 +8,6 @@ editor_options:
 
 First, let's get some perspectives on what data science is, how statistics and computer science relate, and important items to consider when trying to understand data. To do so, we'll do some readings.
 
-In the weekly overview, there are a number of readings about the general idea of data science (placed here for convenience).
-
 - <a href="https://r4ds.hadley.nz/intro" target="_blank"
       rel="noopener">Introduction of R for Data Science</a>
 - <a href="https://scientistcafe.com/ids/introduction#introduction"
@@ -38,18 +36,6 @@ You'll write about these ideas as part of your first homework assignment! For no
 
 
 ## Additional Readings & Learning Materials
-
--   Data Science Ideas
-
-    -   <a href="https://r4ds.hadley.nz/intro" target="_blank"
-            rel="noopener">Introduction chapter from *`R` for Data Science*</a>
-    -   <a href="https://scientistcafe.com/ids/introduction#introduction"
-            target="_blank" rel="noopener">Chapters 1 and 2 of the *Practitioner's Guide to Data Science*</a>
-    -   <a
-            href="https://www.amstat.org/docs/default-source/amstat-documents/the-role-of-statistics-in-data-science-and-artificial-intelligence.pdf"
-            target="_blank" rel="noopener">The role of statistics in Data Science and Artificial Intelligence</a>
-    -   <a href="https://en.wikipedia.org/wiki/Data_science" target="_blank"
-            rel="noopener">Data Science wikipedia entry</a>
 
 -   `R` Projects and General `R` 
 
