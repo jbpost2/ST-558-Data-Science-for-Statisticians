@@ -13,7 +13,8 @@ output:
       ratio: "16:9"
     includes:
       in_header: "partials/header.html"
-editor_options: 
+    self_contained: yes
+editor_options:
   chunk_output_type: console
 ---
 

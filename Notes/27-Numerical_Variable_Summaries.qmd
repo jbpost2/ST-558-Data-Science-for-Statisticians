@@ -1,7 +1,7 @@
 ---
 title: "Numerical Variable Summaries"
 format: html
-editor: visual
+editor: source
 toc: TRUE
 editor_options: 
   chunk_output_type: console
@@ -26,7 +26,7 @@ As before, our goal is to describe the **distribution** of the variable. We talk
 
 First, let's read in the appendicitis data from the previous lecture.
 
-```{r}
+```{r, message= FALSE, warning = FALSE}
 library(tidyverse)
 library(readxl)
 app_data <- read_excel("data/app_data.xlsx", sheet = 1)
@@ -144,3 +144,5 @@ Great - we can do all our basic numerical summaries!
 ### Recap!
 
 We tend to describe the center and spread of a numeric variable's distribution. Often we want to compare across groups and that can be done with `group_by()`.
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

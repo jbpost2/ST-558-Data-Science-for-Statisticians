@@ -1,13 +1,13 @@
 ---
 title: "Creating Contingency Tables"
 format: html
-editor: visual
+editor: source
 toc: TRUE
 editor_options: 
   chunk_output_type: inline
 ---
 
-Now that we know how to get our raw data into R, we are ready to do the fun stuff - investigating our data!
+Now that we know how to get our raw data into `R`, we are ready to do the fun stuff - investigating our data!
 
 We discussed the main steps of an EDA and covered the most common data validation and basic manipulations for the data. The next few sets of notes dive into **how to find summarize our data**. Recall, how we summarize our data depends on the type of data we have!
 
@@ -28,7 +28,7 @@ To do so visually, we use bar plots.
 
 First, let's read in the appendicitis data from the previous lecture.
 
-```{r}
+```{r, warning= FALSE, message = FALSE}
 library(tidyverse)
 library(readxl)
 app_data <- read_excel("data/app_data.xlsx", sheet = 1)
@@ -45,9 +45,9 @@ Let's go!
 
 ### Contingency Tables
 
-We can use `BaseR` or the `tidyverse`.
+We can use `Base R` or the `tidyverse`.
 
-#### Via `BaseR`
+#### Via `Base R`
 
 Honestly, the easiest way to make contingency tables is through BaseR's `table()` function.
 
@@ -99,7 +99,7 @@ Nice! Things do get more complicated if we add in a third variable as it is toug
 table(app_data$SexF, app_data$DiagnosisF, app_data$SeverityF)
 ```
 
-If you look at the output you see `, , = complicated`. This is R hinting at how to access this 3D array!
+If you look at the output you see `, , = complicated`. This is `R` hinting at how to access this 3D array!
 
 We can return the conditional two-way table of Sex and Diagnosis for only those with an uncomplicated situation:
 
@@ -189,3 +189,5 @@ Contingency tables summarize the distribution of one or more categorical variabl
 
 -   `table()` - returns an array of counts
 -   `group_by()` along with `summarize()` and the `n()` function
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

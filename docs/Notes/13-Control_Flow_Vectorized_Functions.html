@@ -406,8 +406,11 @@ window.Quarto = {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">Notes/24-EDA_Concepts_Landing.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/24-EDA_Concepts_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EDA Concepts</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/25-Summarizing_Categorical_Variables.html" class="sidebar-item-text sidebar-link">
@@ -417,7 +420,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/26-Barplots_ggplot_Basics_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+ <span class="menu-text">Barplots &amp; `ggplot2` Basics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -429,7 +432,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/28-Numeric_Variable_Graphs_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+ <span class="menu-text">Numeric Variable Graphs</span></a>
   </div>
 </li>
       </ul>
@@ -601,10 +604,10 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>vectorized_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
-                                       expr    min      lq     mean median
- colMeans(my_numeric_batting, na.rm = TRUE) 4.0631 4.50835 6.037892 5.1878
-     uq     max neval
- 6.5962 13.2588   100</code></pre>
+                                       expr   min      lq     mean  median
+ colMeans(my_numeric_batting, na.rm = TRUE) 3.902 5.06905 6.751116 5.85795
+     uq    max neval
+ 7.8557 15.187   100</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -612,9 +615,9 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
                                                                 expr     min
- for (i in 1:17) {     mean(my_numeric_batting[, i], na.rm = TRUE) } 12.6802
-      lq     mean   median       uq     max neval
- 17.8167 20.15791 19.34155 21.97545 58.7253   100</code></pre>
+ for (i in 1:17) {     mean(my_numeric_batting[, i], na.rm = TRUE) } 12.7524
+      lq     mean  median       uq     max neval
+ 17.5974 20.02372 19.2492 22.21595 58.5485   100</code></pre>
 </div>
 </div>
 </section>
@@ -741,16 +744,16 @@ window.Quarto = {
 <pre><code>Unit: microseconds
                                                                                                                                                                                                                                                                                                                                  expr
  for (i in seq_len(nrow(airquality))) {     if (airquality$Wind[i] &gt;= 15) {         "HighWind"     }     else if (airquality$Wind[i] &gt;= 10) {         "Windy"     }     else if (airquality$Wind[i] &gt;= 6) {         "LightWind"     }     else if (airquality$Wind[i] &gt;= 0) {         "Calm"     }     else {         "Error"     } }
-    min      lq    mean  median      uq     max neval
- 4275.3 4954.05 6408.72 6047.65 7384.45 11959.8   100</code></pre>
+    min      lq     mean median      uq     max neval
+ 4567.4 5069.35 6387.055 6107.4 6955.45 11496.1   100</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>vectorTime</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
                                                                                                                                                                                   expr
  ifelse(airquality$Wind &gt;= 15, "HighWind", ifelse(airquality$Wind &gt;=      10, "Windy", ifelse(airquality$Wind &gt;= 6, "LightWind", ifelse(airquality$Wind &gt;=      0, "Calm", "Error"))))
-   min     lq    mean median    uq   max neval
- 114.3 121.15 179.461 155.85 241.1 306.9   100</code></pre>
+   min    lq    mean median    uq   max neval
+ 114.6 120.4 154.504 123.35 159.5 567.6   100</code></pre>
 </div>
 </div>
 <p><strong>Note:</strong> There is an <code>if_else()</code> function from the <code>dplry</code> package. This has more restrictions than <code>ifelse()</code> but otherwise is pretty similar.</p>

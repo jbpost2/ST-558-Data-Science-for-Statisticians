@@ -1,0 +1,23 @@
+---
+title: "EDA Concepts"
+format: html
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+The video below discusses concepts around exploratory data analysis (EDA). This is a vital step that you'll do almost anytime you have data! It is a bit of an art form and takes some subject matter expertise to do really well but we'll talk about the most common steps.
+
+I highly recommend watching the video using the 'full' Panopto player. There is a 'pop out' button in the bottom right of the video to enter this viewer.
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=47aac401-d07b-413f-ac00-b181011150a8&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&captions=false&interactivity=all" height="169" width="300" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="24 - EDA Concepts" ></iframe>
+```
+
+## Notes
+
+- <a href = "24-EDA_Concepts.html" target = "_blank">HTML version</a>
+- <a href = "PDFs/24-EDA_Concepts.pdf" target = "_blank">PDF version</a>
+
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!
