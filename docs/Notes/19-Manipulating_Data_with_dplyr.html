@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2025-05-07">
 
-<title>Manipulating Data with dplyr – ST 558 Data Science for Statisticians (R)</title>
+<title>ST 558 Data Science for Statisticians (R) - Manipulating Data with dplyr</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -142,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -153,13 +153,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/14_5-Week3_4.html">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/19-Manipulating_Data_with_dplyr.html">Manipulating Data with <code>dplyr</code></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -184,9 +184,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
  <span class="menu-text">Topic 1: Data Science &amp; R Basics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -297,9 +297,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
  <span class="menu-text">Topic 2: Tidyverse &amp; EDA</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -410,9 +410,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
  <span class="menu-text">Topic 3: Other Programming Topics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -560,26 +560,26 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Lahman)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'Lahman' was built under R version 4.1.3</code></pre>
+<pre><code>Warning: package 'Lahman' was built under R version 4.4.2</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>batting_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(Batting)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>batting_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 108,789 x 22
+<pre><code># A tibble: 113,799 × 22
    playerID  yearID stint teamID lgID      G    AB     R     H   X2B   X3B    HR
    &lt;chr&gt;      &lt;int&gt; &lt;int&gt; &lt;fct&gt;  &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
- 1 abercda01   1871     1 TRO    NA        1     4     0     0     0     0     0
- 2 addybo01    1871     1 RC1    NA       25   118    30    32     6     0     0
- 3 allisar01   1871     1 CL1    NA       29   137    28    40     4     5     0
- 4 allisdo01   1871     1 WS3    NA       27   133    28    44    10     2     2
- 5 ansonca01   1871     1 RC1    NA       25   120    29    39    11     3     0
- 6 armstbo01   1871     1 FW1    NA       12    49     9    11     2     1     0
- 7 barkeal01   1871     1 RC1    NA        1     4     0     1     0     0     0
- 8 barnero01   1871     1 BS1    NA       31   157    66    63    10     9     0
- 9 barrebi01   1871     1 FW1    NA        1     5     1     1     1     0     0
-10 barrofr01   1871     1 BS1    NA       18    86    13    13     2     1     0
-# i 108,779 more rows
-# i 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
+ 1 aardsda01   2004     1 SFN    NL       11     0     0     0     0     0     0
+ 2 aardsda01   2006     1 CHN    NL       45     2     0     0     0     0     0
+ 3 aardsda01   2007     1 CHA    AL       25     0     0     0     0     0     0
+ 4 aardsda01   2008     1 BOS    AL       47     1     0     0     0     0     0
+ 5 aardsda01   2009     1 SEA    AL       73     0     0     0     0     0     0
+ 6 aardsda01   2010     1 SEA    AL       53     0     0     0     0     0     0
+ 7 aardsda01   2012     1 NYA    AL        1     0     0     0     0     0     0
+ 8 aardsda01   2013     1 NYN    NL       43     0     0     0     0     0     0
+ 9 aardsda01   2015     1 ATL    NL       33     1     0     0     0     0     0
+10 aaronha01   1954     1 ML1    NL      122   468    58   131    27     6    13
+# ℹ 113,789 more rows
+# ℹ 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
 #   IBB &lt;int&gt;, HBP &lt;int&gt;, SH &lt;int&gt;, SF &lt;int&gt;, GIDP &lt;int&gt;</code></pre>
 </div>
 </div>
@@ -611,21 +611,21 @@ Attaching package: 'dplyr'</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(batting_tbl, G <span class="sc">&gt;</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 40,168 x 22
+<pre><code># A tibble: 41,727 × 22
    playerID  yearID stint teamID lgID      G    AB     R     H   X2B   X3B    HR
    &lt;chr&gt;      &lt;int&gt; &lt;int&gt; &lt;fct&gt;  &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
- 1 bechtge01   1872     1 NY2    NA       51   247    61    74    11     3     0
- 2 cummica01   1872     1 NY2    NA       55   249    37    52     9     3     0
- 3 eggleda01   1872     1 NY2    NA       56   290    94    97    20     0     0
- 4 hallge01    1872     1 BL1    NA       53   250    69    84    17     6     1
- 5 hatfijo01   1872     1 NY2    NA       56   288    76    93    15     2     1
- 6 hicksna01   1872     1 NY2    NA       56   267    54    82    12     2     0
- 7 mcmuljo01   1872     1 NY2    NA       54   236    47    60     6     1     0
- 8 millsev01   1872     1 BL1    NA       55   266    55    79    14     2     0
- 9 pikeli01    1872     1 BL1    NA       56   285    68    85    15     5     7
-10 radcljo01   1872     1 BL1    NA       56   297    70    86    13     4     1
-# i 40,158 more rows
-# i 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
+ 1 aardsda01   2009     1 SEA    AL       73     0     0     0     0     0     0
+ 2 aardsda01   2010     1 SEA    AL       53     0     0     0     0     0     0
+ 3 aaronha01   1954     1 ML1    NL      122   468    58   131    27     6    13
+ 4 aaronha01   1955     1 ML1    NL      153   602   105   189    37     9    27
+ 5 aaronha01   1956     1 ML1    NL      153   609   106   200    34    14    26
+ 6 aaronha01   1957     1 ML1    NL      151   615   118   198    27     6    44
+ 7 aaronha01   1958     1 ML1    NL      153   601   109   196    34     4    30
+ 8 aaronha01   1959     1 ML1    NL      154   629   116   223    46     7    39
+ 9 aaronha01   1960     1 ML1    NL      153   590   102   172    20    11    40
+10 aaronha01   1961     1 ML1    NL      155   603   115   197    39    10    34
+# ℹ 41,717 more rows
+# ℹ 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
 #   IBB &lt;int&gt;, HBP &lt;int&gt;, SH &lt;int&gt;, SF &lt;int&gt;, GIDP &lt;int&gt;</code></pre>
 </div>
 </div>
@@ -637,21 +637,21 @@ Attaching package: 'dplyr'</code></pre>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>batting_tbl <span class="sc">|&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(G <span class="sc">&gt;</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 40,168 x 22
+<pre><code># A tibble: 41,727 × 22
    playerID  yearID stint teamID lgID      G    AB     R     H   X2B   X3B    HR
    &lt;chr&gt;      &lt;int&gt; &lt;int&gt; &lt;fct&gt;  &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
- 1 bechtge01   1872     1 NY2    NA       51   247    61    74    11     3     0
- 2 cummica01   1872     1 NY2    NA       55   249    37    52     9     3     0
- 3 eggleda01   1872     1 NY2    NA       56   290    94    97    20     0     0
- 4 hallge01    1872     1 BL1    NA       53   250    69    84    17     6     1
- 5 hatfijo01   1872     1 NY2    NA       56   288    76    93    15     2     1
- 6 hicksna01   1872     1 NY2    NA       56   267    54    82    12     2     0
- 7 mcmuljo01   1872     1 NY2    NA       54   236    47    60     6     1     0
- 8 millsev01   1872     1 BL1    NA       55   266    55    79    14     2     0
- 9 pikeli01    1872     1 BL1    NA       56   285    68    85    15     5     7
-10 radcljo01   1872     1 BL1    NA       56   297    70    86    13     4     1
-# i 40,158 more rows
-# i 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
+ 1 aardsda01   2009     1 SEA    AL       73     0     0     0     0     0     0
+ 2 aardsda01   2010     1 SEA    AL       53     0     0     0     0     0     0
+ 3 aaronha01   1954     1 ML1    NL      122   468    58   131    27     6    13
+ 4 aaronha01   1955     1 ML1    NL      153   602   105   189    37     9    27
+ 5 aaronha01   1956     1 ML1    NL      153   609   106   200    34    14    26
+ 6 aaronha01   1957     1 ML1    NL      151   615   118   198    27     6    44
+ 7 aaronha01   1958     1 ML1    NL      153   601   109   196    34     4    30
+ 8 aaronha01   1959     1 ML1    NL      154   629   116   223    46     7    39
+ 9 aaronha01   1960     1 ML1    NL      153   590   102   172    20    11    40
+10 aaronha01   1961     1 ML1    NL      155   603   115   197    39    10    34
+# ℹ 41,717 more rows
+# ℹ 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
 #   IBB &lt;int&gt;, HBP &lt;int&gt;, SH &lt;int&gt;, SF &lt;int&gt;, GIDP &lt;int&gt;</code></pre>
 </div>
 </div>
@@ -665,7 +665,7 @@ Attaching package: 'dplyr'</code></pre>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>batting_tbl <span class="sc">|&gt;</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(G <span class="sc">&gt;</span> <span class="dv">50</span> <span class="sc">&amp;</span> yearID <span class="sc">==</span> <span class="dv">2018</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 518 x 22
+<pre><code># A tibble: 518 × 22
    playerID  yearID stint teamID lgID      G    AB     R     H   X2B   X3B    HR
    &lt;chr&gt;      &lt;int&gt; &lt;int&gt; &lt;fct&gt;  &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
  1 abreujo02   2018     1 CHA    AL      128   499    68   132    36     1    22
@@ -678,15 +678,15 @@ Attaching package: 'dplyr'</code></pre>
  8 ahmedni01   2018     1 ARI    NL      153   516    61   121    33     5    16
  9 albieoz01   2018     1 ATL    NL      158   639   105   167    40     5    24
 10 alexasc01   2018     1 LAN    NL       73     5     0     0     0     0     0
-# i 508 more rows
-# i 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
+# ℹ 508 more rows
+# ℹ 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
 #   IBB &lt;int&gt;, HBP &lt;int&gt;, SH &lt;int&gt;, SF &lt;int&gt;, GIDP &lt;int&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#equivalently</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>batting_tbl <span class="sc">|&gt;</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(G <span class="sc">&gt;</span> <span class="dv">50</span>, yearID <span class="sc">==</span> <span class="dv">2018</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 518 x 22
+<pre><code># A tibble: 518 × 22
    playerID  yearID stint teamID lgID      G    AB     R     H   X2B   X3B    HR
    &lt;chr&gt;      &lt;int&gt; &lt;int&gt; &lt;fct&gt;  &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
  1 abreujo02   2018     1 CHA    AL      128   499    68   132    36     1    22
@@ -699,8 +699,8 @@ Attaching package: 'dplyr'</code></pre>
  8 ahmedni01   2018     1 ARI    NL      153   516    61   121    33     5    16
  9 albieoz01   2018     1 ATL    NL      158   639   105   167    40     5    24
 10 alexasc01   2018     1 LAN    NL       73     5     0     0     0     0     0
-# i 508 more rows
-# i 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
+# ℹ 508 more rows
+# ℹ 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
 #   IBB &lt;int&gt;, HBP &lt;int&gt;, SH &lt;int&gt;, SF &lt;int&gt;, GIDP &lt;int&gt;</code></pre>
 </div>
 </div>
@@ -712,21 +712,21 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>batting_tbl <span class="sc">|&gt;</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(G <span class="sc">&gt;</span> <span class="dv">50</span>, yearID <span class="sc">==</span> <span class="fu">c</span>(<span class="dv">2018</span>, <span class="dv">2019</span>, <span class="dv">2020</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 408 x 22
+<pre><code># A tibble: 387 × 22
    playerID  yearID stint teamID lgID      G    AB     R     H   X2B   X3B    HR
    &lt;chr&gt;      &lt;int&gt; &lt;int&gt; &lt;fct&gt;  &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
- 1 abreujo02   2018     1 CHA    AL      128   499    68   132    36     1    22
- 2 adducji02   2018     1 DET    AL       59   176    19    47     8     2     3
- 3 ahmedni01   2018     1 ARI    NL      153   516    61   121    33     5    16
- 4 albieoz01   2018     1 ATL    NL      158   639   105   167    40     5    24
- 5 alexasc01   2018     1 LAN    NL       73     5     0     0     0     0     0
- 6 almoral01   2018     1 CHN    NL      152   444    62   127    24     1     5
- 7 altheaa01   2018     1 PHI    NL      105   243    28    44    11     1     8
- 8 alvarjo03   2018     1 TBA    AL       70     0     0     0     0     0     0
- 9 anderbr06   2018     1 MIA    NL      156   590    87   161    34     4    11
-10 anderju01   2018     1 LAA    AL       57     0     0     0     0     0     0
-# i 398 more rows
-# i 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
+ 1 adamsma01   2018     1 WAS    NL       94   249    37    64     9     0    18
+ 2 alberma01   2019     1 MIL    NL       67     0     0     0     0     0     0
+ 3 albieoz01   2018     1 ATL    NL      158   639   105   167    40     5    24
+ 4 albieoz01   2019     1 ATL    NL      160   640   102   189    43     8    24
+ 5 alfarjo01   2018     1 PHI    NL      108   344    35    90    16     2    10
+ 6 alfarjo01   2019     1 MIA    NL      130   431    44   113    14     1    18
+ 7 allengr01   2018     1 CLE    AL       91   265    36    68    11     3     2
+ 8 allengr01   2019     1 CLE    AL       89   231    30    53     9     3     4
+ 9 almoral01   2018     1 CHN    NL      152   444    62   127    24     1     5
+10 almoral01   2019     1 CHN    NL      130   339    41    80    11     1    12
+# ℹ 377 more rows
+# ℹ 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
 #   IBB &lt;int&gt;, HBP &lt;int&gt;, SH &lt;int&gt;, SF &lt;int&gt;, GIDP &lt;int&gt;</code></pre>
 </div>
 </div>
@@ -738,21 +738,21 @@ Attaching package: 'dplyr'</code></pre>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>batting_tbl <span class="sc">|&gt;</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(G <span class="sc">&gt;</span> <span class="dv">50</span>, yearID <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2018</span>, <span class="dv">2019</span>, <span class="dv">2020</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,172 x 22
+<pre><code># A tibble: 1,172 × 22
    playerID  yearID stint teamID lgID      G    AB     R     H   X2B   X3B    HR
    &lt;chr&gt;      &lt;int&gt; &lt;int&gt; &lt;fct&gt;  &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
  1 abreujo02   2018     1 CHA    AL      128   499    68   132    36     1    22
- 2 acunaro01   2018     1 ATL    NL      111   433    78   127    26     4    26
- 3 adamewi01   2018     1 TBA    AL       85   288    43    80     7     0    10
- 4 adamsma01   2018     1 WAS    NL       94   249    37    64     9     0    18
- 5 adducji02   2018     1 DET    AL       59   176    19    47     8     2     3
- 6 adriaeh01   2018     1 MIN    AL      114   335    42    84    23     1     6
- 7 aguilje01   2018     1 MIL    NL      149   492    80   135    25     0    35
- 8 ahmedni01   2018     1 ARI    NL      153   516    61   121    33     5    16
- 9 albieoz01   2018     1 ATL    NL      158   639   105   167    40     5    24
-10 alexasc01   2018     1 LAN    NL       73     5     0     0     0     0     0
-# i 1,162 more rows
-# i 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
+ 2 abreujo02   2019     1 CHA    AL      159   634    85   180    38     1    33
+ 3 abreujo02   2020     1 CHA    AL       60   240    43    76    15     0    19
+ 4 acunaro01   2018     1 ATL    NL      111   433    78   127    26     4    26
+ 5 acunaro01   2019     1 ATL    NL      156   626   127   175    22     2    41
+ 6 adamewi01   2018     1 TBA    AL       85   288    43    80     7     0    10
+ 7 adamewi01   2019     1 TBA    AL      152   531    69   135    25     1    20
+ 8 adamewi01   2020     1 TBA    AL       54   185    29    48    15     1     8
+ 9 adamsma01   2018     1 WAS    NL       94   249    37    64     9     0    18
+10 adamsma01   2019     1 WAS    NL      111   310    42    70    14     0    20
+# ℹ 1,162 more rows
+# ℹ 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
 #   IBB &lt;int&gt;, HBP &lt;int&gt;, SH &lt;int&gt;, SF &lt;int&gt;, GIDP &lt;int&gt;</code></pre>
 </div>
 </div>
@@ -766,21 +766,21 @@ Attaching package: 'dplyr'</code></pre>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>batting_tbl <span class="sc">|&gt;</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(G <span class="sc">&gt;</span> <span class="dv">100</span> <span class="sc">|</span> yearID <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2018</span>, <span class="dv">2019</span>, <span class="dv">2020</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 24,750 x 22
+<pre><code># A tibble: 25,417 × 22
    playerID  yearID stint teamID lgID      G    AB     R     H   X2B   X3B    HR
    &lt;chr&gt;      &lt;int&gt; &lt;int&gt; &lt;fct&gt;  &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
- 1 farrejo01   1883     1 DTN    NL      101   444    58   108    13     5     0
- 2 houcksa01   1883     1 DTN    NL      101   416    52   105    18    12     0
- 3 powelma01   1883     1 DTN    NL      101   421    76   115    17     5     1
- 4 andreed01   1884     1 PHI    NL      109   420    74    93    21     2     0
- 5 ansonca01   1884     1 CHN    NL      112   475   108   159    30     3    21
- 6 barklsa01   1884     1 TL1    AA      104   435    71   133    39     9     1
- 7 bradyst01   1884     1 NY4    AA      112   485   102   122    11     3     1
- 8 brownpe01   1884     1 LS2    AA      103   447   101   150    33     8     4
- 9 brownto01   1884     1 CL5    AA      107   451    93   123     9    11     5
-10 carpehi01   1884     1 CN2    AA      108   474    80   121    16     2     4
-# i 24,740 more rows
-# i 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
+ 1 aaronha01   1954     1 ML1    NL      122   468    58   131    27     6    13
+ 2 aaronha01   1955     1 ML1    NL      153   602   105   189    37     9    27
+ 3 aaronha01   1956     1 ML1    NL      153   609   106   200    34    14    26
+ 4 aaronha01   1957     1 ML1    NL      151   615   118   198    27     6    44
+ 5 aaronha01   1958     1 ML1    NL      153   601   109   196    34     4    30
+ 6 aaronha01   1959     1 ML1    NL      154   629   116   223    46     7    39
+ 7 aaronha01   1960     1 ML1    NL      153   590   102   172    20    11    40
+ 8 aaronha01   1961     1 ML1    NL      155   603   115   197    39    10    34
+ 9 aaronha01   1962     1 ML1    NL      156   592   127   191    28     6    45
+10 aaronha01   1963     1 ML1    NL      161   631   121   201    29     4    44
+# ℹ 25,407 more rows
+# ℹ 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
 #   IBB &lt;int&gt;, HBP &lt;int&gt;, SH &lt;int&gt;, SF &lt;int&gt;, GIDP &lt;int&gt;</code></pre>
 </div>
 </div>
@@ -799,21 +799,21 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(G <span class="sc">&gt;</span> <span class="dv">100</span>, yearID <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2018</span>, <span class="dv">2019</span>, <span class="dv">2020</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(teamID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 467 x 22
+<pre><code># A tibble: 467 × 22
    playerID  yearID stint teamID lgID      G    AB     R     H   X2B   X3B    HR
    &lt;chr&gt;      &lt;int&gt; &lt;int&gt; &lt;fct&gt;  &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
  1 ahmedni01   2018     1 ARI    NL      153   516    61   121    33     5    16
- 2 descada01   2018     1 ARI    NL      138   349    54    83    22     4    13
- 3 goldspa01   2018     1 ARI    NL      158   593    95   172    35     5    33
- 4 marteke01   2018     1 ARI    NL      153   520    68   135    26    12    14
- 5 owingch01   2018     1 ARI    NL      106   281    34    58    15     0     4
- 6 peralda01   2018     1 ARI    NL      146   560    75   164    25     5    30
- 7 polloaj01   2018     1 ARI    NL      113   413    61   106    21     5    21
- 8 ahmedni01   2019     1 ARI    NL      158   556    79   141    33     6    19
- 9 dysonja01   2019     1 ARI    NL      130   400    65    92    11     2     7
-10 escobed01   2019     1 ARI    NL      158   636    94   171    29    10    35
-# i 457 more rows
-# i 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
+ 2 ahmedni01   2019     1 ARI    NL      158   556    79   141    33     6    19
+ 3 descada01   2018     1 ARI    NL      138   349    54    83    22     4    13
+ 4 dysonja01   2019     1 ARI    NL      130   400    65    92    11     2     7
+ 5 escobed01   2019     1 ARI    NL      158   636    94   171    29    10    35
+ 6 goldspa01   2018     1 ARI    NL      158   593    95   172    35     5    33
+ 7 jonesad01   2019     1 ARI    NL      137   485    66   126    25     1    16
+ 8 kellyca02   2019     1 ARI    NL      111   314    46    77    19     0    18
+ 9 marteke01   2018     1 ARI    NL      153   520    68   135    26    12    14
+10 marteke01   2019     1 ARI    NL      144   569    97   187    36     9    32
+# ℹ 457 more rows
+# ℹ 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
 #   IBB &lt;int&gt;, HBP &lt;int&gt;, SH &lt;int&gt;, SF &lt;int&gt;, GIDP &lt;int&gt;</code></pre>
 </div>
 </div>
@@ -831,7 +831,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(G <span class="sc">&gt;</span> <span class="dv">100</span>, yearID <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2018</span>, <span class="dv">2019</span>, <span class="dv">2020</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(teamID, playerID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 467 x 22
+<pre><code># A tibble: 467 × 22
    playerID  yearID stint teamID lgID      G    AB     R     H   X2B   X3B    HR
    &lt;chr&gt;      &lt;int&gt; &lt;int&gt; &lt;fct&gt;  &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
  1 ahmedni01   2018     1 ARI    NL      153   516    61   121    33     5    16
@@ -844,8 +844,8 @@ Attaching package: 'dplyr'</code></pre>
  8 kellyca02   2019     1 ARI    NL      111   314    46    77    19     0    18
  9 marteke01   2018     1 ARI    NL      153   520    68   135    26    12    14
 10 marteke01   2019     1 ARI    NL      144   569    97   187    36     9    32
-# i 457 more rows
-# i 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
+# ℹ 457 more rows
+# ℹ 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
 #   IBB &lt;int&gt;, HBP &lt;int&gt;, SH &lt;int&gt;, SF &lt;int&gt;, GIDP &lt;int&gt;</code></pre>
 </div>
 </div>
@@ -857,7 +857,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(G <span class="sc">&gt;</span> <span class="dv">100</span>, yearID <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2018</span>, <span class="dv">2019</span>, <span class="dv">2020</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(teamID), playerID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 467 x 22
+<pre><code># A tibble: 467 × 22
    playerID  yearID stint teamID lgID      G    AB     R     H   X2B   X3B    HR
    &lt;chr&gt;      &lt;int&gt; &lt;int&gt; &lt;fct&gt;  &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
  1 adamsma01   2019     1 WAS    NL      111   310    42    70    14     0    20
@@ -870,8 +870,8 @@ Attaching package: 'dplyr'</code></pre>
  8 rendoan01   2019     1 WAS    NL      146   545   117   174    44     3    34
  9 roblevi01   2019     1 WAS    NL      155   546    86   139    33     3    17
 10 sotoju01    2018     1 WAS    NL      116   414    77   121    25     1    22
-# i 457 more rows
-# i 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
+# ℹ 457 more rows
+# ℹ 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
 #   IBB &lt;int&gt;, HBP &lt;int&gt;, SH &lt;int&gt;, SF &lt;int&gt;, GIDP &lt;int&gt;</code></pre>
 </div>
 </div>
@@ -914,7 +914,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(teamID), playerID) <span class="sc">|&gt;</span></span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerID, teamID, H, X2B, X3B, HR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 467 x 6
+<pre><code># A tibble: 467 × 6
    playerID  teamID     H   X2B   X3B    HR
    &lt;chr&gt;     &lt;fct&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
  1 adamsma01 WAS       70    14     0    20
@@ -927,7 +927,7 @@ Attaching package: 'dplyr'</code></pre>
  8 rendoan01 WAS      174    44     3    34
  9 roblevi01 WAS      139    33     3    17
 10 sotoju01  WAS      121    25     1    22
-# i 457 more rows</code></pre>
+# ℹ 457 more rows</code></pre>
 </div>
 </div>
 <ul>
@@ -942,7 +942,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(teamID), playerID) <span class="sc">|&gt;</span></span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerID, teamID, H<span class="sc">:</span>HR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 467 x 6
+<pre><code># A tibble: 467 × 6
    playerID  teamID     H   X2B   X3B    HR
    &lt;chr&gt;     &lt;fct&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
  1 adamsma01 WAS       70    14     0    20
@@ -955,7 +955,7 @@ Attaching package: 'dplyr'</code></pre>
  8 rendoan01 WAS      174    44     3    34
  9 roblevi01 WAS      139    33     3    17
 10 sotoju01  WAS      121    25     1    22
-# i 457 more rows</code></pre>
+# ℹ 457 more rows</code></pre>
 </div>
 </div>
 <ul>
@@ -967,7 +967,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(teamID), playerID) <span class="sc">|&gt;</span></span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"ID"</span>), G, AB, H<span class="sc">:</span>HR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 467 x 10
+<pre><code># A tibble: 467 × 10
    playerID  yearID teamID lgID      G    AB     H   X2B   X3B    HR
    &lt;chr&gt;      &lt;int&gt; &lt;fct&gt;  &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
  1 adamsma01   2019 WAS    NL      111   310    70    14     0    20
@@ -980,7 +980,7 @@ Attaching package: 'dplyr'</code></pre>
  8 rendoan01   2019 WAS    NL      146   545   174    44     3    34
  9 roblevi01   2019 WAS    NL      155   546   139    33     3    17
 10 sotoju01    2018 WAS    NL      116   414   121    25     1    22
-# i 457 more rows</code></pre>
+# ℹ 457 more rows</code></pre>
 </div>
 </div>
 <ul>
@@ -992,7 +992,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(teamID), playerID) <span class="sc">|&gt;</span></span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">"ID"</span>) <span class="sc">|</span> <span class="fu">starts_with</span>(<span class="st">"X"</span>), G, AB, H, HR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 467 x 10
+<pre><code># A tibble: 467 × 10
    playerID  yearID teamID lgID    X2B   X3B     G    AB     H    HR
    &lt;chr&gt;      &lt;int&gt; &lt;fct&gt;  &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
  1 adamsma01   2019 WAS    NL       14     0   111   310    70    20
@@ -1005,7 +1005,7 @@ Attaching package: 'dplyr'</code></pre>
  8 rendoan01   2019 WAS    NL       44     3   146   545   174    34
  9 roblevi01   2019 WAS    NL       33     3   155   546   139    17
 10 sotoju01    2018 WAS    NL       25     1   116   414   121    22
-# i 457 more rows</code></pre>
+# ℹ 457 more rows</code></pre>
 </div>
 </div>
 <ul>
@@ -1017,7 +1017,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(teamID), playerID) <span class="sc">|&gt;</span></span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerID, H<span class="sc">:</span>HR, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 467 x 22
+<pre><code># A tibble: 467 × 22
    playerID      H   X2B   X3B    HR yearID stint teamID lgID      G    AB     R
    &lt;chr&gt;     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;int&gt; &lt;fct&gt;  &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
  1 adamsma01    70    14     0    20   2019     1 WAS    NL      111   310    42
@@ -1030,8 +1030,8 @@ Attaching package: 'dplyr'</code></pre>
  8 rendoan01   174    44     3    34   2019     1 WAS    NL      146   545   117
  9 roblevi01   139    33     3    17   2019     1 WAS    NL      155   546    86
 10 sotoju01    121    25     1    22   2018     1 WAS    NL      116   414    77
-# i 457 more rows
-# i 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
+# ℹ 457 more rows
+# ℹ 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
 #   IBB &lt;int&gt;, HBP &lt;int&gt;, SH &lt;int&gt;, SF &lt;int&gt;, GIDP &lt;int&gt;</code></pre>
 </div>
 </div>
@@ -1049,7 +1049,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerID, teamID, H<span class="sc">:</span>HR) <span class="sc">|&gt;</span></span>
 <span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"Doubles"</span> <span class="ot">=</span> <span class="st">"X2B"</span>, <span class="st">"Triples"</span> <span class="ot">=</span> <span class="st">"X3B"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 467 x 6
+<pre><code># A tibble: 467 × 6
    playerID  teamID     H Doubles Triples    HR
    &lt;chr&gt;     &lt;fct&gt;  &lt;int&gt;   &lt;int&gt;   &lt;int&gt; &lt;int&gt;
  1 adamsma01 WAS       70      14       0    20
@@ -1062,7 +1062,7 @@ Attaching package: 'dplyr'</code></pre>
  8 rendoan01 WAS      174      44       3    34
  9 roblevi01 WAS      139      33       3    17
 10 sotoju01  WAS      121      25       1    22
-# i 457 more rows</code></pre>
+# ℹ 457 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -1090,7 +1090,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"Doubles"</span> <span class="ot">=</span> <span class="st">"X2B"</span>, <span class="st">"Triples"</span> <span class="ot">=</span> <span class="st">"X3B"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Extra_Base_Hits =</span> Doubles <span class="sc">+</span> Triples <span class="sc">+</span> HR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 467 x 7
+<pre><code># A tibble: 467 × 7
    playerID  teamID     H Doubles Triples    HR Extra_Base_Hits
    &lt;chr&gt;     &lt;fct&gt;  &lt;int&gt;   &lt;int&gt;   &lt;int&gt; &lt;int&gt;           &lt;int&gt;
  1 adamsma01 WAS       70      14       0    20              34
@@ -1103,7 +1103,7 @@ Attaching package: 'dplyr'</code></pre>
  8 rendoan01 WAS      174      44       3    34              81
  9 roblevi01 WAS      139      33       3    17              53
 10 sotoju01  WAS      121      25       1    22              48
-# i 457 more rows</code></pre>
+# ℹ 457 more rows</code></pre>
 </div>
 </div>
 <ul>
@@ -1122,7 +1122,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">Singles =</span> H <span class="sc">-</span> Extra_Base_Hits) <span class="sc">|&gt;</span></span>
 <span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerID, teamID, Singles, Doubles<span class="sc">:</span>HR, H, Extra_Base_Hits)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 467 x 8
+<pre><code># A tibble: 467 × 8
    playerID  teamID Singles Doubles Triples    HR     H Extra_Base_Hits
    &lt;chr&gt;     &lt;fct&gt;    &lt;int&gt;   &lt;int&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;           &lt;int&gt;
  1 adamsma01 WAS         36      14       0    20    70              34
@@ -1135,7 +1135,7 @@ Attaching package: 'dplyr'</code></pre>
  8 rendoan01 WAS         93      44       3    34   174              81
  9 roblevi01 WAS         86      33       3    17   139              53
 10 sotoju01  WAS         73      25       1    22   121              48
-# i 457 more rows</code></pre>
+# ℹ 457 more rows</code></pre>
 </div>
 </div>
 <ul>
@@ -1155,7 +1155,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">H_Percentile =</span> <span class="fu">percent_rank</span>(H)) <span class="sc">|&gt;</span></span>
 <span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerID, teamID, H, H_Percentile, <span class="fu">everything</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 467 x 9
+<pre><code># A tibble: 467 × 9
    playerID  teamID     H H_Percentile Doubles Triples    HR Extra_Base_Hits
    &lt;chr&gt;     &lt;fct&gt;  &lt;int&gt;        &lt;dbl&gt;   &lt;int&gt;   &lt;int&gt; &lt;int&gt;           &lt;int&gt;
  1 adamsma01 WAS       70       0.0536      14       0    20              34
@@ -1168,8 +1168,8 @@ Attaching package: 'dplyr'</code></pre>
  8 rendoan01 WAS      174       0.923       44       3    34              81
  9 roblevi01 WAS      139       0.687       33       3    17              53
 10 sotoju01  WAS      121       0.517       25       1    22              48
-# i 457 more rows
-# i 1 more variable: Singles &lt;int&gt;</code></pre>
+# ℹ 457 more rows
+# ℹ 1 more variable: Singles &lt;int&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -1187,7 +1187,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">H_Mean =</span> <span class="fu">mean</span>(H)) <span class="sc">|&gt;</span></span>
 <span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerID, teamID, H, H_Mean, H_Percentile, <span class="fu">everything</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 467 x 10
+<pre><code># A tibble: 467 × 10
    playerID  teamID     H H_Mean H_Percentile Doubles Triples    HR
    &lt;chr&gt;     &lt;fct&gt;  &lt;int&gt;  &lt;dbl&gt;        &lt;dbl&gt;   &lt;int&gt;   &lt;int&gt; &lt;int&gt;
  1 adamsma01 WAS       70   121.       0.0536      14       0    20
@@ -1200,8 +1200,8 @@ Attaching package: 'dplyr'</code></pre>
  8 rendoan01 WAS      174   121.       0.923       44       3    34
  9 roblevi01 WAS      139   121.       0.687       33       3    17
 10 sotoju01  WAS      121   121.       0.517       25       1    22
-# i 457 more rows
-# i 2 more variables: Extra_Base_Hits &lt;int&gt;, Singles &lt;int&gt;</code></pre>
+# ℹ 457 more rows
+# ℹ 2 more variables: Extra_Base_Hits &lt;int&gt;, Singles &lt;int&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -1216,7 +1216,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">"Doubles"</span> <span class="ot">=</span> <span class="st">"X2B"</span>, <span class="st">"Triples"</span> <span class="ot">=</span> <span class="st">"X3B"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(teamID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 467 x 6
+<pre><code># A tibble: 467 × 6
 # Groups:   teamID [30]
    playerID  teamID     H Doubles Triples    HR
    &lt;chr&gt;     &lt;fct&gt;  &lt;int&gt;   &lt;int&gt;   &lt;int&gt; &lt;int&gt;
@@ -1230,7 +1230,7 @@ Attaching package: 'dplyr'</code></pre>
  8 rendoan01 WAS      174      44       3    34
  9 roblevi01 WAS      139      33       3    17
 10 sotoju01  WAS      121      25       1    22
-# i 457 more rows</code></pre>
+# ℹ 457 more rows</code></pre>
 </div>
 </div>
 <ul>
@@ -1280,7 +1280,7 @@ $names
 [1] "playerID" "teamID"   "H"        "Doubles"  "Triples"  "HR"      
 
 $groups
-# A tibble: 30 x 2
+# A tibble: 30 × 2
    teamID       .rows
    &lt;fct&gt;  &lt;list&lt;int&gt;&gt;
  1 ARI           [14]
@@ -1293,7 +1293,7 @@ $groups
  8 CLE           [16]
  9 COL           [17]
 10 DET           [11]
-# i 20 more rows</code></pre>
+# ℹ 20 more rows</code></pre>
 </div>
 </div>
 <ul>
@@ -1313,7 +1313,7 @@ $groups
 <span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerID, teamID, H, H_Mean, H_Percentile, <span class="fu">everything</span>()) <span class="sc">|&gt;</span></span>
 <span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 467 x 10
+<pre><code># A tibble: 467 × 10
 # Groups:   teamID [30]
    playerID  teamID     H H_Mean H_Percentile Doubles Triples    HR
    &lt;chr&gt;     &lt;fct&gt;  &lt;int&gt;  &lt;dbl&gt;        &lt;dbl&gt;   &lt;int&gt;   &lt;int&gt; &lt;int&gt;
@@ -1367,8 +1367,8 @@ $groups
 48 santada01 TEX      134   113.       0.812       23       6    28
 49 adamewi01 TBA      135   130.       0.4         25       1    20
 50 choiji01  TBA      107   130.       0.2         20       2    19
-# i 417 more rows
-# i 2 more variables: Extra_Base_Hits &lt;int&gt;, Singles &lt;int&gt;</code></pre>
+# ℹ 417 more rows
+# ℹ 2 more variables: Extra_Base_Hits &lt;int&gt;, Singles &lt;int&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -1387,7 +1387,7 @@ $groups
 <span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">H_Mean =</span> <span class="fu">mean</span>(H)) <span class="sc">|&gt;</span></span>
 <span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerID, teamID, yearID, H, H_Mean, H_Percentile, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 467 x 11
+<pre><code># A tibble: 467 × 11
 # Groups:   teamID, yearID [60]
    playerID  teamID yearID     H H_Mean H_Percentile Doubles Triples    HR
    &lt;chr&gt;     &lt;fct&gt;   &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;        &lt;dbl&gt;   &lt;int&gt;   &lt;int&gt; &lt;int&gt;
@@ -1401,8 +1401,8 @@ $groups
  8 rendoan01 WAS      2019   174   133.        1          44       3    34
  9 roblevi01 WAS      2019   139   133.        0.429      33       3    17
 10 sotoju01  WAS      2018   121   129.        0.4        25       1    22
-# i 457 more rows
-# i 2 more variables: Extra_Base_Hits &lt;int&gt;, Singles &lt;int&gt;</code></pre>
+# ℹ 457 more rows
+# ℹ 2 more variables: Extra_Base_Hits &lt;int&gt;, Singles &lt;int&gt;</code></pre>
 </div>
 </div>
 <p>We are really able to do a lot quickly with these functions! Nice. One other commonly used function in <code>mutate()</code> is <code>ifelse()</code> or <code>if_else()</code> (the <code>tidyverse</code> version with slightly more restrictive functionality).</p>
@@ -1428,22 +1428,22 @@ $groups
 <span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>                         <span class="st">"Needs some work"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerID, teamID, yearID, H, H_Mean, Status, H_Percentile, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 467 x 12
+<pre><code># A tibble: 467 × 12
 # Groups:   teamID, yearID [60]
    playerID teamID yearID     H H_Mean Status H_Percentile Doubles Triples    HR
    &lt;chr&gt;    &lt;fct&gt;   &lt;int&gt; &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;   &lt;int&gt;   &lt;int&gt; &lt;int&gt;
- 1 adamsma~ WAS      2019    70   133. Needs~        0          14       0    20
- 2 difowi01 WAS      2018    94   129. Needs~        0.2        14       7     7
- 3 doziebr~ WAS      2019    99   133. Needs~        0.143      20       0    20
- 4 eatonad~ WAS      2019   158   133. Great         0.857      25       7    15
- 5 harpebr~ WAS      2018   137   129. Great         0.6        34       0    34
- 6 kendrho~ WAS      2019   115   133. Needs~        0.286      23       1    17
- 7 rendoan~ WAS      2018   163   129. Great         0.8        44       2    24
- 8 rendoan~ WAS      2019   174   133. Great         1          44       3    34
- 9 roblevi~ WAS      2019   139   133. Great         0.429      33       3    17
-10 sotoju01 WAS      2018   121   129. Needs~        0.4        25       1    22
-# i 457 more rows
-# i 2 more variables: Extra_Base_Hits &lt;int&gt;, Singles &lt;int&gt;</code></pre>
+ 1 adamsma… WAS      2019    70   133. Needs…        0          14       0    20
+ 2 difowi01 WAS      2018    94   129. Needs…        0.2        14       7     7
+ 3 doziebr… WAS      2019    99   133. Needs…        0.143      20       0    20
+ 4 eatonad… WAS      2019   158   133. Great         0.857      25       7    15
+ 5 harpebr… WAS      2018   137   129. Great         0.6        34       0    34
+ 6 kendrho… WAS      2019   115   133. Needs…        0.286      23       1    17
+ 7 rendoan… WAS      2018   163   129. Great         0.8        44       2    24
+ 8 rendoan… WAS      2019   174   133. Great         1          44       3    34
+ 9 roblevi… WAS      2019   139   133. Great         0.429      33       3    17
+10 sotoju01 WAS      2018   121   129. Needs…        0.4        25       1    22
+# ℹ 457 more rows
+# ℹ 2 more variables: Extra_Base_Hits &lt;int&gt;, Singles &lt;int&gt;</code></pre>
 </div>
 </div>
 </section>
@@ -1512,7 +1512,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1544,29 +1555,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1574,7 +1563,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

@@ -37,7 +37,7 @@ To obtain course help there are a number of options:
 -   E-mail - If there is a question that you don't feel comfortable asking the whole class you can use e-mail. The TA and I will be checking daily (during the regular work week).
 -   Zoom Office Hour Sessions - These sessions can be used to share screens and have multiple users. You can do text chat, voice, and video. They are great for a class like this!
 
-## Fall 2025 Course Schedule
+## Summer 2025 Course Schedule
 
 +-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+
 | Topic/Week      | Learning Materials                                         | Assignments                    | **Code-alongs**                                |

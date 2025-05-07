@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2025-05-07">
 
-<title>Numerical Variable Summaries – ST 558 Data Science for Statisticians (R)</title>
+<title>ST 558 Data Science for Statisticians (R) - Numerical Variable Summaries</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -142,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -153,13 +153,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/14_5-Week3_4.html">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/27-Numerical_Variable_Summaries.html">Numerical Variable Summaries</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -184,9 +184,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
  <span class="menu-text">Topic 1: Data Science &amp; R Basics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -297,9 +297,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
  <span class="menu-text">Topic 2: Tidyverse &amp; EDA</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -410,9 +410,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
  <span class="menu-text">Topic 3: Other Programming Topics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -522,7 +522,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">SeverityF =</span> <span class="fu">as.factor</span>(Severity))</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>app_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 782 x 61
+<pre><code># A tibble: 782 × 61
      Age   BMI Sex    Height Weight Length_of_Stay Management   Severity     
    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;        
  1 12.7   16.9 female    148   37                3 conservative uncomplicated
@@ -535,13 +535,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8  7.06  NA   female     NA   21.5              2 conservative uncomplicated
  9  7.9   15.7 male      131   26.7              3 conservative uncomplicated
 10 14.3   14.9 male      174   45.5              3 conservative uncomplicated
-# i 772 more rows
-# i 53 more variables: Diagnosis_Presumptive &lt;chr&gt;, Diagnosis &lt;chr&gt;,
+# ℹ 772 more rows
+# ℹ 53 more variables: Diagnosis_Presumptive &lt;chr&gt;, Diagnosis &lt;chr&gt;,
 #   Alvarado_Score &lt;dbl&gt;, Paedriatic_Appendicitis_Score &lt;dbl&gt;,
 #   Appendix_on_US &lt;chr&gt;, Appendix_Diameter &lt;dbl&gt;, Migratory_Pain &lt;chr&gt;,
 #   Lower_Right_Abd_Pain &lt;chr&gt;, Contralateral_Rebound_Tenderness &lt;chr&gt;,
 #   Coughing_Pain &lt;chr&gt;, Nausea &lt;chr&gt;, Loss_of_Appetite &lt;chr&gt;,
-#   Body_Temperature &lt;dbl&gt;, WBC_Count &lt;dbl&gt;, Neutrophil_Percentage &lt;dbl&gt;, ...</code></pre>
+#   Body_Temperature &lt;dbl&gt;, WBC_Count &lt;dbl&gt;, Neutrophil_Percentage &lt;dbl&gt;, …</code></pre>
 </div>
 </div>
 <p>Let’s dig in!</p>
@@ -556,7 +556,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_BMI =</span> <span class="fu">mean</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">med_BMI =</span> <span class="fu">median</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 x 2
+<pre><code># A tibble: 1 × 2
   mean_BMI med_BMI
      &lt;dbl&gt;   &lt;dbl&gt;
 1     18.9    18.1</code></pre>
@@ -569,17 +569,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">list</span>(<span class="st">"mean"</span> <span class="ot">=</span> mean, <span class="st">"median"</span> <span class="ot">=</span> median), </span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">.names =</span> <span class="st">"{.fn}_{.col}"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 x 34
+<pre><code># A tibble: 1 × 34
   mean_Age median_Age mean_BMI median_BMI mean_Height median_Height mean_Weight
      &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
 1       NA         NA       NA         NA          NA            NA          NA
-# i 27 more variables: median_Weight &lt;dbl&gt;, mean_Length_of_Stay &lt;dbl&gt;,
+# ℹ 27 more variables: median_Weight &lt;dbl&gt;, mean_Length_of_Stay &lt;dbl&gt;,
 #   median_Length_of_Stay &lt;dbl&gt;, mean_Alvarado_Score &lt;dbl&gt;,
 #   median_Alvarado_Score &lt;dbl&gt;, mean_Paedriatic_Appendicitis_Score &lt;dbl&gt;,
 #   median_Paedriatic_Appendicitis_Score &lt;dbl&gt;, mean_Appendix_Diameter &lt;dbl&gt;,
 #   median_Appendix_Diameter &lt;dbl&gt;, mean_Body_Temperature &lt;dbl&gt;,
 #   median_Body_Temperature &lt;dbl&gt;, mean_WBC_Count &lt;dbl&gt;,
-#   median_WBC_Count &lt;dbl&gt;, mean_Neutrophil_Percentage &lt;dbl&gt;, ...</code></pre>
+#   median_WBC_Count &lt;dbl&gt;, mean_Neutrophil_Percentage &lt;dbl&gt;, …</code></pre>
 </div>
 </div>
 <p>Oh, darn. That’s right, we have missing values. We can remove those just for a particular column instead of removing all the rows (as we did with <code>drop_na()</code>). This is a bit more complicated but we can specify some additional arguments of the mean and median function in our named list.</p>
@@ -589,17 +589,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">list</span>(<span class="st">"mean"</span> <span class="ot">=</span> <span class="er">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">"median"</span> <span class="ot">=</span> <span class="er">~</span> <span class="fu">median</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), </span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">.names =</span> <span class="st">"{.fn}_{.col}"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 x 34
+<pre><code># A tibble: 1 × 34
   mean_Age median_Age mean_BMI median_BMI mean_Height median_Height mean_Weight
      &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
 1     11.3       11.4     18.9       18.1        148.          150.        43.2
-# i 27 more variables: median_Weight &lt;dbl&gt;, mean_Length_of_Stay &lt;dbl&gt;,
+# ℹ 27 more variables: median_Weight &lt;dbl&gt;, mean_Length_of_Stay &lt;dbl&gt;,
 #   median_Length_of_Stay &lt;dbl&gt;, mean_Alvarado_Score &lt;dbl&gt;,
 #   median_Alvarado_Score &lt;dbl&gt;, mean_Paedriatic_Appendicitis_Score &lt;dbl&gt;,
 #   median_Paedriatic_Appendicitis_Score &lt;dbl&gt;, mean_Appendix_Diameter &lt;dbl&gt;,
 #   median_Appendix_Diameter &lt;dbl&gt;, mean_Body_Temperature &lt;dbl&gt;,
 #   median_Body_Temperature &lt;dbl&gt;, mean_WBC_Count &lt;dbl&gt;,
-#   median_WBC_Count &lt;dbl&gt;, mean_Neutrophil_Percentage &lt;dbl&gt;, ...</code></pre>
+#   median_WBC_Count &lt;dbl&gt;, mean_Neutrophil_Percentage &lt;dbl&gt;, …</code></pre>
 </div>
 </div>
 <p>The <code>~</code> is a quick way to write a <em>lambda</em> or <em>anonymous</em> function. Essentially, we are inline doing something like this</p>
@@ -618,7 +618,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 `.groups` argument.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 x 4
+<pre><code># A tibble: 4 × 4
 # Groups:   Diagnosis [2]
   Diagnosis       Sex    mean_BMI med_BMI
   &lt;chr&gt;           &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
@@ -641,7 +641,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 `.groups` argument.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 x 36
+<pre><code># A tibble: 4 × 36
 # Groups:   Diagnosis [2]
   Diagnosis       Sex    mean_Age median_Age mean_BMI median_BMI mean_Height
   &lt;chr&gt;           &lt;chr&gt;     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
@@ -649,13 +649,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 2 appendicitis    male       10.6       11       18.3       17.5        146.
 3 no appendicitis female     12.5       12.5     20.2       20.0        152.
 4 no appendicitis male       10.7       10.9     18.7       17.2        147.
-# i 29 more variables: median_Height &lt;dbl&gt;, mean_Weight &lt;dbl&gt;,
+# ℹ 29 more variables: median_Height &lt;dbl&gt;, mean_Weight &lt;dbl&gt;,
 #   median_Weight &lt;dbl&gt;, mean_Length_of_Stay &lt;dbl&gt;,
 #   median_Length_of_Stay &lt;dbl&gt;, mean_Alvarado_Score &lt;dbl&gt;,
 #   median_Alvarado_Score &lt;dbl&gt;, mean_Paedriatic_Appendicitis_Score &lt;dbl&gt;,
 #   median_Paedriatic_Appendicitis_Score &lt;dbl&gt;, mean_Appendix_Diameter &lt;dbl&gt;,
 #   median_Appendix_Diameter &lt;dbl&gt;, mean_Body_Temperature &lt;dbl&gt;,
-#   median_Body_Temperature &lt;dbl&gt;, mean_WBC_Count &lt;dbl&gt;, ...</code></pre>
+#   median_Body_Temperature &lt;dbl&gt;, mean_WBC_Count &lt;dbl&gt;, …</code></pre>
 </div>
 </div>
 <p>Great, now we have an easy way to compare the centers of the distribution for each of these numeric variables!</p>
@@ -673,7 +673,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 `.groups` argument.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 x 4
+<pre><code># A tibble: 4 × 4
 # Groups:   Diagnosis [2]
   Diagnosis       Sex    sd_BIM IQR_BMI
   &lt;chr&gt;           &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;
@@ -697,7 +697,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 `.groups` argument.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 x 3
+<pre><code># A tibble: 4 × 3
 # Groups:   Diagnosis [2]
   Diagnosis       Sex    correlation
   &lt;chr&gt;           &lt;chr&gt;        &lt;dbl&gt;
@@ -722,7 +722,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 `.groups` argument.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 x 3
+<pre><code># A tibble: 4 × 3
 # Groups:   Diagnosis [2]
   Diagnosis       Sex    correlation
   &lt;chr&gt;           &lt;chr&gt;        &lt;dbl&gt;
@@ -779,7 +779,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -811,29 +822,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -841,7 +830,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
