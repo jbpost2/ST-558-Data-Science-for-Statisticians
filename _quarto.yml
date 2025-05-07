@@ -27,18 +27,21 @@ project:
     - Notes/17-Reading_Delimited_Data.qmd
     - Notes/18-Reading_Excel_Data.qmd
     - Notes/19-Manipulating_Data_with_dplyr.qmd
+    - Notes/19_5-Week4_5.qmd
     - Notes/20-Manipulating_Data_with_tidyr.qmd
     - Notes/21-Connecting_to_Databases.qmd
     - Notes/22-SQL_Style_Joins_Landing.qmd
     - Notes/23-Querying_APIs_Landing.qmd
-    - Notes/24-Summarizing_Categorical_Variables.qmd
-    - Notes/25-Barplots_ggplot_Basics_Landing.qmd
-    - Notes/26-Numerical_Variable_Summaries.qmd
-    - Notes/27-Numeric_Variable_Graphs_Landing.qmd
-    - Notes/28-Big_Recap_Landing.qmd
-    - Notes/29-Apply_Family_Landing.qmd
-    - Notes/30-purrr_Landing.qmd
-    - Notes/31-Advanced_Function_Writing_Landing.qmd
+    - Notes/23_5-Week5_7.qmd
+    - Notes/24-EDA_Concepts_Landing.qmd
+    - Notes/25-Summarizing_Categorical_Variables.qmd
+    - Notes/26-Barplots_ggplot_Basics_Landing.qmd
+    - Notes/27-Numerical_Variable_Summaries.qmd
+    - Notes/28-Numeric_Variable_Graphs_Landing.qmd
+    - Notes/29-Big_Recap_Landing.qmd
+    - Notes/30-Apply_Family_Landing.qmd
+    - Notes/31-purrr_Landing.qmd
+    - Notes/32-Advanced_Function_Writing_Landing.qmd
 website:
   title: "ST 558 Data Science for Statisticians (R)"
   navbar:
@@ -83,20 +86,23 @@ website:
           - Notes/17-Reading_Delimited_Data.qmd
           - Notes/18-Reading_Excel_Data.qmd
           - Notes/19-Manipulating_Data_with_dplyr.qmd
+          - Notes/19_5-Week4_5.qmd
           - Notes/20-Manipulating_Data_with_tidyr.qmd
           - Notes/21-Connecting_to_Databases.qmd
           - Notes/22-SQL_Style_Joins_Landing.qmd
           - Notes/23-Querying_APIs_Landing.qmd
-          - Notes/24-Summarizing_Categorical_Variables.qmd
-          - Notes/25-Barplots_ggplot_Basics_Landing.qmd
-          - Notes/26-Numerical_Variable_Summaries.qmd
-          - Notes/27-Numeric_Variable_Graphs_Landing.qmd
+          - Notes/23_5-Week5_7.qmd
+          - Notes/24-EDA_Concepts_Landing.qmd
+          - Notes/25-Summarizing_Categorical_Variables.qmd
+          - Notes/26-Barplots_ggplot_Basics_Landing.qmd
+          - Notes/27-Numerical_Variable_Summaries.qmd
+          - Notes/28-Numeric_Variable_Graphs_Landing.qmd
       - section: "Topic 3: Other Programming Topics"
         contents:
-          - Notes/28-Big_Recap_Landing.qmd
-          - Notes/29-Apply_Family_Landing.qmd
-          - Notes/30-purrr_Landing.qmd
-          - Notes/31-Advanced_Function_Writing_Landing.qmd
+          - Notes/29-Big_Recap_Landing.qmd
+          - Notes/30-Apply_Family_Landing.qmd
+          - Notes/31-purrr_Landing.qmd
+          - Notes/32-Advanced_Function_Writing_Landing.qmd
   page-navigation: true
   reader-mode: true
 

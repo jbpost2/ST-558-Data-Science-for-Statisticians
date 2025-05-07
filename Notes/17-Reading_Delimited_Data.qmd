@@ -1,13 +1,13 @@
 ---
 title: "Reading Delimited Data"
 format: html
-editor: visual
+editor: source
 toc: TRUE
 editor_options: 
   chunk_output_type: console
 ---
 
-As one of our goals is to read in and wrangle data, we need to learn how to effectively take raw data (data not in R) and bring it into R. For most of our data sources, we'll store the data as a data frame (usually a tibble). For some types of data we'll need to read it in as a character string or as a list and then parse it with R.
+As one of our goals is to read in and wrangle data, we need to learn how to effectively take raw data (data not in `R`) and bring it into `R`. For most of our data sources, we'll store the data as a `data frame` (usually a `tibble`). For some types of data we'll need to read it in as a character string or as a list and then parse it with `R`.
 
 ## Data Formats
 
@@ -20,9 +20,9 @@ Data comes in many formats such as
 -   From a database
 -   From an Application Programming Interface (API)
 
-As with many tasks in R, there are many ways to read in data from these sources.
+As with many tasks in `R`, there are many ways to read in data from these sources.
 
--   We could stick with `BaseR` (use functions like `read.csv()`)
+-   We could stick with `Base R` (use functions like `read.csv()`)
 -   Use functions from a particular ecosystem (`tidyverse` or `data.table`)
 
 We'll use the `tidyverse` due to its popularity and ease of functionality.
@@ -30,7 +30,8 @@ We'll use the `tidyverse` due to its popularity and ease of functionality.
 -   Make sure `tidyverse` package is installed (this can take a while)
 
 ```{r, eval=FALSE}
-install.packages("tidyverse")
+#does not evaluate here
+install.packages("tidyverse") #only run this once on your computer!
 ```
 
 -   Load the library into your current session
@@ -39,7 +40,7 @@ install.packages("tidyverse")
 library(tidyverse)
 ```
 
-- You can see this loads in the eight core packages mentioned previously. The warnings can easily be ignored but we should take care with the conflicts. We've overwritten some functions from `BaseR`. Recall, we can call those functions explicitly if we'd like (`stats::filter()`).
+-   You can see this loads in the eight core packages mentioned previously. The warnings can easily be ignored but we should take care with the conflicts. We've overwritten some functions from `Base R`. Recall, we can call those functions explicitly if we'd like (`stats::filter()`).
 
 ## Locating Files
 
@@ -47,7 +48,7 @@ library(tidyverse)
 
 -   Focus on *file* argument as everything else has defaults. Notice a *path to a file, a connection, or literal data* must be given.
 
-Before we start reading in data, let's recap how R finds files.
+Before we start reading in data, let's recap how `R` finds files.
 
 -   We can give a *full path name* to the file
 
@@ -71,12 +72,12 @@ Before we start reading in data, let's recap how R finds files.
 
 -   Go though examples of reading different types of data raw data
 
-| Type of file       | Package  | Function                                                                  |
-|----------------------------|------------------|---------------------------|
-| Delimited          | `readr`  | `read_csv()`, `read_tsv()`,`read_table()`, `read_delim(...,delim = ,...)` |
-| Excel (.xls,.xlsx) | `readxl` | `read_excel()`                                                              |
-| SPSS (.sav)        | `haven`  | `read_spss()`                                                               |
-| SAS (.sas7bdat)    | `haven`  | `read_sas()`                                                                |
+| Type of file | Package | Function |
+|---------------------------|------------------|---------------------------|
+| Delimited | `readr` | `read_csv()`, `read_tsv()`,`read_table()`, `read_delim(...,delim = ,...)` |
+| Excel (.xls,.xlsx) | `readxl` | `read_excel()` |
+| SPSS (.sav) | `haven` | `read_spss()` |
+| SAS (.sas7bdat) | `haven` | `read_sas()` |
 
 ### Reading CSV Files
 
@@ -146,7 +147,7 @@ bike_details[1:10, ] |>
   pull(name)
 ```
 
-Ok, back to the main task - reading the data in. We see in the fancy printing that R has each column stored in a particular format. How did R determine the column types?
+Ok, back to the main task - reading the data in. We see in the fancy printing that `R` has each column stored in a particular format. How did `R` determine the column types?
 
 From the help under `col_types` we see the following:
 
@@ -176,13 +177,13 @@ Ahh, so the `guess_max` argument tells our function to scan the first `x` number
 
 -   Functions from *readr* and their purpose
 
-| Delimiter      | Function                                                                         |
-|------------------------|------------------------------------------------|
-| comma ','      | read_csv()                                                                       |
-| tab            | read_tsv()                                                                       |
-| space ' '      | read_table()                                                                     |
+| Delimiter | Function |
+|-------------------------|------------------------------------------------|
+| comma ',' | read_csv() |
+| tab | read_tsv() |
+| space ' ' | read_table() |
 | semi-colon ';' | read_csv2() (This uses `;` instead of commas, which is common in many countries) |
-| other          | read_delim(...,delim = ,...)                                                     |
+| other | read_delim(...,delim = ,...) |
 
 Consider the `umps.txt` file available at: <https://www4.stat.ncsu.edu/~online/datasets/umps2012.txt>
 
@@ -303,7 +304,7 @@ ump_data |>
   mutate(days_off = date - lag(date))
 ```
 
-This is easily done as we can take a date and subtract another date (via `lag(data)`, which grabs the date from the previous row).
+This is easily done as we can take a date and subtract another date (via `lag(date)`, which grabs the date from the previous row).
 
 ### Reading in Tricky Raw Data Files
 
@@ -317,7 +318,7 @@ Sometimes our raw data will be in a `.txt` type file but not in a super nice for
 
     -   reads a file into a character vector with one element per line
 
-Once the data is read into an R object, we can then usually parse it with [**regular expressions**](https://en.wikipedia.org/wiki/Regular_expression). Hopefully, that's not something you need to do very often!
+Once the data is read into an `R` object, we can then usually parse it with [**regular expressions**](https://en.wikipedia.org/wiki/Regular_expression). Hopefully, that's not something you need to do very often!
 
 ### Quick R Video
 
@@ -326,16 +327,21 @@ Please pop this video out and watch it in the full panopto player!
 ```{=html}
 <iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=4f5a88ef-0eff-4381-9278-b17c0102cbd3&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="17 - Reading Delimited Data" ></iframe>
 ```
+
+- <a href = "https://github.com/jbpost2/My_first_repo" target = "_blank">Link to repo with files from video</a>
+
 ### Recap!
 
 The `tidyverse` has a package called `readr` that has many functions for reading in delimited data (raw data separated by a character string)
 
-| Delimiter      | Function                                                                         |
-|------------------------|------------------------------------------------|
-| comma ','      | read_csv()                                                                       |
-| tab            | read_tsv()                                                                       |
-| space ' '      | read_table()                                                                     |
+| Delimiter | Function |
+|-------------------------|------------------------------------------------|
+| comma ',' | read_csv() |
+| tab | read_tsv() |
+| space ' ' | read_table() |
 | semi-colon ';' | read_csv2() (This uses `;` instead of commas, which is common in many countries) |
-| other          | read_delim(...,delim = ,...)                                                     |
+| other | read_delim(...,delim = ,...) |
 
 `lubridate` is another package in the `tidyverse` that is really useful for dealing with date-type data!
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

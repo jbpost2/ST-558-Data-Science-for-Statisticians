@@ -1,0 +1,45 @@
+---
+title: "Week 6 & 7 Overview"
+format: html
+toc: TRUE
+editor: source
+editor_options: 
+  chunk_output_type: inline
+---
+
+This wraps up the content for week 5. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your assessment for this week.
+
+Week 6 does not have any new material. This will give you time to work on your project and study for your first exam.
+
+Week 7 we take on exploring and finding relationships in our data. Anytime we read data into `R` (or another language), we should do some basic data validation and get to know our data. These are the basics steps to an exploratory data analysis (EDA). This week we'll develop the skills to do this!
+
+## Week 7 Additional Readings/Learning Materials
+
+### EDA
+
+- <a href = "https://r4ds.hadley.nz/data-visualize" target = "_blank">Chapters 1, 9, 10, and 11 of R 4 Data Science</a>
+- (Optional) <a href = "http://www.sthda.com/english/wiki/descriptive-statistics-and-graphics#descriptive-statistics-for-a-single-group" target = "_blank">Useful site with EDA process example</a>
+
+### Factors and missing values
+
+- <a href = "https://r4ds.hadley.nz/factors" target = "_blank">Chapters 16 and 18 of R 4 Data Science</a>
+
+## Week 7 Learning Objectives
+
+Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)
+
+### Summarizing Data
+
+1.    utilize R to construct basic numeric summaries such as the mean, median, standard deviation, variance, quantiles, correlation, and contingency tables (CO 5)
+
+    a.    interpret and pull out relevant pieces of n-way contingency tables created using the table function in R
+    b.    calculate common summary statistics for each level of a categorical variable (or combinations of levels of multiple categorical variables)
+
+2.    create graphical summaries using base R and the ggplot2 package (CO 5)
+
+    a.    explain the idea behind the way plots are created using the ggplot2 package in R
+    b.    customize ggplot graphical summaries in R including, but not limited to, changes to axes and title labels, the type of plot, the appearance of points, the addition of lines, the color, shape, and size of points and lines, and the addition of a legend
+    c.    create multiple plots using the faceting capabilities of the ggplot2 package
+    d.    describe and create the most commonly used plots for categorical data
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

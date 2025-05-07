@@ -1,7 +1,7 @@
 ---
 title: "Manipulating Data with `dplyr`"
 format: html
-editor: visual
+editor: source
 toc: TRUE
 editor_options: 
   chunk_output_type: console
@@ -30,7 +30,7 @@ The two major tasks we'll consider are
     -   **rename** a column
     -   **mutating** our data frame to create a new variable
 
-We can use BaseR for this (via `[` or the `subset()` function). However, the `tidyverse` has a more coherent set of functions to allow us to do all of our tasks without having to spend as much time learning syntax. So let's go that route!
+We can use `Base R` for this (via `[` or the `subset()` function). However, the `tidyverse` has a more coherent set of functions to allow us to do all of our tasks without having to spend as much time learning syntax. So let's go that route!
 
 Recall the basic fundamentals about the `tidyverse`:
 
@@ -52,7 +52,7 @@ my_data |>
 
 ## Coercing a Data Frame to a Tibble
 
-If you happen to have a data frame that isn't already a tibble, we can easily coerce it using the `as_tibble()` function.
+If you happen to have a `data frame` that isn't already a `tibble`, we can easily coerce it using the `as_tibble()` function.
 
 Consider a data set on major league baseball players (batting statistics):
 
@@ -69,7 +69,7 @@ Nice, now we can work on this `tibble`!
 
 A common task is to only grab certain types of observations (**filter rows**)
 
-```{r, echo = FALSE, fig.align='center', out.width = "500px"}
+```{r, echo = FALSE, fig.align='center', out.width = "500px", fig.alt = "A visual of a data frame is shown with three columns. Only rows where the third column was equal to FALSE are returned."}
 knitr::include_graphics("img/filterVisualF.png")
 ```
 
@@ -82,7 +82,7 @@ or rearrange the order of the observations (rows). The two functions from `dplyr
 
 `filter()` generally takes a `tibble` as its first argument and then a logical vector as the next (of the same length as the number of rows):
 
--   Return observations where the number of games played is greater than 50 (the `G` column):
+-   Returns observations where the number of games played is greater than 50 (the `G` column):
 
 ```{r}
 filter(batting_tbl, G > 50)
@@ -112,7 +112,7 @@ batting_tbl |>
 -   Often we want to check if a variable is in a specific group of values. We might think this is the way:
 
 ```{r}
-#wrong!
+####wrong!!!!! Common mistake
 batting_tbl |>
   filter(G > 50, yearID == c(2018, 2019, 2020))
 ```
@@ -127,24 +127,24 @@ batting_tbl |>
 
 -   If we want an *or* condition, we use the compound logical operator for that
 
-    -   Here, grab those with either games greater than 50 or those that played in 2018, 2019, or 2020 (or both)
+    -   Here, grab those with either games greater than 100 or those that played in 2018, 2019, or 2020 (or both)
 
 ```{r}
 batting_tbl |>
-  filter(G > 50 | yearID %in% c(2018, 2019, 2020))
+  filter(G > 100 | yearID %in% c(2018, 2019, 2020))
 ```
 
 -   Again, note the change in the observation count!
 
 ### `arrange()`
 
-The other major observation (row) manipulation is to reorder the observations (rows). This is done through `arrange()` from `dplyr` (or `sort()` in `BaseR`)
+The other major observation (row) manipulation is to reorder the observations (rows). This is done through `arrange()` from `dplyr` (or `sort()` in `Base R`)
 
 -   Let's take our result from above and reorder by `teamID`
 
 ```{r}
 batting_tbl |>
-  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  filter(G > 100, yearID %in% c(2018, 2019, 2020)) |>
   arrange(teamID)
 ```
 
@@ -152,7 +152,7 @@ batting_tbl |>
 
     -   Take the batting tibble and then
 
-    -   filter the rows to only include those with games greater than 50 and those that played in 2018-2020 and then
+    -   filter the rows to only include those with games greater than 100 and those that played in 2018-2020 and then
 
     -   arrange the rows by the team name
 
@@ -160,7 +160,7 @@ batting_tbl |>
 
 ```{r}
 batting_tbl |>
-  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  filter(G > 100, yearID %in% c(2018, 2019, 2020)) |>
   arrange(teamID, playerID)
 ```
 
@@ -168,7 +168,7 @@ batting_tbl |>
 
 ```{r}
 batting_tbl |>
-  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  filter(G > 100, yearID %in% c(2018, 2019, 2020)) |>
   arrange(desc(teamID), playerID)
 ```
 
@@ -180,7 +180,7 @@ We may want to subset our variables, rename them, or create new variables.
 
 We call the subset of our variables **selecting** columns (or variables)
 
-```{r, echo = FALSE, fig.align='center', out.width = "400px"}
+```{r, echo = FALSE, fig.align='center', out.width = "400px", fig.alt = "A visual of a data frame is shown with three columns. Only one column is chosen to be returned."}
 knitr::include_graphics("img/selectVisualF.png")
 ```
 
@@ -200,7 +200,7 @@ When we want to look at pulling more than one column, `select()` is much better!
 
 ```{r}
 batting_tbl |>
-  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  filter(G > 100, yearID %in% c(2018, 2019, 2020)) |>
   arrange(desc(teamID), playerID) |>
   select(playerID, teamID, H, X2B, X3B, HR)
 ```
@@ -211,7 +211,7 @@ batting_tbl |>
 
 ```{r}
 batting_tbl |>
-  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  filter(G > 100, yearID %in% c(2018, 2019, 2020)) |>
   arrange(desc(teamID), playerID) |>
   select(playerID, teamID, H:HR)
 ```
@@ -220,7 +220,7 @@ batting_tbl |>
 
 ```{r}
 batting_tbl |>
-  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  filter(G > 100, yearID %in% c(2018, 2019, 2020)) |>
   arrange(desc(teamID), playerID) |>
   select(ends_with("ID"), G, AB, H:HR)
 ```
@@ -229,7 +229,7 @@ batting_tbl |>
 
 ```{r}
 batting_tbl |>
-  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  filter(G > 100, yearID %in% c(2018, 2019, 2020)) |>
   arrange(desc(teamID), playerID) |>
   select(ends_with("ID") | starts_with("X"), G, AB, H, HR)
 ```
@@ -238,7 +238,7 @@ batting_tbl |>
 
 ```{r}
 batting_tbl |>
-  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  filter(G > 100, yearID %in% c(2018, 2019, 2020)) |>
   arrange(desc(teamID), playerID) |>
   select(playerID, H:HR, everything())
 ```
@@ -251,7 +251,7 @@ We've seen the use of `colnames()` or `names()` to rename columns. Those are gre
 
 ```{r}
 batting_tbl |>
-  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  filter(G > 100, yearID %in% c(2018, 2019, 2020)) |>
   arrange(desc(teamID), playerID) |>
   select(playerID, teamID, H:HR) |>
   rename("Doubles" = "X2B", "Triples" = "X3B")
@@ -261,7 +261,7 @@ batting_tbl |>
 
 Often we want to create new variables!
 
-```{r, echo = FALSE, fig.align='center', out.width = "500px"}
+```{r, echo = FALSE, fig.align='center', out.width = "500px", fig.alt = "A visual of a data frame is shown with three columns. A fourth column is created based on some conditions associated with the original three columns."}
 knitr::include_graphics("img/createVarVisualF.png")
 ```
 
@@ -271,7 +271,7 @@ This can be accomplished using `mutate()`. This function allows us to create one
 
 ```{r,eval=TRUE}
 batting_tbl |>
-  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  filter(G > 100, yearID %in% c(2018, 2019, 2020)) |>
   arrange(desc(teamID), playerID) |>
   select(playerID, teamID, H:HR) |>
   rename("Doubles" = "X2B", "Triples" = "X3B") |>
@@ -284,7 +284,7 @@ batting_tbl |>
 
 ```{r}
 batting_tbl |>
-  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  filter(G > 100, yearID %in% c(2018, 2019, 2020)) |>
   arrange(desc(teamID), playerID) |>
   select(playerID, teamID, H:HR) |>
   rename("Doubles" = "X2B", "Triples" = "X3B") |>
@@ -299,7 +299,7 @@ batting_tbl |>
 
 ```{r}
 batting_tbl |>
-  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  filter(G > 100, yearID %in% c(2018, 2019, 2020)) |>
   arrange(desc(teamID), playerID) |>
   select(playerID, teamID, H:HR) |>
   rename("Doubles" = "X2B", "Triples" = "X3B") |>
@@ -313,7 +313,7 @@ batting_tbl |>
 
 ```{r}
 batting_tbl |>
-  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  filter(G > 100, yearID %in% c(2018, 2019, 2020)) |>
   arrange(desc(teamID), playerID) |>
   select(playerID, teamID, H:HR) |>
   rename("Doubles" = "X2B", "Triples" = "X3B") |>
@@ -330,7 +330,7 @@ batting_tbl |>
 
 ```{r}
 batting_tbl |>
-  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  filter(G > 100, yearID %in% c(2018, 2019, 2020)) |>
   arrange(desc(teamID), playerID) |>
   select(playerID, teamID, H:HR) |>
   rename("Doubles" = "X2B", "Triples" = "X3B") |>
@@ -341,7 +341,7 @@ batting_tbl |>
 
 ```{r}
 batting_tbl |>
-  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  filter(G > 100, yearID %in% c(2018, 2019, 2020)) |>
   arrange(desc(teamID), playerID) |>
   select(playerID, teamID, H:HR) |>
   rename("Doubles" = "X2B", "Triples" = "X3B") |>
@@ -353,7 +353,7 @@ batting_tbl |>
 
 ```{r}
 batting_tbl |>
-  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  filter(G > 100, yearID %in% c(2018, 2019, 2020)) |>
   arrange(desc(teamID), playerID) |>
   select(playerID, teamID, H:HR) |>
   rename("Doubles" = "X2B", "Triples" = "X3B") |>
@@ -370,7 +370,7 @@ batting_tbl |>
 
 ```{r}
 batting_tbl |>
-  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  filter(G > 100, yearID %in% c(2018, 2019, 2020)) |>
   arrange(desc(teamID), playerID) |>
   select(playerID, yearID, teamID, H:HR) |>
   rename("Doubles" = "X2B", "Triples" = "X3B") |>
@@ -390,7 +390,7 @@ We are really able to do a lot quickly with these functions! Nice. One other com
 
 ```{r}
 batting_tbl |>
-  filter(G > 50, yearID %in% c(2018, 2019, 2020)) |>
+  filter(G > 100, yearID %in% c(2018, 2019, 2020)) |>
   arrange(desc(teamID), playerID) |>
   select(playerID, yearID, teamID, H:HR) |>
   rename("Doubles" = "X2B", "Triples" = "X3B") |>
@@ -413,6 +413,8 @@ Please pop this video out and watch it in the full panopto player!
 <iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=e6c52a4f-e12f-42b3-ba62-b17c010a973a&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="19 - Manipulating Data with dplyr" ></iframe>
 ```
 
+- <a href = "https://github.com/jbpost2/My_first_repo" target = "_blank">Link to repo with files from video</a>
+
 ### Recap!
 
 `dplyr` gives us a ton of functionality for doing common data manipulations
@@ -427,3 +429,6 @@ Please pop this video out and watch it in the full panopto player!
 The functionality of selecting columns described in the help for `select()` can be used in many places across the `tidyverse` and the functions `group_by()` and `ifelse()` are really useful as well!
 
 -   [`dplyr` Cheat Sheet](https://rstudio.github.io/cheatsheets/html/data-transformation.html) (PDF version on the right hand side of the page)
+
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

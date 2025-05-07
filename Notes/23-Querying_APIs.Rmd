@@ -13,6 +13,7 @@ output:
       ratio: "16:9"
     includes:
       in_header: "partials/header.html"
+    self_contained: yes
 editor_options: 
   chunk_output_type: console
 ---
@@ -110,9 +111,11 @@ library(tidycensus) #install first!
 rent <- "DP04_0142PE" #PE means percentage
 rent_data <- get_acs(variables = rent, 
         geography = "county",
-        geometry = TRUE,# eturns the polygon data and allows for maps easily
+        geometry = TRUE,#returns the polygon data and allows for maps easily
         survey = "acs5",
-        show_call = TRUE) #can add state and other things
+        show_call = TRUE,
+        key = "e267f117801b2ef741e54620602b0903c5f4d3c8"
+        ) #can add state and other things
 ```
 
 
@@ -132,7 +135,7 @@ rent_data |>
 
 ---
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, eval = FALSE}
 #install mapview
 rent_data |> 
   mapview::mapview(zcol = "estimate", 
@@ -373,18 +376,3 @@ Later:  Need a way to make your model available to others
 - Some API packages already exist
 
 - Others, we need to parse the data ourselves!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

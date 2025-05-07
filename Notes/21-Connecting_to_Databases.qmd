@@ -1,7 +1,7 @@
 ---
 title: "Databases and Basic SQL"
 format: html
-editor: visual
+editor: source
 toc: TRUE
 editor_options: 
   chunk_output_type: inline
@@ -62,7 +62,7 @@ The SQL code allows us to do these operations. Luckily, the logic for doing the 
 
 ### Databases in R: Connecting
 
-The first step in dealing with a database is to connect your R session to it so you can do your CRUD actions. To connect we use the `DBI` package. The `dbConnect()` function allows us to connect to a database. Here is some generic code for using that function:
+The first step in dealing with a database is to connect your`R` session to it so you can do your CRUD actions. To connect we use the `DBI` package. The `dbConnect()` function allows us to connect to a database. Here is some generic code for using that function:
 
 ```{r, eval = FALSE}
 library(DBI)
@@ -73,7 +73,7 @@ con <- dbConnect(data_base_type_goes_here_usually_requires_a_package,
 )
 ```
 
-This code tells R where the connection exists (`host`) and, if you need to login to gain access, the way in which you could specify your username and password.
+This code tells`R` where the connection exists (`host`) and, if you need to login to gain access, the way in which you could specify your username and password.
 
 The first argument specifies the type of database you are connecting to. Most commonly you'll need to download an appropriate package and put something like the following:
 
@@ -173,7 +173,7 @@ Notice the number of rows isn't actually calcuated here! This is called lazy eva
 
 How `dplry` works with a database
 
--   It never pulls data into R unless you explicitly ask for it
+-   It never pulls data into`R` unless you explicitly ask for it
 
 -   It delays doing any work until the last possible moment - it collects together everything you want to do and then sends it to the database in one step (you can add `collect()` if you want all the data anyway)
 
@@ -223,6 +223,8 @@ Please pop this video out and watch it in the full panopto player!
 <iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=2109f930-6cc4-443b-85b5-b17e01004c9e&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="21 - Connecting to Databases" ></iframe>
 ```
 
+- <a href = "https://github.com/jbpost2/My_first_repo" target = "_blank">Link to repo with files from video</a>
+
 ### Recap!
 
 -   Databases are commonly used to store lots of data
@@ -234,3 +236,5 @@ Please pop this video out and watch it in the full panopto player!
 -   `DBI` package has functionality to connect to many types of databases in R
 
 -   `tbl()` and common `dplyr` functions work for querying
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

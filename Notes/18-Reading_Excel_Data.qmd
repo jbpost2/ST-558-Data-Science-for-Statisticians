@@ -1,7 +1,7 @@
 ---
 title: "Reading Excel Data"
 format: html
-editor: visual
+editor: source
 toc: TRUE
 editor_options: 
   chunk_output_type: console
@@ -16,8 +16,8 @@ The `readxl` package is part of the tidyverse (not loaded by default) that has f
 However, these types of files cannot be pulled from a URL. Instead, we'll need to download the files and provide a path to them.
 
 -   Download the dry beans data set available at: <https://www4.stat.ncsu.edu/~online/datasets/Dry_Bean_Dataset.xlsx>
--   Store it in your R project folder, a datasets folder within there, or the folder with your `.qmd` file in it.
--   Let's read it into R!
+-   Store it in your `R` project folder, a datasets folder within there, or the folder with your `.qmd` file in it.
+-   Let's read it into `R`!
 
 If the file exists in your `.qmd` file's directory, we can read it in via:
 
@@ -91,3 +91,5 @@ The `read_xl` package provides nice functionality for reading in excel type data
 
 -   As it is part of the `tidyverse` it reads the data into a `tibble`
 -   Functionality to read in from different sheets or to read in particular ranges of data
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

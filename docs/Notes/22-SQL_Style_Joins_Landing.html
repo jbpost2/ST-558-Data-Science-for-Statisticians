@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-05-07">
 
-<title>Course Goals &amp; Other Resources – ST 558 Data Science for Statisticians (R)</title>
+<title>SQL Joins – ST 558 Data Science for Statisticians (R)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -122,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/15_5-Week3_4.html">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/22-SQL_Style_Joins_Landing.html">Course Goals &amp; Other Resources</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/14_5-Week3_4.html">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/22-SQL_Style_Joins_Landing.html">SQL Joins</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -259,12 +259,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Writing Functions</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Packages</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -278,8 +272,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/15_5-Week3_4.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/14_5-Week3_4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 4 Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Packages</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -308,6 +308,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../Notes/19_5-Week4_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5 Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../Notes/20-Manipulating_Data_with_tidyr.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Manipulating Data with <code>tidyr</code></span></a>
   </div>
@@ -321,36 +327,45 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/22-SQL_Style_Joins_Landing.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+ <span class="menu-text">SQL Joins</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/23-Querying_APIs_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+ <span class="menu-text">Querying APIs</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/24-Summarizing_Categorical_Variables.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/23_5-Week5_7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 &amp; 7 Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Notes/24-EDA_Concepts_Landing.qmd</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/25-Summarizing_Categorical_Variables.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Creating Contingency Tables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/25-Barplots_ggplot_Basics_Landing.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/26-Barplots_ggplot_Basics_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Goals &amp; Other Resources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/26-Numerical_Variable_Summaries.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/27-Numerical_Variable_Summaries.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Numerical Variable Summaries</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/27-Numeric_Variable_Graphs_Landing.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/28-Numeric_Variable_Graphs_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Goals &amp; Other Resources</span></a>
   </div>
 </li>
@@ -367,25 +382,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/28-Big_Recap_Landing.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/29-Big_Recap_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Goals &amp; Other Resources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/29-Apply_Family_Landing.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/30-Apply_Family_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Goals &amp; Other Resources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/30-purrr_Landing.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/31-purrr_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Goals &amp; Other Resources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/31-Advanced_Function_Writing_Landing.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/32-Advanced_Function_Writing_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Goals &amp; Other Resources</span></a>
   </div>
 </li>
@@ -402,21 +417,15 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a></li>
-  <li><a href="#additional-readings-for-topic-1" id="toc-additional-readings-for-topic-1" class="nav-link" data-scroll-target="#additional-readings-for-topic-1">Additional Readings for Topic 1</a>
-  <ul class="collapse">
-  <li><a href="#pip-information-optional" id="toc-pip-information-optional" class="nav-link" data-scroll-target="#pip-information-optional">PIP Information (Optional)</a></li>
-  <li><a href="#jupyterlab-info-optional" id="toc-jupyterlab-info-optional" class="nav-link" data-scroll-target="#jupyterlab-info-optional">JupyterLab Info (Optional)</a></li>
-  <li><a href="#python-help-optional" id="toc-python-help-optional" class="nav-link" data-scroll-target="#python-help-optional">Python Help (Optional)</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/15_5-Week3_4.html">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/22-SQL_Style_Joins_Landing.html">Course Goals &amp; Other Resources</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/14_5-Week3_4.html">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/22-SQL_Style_Joins_Landing.html">SQL Joins</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Course Goals &amp; Other Resources</h1>
+<h1 class="title">SQL Joins</h1>
 </div>
 
 
@@ -439,51 +448,18 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The video below discusses the course goals.</p>
+<p>The video below discusses SQL style joins. Recall that when we have a database we often have multiple tables (or data frames) that are linked by some column or columns. When that is the case, we may want to combine the tables into one. That is the idea of a join!</p>
 <p>I highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer.</p>
-<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=6bb5d60f-a161-44c8-abd0-b0f0014391fb&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="01-Course Goals"></iframe>
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=a479c9d3-6a6a-4318-b3ab-b17e0108aca8&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="22 - SQL Style Joins"></iframe>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li><a href="01-Course_Goals.html" target="_blank">HTML version</a></li>
-<li><a href="PDFs/01-Course_Goals.pdf" target="_blank">PDF version</a></li>
-</ul>
-</section>
-<section id="additional-readings-for-topic-1" class="level2">
-<h2 class="anchored" data-anchor-id="additional-readings-for-topic-1">Additional Readings for Topic 1</h2>
-<section id="pip-information-optional" class="level3">
-<h3 class="anchored" data-anchor-id="pip-information-optional">PIP Information (Optional)</h3>
-<p>We use Pip to install our modules when needed (although most of the ones we need are already available to us on Google Colab). Here is more information about pip:</p>
-<ul>
-<li><a href="https://pip.pypa.io/en/stable/installation/" target="_blank" rel="noopener">pip</a> documentation</li>
-<li>More help on <a href="https://realpython.com/what-is-pip/" target="_blank" rel="noopener">understanding the basics of pip</a></li>
-<li><a href="https://colab.research.google.com/notebooks/snippets/importing_libraries.ipynb" target="_blank" rel="noopener">Using pip with Colab</a>&nbsp;(very short)</li>
-</ul>
-</section>
-<section id="jupyterlab-info-optional" class="level3">
-<h3 class="anchored" data-anchor-id="jupyterlab-info-optional">JupyterLab Info (Optional)</h3>
-<p>There are a lot of options for the IDE to use.&nbsp; We’ll use JupyterLab as our programming environment for the course. We’ll start out in Colab, which is built on JupyterLab. JupyterLab Notebooks are replacing the traditional Jupyter Notebook. They really just give a bit more functionality than the traditional notebook!</p>
-<ul>
-<li><a href="https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html" target="_blank" rel="noopener">JupyterLab</a> getting started guide</li>
-<li>Note that these notebooks can be used with an R kernel (that is, you can use them to run R code!)</li>
-<li><a href="https://colab.research.google.com/notebooks/markdown_guide.ipynb#scrollTo=Lhfnlq1Surtk" target="_blank" rel="noopener">Markdown guide</a></li>
-</ul>
-</section>
-<section id="python-help-optional" class="level3">
-<h3 class="anchored" data-anchor-id="python-help-optional">Python Help (Optional)</h3>
-<p>We’ll continue to learn python throughout the first couple of topics. You may want more detail or another explanation of concepts. The best place to learn about particular objects, functions, or methods is in the official documentation but that can be difficult to read when you are first starting out. Below are a number of tutorials that may be helpful!</p>
-<ul>
-<li>A <a href="https://docs.python.org/3/tutorial/index.html" target="_blank" rel="noopener">nice tutorial from python.org</a> (although sometimes they throw in some things that may be a bit out there for beginners).</li>
-<li>A <a href="https://www.w3schools.com/python/" target="_blank" rel="noopener">good reference for python basics from w3schools</a>.&nbsp;Generally w3schools is good to just get an idea about lots of languages!&nbsp;But overall the tutorials aren’t great.</li>
-<li><a href="https://realpython.com/what-is-pip/" target="_blank" rel="noopener">This is a nice website</a> but a little hard to navigate.&nbsp;I find that searching in the box for something (say ‘lists’) tends to bring up a pretty good article.</li>
-<li><a href="https://www.geeksforgeeks.org/python-programming-language/?ref=shm" target="_blank" rel="noopener">Geeks for geeks</a> is pretty solid!</li>
-<li><a href="https://numpy.org/doc/stable/reference/" target="_blank" rel="noopener">numpy </a>documentation</li>
-<li><a href="https://pandas.pydata.org/docs/reference/index.html" target="_blank" rel="noopener">pandas</a> documentation</li>
+<li><a href="22-SQL_Style_Joins.html" target="_blank">HTML version</a></li>
+<li><a href="PDFs/22-SQL_Style_Joins.pdf" target="_blank">PDF version</a></li>
 </ul>
 <p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -914,8 +890,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Notes/23-Querying_APIs_Landing.html" class="pagination-link" aria-label="Course Goals &amp; Other Resources">
-        <span class="nav-page-text">Course Goals &amp; Other Resources</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../Notes/23-Querying_APIs_Landing.html" class="pagination-link" aria-label="Querying APIs">
+        <span class="nav-page-text">Querying APIs</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

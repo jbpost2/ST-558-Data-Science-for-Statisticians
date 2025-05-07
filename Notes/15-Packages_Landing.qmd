@@ -11,7 +11,7 @@ The video below formally discusses `R` packages. Packages are collections of cod
 I highly recommend watching the video using the 'full' Panopto player. There is a 'pop out' button in the bottom right of the video to enter this viewer.
 
 ```{=html}
-<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=0dd0bac2-e320-4f53-810c-b17a013a4c50&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&captions=false&interactivity=all" height="169" width="300" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="15 - R Packages" ></iframe>
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=0dd0bac2-e320-4f53-810c-b17a013a4c50&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="15 - R Packages" ></iframe>
 ```
 
 ## Notes

@@ -1,13 +1,13 @@
 ---
 title: "Tidyverse Essentials"
 format: html
-editor: visual
+editor: source
 toc: TRUE
 editor_options: 
   chunk_output_type: console
 ---
 
-One of the big impediments to learning R in the past was the vast ecosystem of packages.
+One of the big impediments to learning `R` in the past was the vast ecosystem of packages.
 
 -   Many ways to do the same task via competing R packages
 -   Most packages written by different people
@@ -56,7 +56,7 @@ tibble |>
     ...
 ```
 
-Note: you'll often see the chain from the `magrittr` package used (`%>%`). Due to the popularity of this operator, R implemented its own pipe recently (`|>`). At this point, the functionality is almost the same so we'll use the `BaseR` pipe since it doesn't require a package load.
+Note: you'll often see the chain from the `magrittr` package used (`%>%`). Due to the popularity of this operator, `R` implemented its own pipe recently (`|>`). At this point, the functionality is almost the same so we'll use the `Base R` pipe since it doesn't require a package load.
 
 ## `tidyverse` Packages
 
@@ -80,3 +80,5 @@ We'll spend a good bit of time on `ggplot2`, `dplry`, `tidyr`, and `readr`. `tib
 -   Works on `tibbles` (special data frames)
 -   (Almost) all packages have functions with the same syntax
 -   A plethora of help documentation and vignettes exist
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

@@ -1,0 +1,52 @@
+---
+title: "Week 5 Overview"
+format: html
+toc: TRUE
+editor: source
+editor_options: 
+  chunk_output_type: inline
+---
+
+This wraps up the content for week 4. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your assessment for this week.
+
+This week we'll see how we can use the `tidyr` package to change the format of a dataset (long to wide), see how we can connect `R` to a database, learn about SQL style joins, and then finish up with the difficult topic of querying APIs!
+
+## Week 5 Additional Readings/Learning Materials
+
+### Reading Data
+
+- <a href = "https://r4ds.hadley.nz/data-import" target = "_blank">Chapter 7 of R 4 Data Science</a>
+- (Optional) <a href = "https://www.w3schools.com/sql/" target = "_blank">SQL syntax</a>
+
+### SQL Joins
+
+- <a href = "https://r4ds.hadley.nz/joins" target = "_blank">Chapter 19 of R 4 Data Science</a>
+
+## Week 5 Learning Objectives
+
+Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)
+
+### Other ways to connect R to data
+
+1. explain the general process of connecting R to a database, connect R to a database, and request data (CO 2)
+
+    a.    define the term SQL and RDBMS
+    b.    compare terminology between statistics and SQL (tables vs data sets, etc.)
+    c.    extract SQL code from dplyr commands
+    d.    write very basic SQL code to select and merge data
+    e.    describe why the collect function is required when using R to query a database
+    f.    determine the appropriate type of join to extract information of interest from given tables
+
+2. query APIs to return appropriate data (CO 2)
+
+    a.    define the term API
+    b.    explain the common syntax often used for APIs
+
+### Other Data Manipulations
+
+1.   utilize the tidyr package to manipulate data  (CO 2)
+
+    a.    change data between wide to long formats
+    b.    split or combine columns using the tidyr package
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

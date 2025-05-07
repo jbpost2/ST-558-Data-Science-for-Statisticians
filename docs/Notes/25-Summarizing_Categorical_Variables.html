@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-05-07">
 
-<title>Numerical Variable Summaries – ST 558 Data Science for Statisticians (R)</title>
+<title>Creating Contingency Tables – ST 558 Data Science for Statisticians (R)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../Notes/27-Numeric_Variable_Graphs_Landing.html" rel="next">
-<link href="../Notes/25-Barplots_ggplot_Basics_Landing.html" rel="prev">
+<link href="../Notes/26-Barplots_ggplot_Basics_Landing.html" rel="next">
+<link href="../Notes/23_5-Week5_7.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -156,7 +156,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/15_5-Week3_4.html">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/26-Numerical_Variable_Summaries.html">Numerical Variable Summaries</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/14_5-Week3_4.html">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/25-Summarizing_Categorical_Variables.html">Creating Contingency Tables</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -293,12 +293,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Writing Functions</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Packages</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -312,8 +306,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/15_5-Week3_4.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/14_5-Week3_4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 4 Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Packages</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -342,6 +342,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../Notes/19_5-Week4_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5 Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../Notes/20-Manipulating_Data_with_tidyr.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Manipulating Data with <code>tidyr</code></span></a>
   </div>
@@ -355,36 +361,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/22-SQL_Style_Joins_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+ <span class="menu-text">SQL Joins</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/23-Querying_APIs_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+ <span class="menu-text">Querying APIs</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/24-Summarizing_Categorical_Variables.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/23_5-Week5_7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 &amp; 7 Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Notes/24-EDA_Concepts_Landing.qmd</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/25-Summarizing_Categorical_Variables.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Creating Contingency Tables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/25-Barplots_ggplot_Basics_Landing.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/26-Barplots_ggplot_Basics_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Goals &amp; Other Resources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/26-Numerical_Variable_Summaries.html" class="sidebar-item-text sidebar-link active">
+  <a href="../Notes/27-Numerical_Variable_Summaries.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Numerical Variable Summaries</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/27-Numeric_Variable_Graphs_Landing.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/28-Numeric_Variable_Graphs_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Goals &amp; Other Resources</span></a>
   </div>
 </li>
@@ -401,25 +416,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/28-Big_Recap_Landing.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/29-Big_Recap_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Goals &amp; Other Resources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/29-Apply_Family_Landing.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/30-Apply_Family_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Goals &amp; Other Resources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/30-purrr_Landing.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/31-purrr_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Goals &amp; Other Resources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/31-Advanced_Function_Writing_Landing.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/32-Advanced_Function_Writing_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Goals &amp; Other Resources</span></a>
   </div>
 </li>
@@ -435,11 +450,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#numerical-summaries" id="toc-numerical-summaries" class="nav-link active" data-scroll-target="#numerical-summaries">Numerical Summaries</a>
+  <li><a href="#categorical-data-summaries" id="toc-categorical-data-summaries" class="nav-link active" data-scroll-target="#categorical-data-summaries">Categorical Data Summaries</a>
   <ul class="collapse">
-  <li><a href="#measures-of-center" id="toc-measures-of-center" class="nav-link" data-scroll-target="#measures-of-center">Measures of Center</a></li>
-  <li><a href="#measures-of-spread" id="toc-measures-of-spread" class="nav-link" data-scroll-target="#measures-of-spread">Measures of Spread</a></li>
-  <li><a href="#measures-of-association-between-two-numeric-variables" id="toc-measures-of-association-between-two-numeric-variables" class="nav-link" data-scroll-target="#measures-of-association-between-two-numeric-variables">Measures of Association Between Two Numeric Variables</a></li>
+  <li><a href="#contingency-tables" id="toc-contingency-tables" class="nav-link" data-scroll-target="#contingency-tables">Contingency Tables</a></li>
   <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap!</a></li>
   </ul></li>
   </ul>
@@ -448,9 +461,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/15_5-Week3_4.html">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/26-Numerical_Variable_Summaries.html">Numerical Variable Summaries</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/14_5-Week3_4.html">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/25-Summarizing_Categorical_Variables.html">Creating Contingency Tables</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Numerical Variable Summaries</h1>
+<h1 class="title">Creating Contingency Tables</h1>
 </div>
 
 
@@ -473,24 +486,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>We now know how to summarize categorical data and we’ve learned the basics of <code>ggplot2</code>. Now we’re ready to investigate how to summarize numeric variables. Recall:</p>
+<p>Now that we know how to get our raw data into R, we are ready to do the fun stuff - investigating our data!</p>
+<p>We discussed the main steps of an EDA and covered the most common data validation and basic manipulations for the data. The next few sets of notes dive into <strong>how to find summarize our data</strong>. Recall, how we summarize our data depends on the type of data we have!</p>
 <ul>
+<li>Categorical (Qualitative) variable - entries are a label or attribute<br>
+</li>
 <li>Numeric (Quantitative) variable - entries are a numerical value where math can be performed</li>
 </ul>
-<p>As before, our goal is to describe the <strong>distribution</strong> of the variable. We talked about this briefly:</p>
+<p>In either situation, we want to describe each variable’s distribution, perhaps comparing across different subgroups!</p>
+<p>Let’s start with summaries of strictly categorical data (or numeric variables with only a few values).</p>
 <ul>
-<li><p>For a single numeric variable, describe the distribution via</p>
-<ul>
-<li>Shape: Histogram, Density plot, …</li>
-<li>Measures of center: Mean, Median, …</li>
-<li>Measures of spread: Variance, Standard Deviation, Quartiles, IQR, …</li>
-</ul></li>
-<li><p>For two numeric variables, describe the distribution via</p>
-<ul>
-<li>Shape: Scatter plot, …</li>
-<li>Measures of linear relationship: Covariance, Correlation</li>
-</ul></li>
+<li>Categorical data is usually stored as a <code>character</code> or <code>factor</code> type</li>
 </ul>
+<section id="categorical-data-summaries" class="level2">
+<h2 class="anchored" data-anchor-id="categorical-data-summaries">Categorical Data Summaries</h2>
+<p>To summarize categorical variables numerically, we use contingency tables.</p>
+<p>To do so visually, we use bar plots.</p>
 <p>First, let’s read in the appendicitis data from the previous lecture.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -558,199 +569,247 @@ x dplyr::lag()    masks stats::lag()</code></pre>
 #   Body_Temperature &lt;dbl&gt;, WBC_Count &lt;dbl&gt;, Neutrophil_Percentage &lt;dbl&gt;, ...</code></pre>
 </div>
 </div>
-<p>Let’s dig in!</p>
-<section id="numerical-summaries" class="level2">
-<h2 class="anchored" data-anchor-id="numerical-summaries">Numerical Summaries</h2>
-<p>We’ll utilize the <code>summarize()</code> function along with <code>group_by()</code> to find most of our numerical summaries.</p>
-<p>As we discussed, we can’t really describe the entire distribution with a single number so we try to summarize different aspects of the distribution. In particular, center and spread.</p>
-<section id="measures-of-center" class="level3">
-<h3 class="anchored" data-anchor-id="measures-of-center">Measures of Center</h3>
-<p>We can find the mean and median via the <code>mean()</code> and <code>median()</code> function.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_BMI =</span> <span class="fu">mean</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">med_BMI =</span> <span class="fu">median</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 x 2
-  mean_BMI med_BMI
-     &lt;dbl&gt;   &lt;dbl&gt;
-1     18.9    18.1</code></pre>
-</div>
-</div>
-<p>We can try to get fancy and do it for all numeric columns. Recall we did this earlier with <code>across()</code> and <code>where(is.numeric)</code>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">list</span>(<span class="st">"mean"</span> <span class="ot">=</span> mean, <span class="st">"median"</span> <span class="ot">=</span> median), </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">.names =</span> <span class="st">"{.fn}_{.col}"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 x 34
-  mean_Age median_Age mean_BMI median_BMI mean_Height median_Height mean_Weight
-     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
-1       NA         NA       NA         NA          NA            NA          NA
-# i 27 more variables: median_Weight &lt;dbl&gt;, mean_Length_of_Stay &lt;dbl&gt;,
-#   median_Length_of_Stay &lt;dbl&gt;, mean_Alvarado_Score &lt;dbl&gt;,
-#   median_Alvarado_Score &lt;dbl&gt;, mean_Paedriatic_Appendicitis_Score &lt;dbl&gt;,
-#   median_Paedriatic_Appendicitis_Score &lt;dbl&gt;, mean_Appendix_Diameter &lt;dbl&gt;,
-#   median_Appendix_Diameter &lt;dbl&gt;, mean_Body_Temperature &lt;dbl&gt;,
-#   median_Body_Temperature &lt;dbl&gt;, mean_WBC_Count &lt;dbl&gt;,
-#   median_WBC_Count &lt;dbl&gt;, mean_Neutrophil_Percentage &lt;dbl&gt;, ...</code></pre>
-</div>
-</div>
-<p>Oh, darn. That’s right, we have missing values. We can remove those just for a particular column instead of removing all the rows (as we did with <code>drop_na()</code>). This is a bit more complicated but we can specify some additional arguments of the mean and median function in our named list.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">list</span>(<span class="st">"mean"</span> <span class="ot">=</span> <span class="er">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">"median"</span> <span class="ot">=</span> <span class="er">~</span> <span class="fu">median</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">.names =</span> <span class="st">"{.fn}_{.col}"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 x 34
-  mean_Age median_Age mean_BMI median_BMI mean_Height median_Height mean_Weight
-     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
-1     11.3       11.4     18.9       18.1        148.          150.        43.2
-# i 27 more variables: median_Weight &lt;dbl&gt;, mean_Length_of_Stay &lt;dbl&gt;,
-#   median_Length_of_Stay &lt;dbl&gt;, mean_Alvarado_Score &lt;dbl&gt;,
-#   median_Alvarado_Score &lt;dbl&gt;, mean_Paedriatic_Appendicitis_Score &lt;dbl&gt;,
-#   median_Paedriatic_Appendicitis_Score &lt;dbl&gt;, mean_Appendix_Diameter &lt;dbl&gt;,
-#   median_Appendix_Diameter &lt;dbl&gt;, mean_Body_Temperature &lt;dbl&gt;,
-#   median_Body_Temperature &lt;dbl&gt;, mean_WBC_Count &lt;dbl&gt;,
-#   median_WBC_Count &lt;dbl&gt;, mean_Neutrophil_Percentage &lt;dbl&gt;, ...</code></pre>
-</div>
-</div>
-<p>The <code>~</code> is a quick way to write a <em>lambda</em> or <em>anonymous</em> function. Essentially, we are inline doing something like this</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>my_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {<span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>But a <em>lambda</em> function is a shorthand for this where we don’t need to give the function a name (since we aren’t planning on using it again anyway).</p>
-<p>Of course we want these kinds of statistics across groups so we can compare them. We saw how to do this with <code>group_by()</code></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_BMI =</span> <span class="fu">mean</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">med_BMI =</span> <span class="fu">median</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'Diagnosis'. You can override using the
-`.groups` argument.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 x 4
-# Groups:   Diagnosis [2]
-  Diagnosis       Sex    mean_BMI med_BMI
-  &lt;chr&gt;           &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
-1 appendicitis    female     18.6    17.8
-2 appendicitis    male       18.3    17.5
-3 no appendicitis female     20.2    20.0
-4 no appendicitis male       18.7    17.2</code></pre>
-</div>
-</div>
-<p>We can do this similar thing with the fancier version too!</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), </span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">list</span>(<span class="st">"mean"</span> <span class="ot">=</span> <span class="er">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">"median"</span> <span class="ot">=</span> <span class="er">~</span> <span class="fu">median</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), </span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">.names =</span> <span class="st">"{.fn}_{.col}"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'Diagnosis'. You can override using the
-`.groups` argument.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 x 36
-# Groups:   Diagnosis [2]
-  Diagnosis       Sex    mean_Age median_Age mean_BMI median_BMI mean_Height
-  &lt;chr&gt;           &lt;chr&gt;     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
-1 appendicitis    female     11.7       11.9     18.6       17.8        148.
-2 appendicitis    male       10.6       11       18.3       17.5        146.
-3 no appendicitis female     12.5       12.5     20.2       20.0        152.
-4 no appendicitis male       10.7       10.9     18.7       17.2        147.
-# i 29 more variables: median_Height &lt;dbl&gt;, mean_Weight &lt;dbl&gt;,
-#   median_Weight &lt;dbl&gt;, mean_Length_of_Stay &lt;dbl&gt;,
-#   median_Length_of_Stay &lt;dbl&gt;, mean_Alvarado_Score &lt;dbl&gt;,
-#   median_Alvarado_Score &lt;dbl&gt;, mean_Paedriatic_Appendicitis_Score &lt;dbl&gt;,
-#   median_Paedriatic_Appendicitis_Score &lt;dbl&gt;, mean_Appendix_Diameter &lt;dbl&gt;,
-#   median_Appendix_Diameter &lt;dbl&gt;, mean_Body_Temperature &lt;dbl&gt;,
-#   median_Body_Temperature &lt;dbl&gt;, mean_WBC_Count &lt;dbl&gt;, ...</code></pre>
-</div>
-</div>
-<p>Great, now we have an easy way to compare the centers of the distribution for each of these numeric variables!</p>
-</section>
-<section id="measures-of-spread" class="level3">
-<h3 class="anchored" data-anchor-id="measures-of-spread">Measures of Spread</h3>
-<p>Same idea here but we can use the <code>sd()</code> and <code>IQR()</code> functions.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">sd_BIM =</span> <span class="fu">sd</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_BMI =</span> <span class="fu">IQR</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'Diagnosis'. You can override using the
-`.groups` argument.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 x 4
-# Groups:   Diagnosis [2]
-  Diagnosis       Sex    sd_BIM IQR_BMI
-  &lt;chr&gt;           &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 appendicitis    female   4.33    4.62
-2 appendicitis    male     4.03    5.22
-3 no appendicitis female   4.53    5.75
-4 no appendicitis male     4.60    5.07</code></pre>
-</div>
-</div>
-</section>
-<section id="measures-of-association-between-two-numeric-variables" class="level3">
-<h3 class="anchored" data-anchor-id="measures-of-association-between-two-numeric-variables">Measures of Association Between Two Numeric Variables</h3>
-<p>We can find the linear associations between two numeric variables with <code>cor()</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">correlation =</span> <span class="fu">cor</span>(BMI, Age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'Diagnosis'. You can override using the
-`.groups` argument.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 x 3
-# Groups:   Diagnosis [2]
-  Diagnosis       Sex    correlation
-  &lt;chr&gt;           &lt;chr&gt;        &lt;dbl&gt;
-1 appendicitis    female          NA
-2 appendicitis    male            NA
-3 no appendicitis female          NA
-4 no appendicitis male            NA</code></pre>
-</div>
-</div>
-<p>Oh yeah, missing values. Unfortunately, <code>BaseR</code> isn’t that consistent. To deal with missing values appropriately, we can look at the help.</p>
-<p><code>use</code></p>
+<p>Let’s go!</p>
+<section id="contingency-tables" class="level3">
+<h3 class="anchored" data-anchor-id="contingency-tables">Contingency Tables</h3>
+<p>We can use <code>BaseR</code> or the <code>tidyverse</code>.</p>
+<section id="via-baser" class="level4">
+<h4 class="anchored" data-anchor-id="via-baser">Via <code>BaseR</code></h4>
+<p>Honestly, the easiest way to make contingency tables is through BaseR’s <code>table()</code> function.</p>
+<p>From the help</p>
+<pre><code>table(...,
+      exclude = if (useNA == "no") c(NA, NaN),
+      useNA = c("no", "ifany", "always"),
+      dnn = list.names(...), deparse.level = 1)</code></pre>
+<p>where <code>...</code> is</p>
 <blockquote class="blockquote">
-<p>an optional character string giving a method for computing covariances in the presence of missing values. This must be (an abbreviation of) one of the strings “everything”, “all.obs”, “complete.obs”, “na.or.complete”, or “pairwise.complete.obs”.</p>
+<p>one or more objects which can be interpreted as factors (including numbers or character strings), or a list (such as a data frame) whose components can be so interpreted.</p>
 </blockquote>
+<p>Ok, so we can just pass it the vectors we want or we could pass it a data frame (which remember, is just a list of equal length vectors!).</p>
+<p>Let’s create some contingency tables for the <code>SexF</code>, <code>DiagnosisF</code>, and <code>SeverityF</code> variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(app_data<span class="sc">$</span>SexF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Female   Male 
+   377    403 </code></pre>
+</div>
+</div>
+<p>We can include <code>NA</code> if we want to via the <code>useNA</code> argument:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(app_data<span class="sc">$</span>SexF, <span class="at">useNA =</span> <span class="st">"always"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Female   Male   &lt;NA&gt; 
+   377    403      2 </code></pre>
+</div>
+</div>
+<p>We can create a two-way table (two-way for two variables) by adding the second variable in:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(app_data<span class="sc">$</span>SexF, app_data<span class="sc">$</span>DiagnosisF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        
+         appendicitis no appendicitis
+  Female          200             176
+  Male            262             141</code></pre>
+</div>
+</div>
+<p>What is returned from when we create a table? An array! (homogenous data structure - 1D array is a vector, 2D is a matrix)</p>
+<p>That means we can subset them if want to! Let’s return the <em>conditional</em> one-way table of Sex based on only those that had appendicitis:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>two_way_sex_diag <span class="ot">&lt;-</span> <span class="fu">table</span>(app_data<span class="sc">$</span>SexF, app_data<span class="sc">$</span>DiagnosisF)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>two_way_sex_diag[,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Female   Male 
+   200    262 </code></pre>
+</div>
+</div>
+<p>Nice! Things do get more complicated if we add in a third variable as it is tough to display that info compactly.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(app_data<span class="sc">$</span>SexF, app_data<span class="sc">$</span>DiagnosisF, app_data<span class="sc">$</span>SeverityF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, ,  = complicated
+
+        
+         appendicitis no appendicitis
+  Female           55               1
+  Male             63               0
+
+, ,  = uncomplicated
+
+        
+         appendicitis no appendicitis
+  Female          145             175
+  Male            199             141</code></pre>
+</div>
+</div>
+<p>If you look at the output you see <code>, , = complicated</code>. This is R hinting at how to access this 3D array!</p>
+<p>We can return the conditional two-way table of Sex and Diagnosis for only those with an uncomplicated situation:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>three_way <span class="ot">&lt;-</span> <span class="fu">table</span>(app_data<span class="sc">$</span>SexF, app_data<span class="sc">$</span>DiagnosisF, app_data<span class="sc">$</span>SeverityF)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>three_way[, , <span class="st">"uncomplicated"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        
+         appendicitis no appendicitis
+  Female          145             175
+  Male            199             141</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#or</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>three_way[, , <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        
+         appendicitis no appendicitis
+  Female          145             175
+  Male            199             141</code></pre>
+</div>
+</div>
+<p>We can also get a one-way table conditional on two of the variables. Here is the one-way table for sex for only those with an uncomplicated situation and no appendicitis:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>three_way[, <span class="dv">2</span>, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Female   Male 
+   175    141 </code></pre>
+</div>
+</div>
+<p>Lastly, just note that you can supply a data frame instead of the individual vectors.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(app_data[, <span class="fu">c</span>(<span class="st">"SexF"</span>, <span class="st">"DiagnosisF"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        DiagnosisF
+SexF     appendicitis no appendicitis
+  Female          200             176
+  Male            262             141</code></pre>
+</div>
+</div>
+</section>
+<section id="via-the-tidyverse" class="level4">
+<h4 class="anchored" data-anchor-id="via-the-tidyverse">Via the <code>tidyverse</code></h4>
+<p>Ok, great. But we might want to stay in the <code>tidyverse</code>. We can use the <code>dplyr::summarize()</code> function to compute summaries on a <code>tibble</code>. This generally outputs a <code>tibble</code> with fewer rows than the original (as we are summarizing the variables to view them in a more compact form). We often use <code>group_by()</code> to set a grouping variable. <strong>Any summary done will respect the groupings!</strong></p>
+<p>Any of the common summarization functions you can think of are likely permissible in <code>summarize()</code>. The one for counting values is simply <code>n()</code>. Let’s recreate all of our above tables under the <code>tidyverse</code> method.</p>
+<p>One-way table:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">correlation =</span> <span class="fu">cor</span>(BMI, Age, <span class="at">use =</span> <span class="st">"pairwise.complete.obs"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SexF) <span class="sc">|&gt;</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 x 2
+  SexF   count
+  &lt;fct&gt;  &lt;int&gt;
+1 Female   377
+2 Male     403
+3 &lt;NA&gt;       2</code></pre>
+</div>
+</div>
+<p>Notice that <code>NA</code> values are included by default (probably a good thing). We can remove those with <code>tidyr::drop_na()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(SexF) <span class="sc">|&gt;</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SexF) <span class="sc">|&gt;</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 x 2
+  SexF   count
+  &lt;fct&gt;  &lt;int&gt;
+1 Female   377
+2 Male     403</code></pre>
+</div>
+</div>
+<p>Two-way table: Simply add another grouping variable. The <code>summarize()</code> function respects these groups when counting!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(SexF, DiagnosisF) <span class="sc">|&gt;</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SexF, DiagnosisF) <span class="sc">|&gt;</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'Diagnosis'. You can override using the
+<pre><code>`summarise()` has grouped output by 'SexF'. You can override using the
 `.groups` argument.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 x 3
-# Groups:   Diagnosis [2]
-  Diagnosis       Sex    correlation
-  &lt;chr&gt;           &lt;chr&gt;        &lt;dbl&gt;
-1 appendicitis    female       0.556
-2 appendicitis    male         0.462
-3 no appendicitis female       0.413
-4 no appendicitis male         0.422</code></pre>
+# Groups:   SexF [2]
+  SexF   DiagnosisF      count
+  &lt;fct&gt;  &lt;fct&gt;           &lt;int&gt;
+1 Female appendicitis      200
+2 Female no appendicitis   176
+3 Male   appendicitis      262
+4 Male   no appendicitis   141</code></pre>
 </div>
 </div>
-<p>Great - we can do all our basic numerical summaries!</p>
+<p>Nice. But that isn’t in the best way for viewing (i.e.&nbsp;a wider format would be more compact for displaying). Let’s use <code>tidyr::pivot_wider()</code> to fix that!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(SexF, DiagnosisF) <span class="sc">|&gt;</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SexF, DiagnosisF) <span class="sc">|&gt;</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> DiagnosisF, <span class="at">values_from =</span> count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'SexF'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 x 3
+# Groups:   SexF [2]
+  SexF   appendicitis `no appendicitis`
+  &lt;fct&gt;         &lt;int&gt;             &lt;int&gt;
+1 Female          200               176
+2 Male            262               141</code></pre>
+</div>
+</div>
+<p>Three-way table: Again, just add more grouping variables!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(SexF, DiagnosisF, SeverityF) <span class="sc">|&gt;</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SexF, DiagnosisF, SeverityF) <span class="sc">|&gt;</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'SexF', 'DiagnosisF'. You can override
+using the `.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 x 4
+# Groups:   SexF, DiagnosisF [4]
+  SexF   DiagnosisF      SeverityF     count
+  &lt;fct&gt;  &lt;fct&gt;           &lt;fct&gt;         &lt;int&gt;
+1 Female appendicitis    complicated      55
+2 Female appendicitis    uncomplicated   145
+3 Female no appendicitis complicated       1
+4 Female no appendicitis uncomplicated   175
+5 Male   appendicitis    complicated      63
+6 Male   appendicitis    uncomplicated   199
+7 Male   no appendicitis uncomplicated   141</code></pre>
+</div>
+</div>
+<p>We can also pivot this, although there is no great way to get all the info there. We’ll just move the severity variable across the top.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(SexF, DiagnosisF, SeverityF) <span class="sc">|&gt;</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SexF, DiagnosisF, SeverityF) <span class="sc">|&gt;</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> SeverityF, <span class="at">values_from =</span> count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'SexF', 'DiagnosisF'. You can override
+using the `.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 x 4
+# Groups:   SexF, DiagnosisF [4]
+  SexF   DiagnosisF      complicated uncomplicated
+  &lt;fct&gt;  &lt;fct&gt;                 &lt;int&gt;         &lt;int&gt;
+1 Female appendicitis             55           145
+2 Female no appendicitis           1           175
+3 Male   appendicitis             63           199
+4 Male   no appendicitis          NA           141</code></pre>
+</div>
+</div>
+</section>
 </section>
 <section id="recap" class="level3">
 <h3 class="anchored" data-anchor-id="recap">Recap!</h3>
-<p>We tend to describe the center and spread of a numeric variable’s distribution. Often we want to compare across groups and that can be done with <code>group_by()</code>.</p>
+<p>Contingency tables summarize the distribution of one or more categorical variables. We can create them using</p>
+<ul>
+<li><code>table()</code> - returns an array of counts</li>
+<li><code>group_by()</code> along with <code>summarize()</code> and the <code>n()</code> function</li>
+</ul>
 
 
 </section>
@@ -1179,12 +1238,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Notes/25-Barplots_ggplot_Basics_Landing.html" class="pagination-link" aria-label="Course Goals &amp; Other Resources">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Course Goals &amp; Other Resources</span>
+      <a href="../Notes/23_5-Week5_7.html" class="pagination-link" aria-label="Week 6 &amp; 7 Overview">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Week 6 &amp; 7 Overview</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Notes/27-Numeric_Variable_Graphs_Landing.html" class="pagination-link" aria-label="Course Goals &amp; Other Resources">
+      <a href="../Notes/26-Barplots_ggplot_Basics_Landing.html" class="pagination-link" aria-label="Course Goals &amp; Other Resources">
         <span class="nav-page-text">Course Goals &amp; Other Resources</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

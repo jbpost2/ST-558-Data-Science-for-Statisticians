@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-05-07">
 
-<title>Course Goals &amp; Other Resources – ST 558 Data Science for Statisticians (R)</title>
+<title>Numerical Variable Summaries – ST 558 Data Science for Statisticians (R)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,7 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../Notes/30-purrr_Landing.html" rel="prev">
+<link href="../Notes/28-Numeric_Variable_Graphs_Landing.html" rel="next">
+<link href="../Notes/26-Barplots_ggplot_Basics_Landing.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -121,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/28-Big_Recap_Landing.html">Topic 3: Other Programming Topics</a></li><li class="breadcrumb-item"><a href="../Notes/31-Advanced_Function_Writing_Landing.html">Course Goals &amp; Other Resources</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/14_5-Week3_4.html">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/27-Numerical_Variable_Summaries.html">Numerical Variable Summaries</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -258,27 +293,27 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Writing Functions</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Packages</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Topic 2: Tidyverse &amp; EDA</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/15_5-Week3_4.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/14_5-Week3_4.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 4 Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Packages</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -307,6 +342,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../Notes/19_5-Week4_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5 Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../Notes/20-Manipulating_Data_with_tidyr.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Manipulating Data with <code>tidyr</code></span></a>
   </div>
@@ -320,36 +361,45 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/22-SQL_Style_Joins_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+ <span class="menu-text">SQL Joins</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/23-Querying_APIs_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+ <span class="menu-text">Querying APIs</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/24-Summarizing_Categorical_Variables.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/23_5-Week5_7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 &amp; 7 Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Notes/24-EDA_Concepts_Landing.qmd</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/25-Summarizing_Categorical_Variables.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Creating Contingency Tables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/25-Barplots_ggplot_Basics_Landing.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/26-Barplots_ggplot_Basics_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Goals &amp; Other Resources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/26-Numerical_Variable_Summaries.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/27-Numerical_Variable_Summaries.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Numerical Variable Summaries</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/27-Numeric_Variable_Graphs_Landing.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/28-Numeric_Variable_Graphs_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Goals &amp; Other Resources</span></a>
   </div>
 </li>
@@ -357,34 +407,34 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Topic 3: Other Programming Topics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/28-Big_Recap_Landing.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/29-Big_Recap_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Goals &amp; Other Resources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/29-Apply_Family_Landing.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/30-Apply_Family_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Goals &amp; Other Resources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/30-purrr_Landing.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/31-purrr_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Goals &amp; Other Resources</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/31-Advanced_Function_Writing_Landing.html" class="sidebar-item-text sidebar-link active">
+  <a href="../Notes/32-Advanced_Function_Writing_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Course Goals &amp; Other Resources</span></a>
   </div>
 </li>
@@ -400,12 +450,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a></li>
-  <li><a href="#additional-readings-for-topic-1" id="toc-additional-readings-for-topic-1" class="nav-link" data-scroll-target="#additional-readings-for-topic-1">Additional Readings for Topic 1</a>
+  <li><a href="#numerical-summaries" id="toc-numerical-summaries" class="nav-link active" data-scroll-target="#numerical-summaries">Numerical Summaries</a>
   <ul class="collapse">
-  <li><a href="#pip-information-optional" id="toc-pip-information-optional" class="nav-link" data-scroll-target="#pip-information-optional">PIP Information (Optional)</a></li>
-  <li><a href="#jupyterlab-info-optional" id="toc-jupyterlab-info-optional" class="nav-link" data-scroll-target="#jupyterlab-info-optional">JupyterLab Info (Optional)</a></li>
-  <li><a href="#python-help-optional" id="toc-python-help-optional" class="nav-link" data-scroll-target="#python-help-optional">Python Help (Optional)</a></li>
+  <li><a href="#measures-of-center" id="toc-measures-of-center" class="nav-link" data-scroll-target="#measures-of-center">Measures of Center</a></li>
+  <li><a href="#measures-of-spread" id="toc-measures-of-spread" class="nav-link" data-scroll-target="#measures-of-spread">Measures of Spread</a></li>
+  <li><a href="#measures-of-association-between-two-numeric-variables" id="toc-measures-of-association-between-two-numeric-variables" class="nav-link" data-scroll-target="#measures-of-association-between-two-numeric-variables">Measures of Association Between Two Numeric Variables</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap!</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -413,9 +463,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/28-Big_Recap_Landing.html">Topic 3: Other Programming Topics</a></li><li class="breadcrumb-item"><a href="../Notes/31-Advanced_Function_Writing_Landing.html">Course Goals &amp; Other Resources</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/14_5-Week3_4.html">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/27-Numerical_Variable_Summaries.html">Numerical Variable Summaries</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Course Goals &amp; Other Resources</h1>
+<h1 class="title">Numerical Variable Summaries</h1>
 </div>
 
 
@@ -438,48 +488,284 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The video below discusses the course goals.</p>
-<p>I highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer.</p>
-<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=6bb5d60f-a161-44c8-abd0-b0f0014391fb&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="01-Course Goals"></iframe>
-<section id="notes" class="level2">
-<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<p>We now know how to summarize categorical data and we’ve learned the basics of <code>ggplot2</code>. Now we’re ready to investigate how to summarize numeric variables. Recall:</p>
 <ul>
-<li><a href="01-Course_Goals.html" target="_blank">HTML version</a></li>
-<li><a href="PDFs/01-Course_Goals.pdf" target="_blank">PDF version</a></li>
+<li>Numeric (Quantitative) variable - entries are a numerical value where math can be performed</li>
 </ul>
+<p>As before, our goal is to describe the <strong>distribution</strong> of the variable. We talked about this briefly:</p>
+<ul>
+<li><p>For a single numeric variable, describe the distribution via</p>
+<ul>
+<li>Shape: Histogram, Density plot, …</li>
+<li>Measures of center: Mean, Median, …</li>
+<li>Measures of spread: Variance, Standard Deviation, Quartiles, IQR, …</li>
+</ul></li>
+<li><p>For two numeric variables, describe the distribution via</p>
+<ul>
+<li>Shape: Scatter plot, …</li>
+<li>Measures of linear relationship: Covariance, Correlation</li>
+</ul></li>
+</ul>
+<p>First, let’s read in the appendicitis data from the previous lecture.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyverse' was built under R version 4.1.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>-- Attaching packages --------------------------------------- tidyverse 1.3.1 --</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>v ggplot2 3.5.1     v purrr   1.0.2
+v tibble  3.2.1     v dplyr   1.1.4
+v tidyr   1.3.1     v stringr 1.5.0
+v readr   2.1.2     v forcats 0.5.1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tibble' was built under R version 4.1.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readr' was built under R version 4.1.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'stringr' was built under R version 4.1.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'forcats' was built under R version 4.1.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readxl' was built under R version 4.1.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/app_data.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">1</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>app_data <span class="ot">&lt;-</span> app_data <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">BMI =</span> <span class="fu">as.numeric</span>(BMI),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">US_Number =</span> <span class="fu">as.character</span>(US_Number),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">SexF =</span> <span class="fu">factor</span>(Sex, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"female"</span>, <span class="st">"male"</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"Male"</span>)),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">DiagnosisF =</span> <span class="fu">as.factor</span>(Diagnosis),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">SeverityF =</span> <span class="fu">as.factor</span>(Severity))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>app_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 782 x 61
+     Age   BMI Sex    Height Weight Length_of_Stay Management   Severity     
+   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;        
+ 1 12.7   16.9 female    148   37                3 conservative uncomplicated
+ 2 14.1   31.9 male      147   69.5              2 conservative uncomplicated
+ 3 14.1   23.3 female    163   62                4 conservative uncomplicated
+ 4 16.4   20.6 female    165   56                3 conservative uncomplicated
+ 5 11.1   16.9 female    163   45                3 conservative uncomplicated
+ 6 11.0   30.7 male      121   45                3 conservative uncomplicated
+ 7  8.98  19.4 female    140   38.5              3 conservative uncomplicated
+ 8  7.06  NA   female     NA   21.5              2 conservative uncomplicated
+ 9  7.9   15.7 male      131   26.7              3 conservative uncomplicated
+10 14.3   14.9 male      174   45.5              3 conservative uncomplicated
+# i 772 more rows
+# i 53 more variables: Diagnosis_Presumptive &lt;chr&gt;, Diagnosis &lt;chr&gt;,
+#   Alvarado_Score &lt;dbl&gt;, Paedriatic_Appendicitis_Score &lt;dbl&gt;,
+#   Appendix_on_US &lt;chr&gt;, Appendix_Diameter &lt;dbl&gt;, Migratory_Pain &lt;chr&gt;,
+#   Lower_Right_Abd_Pain &lt;chr&gt;, Contralateral_Rebound_Tenderness &lt;chr&gt;,
+#   Coughing_Pain &lt;chr&gt;, Nausea &lt;chr&gt;, Loss_of_Appetite &lt;chr&gt;,
+#   Body_Temperature &lt;dbl&gt;, WBC_Count &lt;dbl&gt;, Neutrophil_Percentage &lt;dbl&gt;, ...</code></pre>
+</div>
+</div>
+<p>Let’s dig in!</p>
+<section id="numerical-summaries" class="level2">
+<h2 class="anchored" data-anchor-id="numerical-summaries">Numerical Summaries</h2>
+<p>We’ll utilize the <code>summarize()</code> function along with <code>group_by()</code> to find most of our numerical summaries.</p>
+<p>As we discussed, we can’t really describe the entire distribution with a single number so we try to summarize different aspects of the distribution. In particular, center and spread.</p>
+<section id="measures-of-center" class="level3">
+<h3 class="anchored" data-anchor-id="measures-of-center">Measures of Center</h3>
+<p>We can find the mean and median via the <code>mean()</code> and <code>median()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_BMI =</span> <span class="fu">mean</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">med_BMI =</span> <span class="fu">median</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 2
+  mean_BMI med_BMI
+     &lt;dbl&gt;   &lt;dbl&gt;
+1     18.9    18.1</code></pre>
+</div>
+</div>
+<p>We can try to get fancy and do it for all numeric columns. Recall we did this earlier with <code>across()</code> and <code>where(is.numeric)</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">list</span>(<span class="st">"mean"</span> <span class="ot">=</span> mean, <span class="st">"median"</span> <span class="ot">=</span> median), </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">.names =</span> <span class="st">"{.fn}_{.col}"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 34
+  mean_Age median_Age mean_BMI median_BMI mean_Height median_Height mean_Weight
+     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+1       NA         NA       NA         NA          NA            NA          NA
+# i 27 more variables: median_Weight &lt;dbl&gt;, mean_Length_of_Stay &lt;dbl&gt;,
+#   median_Length_of_Stay &lt;dbl&gt;, mean_Alvarado_Score &lt;dbl&gt;,
+#   median_Alvarado_Score &lt;dbl&gt;, mean_Paedriatic_Appendicitis_Score &lt;dbl&gt;,
+#   median_Paedriatic_Appendicitis_Score &lt;dbl&gt;, mean_Appendix_Diameter &lt;dbl&gt;,
+#   median_Appendix_Diameter &lt;dbl&gt;, mean_Body_Temperature &lt;dbl&gt;,
+#   median_Body_Temperature &lt;dbl&gt;, mean_WBC_Count &lt;dbl&gt;,
+#   median_WBC_Count &lt;dbl&gt;, mean_Neutrophil_Percentage &lt;dbl&gt;, ...</code></pre>
+</div>
+</div>
+<p>Oh, darn. That’s right, we have missing values. We can remove those just for a particular column instead of removing all the rows (as we did with <code>drop_na()</code>). This is a bit more complicated but we can specify some additional arguments of the mean and median function in our named list.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">list</span>(<span class="st">"mean"</span> <span class="ot">=</span> <span class="er">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">"median"</span> <span class="ot">=</span> <span class="er">~</span> <span class="fu">median</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">.names =</span> <span class="st">"{.fn}_{.col}"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 34
+  mean_Age median_Age mean_BMI median_BMI mean_Height median_Height mean_Weight
+     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;
+1     11.3       11.4     18.9       18.1        148.          150.        43.2
+# i 27 more variables: median_Weight &lt;dbl&gt;, mean_Length_of_Stay &lt;dbl&gt;,
+#   median_Length_of_Stay &lt;dbl&gt;, mean_Alvarado_Score &lt;dbl&gt;,
+#   median_Alvarado_Score &lt;dbl&gt;, mean_Paedriatic_Appendicitis_Score &lt;dbl&gt;,
+#   median_Paedriatic_Appendicitis_Score &lt;dbl&gt;, mean_Appendix_Diameter &lt;dbl&gt;,
+#   median_Appendix_Diameter &lt;dbl&gt;, mean_Body_Temperature &lt;dbl&gt;,
+#   median_Body_Temperature &lt;dbl&gt;, mean_WBC_Count &lt;dbl&gt;,
+#   median_WBC_Count &lt;dbl&gt;, mean_Neutrophil_Percentage &lt;dbl&gt;, ...</code></pre>
+</div>
+</div>
+<p>The <code>~</code> is a quick way to write a <em>lambda</em> or <em>anonymous</em> function. Essentially, we are inline doing something like this</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>my_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {<span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>But a <em>lambda</em> function is a shorthand for this where we don’t need to give the function a name (since we aren’t planning on using it again anyway).</p>
+<p>Of course we want these kinds of statistics across groups so we can compare them. We saw how to do this with <code>group_by()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_BMI =</span> <span class="fu">mean</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">med_BMI =</span> <span class="fu">median</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Diagnosis'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 x 4
+# Groups:   Diagnosis [2]
+  Diagnosis       Sex    mean_BMI med_BMI
+  &lt;chr&gt;           &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 appendicitis    female     18.6    17.8
+2 appendicitis    male       18.3    17.5
+3 no appendicitis female     20.2    20.0
+4 no appendicitis male       18.7    17.2</code></pre>
+</div>
+</div>
+<p>We can do this similar thing with the fancier version too!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">list</span>(<span class="st">"mean"</span> <span class="ot">=</span> <span class="er">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">"median"</span> <span class="ot">=</span> <span class="er">~</span> <span class="fu">median</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">.names =</span> <span class="st">"{.fn}_{.col}"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Diagnosis'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 x 36
+# Groups:   Diagnosis [2]
+  Diagnosis       Sex    mean_Age median_Age mean_BMI median_BMI mean_Height
+  &lt;chr&gt;           &lt;chr&gt;     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
+1 appendicitis    female     11.7       11.9     18.6       17.8        148.
+2 appendicitis    male       10.6       11       18.3       17.5        146.
+3 no appendicitis female     12.5       12.5     20.2       20.0        152.
+4 no appendicitis male       10.7       10.9     18.7       17.2        147.
+# i 29 more variables: median_Height &lt;dbl&gt;, mean_Weight &lt;dbl&gt;,
+#   median_Weight &lt;dbl&gt;, mean_Length_of_Stay &lt;dbl&gt;,
+#   median_Length_of_Stay &lt;dbl&gt;, mean_Alvarado_Score &lt;dbl&gt;,
+#   median_Alvarado_Score &lt;dbl&gt;, mean_Paedriatic_Appendicitis_Score &lt;dbl&gt;,
+#   median_Paedriatic_Appendicitis_Score &lt;dbl&gt;, mean_Appendix_Diameter &lt;dbl&gt;,
+#   median_Appendix_Diameter &lt;dbl&gt;, mean_Body_Temperature &lt;dbl&gt;,
+#   median_Body_Temperature &lt;dbl&gt;, mean_WBC_Count &lt;dbl&gt;, ...</code></pre>
+</div>
+</div>
+<p>Great, now we have an easy way to compare the centers of the distribution for each of these numeric variables!</p>
 </section>
-<section id="additional-readings-for-topic-1" class="level2">
-<h2 class="anchored" data-anchor-id="additional-readings-for-topic-1">Additional Readings for Topic 1</h2>
-<section id="pip-information-optional" class="level3">
-<h3 class="anchored" data-anchor-id="pip-information-optional">PIP Information (Optional)</h3>
-<p>We use Pip to install our modules when needed (although most of the ones we need are already available to us on Google Colab). Here is more information about pip:</p>
-<ul>
-<li><a href="https://pip.pypa.io/en/stable/installation/" target="_blank" rel="noopener">pip</a> documentation</li>
-<li>More help on <a href="https://realpython.com/what-is-pip/" target="_blank" rel="noopener">understanding the basics of pip</a></li>
-<li><a href="https://colab.research.google.com/notebooks/snippets/importing_libraries.ipynb" target="_blank" rel="noopener">Using pip with Colab</a>&nbsp;(very short)</li>
-</ul>
+<section id="measures-of-spread" class="level3">
+<h3 class="anchored" data-anchor-id="measures-of-spread">Measures of Spread</h3>
+<p>Same idea here but we can use the <code>sd()</code> and <code>IQR()</code> functions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">sd_BIM =</span> <span class="fu">sd</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">IQR_BMI =</span> <span class="fu">IQR</span>(BMI, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Diagnosis'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 x 4
+# Groups:   Diagnosis [2]
+  Diagnosis       Sex    sd_BIM IQR_BMI
+  &lt;chr&gt;           &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 appendicitis    female   4.33    4.62
+2 appendicitis    male     4.03    5.22
+3 no appendicitis female   4.53    5.75
+4 no appendicitis male     4.60    5.07</code></pre>
+</div>
+</div>
 </section>
-<section id="jupyterlab-info-optional" class="level3">
-<h3 class="anchored" data-anchor-id="jupyterlab-info-optional">JupyterLab Info (Optional)</h3>
-<p>There are a lot of options for the IDE to use.&nbsp; We’ll use JupyterLab as our programming environment for the course. We’ll start out in Colab, which is built on JupyterLab. JupyterLab Notebooks are replacing the traditional Jupyter Notebook. They really just give a bit more functionality than the traditional notebook!</p>
-<ul>
-<li><a href="https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html" target="_blank" rel="noopener">JupyterLab</a> getting started guide</li>
-<li>Note that these notebooks can be used with an R kernel (that is, you can use them to run R code!)</li>
-<li><a href="https://colab.research.google.com/notebooks/markdown_guide.ipynb#scrollTo=Lhfnlq1Surtk" target="_blank" rel="noopener">Markdown guide</a></li>
-</ul>
+<section id="measures-of-association-between-two-numeric-variables" class="level3">
+<h3 class="anchored" data-anchor-id="measures-of-association-between-two-numeric-variables">Measures of Association Between Two Numeric Variables</h3>
+<p>We can find the linear associations between two numeric variables with <code>cor()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">correlation =</span> <span class="fu">cor</span>(BMI, Age))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Diagnosis'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 x 3
+# Groups:   Diagnosis [2]
+  Diagnosis       Sex    correlation
+  &lt;chr&gt;           &lt;chr&gt;        &lt;dbl&gt;
+1 appendicitis    female          NA
+2 appendicitis    male            NA
+3 no appendicitis female          NA
+4 no appendicitis male            NA</code></pre>
+</div>
+</div>
+<p>Oh yeah, missing values. Unfortunately, <code>BaseR</code> isn’t that consistent. To deal with missing values appropriately, we can look at the help.</p>
+<p><code>use</code></p>
+<blockquote class="blockquote">
+<p>an optional character string giving a method for computing covariances in the presence of missing values. This must be (an abbreviation of) one of the strings “everything”, “all.obs”, “complete.obs”, “na.or.complete”, or “pairwise.complete.obs”.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(Diagnosis, Sex) <span class="sc">|&gt;</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">correlation =</span> <span class="fu">cor</span>(BMI, Age, <span class="at">use =</span> <span class="st">"pairwise.complete.obs"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'Diagnosis'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 x 3
+# Groups:   Diagnosis [2]
+  Diagnosis       Sex    correlation
+  &lt;chr&gt;           &lt;chr&gt;        &lt;dbl&gt;
+1 appendicitis    female       0.556
+2 appendicitis    male         0.462
+3 no appendicitis female       0.413
+4 no appendicitis male         0.422</code></pre>
+</div>
+</div>
+<p>Great - we can do all our basic numerical summaries!</p>
 </section>
-<section id="python-help-optional" class="level3">
-<h3 class="anchored" data-anchor-id="python-help-optional">Python Help (Optional)</h3>
-<p>We’ll continue to learn python throughout the first couple of topics. You may want more detail or another explanation of concepts. The best place to learn about particular objects, functions, or methods is in the official documentation but that can be difficult to read when you are first starting out. Below are a number of tutorials that may be helpful!</p>
-<ul>
-<li>A <a href="https://docs.python.org/3/tutorial/index.html" target="_blank" rel="noopener">nice tutorial from python.org</a> (although sometimes they throw in some things that may be a bit out there for beginners).</li>
-<li>A <a href="https://www.w3schools.com/python/" target="_blank" rel="noopener">good reference for python basics from w3schools</a>.&nbsp;Generally w3schools is good to just get an idea about lots of languages!&nbsp;But overall the tutorials aren’t great.</li>
-<li><a href="https://realpython.com/what-is-pip/" target="_blank" rel="noopener">This is a nice website</a> but a little hard to navigate.&nbsp;I find that searching in the box for something (say ‘lists’) tends to bring up a pretty good article.</li>
-<li><a href="https://www.geeksforgeeks.org/python-programming-language/?ref=shm" target="_blank" rel="noopener">Geeks for geeks</a> is pretty solid!</li>
-<li><a href="https://numpy.org/doc/stable/reference/" target="_blank" rel="noopener">numpy </a>documentation</li>
-<li><a href="https://pandas.pydata.org/docs/reference/index.html" target="_blank" rel="noopener">pandas</a> documentation</li>
-</ul>
-<p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
+<section id="recap" class="level3">
+<h3 class="anchored" data-anchor-id="recap">Recap!</h3>
+<p>We tend to describe the center and spread of a numeric variable’s distribution. Often we want to compare across groups and that can be done with <code>group_by()</code>.</p>
 
 
 </section>
@@ -908,11 +1194,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Notes/30-purrr_Landing.html" class="pagination-link" aria-label="Course Goals &amp; Other Resources">
+      <a href="../Notes/26-Barplots_ggplot_Basics_Landing.html" class="pagination-link" aria-label="Course Goals &amp; Other Resources">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Course Goals &amp; Other Resources</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../Notes/28-Numeric_Variable_Graphs_Landing.html" class="pagination-link" aria-label="Course Goals &amp; Other Resources">
+        <span class="nav-page-text">Course Goals &amp; Other Resources</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

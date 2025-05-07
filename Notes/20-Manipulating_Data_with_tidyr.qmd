@@ -1,7 +1,7 @@
 ---
 title: "Manipulating Data with `tidyr`"
 format: html
-editor: visual
+editor: source
 toc: TRUE
 editor_options: 
   chunk_output_type: console
@@ -11,7 +11,7 @@ We now have a good handle on common actions we want to take on our data frames. 
 
 This isn't always the case! Sometimes we have **wide format** data where we may have more than one observation in a given row.
 
-```{r, out.width="450px", echo = FALSE, fig.align='center'}
+```{r, out.width="450px", echo = FALSE, fig.align='center', fig.alt = "A data frame in long format is shown. This data frame has one observation per row - here patient, weight and year. This is transformed to wide format where multiple observations exist in one row - here patient, weight in 2018, weight in 2019, and weight in 2020."}
 knitr::include_graphics("img/longWideF.png")
 ```
 
@@ -68,10 +68,8 @@ temps_data |>
 
 Occasionally we'll want to make our data wider for display purposes. We can make this switch to 'Wide' form with `pivot_wider()`. There are two major arguments we must specify:
 
-```         
 -   `names_from` = column(s) to get the names used in the output columns
 -   `values_from` = column(s) to get the cell values from
-```
 
 Let's consider our batting data set from the `dplyr` notes.
 
@@ -85,7 +83,7 @@ batting_tbl
 We may want to get just the data for one team (say the Pirates) and display each players number of hits across the years 2018 to 2020.
 
 -   Let's subset the data to get just the pirates (`teamID == "PIT"`)
--   Then we'll select only their hits and year columns (`playerID`, `H` and `yearID`)
+-   Then we'll select only their hits and year columns (`playerID`, `H`, and `yearID`)
 -   Then we need to pivot that data set wider so that we have the year across the top (`names_from`), the players as the rows, and the entries as the hits (`values_from`)
 
 ```{r}
@@ -117,6 +115,19 @@ batting_tbl |>
   drop_na()
 ```
 
+The column names `2018`, `2019`, and `2020` are non-standard names as they start with a number. That's not ideal so let's rename those too!
+
+```{r}
+batting_tbl |>
+  filter(yearID %in% 2018:2020, teamID == "PIT", H > 0) |>
+  select(playerID, yearID, H) |>
+  pivot_wider(names_from = yearID, values_from = "H") |>
+  drop_na() |>
+  rename('year2018' = `2018`,
+         'year2019' = `2019`,
+         'year2020' = `2020`)
+```
+
 Would be better with actual player names (we'll learn about how to combine this data set with another one that has their actual names soon!)
 
 ```{r}
@@ -125,6 +136,9 @@ batting_tbl |>
   select(playerID, yearID, H) |>
   pivot_wider(names_from = yearID, values_from = "H") |>
   drop_na() |>
+  rename('year2018' = `2018`,
+         'year2019' = `2019`,
+         'year2020' = `2020`) |>
   dplyr::inner_join(select(People, playerID, nameFirst, nameLast)) |>
   select(nameFirst, nameLast, everything())
 ```
@@ -134,7 +148,7 @@ batting_tbl |>
 -   Separate a column using `separate_wider_delim()` (a few other variants exist as well)
 -   Combine two columns with `unite()`
 
-```{r, out.width="650px", echo = FALSE, fig.align='center'}
+```{r, out.width="650px", echo = FALSE, fig.align='center', fig.alt = "A data frame is visualized with a date column. Dates are in the form MM/DD/YYYY. This column is then separated into three columns: month, day, and year."}
 knitr::include_graphics("img/uniteSeparateF.png")
 ```
 
@@ -184,3 +198,5 @@ chicago_data |>
 -   `unite()` & `separate_wider_*()` nice for dealing with columns
 
 -   [`tidyr` Cheat Sheet](https://rstudio.github.io/cheatsheets/html/tidyr.html)
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

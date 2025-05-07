@@ -13,6 +13,7 @@ output:
       ratio: "16:9"
     includes:
       in_header: "partials/header.html"
+    self_contained: yes
 editor_options: 
   chunk_output_type: console
 ---
@@ -94,7 +95,10 @@ Make our connection and look at the tables
 ```{r, message = FALSE, warning = FALSE}
 library(DBI)
 library(dplyr)
-con <- dbConnect(RSQLite::SQLite(), "lahman.db")
+```
+
+```{r, message = FALSE, warning = FALSE}
+con <- dbConnect(RSQLite::SQLite(), "data/lahman.db")
 dbListTables(con)
 ```
 
@@ -105,9 +109,10 @@ dbListTables(con)
 Combine the `Batting` table and the `Pitching` table on common variables
 
 ```{r}
+#note this code differs slightly from what was in the video!
 inner_join(tbl(con, "Batting") |> filter(yearID == 2000), 
            tbl(con, "Pitching") |> filter(yearID == 2000),
-           by = join_by(playerID == playerID, stint == stint, teamID == teamID, lgID == lgID)) |>
+           by = c("playerID", "stint", "teamID", "lgID")) |>
   collect()
 ```
 
@@ -162,7 +167,7 @@ knitr::include_graphics("img/left_join.png")
 ```{r}
 left_join(tbl(con, "Batting") |> filter(yearID == 2000), 
            tbl(con, "Pitching") |> filter(yearID == 2000),
-           by = join_by(playerID == playerID, stint == stint, teamID == teamID, lgID == lgID)) |>
+           by = c("playerID", "stint", "teamID", "lgID")) |>
   collect() |>
   select(playerID, ERA, everything())
 ```
@@ -184,14 +189,11 @@ knitr::include_graphics("img/right_join.png")
 
 - Just do a left join and switch the table (or use `right_join()`)
 
-```{r, echo = FALSE}
-con <- dbConnect(RSQLite::SQLite(), "lahman.db")
-```
 
 ```{r}
 right_join(tbl(con, "Batting") |> filter(yearID == 2000),
            tbl(con, "Pitching") |> filter(yearID == 2000),
-           by = join_by(playerID == playerID, stint == stint, teamID == teamID, lgID == lgID)) |>
+           by = c("playerID", "stint", "teamID", "lgID")) |>
   collect() |>
   select(playerID, ERA, everything())
 ```
@@ -216,7 +218,7 @@ knitr::include_graphics("img/outer_join.png")
 ```{r echo = TRUE}
 full_join(tbl(con, "Batting") |> filter(yearID == 2000),
            tbl(con, "Pitching") |> filter(yearID == 2000),
-           by = join_by(playerID == playerID, stint == stint, teamID == teamID, lgID == lgID)) |>
+           by = c("playerID", "stint", "teamID", "lgID")) |>
   collect()
 ```
 
