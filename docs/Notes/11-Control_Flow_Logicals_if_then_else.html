@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../Notes/12-Control_Flow_Loops.html" rel="next">
-<link href="../Notes/10-Base_R_Data_Structures_Lists.html" rel="prev">
+<link href="../Notes/10_5-Week2_3.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -263,6 +263,9 @@ window.Quarto = {
   </div>
 </li>
           <li class="sidebar-item">
+ <span class="menu-text">Notes/06_5-Week2_3.qmd</span>
+  </li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/07-Base_R_Data_Structures_Vectors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Base R Data Structures: Vectors</span></a>
@@ -284,6 +287,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../Notes/10-Base_R_Data_Structures_Lists.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Base R Data Structures: Lists</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/10_5-Week2_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -327,6 +336,12 @@ window.Quarto = {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/15_5-Week3_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 4</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/16-Tidyverse_Essentials.html" class="sidebar-item-text sidebar-link">
@@ -446,20 +461,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-3" id="toc-week-3" class="nav-link active" data-scroll-target="#week-3">Week 3</a>
-  <ul class="collapse">
-  <li><a href="#week-3-additional-readingslearning-materials" id="toc-week-3-additional-readingslearning-materials" class="nav-link" data-scroll-target="#week-3-additional-readingslearning-materials">Week 3 Additional Readings/Learning Materials</a>
-  <ul class="collapse">
-  <li><a href="#writing-functions" id="toc-writing-functions" class="nav-link" data-scroll-target="#writing-functions">Writing Functions</a></li>
-  <li><a href="#loops-and-vectorized-functions" id="toc-loops-and-vectorized-functions" class="nav-link" data-scroll-target="#loops-and-vectorized-functions">Loops and Vectorized Functions<br></a></li>
-  </ul></li>
-  <li><a href="#week-3-learning-objectives" id="toc-week-3-learning-objectives" class="nav-link" data-scroll-target="#week-3-learning-objectives">Week 3 Learning Objectives</a>
-  <ul class="collapse">
-  <li><a href="#logicals-ifthenelse" id="toc-logicals-ifthenelse" class="nav-link" data-scroll-target="#logicals-ifthenelse">Logicals &amp; if/then/else</a></li>
-  <li><a href="#for-loops-and-vectorized-functions" id="toc-for-loops-and-vectorized-functions" class="nav-link" data-scroll-target="#for-loops-and-vectorized-functions">For Loops and Vectorized Functions</a></li>
-  <li><a href="#writing-functions-1" id="toc-writing-functions-1" class="nav-link" data-scroll-target="#writing-functions-1">Writing Functions</a></li>
-  </ul></li>
-  <li><a href="#logical-statements" id="toc-logical-statements" class="nav-link" data-scroll-target="#logical-statements">Logical Statements</a>
+  <li><a href="#logical-statements" id="toc-logical-statements" class="nav-link active" data-scroll-target="#logical-statements">Logical Statements</a>
   <ul class="collapse">
   <li><a href="#is.-family" id="toc-is.-family" class="nav-link" data-scroll-target="#is.-family"><code>is.</code> Family</a></li>
   <li><a href="#logical-statements-for-subsetting-data" id="toc-logical-statements-for-subsetting-data" class="nav-link" data-scroll-target="#logical-statements-for-subsetting-data">Logical Statements for Subsetting Data</a></li>
@@ -470,7 +472,6 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#quick-r-video" id="toc-quick-r-video" class="nav-link" data-scroll-target="#quick-r-video">Quick R video</a></li>
   <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
-  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -503,92 +504,6 @@ window.Quarto = {
 </header>
 
 
-<section id="week-3" class="level1">
-<h1>Week 3</h1>
-<p>Hopefully, you feel like you have an idea about programming in R. We’ve learned about the idea of R objects and how to investigate an R object via</p>
-<ul>
-<li><code>class()</code></li>
-<li><code>typeof()</code></li>
-<li><code>str()</code></li>
-</ul>
-<p>We see that R commonly uses the attributes of the object to determine how to apply (or dispatch) a function. We’ve looked at common R objects and how to access their elements:</p>
-<ul>
-<li>Atomic vectors - <code>x[ ]</code></li>
-<li>Matrices - <code>x[ , ]</code></li>
-<li>Data Frames - <code>x[ , ]</code> or <code>x$name</code></li>
-<li>Lists - <code>x[[ ]]</code> or <code>x$name</code></li>
-</ul>
-<p>and how to document our code by using a notebook environment such as Quarto (along with git/github for version control and sharing/collaborating).</p>
-<p>Now we want to look at how to control the execution of our code. The three main things we’ll look at here are</p>
-<ul>
-<li><code>if/then/else</code> logic and syntax</li>
-<li>looping to repeatedly execute code</li>
-<li>vectorized functions for improved efficiency</li>
-</ul>
-<p>Then we’ll see how to write our own functions! We are already learning a lot of necessary material to be a data scientist. Let’s go!!</p>
-<section id="week-3-additional-readingslearning-materials" class="level2">
-<h2 class="anchored" data-anchor-id="week-3-additional-readingslearning-materials">Week 3 Additional Readings/Learning Materials</h2>
-<section id="writing-functions" class="level3">
-<h3 class="anchored" data-anchor-id="writing-functions">Writing Functions</h3>
-<ul>
-<li><a href="https://r4ds.hadley.nz/functions" target="_blank">Chapter 25 of R 4 Data Science</a></li>
-<li><a href="http://adv-r.had.co.nz/Functions.html" target="_blank">Chapter 5 of&nbsp;Advanced R</a></li>
-<li><a href="https://www.r-bloggers.com/consistent-naming-conventions-in-r/" target="_blank">Consistent naming conventions in R&gt;</a><a>&nbsp;and&nbsp;</a><a href="https://google.github.io/styleguide/Rguide.xml" target="_blank">R’s style guide</a></li>
-<li><a href="https://modern-rstats.eu/defining-your-own-functions.html#functions-that-take-functions-as-arguments-writing-your-own-higher-order-functions" target="_blank">Chapter 7 of Modern R with the tidyverse</a></li>
-</ul>
-</section>
-<section id="loops-and-vectorized-functions" class="level3">
-<h3 class="anchored" data-anchor-id="loops-and-vectorized-functions">Loops and Vectorized Functions<br></h3>
-<ul>
-<li><a href="https://r4ds.hadley.nz/base-r" target="_blank">Chapter 27 of R 4 Data Science (27.4-27.5)</a></li>
-</ul>
-</section>
-</section>
-<section id="week-3-learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="week-3-learning-objectives">Week 3 Learning Objectives</h2>
-<p>Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)</p>
-<section id="logicals-ifthenelse" class="level3">
-<h3 class="anchored" data-anchor-id="logicals-ifthenelse">Logicals &amp; if/then/else</h3>
-<ol type="1">
-<li><p>describe the idea of coercion and compare and contrast the use of implicit and explicit coercion (CO 1, 4)</p>
-<p>a.&nbsp;&nbsp;&nbsp; outline the rules for implicit coercion b.&nbsp;&nbsp;&nbsp; use common explicit coercion functions c.&nbsp;&nbsp;&nbsp; hypothesize the type of coercion implicitly done by a section of R code</p></li>
-</ol>
-</section>
-<section id="for-loops-and-vectorized-functions" class="level3">
-<h3 class="anchored" data-anchor-id="for-loops-and-vectorized-functions">For Loops and Vectorized Functions</h3>
-<ol type="1">
-<li><p>describe the process of a for loop, while loop, and repeat statement in R (CO 1, 3, 4)</p>
-<p>a.&nbsp;&nbsp;&nbsp; program R to break from a loop when conditions are met b.&nbsp;&nbsp;&nbsp; program R to skip an iteration of a loop c.&nbsp;&nbsp;&nbsp; utilize different “counters” or “iterators” in an R loop d.&nbsp;&nbsp;&nbsp; explain the use and process of nested for loops e.&nbsp;&nbsp;&nbsp; program a nested R loop in R f.&nbsp;&nbsp;&nbsp; explain why loops are not always ideal in R</p></li>
-<li><p>&nbsp;&nbsp; program using the “apply family” of functions in R (CO 1, 3, 4)</p>
-<p>a.&nbsp;&nbsp;&nbsp; differentiate between the apply family of functions in R including, but not limited to, mapply, sapply, lapply, apply, and replicate b.&nbsp;&nbsp;&nbsp; manipulate R code that uses loops to instead use the proper apply function c.&nbsp;&nbsp;&nbsp; utilize anonymous functions in calls to the apply family of functions in R</p></li>
-<li><p>&nbsp;&nbsp; recall common “vectorized” functions in R such as colMeans, rowMeans, ifelse, etc. (CO 1, 4)</p></li>
-<li><p>&nbsp;&nbsp; write their own vectorized version of a function in R (CO 1, 4)</p></li>
-<li><p>&nbsp;&nbsp; describe what an anonymous function is and how it differs from other functions (CO 1, 4)</p></li>
-</ol>
-</section>
-<section id="writing-functions-1" class="level3">
-<h3 class="anchored" data-anchor-id="writing-functions-1">Writing Functions</h3>
-<p>Note: Not all of these are covered in this week’s function writing videos - we’ll revisit the topic later!</p>
-<ol type="1">
-<li><p>&nbsp;&nbsp; display code from previously written functions in R (CO 1, 3)</p></li>
-<li><p>&nbsp;&nbsp; describe the parts of an R function (CO 1, 4)</p></li>
-<li><p>&nbsp;&nbsp; describe the difference between a prefix and an infix function (CO 1, 4)</p>
-<p>a.&nbsp;&nbsp;&nbsp; understand the order of evaluation for user created and built-in infix functions</p></li>
-</ol>
-<p>4.&nbsp; &nbsp; write an R function that has default arguments, allows for additional arguments, and returns a well-structured named object (CO 1, 3, 4)</p>
-<pre><code>a.&nbsp;&nbsp;&nbsp; determine appropriate uses for the stop function
-b.&nbsp;&nbsp;&nbsp; develop a pipeable function that acts on a data frame and one that produces side effects
-c.&nbsp;&nbsp;&nbsp; create a custom infix function</code></pre>
-<ol start="5" type="1">
-<li><p>&nbsp; describe the way that inputs can be specified to a function (CO 1, 3)</p>
-<p>a.&nbsp;&nbsp;&nbsp; describe positional matching and predict what input values will be assigned to which function values b.&nbsp;&nbsp;&nbsp; explain lazy evaluation and give examples of where it may be important</p></li>
-<li><p>&nbsp; use if/then/else logic to conditionally execute code</p></li>
-<li><p>&nbsp;&nbsp; utilize the switch function and compare and contrast its use against if/then/else logic (CO 1, 3, 4)</p></li>
-<li><p>&nbsp;&nbsp; define environments including temporary environments (CO 1)</p>
-<p>a.&nbsp;&nbsp;&nbsp; summarize the order in which R attempts to find a requested object b.&nbsp;&nbsp;&nbsp; sketch out the R environment framework and explain the idea of lexical scoping c.&nbsp;&nbsp;&nbsp; discuss the concept of local variables and local environments as compared to global variables and environments d.&nbsp;&nbsp;&nbsp; state the naming conventions for R objects</p></li>
-</ol>
-</section>
-</section>
 <section id="logical-statements" class="level2">
 <h2 class="anchored" data-anchor-id="logical-statements">Logical Statements</h2>
 <p>A logical statement is a comparison of two quantities. It will resolve as <code>TRUE</code> or <code>FALSE</code> (note the all caps).</p>
@@ -601,33 +516,33 @@ c.&nbsp;&nbsp;&nbsp; create a custom infix function</code></pre>
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Strings must be exactly the same to be equivalent</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">"hi"</span> <span class="sc">==</span> <span class="st">"hi"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Strings must be exactly the same to be equivalent</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">"hi"</span> <span class="sc">==</span> <span class="st">"hi"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="st">"hi"</span> <span class="sc">==</span> <span class="st">" hi"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="st">"hi"</span> <span class="sc">==</span> <span class="st">" hi"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">&gt;=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">&gt;=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">!=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">!=</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">3</span>)<span class="sc">^</span><span class="dv">2</span>  <span class="sc">==</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">3</span>)<span class="sc">^</span><span class="dv">2</span>  <span class="sc">==</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
 </div>
 <p>That last one should be true! The issue is the loss of precision with taking the square root of 3. Instead of using <code>==</code> we can use the <code>near()</code> function from the <code>dplyr</code> package (you may need to install this package, <code>install.packages("dplyr")</code>). To call a function directly from a package we can use <code>::</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">near</span>(<span class="fu">sqrt</span>(<span class="dv">3</span>)<span class="sc">^</span><span class="dv">2</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">near</span>(<span class="fu">sqrt</span>(<span class="dv">3</span>)<span class="sc">^</span><span class="dv">2</span>, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
@@ -637,25 +552,25 @@ c.&nbsp;&nbsp;&nbsp; create a custom infix function</code></pre>
 <h3 class="anchored" data-anchor-id="is.-family"><code>is.</code> Family</h3>
 <p>In addition to the standard operators, R has a family of <code>is.</code> (read as “is dot”) functions. These allow you to check a lot of things about an R object or value!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(<span class="st">"Word"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(<span class="st">"Word"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(<span class="fu">c</span>(<span class="st">"10"</span>, <span class="st">"12"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.character</span>(<span class="fu">c</span>(<span class="st">"10"</span>, <span class="st">"12"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE FALSE  TRUE FALSE</code></pre>
 </div>
@@ -672,7 +587,7 @@ c.&nbsp;&nbsp;&nbsp; create a custom infix function</code></pre>
 <p>Creating logical statements can be useful for subsetting data. We’ll see how to do this in a streamlined fashion later, but for now, let’s use <code>Base R</code> functionality to do some subsetting.</p>
 <p>Recall the <code>iris</code> data set. This has measurements on flowers.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 1          5.1         3.5          1.4         0.2  setosa
@@ -685,7 +600,7 @@ c.&nbsp;&nbsp;&nbsp; create a custom infix function</code></pre>
 </div>
 <p>As R does comparisons element-wise, we can compare the <code>Species</code> column to a value. This returns a vector of <code>TRUE</code> and <code>FALSE</code> values (a logical vector).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>iris<span class="sc">$</span>Species <span class="sc">==</span> <span class="st">'setosa'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>iris<span class="sc">$</span>Species <span class="sc">==</span> <span class="st">'setosa'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
  [13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
@@ -704,7 +619,7 @@ c.&nbsp;&nbsp;&nbsp; create a custom infix function</code></pre>
 </div>
 <p>If we index an object with a logical vector, it returns the values where a <code>TRUE</code> occurred and doesn’t return values where a <code>FALSE</code> occurred!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>iris[iris<span class="sc">$</span>Species <span class="sc">==</span> <span class="st">"setosa"</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>iris[iris<span class="sc">$</span>Species <span class="sc">==</span> <span class="st">"setosa"</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 1           5.1         3.5          1.4         0.2  setosa
@@ -797,7 +712,7 @@ c.&nbsp;&nbsp;&nbsp; create a custom infix function</code></pre>
 <li>Only pull out large petal setosa flowers</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>(iris<span class="sc">$</span>Petal.Length <span class="sc">&gt;</span> <span class="fl">1.5</span>) <span class="sc">&amp;</span> (iris<span class="sc">$</span>Species <span class="sc">==</span> <span class="st">"setosa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>(iris<span class="sc">$</span>Petal.Length <span class="sc">&gt;</span> <span class="fl">1.5</span>) <span class="sc">&amp;</span> (iris<span class="sc">$</span>Species <span class="sc">==</span> <span class="st">"setosa"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE
  [13] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE
@@ -815,7 +730,7 @@ c.&nbsp;&nbsp;&nbsp; create a custom infix function</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>iris[(iris<span class="sc">$</span>Petal.Length <span class="sc">&gt;</span> <span class="fl">1.5</span>) <span class="sc">&amp;</span> (iris<span class="sc">$</span>Species <span class="sc">==</span> <span class="st">"setosa"</span>), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>iris[(iris<span class="sc">$</span>Petal.Length <span class="sc">&gt;</span> <span class="fl">1.5</span>) <span class="sc">&amp;</span> (iris<span class="sc">$</span>Species <span class="sc">==</span> <span class="st">"setosa"</span>), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 6           5.4         3.9          1.7         0.4  setosa
@@ -835,7 +750,7 @@ c.&nbsp;&nbsp;&nbsp; create a custom infix function</code></pre>
 </div>
 <p>The parentheses are not required but are useful to keep things straight. For example, we might want only long petal or skinny petal, setosa flowers.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>iris[((iris<span class="sc">$</span>Petal.Length <span class="sc">&gt;</span> <span class="fl">1.5</span>) <span class="sc">|</span> (iris<span class="sc">$</span>Petal.Width <span class="sc">&lt;</span> <span class="fl">0.15</span>)) <span class="sc">&amp;</span> (iris<span class="sc">$</span>Species <span class="sc">==</span> <span class="st">"setosa"</span>), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>iris[((iris<span class="sc">$</span>Petal.Length <span class="sc">&gt;</span> <span class="fl">1.5</span>) <span class="sc">|</span> (iris<span class="sc">$</span>Petal.Width <span class="sc">&lt;</span> <span class="fl">0.15</span>)) <span class="sc">&amp;</span> (iris<span class="sc">$</span>Species <span class="sc">==</span> <span class="st">"setosa"</span>), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 6           5.4         3.9          1.7         0.4  setosa
@@ -865,28 +780,28 @@ c.&nbsp;&nbsp;&nbsp; create a custom infix function</code></pre>
 <p><code>R</code> attempts to coerce data into usable form when necessary. Unfortunately, it doesn’t always let us know it is doing so. This means we need to be careful and understand how <code>R</code> works.</p>
 <p>Recall the behavior of combining elements together into an atomic vector. <code>R</code> coerces to the more flexible data type.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#coerce numeric to string</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"hi"</span>, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#coerce numeric to string</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"hi"</span>, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "hi" "10"</code></pre>
 </div>
 </div>
 <p>In this way, R will treat <code>TRUE</code> as a 1 and <code>FALSE</code> as a 0 when math is done.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#coerce TRUE/FALSE to numeric</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#coerce TRUE/FALSE to numeric</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 11 10</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 0 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.6666667</code></pre>
 </div>
@@ -906,44 +821,44 @@ c.&nbsp;&nbsp;&nbsp; create a custom infix function</code></pre>
 <li><code>if</code> <code>then</code> <code>else</code> syntax</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition) {</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  then execute code</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>} </span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co">#if then else</span></span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition) {</span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  execute this code  </span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  execute this code</span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition) {</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  then execute code</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>} </span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co">#if then else</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition) {</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  execute this code  </span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>  execute this code</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Or more if statements</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition) {</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  execute this code  </span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (condition2) {</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  execute this code</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (condition3) {</span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>  execute this code</span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#if no conditions met</span></span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  execute this code</span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Or more if statements</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition) {</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  execute this code  </span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (condition2) {</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  execute this code</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (condition3) {</span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>  execute this code</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#if no conditions met</span></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>  execute this code</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Note!</strong> You should keep the <code>{</code> on the lines as you see here. There are some occassions where something like this would work:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition) </span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  execute this code  </span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> </span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  execute this code</span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (condition) </span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  execute this code  </span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> </span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  execute this code</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>but it generally won’t! So just mind the positioning.</p>
 <p>As an example of using <code>if/then/else</code> consider the built-in data set <code>airquality</code>. This data has daily air quality measurements in New York from May (Day 1) to September (Day 153) in 1973.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(airquality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(airquality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Ozone Solar.R Wind Temp Month Day
 1    41     190  7.4   67     5   1
@@ -966,21 +881,21 @@ c.&nbsp;&nbsp;&nbsp; create a custom infix function</code></pre>
 </ul>
 <p>For a given value we can do a check and assign a new value.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>airquality<span class="sc">$</span>Wind[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>airquality<span class="sc">$</span>Wind[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7.4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(airquality<span class="sc">$</span>Wind[<span class="dv">1</span>] <span class="sc">&gt;=</span> <span class="dv">15</span>) { </span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"High Wind"</span></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (airquality<span class="sc">$</span>Wind[<span class="dv">1</span>] <span class="sc">&gt;=</span> <span class="dv">10</span>){</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Windy"</span></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (airquality<span class="sc">$</span>Wind[<span class="dv">1</span>] <span class="sc">&gt;=</span> <span class="dv">6</span>) {</span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Light Wind"</span></span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (airquality<span class="sc">$</span>Wind[<span class="dv">1</span>] <span class="sc">&gt;=</span> <span class="dv">0</span>) {</span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Calm"</span></span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Error"</span></span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(airquality<span class="sc">$</span>Wind[<span class="dv">1</span>] <span class="sc">&gt;=</span> <span class="dv">15</span>) { </span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"High Wind"</span></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (airquality<span class="sc">$</span>Wind[<span class="dv">1</span>] <span class="sc">&gt;=</span> <span class="dv">10</span>){</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Windy"</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (airquality<span class="sc">$</span>Wind[<span class="dv">1</span>] <span class="sc">&gt;=</span> <span class="dv">6</span>) {</span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Light Wind"</span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span> (airquality<span class="sc">$</span>Wind[<span class="dv">1</span>] <span class="sc">&gt;=</span> <span class="dv">0</span>) {</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Calm"</span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Error"</span></span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Light Wind"</code></pre>
 </div>
@@ -1004,7 +919,6 @@ c.&nbsp;&nbsp;&nbsp; create a custom infix function</code></pre>
 <p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
 
-</section>
 </section>
 </section>
 
@@ -1431,8 +1345,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Notes/10-Base_R_Data_Structures_Lists.html" class="pagination-link" aria-label="Base R Data Structures: Lists">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Base R Data Structures: Lists</span>
+      <a href="../Notes/10_5-Week2_3.html" class="pagination-link" aria-label="Week 3">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Week 3</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

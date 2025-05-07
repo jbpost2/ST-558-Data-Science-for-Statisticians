@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../Notes/11-Control_Flow_Logicals_if_then_else.html" rel="next">
+<link href="../Notes/10_5-Week2_3.html" rel="next">
 <link href="../Notes/09-Base_R_Data_Structures_Data_Frames.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -234,6 +234,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
           <li class="sidebar-item">
+ <span class="menu-text">Notes/06_5-Week2_3.qmd</span>
+  </li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/07-Base_R_Data_Structures_Vectors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Base R Data Structures: Vectors</span></a>
@@ -255,6 +258,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../Notes/10-Base_R_Data_Structures_Lists.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Base R Data Structures: Lists</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/10_5-Week2_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -298,6 +307,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/15_5-Week3_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 4</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/16-Tidyverse_Essentials.html" class="sidebar-item-text sidebar-link">
@@ -553,7 +568,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5      5      e
 
 [[2]]
-[1]  0.004096048 -0.133123927  0.056496990 -0.791940568
+[1]  0.9427034 -0.5528373  1.2848537 -0.2086464
 
 [[3]]
 [1] "!" "?"</code></pre>
@@ -575,7 +590,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5      5      e
 
 $normVals
-[1]  0.9458135 -0.1925288  0.7740794 -2.7307859
+[1]  0.5545166 -0.3006423 -1.5903524 -1.2466675
 
 $punctuation
 [1] "!" "?"</code></pre>
@@ -592,7 +607,7 @@ $punctuation
  $ my_data_frame:'data.frame':  5 obs. of  2 variables:
   ..$ number: int [1:5] 1 2 3 4 5
   ..$ letter: chr [1:5] "a" "b" "c" "d" ...
- $ normVals     : num [1:4] 0.946 -0.193 0.774 -2.731
+ $ normVals     : num [1:4] 0.555 -0.301 -1.59 -1.247
  $ punctuation  : chr [1:2] "!" "?"</code></pre>
 </div>
 </div>
@@ -631,7 +646,7 @@ $punctuation
 5      5      e
 
 $normVals
-[1]  0.9458135 -0.1925288  0.7740794 -2.7307859
+[1]  0.5545166 -0.3006423 -1.5903524 -1.2466675
 
 $punctuation
 [1] "!" "?"</code></pre>
@@ -641,7 +656,7 @@ $punctuation
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$normVals
-[1]  0.9458135 -0.1925288  0.7740794 -2.7307859
+[1]  0.5545166 -0.3006423 -1.5903524 -1.2466675
 
 $punctuation
 [1] "!" "?"</code></pre>
@@ -703,13 +718,13 @@ $punctuation
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.9458135 -0.1925288  0.7740794 -2.7307859</code></pre>
+<pre><code>[1]  0.5545166 -0.3006423 -1.5903524 -1.2466675</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="dv">2</span>]][<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.7740794 -2.7307859</code></pre>
+<pre><code>[1] -1.590352 -1.246668</code></pre>
 </div>
 </div>
 <ul>
@@ -722,14 +737,14 @@ $punctuation
  $ my_data_frame:'data.frame':  5 obs. of  2 variables:
   ..$ number: int [1:5] 1 2 3 4 5
   ..$ letter: chr [1:5] "a" "b" "c" "d" ...
- $ normVals     : num [1:4] 0.946 -0.193 0.774 -2.731
+ $ normVals     : num [1:4] 0.555 -0.301 -1.59 -1.247
  $ punctuation  : chr [1:2] "!" "?"</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>normVals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.9458135 -0.1925288  0.7740794 -2.7307859</code></pre>
+<pre><code>[1]  0.5545166 -0.3006423 -1.5903524 -1.2466675</code></pre>
 </div>
 </div>
 <ul>
@@ -773,7 +788,7 @@ $punctuation
  $ my_data_frame:'data.frame':  5 obs. of  2 variables:
   ..$ number: int [1:5] 1 2 3 4 5
   ..$ letter: chr [1:5] "a" "b" "c" "d" ...
- $ normVals     : num [1:4] 0.946 -0.193 0.774 -2.731
+ $ normVals     : num [1:4] 0.555 -0.301 -1.59 -1.247
  $ punctuation  : chr [1:2] "!" "?"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.list</span>(my_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -895,7 +910,6 @@ $punctuation
 <li>Data Frames - <code>x[ , ]</code> or <code>x$name</code></li>
 <li>Lists - <code>x[ ]</code>, <code>x[[ ]]</code>, or <code>x$name</code></li>
 </ul>
-<p>This wraps up the content for week 2. Now we require some practice! You should head back to our <a href="https://wolfware.ncsu.edu/" target="_blank">Moodle site</a> to check out your homework assignment for this week.</p>
 <p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
 
@@ -1330,8 +1344,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Notes/11-Control_Flow_Logicals_if_then_else.html" class="pagination-link" aria-label="Control Flow: Logicals &amp; if/then/else">
-        <span class="nav-page-text">Control Flow: Logicals &amp; if/then/else</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../Notes/10_5-Week2_3.html" class="pagination-link" aria-label="Week 3">
+        <span class="nav-page-text">Week 3</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

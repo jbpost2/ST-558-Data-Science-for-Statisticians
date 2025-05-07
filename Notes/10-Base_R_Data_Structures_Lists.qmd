@@ -240,6 +240,4 @@ Basic access via
 -   Data Frames - `x[ , ]` or `x$name`
 -   Lists - `x[ ]`, `x[[ ]]`, or `x$name`
 
-This wraps up the content for week 2. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your homework assignment for this week.
-
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

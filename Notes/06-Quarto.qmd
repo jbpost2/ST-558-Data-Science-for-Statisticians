@@ -195,6 +195,4 @@ Please pop this video out and watch it in the full panopto player!
 
 - <a href = "https://github.com/jbpost2/My_first_repo" target = "_blank">Link to repo with files from video</a>
 
-This wraps up the content for week 1. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your homework assignment for this week.
-
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

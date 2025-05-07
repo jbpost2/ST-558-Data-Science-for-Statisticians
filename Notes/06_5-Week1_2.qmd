@@ -1,0 +1,35 @@
+---
+title: "Week 2"
+format: html
+toc: TRUE
+editor: source
+editor_options: 
+  chunk_output_type: inline
+---
+
+This wraps up the content for week 1. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your homework assignment for this week.
+
+# Week 2
+
+This second week we'll go through a systematic view of the most common data objects you'll see in `R`. We'll see how to access these objects using `Base R` commands. 
+
+## Week 2 Additional Readings/Learning Materials
+
+Common Data Objects in R
+
+-   <a href="https://r4ds.hadley.nz/logicals" target="_blank">Chapter 12 of R 4 Data Science</a>
+-   <a href="https://r4ds.hadley.nz/base-r" target="_blank">Chapter 27 of R 4 Data Science (27.1-27.3)</a>
+
+## Week 2 Learning Objectives
+
+Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)
+
+### R Basics
+
+1.    create common data objects such as data frames, matrices, vectors, and lists and subset each of them (CO 1, 2, 3)
+
+    a.  recognize the most appropriate method for accessing an R object b. determine the appropriate type of object in which to save differing types of data c. contrast matrices and data frames d. determine the type of R object you are working with e. compare and contrast the attributes of the common data types
+
+2.    utilize R help and other resources to appropriately use and/or modify an R function or object (CO 3)
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

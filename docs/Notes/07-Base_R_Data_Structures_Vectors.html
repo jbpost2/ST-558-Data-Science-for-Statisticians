@@ -234,6 +234,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
           <li class="sidebar-item">
+ <span class="menu-text">Notes/06_5-Week2_3.qmd</span>
+  </li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/07-Base_R_Data_Structures_Vectors.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Base R Data Structures: Vectors</span></a>
@@ -255,6 +258,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../Notes/10-Base_R_Data_Structures_Lists.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Base R Data Structures: Lists</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/10_5-Week2_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -298,6 +307,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/15_5-Week3_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 4</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/16-Tidyverse_Essentials.html" class="sidebar-item-text sidebar-link">
@@ -417,15 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-2" id="toc-week-2" class="nav-link active" data-scroll-target="#week-2">Week 2</a>
-  <ul class="collapse">
-  <li><a href="#week-2-additional-readingslearning-materials" id="toc-week-2-additional-readingslearning-materials" class="nav-link" data-scroll-target="#week-2-additional-readingslearning-materials">Week 2 Additional Readings/Learning Materials</a></li>
-  <li><a href="#week-2-learning-objectives" id="toc-week-2-learning-objectives" class="nav-link" data-scroll-target="#week-2-learning-objectives">Week 2 Learning Objectives</a>
-  <ul class="collapse">
-  <li><a href="#r-basics" id="toc-r-basics" class="nav-link" data-scroll-target="#r-basics">R Basics</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#common-data-structures" id="toc-common-data-structures" class="nav-link" data-scroll-target="#common-data-structures">Common Data Structures</a>
+  <li><a href="#common-data-structures" id="toc-common-data-structures" class="nav-link active" data-scroll-target="#common-data-structures">Common Data Structures</a>
   <ul class="collapse">
   <li><a href="#atomic-vector" id="toc-atomic-vector" class="nav-link" data-scroll-target="#atomic-vector">(Atomic) Vector</a>
   <ul class="collapse">
@@ -467,32 +474,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="week-2" class="level1">
-<h1>Week 2</h1>
-<p>This second week we’ll go through a systematic view of the most common data objects you’ll see in <code>R</code>. We’ll see how to access these objects using <code>Base R</code> commands.&nbsp;</p>
-<section id="week-2-additional-readingslearning-materials" class="level2">
-<h2 class="anchored" data-anchor-id="week-2-additional-readingslearning-materials">Week 2 Additional Readings/Learning Materials</h2>
-<p>Common Data Objects in R</p>
-<ul>
-<li><a href="https://r4ds.hadley.nz/logicals" target="_blank">Chapter 12 of R 4 Data Science</a></li>
-<li><a href="https://r4ds.hadley.nz/base-r" target="_blank">Chapter 27 of R 4 Data Science (27.1-27.3)</a></li>
-</ul>
-</section>
-<section id="week-2-learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="week-2-learning-objectives">Week 2 Learning Objectives</h2>
-<p>Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)</p>
-<section id="r-basics" class="level3">
-<h3 class="anchored" data-anchor-id="r-basics">R Basics</h3>
-<ol type="1">
-<li><p>&nbsp; create common data objects such as data frames, matrices, vectors, and lists and subset each of them (CO 1, 2, 3)</p>
-<ol type="a">
-<li>recognize the most appropriate method for accessing an R object b.&nbsp;determine the appropriate type of object in which to save differing types of data c.&nbsp;contrast matrices and data frames d.&nbsp;determine the type of R object you are working with e.&nbsp;compare and contrast the attributes of the common data types</li>
-</ol></li>
-<li><p>&nbsp; utilize R help and other resources to appropriately use and/or modify an R function or object (CO 3)</p></li>
-</ol>
-</section>
-</section>
-</section>
 <section id="common-data-structures" class="level1">
 <h1>Common Data Structures</h1>
 <p>A data scientist needs to deal with data! We need to have a firm foundation in the ways that we can store our data in <code>R</code>. This section goes through the most commonly used ‘built-in’ <code>R</code> objects that we’ll use.</p>
@@ -704,20 +685,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">4</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.85595160 0.50909977 0.11578420 0.08022558</code></pre>
+<pre><code>[1] 0.5687904 0.7693786 0.6371377 0.9794512</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.82873138 0.69698187 0.03760678 0.06362741 0.36379630 0.79196359
- [7] 0.23552058 0.62795274 0.04286688 0.92654874</code></pre>
+<pre><code> [1] 0.64530928 0.86343581 0.61485156 0.97403878 0.08461797 0.94957372
+ [7] 0.82750605 0.45588373 0.93523651 0.06482009</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">5</span>, <span class="dv">20</span>, <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 25.08980 28.46312 29.63829 27.14747 26.09282</code></pre>
+<pre><code>[1] 27.35929 23.34363 29.25362 21.30194 20.50583</code></pre>
 </div>
 </div>
 <p>We’ll find this function really useful when we simulate different quantities!</p>
