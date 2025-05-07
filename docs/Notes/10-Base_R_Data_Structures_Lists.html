@@ -465,9 +465,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="common-data-structures" class="level1">
 <h1>Common Data Structures</h1>
-<p>A data scientist needs to deal with data! We need to have a firm foundation in the ways that we can store our data in R. This section goes through the most commonly used ‘built-in’ R objects that we’ll use.</p>
+<p>A data scientist needs to deal with data! We need to have a firm foundation in the ways that we can store our data in <code>R</code>. This section goes through the most commonly used ‘built-in’ <code>R</code> objects that we’ll use.</p>
 <ul>
-<li><p>There are five major data structures used in R</p>
+<li><p>There are five major data structures used in <code>R</code></p>
 <ol type="1">
 <li>Atomic Vector (1d)</li>
 <li>Matrix (2d)</li>
@@ -516,7 +516,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/listVisualF.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+<p><img src="img/listVisualF.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="Three larger boxes are shown. Each represents a list element. The elements have an ordering, 1st, 2nd, and 3rd value. Within each element any type of R object can be store." width="600"></p>
 </figure>
 </div>
 </div>
@@ -553,7 +553,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5      5      e
 
 [[2]]
-[1] -0.6923513  0.1369627  0.2176270  1.6131381
+[1]  1.5371056  0.5784634 -0.8091462 -0.1836735
 
 [[3]]
 [1] "!" "?"</code></pre>
@@ -575,7 +575,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5      5      e
 
 $normVals
-[1]  1.07627273 -0.05488578  0.17209609 -0.09498658
+[1] -0.7824080 -0.8277013  0.4579959  2.2337913
 
 $punctuation
 [1] "!" "?"</code></pre>
@@ -592,7 +592,7 @@ $punctuation
  $ my_data_frame:'data.frame':  5 obs. of  2 variables:
   ..$ number: int [1:5] 1 2 3 4 5
   ..$ letter: chr [1:5] "a" "b" "c" "d" ...
- $ normVals     : num [1:4] 1.0763 -0.0549 0.1721 -0.095
+ $ normVals     : num [1:4] -0.782 -0.828 0.458 2.234
  $ punctuation  : chr [1:2] "!" "?"</code></pre>
 </div>
 </div>
@@ -631,7 +631,7 @@ $punctuation
 5      5      e
 
 $normVals
-[1]  1.07627273 -0.05488578  0.17209609 -0.09498658
+[1] -0.7824080 -0.8277013  0.4579959  2.2337913
 
 $punctuation
 [1] "!" "?"</code></pre>
@@ -641,7 +641,7 @@ $punctuation
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$normVals
-[1]  1.07627273 -0.05488578  0.17209609 -0.09498658
+[1] -0.7824080 -0.8277013  0.4579959  2.2337913
 
 $punctuation
 [1] "!" "?"</code></pre>
@@ -703,13 +703,13 @@ $punctuation
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  1.07627273 -0.05488578  0.17209609 -0.09498658</code></pre>
+<pre><code>[1] -0.7824080 -0.8277013  0.4579959  2.2337913</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="dv">2</span>]][<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.17209609 -0.09498658</code></pre>
+<pre><code>[1] 0.4579959 2.2337913</code></pre>
 </div>
 </div>
 <ul>
@@ -722,14 +722,14 @@ $punctuation
  $ my_data_frame:'data.frame':  5 obs. of  2 variables:
   ..$ number: int [1:5] 1 2 3 4 5
   ..$ letter: chr [1:5] "a" "b" "c" "d" ...
- $ normVals     : num [1:4] 1.0763 -0.0549 0.1721 -0.095
+ $ normVals     : num [1:4] -0.782 -0.828 0.458 2.234
  $ punctuation  : chr [1:2] "!" "?"</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>normVals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  1.07627273 -0.05488578  0.17209609 -0.09498658</code></pre>
+<pre><code>[1] -0.7824080 -0.8277013  0.4579959  2.2337913</code></pre>
 </div>
 </div>
 <ul>
@@ -773,7 +773,7 @@ $punctuation
  $ my_data_frame:'data.frame':  5 obs. of  2 variables:
   ..$ number: int [1:5] 1 2 3 4 5
   ..$ letter: chr [1:5] "a" "b" "c" "d" ...
- $ normVals     : num [1:4] 1.0763 -0.0549 0.1721 -0.095
+ $ normVals     : num [1:4] -0.782 -0.828 0.458 2.234
  $ punctuation  : chr [1:2] "!" "?"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.list</span>(my_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -837,6 +837,9 @@ $punctuation
 <h3 class="anchored" data-anchor-id="quick-r-example">Quick R example</h3>
 <p>Please pop this video out and watch it in the full panopto player!</p>
 <iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=d86020f1-baf0-4773-ad53-b1710150852d&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="10 - Lists"></iframe>
+<ul>
+<li><a href="https://github.com/jbpost2/My_first_repo" target="_blank">Link to repo with files from video</a></li>
+</ul>
 </section>
 <section id="recap" class="level3">
 <h3 class="anchored" data-anchor-id="recap">Recap!</h3>
@@ -852,7 +855,7 @@ $punctuation
 </section>
 <section id="big-recap" class="level2">
 <h2 class="anchored" data-anchor-id="big-recap">Big Recap!</h2>
-<p>We now know how we’ll handle data using R. We will end up using vectors, lists, and data frames a lot (although we’ll use a special form of a data frame called a tibble).</p>
+<p>We now know how we’ll handle data using <code>R</code>. We will end up using vectors, lists, and data frames a lot (although we’ll use a special form of a data frame called a tibble).</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -892,6 +895,8 @@ $punctuation
 <li>Data Frames - <code>x[ , ]</code> or <code>x$name</code></li>
 <li>Lists - <code>x[ ]</code>, <code>x[[ ]]</code>, or <code>x$name</code></li>
 </ul>
+<p>This wraps up the content for week 2. Now we require some practice! You should head back to our <a href="https://wolfware.ncsu.edu/" target="_blank">Moodle site</a> to check out your homework assignment for this week.</p>
+<p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
 
 </section>

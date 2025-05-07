@@ -604,11 +604,11 @@ I work at NC State.</code></pre>
 <p>Let’s go through some explicit steps to do this! <strong>Make sure you’ve downloaded <code>Git</code> to your machine already (see earlier material on <code>Git</code>/<code>GitHub</code>)!</strong></p>
 <section id="cloning-a-repo-working-in-rstudio" class="level3">
 <h3 class="anchored" data-anchor-id="cloning-a-repo-working-in-rstudio">Cloning a Repo &amp; Working in <code>RStudio</code></h3>
-<p>We don’t want to use github.com web interface as that is inefficient.</p>
+<p>We don’t want to use the <code>github.com</code> web interface as that is kind of inefficient.</p>
 <ul>
-<li><p>We can <code>clone</code> the repo (i.e.&nbsp;download the entire repo locally).</p></li>
-<li><p>Repo main page has a green button. Click on that.</p>
+<li><p>One option is to <code>clone</code> the repo (i.e.&nbsp;download the entire repo locally).</p>
 <ul>
+<li>Repo main page has a green button. Click on that.</li>
 <li>Can download a zip and unzip it to an appropriate folder</li>
 </ul></li>
 </ul>
@@ -616,13 +616,13 @@ I work at NC State.</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="img/clone_repo_button.png" class="img-fluid figure-img" width="600"></p>
+<p><img src="img/clone_repo_button.png" class="img-fluid figure-img" alt="The '<> Code' button on the github repo website can be used to download the entire repo." width="600"></p>
 </figure>
 </div>
 </div>
 </div>
 <ul>
-<li><p>Better to clone the repo via the URL and use <code>RStudio</code>! Open <code>RStudio</code>,</p>
+<li><p>A better option is to clone the repo via the URL and use <code>RStudio</code>! Open <code>RStudio</code>,</p>
 <ul>
 <li>go to File –&gt; new project</li>
 <li>select from version control</li>
@@ -631,11 +631,7 @@ I work at NC State.</code></pre>
 <li>select a directory to save this repo in</li>
 <li>hit create project!</li>
 </ul></li>
-<li><p>Now have the files locally and this associates an <code>R</code> project with a <code>Git</code> repo!</p></li>
-<li><p>Try it with my repo here: <code>https://github.com/jbpost2/ZScores.git</code></p>
-<ul>
-<li>You won’t have access to push files to this repository though!</li>
-</ul></li>
+<li><p>Now you have the files locally and this associates an <code>R</code> project with a <code>Git</code> repo!</p></li>
 </ul>
 <p>Try this out on your own! Create your own repo on <code>GitHub</code>. Then try to download it as an <code>R</code> project.</p>
 </section>
@@ -643,27 +639,29 @@ I work at NC State.</code></pre>
 <h3 class="anchored" data-anchor-id="communication-between-github-and-rstudio">Communication Between <code>GitHub</code> and <code>RStudio</code></h3>
 <p>We need to make sure <code>RStudio</code> and github can communicate. This can sometimes be tough to get working! Do the following:</p>
 <ul>
-<li>Modify a file in the github repo you just created and downloaded (the one you own).</li>
+<li>Modify a file in the github repo you just created and downloaded.</li>
 <li>Go to the <code>Git</code> tab in your <code>Environment</code> area</li>
-<li>You should see any files with changes</li>
-<li>Can <code>add</code> files that you’d like to <code>commit</code> up to the remote repo</li>
+<li>You should see any files where you’ve made changes</li>
+<li>You can <code>add</code> files that you’d like to <code>commit</code> up to the remote repo</li>
 <li>Click on all of the boxes (equivalent to <code>git add -A</code> when using the command line) and click the <code>Commit</code> button</li>
 <li>A window pops up with a comparison of files. When satisfied, write a commit message in the box and click the <code>commit</code> button (equivalent to <code>git commit -m "message"</code> when using the command line)</li>
 <li>Hit close on that window</li>
 <li>Click the push button in the top right (equivalent to <code>git push</code> when using the command line)</li>
-<li>You may be prompted to log-in in some way. If not, repo on gitub.com should show the changes!</li>
+<li>You may be prompted to log-in in some way. If successful, the repo on <code>gitub.com</code> should show the changes!</li>
 </ul>
 </section>
 <section id="using-the-command-line-interface-cli" class="level3">
 <h3 class="anchored" data-anchor-id="using-the-command-line-interface-cli">Using the Command Line Interface (CLI)</h3>
 <p>When working by myself on a repo, I’m not worried about merge conflicts with other people’s changes. As such, my workflow is as follows:</p>
 <ul>
-<li>Open the appropriate project in <code>RStudio</code></li>
-<li>Go to the Terminal and type <code>git pull</code></li>
-<li>Work… at a good spot for saving, back to the terminal</li>
+<li><p>Open the appropriate project in <code>RStudio</code></p></li>
+<li><p>Go to the Terminal and type <code>git pull</code></p></li>
+<li><p>Work… at a good spot for saving, back to the terminal</p>
+<ul>
 <li>Type <code>git add -A</code> to add all files that have been modified</li>
 <li>Type <code>git commit -m "Message"</code> to stage a commit</li>
 <li>Type <code>git push</code> to push the local changes to the remote repo</li>
+</ul></li>
 </ul>
 </section>
 <section id="creating-a-repo-from-an-existing-r-project" class="level3">

@@ -1,17 +1,38 @@
 ---
 title: "Base R Data Structures: Vectors"
 format: html
-editor: visual
+editor: source
 toc: TRUE
 editor_options: 
   chunk_output_type: inline
 ---
 
+This second week we'll go through a systematic view of the most common data objects you'll see in `R`. We'll see how to access these objects using `BaseR` commands. 
+
+## Additional Readings/Learning Materials
+
+Common Data Objects in R
+
+-   <a href="https://r4ds.hadley.nz/logicals" target="_blank">Chapter 12 of R 4 Data Science</a>
+-   <a href="https://r4ds.hadley.nz/base-r" target="_blank">Chapter 27 of R 4 Data Science (27.1-27.3)</a>
+
+## Week 2 Learning Objectives
+
+Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)
+
+### R Basics
+
+1.    create common data objects such as data frames, matrices, vectors, and lists and subset each of them (CO 1, 2, 3)
+
+    a.  recognize the most appropriate method for accessing an R object b. determine the appropriate type of object in which to save differing types of data c. contrast matrices and data frames d. determine the type of R object you are working with e. compare and contrast the attributes of the common data types
+
+2.    utilize R help and other resources to appropriately use and/or modify an R function or object (CO 3)
+
 # Common Data Structures
 
-A data scientist needs to deal with data! We need to have a firm foundation in the ways that we can store our data in R. This section goes through the most commonly used 'built-in' R objects that we'll use.
+A data scientist needs to deal with data! We need to have a firm foundation in the ways that we can store our data in `R`. This section goes through the most commonly used 'built-in' `R` objects that we'll use.
 
-- There are five major data structures used in R
+-   There are five major data structures used in `R`
 
     1.  Atomic Vector (1d)
     2.  Matrix (2d)
@@ -21,15 +42,15 @@ A data scientist needs to deal with data! We need to have a firm foundation in t
 
 | Dimension | Homogeneous (elements all the same) | Heterogeneous (elements may differ) |
 |--------------------|--------------------------|--------------------------|
-| 1d        | Atomic Vector                       | List                                |
-| 2d        | Matrix                              | Data Frame                          |
-| nd        | Array                               |                                     |
+| 1d | Atomic Vector | List |
+| 2d | Matrix | Data Frame |
+| nd | Array |  |
 
 ## (Atomic) Vector
 
 (Atomic) Vector (1D group of elements with an ordering that starts at 1)
 
-```{r vectorVis, echo = FALSE, fig.align='center', out.width = '650px'}
+```{r vectorVis, echo = FALSE, fig.align='center', out.width = '650px',  fig.alt = "Two vectors are displayed visually. One has five blocks in order from left to right. The values themselves are 17, 22, 1, 3, and -3. These are called the elements of the vector. These elements are given an ordering starting from 1 and going to 5. The second vector has four values in order from left to right. The values themselves are cat, dog, bird, and frog. These are the elements of the vector. These elements are given an ordering start from 1 and going to 4."}
 knitr::include_graphics("img/vectorVisualF.png")
 ```
 
@@ -51,19 +72,19 @@ x <- c(1, 3, 10, -20, sqrt(2))
 x
 ```
 
-- Recall the `str()` function to investigate the structure of the object
+-   Recall the `str()` function to investigate the structure of the object
 
 ```{r}
 str(x)
 ```
 
-- The `typeof()` function tells us which type of data is stored in the vector
+-   The `typeof()` function tells us which type of data is stored in the vector
 
 ```{r}
 typeof(x)
 ```
 
-- Let's create another vector `y` with strings stored in it
+-   Let's create another vector `y` with strings stored in it
 
 ```{r}
 y <- c("cat", "dog", "bird", "floor")
@@ -78,7 +99,7 @@ str(y)
 typeof(y)
 ```
 
-- We can combine two vectors together using `c()` as well!
+-   We can combine two vectors together using `c()` as well!
 
 ```{r}
 z <- c(x, y)
@@ -93,9 +114,9 @@ str(z)
 typeof(z)
 ```
 
-Notice that R *coerces* the **elements** to the data type of the more flexible elements (character - R knows how to convert a number to a character string but doesn't know how to convert a character string to a number). No warning is produced or message! 
+Notice that `R` *coerces* the **elements** to the data type of the more flexible elements (character - R knows how to convert a number to a character string but doesn't know how to convert a character string to a number). No warning is produced or message!
 
-You'll need to get used to how R does these kinds of things implicitly. Check out how R does coercion on some other types of data.
+You'll need to get used to how `R` does these kinds of things implicitly. Check out how R does coercion on some other types of data.
 
 ```{r}
 c(TRUE, "hat", 3)
@@ -105,7 +126,7 @@ c(TRUE, "hat", 3)
 c(c(TRUE, 3), "hat")
 ```
 
-Notice that the order of operations above is important to understand! In the first line, R coerces the three elements together (character as it is the most flexible). In the second line, R first coerces `TRUE` and `3` together. `TRUE` values are treated as 1 (`FALSE` values as 0). Then the values of `1` and `3` are coerced to character strings to create the final vector.
+Notice that the order of operations above is important to understand! In the first line, R coerces the three elements together (character as it is the most flexible). In the second line, `R` first coerces `TRUE` and `3` together. `TRUE` values are treated as 1 (`FALSE` values as 0). Then the values of `1` and `3` are coerced to character strings to create the final vector.
 
 -   One really useful function that creates a vector is the `seq()` (or sequence) function
 
@@ -137,7 +158,7 @@ seq(1, 10, length = 5)
 1:15*3
 ```
 
-Note that R is doing **element-wise** math. This is the default behavior of doing math on our common data structures (not just vectors!)
+Note that `R` is doing **element-wise** math. This is the default behavior of doing math on our common data structures (not just vectors!)
 
 -   Another function that creates a vector is the `runif()` (random uniform number generator) function.
 
@@ -159,7 +180,7 @@ We'll find this function really useful when we simulate different quantities!
 
 ### Vector Attributes
 
-R objects can have attributes associated with them. The main attribute that a vector might have associated with it are **names** for the elements.
+`R` objects can have attributes associated with them. The main attribute that a vector might have associated with it are **names** for the elements.
 
 ```{r}
 u <- c("a" = 1, "b" = 2, "c" = 3)
@@ -170,21 +191,17 @@ u
 attributes(u)
 ```
 
-There is a special function for getting at the names of an R object. It is the `names()` function (nice choice there).
+There is a special function for getting at the names of an `R` object. It is the `names()` function (nice choice there).
 
 ```{r}
 names(u)
-```
-
-```{r}
-names(u)[1]
 ```
 
 Names can be useful when it comes to subsetting and matching observations.
 
 ### Accessing Elements of a Vector
 
-When thinking about accessing (or subsetting) a vector's elements, remember that vectors are 1D. We can place the numbers corresponding to the positions of the elements we want inside of `[]` at the end of the vector to return them.
+When thinking about accessing (or subsetting) a vector's elements, remember that vectors are 1D. We can place the numbers corresponding to the positions of the elements we want inside of `[]` at the end of the vector to return them. Note: `R` starts its counting at 1, not 0 like many other languages.
 
 -   Return vector elements using square brackets `[]` at the end of a vector.
 
@@ -252,6 +269,9 @@ Please pop this video out and watch it in the full panopto player!
 ```{=html}
 <iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=69bf6bf6-3212-4b83-a7a6-b171014a8271&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="07 - Vectors" ></iframe>
 ```
+
+- <a href = "https://github.com/jbpost2/My_first_repo" target = "_blank">Link to repo with files from video</a>
+
 ### Recap!
 
 (Atomic) Vector (1D group of elements with an ordering)
@@ -261,3 +281,5 @@ Please pop this video out and watch it in the full panopto player!
 -   `seq()` and `:`
 
 -   Subset vectors using `vec[index]`
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

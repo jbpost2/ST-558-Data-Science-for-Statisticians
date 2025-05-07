@@ -1,7 +1,7 @@
 ---
 title: "Base R Data Structures: Data Frames"
 format: html
-editor: visual
+editor: source
 toc: TRUE
 editor_options: 
   chunk_output_type: inline
@@ -9,9 +9,9 @@ editor_options:
 
 # Common Data Structures
 
-A data scientist needs to deal with data! We need to have a firm foundation in the ways that we can store our data in R. This section goes through the most commonly used 'built-in' R objects that we'll use.
+A data scientist needs to deal with data! We need to have a firm foundation in the ways that we can store our data in `R`. This section goes through the most commonly used 'built-in' `R` objects that we'll use.
 
--   There are five major data structures used in R
+-   There are five major data structures used in `R`
 
     1.  Atomic Vector (1d)
     2.  Matrix (2d)
@@ -20,10 +20,10 @@ A data scientist needs to deal with data! We need to have a firm foundation in t
     5.  List (1d)
 
 | Dimension | Homogeneous (elements all the same) | Heterogeneous (elements may differ) |
-|------------------|---------------------------|---------------------------|
-| 1d        | Atomic Vector                       | List                                |
-| 2d        | Matrix                              | Data Frame                          |
-| nd        | Array                               |                                     |
+|-------------------|---------------------------|---------------------------|
+| 1d | Atomic Vector | List |
+| 2d | Matrix | Data Frame |
+| nd | Array |  |
 
 ## Data Frame
 
@@ -35,7 +35,7 @@ Data Frames
 
 -   Perfect for most data sets!
 
-```{r dfVis, echo = FALSE, out.width = "500px", fig.align= 'center', echo = FALSE}
+```{r dfVis, echo = FALSE, out.width = "500px", fig.align= 'center', echo = FALSE, fig.alt = "Three columns of shapes are shown next to each other. There are four values in each column. The first column contains numbers only. The second column contains character strings only. The third column contains True and False values only. The values are called elements and have an ordering associated with them, both a row ordering and a column ordering. The ordering is denoted by [ row index, column index ]. Leaving a row or column index blank is associated with the values for an entire row or column, respectively."}
 knitr::include_graphics("img/dfVisualF.png")
 ```
 
@@ -116,8 +116,8 @@ iris[1, ] #returns a data frame
 iris[1:10, 1] #returns a vector
 ```
 
--   Note again that R simplifies objects sometimes! The last return was simplified to a vector.
--   This behavior actually comes from using the `[` function. **Everything you do in R is a function call!**
+-   Note again that `R` simplifies objects sometimes! The last return was simplified to a vector.
+-   This behavior actually comes from using the `[` function. **Everything you do in `R` is a function call!**
 -   We can avoid the behavior by adding the `drop = FALSE` argument
 
 ```{r}
@@ -154,6 +154,9 @@ Please pop this video out and watch it in the full panopto player!
 ```{=html}
 <iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=d0c4b48a-d2de-434a-baca-b171014d8595&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="09 - Data Frames" ></iframe>
 ```
+
+- <a href = "https://github.com/jbpost2/My_first_repo" target = "_blank">Link to repo with files from video</a>
+
 ### Recap!
 
 Data Frame (2D data structure)
@@ -167,3 +170,5 @@ Data Frame (2D data structure)
 -   Perfect for most data sets!
 
 -   Most functions that read 2D data store it as a `data frame` (or `tibble` - a special data frame covered later)
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

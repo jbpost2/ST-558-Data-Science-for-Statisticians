@@ -1,7 +1,7 @@
 ---
 title: "Base R Data Structures: Matrices"
 format: html
-editor: visual
+editor: source
 toc: TRUE
 editor_options: 
   chunk_output_type: inline
@@ -9,9 +9,9 @@ editor_options:
 
 # Common Data Structures
 
-A data scientist needs to deal with data! We need to have a firm foundation in the ways that we can store our data in R. This section goes through the most commonly used 'built-in' R objects that we'll use.
+A data scientist needs to deal with data! We need to have a firm foundation in the ways that we can store our data in `R`. This section goes through the most commonly used 'built-in' `R` objects that we'll use.
 
--   There are five major data structures used in R
+-   There are five major data structures used in `R`
 
     1.  Atomic Vector (1d)
     2.  Matrix (2d)
@@ -21,9 +21,9 @@ A data scientist needs to deal with data! We need to have a firm foundation in t
 
 | Dimension | Homogeneous (elements all the same) | Heterogeneous (elements may differ) |
 |--------------------|--------------------------|--------------------------|
-| 1d        | Atomic Vector                       | List                                |
-| 2d        | Matrix                              | Data Frame                          |
-| nd        | Array                               |                                     |
+| 1d | Atomic Vector | List |
+| 2d | Matrix | Data Frame |
+| nd | Array |  |
 
 ## Matrix
 
@@ -37,7 +37,7 @@ Here the observations correspond to measurements on flowers. The variables that 
 
 We can see that a vector is not really useful for handling this kind of 'standard' data since it is 1D. However, we can think of vectors as the building blocks for more complicated types of data.
 
-As matrices are homogeneous (all elements must be the same type), we can think of a matrix as a collection of vectors of the same **type and length** (although this is not formally how it works in R). Think of each vector as a column of the matrix.
+As matrices are homogeneous (all elements must be the same type), we can think of a matrix as a collection of vectors of the same **type and length** (although this is not formally how it works in `R`). Think of each column of the matrix as a vector.
 
 ### Creating a Matrix
 
@@ -55,7 +55,7 @@ where `data` is
 
 > an optional data vector (including a list or expression vector). Non-atomic classed R objects are coerced by as.vector and all attributes discarded.
 
-Ok, so really we need to supply a **vector** of data. Then the `nrow` and `ncol` arguments define how many rows and columns. The `byrow` argument is a Boolean telling R whether or not to fill in the matrix by row or by column (the default). `dimnames` is an optional **attribute**. We'll look at that shortly.
+Ok, so really we need to supply a **vector** of data. Then the `nrow` and `ncol` arguments define how many rows and columns. The `byrow` argument is a Boolean telling `R` whether or not to fill in the matrix by row or by column (the default). `dimnames` is an optional **attribute**. We'll look at that shortly.
 
 A basic call to `matrix()` might look like this:
 
@@ -128,16 +128,17 @@ z <- c("One", "Two", "Three")
 matrix(c(x, y, z), nrow = 3)
 ```
 
--   Notice that we don't need to specify the number of columns. R figures that out!
+-   Notice that we don't need to specify the number of columns. Generally, we need to only specify the `nrow` or `ncol` argument and `R` figures the rest out!
 
--   We do need to be careful about how R **recycles** things:
+-   We do need to be careful about how `R` **recycles** things:
 
 ```{r}
 matrix(c(x, y, z), ncol = 2)
 ```
 
--   We were 1 element short of being able to fill a matrix with 2 columns and 5 rows (5 chosen to make sure all the data was included). R recycles the first element we passed to fill in the last value. This is a common thing that R does. It can be useful for shorthanding things but otherwise is just something we need to be aware of as a common error to be fixed!
+-   We were 1 element short of being able to fill a matrix with 2 columns and 5 rows (5 chosen to make sure all the data was included). `R` recycles the first element we passed to fill in the last value. This is a common thing that `R` does. It can be useful for shorthanding things but otherwise is just something we need to be aware of as a common error to be fixed!
 
+- Let's shorthand create a matrix of all 0's.
 ```{r}
 matrix(0, nrow = 2, ncol = 2)
 ```
@@ -174,7 +175,7 @@ Here we can name the rows and the columns of a matrix by assigning a `list()` to
 ```{r}
 dimnames(my_iris) <- list(
   1:150, #first list element is a vector for the row names
-  c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width") #second list element is a vector for column names
+  c("Sepal Length", "Sepal Width", "Petal Length", "Petal Width") #second element is a vector for column names
 )
 head(my_iris)
 ```
@@ -201,11 +202,11 @@ mat <- matrix(c(1:4, 20:17), ncol = 2)
 mat
 ```
 
--   If we leave an index blank, we get the entirety of that index back.
-
 ```{r}
 mat[2, 2]
 ```
+
+-   If we leave an index blank, we get the entirety of that index back.
 
 ```{r}
 mat[ , 1]
@@ -223,7 +224,7 @@ mat[2:4, 1]
 mat[c(2, 4), ]
 ```
 
-**Notice that R simplifies the result where possible.** That is, returns an atomic vector if you have only 1 dimension and a matrix if two.
+**Notice that `R` simplifies the result where possible.** That is, returns an atomic vector if you have only 1 dimension and a matrix if two.
 
 Also, if you only give a single value in the `[]` then R uses the count of the value in the matrix (essentially treating the matrix elements as a long vector). These counts go down columns first.
 
@@ -260,7 +261,7 @@ my_array[1, 1, 1]
 my_array[4, 2, 1]
 ```
 
-Arrays are often used in deep learning.
+Arrays are often used with images in deep learning.
 
 ### Recap!
 
@@ -269,3 +270,5 @@ Arrays are often used in deep learning.
 -   Access elements via `[ , ]`
 
 -   Not ideal for data since all elements must be the same type (see data frames!)
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

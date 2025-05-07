@@ -1,7 +1,7 @@
 ---
 title: "Base R Data Structures: Lists"
 format: html
-editor: visual
+editor: source
 toc: TRUE
 editor_options: 
   chunk_output_type: inline
@@ -9,9 +9,9 @@ editor_options:
 
 # Common Data Structures
 
-A data scientist needs to deal with data! We need to have a firm foundation in the ways that we can store our data in R. This section goes through the most commonly used 'built-in' R objects that we'll use.
+A data scientist needs to deal with data! We need to have a firm foundation in the ways that we can store our data in `R`. This section goes through the most commonly used 'built-in' `R` objects that we'll use.
 
--   There are five major data structures used in R
+-   There are five major data structures used in `R`
 
     1.  Atomic Vector (1d)
     2.  Matrix (2d)
@@ -21,15 +21,15 @@ A data scientist needs to deal with data! We need to have a firm foundation in t
 
 | Dimension | Homogeneous (elements all the same) | Heterogeneous (elements may differ) |
 |--------------------|--------------------------|--------------------------|
-| 1d        | Atomic Vector                       | List                                |
-| 2d        | Matrix                              | Data Frame                          |
-| nd        | Array                               |                                     |
+| 1d | Atomic Vector | List |
+| 2d | Matrix | Data Frame |
+| nd | Array |  |
 
 ## List
 
 -   A vector that can have differing elements! (still **1D**)
 
-```{r, echo = FALSE, out.width = "600px", fig.align= 'center'}
+```{r, echo = FALSE, out.width = "600px", fig.align= 'center', fig.alt = "Three larger boxes are shown. Each represents a list element. The elements have an ordering, 1st, 2nd, and 3rd value. Within each element any type of R object can be store."}
 knitr::include_graphics("img/listVisualF.png")
 ```
 
@@ -149,7 +149,7 @@ attributes(my_list)
 str(attributes(my_list))
 ```
 
-- That means we can access the named list element `names` via the `$` operator.
+-   That means we can access the named list element `names` via the `$` operator.
 
 ```{r}
 attributes(my_list)$names
@@ -200,6 +200,9 @@ Please pop this video out and watch it in the full panopto player!
 ```{=html}
 <iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=d86020f1-baf0-4773-ad53-b1710150852d&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="10 - Lists" ></iframe>
 ```
+
+- <a href = "https://github.com/jbpost2/My_first_repo" target = "_blank">Link to repo with files from video</a>
+
 ### Recap!
 
 List (1D group of objects with ordering)
@@ -216,7 +219,7 @@ List (1D group of objects with ordering)
 
 ## Big Recap!
 
-We now know how we'll handle data using R. We will end up using vectors, lists, and data frames a lot (although we'll use a special form of a data frame called a tibble).
+We now know how we'll handle data using `R`. We will end up using vectors, lists, and data frames a lot (although we'll use a special form of a data frame called a tibble).
 
 | Dimension | Homogeneous   | Heterogeneous |
 |-----------|---------------|---------------|
@@ -236,3 +239,7 @@ Basic access via
 -   Matrices - `x[ , ]`
 -   Data Frames - `x[ , ]` or `x$name`
 -   Lists - `x[ ]`, `x[[ ]]`, or `x$name`
+
+This wraps up the content for week 2. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your homework assignment for this week.
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

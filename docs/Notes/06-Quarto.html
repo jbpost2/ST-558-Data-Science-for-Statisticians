@@ -485,49 +485,49 @@ window.Quarto = {
 <p>Markdown is a simpler version of a markup language. HTML is the most commonly known markup language (HTML = Hypertext markup language). With HTML you use tags to specify things that a web browser like chrome interprets. For instance,</p>
 <p><code>&lt;h1&gt;My first level header&lt;/h1&gt;</code><br>
 <code>&lt;a href = "https://www.google.com"&gt;Link to a search engine.&lt;/a&gt;</code></p>
-<p>is HTML interpreted by your browser to be a header and a link. Markdown is a simpler version of this. There are many markdown languages (include Quarto markdown, <code>R</code> markdown, and <code>GitHub</code> markdown) but most have the same base structure. An equivalent way to write the above would be</p>
+<p>is HTML interpreted by your browser to be a header and a link. Markdown is a simpler version of this. There are many markdown languages (including Quarto markdown, <code>R</code> markdown, and <code>GitHub</code> markdown) but most have the same base structure. An equivalent way to write the above using markdown would be</p>
 <p><code># My first level header</code><br>
-<code>[Link to a search engine](https://www.google.com)</code></p>
+<code>[Link to a search engine.](https://www.google.com)</code></p>
 <p>Where <code>R</code> markdown and Quarto go beyond is in the ability to weave <code>R</code> code into the equation!</p>
 <ul>
-<li>You can include <strong>code chunks</strong> in your markdown.</li>
-<li>You then render the markdown through <code>RStudio</code> (or the command line).</li>
-<li>The <code>R</code> code runs and output is included in the final document!</li>
-<li>It is very awesome.</li>
+<li>You can include <strong>code chunks</strong> in your <code>.Rmd</code> or <code>.qmd</code> file.</li>
+<li>You then render the document through <code>RStudio</code> (or the command line).</li>
+<li>The <code>R</code> code runs and output can be included in the final document!</li>
+<li>It is very <em>awesome</em>.</li>
+</ul>
+<p>Quarto is designed to be used in three ways (<a href="https://r4ds.hadley.nz/Quarto"><em><code>R</code> for Data Science</em></a>)</p>
+<ul>
+<li>To communicate to decision makers (focus on conclusions not code)</li>
+<li>To collaborate with other data scientists (including future you!)</li>
+<li>As environment to do data science (documents what you did and what you were thinking)</li>
 </ul>
 </section>
 <section id="documenting-with-markdown-via-quarto" class="level2">
 <h2 class="anchored" data-anchor-id="documenting-with-markdown-via-quarto">Documenting with Markdown via Quarto</h2>
-<p>Designed to be used in three ways (<a href="https://r4ds.hadley.nz/Quarto"><em><code>R</code> for Data Science</em></a>)</p>
-<ul>
-<li><p>Communicating to decision makers (focus on conclusions not code)</p></li>
-<li><p>Collaborating with other data scientists (including future you!)</p></li>
-<li><p>As environment to do data science (documents what you did and what you were thinking)</p></li>
-</ul>
 <p>It is easy to create many types of documents in Quarto! Go to file –&gt; New File –&gt; Quarto Document</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/Quarto_outputs.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+<p><img src="img/quarto_outputs.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="The menu from creating a new quarto file is shown. There are options to create documents, presentations, and interactive documents." width="600"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Select HTML as that is the easiest to render (build as the output). Save the template file that is produced (this will be a <code>.qmd</code> file).</p>
+<p>Create a new Quarto document by selecting HTML (as that is the easiest to render - aka build the output). Save the template file that is produced (this will be a <code>.qmd</code> file).</p>
 <p><code>.qmd</code> files contain three important types of content:</p>
 <ol type="1">
-<li><p>(Optional) YAML header surrounded by <code>---</code>s</p>
+<li><p>(An optional) YAML header surrounded by <code>---</code>s</p>
 <ul>
 <li>Defines meta data about the document</li>
 </ul></li>
 <li><p>Chunks of <code>R</code> code</p>
 <ul>
-<li>Code that may evaluate and produce output when <em>knitting</em> the document</li>
+<li>Code that may evaluate and produce output when <em>knitting</em> or <em>rendering</em> the document</li>
 </ul></li>
 <li><p>Text mixed with simple text formatting instructions (Markdown syntax)</p></li>
 </ol>
-<p>There is a visual editor in RStudio (similar to a word processing program) and a source editor. I’d recommend starting with the visual editor and trying to move to the source quickly. You’ll be way more efficient using the source editor.</p>
+<p>There is a visual editor in RStudio (similar to a word processing program) and a source editor. I’d recommend starting with the visual editor and trying to move to the source quickly. You’ll be way more efficient using the source editor!</p>
 <section id="yaml-header" class="level3">
 <h3 class="anchored" data-anchor-id="yaml-header">YAML Header</h3>
 <p>YAML stands for “Yet Another Markup Language” or “YAML ain’t markup language”. This defines settings for the creation process (when you go to render the document).</p>
@@ -552,7 +552,7 @@ editor: visual
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/source_Quarto.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+<p><img src="img/source_quarto.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="A button exists at the top of the .qmd file that allows you to switch between 'source' and 'visual' mode." width="600"></p>
 </figure>
 </div>
 </div>
@@ -567,7 +567,8 @@ editor: visual
 <li><code>&lt;https://rstudio.github.io/cheatsheets/Quarto.pdf&gt;</code> <span class="math inline">\(\rightarrow\)</span> A hyperlink: <a href="https://rstudio.github.io/cheatsheets/Quarto.pdf" class="uri">https://rstudio.github.io/cheatsheets/Quarto.pdf</a></li>
 <li><code>[Cheat Sheet link](https://rstudio.github.io/cheatsheets/Quarto.pdf)</code> <span class="math inline">\(\rightarrow\)</span> <a href="https://rstudio.github.io/cheatsheets/Quarto.pdf">Cheat Sheet link</a></li>
 </ul>
-<p>Check <a href="https://Quarto.org/docs/authoring/markdown-basics.html">this site for markdown basics</a>. (Headers can be used to easily create a table of contents (and is useful for accessibility of documents).)</p>
+<p>Check <a href="https://Quarto.org/docs/authoring/markdown-basics.html" target="_blank">this site for markdown basics</a>.</p>
+<p>Note: By using headers you can easily create a table of contents - which is very useful for accessibility of documents.</p>
 </section>
 <section id="code-chunks" class="level3">
 <h3 class="anchored" data-anchor-id="code-chunks">Code Chunks</h3>
@@ -577,19 +578,19 @@ editor: visual
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/local_chunk_options_Quarto.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+<p><img src="img/local_chunk_options_quarto.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="An example code chunk is shown. This begins with three backticks, a left curly brace, the letter 'r', and a right curly brace. Any R code can be placed below this. The code chunk ends with another three backticks on their own line." width="500"></p>
 </figure>
 </div>
 </div>
 </div>
 <ul>
-<li><p>Start a code chunk by typing out the syntax or with CTRL/CMD + Alt/Option + I</p></li>
-<li><p>When rendering:</p>
+<li>Start a code chunk by typing out the syntax or with the shortcut ‘CTRL/CMD + Alt/Option + I’</li>
+</ul>
+<p>When rendering:</p>
 <ul>
 <li>Chunks run sequentially in the document</li>
 <li>Chunks share objects. Essentially an <code>R</code> environment is created when rendering a document and all objects created in chunks are stored in it.</li>
-<li>Can specify behavior of each code chunk (show <code>R</code> code or hide it, evaluate or don’t evaluate) and set global chunk behavior</li>
-</ul></li>
+<li>You can specify behavior of each code chunk (show <code>R</code> code or hide it, evaluate or don’t evaluate) and set global chunk behavior</li>
 </ul>
 <p>To change the behavior of code chunks, we use chunk options:</p>
 <ul>
@@ -600,17 +601,17 @@ editor: visual
 <li>Have code evaluate, not show, and show no output with <code>include = TRUE/FALSE</code></li>
 <li>Turn on/off displaying of messages or warnings with <code>message = TRUE/FALSE</code> and <code>warning = TRUE/FALSE</code></li>
 </ul>
-<p>Specifying these options in the top part of the code chunk is the <code>R</code> Markdown way of doing things (still acceptable)</p>
+<p>Specifying these options in the top part of the code chunk is the <code>R</code> Markdown way of doing things (which is still acceptable in a <code>.qmd</code> file):</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/chunk.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+<p><img src="img/chunk.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="A code chunk is shown that begins with ```{r eval = FALSE}. This specifies this chunk's behavior." width="500"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>However, the new, better, way of doing it is via special comments.</p>
+<p>However, the new, better, way of doing it is via special comments (similar to building an R package or your own API).</p>
 <blockquote class="blockquote">
 <p>One important difference between <code>R</code> Markdown documents and Quarto documents is that in Quarto chunk options are typically included in special comments at the top of code chunks rather than within the line that begins the chunk. For example:</p>
 </blockquote>
@@ -618,12 +619,12 @@ editor: visual
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/local_chunk_options_Quarto.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+<p><img src="img/local_chunk_options_quarto.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="The quarto method for specifying a code chunk option is shown. This is done by using a comment at the top of the code chunk after the ```{r} line. The option '#| echo: false' is used." width="500"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>With Quarto, if you want to specify global chunk options the best way to do so is in the YAML header. <strong>Be very careful about spacing in YAML headers!</strong></p>
+<p>With Quarto, if you want to specify global chunk options the best way to do so is in the YAML header. <strong>Be very careful about spacing in YAML headers!</strong> You don’t want extra spaces anywhere and you need to have the correct indenting!</p>
 <p>Here is an example that would make all code chunks be ‘collapsed’ by default.</p>
 <pre><code>---
 title: "My Document"
@@ -632,7 +633,7 @@ knitr:
   opts_chunk: 
     collapse: true
 ---</code></pre>
-<p>You can also still set code chunk options in a <em>setup</em> code chunk. This is just a code chunk you put at the beginning of the document that sets options for you. Something like the following in a code chunk:</p>
+<p>You can also (still) set code chunk options in a <em>setup</em> code chunk. This is just a code chunk you put at the beginning of the document that sets options for you. Something like the following in a code chunk:</p>
 <p><code>#| include: false</code><br>
 <code>knitr::opts_chunk$set(echo = FALSE, eval = TRUE, warning = FALSE)</code></p>
 <p>The <code>include: false</code> tells <code>knitr</code> not to include the code or output of this chunk in the final document.</p>
@@ -641,7 +642,8 @@ knitr:
 <ul>
 <li><a href="https://github.com/jbpost2/My_first_repo" target="_blank">Link to repo with files from video</a></li>
 </ul>
-<p>This wraps up week 1!</p>
+<p>This wraps up the content for week 1. Now we require some practice! You should head back to our <a href="https://wolfware.ncsu.edu/" target="_blank">Moodle site</a> to check out your homework assignment for this week.</p>
+<p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
 
 </section>

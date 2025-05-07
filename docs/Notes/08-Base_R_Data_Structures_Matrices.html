@@ -463,9 +463,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="common-data-structures" class="level1">
 <h1>Common Data Structures</h1>
-<p>A data scientist needs to deal with data! We need to have a firm foundation in the ways that we can store our data in R. This section goes through the most commonly used ‘built-in’ R objects that we’ll use.</p>
+<p>A data scientist needs to deal with data! We need to have a firm foundation in the ways that we can store our data in <code>R</code>. This section goes through the most commonly used ‘built-in’ <code>R</code> objects that we’ll use.</p>
 <ul>
-<li><p>There are five major data structures used in R</p>
+<li><p>There are five major data structures used in <code>R</code></p>
 <ol type="1">
 <li>Atomic Vector (1d)</li>
 <li>Matrix (2d)</li>
@@ -569,7 +569,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Here the observations correspond to measurements on flowers. The variables that were measured on each flower are the columns.</p>
 <p>We can see that a vector is not really useful for handling this kind of ‘standard’ data since it is 1D. However, we can think of vectors as the building blocks for more complicated types of data.</p>
-<p>As matrices are homogeneous (all elements must be the same type), we can think of a matrix as a collection of vectors of the same <strong>type and length</strong> (although this is not formally how it works in R). Think of each vector as a column of the matrix.</p>
+<p>As matrices are homogeneous (all elements must be the same type), we can think of a matrix as a collection of vectors of the same <strong>type and length</strong> (although this is not formally how it works in <code>R</code>). Think of each column of the matrix as a vector.</p>
 <section id="creating-a-matrix" class="level3">
 <h3 class="anchored" data-anchor-id="creating-a-matrix">Creating a Matrix</h3>
 <ul>
@@ -586,7 +586,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>an optional data vector (including a list or expression vector). Non-atomic classed R objects are coerced by as.vector and all attributes discarded.</p>
 </blockquote>
-<p>Ok, so really we need to supply a <strong>vector</strong> of data. Then the <code>nrow</code> and <code>ncol</code> arguments define how many rows and columns. The <code>byrow</code> argument is a Boolean telling R whether or not to fill in the matrix by row or by column (the default). <code>dimnames</code> is an optional <strong>attribute</strong>. We’ll look at that shortly.</p>
+<p>Ok, so really we need to supply a <strong>vector</strong> of data. Then the <code>nrow</code> and <code>ncol</code> arguments define how many rows and columns. The <code>byrow</code> argument is a Boolean telling <code>R</code> whether or not to fill in the matrix by row or by column (the default). <code>dimnames</code> is an optional <strong>attribute</strong>. We’ll look at that shortly.</p>
 <p>A basic call to <code>matrix()</code> might look like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>my_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>), </span>
@@ -697,8 +697,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li><p>Notice that we don’t need to specify the number of columns. R figures that out!</p></li>
-<li><p>We do need to be careful about how R <strong>recycles</strong> things:</p></li>
+<li><p>Notice that we don’t need to specify the number of columns. Generally, we need to only specify the <code>nrow</code> or <code>ncol</code> argument and <code>R</code> figures the rest out!</p></li>
+<li><p>We do need to be careful about how <code>R</code> <strong>recycles</strong> things:</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="fu">c</span>(x, y, z), <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -716,7 +716,8 @@ or multiple of the number of rows [5]</code></pre>
 </div>
 </div>
 <ul>
-<li>We were 1 element short of being able to fill a matrix with 2 columns and 5 rows (5 chosen to make sure all the data was included). R recycles the first element we passed to fill in the last value. This is a common thing that R does. It can be useful for shorthanding things but otherwise is just something we need to be aware of as a common error to be fixed!</li>
+<li><p>We were 1 element short of being able to fill a matrix with 2 columns and 5 rows (5 chosen to make sure all the data was included). <code>R</code> recycles the first element we passed to fill in the last value. This is a common thing that <code>R</code> does. It can be useful for shorthanding things but otherwise is just something we need to be aware of as a common error to be fixed!</p></li>
+<li><p>Let’s shorthand create a matrix of all 0’s.</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">0</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -787,7 +788,7 @@ NULL
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(my_iris) <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span><span class="sc">:</span><span class="dv">150</span>, <span class="co">#first list element is a vector for the row names</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"Sepal Length"</span>, <span class="st">"Sepal Width"</span>, <span class="st">"Petal Length"</span>, <span class="st">"Petal Width"</span>) <span class="co">#second list element is a vector for column names</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"Sepal Length"</span>, <span class="st">"Sepal Width"</span>, <span class="st">"Petal Length"</span>, <span class="st">"Petal Width"</span>) <span class="co">#second element is a vector for column names</span></span>
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -809,17 +810,17 @@ NULL
 <span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">c</span>(<span class="st">"Uniform"</span>, <span class="st">"Normal"</span>, <span class="st">"Gamma"</span>)))</span>
 <span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>my_mat3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      Uniform      Normal     Gamma
-1  0.49924469 -0.91555092 0.3343262
-2  0.25954019 -0.45783112 2.0613443
-3  0.04680882 -0.02072136 0.1122859
-4  0.91452543  0.29768932 1.7844026
-5  0.73128315 -0.23935758 0.4740809
-6  0.88823304  0.17515812 1.0815816
-7  0.02511775 -0.09351067 0.1062241
-8  0.93099360 -0.08101876 2.8040075
-9  0.82175363 -1.21254082 1.4089377
-10 0.47994453  1.34571528 1.4490562</code></pre>
+<pre><code>     Uniform       Normal      Gamma
+1  0.3725063 -0.006398573 0.98065819
+2  0.9159487  0.213079863 0.38953795
+3  0.1533980  0.439554944 0.32308962
+4  0.1635966  1.462519410 1.07199055
+5  0.2173362  0.194378552 0.04077105
+6  0.8701045 -0.986343285 0.82144021
+7  0.5074149 -1.174230381 0.23781925
+8  0.1286591  0.183801141 1.88446794
+9  0.2727178  1.359348823 2.10457857
+10 0.4415093  1.916598084 3.45087550</code></pre>
 </div>
 </div>
 </section>
@@ -840,15 +841,15 @@ NULL
 [4,]    4   17</code></pre>
 </div>
 </div>
-<ul>
-<li>If we leave an index blank, we get the entirety of that index back.</li>
-</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>mat[<span class="dv">2</span>, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 19</code></pre>
 </div>
 </div>
+<ul>
+<li>If we leave an index blank, we get the entirety of that index back.</li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>mat[ , <span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -875,7 +876,7 @@ NULL
 [2,]    4   17</code></pre>
 </div>
 </div>
-<p><strong>Notice that R simplifies the result where possible.</strong> That is, returns an atomic vector if you have only 1 dimension and a matrix if two.</p>
+<p><strong>Notice that <code>R</code> simplifies the result where possible.</strong> That is, returns an atomic vector if you have only 1 dimension and a matrix if two.</p>
 <p>Also, if you only give a single value in the <code>[]</code> then R uses the count of the value in the matrix (essentially treating the matrix elements as a long vector). These counts go down columns first.</p>
 <ul>
 <li>If you do have <code>dimnames</code> associated, then you can access elements with those.</li>
@@ -947,7 +948,7 @@ NULL
 <pre><code>[1] 8</code></pre>
 </div>
 </div>
-<p>Arrays are often used in deep learning.</p>
+<p>Arrays are often used with images in deep learning.</p>
 <section id="recap" class="level3">
 <h3 class="anchored" data-anchor-id="recap">Recap!</h3>
 <ul>
@@ -955,6 +956,7 @@ NULL
 <li><p>Access elements via <code>[ , ]</code></p></li>
 <li><p>Not ideal for data since all elements must be the same type (see data frames!)</p></li>
 </ul>
+<p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
 
 </section>

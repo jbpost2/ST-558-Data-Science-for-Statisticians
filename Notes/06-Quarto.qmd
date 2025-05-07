@@ -43,49 +43,47 @@ Markdown is a simpler version of a markup language. HTML is the most commonly kn
 `<h1>My first level header</h1>`\
 `<a href = "https://www.google.com">Link to a search engine.</a>`
 
-is HTML interpreted by your browser to be a header and a link. Markdown is a simpler version of this. There are many markdown languages (include Quarto markdown, `R` markdown, and `GitHub` markdown) but most have the same base structure. An equivalent way to write the above would be
+is HTML interpreted by your browser to be a header and a link. Markdown is a simpler version of this. There are many markdown languages (including Quarto markdown, `R` markdown, and `GitHub` markdown) but most have the same base structure. An equivalent way to write the above using markdown would be
 
 `# My first level header`\
-`[Link to a search engine](https://www.google.com)`
+`[Link to a search engine.](https://www.google.com)`
 
 Where `R` markdown and Quarto go beyond is in the ability to weave `R` code into the equation!
 
--   You can include **code chunks** in your markdown.
--   You then render the markdown through `RStudio` (or the command line).
--   The `R` code runs and output is included in the final document!
--   It is very awesome.
+-   You can include **code chunks** in your `.Rmd` or `.qmd` file.
+-   You then render the document through `RStudio` (or the command line).
+-   The `R` code runs and output can be included in the final document!
+-   It is very *awesome*.
+
+Quarto is designed to be used in three ways ([*`R` for Data Science*](https://r4ds.hadley.nz/Quarto))
+
+-   To communicate to decision makers (focus on conclusions not code)
+-   To collaborate with other data scientists (including future you!)
+-   As environment to do data science (documents what you did and what you were thinking)
 
 ## Documenting with Markdown via Quarto
 
-Designed to be used in three ways ([*`R` for Data Science*](https://r4ds.hadley.nz/Quarto))
-
--   Communicating to decision makers (focus on conclusions not code)
-
--   Collaborating with other data scientists (including future you!)
-
--   As environment to do data science (documents what you did and what you were thinking)
-
 It is easy to create many types of documents in Quarto! Go to file --\> New File --\> Quarto Document
 
-```{r, echo = FALSE, fig.align='center', out.width = '600px'}
-knitr::include_graphics("img/Quarto_outputs.png")
+```{r, echo = FALSE, fig.align='center', out.width = '600px', fig.alt = "The menu from creating a new quarto file is shown. There are options to create documents, presentations, and interactive documents."}
+knitr::include_graphics("img/quarto_outputs.png")
 ```
 
-Select HTML as that is the easiest to render (build as the output). Save the template file that is produced (this will be a `.qmd` file).
+Create a new Quarto document by selecting HTML (as that is the easiest to render - aka build the output). Save the template file that is produced (this will be a `.qmd` file).
 
 `.qmd` files contain three important types of content:
 
-1.  (Optional) YAML header surrounded by `---`s
+1.  (An optional) YAML header surrounded by `---`s
 
     -   Defines meta data about the document
 
 2.  Chunks of `R` code
 
-    -   Code that may evaluate and produce output when *knitting* the document
+    -   Code that may evaluate and produce output when *knitting* or *rendering* the document
 
 3.  Text mixed with simple text formatting instructions (Markdown syntax)
 
-There is a visual editor in RStudio (similar to a word processing program) and a source editor. I'd recommend starting with the visual editor and trying to move to the source quickly. You'll be way more efficient using the source editor.
+There is a visual editor in RStudio (similar to a word processing program) and a source editor. I'd recommend starting with the visual editor and trying to move to the source quickly. You'll be way more efficient using the source editor!
 
 ### YAML Header
 
@@ -111,8 +109,8 @@ If you render the document (which I'll likely call Knitting as that is what it w
 
 In the template document created you'll also see some text. Some of it is larger, some of it links, some of it plain text. If you click on the "Source" you'll see the markdown syntax that you can use to spice up your outputted document:
 
-```{r, echo = FALSE, fig.align='center', out.width = '600px'}
-knitr::include_graphics("img/source_Quarto.png")
+```{r, echo = FALSE, fig.align='center', out.width = '600px', fig.alt = "A button exists at the top of the .qmd file that allows you to switch between 'source' and 'visual' mode."}
+knitr::include_graphics("img/source_quarto.png")
 ```
 
 The syntax is really easy to pick up. Below you'll find some commonly used markdown syntax:
@@ -125,7 +123,9 @@ The syntax is really easy to pick up. Below you'll find some commonly used markd
 -   `<https://rstudio.github.io/cheatsheets/Quarto.pdf>` $\rightarrow$ A hyperlink: <https://rstudio.github.io/cheatsheets/Quarto.pdf>
 -   `[Cheat Sheet link](https://rstudio.github.io/cheatsheets/Quarto.pdf)` $\rightarrow$ [Cheat Sheet link](https://rstudio.github.io/cheatsheets/Quarto.pdf)
 
-Check [this site for markdown basics](https://Quarto.org/docs/authoring/markdown-basics.html). (Headers can be used to easily create a table of contents (and is useful for accessibility of documents).)
+Check <a href = "https://Quarto.org/docs/authoring/markdown-basics.html" target = "_blank">this site for markdown basics</a>. 
+
+Note: By using headers you can easily create a table of contents - which is very useful for accessibility of documents.
 
 ### Code Chunks
 
@@ -133,17 +133,17 @@ The real power of Quarto and `R` markdown is the ability to run `R` code when re
 
 A code chunk looks like the following:
 
-```{r, out.width = "500px",echo=FALSE, fig.align='center'}
-knitr::include_graphics("img/local_chunk_options_Quarto.png")
+```{r, out.width = "500px",echo=FALSE, fig.align='center', fig.alt = "An example code chunk is shown. This begins with three backticks, a left curly brace, the letter 'r', and a right curly brace. Any R code can be placed below this. The code chunk ends with another three backticks on their own line."}
+knitr::include_graphics("img/local_chunk_options_quarto.png")
 ```
 
--   Start a code chunk by typing out the syntax or with CTRL/CMD + Alt/Option + I
+-   Start a code chunk by typing out the syntax or with the shortcut 'CTRL/CMD + Alt/Option + I'
 
--   When rendering:
+When rendering:
 
-    -   Chunks run sequentially in the document
-    -   Chunks share objects. Essentially an `R` environment is created when rendering a document and all objects created in chunks are stored in it.
-    -   Can specify behavior of each code chunk (show `R` code or hide it, evaluate or don't evaluate) and set global chunk behavior
+-   Chunks run sequentially in the document
+-   Chunks share objects. Essentially an `R` environment is created when rendering a document and all objects created in chunks are stored in it.
+-   You can specify behavior of each code chunk (show `R` code or hide it, evaluate or don't evaluate) and set global chunk behavior
 
 To change the behavior of code chunks, we use chunk options:
 
@@ -152,21 +152,21 @@ To change the behavior of code chunks, we use chunk options:
 -   Have code evaluate, not show, and show no output with `include = TRUE/FALSE`
 -   Turn on/off displaying of messages or warnings with `message = TRUE/FALSE` and `warning = TRUE/FALSE`
 
-Specifying these options in the top part of the code chunk is the `R` Markdown way of doing things (still acceptable)
+Specifying these options in the top part of the code chunk is the `R` Markdown way of doing things (which is still acceptable in a `.qmd` file):
 
-```{r, out.width = "500px",echo=FALSE, fig.align='center'}
+```{r, out.width = "500px",echo=FALSE, fig.align='center', fig.alt = "A code chunk is shown that begins with ```{r eval = FALSE}. This specifies this chunk's behavior."}
 knitr::include_graphics("img/chunk.png")
 ```
 
-However, the new, better, way of doing it is via special comments.
+However, the new, better, way of doing it is via special comments (similar to building an R package or your own API).
 
 > One important difference between `R` Markdown documents and Quarto documents is that in Quarto chunk options are typically included in special comments at the top of code chunks rather than within the line that begins the chunk. For example:
 
-```{r, out.width = "500px",echo=FALSE, fig.align='center'}
-knitr::include_graphics("img/local_chunk_options_Quarto.png")
+```{r, out.width = "500px",echo=FALSE, fig.align='center', fig.alt = "The quarto method for specifying a code chunk option is shown. This is done by using a comment at the top of the code chunk after the ```{r} line. The option '#| echo: false' is used."}
+knitr::include_graphics("img/local_chunk_options_quarto.png")
 ```
 
-With Quarto, if you want to specify global chunk options the best way to do so is in the YAML header. **Be very careful about spacing in YAML headers!**
+With Quarto, if you want to specify global chunk options the best way to do so is in the YAML header. **Be very careful about spacing in YAML headers!** You don't want extra spaces anywhere and you need to have the correct indenting!
 
 Here is an example that would make all code chunks be 'collapsed' by default.
 
@@ -180,7 +180,7 @@ knitr:
 ---
 ```
 
-You can also still set code chunk options in a *setup* code chunk. This is just a code chunk you put at the beginning of the document that sets options for you. Something like the following in a code chunk:
+You can also (still) set code chunk options in a *setup* code chunk. This is just a code chunk you put at the beginning of the document that sets options for you. Something like the following in a code chunk:
 
 `#| include: false`\
 `knitr::opts_chunk$set(echo = FALSE, eval = TRUE, warning = FALSE)`
@@ -195,4 +195,6 @@ Please pop this video out and watch it in the full panopto player!
 
 - <a href = "https://github.com/jbpost2/My_first_repo" target = "_blank">Link to repo with files from video</a>
 
-This wraps up week 1!
+This wraps up the content for week 1. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your homework assignment for this week.
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!
