@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-05-07">
+<meta name="dcterms.date" content="2025-05-08">
 
-<title>ST 558 Data Science for Statisticians (R) - Manipulating Data with tidyr</title>
+<title>Manipulating Data with tidyr – ST 558 Data Science for Statisticians (R)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -142,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -153,13 +153,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/14_5-Week3_4.qmd">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/20-Manipulating_Data_with_tidyr.html">Manipulating Data with <code>tidyr</code></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -184,9 +184,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Topic 1: Data Science &amp; R Basics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -279,9 +279,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Topic 2: Tidyverse &amp; EDA</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -386,9 +386,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Topic 3: Other Programming Topics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -396,25 +396,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/29-Big_Recap_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+ <span class="menu-text">Recap and Direction!</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/30-Apply_Family_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+ <span class="menu-text">Apply Family of Functions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/31-purrr_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+ <span class="menu-text"><code>purrr</code> Package</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/32-Advanced_Function_Writing_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Course Goals &amp; Other Resources</span></a>
+ <span class="menu-text">Advanced Function Writing</span></a>
   </div>
 </li>
       </ul>
@@ -455,7 +455,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-05-07</p>
+      <p class="date">2025-05-08</p>
     </div>
   </div>
   
@@ -494,11 +494,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="pivot_longer"><code>pivot_longer()</code></h3>
 <p>Consider the data set called <code>cityTemps.txt</code> available via the URL below.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>temps_data <span class="ot">&lt;-</span> <span class="fu">read_table</span>(<span class="at">file =</span> <span class="st">"https://www4.stat.ncsu.edu/~online/datasets/cityTemps.txt"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readr' was built under R version 4.1.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>temps_data <span class="ot">&lt;-</span> <span class="fu">read_table</span>(<span class="at">file =</span> <span class="st">"https://www4.stat.ncsu.edu/~online/datasets/cityTemps.txt"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
-── Column specification ────────────────────────────────────────────────────────
+-- Column specification --------------------------------------------------------
 cols(
   city = col_character(),
   sun = col_double(),
@@ -510,9 +513,9 @@ cols(
   sat = col_double()
 )</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>temps_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>temps_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 8
+<pre><code># A tibble: 6 x 8
   city        sun   mon   tue   wed   thr   fri   sat
   &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 1 atlanta      81    87    83    79    88    91    94
@@ -535,13 +538,13 @@ cols(
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>temps_data <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">8</span>, </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"day"</span>, </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"temp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>temps_data <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">8</span>, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"day"</span>, </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"temp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 42 × 3
+<pre><code># A tibble: 42 x 3
    city      day    temp
    &lt;chr&gt;     &lt;chr&gt; &lt;dbl&gt;
  1 atlanta   sun      81
@@ -554,17 +557,17 @@ cols(
  8 baltimore sun      73
  9 baltimore mon      75
 10 baltimore tue      70
-# ℹ 32 more rows</code></pre>
+# i 32 more rows</code></pre>
 </div>
 </div>
 <p>That’s better! Now each row has one observation in it. Recall we had a lot of functionality for selecting columns within the <code>tidyverse</code>. That holds here as well!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>temps_data <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> sun<span class="sc">:</span>sat, </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"day"</span>, </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"temp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>temps_data <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> sun<span class="sc">:</span>sat, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"day"</span>, </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"temp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 42 × 3
+<pre><code># A tibble: 42 x 3
    city      day    temp
    &lt;chr&gt;     &lt;chr&gt; &lt;dbl&gt;
  1 atlanta   sun      81
@@ -577,7 +580,7 @@ cols(
  8 baltimore sun      73
  9 baltimore mon      75
 10 baltimore tue      70
-# ℹ 32 more rows</code></pre>
+# i 32 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -590,7 +593,7 @@ cols(
 </ul>
 <p>Let’s consider our batting data set from the <code>dplyr</code> notes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'dplyr'</code></pre>
@@ -605,28 +608,28 @@ Attaching package: 'dplyr'</code></pre>
 
     intersect, setdiff, setequal, union</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Lahman)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Lahman)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'Lahman' was built under R version 4.4.2</code></pre>
+<pre><code>Warning: package 'Lahman' was built under R version 4.1.3</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>batting_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(Batting)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>batting_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>batting_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(Batting)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>batting_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 113,799 × 22
+<pre><code># A tibble: 108,789 x 22
    playerID  yearID stint teamID lgID      G    AB     R     H   X2B   X3B    HR
    &lt;chr&gt;      &lt;int&gt; &lt;int&gt; &lt;fct&gt;  &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
- 1 aardsda01   2004     1 SFN    NL       11     0     0     0     0     0     0
- 2 aardsda01   2006     1 CHN    NL       45     2     0     0     0     0     0
- 3 aardsda01   2007     1 CHA    AL       25     0     0     0     0     0     0
- 4 aardsda01   2008     1 BOS    AL       47     1     0     0     0     0     0
- 5 aardsda01   2009     1 SEA    AL       73     0     0     0     0     0     0
- 6 aardsda01   2010     1 SEA    AL       53     0     0     0     0     0     0
- 7 aardsda01   2012     1 NYA    AL        1     0     0     0     0     0     0
- 8 aardsda01   2013     1 NYN    NL       43     0     0     0     0     0     0
- 9 aardsda01   2015     1 ATL    NL       33     1     0     0     0     0     0
-10 aaronha01   1954     1 ML1    NL      122   468    58   131    27     6    13
-# ℹ 113,789 more rows
-# ℹ 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
+ 1 abercda01   1871     1 TRO    NA        1     4     0     0     0     0     0
+ 2 addybo01    1871     1 RC1    NA       25   118    30    32     6     0     0
+ 3 allisar01   1871     1 CL1    NA       29   137    28    40     4     5     0
+ 4 allisdo01   1871     1 WS3    NA       27   133    28    44    10     2     2
+ 5 ansonca01   1871     1 RC1    NA       25   120    29    39    11     3     0
+ 6 armstbo01   1871     1 FW1    NA       12    49     9    11     2     1     0
+ 7 barkeal01   1871     1 RC1    NA        1     4     0     1     0     0     0
+ 8 barnero01   1871     1 BS1    NA       31   157    66    63    10     9     0
+ 9 barrebi01   1871     1 FW1    NA        1     5     1     1     1     0     0
+10 barrofr01   1871     1 BS1    NA       18    86    13    13     2     1     0
+# i 108,779 more rows
+# i 10 more variables: RBI &lt;int&gt;, SB &lt;int&gt;, CS &lt;int&gt;, BB &lt;int&gt;, SO &lt;int&gt;,
 #   IBB &lt;int&gt;, HBP &lt;int&gt;, SH &lt;int&gt;, SF &lt;int&gt;, GIDP &lt;int&gt;</code></pre>
 </div>
 </div>
@@ -637,102 +640,79 @@ Attaching package: 'dplyr'</code></pre>
 <li>Then we need to pivot that data set wider so that we have the year across the top (<code>names_from</code>), the players as the rows, and the entries as the hits (<code>values_from</code>)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>batting_tbl <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yearID <span class="sc">%in%</span> <span class="dv">2018</span><span class="sc">:</span><span class="dv">2020</span>, teamID <span class="sc">==</span> <span class="st">"PIT"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerID, yearID, H) <span class="sc">|&gt;</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> yearID, <span class="at">values_from =</span> <span class="st">"H"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>batting_tbl <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yearID <span class="sc">%in%</span> <span class="dv">2018</span><span class="sc">:</span><span class="dv">2020</span>, teamID <span class="sc">==</span> <span class="st">"PIT"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerID, yearID, H) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> yearID, <span class="at">values_from =</span> <span class="st">"H"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 96 × 4
-   playerID  `2019` `2020` `2018`
+<pre><code># A tibble: 96 x 4
+   playerID  `2018` `2019` `2020`
    &lt;chr&gt;      &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
- 1 agrazda01      2     NA     NA
- 2 alforan01     NA      3     NA
- 3 anderta01     NA     NA      0
- 4 archech01      4     NA      2
- 5 baronst01      2     NA     NA
- 6 bashlty01     NA      0     NA
- 7 belljo02     146     44    131
- 8 bostich01     NA     NA      0
- 9 braulst01     14      0      3
-10 brubajt01     NA      0     NA
-# ℹ 86 more rows</code></pre>
+ 1 anderta01      0     NA     NA
+ 2 archech01      2      4     NA
+ 3 belljo02     131    146     44
+ 4 bostich01      0     NA     NA
+ 5 braulst01      3     14      0
+ 6 burdini01      0      0      0
+ 7 cervefr01     86     21     NA
+ 8 crickky01      0      0      0
+ 9 diazel01      72     73     NA
+10 dickeco01    151     40     NA
+# i 86 more rows</code></pre>
 </div>
 </div>
 <p>Great! You can see that missing values are filled in for those that didn’t play in a given year. Let’s subset this to remove any rows with missing values (so we only get players that played for the pirates in all three years).</p>
 <p>The <code>tidyr</code> function <code>drop_na()</code> does this exact thing for us!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>batting_tbl <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yearID <span class="sc">%in%</span> <span class="dv">2018</span><span class="sc">:</span><span class="dv">2020</span>, teamID <span class="sc">==</span> <span class="st">"PIT"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerID, yearID, H) <span class="sc">|&gt;</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> yearID, <span class="at">values_from =</span> <span class="st">"H"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 17 × 4
-   playerID  `2019` `2020` `2018`
-   &lt;chr&gt;      &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
- 1 belljo02     146     44    131
- 2 braulst01     14      0      3
- 3 burdini01      0      0      0
- 4 crickky01      0      0      0
- 5 felizmi01      0      0      0
- 6 fraziad01    154     48     88
- 7 holmecl01      0      0      0
- 8 kelake01       0      0      0
- 9 moranco01    129     44    115
-10 musgrjo01      8      0      5
-11 neverdo01      0      0      0
-12 newmake01    152     35     19
-13 osunajo01     69     16     24
-14 polangr01     37     24    117
-15 rodriri05      0      0      0
-16 stallja01     50     31      8
-17 willitr01      6      0      5</code></pre>
-</div>
-</div>
-<p>Let’s also remove those with 0 hits:</p>
-<div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>batting_tbl <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yearID <span class="sc">%in%</span> <span class="dv">2018</span><span class="sc">:</span><span class="dv">2020</span>, teamID <span class="sc">==</span> <span class="st">"PIT"</span>, H <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yearID <span class="sc">%in%</span> <span class="dv">2018</span><span class="sc">:</span><span class="dv">2020</span>, teamID <span class="sc">==</span> <span class="st">"PIT"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerID, yearID, H) <span class="sc">|&gt;</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> yearID, <span class="at">values_from =</span> <span class="st">"H"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 4
-  playerID  `2019` `2020` `2018`
-  &lt;chr&gt;      &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
-1 belljo02     146     44    131
-2 fraziad01    154     48     88
-3 moranco01    129     44    115
-4 newmake01    152     35     19
-5 osunajo01     69     16     24
-6 polangr01     37     24    117
-7 stallja01     50     31      8</code></pre>
+<pre><code># A tibble: 17 x 4
+   playerID  `2018` `2019` `2020`
+   &lt;chr&gt;      &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
+ 1 belljo02     131    146     44
+ 2 braulst01      3     14      0
+ 3 burdini01      0      0      0
+ 4 crickky01      0      0      0
+ 5 felizmi01      0      0      0
+ 6 fraziad01     88    154     48
+ 7 holmecl01      0      0      0
+ 8 kelake01       0      0      0
+ 9 moranco01    115    129     44
+10 musgrjo01      5      8      0
+11 neverdo01      0      0      0
+12 newmake01     19    152     35
+13 osunajo01     24     69     16
+14 polangr01    117     37     24
+15 rodriri05      0      0      0
+16 stallja01      8     50     31
+17 willitr01      5      6      0</code></pre>
 </div>
 </div>
-<p>The column names <code>2018</code>, <code>2019</code>, and <code>2020</code> are non-standard names as they start with a number. That’s not ideal so let’s rename those too!</p>
+<p>Let’s also remove those with 0 hits:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>batting_tbl <span class="sc">|&gt;</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yearID <span class="sc">%in%</span> <span class="dv">2018</span><span class="sc">:</span><span class="dv">2020</span>, teamID <span class="sc">==</span> <span class="st">"PIT"</span>, H <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerID, yearID, H) <span class="sc">|&gt;</span></span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> yearID, <span class="at">values_from =</span> <span class="st">"H"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">'year2018'</span> <span class="ot">=</span> <span class="st">`</span><span class="at">2018</span><span class="st">`</span>,</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>         <span class="st">'year2019'</span> <span class="ot">=</span> <span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">'year2020'</span> <span class="ot">=</span> <span class="st">`</span><span class="at">2020</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 4
-  playerID  year2019 year2020 year2018
-  &lt;chr&gt;        &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
-1 belljo02       146       44      131
-2 fraziad01      154       48       88
-3 moranco01      129       44      115
-4 newmake01      152       35       19
-5 osunajo01       69       16       24
-6 polangr01       37       24      117
-7 stallja01       50       31        8</code></pre>
+<pre><code># A tibble: 7 x 4
+  playerID  `2018` `2019` `2020`
+  &lt;chr&gt;      &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
+1 belljo02     131    146     44
+2 fraziad01     88    154     48
+3 moranco01    115    129     44
+4 newmake01     19    152     35
+5 osunajo01     24     69     16
+6 polangr01    117     37     24
+7 stallja01      8     50     31</code></pre>
 </div>
 </div>
-<p>Would be better with actual player names (we’ll learn about how to combine this data set with another one that has their actual names soon!)</p>
+<p>The column names <code>2018</code>, <code>2019</code>, and <code>2020</code> are non-standard names as they start with a number. That’s not ideal so let’s rename those too!</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>batting_tbl <span class="sc">|&gt;</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yearID <span class="sc">%in%</span> <span class="dv">2018</span><span class="sc">:</span><span class="dv">2020</span>, teamID <span class="sc">==</span> <span class="st">"PIT"</span>, H <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
@@ -741,23 +721,46 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">'year2018'</span> <span class="ot">=</span> <span class="st">`</span><span class="at">2018</span><span class="st">`</span>,</span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>         <span class="st">'year2019'</span> <span class="ot">=</span> <span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">'year2020'</span> <span class="ot">=</span> <span class="st">`</span><span class="at">2020</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">inner_join</span>(<span class="fu">select</span>(People, playerID, nameFirst, nameLast)) <span class="sc">|&gt;</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(nameFirst, nameLast, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">'year2020'</span> <span class="ot">=</span> <span class="st">`</span><span class="at">2020</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 x 4
+  playerID  year2018 year2019 year2020
+  &lt;chr&gt;        &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
+1 belljo02       131      146       44
+2 fraziad01       88      154       48
+3 moranco01      115      129       44
+4 newmake01       19      152       35
+5 osunajo01       24       69       16
+6 polangr01      117       37       24
+7 stallja01        8       50       31</code></pre>
+</div>
+</div>
+<p>Would be better with actual player names (we’ll learn about how to combine this data set with another one that has their actual names soon!)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>batting_tbl <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yearID <span class="sc">%in%</span> <span class="dv">2018</span><span class="sc">:</span><span class="dv">2020</span>, teamID <span class="sc">==</span> <span class="st">"PIT"</span>, H <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(playerID, yearID, H) <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> yearID, <span class="at">values_from =</span> <span class="st">"H"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="st">'year2018'</span> <span class="ot">=</span> <span class="st">`</span><span class="at">2018</span><span class="st">`</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>         <span class="st">'year2019'</span> <span class="ot">=</span> <span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">'year2020'</span> <span class="ot">=</span> <span class="st">`</span><span class="at">2020</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">inner_join</span>(<span class="fu">select</span>(People, playerID, nameFirst, nameLast)) <span class="sc">|&gt;</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(nameFirst, nameLast, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Joining with `by = join_by(playerID)`</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 6
-  nameFirst nameLast  playerID  year2019 year2020 year2018
+<pre><code># A tibble: 7 x 6
+  nameFirst nameLast  playerID  year2018 year2019 year2020
   &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;        &lt;int&gt;    &lt;int&gt;    &lt;int&gt;
-1 Josh      Bell      belljo02       146       44      131
-2 Adam      Frazier   fraziad01      154       48       88
-3 Colin     Moran     moranco01      129       44      115
-4 Kevin     Newman    newmake01      152       35       19
-5 Jose      Osuna     osunajo01       69       16       24
-6 Gregory   Polanco   polangr01       37       24      117
-7 Jacob     Stallings stallja01       50       31        8</code></pre>
+1 Josh      Bell      belljo02       131      146       44
+2 Adam      Frazier   fraziad01       88      154       48
+3 Colin     Moran     moranco01      115      129       44
+4 Kevin     Newman    newmake01       19      152       35
+5 Jose      Osuna     osunajo01       24       69       16
+6 Gregory   Polanco   polangr01      117       37       24
+7 Jacob     Stallings stallja01        8       50       31</code></pre>
 </div>
 </div>
 </section>
@@ -780,20 +783,20 @@ Attaching package: 'dplyr'</code></pre>
 <li>Consider data set on air pollution in Chicago</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>chicago_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://www4.stat.ncsu.edu/~online/datasets/Chicago.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>chicago_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://www4.stat.ncsu.edu/~online/datasets/Chicago.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 1461 Columns: 11
-── Column specification ────────────────────────────────────────────────────────
+-- Column specification --------------------------------------------------------
 Delimiter: ","
 chr (3): city, date, season
 dbl (8): X, death, temp, dewpoint, pm10, o3, time, year
 
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+i Use `spec()` to retrieve the full column specification for this data.
+i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>chicago_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>chicago_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,461 × 11
+<pre><code># A tibble: 1,461 x 11
        X city  date      death  temp dewpoint  pm10    o3  time season  year
    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;
  1  3654 chic  1/1/1997    137  36      37.5  13.1   5.66  3654 winter  1997
@@ -806,7 +809,7 @@ dbl (8): X, death, temp, dewpoint, pm10, o3, time, year
  8  3661 chic  1/8/1997    118  19      17.8  33.1   8.68  3661 winter  1997
  9  3662 chic  1/9/1997    148  26      24    12.1  13.4   3662 winter  1997
 10  3663 chic  1/10/1997   121  16       5.38 24.8  10.4   3663 winter  1997
-# ℹ 1,451 more rows</code></pre>
+# i 1,451 more rows</code></pre>
 </div>
 </div>
 <ul>
@@ -823,13 +826,13 @@ dbl (8): X, death, temp, dewpoint, pm10, o3, time, year
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>chicago_data <span class="sc">|&gt;</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(<span class="at">cols =</span> date, </span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">delim =</span> <span class="st">"/"</span>, </span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"Month"</span>, <span class="st">"Day"</span>, <span class="st">"Year"</span>), </span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">cols_remove =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>chicago_data <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(<span class="at">cols =</span> date, </span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">delim =</span> <span class="st">"/"</span>, </span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"Month"</span>, <span class="st">"Day"</span>, <span class="st">"Year"</span>), </span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">cols_remove =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,461 × 14
+<pre><code># A tibble: 1,461 x 14
        X city  Month Day   Year  date     death  temp dewpoint  pm10    o3  time
    &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
  1  3654 chic  1     1     1997  1/1/1997   137  36      37.5  13.1   5.66  3654
@@ -841,9 +844,9 @@ dbl (8): X, death, temp, dewpoint, pm10, o3, time, year
  7  3660 chic  1     7     1997  1/7/1997   116  16       7    20.2  11.9   3660
  8  3661 chic  1     8     1997  1/8/1997   118  19      17.8  33.1   8.68  3661
  9  3662 chic  1     9     1997  1/9/1997   148  26      24    12.1  13.4   3662
-10  3663 chic  1     10    1997  1/10/19…   121  16       5.38 24.8  10.4   3663
-# ℹ 1,451 more rows
-# ℹ 2 more variables: season &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+10  3663 chic  1     10    1997  1/10/19~   121  16       5.38 24.8  10.4   3663
+# i 1,451 more rows
+# i 2 more variables: season &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>Nice! These are character strings so we might want to turn them into numbers but, again, we’d really want to use <code>date</code> type data for these anyway.</p>
@@ -855,11 +858,11 @@ dbl (8): X, death, temp, dewpoint, pm10, o3, time, year
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>chicago_data <span class="sc">|&gt;</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="at">col =</span> <span class="st">"season_date"</span>, season, date, <span class="at">sep =</span> <span class="st">": "</span>) <span class="sc">|&gt;</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(season_date, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>chicago_data <span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unite</span>(<span class="at">col =</span> <span class="st">"season_date"</span>, season, date, <span class="at">sep =</span> <span class="st">": "</span>) <span class="sc">|&gt;</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(season_date, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,461 × 10
+<pre><code># A tibble: 1,461 x 10
    season_date           X city  death  temp dewpoint  pm10    o3  time  year
    &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
  1 winter: 1/1/1997   3654 chic    137  36      37.5  13.1   5.66  3654  1997
@@ -872,7 +875,7 @@ dbl (8): X, death, temp, dewpoint, pm10, o3, time, year
  8 winter: 1/8/1997   3661 chic    118  19      17.8  33.1   8.68  3661  1997
  9 winter: 1/9/1997   3662 chic    148  26      24    12.1  13.4   3662  1997
 10 winter: 1/10/1997  3663 chic    121  16       5.38 24.8  10.4   3663  1997
-# ℹ 1,451 more rows</code></pre>
+# i 1,451 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -925,18 +928,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -968,7 +960,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -976,7 +990,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
