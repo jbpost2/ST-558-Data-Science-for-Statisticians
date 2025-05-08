@@ -42,6 +42,17 @@ project:
     - Notes/30-Apply_Family_Landing.qmd
     - Notes/31-purrr_Landing.qmd
     - Notes/32-Advanced_Function_Writing_Landing.qmd
+    - Notes/33-RShiny_Introduction_Landing.qmd
+    - Notes/34-RShiny_Tutorials_I.qmd
+    - Notes/35-RShiny_Connecting_UI_Server_Landing.qmd
+    - Notes/36-RShiny_Tutorials_II.qmd
+    - Notes/37-RShiny_Reactivity.qmd
+    - Notes/38-RShiny_Tutorials_III.qmd
+    - Notes/39-RShiny_Dynamic_UI_Landing.qmd
+    - Notes/40-RShiny_UI_Layouts.qmd
+    - Notes/41-RShiny_Articles_I.qmd
+    - Notes/42-Debugging_Other_Useful_Things_Landing.qmd
+    - Notes/43-RShiny_Articles_II.qmd
 website:
   title: "ST 558 Data Science for Statisticians (R)"
   navbar:
@@ -103,6 +114,19 @@ website:
           - Notes/30-Apply_Family_Landing.qmd
           - Notes/31-purrr_Landing.qmd
           - Notes/32-Advanced_Function_Writing_Landing.qmd
+      - section: "Topic 4: Dashboards with R Shiny"
+        contents:
+          - Notes/33-RShiny_Introduction_Landing.qmd
+          - Notes/34-RShiny_Tutorials_I.qmd
+          - Notes/35-RShiny_Connecting_UI_Server_Landing.qmd
+          - Notes/36-RShiny_Tutorials_II.qmd
+          - Notes/37-RShiny_Reactivity.qmd
+          - Notes/38-RShiny_Tutorials_III.qmd
+          - Notes/39-RShiny_Dynamic_UI_Landing.qmd
+          - Notes/40-RShiny_UI_Layouts.qmd
+          - Notes/41-RShiny_Articles_I.qmd
+          - Notes/42-Debugging_Other_Useful_Things_Landing.qmd
+          - Notes/43-RShiny_Articles_II.qmd
   page-navigation: true
   reader-mode: true
 

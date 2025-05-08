@@ -1,0 +1,22 @@
+---
+title: "Introduction to R Shiny"
+format: html
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+The video below introduces the `shiny` package. This package allows for us to make interactive web-based applications that can run `R` code dynamically! These can be great ways to allow users to explore your data, model, etc.
+
+I highly recommend watching the video using the 'full' Panopto player. There is a 'pop out' button in the bottom right of the video to enter this viewer.
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=2a505a94-83a2-4ade-9ac2-b20600c58c9a&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="33-RShiny-Introduction" ></iframe>
+```
+
+## Notes
+
+- <a href = "33-RShiny_Introduction.html" target = "_blank">HTML version</a>
+- <a href = "PDFs/33-RShiny_Introduction.pdf" target = "_blank">PDF version</a>
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!
