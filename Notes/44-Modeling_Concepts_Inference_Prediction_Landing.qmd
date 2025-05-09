@@ -1,5 +1,5 @@
 ---
-title: "Modeling Concepts: Inference & Prediction"
+title: "Modeling Concepts"
 format: html
 toc: TRUE
 editor_options: 

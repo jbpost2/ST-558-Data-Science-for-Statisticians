@@ -1,0 +1,24 @@
+---
+title: "Creating an API in `R`"
+format: html
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+The video below discusses how to create your own API in `R` using the `plumber` package!
+
+I highly recommend watching the video using the 'full' Panopto player. There is a 'pop out' button in the bottom right of the video to enter this viewer.
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=af9a5fea-f648-48c3-b370-b22e0118281d&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="55-Creating_API" ></iframe>
+```
+
+## Notes
+
+- <a href = "55-Creating_API.html" target = "_blank">HTML version</a>
+- <a href = "PDFs/55-Creating_API.pdf" target = "_blank">PDF version</a>
+- <a href = "api/myAPI.R" target = "download">`myAPI.R` file</a>
+- <a href = "api/runAPI.R" target = "download">`runAPI.R` file</a>
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

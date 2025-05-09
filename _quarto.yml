@@ -64,6 +64,10 @@ project:
     - Notes/52-Logistic_Regression_Models_Landing.qmd
     - Notes/53-Regression_Classification_Trees.qmd
     - Notes/54-Ensemble_Trees_Bagging_Random_Forests_Landing.qmd
+    - Notes/55-Creating_API_Landing.qmd
+    - Notes/56-Docker_Landing.qmd
+    - Notes/57-Building_Docker_Landing.qmd
+    - Notes/58-Dockerizing_Shiny_Landing.qmd
 website:
   title: "ST 558 Data Science for Statisticians (R)"
   navbar:
@@ -151,6 +155,12 @@ website:
           - Notes/52-Logistic_Regression_Models_Landing.qmd
           - Notes/53-Regression_Classification_Trees.qmd
           - Notes/54-Ensemble_Trees_Bagging_Random_Forests_Landing.qmd
+      - section: "Topic 6: APIs & Docker"
+        contents:
+          - Notes/55-Creating_API_Landing.qmd
+          - Notes/56-Docker_Landing.qmd
+          - Notes/57-Building_Docker_Landing.qmd
+          - Notes/58-Dockerizing_Shiny_Landing.qmd
   page-navigation: true
   reader-mode: true
 

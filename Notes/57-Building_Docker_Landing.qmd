@@ -1,0 +1,24 @@
+---
+title: "Building a Docker Image"
+format: html
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+The video below looks at how to build a basic Docker image that will run our API.
+
+I highly recommend watching the video using the 'full' Panopto player. There is a 'pop out' button in the bottom right of the video to enter this viewer.
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=3dbd0b2c-9f10-4fc8-8ddc-b22e012ddccd&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="57-Building a Docker Image" ></iframe>
+```
+
+## Notes
+
+- <a href = "57-Building_Docker.html" target = "_blank">HTML version</a>
+- <a href = "PDFs/57-Building_Docker.pdf" target = "_blank">PDF version</a>
+- <a href = "docker/myAPI.R" target = "download">`myAPI.R` file</a>
+- <a href = "docker/Dockerfile" target = "download">`Dockerfile`</a>
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

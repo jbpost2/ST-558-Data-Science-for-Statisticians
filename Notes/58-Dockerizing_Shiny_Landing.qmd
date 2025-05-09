@@ -1,0 +1,24 @@
+---
+title: "Dockerizing a Shiny App"
+format: html
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+The video below gives an example of dockerizing a shiny app!
+
+I highly recommend watching the video using the 'full' Panopto player. There is a 'pop out' button in the bottom right of the video to enter this viewer.
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=3fb949f4-2d02-43f8-8eb9-b22e013455cf&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="58-Dockerizing_Shiny_Apps" ></iframe>
+```
+
+## Notes
+
+- <a href = "58-Dockerizing_Shiny.html" target = "_blank">HTML version</a>
+- <a href = "PDFs/58-Dockerizing_Shiny.pdf" target = "_blank">PDF version</a>
+- <a href = "docker_shiny/app.R" target = "download">`app.R` file</a>
+- <a href = "docker_shiny/Dockerfile" target = "download">`Dockerfile`</a>
+
+That's it! That's all we have :)
