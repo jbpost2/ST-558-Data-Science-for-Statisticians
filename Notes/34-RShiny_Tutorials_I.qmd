@@ -1,22 +1,17 @@
 ---
-title: "Advanced Function Writing"
+title: "Tutorials to Complete Part I"
 format: html
 toc: TRUE
 editor_options: 
   chunk_output_type: inline
 ---
 
-The video below goes further into function writing. We discuss important topics that allow you to create functions that can be used in chaining and other fun things!
+Now that we have the basics of `R` Shiny, please head over to the <a href = "https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/" target = "_blank">"Shiny Basics" tutorials</a> and complete the following three:
 
-I highly recommend watching the video using the 'full' Panopto player. There is a 'pop out' button in the bottom right of the video to enter this viewer.
+- <a href = "https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/" target = "_blank">Welcome to Shiny</a>
+- <a href = "https://shiny.posit.co/r/getstarted/shiny-basics/lesson2/" target = "_blank">Build a user interface</a>
+- <a href = "https://shiny.posit.co/r/getstarted/shiny-basics/lesson3/" target = "_blank">Add control widgets<a/>
 
-```{=html}
-<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=580e3df9-b961-43b5-8f6c-b19000ec51d2&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="32 - Advanced Function Writing" ></iframe>
-```
-
-## Notes
-
-- <a href = "31-Advanced_Function_Writing.html" target = "_blank">HTML version</a>
-- <a href = "PDFs/31-Advanced_Function_Writing.pdf" target = "_blank">PDF version</a>
+Then head back here for the next content!
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

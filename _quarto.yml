@@ -51,7 +51,7 @@ project:
     - Notes/39-RShiny_Dynamic_UI_Landing.qmd
     - Notes/40-RShiny_UI_Layouts.qmd
     - Notes/41-RShiny_Articles_I.qmd
-    - Notes/42-Debugging_Other_Useful_Things_Landing.qmd
+    - Notes/42-RShiny_Debugging_Other_Useful_Things_Landing.qmd
     - Notes/43-RShiny_Articles_II.qmd
 website:
   title: "ST 558 Data Science for Statisticians (R)"
@@ -125,7 +125,7 @@ website:
           - Notes/39-RShiny_Dynamic_UI_Landing.qmd
           - Notes/40-RShiny_UI_Layouts.qmd
           - Notes/41-RShiny_Articles_I.qmd
-          - Notes/42-Debugging_Other_Useful_Things_Landing.qmd
+          - Notes/42-RShiny_Debugging_Other_Useful_Things_Landing.qmd
           - Notes/43-RShiny_Articles_II.qmd
   page-navigation: true
   reader-mode: true

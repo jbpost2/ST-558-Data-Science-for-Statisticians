@@ -1056,5 +1056,281 @@
       "Topic 1: Data Science & R Basics",
       "Writing Functions"
     ]
+  },
+  {
+    "objectID": "Notes/33-RShiny_Introduction_Landing.html",
+    "href": "Notes/33-RShiny_Introduction_Landing.html",
+    "title": "Introduction to R Shiny",
+    "section": "",
+    "text": "The video below introduces the shiny package. This package allows for us to make interactive web-based applications that can run R code dynamically! These can be great ways to allow users to explore your data, model, etc.\nI highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer.",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Introduction to R Shiny"
+    ]
+  },
+  {
+    "objectID": "Notes/33-RShiny_Introduction_Landing.html#notes",
+    "href": "Notes/33-RShiny_Introduction_Landing.html#notes",
+    "title": "Introduction to R Shiny",
+    "section": "Notes",
+    "text": "Notes\n\nHTML version\nPDF version\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Introduction to R Shiny"
+    ]
+  },
+  {
+    "objectID": "Notes/40-RShiny_UI_Layouts.html",
+    "href": "Notes/40-RShiny_UI_Layouts.html",
+    "title": "Flexible UI Layouts & Dashboards",
+    "section": "",
+    "text": "Hopefully you are seeing the usefulness of shiny apps! We build a user interface to define what the user sees and a server to run our R code. We’ve also learned how to dynamically update our UI! This lesson takes customizing the UI further by looking at how we can create our own layout and also use some packages to change the way our UI is set up.",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Flexible UI Layouts & Dashboards"
+    ]
+  },
+  {
+    "objectID": "Notes/40-RShiny_UI_Layouts.html#custom-ui-layout-with-fluidrow-and-column",
+    "href": "Notes/40-RShiny_UI_Layouts.html#custom-ui-layout-with-fluidrow-and-column",
+    "title": "Flexible UI Layouts & Dashboards",
+    "section": "Custom UI Layout with fluidRow() and column()",
+    "text": "Custom UI Layout with fluidRow() and column()\nWhen using the base shiny functions to create our UI we generally start with a fluidPage().\n\nlibrary(shiny)\nui &lt;- fluidPage()\n\nshiny uses a popular bootstrap framework for creating its dynamic content. Essentially, you can build rows and each row has a width of 12. We can create a row with fluidRow().\n\nlibrary(shiny)\nui &lt;- fluidPage(\n  fluidRow()\n)\n\nYou can create columns using the column() function. This takes a width argument and an offset (essentially a buffer)\n\nui &lt;- fluidPage(\n  fluidRow(\n    column(width = 3, offset = 1, \"content!--------------------------------------------------\"),\n    column(width = 8, \"more content!--------------------------------------------------------------------\")\n  )\n)\n\n\n\n\n\n\n\n\n\n\nAgain, the columns should sum to 12 in total width for an ‘area’! This setup can allow us to create a custom layout!\n\nlibrary(shiny)\nui &lt;- fluidPage(#using shinyUI so it will show here but you'd save this as ui instead!\n  fluidRow(\n    column(2,\"fluidRow with three columns. Width 2-------------------------------------------------------------------\"),\n    column(6,\"2nd column. Width 6------------------------------------------------------------------------------------------------------------------\"),\n    column(4,\"3rd column. Width 4-------------------------------------------------------------\")),\n  fluidRow(tags$hr()),\n  fluidRow(\n    column(6,\"2nd fluidRow with two columns, each of width 6------------------------------------------------------------------------------\"),\n    column(6,\n           fluidRow(\"The 2nd column has its own fluidRow! This row should have columns that sum to 12 again! In this case there are no columns so it defaults to fill all 12 columns\"),\n           fluidRow(\n             column(3,\"A second fluidRow below the first. Of width 3------------------------------------\"),\n             column(9,\"Width 9!--------------------------------------------------------------------------------\")\n           ))\n  )\n)",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Flexible UI Layouts & Dashboards"
+    ]
+  },
+  {
+    "objectID": "Notes/40-RShiny_UI_Layouts.html#using-tabs",
+    "href": "Notes/40-RShiny_UI_Layouts.html#using-tabs",
+    "title": "Flexible UI Layouts & Dashboards",
+    "section": "Using Tabs",
+    "text": "Using Tabs\nTo create tabs that can allow you to easily change what the user sees, we can use shiny::tabsetPanel() with shiny::tabPanel().\n\ntabsetPanel(\n  tabPanel(\"Title1\", \"contents! As usual, separate items by commas and you can put widgets, outputs, and HTML content\"),\n  tabPanel(\"Title2\", \"contents\")\n)\n\n\n\n\n\n\n\n\n\n\nOften we want a larger menu to change between pages. There are a number of other ways to do this as well. We can get a sidebar menu using the shinydashboard package! You’ll likely need to install this package. This package also comes with its own tabItems() and tabItem() functions that create a menu with tabs on it.\n\nlibrary(shinydashboard)\n\nWarning: package 'shinydashboard' was built under R version 4.1.3\n\n\n\nAttaching package: 'shinydashboard'\n\n\nThe following object is masked from 'package:graphics':\n\n    box\n\nui &lt;- dashboardPage(\n  dashboardHeader(title=\"Regression Activity\"),\n    \n    dashboardSidebar(    \n      sidebarMenu(\n        menuItem(\"Correlation Exploration\", tabName = \"correlation\", icon = icon(\"archive\")),\n        menuItem(\"Simple Linear Regression\", tabName = \"slr\", icon = icon(\"laptop\"))\n        )\n      ),\n    \n    dashboardBody(\n      tabItems(\n        tabItem(tabName = \"correlation\",\n                titlePanel(\"Correlation Exploration\"),\n                sliderInput(\"slidey\", \"My slider\", min = 0, max = 10, value = 5)\n        ),\n        tabItem(tabName = \"slr\",\n                titlePanel(\"Simple Linear Regression\"),\n                numericInput(\"number\", \"My Numeric Input\", min = 0, max = 10, value = 5)\n        )\n      )\n    )\n  )\n\n\n\n\n\n\n\n\n\n\nshinydashboard also comes with functions similar to tabsetPanel() and tabPanel(), which I prefer to use. These functions are tabBox() and tabItem().\n\nfluidRow(\n  tabBox(\n    id = \"first_plots\",\n    tabPanel(title = \"Normal Approximation\",\n             plotOutput(\"norm_approx\")),\n    tabPanel(title = \"Map View\", \n             leaflet::leafletOutput(\"map_plot\")\n             ),\n    width = 12 #set just like column! \n    )\n)\n\n\n\n\n\n\n\n\n\n\nI like these functions because it makes it easy to do an action when a tab is selected by the user. We can use observeEvent() to look for changes in the tab id.\n\nobserveEvent(input$first_plots, {\n      if(input$first_plots == \"Map View\"){\n        ...\n      }\n})\n\n\nRecap\nWe can easily create our own UI layout with fluidPage(), fluidRow(), and column(). These columns must add to 12.\nThere are tabs that can be used from shiny or from shinydashboard (and other packages!).\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Flexible UI Layouts & Dashboards"
+    ]
+  },
+  {
+    "objectID": "Notes/41-RShiny_Articles_I.html",
+    "href": "Notes/41-RShiny_Articles_I.html",
+    "title": "Useful R Shiny Articles I",
+    "section": "",
+    "text": "Sharing your app is really important. We’ve talked about the basics of this but should discuss it in more detail.\nPlease read the following two articles:\n\nGetting started with shinyapps.io\nSharing apps to run locally\n\nThen head back here for the next content!\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Useful R Shiny Articles I"
+    ]
+  },
+  {
+    "objectID": "Notes/41-RShiny_Articles_I.html#notes",
+    "href": "Notes/41-RShiny_Articles_I.html#notes",
+    "title": "Advanced Function Writing",
+    "section": "Notes",
+    "text": "Notes\n\nHTML version\nPDF version\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Advanced Function Writing"
+    ]
+  },
+  {
+    "objectID": "Notes/38-RShiny_Tutorials_III.html",
+    "href": "Notes/38-RShiny_Tutorials_III.html",
+    "title": "Tutorials to Complete Part III",
+    "section": "",
+    "text": "Let’s build an app! Head over to the “Build an App” tutorial and complete the entire lesson (‘Hello Shiny!’, ‘Reactive Flow’, ‘Reactivity Essentials’, and ‘Customizing UI’.\nThen head back here for the next content!\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Tutorials to Complete Part III"
+    ]
+  },
+  {
+    "objectID": "Notes/38-RShiny_Tutorials_III.html#notes",
+    "href": "Notes/38-RShiny_Tutorials_III.html#notes",
+    "title": "Advanced Function Writing",
+    "section": "Notes",
+    "text": "Notes\n\nHTML version\nPDF version\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Advanced Function Writing"
+    ]
+  },
+  {
+    "objectID": "Notes/35-RShiny_Connecting_UI_Server_Landing.html",
+    "href": "Notes/35-RShiny_Connecting_UI_Server_Landing.html",
+    "title": "Connecting the UI and Server",
+    "section": "",
+    "text": "The video below discusses how to get the user interface and server to ‘talk’ in a shiny app.\nI highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer.",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Connecting the UI and Server"
+    ]
+  },
+  {
+    "objectID": "Notes/35-RShiny_Connecting_UI_Server_Landing.html#notes",
+    "href": "Notes/35-RShiny_Connecting_UI_Server_Landing.html#notes",
+    "title": "Connecting the UI and Server",
+    "section": "Notes",
+    "text": "Notes\n\nHTML version\nPDF version\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Connecting the UI and Server"
+    ]
+  },
+  {
+    "objectID": "Notes/34-RShiny_Tutorials_I.html",
+    "href": "Notes/34-RShiny_Tutorials_I.html",
+    "title": "Tutorials to Complete Part I",
+    "section": "",
+    "text": "Now that we have the basics of R Shiny, please head over to the “Shiny Basics” tutorials and complete the following three:\n\nWelcome to Shiny\nBuild a user interface\nAdd control widgets\n\nThen head back here for the next content!\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Tutorials to Complete Part I"
+    ]
+  },
+  {
+    "objectID": "Notes/34-RShiny_Tutorials_I.html#notes",
+    "href": "Notes/34-RShiny_Tutorials_I.html#notes",
+    "title": "Advanced Function Writing",
+    "section": "Notes",
+    "text": "Notes\n\nHTML version\nPDF version\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Advanced Function Writing"
+    ]
+  },
+  {
+    "objectID": "Notes/36-RShiny_Tutorials_II.html",
+    "href": "Notes/36-RShiny_Tutorials_II.html",
+    "title": "Tutorials to Complete Part II",
+    "section": "",
+    "text": "We’re now ready to head over to the “Shiny Basics” tutorials and finish the remaining four lessons:\n\nDisplay reactive output\nUse R scripts and data\nUse reactive expressions\nShare your apps\n\nThen head back here for the next content!\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Tutorials to Complete Part II"
+    ]
+  },
+  {
+    "objectID": "Notes/36-RShiny_Tutorials_II.html#notes",
+    "href": "Notes/36-RShiny_Tutorials_II.html#notes",
+    "title": "Advanced Function Writing",
+    "section": "Notes",
+    "text": "Notes\n\nHTML version\nPDF version\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Advanced Function Writing"
+    ]
+  },
+  {
+    "objectID": "Notes/39-RShiny_Dynamic_UI_Landing.html",
+    "href": "Notes/39-RShiny_Dynamic_UI_Landing.html",
+    "title": "Dynamic User Interfaces",
+    "section": "",
+    "text": "The video below dives into how to make your shiny app appearance more dynamic. That is, how can we change which widgets show? How do we update a widget? How do we hide part of our app?\nI highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer.",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Dynamic User Interfaces"
+    ]
+  },
+  {
+    "objectID": "Notes/39-RShiny_Dynamic_UI_Landing.html#notes",
+    "href": "Notes/39-RShiny_Dynamic_UI_Landing.html#notes",
+    "title": "Dynamic User Interfaces",
+    "section": "Notes",
+    "text": "Notes\n\nHTML version\nPDF version\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Dynamic User Interfaces"
+    ]
+  },
+  {
+    "objectID": "Notes/43-RShiny_Articles_II.html",
+    "href": "Notes/43-RShiny_Articles_II.html",
+    "title": "Useful R Shiny Articles II",
+    "section": "",
+    "text": "Lastly, we should cover the idea of isolating reactive inputs so that our code won’t react to them!\nPlease read the following article:\n\nStop reactions with isolate()\n\nThen head back here for the next content!\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Useful R Shiny Articles II"
+    ]
+  },
+  {
+    "objectID": "Notes/43-RShiny_Articles_II.html#notes",
+    "href": "Notes/43-RShiny_Articles_II.html#notes",
+    "title": "Advanced Function Writing",
+    "section": "Notes",
+    "text": "Notes\n\nHTML version\nPDF version\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Useful R Shiny Articles II"
+    ]
+  },
+  {
+    "objectID": "Notes/37-RShiny_Reactivity.html",
+    "href": "Notes/37-RShiny_Reactivity.html",
+    "title": "Reactivity",
+    "section": "",
+    "text": "The video below goes deeper into the important concept of ‘reactivity’ or the re-evaluation of R code. This is the cornerstone of what makes a shiny app a shiny app!\nI highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer.",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Reactivity"
+    ]
+  },
+  {
+    "objectID": "Notes/37-RShiny_Reactivity.html#notes",
+    "href": "Notes/37-RShiny_Reactivity.html#notes",
+    "title": "Reactivity",
+    "section": "Notes",
+    "text": "Notes\n\nHTML version\nPDF version\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Reactivity"
+    ]
+  },
+  {
+    "objectID": "Notes/42-RShiny_Debugging_Other_Useful_Things_Landing.html",
+    "href": "Notes/42-RShiny_Debugging_Other_Useful_Things_Landing.html",
+    "title": "Debugging & Other Useful Things",
+    "section": "",
+    "text": "The video below discusses how to debug shiny apps and some other really useful material.\nI highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer.",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Debugging & Other Useful Things"
+    ]
+  },
+  {
+    "objectID": "Notes/42-RShiny_Debugging_Other_Useful_Things_Landing.html#notes",
+    "href": "Notes/42-RShiny_Debugging_Other_Useful_Things_Landing.html#notes",
+    "title": "Debugging & Other Useful Things",
+    "section": "Notes",
+    "text": "Notes\n\nHTML version\nPDF version\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 4: Dashboards with R Shiny",
+      "Debugging & Other Useful Things"
+    ]
   }
 ]

@@ -1,7 +1,7 @@
 ---
 title: "Flexible UI Layouts & Dashboards"
 format: html
-editor: visual
+editor: source
 toc: TRUE
 editor_options: 
   chunk_output_type: inline
@@ -42,7 +42,6 @@ ui <- fluidPage(
 knitr::include_graphics("img/custom_layout.png")
 ```
 
-
 Again, the columns should sum to 12 in total width for an 'area'! This setup can allow us to create a custom layout!
 
 ```{r}
@@ -69,7 +68,6 @@ ui <- fluidPage(#using shinyUI so it will show here but you'd save this as ui in
 knitr::include_graphics("img/custom_layout2.png")
 ```
 
-
 ## Using Tabs
 
 To create tabs that can allow you to easily change what the user sees, we can use `shiny::tabsetPanel()` with `shiny::tabPanel()`.
@@ -84,7 +82,6 @@ tabsetPanel(
 ```{r, echo = FALSE, out.width="800px", fig.align='center'}
 knitr::include_graphics("img/tabs.png")
 ```
-
 
 Often we want a larger menu to change between pages. There are a number of other ways to do this as well. We can get a sidebar menu using the `shinydashboard` package! You'll likely need to install this package. This package also comes with its own `tabItems()` and `tabItem()` functions that create a menu with tabs on it.
 
@@ -154,3 +151,5 @@ observeEvent(input$first_plots, {
 We can easily create our own UI layout with `fluidPage()`, `fluidRow()`, and `column()`. These columns must add to 12.
 
 There are tabs that can be used from `shiny` or from `shinydashboard` (and other packages!).
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

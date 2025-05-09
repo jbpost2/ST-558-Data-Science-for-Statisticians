@@ -1,0 +1,22 @@
+---
+title: "Debugging & Other Useful Things"
+format: html
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+The video below discusses how to debug shiny apps and some other really useful material.
+
+I highly recommend watching the video using the 'full' Panopto player. There is a 'pop out' button in the bottom right of the video to enter this viewer.
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=7c7d5456-78cd-4e76-bb77-b20d0146cfda&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="42 - Debugging &amp; Useful Things" ></iframe>
+```
+
+## Notes
+
+- <a href = "42-RShiny_Debugging_Other_Useful_Things.html" target = "_blank">HTML version</a>
+- <a href = "PDFs/42-RShiny_Debugging_Other_Useful_Things.pdf" target = "_blank">PDF version</a>
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!
