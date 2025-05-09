@@ -1,0 +1,556 @@
+---
+title: "Logistic Regression Models"
+author: "Justin Post"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: [default, "css/ncsu.css", "css/ncsu-fonts.css", "css/mycss.css"]
+    nature:
+      beforeInit: ["js/ncsu-scale.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+    includes:
+      in_header: "partials/header.html"
+    self_contained: yes
+editor_options: 
+  chunk_output_type: console
+---
+  
+  
+```{r, include=FALSE,warning=FALSE,message=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  dev = "svg",
+  fig.align = "center",
+  #fig.width = 11,
+  #fig.height = 5
+  cache = FALSE
+)
+
+# define vars
+om = par("mar")
+lowtop = c(om[1],om[2],0.1,om[4])
+library(tidyverse)
+library(knitr)
+#library(reticulate)
+#use_r("C:\\Users\\jbpost2\\AppData\\Local\\Programs\\r\\r310\\r.exe")
+#use_r("C:\\r\\r.exe")
+#use_r("C:\\ProgramData\\Anaconda3\\r.exe")
+options(dplyr.print_min = 5)
+#options(reticulate.repl.quiet = TRUE)
+set.seed(10)
+```
+
+
+# Logistic Regression Model
+
+Used when you have a **binary** response variable (a Classification task)
+
+- Consider just a binary response
+
+    + What is the mean of the response?
+
+<!-- Here write out some 0 and 1's as the population values. Look at probability as the mean-->    
+
+    
+---
+
+# Logistic Regression Model
+
+Suppose you have a predictor variable as well, call it $x$
+    
+- Given two values of $x$ we could model separate proportions
+
+$$E(Y|x=x_1) = P(Y=1|x = x_1)$$
+$$E(Y|x=x_2) = P(Y=1|x = x_2)$$
+
+
+---
+
+# Logistic Regression Model
+
+Suppose you have a predictor variable as well, call it $x$
+    
+- Given two values of $x$ we could model separate proportions
+
+$$E(Y|x=x_1) = P(Y=1|x = x_1)$$
+$$E(Y|x=x_2) = P(Y=1|x = x_2)$$
+
+- For a continuous $x$, we could consider a SLR model
+
+$$E(Y|x) = P(Y=1|x) = \beta_0+\beta_1x$$
+
+---
+
+# Linear Regression Isn't Appropriate
+
+- Consider data about [heart disease](https://www4.stat.ncsu.edu/online/datasets/heart.csv)
+
+```{r, message = FALSE, warning = FALSE}
+library(tidyverse)
+heart_data <- read_csv("https://www4.stat.ncsu.edu/online/datasets/heart.csv") |>
+  filter(RestingBP > 0) #remove one value
+heart_data |> select(HeartDisease, everything()) #Cholesterol has many values set to 0 so we ignore that
+```
+
+
+---
+
+# Potability Summary
+
+- Summarize heart disease prevalence
+
+```{r}
+heart_data |>
+  group_by(HeartDisease) |> 
+  summarize(count = n())
+```
+
+```{r}
+heart_data |>
+  group_by(HeartDisease) |>
+  summarize(mean_Age = mean(Age),
+            mean_RestingBP  = mean(RestingBP))
+```
+
+
+---
+
+# Linear Regression Isn't Appropriate
+
+
+```{r, out.width = "400px", fig.align = 'center', message = FALSE, warning = FALSE}
+ggplot(heart_data, aes(x = Age, y = HeartDisease, color = RestingBP)) +
+         geom_point() +
+  geom_smooth(method = "lm")
+```
+
+
+
+---
+
+# Linear Regression Isn't Appropriate
+
+```{r, out.width = "400px", fig.align = 'center', message = FALSE, warning = FALSE}
+ggplot(heart_data, aes(x = Age, y = HeartDisease, color = RestingBP)) +
+         geom_jitter() +
+  geom_smooth(method = "lm")
+```
+
+
+
+---
+
+# Linear Regression Isn't Appropriate
+
+Obtain proportion with heart disease for different age groups
+
+```{r, out.width = '320px', fig.align = 'center'}
+Age_x <- seq(from = min(heart_data$Age), to = max(heart_data$Age), length = 20)
+heart_data_grouped <- heart_data |>
+  mutate(Age_groups = cut(Age, breaks = Age_x)) |>
+  group_by(Age_groups) |>
+  summarize(HeartDisease_mean = mean(HeartDisease), counts = n())
+heart_data_grouped
+```
+
+
+---
+
+# Linear Regression Isn't Appropriate
+
+
+```{r, out.width = '400px', fig.align = 'center'}
+ggplot(data = heart_data, aes(x = Age, y = HeartDisease)) +
+  geom_jitter(aes(color = RestingBP)) +
+  geom_point(data = heart_data_grouped, aes(x = Age_x, y = HeartDisease_mean, size = counts)) +
+  geom_smooth(method = "lm", color = "Green")
+```
+
+
+---
+
+# Logistic Regression
+
+- Response = success/failure, then modeling average number of successes for a given $x$ is a probability!
+
+    + predictions should never go below 0  
+    + predictions should never go above 1  
+
+- Basic Logistic Regression models success probability using the *logistic function*
+ 
+$$P(Y =1|x) = P(success|x) = \frac{e^{\beta_0+\beta_1x}}{1+e^{\beta_0+\beta_1x}}$$
+ 
+
+---
+
+# Logistic Regression
+
+$$P(Y =1|x) = P(success|x) = \frac{e^{\beta_0+\beta_1x}}{1+e^{\beta_0+\beta_1x}}$$
+
+```{r, echo = FALSE, out.width = '400px', fig.align = 'center'}
+x <- seq(0, 2, 0.01)
+b0 <- -5
+b1 <- 11
+exp_fun <- function(x, b0, b1){exp(b0+b1*x)}
+plot(x, exp_fun(x, b0, b1)/(1+exp_fun(x, b0, b1)), ylim = c(0,1), xlim = c(0,2), xlab = "x", ylab= "P(Success|x)", col = "red", type = "l")
+b0 <- -10
+b1 <- 11
+lines(x, exp_fun(x, b0, b1)/(1+exp_fun(x, b0, b1)), col = "blue")
+b0 <- -5
+b1 <- 6
+lines(x, exp_fun(x, b0, b1)/(1+exp_fun(x, b0, b1)), col = "green")
+b0 <- 10
+b1 <- -11
+lines(x, exp_fun(x, b0, b1)/(1+exp_fun(x, b0, b1)), col = "purple")
+legend(x = 1.25, y = 0.75, legend = c("b0 = -5, b1 = 11", "b0 = -10, b1 = 11", "b0 = -5, b1 = 6", "b0 = 10, b1 = -11"),
+       col = c("red", "blue", "green", "purple"), lty = "solid", cex = 1)
+```
+
+
+
+---
+
+# Logistic Regression
+
+$$P(Y =1|x) = P(success|x) = \frac{e^{\beta_0+\beta_1x}}{1+e^{\beta_0+\beta_1x}}$$  
+
+- The logistic regression model doesn't have a closed form solution (maximum likelihood often used to fit parameters)  
+
+
+    
+---
+
+# Logistic Regression
+
+$$P(Y =1|x) = P(success|x) = \frac{e^{\beta_0+\beta_1x}}{1+e^{\beta_0+\beta_1x}}$$  
+
+- The logistic regression model doesn't have a closed form solution (maximum likelihood often used to fit parameters)  
+
+- Back-solving shows the *logit* or *log-odds* of success is linear in the parameters  
+
+$$log\left(\frac{P(success|x)}{1-P(success|x)}\right) = \beta_0+\beta_1 x$$
+
+
+ 
+---
+
+# Logistic Regression
+
+$$P(Y =1|x) = P(success|x) = \frac{e^{\beta_0+\beta_1x}}{1+e^{\beta_0+\beta_1x}}$$  
+
+- The logistic regression model doesn't have a closed form solution (maximum likelihood often used to fit parameters)  
+
+- Back-solving shows the *logit* or *log-odds* of success is linear in the parameters  
+
+$$log\left(\frac{P(success|x)}{1-P(success|x)}\right) = \beta_0+\beta_1 x$$
+
+- Coefficient interpretation changes greatly from linear regression model!  
+
+- $\beta_1$ represents a change in the log-odds of success  
+
+
+---
+
+# Logistic Regression Fit
+
+Using `Age` to predict `HeartDisease` via a logistic regression model:
+
+```{r, echo = FALSE, fig.align='center', out.width = '400px', message = FALSE, warning = FALSE}
+log_reg_fit <- glm(factor(HeartDisease) ~ Age, data = heart_data, family = "binomial")
+x <- seq(from = min(heart_data$Age), to = max(heart_data$Age), length = 200)
+plot_df <- tibble(Age = x, Logistic_Pred = predict(log_reg_fit, newdata = data.frame(Age = x), type = "response"))
+ggplot(plot_df, aes(x = Age, y = Logistic_Pred)) + 
+  geom_point(data = heart_data_grouped, aes(x = Age_x, y = HeartDisease_mean, size = counts)) +
+  geom_line()
+```
+
+
+---
+
+# Logistic Regression Fit
+
+A sigmoid function that looks linear close up!
+
+```{r, echo = FALSE, fig.align='center', out.width = '400px', message = FALSE, warning = FALSE}
+x <- seq(from = -0, to = 120, length = 2000)
+plot_df <- tibble(Age = x, Logistic_Pred = predict(log_reg_fit, newdata = data.frame(Age = x), type = "response"))
+ggplot(plot_df, aes(x = Age, y = Logistic_Pred)) + 
+  geom_point(data = heart_data_grouped, aes(x = Age_x, y = HeartDisease_mean, size = counts)) +
+  geom_line()
+```
+
+
+
+---
+
+# Logistic Regression
+
+As with linear regression, we can include multiple predictors and interaction terms!
+
+- Adding a dummy variable corresponding to a binary variable just changes the 'intercept'
+
+```{r, echo = FALSE, fig.align='center', out.width = '400px', message = FALSE, warning = FALSE}
+Age_x <- seq(from = min(heart_data$Age), to = max(heart_data$Age), length = 20)
+heart_data2 <- heart_data |>
+  mutate(Age_groups = cut(Age, breaks = Age_x))
+heart_data_grouped2 <- heart_data2 |>
+  group_by(Age_groups, Sex) |>
+  summarize(HeartDisease_mean = mean(HeartDisease), counts = n()) 
+heart_data_grouped2 <- heart_data_grouped2[-39, ]
+heart_data_grouped2$Age_x <- rep(seq(from = Age_x[1]+(Age_x[2]-Age_x[1])/2, to = max(Age_x)-(Age_x[2]-Age_x[1])/2, by = Age_x[2]-Age_x[1]), each = 2)
+
+log_reg_fit <- glm(factor(HeartDisease) ~ Age + Sex, data = heart_data2, family = "binomial")
+x <- seq(from = min(heart_data$Age), to = max(heart_data$Age), length = 200)
+plot_df <- tibble(Age = rep(x, times = 2), Sex = factor(rep(c("F", "M"), length(x))),
+                  Logistic_Pred = predict(log_reg_fit, 
+                                          newdata = data.frame(Age = rep(x, times = 2), 
+                                                               Sex = factor(rep(c("F", "M"), length(x)))
+                                          ),
+                                          type = "response"))
+ggplot(plot_df, aes(x = Age, y = Logistic_Pred, color = Sex)) + 
+  geom_point(data = heart_data_grouped2, aes(x = Age_x, y = HeartDisease_mean, size = counts, color = Sex)) +
+  geom_line()
+```
+
+
+---
+
+# Logistic Regression
+
+As with linear regression, we can include multiple predictors and interaction terms!
+
+- Not a constant shift
+
+```{r, echo = FALSE, fig.align='center', out.width = '400px', message = FALSE, warning = FALSE}
+x <- seq(from = 0, to = 125, length = 200)
+plot_df <- tibble(Age = rep(x, times = 2), Sex = factor(rep(c("F", "M"), length(x))),
+                  Logistic_Pred = predict(log_reg_fit, 
+                                          newdata = data.frame(Age = rep(x, times = 2), 
+                                                               Sex = factor(rep(c("F", "M"), length(x)))
+                                          ),
+                                          type = "response"))
+ggplot(plot_df, aes(x = Age, y = Logistic_Pred, color = Sex)) + 
+  geom_point(data = heart_data_grouped2, aes(x = Age_x, y = HeartDisease_mean, size = counts, color = Sex)) +
+  geom_line()
+```
+
+
+---
+
+# Interaction Terms Can Be Included
+
+- If we fit an interaction term with our dummy variable, we essentially fit two separate logistic regression models
+
+- Can also include more than one numeric predictor
+
+    + Difficult to visualize!
+
+- Adding in polynomial terms increases flexibility as well!
+
+```{r, echo = FALSE, out.width = '200px', fig.align = 'center'}
+x <- seq(-1, 5, 0.01)
+b0 <- -1
+b1 <- 3
+b2 <- -1
+exp_fun <- function(x, b0, b1, b2){exp(b0+b1*x+b2*x^2)}
+plot(x, exp_fun(x, b0, b1, b2)/(1+exp_fun(x, b0, b1, b2)), ylim = c(0,1), xlim = c(-1, 5), xlab = "x", ylab= "P(Success|x)", col = "red", type = "l", main = "True Model: logit = -1 + 3*x -x^2")
+```
+
+
+---
+
+# Selecting a Model
+
+- Recall we can use k-fold CV as a proxy for **test set** error if we don't want to split the data
+
+- Metric to quantify prediction quality? Basic measures:
+
+    + Accuracy: 
+$$\frac{\mbox{# of correct classifications}}{\mbox{Total # of classifications}}$$
+
+    + Misclassification Rate:  
+$$\frac{\mbox{# of incorrect classifications}}{\mbox{Total # of classifications}}$$
+
+---
+
+# Selecting a Model
+
+- Recall we can use k-fold CV as a proxy for **test set** error if we don't want to split the data
+
+- Metric to quantify prediction quality? Basic measures:
+
+    + Accuracy: 
+$$\frac{\mbox{# of correct classifications}}{\mbox{Total # of classifications}}$$
+
+    + Misclassification Rate:  
+$$\frac{\mbox{# of incorrect classifications}}{\mbox{Total # of classifications}}$$
+
+    + Log-loss: For each observation (y = 0 or 1), $-(ylog(\hat{p})+(1-y)log(1-\hat{p}))$
+
+---
+
+# Using `tidymodels` to Fit a Logistic Regression Model
+
++ First, we'll do a training/test split via `initial_split()`
++ Let's also create our CV splits on the training data
+
+```{r, message = FALSE, warning = FALSE}
+library(tidymodels)
+set.seed(3557)
+heart_data <- heart_data |> mutate(HeartDisease = factor(HeartDisease))
+heart_split <- initial_split(heart_data, prop = 0.8)
+heart_train <- training(heart_split)
+heart_test <- testing(heart_split)
+heart_CV_folds <- vfold_cv(heart_train, 10)
+```
+
+
+---
+
+# Using `tidymodels` to Fit a Logistic Regression Model
+
++ Next, we'll set up our recipes for the data, standardizing these numeric variables
+
+    - Model 1: `Age` and `Sex` as predictors
+    - Model 2: `Age`, `Sex`, `ChestPainType`, `RestingBP` and `RestingECG` as predictors
+    - Model 3: `Age`, `Sex`, `ChestPainType`, `RestingBP`, `RestingECG`, `MaxHR`, and `ExerciseAngina`
+    
+```{r}
+LR1_rec <- recipe(HeartDisease ~ Age + Sex, 
+                  data = heart_train) |>
+  step_normalize(Age) |>
+  step_dummy(Sex)
+LR2_rec <- recipe(HeartDisease ~ Age + Sex + ChestPainType + RestingBP + RestingECG, 
+                  data = heart_train) |>
+  step_normalize(all_numeric(), -HeartDisease) |>
+  step_dummy(Sex, ChestPainType, RestingECG)
+LR3_rec <- recipe(HeartDisease ~ Age + Sex + ChestPainType + RestingBP + RestingECG + MaxHR + ExerciseAngina, 
+                  data = heart_train) |>
+  step_normalize(all_numeric(), -HeartDisease) |>
+  step_dummy(Sex, ChestPainType, RestingECG, ExerciseAngina)
+LR3_rec |> prep(heart_train) |> bake(heart_train) |> colnames()
+```
+
+
+---
+
+# Using `tidymodels` to Fit a Logistic Regression Model
+
++ Now set up our model type and engine
+
+```{r}
+LR_spec <- logistic_reg() |>
+  set_engine("glm")
+```
+
+
+---
+
+# Using `tidymodels` to Fit a Logistic Regression Model
+
++ Create our workflows
+
+```{r}
+LR1_wkf <- workflow() |>
+  add_recipe(LR1_rec) |>
+  add_model(LR_spec)
+LR2_wkf <- workflow() |>
+  add_recipe(LR2_rec) |>
+  add_model(LR_spec)
+LR3_wkf <- workflow() |>
+  add_recipe(LR3_rec) |>
+  add_model(LR_spec)
+```
+
+
+---
+
+# Using `tidymodels` to Fit a Logistic Regression Model
+
++ Fit to our CV folds!
+
+```{r}
+LR1_fit <- LR1_wkf |>
+  fit_resamples(heart_CV_folds, metrics = metric_set(accuracy, mn_log_loss))
+LR2_fit <- LR2_wkf |>
+  fit_resamples(heart_CV_folds, metrics = metric_set(accuracy, mn_log_loss))
+LR3_fit <- LR3_wkf |>
+  fit_resamples(heart_CV_folds, metrics = metric_set(accuracy, mn_log_loss))
+```
+
+---
+
+# Using `tidymodels` to Fit a Logistic Regression Model
+
++ Collect our metrics and see which model did the best!
+
+```{r}
+rbind(LR1_fit |> collect_metrics(),
+      LR2_fit |> collect_metrics(),
+      LR3_fit |> collect_metrics()) |>
+  mutate(Model = c("Model1", "Model1", "Model2", "Model2", "Model3", "Model3")) |>
+  select(Model, everything())
+#compare to proportion of 1's in training data
+mean(heart_train$HeartDisease == "1")
+```
+
+---
+
+# Using `tidymodels` to Fit a Logistic Regression Model
+
++ Find the confusion matrix for our best model on the training set
+    
+```{r}
+LR_train_fit <- LR3_wkf |>
+  fit(heart_train)
+conf_mat(heart_train |> mutate(estimate = LR_train_fit |> predict(heart_train) |> pull()), #data
+         HeartDisease, #truth
+         estimate) #estimate from model
+```
+    
+
+---
+
+# Using `tidymodels` to Fit a Logistic Regression Model
+
++ Grab our 'best' model and test it on the test set
+    
+```{r}
+LR3_wkf |>
+  last_fit(heart_split, metrics = metric_set(accuracy, mn_log_loss)) |>
+  collect_metrics()
+conf_mat(heart_test |> mutate(estimate = LR_train_fit |> predict(heart_test) |> pull()), HeartDisease, estimate)
+```
+
+
+---
+
+# Using `tidymodels` to Fit a Logistic Regression Model
+
+- Suppose we like this model the best *overall*, we'd fit it to the entire data set
+
+```{r, out.width = '400px', fig.align = 'center'}
+final_model <- LR3_wkf |>
+  fit(heart_data)
+tidy(final_model)
+```
+
+
+---
+
+# Recap
+
+- Logistic regression often a reasonable model for a binary response
+
+- Uses a sigmoid function to ensure valid predictions
+
+- Can predict success or failure using estimated probabilities
+
+    + Usually predict success if probability $>$ 0.5
+    
+    + Common metrics for classification are accuracy and log-loss

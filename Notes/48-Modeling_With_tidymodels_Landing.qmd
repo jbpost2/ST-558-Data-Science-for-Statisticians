@@ -1,0 +1,24 @@
+---
+title: "Modeling with `tidymodels`"
+format: html
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+The video below discusses the `tidymodel` package and its approach to modeling. This package is a replacement for the `caret` package that has been widely used previously. 
+
+I highly recommend watching the video using the 'full' Panopto player. There is a 'pop out' button in the bottom right of the video to enter this viewer.
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=e9aa9cdd-fcd4-48f8-a4eb-b21e00f54f65&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="48-Modeling_with_tidymodels" ></iframe>
+```
+
+## Notes
+
+**Note: The code on slides 15 & 16 of the video differs slightly from the code in the notes below. An older version of the `tidymodels` package was used in the video and that code no longer works. The code in the slides attached is the way to do this now.**
+
+- <a href = "48-Modeling_With_tidymodels.html" target = "_blank">HTML version</a>
+- <a href = "PDFs/48-Modeling_With_tidymodels.pdf" target = "_blank">PDF version</a>
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-05-08">
+<meta name="dcterms.date" content="2025-05-09">
 
 <title>Debugging &amp; Other Useful Things – ST 558 Data Science for Statisticians (R)</title>
 <style>
@@ -122,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/33-RShiny_Introduction_Landing.html">Topic 4: Dashboards with R Shiny</a></li><li class="breadcrumb-item"><a href="../Notes/42-RShiny_Debugging_Other_Useful_Things_Landing.html">Debugging &amp; Other Useful Things</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/33-RShiny_Introduction_Landing.html">Topic 4: R Shiny Dashboards</a></li><li class="breadcrumb-item"><a href="../Notes/42-RShiny_Debugging_Other_Useful_Things_Landing.html">Debugging &amp; Other Useful Things</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -353,7 +353,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
- <span class="menu-text">Topic 3: Other Programming Topics</span></a>
+ <span class="menu-text">Topic 3: Better Programming</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -388,7 +388,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Topic 4: Dashboards with R Shiny</span></a>
+ <span class="menu-text">Topic 4: R Shiny Dashboards</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -462,6 +462,83 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Topic 5: Predictive Modeling</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/44-Modeling_Concepts_Inference_Prediction_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modeling Concepts: Inference &amp; Prediction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/45-Prediction_Testing_Training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prediction &amp; Training/Test Sets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/46-Cross_Validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cross-Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/47-Multiple_Linear_Regression_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multiple Linear Regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/48-Modeling_With_tidymodels_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modeling with <code>tidymodels</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/49-tidymodels_Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>tidymodels</code> Tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/50-LASSO_Models_Selecting_Models_CV_Test_Set.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LASSO Models &amp; Selecting Models Using Both Cross Validation and a Test Set</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/51-Modeling_Recap_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modeling Recap</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/52-Logistic_Regression_Models_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/53-Regression_Classification_Trees.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regression &amp; Classification Trees</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/54-Ensemble_Trees_Bagging_Random_Forests_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ensemble Trees</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -479,7 +556,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/33-RShiny_Introduction_Landing.html">Topic 4: Dashboards with R Shiny</a></li><li class="breadcrumb-item"><a href="../Notes/42-RShiny_Debugging_Other_Useful_Things_Landing.html">Debugging &amp; Other Useful Things</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/33-RShiny_Introduction_Landing.html">Topic 4: R Shiny Dashboards</a></li><li class="breadcrumb-item"><a href="../Notes/42-RShiny_Debugging_Other_Useful_Things_Landing.html">Debugging &amp; Other Useful Things</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Debugging &amp; Other Useful Things</h1>
 </div>
@@ -492,7 +569,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-05-08</p>
+      <p class="date">2025-05-09</p>
     </div>
   </div>
   

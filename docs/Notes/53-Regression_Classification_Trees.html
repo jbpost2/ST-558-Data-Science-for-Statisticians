@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-05-09">
+
+<title>Regression &amp; Classification Trees – ST 558 Data Science for Statisticians (R)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../Notes/54-Ensemble_Trees_Bagging_Random_Forests_Landing.html" rel="next">
+<link href="../Notes/52-Logistic_Regression_Models_Landing.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">ST 558 Data Science for Statisticians (R)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jbpost2/ST-558-Data-Science-for-Statisticians"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/44-Modeling_Concepts_Inference_Prediction_Landing.html">Topic 5: Predictive Modeling</a></li><li class="breadcrumb-item"><a href="../Notes/53-Regression_Classification_Trees.html">Regression &amp; Classification Trees</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Science for Statisticians</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Topic 1: Data Science &amp; R Basics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/01-What_is_Data_Science.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is Data Science?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/02-Workflows_Git_GitHub_Basics_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Workflows &amp; `Git`/`GitHub` Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/03-Git_GitHub_Practice.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">`Git` &amp; `GitHub` Practice</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/04-R_Basics_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>R</code> Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/05-R_Projects_Connecting_with_GitHub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R projects and Connecting with Github</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/06-Quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quarto Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/07-Base_R_Data_Structures_Vectors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Base R Data Structures: Vectors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/08-Base_R_Data_Structures_Matrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Base R Data Structures: Matrices</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/09-Base_R_Data_Structures_Data_Frames.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Base R Data Structures: Data Frames</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/10-Base_R_Data_Structures_Lists.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Base R Data Structures: Lists</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/11-Control_Flow_Logicals_if_then_else.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Flow: Logicals &amp; if/then/else</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/12-Control_Flow_Loops.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Flow: Loops</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/13-Control_Flow_Vectorized_Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Control Flow: Vectorized Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/14-Writing_Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Writing Functions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Topic 2: Tidyverse &amp; EDA</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Packages</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/16-Tidyverse_Essentials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tidyverse Essentials</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/17-Reading_Delimited_Data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading Delimited Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/18-Reading_Excel_Data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading Excel Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/19-Manipulating_Data_with_dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Manipulating Data with <code>dplyr</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/19_5-Week4_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5 Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/20-Manipulating_Data_with_tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Manipulating Data with <code>tidyr</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/21-Connecting_to_Databases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Databases and Basic SQL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/22-SQL_Style_Joins_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SQL Joins</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/23-Querying_APIs_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Querying APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/23_5-Week5_7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 &amp; 7 Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/24-EDA_Concepts_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EDA Concepts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/25-Summarizing_Categorical_Variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creating Contingency Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/26-Barplots_ggplot_Basics_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Barplots &amp; `ggplot2` Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/27-Numerical_Variable_Summaries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Numerical Variable Summaries</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/28-Numeric_Variable_Graphs_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Numeric Variable Graphs</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Topic 3: Better Programming</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/29-Big_Recap_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recap and Direction!</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/30-Apply_Family_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Apply Family of Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/31-purrr_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>purrr</code> Package</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/32-Advanced_Function_Writing_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Advanced Function Writing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Topic 4: R Shiny Dashboards</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/33-RShiny_Introduction_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to R Shiny</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/34-RShiny_Tutorials_I.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorials to Complete Part I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/35-RShiny_Connecting_UI_Server_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Connecting the UI and Server</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/36-RShiny_Tutorials_II.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorials to Complete Part II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/37-RShiny_Reactivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reactivity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/38-RShiny_Tutorials_III.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorials to Complete Part III</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/39-RShiny_Dynamic_UI_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dynamic User Interfaces</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/40-RShiny_UI_Layouts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Flexible UI Layouts &amp; Dashboards</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/41-RShiny_Articles_I.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Useful R Shiny Articles I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/42-RShiny_Debugging_Other_Useful_Things_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Debugging &amp; Other Useful Things</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/43-RShiny_Articles_II.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Useful R Shiny Articles II</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Topic 5: Predictive Modeling</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/44-Modeling_Concepts_Inference_Prediction_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modeling Concepts: Inference &amp; Prediction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/45-Prediction_Testing_Training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prediction &amp; Training/Test Sets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/46-Cross_Validation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cross-Validation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/47-Multiple_Linear_Regression_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Multiple Linear Regression</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/48-Modeling_With_tidymodels_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modeling with <code>tidymodels</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/49-tidymodels_Tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><code>tidymodels</code> Tutorial</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/50-LASSO_Models_Selecting_Models_CV_Test_Set.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LASSO Models &amp; Selecting Models Using Both Cross Validation and a Test Set</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/51-Modeling_Recap_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modeling Recap</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/52-Logistic_Regression_Models_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logistic Regression Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/53-Regression_Classification_Trees.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Regression &amp; Classification Trees</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/54-Ensemble_Trees_Bagging_Random_Forests_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ensemble Trees</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#tree-based-methods" id="toc-tree-based-methods" class="nav-link active" data-scroll-target="#tree-based-methods">Tree Based Methods</a>
+  <ul class="collapse">
+  <li><a href="#how-is-a-regression-tree-fit" id="toc-how-is-a-regression-tree-fit" class="nav-link" data-scroll-target="#how-is-a-regression-tree-fit">How Is a Regression Tree Fit?</a></li>
+  <li><a href="#fitting-regression-trees-with-tidymodels" id="toc-fitting-regression-trees-with-tidymodels" class="nav-link" data-scroll-target="#fitting-regression-trees-with-tidymodels">Fitting Regression Trees with <code>tidymodels</code></a></li>
+  <li><a href="#comparing-to-our-lasso-and-mlr-fits" id="toc-comparing-to-our-lasso-and-mlr-fits" class="nav-link" data-scroll-target="#comparing-to-our-lasso-and-mlr-fits">Comparing to Our LASSO and MLR Fits</a></li>
+  </ul></li>
+  <li><a href="#classification-trees" id="toc-classification-trees" class="nav-link" data-scroll-target="#classification-trees">Classification Trees</a></li>
+  <li><a href="#recap-and-pros-cons" id="toc-recap-and-pros-cons" class="nav-link" data-scroll-target="#recap-and-pros-cons">Recap and Pros &amp; Cons</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/44-Modeling_Concepts_Inference_Prediction_Landing.html">Topic 5: Predictive Modeling</a></li><li class="breadcrumb-item"><a href="../Notes/53-Regression_Classification_Trees.html">Regression &amp; Classification Trees</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Regression &amp; Classification Trees</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2025-05-09</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>We’ve looked to two very common models:</p>
+<ul>
+<li>Multiple Linear Regression: Commonly used model with a numeric response</li>
+<li>Logistic Regression: Commonly used model with a binary response</li>
+</ul>
+<p>These models are great ways to try and understand relationships between variables. One thing that can be a drawback (or benefit, depending) when using these models is that they are highly structured. Recall, in the MLR case we are essentially fitting some high dimensional plane to our data. If our data doesn’t follow this type of structure, the models fit can do a poor job predicting in some cases.</p>
+<p>Instead of these structured models, we can use models that are more flexible. Let’s talk about one such type of model, the regression/classification tree!</p>
+<section id="tree-based-methods" class="level2">
+<h2 class="anchored" data-anchor-id="tree-based-methods">Tree Based Methods</h2>
+<p>Tree based methods are very flexible. They attempt to <strong>split up predictor space into regions</strong>. On each region, a different prediction can then be made. Adjacent regions need not have predictions close to each other!</p>
+<p>Recall that we have two separate tasks we could do in a supervised learning situation, regression or classification. Depending on the situation, we can create a regression or classification tree!</p>
+<ul>
+<li><p><em>Classification</em> tree if the goal is to classify (predict) group membership</p>
+<ul>
+<li>Usually use <strong>most prevalent class</strong> in region as the prediction</li>
+</ul></li>
+<li><p><em>Regression</em> tree if the goal is to predict a continuous response</p>
+<ul>
+<li>Usually use <strong>mean of observations</strong> in region as the prediction</li>
+</ul></li>
+</ul>
+<p>These models are very easy for people to interpret! For instance, consider the tree below relating a predictor (<code>speed</code>) to stopping distance (<code>dist</code>).</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tree) <span class="co">#rpart is also often used</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tree' was built under R version 4.1.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fitTree <span class="ot">&lt;-</span> <span class="fu">tree</span>(dist <span class="sc">~</span> speed, <span class="at">data =</span> cars) <span class="co">#default splitting is deviance</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fitTree)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(fitTree)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="53-Regression_Classification_Trees_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can compare this to the simple linear regression fit to see the increased flexibility of a regression tree model.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cars, <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">x =</span> <span class="dv">0</span>, <span class="at">xend =</span> <span class="fl">9.5</span>, <span class="at">y =</span> <span class="fl">10.67</span>, <span class="at">yend =</span> <span class="fl">10.67</span>, <span class="at">col =</span> <span class="st">"Orange"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">x =</span> <span class="fl">9.5</span>, <span class="at">xend =</span> <span class="fl">12.5</span>, <span class="at">y =</span> <span class="fl">23.22</span>, <span class="at">yend =</span> <span class="fl">23.22</span>, <span class="at">col =</span> <span class="st">"Orange"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">x =</span> <span class="fl">12.5</span>, <span class="at">xend =</span> <span class="fl">17.5</span>, <span class="at">y =</span> <span class="fl">39.75</span>, <span class="at">yend =</span> <span class="fl">39.75</span>, <span class="at">col =</span> <span class="st">"Orange"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">x =</span> <span class="fl">17.5</span>, <span class="at">xend =</span> <span class="fl">23.5</span>, <span class="at">y =</span> <span class="fl">55.71</span>, <span class="at">yend =</span> <span class="fl">55.71</span>, <span class="at">col =</span> <span class="st">"Orange"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="at">x =</span> <span class="fl">23.5</span>, <span class="at">xend =</span> <span class="fu">max</span>(cars<span class="sc">$</span>speed), <span class="at">y =</span> <span class="dv">92</span>, <span class="at">yend =</span> <span class="dv">92</span>, <span class="at">col =</span> <span class="st">"Orange"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="53-Regression_Classification_Trees_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="how-is-a-regression-tree-fit" class="level3">
+<h3 class="anchored" data-anchor-id="how-is-a-regression-tree-fit">How Is a Regression Tree Fit?</h3>
+<p>Recall: Once we’ve chosen our model form, we need to fit the model to data. Generally, we can write the fitting process as the minimization of some loss function over the training data. How do we pick our splits of the predictor space in this case?</p>
+<ul>
+<li><p>Fit using recursive binary splitting - a greedy algorithm</p></li>
+<li><p>For every possible value of each predictor, we find the squared error loss based on splitting our data around that point. We then try to minimize that</p>
+<ul>
+<li>Consider having one variable <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>x</mi><annotation encoding="application/x-tex">x</annotation></semantics></math>. For a given observed value, call it <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>, we can think of having two regions (recall <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo stretchy="false" form="prefix">|</mo><annotation encoding="application/x-tex">|</annotation></semantics></math> is read as ‘given’): <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>R</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>s</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo stretchy="false" form="prefix">{</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">|</mo><mi>x</mi><mo>&lt;</mo><mi>s</mi><mo stretchy="false" form="postfix">}</mo><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> and </mtext><mspace width="0.333em"></mspace></mrow><msub><mi>R</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>s</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo stretchy="false" form="prefix">{</mo><mi>x</mi><mo stretchy="true" form="postfix">|</mo></mrow><mi>x</mi><mo>≥</mo><mi>s</mi><mo stretchy="false" form="postfix">}</mo></mrow><annotation encoding="application/x-tex">R_1(s) = \{x|x &lt; s\}\mbox{ and }R_2(s) = \{x|x \geq s\}</annotation></semantics></math></li>
+<li>We seek the value of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math> that minimize the equation <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo>∑</mo><mrow><mrow><mtext mathvariant="normal">all </mtext><mspace width="0.333em"></mspace></mrow><mi>x</mi><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> in </mtext><mspace width="0.333em"></mspace></mrow><msub><mi>R</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>s</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow></munder><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><msub><mover><mi>y</mi><mo accent="true">‾</mo></mover><msub><mi>R</mi><mn>1</mn></msub></msub><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>+</mo><munder><mo>∑</mo><mrow><mrow><mtext mathvariant="normal">all </mtext><mspace width="0.333em"></mspace></mrow><mi>x</mi><mrow><mspace width="0.333em"></mspace><mtext mathvariant="normal"> in </mtext><mspace width="0.333em"></mspace></mrow><msub><mi>R</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>s</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow></munder><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><msub><mover><mi>y</mi><mo accent="true">‾</mo></mover><msub><mi>R</mi><mn>2</mn></msub></msub><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\sum_{\mbox{all }x\mbox{ in }R_1(s)}(y_i-\bar{y}_{R_1})^2+\sum_{\mbox{all }x\mbox{ in }R_2(s)}(y_i-\bar{y}_{R_2})^2</annotation></semantics></math></li>
+<li>Written more mathematically, we could say we want minimize <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mi>i</mi><msub><mi>n</mi><mi>s</mi></msub><munder><mo>∑</mo><mrow><mi>i</mi><mo>:</mo><msub><mi>x</mi><mi>i</mi></msub><mo>∈</mo><msub><mi>R</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>s</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow></munder><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><msub><mover><mi>y</mi><mo accent="true">‾</mo></mover><msub><mi>R</mi><mn>1</mn></msub></msub><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>+</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>:</mo><msub><mi>x</mi><mi>i</mi></msub><mo>∈</mo><msub><mi>R</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>s</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow></munder><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><msub><mover><mi>y</mi><mo accent="true">‾</mo></mover><msub><mi>R</mi><mn>2</mn></msub></msub><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">min_{s} \sum_{i:x_i\in R_1(s)}(y_i-\bar{y}_{R_1})^2+\sum_{i:x_i\in R_2(s)}(y_i-\bar{y}_{R_2})^2</annotation></semantics></math></li>
+</ul></li>
+</ul>
+<p>Let’s visualize this idea! Consider that basic <code>cars</code> data set that has a response of <code>dist</code> (stopping distance) and a predictor of <code>speed</code>. Let’s find the value of the loss functions for different splits of our <code>speed</code> variable.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cars, <span class="fu">aes</span>(<span class="at">x =</span> speed, <span class="at">y =</span> dist)) <span class="sc">+</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="53-Regression_Classification_Trees_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s first try a split at <code>speed</code> = 7. The sum of squared errors based on this split is 2.766546^{4}.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="53-Regression_Classification_Trees_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Again, this is found by taking all the points in the first region, finding the residual (from the mean, represented by the blue line here), squaring those, and summing the values. Then we repeat for the 2nd region. The sum of those two values is then the sum of squared errors (SSE) if we were to use this split.</p>
+<p>Is that the smallest it could be? Likely not! Let’s try some other splits and see what SSE they give.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="53-Regression_Classification_Trees_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>We would try this for all possible splits (across each predictor) and choose the split that minimizes the sum of squared errors as our first split. It turns out that <code>speed</code> = 17.5 is the optimal splitting point for this data set.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="53-Regression_Classification_Trees_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Next, we’d go down the first branch of that split to that ‘node’. This node has all the observations corresponding to that branch. Now we repeat this process there!</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="53-Regression_Classification_Trees_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><p>Here the best split on the lower portion is 12.5.</p></li>
+<li><p>Likewise, we go down the second branch to the other node and repeat the process.</p></li>
+<li><p>Generally, we grow a `large’ tree (many nodes)</p></li>
+<li><p>Trees can then be <strong>pruned</strong> back so as to not overfit the data (pruned back using some criterion like cost-complexity pruning)</p></li>
+<li><p>Generally, we can choose number of nodes/splits using the <strong>training/test set or cross-validation</strong>!</p></li>
+</ul>
+</section>
+<section id="fitting-regression-trees-with-tidymodels" class="level3">
+<h3 class="anchored" data-anchor-id="fitting-regression-trees-with-tidymodels">Fitting Regression Trees with <code>tidymodels</code></h3>
+<ul>
+<li>Recall the Bike data and <code>log_selling_price</code> as our response</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>bike_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://www4.stat.ncsu.edu/~online/datasets/bikeDetails.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log_selling_price =</span> <span class="fu">log</span>(selling_price)) <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>selling_price)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#save creation of new variables for now!</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>bike_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(bike_data, <span class="at">prop =</span> <span class="fl">0.7</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>bike_train <span class="ot">&lt;-</span> <span class="fu">training</span>(bike_split)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>bike_test <span class="ot">&lt;-</span> <span class="fu">testing</span>(bike_split)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>bike_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 742 x 7
+   name     year seller_type owner km_driven ex_showroom_price log_selling_price
+   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;
+ 1 Bajaj ~  2012 Individual  1st ~     50000             54299             10.3 
+ 2 Honda ~  2015 Individual  1st ~      7672             54605             10.6 
+ 3 Bajaj ~  2005 Individual  1st ~     21885                NA              9.80
+ 4 Hero H~  2017 Individual  1st ~     27000                NA             10.5 
+ 5 Royal ~  2013 Individual  1st ~     49000                NA             11.4 
+ 6 Bajaj ~  2008 Individual  1st ~     19500                NA             10.3 
+ 7 Hero C~  2014 Individual  1st ~     38000                NA             10.5 
+ 8 Bajaj ~  2009 Individual  1st ~     16000                NA              9.90
+ 9 Hero H~  2008 Individual  3rd ~     65000                NA             10.1 
+10 Bajaj ~  2019 Individual  1st ~      7600                NA             12.2 
+# i 732 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bike_CV_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(bike_train, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can fit a regression tree model in a very similar way to how we fit our MLR models!</p>
+<section id="create-our-recipe-for-data-preprocessing" class="level4">
+<h4 class="anchored" data-anchor-id="create-our-recipe-for-data-preprocessing">Create our Recipe for Data Preprocessing</h4>
+<p>First, let’s create our recipe.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tree_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(log_selling_price <span class="sc">~</span> ., <span class="at">data =</span> bike_train) <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update_role</span>(name, <span class="at">new_role =</span> <span class="st">"ID"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(km_driven) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_rm</span>(ex_showroom_price) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(owner, seller_type) <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric</span>(), <span class="sc">-</span><span class="fu">all_outcomes</span>())</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>tree_rec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>-- Recipe ----------------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>-- Inputs </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Number of variables by role</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>outcome:   1
+predictor: 5
+ID:        1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>-- Operations </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>* Log transformation on: km_driven</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>* Variables removed: ex_showroom_price</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>* Dummy variables from: owner and seller_type</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>* Centering and scaling for: all_numeric() and -all_outcomes()</code></pre>
+</div>
+</div>
+<p>Note: We don’t need to include interaction terms in our tree based models! An interaction would imply that the effect of, say, <code>log_km_driven</code> depends on the <code>year</code> the bike was manufactured (and vice-versa). The tree structure inherently includes this type of relationship! For instance, suppose we first split on <code>log_km_driven</code> &gt; 10. On the branch where <code>log_km_driven</code> &gt; 10 we then split on <code>year</code> &lt; 1990. Suppose those are our only two splits. We can see that the effect of <code>year</code> is different depending on our <code>log_km_driven</code>! For one side of the <code>log_km_driven</code> split we don’t include <code>year</code> at all (hence it doesn’t have an effect when considering those values of <code>log_km_driven</code>) and on the other side of that split we change our prediction based on <code>year</code>. This is exactly the idea of an interaction!</p>
+</section>
+<section id="define-our-model-and-engine" class="level4">
+<h4 class="anchored" data-anchor-id="define-our-model-and-engine">Define our Model and Engine</h4>
+<p>Next, let’s define our model. The <a href="https://parsnip.tidymodels.org//reference/details_linear_reg_lm.html">info page</a> here can be used to determine the right function to call and the possible engines to use for the fit.</p>
+<p>In this case, <code>decision_tree()</code> with <code>rpart</code> as the engine will do the trick. If we click on the <a href="https://parsnip.tidymodels.org//reference/details_decision_tree_rpart.html">link for this model</a> we can see that there are three tuning parameters we can consider:</p>
+<ul>
+<li>tree_depth: Tree Depth (type: integer, default: 30L)</li>
+<li>min_n: Minimal Node Size (type: integer, default: 2L)</li>
+<li>cost_complexity: Cost-Complexity Parameter (type: double, default: 0.01)</li>
+</ul>
+<p>If we want to use CV to choose one of these, we can set its value to <code>tune()</code> when creating the model. Let’s use <code>tree_depth</code> and <code>cost_complexity</code> as our tuning parameters and set our <code>min_n</code> to 20.</p>
+<p>In the case of <code>decision_tree()</code> we also need to tell tidymodels whether we are doing a <em>regression</em> task vs a <em>classification</em> task. This is done via <code>set_mode()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>tree_mod <span class="ot">&lt;-</span> <span class="fu">decision_tree</span>(<span class="at">tree_depth =</span> <span class="fu">tune</span>(),</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">min_n =</span> <span class="dv">20</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">cost_complexity =</span> <span class="fu">tune</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"rpart"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="create-our-workflow" class="level4">
+<h4 class="anchored" data-anchor-id="create-our-workflow">Create our Workflow</h4>
+<p>Now we use <code>workflow()</code> to create an object to use in our fitting processes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>tree_wkf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(tree_rec) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(tree_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="use-cv-to-select-our-tuning-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="use-cv-to-select-our-tuning-parameters">Use CV to Select our Tuning Parameters</h4>
+<p>Now we can use <code>tune_grid()</code> on our <code>bike_CV_folds</code> object. We just need to create a tuning grid to fit our models with. If we don’t specify one, the <code>dials</code> package tries to figure it out for us:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> tree_wkf <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(<span class="at">resamples =</span> bike_CV_folds)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>temp <span class="sc">|&gt;</span> </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 20 x 8
+   cost_complexity tree_depth .metric .estimator  mean     n std_err .config    
+             &lt;dbl&gt;      &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;      
+ 1        7.50e- 6         12 rmse    standard   0.510    10  0.0175 Preprocess~
+ 2        7.50e- 6         12 rsq     standard   0.467    10  0.0207 Preprocess~
+ 3        2.80e- 8          8 rmse    standard   0.509    10  0.0174 Preprocess~
+ 4        2.80e- 8          8 rsq     standard   0.468    10  0.0205 Preprocess~
+ 5        1.66e- 3         15 rmse    standard   0.501    10  0.0158 Preprocess~
+ 6        1.66e- 3         15 rsq     standard   0.479    10  0.0182 Preprocess~
+ 7        5.79e-10          2 rmse    standard   0.538    10  0.0196 Preprocess~
+ 8        5.79e-10          2 rsq     standard   0.396    10  0.0209 Preprocess~
+ 9        4.05e- 9          3 rmse    standard   0.510    10  0.0181 Preprocess~
+10        4.05e- 9          3 rsq     standard   0.456    10  0.0193 Preprocess~
+11        1.24e- 3          6 rmse    standard   0.503    10  0.0158 Preprocess~
+12        1.24e- 3          6 rsq     standard   0.477    10  0.0193 Preprocess~
+13        5.68e- 2          5 rmse    standard   0.543    10  0.0202 Preprocess~
+14        5.68e- 2          5 rsq     standard   0.382    10  0.0165 Preprocess~
+15        1.82e- 6         12 rmse    standard   0.510    10  0.0175 Preprocess~
+16        1.82e- 6         12 rsq     standard   0.467    10  0.0207 Preprocess~
+17        5.23e- 8          9 rmse    standard   0.509    10  0.0175 Preprocess~
+18        5.23e- 8          9 rsq     standard   0.468    10  0.0208 Preprocess~
+19        5.47e- 5          9 rmse    standard   0.509    10  0.0175 Preprocess~
+20        5.47e- 5          9 rsq     standard   0.468    10  0.0208 Preprocess~</code></pre>
+</div>
+</div>
+<p>We can see that the <code>cost_complexity</code> parameter and <code>tree_depth</code> parameters are randomly varied and results are returned.</p>
+<p>If we want to set the number of the values ourselves, we can use <code>grid_regular()</code> instead. By specifying a vector or <code>levels</code> we can say how many of each tuning parameter we want. <code>grid_regular()</code> then finds all combinations of the values of each (here 10*5 = 50 combinations).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tree_grid <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(<span class="fu">cost_complexity</span>(),</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">tree_depth</span>(),</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we use <code>tune_grid()</code> with this grid specified.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>tree_fits <span class="ot">&lt;-</span> tree_wkf <span class="sc">|&gt;</span> </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(<span class="at">resamples =</span> bike_CV_folds,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">grid =</span> tree_grid)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>tree_fits</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Tuning results
+# 10-fold cross-validation 
+# A tibble: 10 x 4
+   splits           id     .metrics           .notes          
+   &lt;list&gt;           &lt;chr&gt;  &lt;list&gt;             &lt;list&gt;          
+ 1 &lt;split [667/75]&gt; Fold01 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;
+ 2 &lt;split [667/75]&gt; Fold02 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;
+ 3 &lt;split [668/74]&gt; Fold03 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;
+ 4 &lt;split [668/74]&gt; Fold04 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;
+ 5 &lt;split [668/74]&gt; Fold05 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;
+ 6 &lt;split [668/74]&gt; Fold06 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;
+ 7 &lt;split [668/74]&gt; Fold07 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;
+ 8 &lt;split [668/74]&gt; Fold08 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;
+ 9 &lt;split [668/74]&gt; Fold09 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;
+10 &lt;split [668/74]&gt; Fold10 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;</code></pre>
+</div>
+</div>
+<p>Looking at the <code>tree_fits</code> object isn’t super useful. It has all the info but we need to pull it out. As we see above, we can use <code>collect_metrics()</code> to combine the metrics across the folds.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tree_fits <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 100 x 8
+   cost_complexity tree_depth .metric .estimator  mean     n std_err .config    
+             &lt;dbl&gt;      &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;      
+ 1    0.0000000001          1 rmse    standard   0.561    10  0.0190 Preprocess~
+ 2    0.0000000001          1 rsq     standard   0.338    10  0.0176 Preprocess~
+ 3    0.000000001           1 rmse    standard   0.561    10  0.0190 Preprocess~
+ 4    0.000000001           1 rsq     standard   0.338    10  0.0176 Preprocess~
+ 5    0.00000001            1 rmse    standard   0.561    10  0.0190 Preprocess~
+ 6    0.00000001            1 rsq     standard   0.338    10  0.0176 Preprocess~
+ 7    0.0000001             1 rmse    standard   0.561    10  0.0190 Preprocess~
+ 8    0.0000001             1 rsq     standard   0.338    10  0.0176 Preprocess~
+ 9    0.000001              1 rmse    standard   0.561    10  0.0190 Preprocess~
+10    0.000001              1 rsq     standard   0.338    10  0.0176 Preprocess~
+# i 90 more rows</code></pre>
+</div>
+</div>
+<p>As done in the <a href="https://www.tidymodels.org/start/tuning/">tutorial</a>, we can plot these to gain some insight:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tree_fits <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tree_depth =</span> <span class="fu">factor</span>(tree_depth)) <span class="sc">%&gt;%</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(cost_complexity, mean, <span class="at">color =</span> tree_depth)) <span class="sc">+</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> .metric, <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">nrow =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>()) <span class="sc">+</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">option =</span> <span class="st">"plasma"</span>, <span class="at">begin =</span> .<span class="dv">9</span>, <span class="at">end =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="53-Regression_Classification_Trees_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ideally, we probably want to sort this by the smallest <code>rmse</code> value. Let’s also filter down to just looking at <code>rmse</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tree_fits <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"rmse"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 50 x 8
+   cost_complexity tree_depth .metric .estimator  mean     n std_err .config    
+             &lt;dbl&gt;      &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;      
+ 1    0.0000000001          4 rmse    standard   0.496    10  0.0163 Preprocess~
+ 2    0.000000001           4 rmse    standard   0.496    10  0.0163 Preprocess~
+ 3    0.00000001            4 rmse    standard   0.496    10  0.0163 Preprocess~
+ 4    0.0000001             4 rmse    standard   0.496    10  0.0163 Preprocess~
+ 5    0.000001              4 rmse    standard   0.496    10  0.0163 Preprocess~
+ 6    0.00001               4 rmse    standard   0.496    10  0.0163 Preprocess~
+ 7    0.0001                4 rmse    standard   0.496    10  0.0163 Preprocess~
+ 8    0.001                 4 rmse    standard   0.496    10  0.0162 Preprocess~
+ 9    0.01                  4 rmse    standard   0.498    10  0.0176 Preprocess~
+10    0.01                  8 rmse    standard   0.498    10  0.0176 Preprocess~
+# i 40 more rows</code></pre>
+</div>
+</div>
+<p>The function <code>select_best()</code> can be used to grab the best model’s tuning parameter values. We also should specify which metric!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>tree_best_params <span class="ot">&lt;-</span> <span class="fu">select_best</span>(tree_fits, <span class="at">metric =</span> <span class="st">"rmse"</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>tree_best_params</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 3
+  cost_complexity tree_depth .config              
+            &lt;dbl&gt;      &lt;int&gt; &lt;chr&gt;                
+1    0.0000000001          4 Preprocessor1_Model11</code></pre>
+</div>
+</div>
+<p>(After this initial phase, we might also want to fit a finer grid of tuning parameter values near the current ‘best’ ones!) Now we can finalize our model on the training set by fitting this chosen model via <code>finalize_workflow()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>tree_final_wkf <span class="ot">&lt;-</span> tree_wkf <span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(tree_best_params)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that we’ve set up how to fit the final model, let’s do it via <code>last_fit()</code> on the <code>bike_split</code> object.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>tree_final_fit <span class="ot">&lt;-</span> tree_final_wkf <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">last_fit</span>(bike_split)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>tree_final_fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Resampling results
+# Manual resampling 
+# A tibble: 1 x 6
+  splits            id               .metrics .notes   .predictions .workflow 
+  &lt;list&gt;            &lt;chr&gt;            &lt;list&gt;   &lt;list&gt;   &lt;list&gt;       &lt;list&gt;    
+1 &lt;split [742/319]&gt; train/test split &lt;tibble&gt; &lt;tibble&gt; &lt;tibble&gt;     &lt;workflow&gt;</code></pre>
+</div>
+</div>
+<p>This object has information about how the final fitted model (fit on the entire training data set) performs on the test set. We can see the metrics more clearly using <code>collect_metrics()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>tree_final_fit <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 x 4
+  .metric .estimator .estimate .config             
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
+1 rmse    standard       0.565 Preprocessor1_Model1
+2 rsq     standard       0.445 Preprocessor1_Model1</code></pre>
+</div>
+</div>
+<p>As done in the tutorial, we could pull out this fit and learn more about it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>tree_final_model <span class="ot">&lt;-</span> <span class="fu">extract_workflow</span>(tree_final_fit) </span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>tree_final_model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>== Workflow [trained] ==========================================================
+Preprocessor: Recipe
+Model: decision_tree()
+
+-- Preprocessor ----------------------------------------------------------------
+4 Recipe Steps
+
+* step_log()
+* step_rm()
+* step_dummy()
+* step_normalize()
+
+-- Model -----------------------------------------------------------------------
+n= 742 
+
+node), split, n, deviance, yval
+      * denotes terminal node
+
+ 1) root 742 352.956900 10.721500  
+   2) year&lt; 0.1604381 354 118.136200 10.304490  
+     4) year&lt; -0.9711688 99  42.945090  9.955315  
+       8) km_driven&gt;=-0.07668815 80  24.027690  9.812273  
+        16) year&lt; -1.423811 52  11.224130  9.659656 *
+        17) year&gt;=-1.423811 28   9.343018 10.095710 *
+       9) km_driven&lt; -0.07668815 19  10.388380 10.557600 *
+     5) year&gt;=-0.9711688 255  58.435060 10.440050  
+      10) km_driven&gt;=-0.1109097 205  33.439120 10.355390  
+        20) year&lt; -0.518526 80  12.341380 10.225880 *
+        21) year&gt;=-0.518526 125  18.897350 10.438270 *
+      11) km_driven&lt; -0.1109097 50  17.502590 10.787150  
+        22) year&lt; -0.2922047 16   6.876996 10.503040 *
+        23) year&gt;=-0.2922047 34   8.726354 10.920850 *
+   3) year&gt;=0.1604381 388 117.094000 11.101970  
+     6) year&lt; 0.6130808 149  29.735310 10.800920  
+      12) km_driven&gt;=-0.5047722 121  20.838220 10.751970  
+        24) owner_X2nd.owner&gt;=1.178863 15   1.468796 10.451540 *
+        25) owner_X2nd.owner&lt; 1.178863 106  17.823910 10.794490 *
+      13) km_driven&lt; -0.5047722 28   7.354383 11.012450  
+        26) km_driven&lt; -1.218805 10   1.952084 10.880130 *
+        27) km_driven&gt;=-1.218805 18   5.129964 11.085950 *
+     7) year&gt;=0.6130808 239  65.435960 11.289650  
+      14) km_driven&gt;=-1.236697 179  35.914190 11.164620  
+        28) km_driven&gt;=0.1002281 52   8.612033 10.998670 *
+        29) km_driven&lt; 0.1002281 127  25.283800 11.232560 *
+      15) km_driven&lt; -1.236697 60  18.374510 11.662680  
+        30) km_driven&gt;=-2.026019 38   8.605414 11.552500 *
+        31) km_driven&lt; -2.026019 22   8.511043 11.852980 *</code></pre>
+</div>
+</div>
+<p>Plotting is definitely the better way to view this!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>tree_final_model <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  rpart.plot<span class="sc">::</span><span class="fu">rpart.plot</span>(<span class="at">roundint =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="53-Regression_Classification_Trees_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="comparing-to-our-lasso-and-mlr-fits" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-to-our-lasso-and-mlr-fits">Comparing to Our LASSO and MLR Fits</h3>
+<p>Recall, we fit MLR models and LASSO models to this data set. We can pull those back up to determine which model did the best overall on the test set. Then we can get an overall ‘best’ model and fit that model to the entire data set!</p>
+</section>
+</section>
+<section id="classification-trees" class="level2">
+<h2 class="anchored" data-anchor-id="classification-trees">Classification Trees</h2>
+<p>Classification trees are very similar to regression trees except, of course, our response is a categorical variable. This means that we don’t use the same loss functions nor metrics, but we still split the predictor space up into regions. We then can make our prediction based on which bin an observation ends up in. Most often, we use the most prevalent class in a bin as our prediction.</p>
+</section>
+<section id="recap-and-pros-cons" class="level2">
+<h2 class="anchored" data-anchor-id="recap-and-pros-cons">Recap and Pros &amp; Cons</h2>
+<ul>
+<li>Trees are a nonlinear model that can be more flexible than linear models.</li>
+</ul>
+<p>Pros:</p>
+<ul>
+<li>Simple to understand and easy to interpret output<br>
+</li>
+<li>Predictors don’t need to be scaled. Unlike algorithms like the LASSO, having all the predictors on different scales makes no difference in the choosing of regions.</li>
+<li>No statistical assumptions necessary to get the fit (although this is true for least squares regression as well)</li>
+<li>Built in variable selection based on the algorithm!</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li><p>Small changes in data can vastly change tree</p>
+<ul>
+<li>The lack of ‘sharing’ information with nearby data points makes this algorithm more variable. Given a new data set from the same situation, the splits we get for the tree can differ quite a bit! That isn’t ideal as we’d like to have stable results across data sets collected on the same population.</li>
+</ul></li>
+<li><p>No optimal algorithm for choosing splits exists.</p>
+<ul>
+<li>We saw the use of a greedy algorithm to select our regions in the regression tree case. This is a greedy algorithm because it is only looking one step ahead to find the best split. There might be a split at this step that creates a great future split. However, we may never find it because we only ever look at the best thing we can do at the current split!</li>
+</ul></li>
+<li><p>Need to prune or use CV to determine the model.</p>
+<ul>
+<li>With MLR models, CV isn’t used at all. However, here we really need to prune the tree and/or use CV to figure out the optimal size of the tree to build!</li>
+</ul></li>
+</ul>
+<p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../Notes/52-Logistic_Regression_Models_Landing.html" class="pagination-link" aria-label="Logistic Regression Models">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Logistic Regression Models</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../Notes/54-Ensemble_Trees_Bagging_Random_Forests_Landing.html" class="pagination-link" aria-label="Ensemble Trees">
+        <span class="nav-page-text">Ensemble Trees</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

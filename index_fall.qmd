@@ -87,39 +87,38 @@ To obtain course help there are a number of options:
 |                          | 32 - Advanced Function Writing                                                                                |                            |
 +--------------------------+---------------------------------------------------------------------------------------------------------------+----------------------------+
 | Week 9\                  | 33 - Introduction to RShiny\                                                                                  | HW 7 due W, 10/22          |
-| 10/15-10/17\             | 33.5 - Selected Shiny Tutorials\                                                                              |                            |
-| Off M/T                  | 34 - Connecting the UI and Server\                                                                            |                            |
-|                          | 34.5 - More selected Tutorials\                                                                               |                            |
-|                          | 35 - Reactivity\                                                                                              |                            |
-|                          | 35.5 - Build an App Tutorial                                                                                  |                            |
+| 10/15-10/17\             | 34 - Selected Shiny Tutorials\                                                                                |                            |
+| Off M/T                  | 35 - Connecting the UI and Server\                                                                            |                            |
+|                          | 36 - More selected Tutorials\                                                                                 |                            |
+|                          | 37 - Reactivity\                                                                                              |                            |
+|                          | 38 - Build an App Tutorial                                                                                    |                            |
 +--------------------------+---------------------------------------------------------------------------------------------------------------+----------------------------+
-| Week 10\                 | 36 - Dynamic UIs\                                                                                             | Project 2 due W, 11/5      |
-| 10/20-10/24\             | 37 - UI Layouts\                                                                                              |                            |
-| M-F                      | 37.1 - Sharing an App via shinyapps.io\                                                                       |                            |
-|                          | 37.2 - Sharing an App via GitHub\                                                                             |                            |
-|                          | 38 - Debugging & Useful Things\                                                                               |                            |
-|                          | 38.1 - Control Reactivity with isolate()                                                                      |                            |
+| Week 10\                 | 39 - Dynamic UIs\                                                                                             | Project 2 due W, 11/5      |
+| 10/20-10/24\             | 40 - UI Layouts\                                                                                              |                            |
+| M-F                      | 41 - Sharing an Apps\                                                                                         |                            |
+|                          | 42 - Debugging & Useful Things\                                                                               |                            |
+|                          | 43 - Control Reactivity with isolate()                                                                        |                            |
 +--------------------------+---------------------------------------------------------------------------------------------------------------+----------------------------+
 | Week 11\                 | No new material. Project work time!                                                                           |                            |
 | 10/27-10/31              |                                                                                                               |                            |
 +--------------------------+---------------------------------------------------------------------------------------------------------------+----------------------------+
-| Week 12\                 | 39 - Modeling Concepts: Inference vs Prediction\                                                              | HW 8 due W, 11/12          |
-| 11/3-11/7\               | 40 - Prediction & Training/Test Set Ideas\                                                                    |                            |
-| M-F                      | 41 - Cross Validation\                                                                                        |                            |
-|                          | 42 - Multiple Linear Regression Models\                                                                       |                            |
-|                          | 43 - Modeling with tidymodels\                                                                                |                            |
-|                          | 44.5 - tidymodels Tutorial                                                                                    |                            |
+| Week 12\                 | 44 - Modeling Concepts: Inference vs Prediction\                                                              | HW 8 due W, 11/12          |
+| 11/3-11/7\               | 45 - Prediction & Training/Test Set Ideas\                                                                    |                            |
+| M-F                      | 46 - Cross Validation\                                                                                        |                            |
+|                          | 47 - Multiple Linear Regression Models\                                                                       |                            |
+|                          | 48 - Modeling with tidymodels\                                                                                |                            |
+|                          | 49 - tidymodels Tutorial                                                                                      |                            |
 +--------------------------+---------------------------------------------------------------------------------------------------------------+----------------------------+
-| Week 13\                 | 44 - LASSO Models & Selecting Models with Both CV and a Test Set\                                             | HW 9 due W, 11/19          |
-| 11/10-11/14\             | 45 - Modeling Recap\                                                                                          |                            |
-| M-F                      | 46 - Logistic Regression Models\                                                                              |                            |
-|                          | 47 - Regression & Classification Trees\                                                                       |                            |
-|                          | 48 - Ensemble Learning: Bagged Trees & Random Forests                                                         |                            |
+| Week 13\                 | 50 - LASSO Models & Selecting Models with Both CV and a Test Set\                                             | HW 9 due W, 11/19          |
+| 11/10-11/14\             | 51 - Modeling Recap\                                                                                          |                            |
+| M-F                      | 52 - Logistic Regression Models\                                                                              |                            |
+|                          | 53 - Regression & Classification Trees\                                                                       |                            |
+|                          | 54 - Ensemble Learning: Bagged Trees & Random Forests                                                         |                            |
 +--------------------------+---------------------------------------------------------------------------------------------------------------+----------------------------+
-| Week 14\                 | 49 - Creating an API\                                                                                         | Exam 2 - Th-F, 11/20-11/21 |
-| 11/17-11/21\             | 50 - Docker Basics\                                                                                           |                            |
-| M-F                      | 51 - Building a Docker Image\                                                                                 |                            |
-|                          | 52 - Dockerizing a Shiny App                                                                                  |                            |
+| Week 14\                 | 55 - Creating an API\                                                                                         | Exam 2 - Th-F, 11/20-11/21 |
+| 11/17-11/21\             | 56 - Docker Basics\                                                                                           |                            |
+| M-F                      | 57 - Building a Docker Image\                                                                                 |                            |
+|                          | 58 - Dockerizing a Shiny App                                                                                  |                            |
 +--------------------------+---------------------------------------------------------------------------------------------------------------+----------------------------+
 | Week 15-16\              | No new material. Final project work time!                                                                     | Final Project due Th, 12/4 |
 | 11/24-11/25, 12/1-12/2\  |                                                                                                               |                            |

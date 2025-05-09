@@ -53,6 +53,17 @@ project:
     - Notes/41-RShiny_Articles_I.qmd
     - Notes/42-RShiny_Debugging_Other_Useful_Things_Landing.qmd
     - Notes/43-RShiny_Articles_II.qmd
+    - Notes/44-Modeling_Concepts_Inference_Prediction_Landing.qmd
+    - Notes/45-Prediction_Testing_Training.qmd
+    - Notes/46-Cross_Validation.qmd
+    - Notes/47-Multiple_Linear_Regression_Landing.qmd
+    - Notes/48-Modeling_With_tidymodels_Landing.qmd
+    - Notes/49-tidymodels_Tutorial.qmd
+    - Notes/50-LASSO_Models_Selecting_Models_CV_Test_Set.qmd
+    - Notes/51-Modeling_Recap_Landing.qmd
+    - Notes/52-Logistic_Regression_Models_Landing.qmd
+    - Notes/53-Regression_Classification_Trees.qmd
+    - Notes/54-Ensemble_Trees_Bagging_Random_Forests_Landing.qmd
 website:
   title: "ST 558 Data Science for Statisticians (R)"
   navbar:
@@ -108,13 +119,13 @@ website:
           - Notes/26-Barplots_ggplot_Basics_Landing.qmd
           - Notes/27-Numerical_Variable_Summaries.qmd
           - Notes/28-Numeric_Variable_Graphs_Landing.qmd
-      - section: "Topic 3: Other Programming Topics"
+      - section: "Topic 3: Better Programming"
         contents:
           - Notes/29-Big_Recap_Landing.qmd
           - Notes/30-Apply_Family_Landing.qmd
           - Notes/31-purrr_Landing.qmd
           - Notes/32-Advanced_Function_Writing_Landing.qmd
-      - section: "Topic 4: Dashboards with R Shiny"
+      - section: "Topic 4: R Shiny Dashboards"
         contents:
           - Notes/33-RShiny_Introduction_Landing.qmd
           - Notes/34-RShiny_Tutorials_I.qmd
@@ -127,6 +138,19 @@ website:
           - Notes/41-RShiny_Articles_I.qmd
           - Notes/42-RShiny_Debugging_Other_Useful_Things_Landing.qmd
           - Notes/43-RShiny_Articles_II.qmd
+      - section: "Topic 5: Predictive Modeling"
+        contents:
+          - Notes/44-Modeling_Concepts_Inference_Prediction_Landing.qmd
+          - Notes/45-Prediction_Testing_Training.qmd
+          - Notes/46-Cross_Validation.qmd
+          - Notes/47-Multiple_Linear_Regression_Landing.qmd
+          - Notes/48-Modeling_With_tidymodels_Landing.qmd
+          - Notes/49-tidymodels_Tutorial.qmd
+          - Notes/50-LASSO_Models_Selecting_Models_CV_Test_Set.qmd
+          - Notes/51-Modeling_Recap_Landing.qmd
+          - Notes/52-Logistic_Regression_Models_Landing.qmd
+          - Notes/53-Regression_Classification_Trees.qmd
+          - Notes/54-Ensemble_Trees_Bagging_Random_Forests_Landing.qmd
   page-navigation: true
   reader-mode: true
 

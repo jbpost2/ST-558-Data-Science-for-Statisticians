@@ -1,0 +1,24 @@
+---
+title: "Logistic Regression Models"
+format: html
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+The video below introduces the logistic regression model. This model is very useful for modeling binary responses (there are extensions to response variables with more than two values).
+
+I highly recommend watching the video using the 'full' Panopto player. There is a 'pop out' button in the bottom right of the video to enter this viewer.
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=65cae9df-196f-4aaf-a169-b221013cec57&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="52-Logistic Regression Models" ></iframe>
+```
+
+## Notes
+
+**Note: The code on slide 29 of the video differs slightly from the code in the notes below. An older version of the `tidymodels` package was used in the video and that code no longer works. The code in the slides attached is the way to do this now.**
+
+- <a href = "52-Logistic_Regression_Models.html" target = "_blank">HTML version</a>
+- <a href = "PDFs/52-Logistic_Regression_Models.pdf" target = "_blank">PDF version</a>
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

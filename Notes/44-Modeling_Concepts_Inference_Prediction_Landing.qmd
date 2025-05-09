@@ -1,0 +1,22 @@
+---
+title: "Modeling Concepts: Inference & Prediction"
+format: html
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+The video below discusses the paradigm of statistical learning. 
+
+I highly recommend watching the video using the 'full' Panopto player. There is a 'pop out' button in the bottom right of the video to enter this viewer.
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=b017efaa-65bf-491e-bc50-b21e00df4f77&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="44_Modeling_Concepts" ></iframe>
+```
+
+## Notes
+
+- <a href = "44-Modeling_Concepts_Inference_Prediction.html" target = "_blank">HTML version</a>
+- <a href = "PDFs/44-Modeling_Concepts_Inference_Prediction.pdf" target = "_blank">PDF version</a>
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

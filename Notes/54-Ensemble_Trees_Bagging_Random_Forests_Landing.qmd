@@ -1,0 +1,24 @@
+---
+title: "Ensemble Trees"
+format: html
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+The video below discusses two ensemble tree methods: bagging and random forests. These models fit many trees using bootstrap resamples and then combines the predictions in some way.
+
+I highly recommend watching the video using the 'full' Panopto player. There is a 'pop out' button in the bottom right of the video to enter this viewer.
+
+```{=html}
+<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=0209dd68-d60e-40dc-aa62-b22200efcecc&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="54-Ensemble Models: Bagging and Random Forests" ></iframe>
+```
+
+## Notes
+
+**Note: The code on slide 21 (same issues as before) and slides 19 & 31 (added `metric = `) of the video differs slightly from the code in the notes below. An older version of the `tidymodels` package was used in the video and that code no longer works. The code in the slides attached is the way to do this now.**
+
+- <a href = "42-RShiny_Debugging_Other_Useful_Things.html" target = "_blank">HTML version</a>
+- <a href = "PDFs/42-RShiny_Debugging_Other_Useful_Things.pdf" target = "_blank">PDF version</a>
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

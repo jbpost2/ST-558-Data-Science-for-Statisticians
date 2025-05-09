@@ -1,0 +1,15 @@
+---
+title: "`tidymodels` Tutorial"
+format: html
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+Now that we have the basics of how the `tidymodels` package works, let's work through the `tidymodels.org` tutorial. 
+
+Please read through the <a href = "https://www.tidymodels.org/start/models/" target = "_blank">five part tutorial</a> they have to introduce people to `tidymodels`.
+
+Then head back here for the next content!
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!
