@@ -508,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/44-Modeling_Concepts_Inference_Prediction_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Modeling Concepts: Inference &amp; Prediction</span></a>
+ <span class="menu-text">Modeling Concepts</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -544,7 +544,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/50-LASSO_Models_Selecting_Models_CV_Test_Set.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">LASSO Models &amp; Selecting Models Using Both Cross Validation and a Test Set</span></a>
+ <span class="menu-text">LASSO Models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -569,6 +569,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../Notes/54-Ensemble_Trees_Bagging_Random_Forests_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ensemble Trees</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Topic 6: APIs &amp; Docker</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/55-Creating_API_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creating an API in <code>R</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/56-Docker_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Docker Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/57-Building_Docker_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Building a Docker Image</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/58-Dockerizing_Shiny_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dockerizing a Shiny App</span></a>
   </div>
 </li>
       </ul>
@@ -719,7 +754,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5      5      e
 
 [[2]]
-[1] 1.6393095 0.4402087 0.2385972 0.3733311
+[1] -1.00612015 -0.09248797 -0.77588955  1.30614002
 
 [[3]]
 [1] "!" "?"</code></pre>
@@ -741,7 +776,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5      5      e
 
 $normVals
-[1]  2.1775786 -0.8133229 -0.3295750  0.7663670
+[1] -1.4094791  0.3657658 -0.1800652  0.9816556
 
 $punctuation
 [1] "!" "?"</code></pre>
@@ -758,7 +793,7 @@ $punctuation
  $ my_data_frame:'data.frame':  5 obs. of  2 variables:
   ..$ number: int [1:5] 1 2 3 4 5
   ..$ letter: chr [1:5] "a" "b" "c" "d" ...
- $ normVals     : num [1:4] 2.178 -0.813 -0.33 0.766
+ $ normVals     : num [1:4] -1.409 0.366 -0.18 0.982
  $ punctuation  : chr [1:2] "!" "?"</code></pre>
 </div>
 </div>
@@ -797,7 +832,7 @@ $punctuation
 5      5      e
 
 $normVals
-[1]  2.1775786 -0.8133229 -0.3295750  0.7663670
+[1] -1.4094791  0.3657658 -0.1800652  0.9816556
 
 $punctuation
 [1] "!" "?"</code></pre>
@@ -807,7 +842,7 @@ $punctuation
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$normVals
-[1]  2.1775786 -0.8133229 -0.3295750  0.7663670
+[1] -1.4094791  0.3657658 -0.1800652  0.9816556
 
 $punctuation
 [1] "!" "?"</code></pre>
@@ -869,13 +904,13 @@ $punctuation
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  2.1775786 -0.8133229 -0.3295750  0.7663670</code></pre>
+<pre><code>[1] -1.4094791  0.3657658 -0.1800652  0.9816556</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="dv">2</span>]][<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.329575  0.766367</code></pre>
+<pre><code>[1] -0.1800652  0.9816556</code></pre>
 </div>
 </div>
 <ul>
@@ -888,14 +923,14 @@ $punctuation
  $ my_data_frame:'data.frame':  5 obs. of  2 variables:
   ..$ number: int [1:5] 1 2 3 4 5
   ..$ letter: chr [1:5] "a" "b" "c" "d" ...
- $ normVals     : num [1:4] 2.178 -0.813 -0.33 0.766
+ $ normVals     : num [1:4] -1.409 0.366 -0.18 0.982
  $ punctuation  : chr [1:2] "!" "?"</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>normVals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  2.1775786 -0.8133229 -0.3295750  0.7663670</code></pre>
+<pre><code>[1] -1.4094791  0.3657658 -0.1800652  0.9816556</code></pre>
 </div>
 </div>
 <ul>
@@ -939,7 +974,7 @@ $punctuation
  $ my_data_frame:'data.frame':  5 obs. of  2 variables:
   ..$ number: int [1:5] 1 2 3 4 5
   ..$ letter: chr [1:5] "a" "b" "c" "d" ...
- $ normVals     : num [1:4] 2.178 -0.813 -0.33 0.766
+ $ normVals     : num [1:4] -1.409 0.366 -0.18 0.982
  $ punctuation  : chr [1:2] "!" "?"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.list</span>(my_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

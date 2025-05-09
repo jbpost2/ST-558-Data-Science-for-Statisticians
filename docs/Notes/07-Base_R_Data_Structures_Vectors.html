@@ -508,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/44-Modeling_Concepts_Inference_Prediction_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Modeling Concepts: Inference &amp; Prediction</span></a>
+ <span class="menu-text">Modeling Concepts</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -544,7 +544,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/50-LASSO_Models_Selecting_Models_CV_Test_Set.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">LASSO Models &amp; Selecting Models Using Both Cross Validation and a Test Set</span></a>
+ <span class="menu-text">LASSO Models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -569,6 +569,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../Notes/54-Ensemble_Trees_Bagging_Random_Forests_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ensemble Trees</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Topic 6: APIs &amp; Docker</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/55-Creating_API_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creating an API in <code>R</code></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/56-Docker_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Docker Basics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/57-Building_Docker_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Building a Docker Image</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/58-Dockerizing_Shiny_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dockerizing a Shiny App</span></a>
   </div>
 </li>
       </ul>
@@ -836,20 +871,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">4</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2642322 0.9841543 0.5686373 0.2912691</code></pre>
+<pre><code>[1] 0.1483719 0.6110159 0.5349631 0.7007864</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.5935289 0.3315025 0.4461847 0.6605188 0.1765526 0.3120297 0.9789756
- [8] 0.9785758 0.2451515 0.5806348</code></pre>
+<pre><code> [1] 0.33663054 0.54252097 0.38418347 0.22157093 0.08927214 0.32019863
+ [7] 0.28526341 0.08016857 0.31166932 0.54710246</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">5</span>, <span class="dv">20</span>, <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 29.15102 26.31276 22.61307 29.01963 23.91835</code></pre>
+<pre><code>[1] 26.70329 25.09878 24.64433 26.93123 28.38150</code></pre>
 </div>
 </div>
 <p>We’ll find this function really useful when we simulate different quantities!</p>
