@@ -806,10 +806,10 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>vectorized_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
-                                       expr    min      lq     mean  median
- colMeans(my_numeric_batting, na.rm = TRUE) 4.7803 5.14365 5.905426 5.47495
+                                       expr    min     lq     mean  median
+ colMeans(my_numeric_batting, na.rm = TRUE) 4.3736 5.0324 5.838917 5.27375
       uq     max neval
- 6.35435 12.0159   100</code></pre>
+ 6.44755 12.9063   100</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -817,9 +817,9 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
                                                                 expr     min
- for (i in 1:17) {     mean(my_numeric_batting[, i], na.rm = TRUE) } 15.1771
-      lq     mean   median       uq     max neval
- 18.1656 19.35883 19.08415 19.91895 52.9106   100</code></pre>
+ for (i in 1:17) {     mean(my_numeric_batting[, i], na.rm = TRUE) } 14.1758
+      lq     mean   median      uq     max neval
+ 17.5162 19.31407 18.66525 20.5904 51.4722   100</code></pre>
 </div>
 </div>
 </section>
@@ -946,16 +946,16 @@ window.Quarto = {
 <pre><code>Unit: microseconds
                                                                                                                                                                                                                                                                                                                                  expr
  for (i in seq_len(nrow(airquality))) {     if (airquality$Wind[i] &gt;= 15) {         "HighWind"     }     else if (airquality$Wind[i] &gt;= 10) {         "Windy"     }     else if (airquality$Wind[i] &gt;= 6) {         "LightWind"     }     else if (airquality$Wind[i] &gt;= 0) {         "Calm"     }     else {         "Error"     } }
-    min     lq     mean  median      uq    max neval
- 3056.9 3323.5 3838.532 3471.35 3841.55 7666.1   100</code></pre>
+    min     lq     mean median     uq    max neval
+ 3032.3 3305.6 3797.169 3453.3 3722.8 6781.6   100</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>vectorTime</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
                                                                                                                                                                                   expr
  ifelse(airquality$Wind &gt;= 15, "HighWind", ifelse(airquality$Wind &gt;=      10, "Windy", ifelse(airquality$Wind &gt;= 6, "LightWind", ifelse(airquality$Wind &gt;=      0, "Calm", "Error"))))
-  min   lq   mean median     uq   max neval
- 89.4 94.9 101.09   97.2 100.65 200.8   100</code></pre>
+  min    lq    mean median     uq max neval
+ 83.9 88.95 117.144   93.6 101.55 433   100</code></pre>
 </div>
 </div>
 <p><strong>Note:</strong> There is an <code>if_else()</code> function from the <code>dplry</code> package. This has more restrictions than <code>ifelse()</code> but otherwise is pretty similar.</p>
