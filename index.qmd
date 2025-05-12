@@ -95,33 +95,26 @@ To obtain course help there are a number of options:
 |                 | 35 - Dynamic UI\                                           |                                |                                                |
 | 6/23-6/27       | 36 - Deploying, Debugging, & Other Useful Stuff\           |                                |                                                |
 +-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+
-| Week 8          | 37 - Simple Linear Regression\                             |                                |                                                |
-|                 | 38 - Multiple Linear Regression\                           |                                |                                                |
-| M-Th            | 39 - Choosing Regression Models\                           |                                |                                                |
-|                 | 40 - Candidate Model Selection\                            |                                |                                                |
-| 6/30-7/3        | 41 - Basic Logistic Regression\                            |                                |                                                |
-|                 | 42 - Extended Logistic Regression                          |                                |                                                |
+| Week 8          | 37 - Modeling Concepts\                                    |                                |                                                |
+|                 | 38 - Prediction & Training/Test Sets\                      |                                |                                                |
+| M-Th            | 39 - Cross Validation\                                     |                                |                                                |
+|                 | 40 - Multiple Linear Regression\                           |                                |                                                |
+| 6/30-7/3        | 41 - Modeling with tidymodels (caret package)\             |                                |                                                |
+|                 | 42 - tidymodels Tutorial                                   |                                |                                                |
 |                 |                                                            |                                |                                                |
-|                 | 43 - Generalized Linear Models\                            |                                |                                                |
-|                 | 44 - Basic Use of the caret package\                       |                                |                                                |
-|                 | 45 - Cross Validation                                      |                                |                                                |
+|                 | 43 - LASSO Models\                                         |                                |                                                |
+|                 | 44 - Models recap                                          |                                |                                                |
 +-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+
-| Week 9          | 46 - k Nearest Neighbors\                                  | HW 5 due Tu, 7/15              |                                                |
-|                 | 47 - Regression and Classification Trees\                  |                                |                                                |
-| M-F             | 48 - Fitting Regression Tres\                              |                                |                                                |
-|                 | 49 - Fitting Classification Trees\                         |                                |                                                |
-| 7/7-7/11        | 50 - Bagged Trees\                                         |                                |                                                |
-|                 | 51 - Random Forests                                        |                                |                                                |
-|                 |                                                            |                                |                                                |
-|                 | 52 - Boosted Trees\                                        |                                |                                                |
-|                 | 53 - Model Fitting Using the caret Package\                |                                |                                                |
-|                 | 54 - Principle Components\                                 |                                |                                                |
-|                 | 55 - Clustering                                            |                                |                                                |
+| Week 9          | 45 - Logistic Regression\                                  | HW 5 due Tu, 7/15              |                                                |
+|                 | 46 - Regression and Classification Trees\                  |                                |                                                |
+| M-F             | 47 - Ensemble Trees (Random Forest; Bagged Trees)\         |                                |                                                |
+|                 | 48 - Fitting Classification Trees                          |                                |                                                |
+| 7/7-7/11        |                                                            |                                |                                                |
 +-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+
-| Week 10         | 56 - Creating an API\                                      | Exam 2 (Wednesday or Thursday) |                                                |
-|                 | 57 - Installing Docker\                                    |                                |                                                |
-| M-F             | 58 - Docker Containers \                                   |                                |                                                |
-|                 | 59 - Dockerizing Shiny Apps                                |                                |                                                |
+| Week 10         | 49 - Creating an API\                                      | Exam 2 (Wednesday or Thursday) |                                                |
+|                 | 50 - Docker Basics\                                        |                                |                                                |
+| M-F             | 51 - Building a Docker Image\                              |                                |                                                |
+|                 | 52 - Dockerizing Shiny Apps                                |                                |                                                |
 | 7/14-7/18       |                                                            |                                |                                                |
 +-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+
 | Week 11\        | No new material. Project work time!                        |                                |                                                |

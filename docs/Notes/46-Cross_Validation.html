@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-05-09">
+<meta name="dcterms.date" content="2025-05-12">
 
-<title>Cross-Validation – ST 558 Data Science for Statisticians (R)</title>
+<title>ST 558 Data Science for Statisticians (R) - Cross-Validation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -142,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -153,13 +153,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/44-Modeling_Concepts_Inference_Prediction_Landing.html">Topic 5: Predictive Modeling</a></li><li class="breadcrumb-item"><a href="../Notes/46-Cross_Validation.html">Cross-Validation</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/44.5-Week8.html">Topic 5: Predictive Modeling</a></li><li class="breadcrumb-item"><a href="../Notes/46-Cross_Validation.html">Cross-Validation</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -184,9 +184,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
  <span class="menu-text">Topic 1: Data Science &amp; R Basics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -229,6 +229,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../Notes/06_5-Week1_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 2 Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../Notes/07-Base_R_Data_Structures_Vectors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Base R Data Structures: Vectors</span></a>
   </div>
@@ -249,6 +255,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../Notes/10-Base_R_Data_Structures_Lists.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Base R Data Structures: Lists</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/10_5-Week2_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -279,13 +291,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
  <span class="menu-text">Topic 2: Tidyverse &amp; EDA</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/14_5-Week3_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 4 Overview</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link">
@@ -386,9 +404,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
  <span class="menu-text">Topic 3: Better Programming</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -421,9 +439,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
  <span class="menu-text">Topic 4: R Shiny Dashboards</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -498,13 +516,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
  <span class="menu-text">Topic 5: Predictive Modeling</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/44.5-Week8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 8 Overview</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/44-Modeling_Concepts_Inference_Prediction_Landing.html" class="sidebar-item-text sidebar-link">
@@ -555,6 +579,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../Notes/51.5-Week9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 9 Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../Notes/52-Logistic_Regression_Models_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Logistic Regression Models</span></a>
   </div>
@@ -575,13 +605,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
  <span class="menu-text">Topic 6: APIs &amp; Docker</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/55.5-Week10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 10 Overview</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/55-Creating_API_Landing.html" class="sidebar-item-text sidebar-link">
@@ -631,7 +667,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/44-Modeling_Concepts_Inference_Prediction_Landing.html">Topic 5: Predictive Modeling</a></li><li class="breadcrumb-item"><a href="../Notes/46-Cross_Validation.html">Cross-Validation</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/44.5-Week8.html">Topic 5: Predictive Modeling</a></li><li class="breadcrumb-item"><a href="../Notes/46-Cross_Validation.html">Cross-Validation</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Cross-Validation</h1>
 </div>
@@ -644,7 +680,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-05-09</p>
+      <p class="date">2025-05-12</p>
     </div>
   </div>
   
@@ -700,21 +736,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(log_km_driven, year, log_selling_price, <span class="fu">everything</span>())</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>bike_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,061 x 9
+<pre><code># A tibble: 1,061 × 9
    log_km_driven  year log_selling_price name    selling_price seller_type owner
            &lt;dbl&gt; &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;
- 1          5.86  2019             12.1  Royal ~        175000 Individual  1st ~
- 2          8.64  2017             10.7  Honda ~         45000 Individual  1st ~
- 3          9.39  2018             11.9  Royal ~        150000 Individual  1st ~
- 4         10.0   2015             11.1  Yamaha~         65000 Individual  1st ~
- 5          9.95  2011              9.90 Yamaha~         20000 Individual  2nd ~
- 6         11.0   2010              9.80 Honda ~         18000 Individual  1st ~
- 7          9.74  2018             11.3  Honda ~         78500 Individual  1st ~
- 8         10.6   2008             12.1  Royal ~        180000 Individual  2nd ~
- 9         10.4   2010             10.3  Hero H~         30000 Individual  1st ~
-10         10.6   2016             10.8  Bajaj ~         50000 Individual  1st ~
-# i 1,051 more rows
-# i 2 more variables: km_driven &lt;dbl&gt;, ex_showroom_price &lt;dbl&gt;</code></pre>
+ 1          5.86  2019             12.1  Royal …        175000 Individual  1st …
+ 2          8.64  2017             10.7  Honda …         45000 Individual  1st …
+ 3          9.39  2018             11.9  Royal …        150000 Individual  1st …
+ 4         10.0   2015             11.1  Yamaha…         65000 Individual  1st …
+ 5          9.95  2011              9.90 Yamaha…         20000 Individual  2nd …
+ 6         11.0   2010              9.80 Honda …         18000 Individual  1st …
+ 7          9.74  2018             11.3  Honda …         78500 Individual  1st …
+ 8         10.6   2008             12.1  Royal …        180000 Individual  2nd …
+ 9         10.4   2010             10.3  Hero H…         30000 Individual  1st …
+10         10.6   2016             10.8  Bajaj …         50000 Individual  1st …
+# ℹ 1,051 more rows
+# ℹ 2 more variables: km_driven &lt;dbl&gt;, ex_showroom_price &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -778,39 +814,39 @@ Then we’ll use a for loop to cycle through the pieces and save the folds in a 
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>folds[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 106 x 9
+<pre><code># A tibble: 106 × 9
    log_km_driven  year log_selling_price name    selling_price seller_type owner
            &lt;dbl&gt; &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;
- 1         10.1   2014             10.3  Honda ~         30000 Individual  1st ~
- 2          9.21  2016             10.2  Honda ~         28000 Individual  2nd ~
- 3         11.5   2007              9.21 Hero H~         10000 Individual  1st ~
- 4         10.7   2015             10.3  Honda ~         30000 Individual  2nd ~
- 5          9.40  2014             11.6  Royal ~        110000 Individual  1st ~
- 6         10.8   2009             10.1  Hero H~         25000 Individual  1st ~
- 7          9.62  2018             10.5  Hero H~         35000 Individual  1st ~
- 8         10.3   2016             11.2  Bajaj ~         70000 Individual  1st ~
- 9          9.90  2015             10.8  Yamaha~         50000 Individual  1st ~
-10          9.71  2017             11.8  KTM 25~        135000 Individual  1st ~
-# i 96 more rows
-# i 2 more variables: km_driven &lt;dbl&gt;, ex_showroom_price &lt;dbl&gt;</code></pre>
+ 1         10.1   2014             10.3  Honda …         30000 Individual  1st …
+ 2          9.21  2016             10.2  Honda …         28000 Individual  2nd …
+ 3         11.5   2007              9.21 Hero H…         10000 Individual  1st …
+ 4         10.7   2015             10.3  Honda …         30000 Individual  2nd …
+ 5          9.40  2014             11.6  Royal …        110000 Individual  1st …
+ 6         10.8   2009             10.1  Hero H…         25000 Individual  1st …
+ 7          9.62  2018             10.5  Hero H…         35000 Individual  1st …
+ 8         10.3   2016             11.2  Bajaj …         70000 Individual  1st …
+ 9          9.90  2015             10.8  Yamaha…         50000 Individual  1st …
+10          9.71  2017             11.8  KTM 25…        135000 Individual  1st …
+# ℹ 96 more rows
+# ℹ 2 more variables: km_driven &lt;dbl&gt;, ex_showroom_price &lt;dbl&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>folds[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 106 x 9
+<pre><code># A tibble: 106 × 9
    log_km_driven  year log_selling_price name    selling_price seller_type owner
            &lt;dbl&gt; &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;
- 1         10.7   2013             10.2  Bajaj ~         28000 Individual  1st ~
- 2          9.21  2018             10.7  Honda ~         46000 Individual  1st ~
- 3          9.68  2016             11.0  Suzuki~         60000 Individual  1st ~
- 4          9.38  2017             11.6  Honda ~        110000 Individual  1st ~
- 5          8.92  2018             11.1  Hero S~         65000 Individual  1st ~
- 6          8.99  2018             11.4  Bajaj ~         87000 Individual  1st ~
- 7         11.0   2010              9.90 Bajaj ~         20000 Individual  1st ~
- 8         10.8   2010              9.90 Hero  ~         20000 Individual  1st ~
- 9          9.85  2016             10.5  TVS Ju~         35000 Individual  1st ~
-10         10.6   2017             11.0  Bajaj ~         60000 Individual  2nd ~
-# i 96 more rows
-# i 2 more variables: km_driven &lt;dbl&gt;, ex_showroom_price &lt;dbl&gt;</code></pre>
+ 1         10.7   2013             10.2  Bajaj …         28000 Individual  1st …
+ 2          9.21  2018             10.7  Honda …         46000 Individual  1st …
+ 3          9.68  2016             11.0  Suzuki…         60000 Individual  1st …
+ 4          9.38  2017             11.6  Honda …        110000 Individual  1st …
+ 5          8.92  2018             11.1  Hero S…         65000 Individual  1st …
+ 6          8.99  2018             11.4  Bajaj …         87000 Individual  1st …
+ 7         11.0   2010              9.90 Bajaj …         20000 Individual  1st …
+ 8         10.8   2010              9.90 Hero  …         20000 Individual  1st …
+ 9          9.85  2016             10.5  TVS Ju…         35000 Individual  1st …
+10         10.6   2017             11.0  Bajaj …         60000 Individual  2nd …
+# ℹ 96 more rows
+# ℹ 2 more variables: km_driven &lt;dbl&gt;, ex_showroom_price &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -855,21 +891,21 @@ This function will take in a data set and a number of folds (<code>num_folds</co
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> folds[[test_number]]</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>test</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 107 x 9
+<pre><code># A tibble: 107 × 9
    log_km_driven  year log_selling_price name    selling_price seller_type owner
            &lt;dbl&gt; &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;
- 1         10.3   2015              10.1 Honda ~         25000 Individual  1st ~
- 2         10.4   2016              10.5 Hero H~         35000 Individual  1st ~
- 3         10.1   2018              11.0 Yamaha~         60000 Individual  1st ~
- 4         10.4   2013              10.6 Bajaj ~         40000 Individual  1st ~
- 5          7.57  2017              12.0 Mahind~        165000 Individual  1st ~
- 6          9.90  2019              11.4 TVS Ap~         90000 Individual  1st ~
- 7          8.52  2017              11.1 Bajaj ~         65000 Individual  1st ~
- 8          9.17  2018              11.5 TVS Ap~         95000 Individual  1st ~
- 9          8.61  2016              10.5 Hero G~         38000 Dealer      1st ~
-10         10.1   2015              10.7 Yamaha~         45000 Individual  1st ~
-# i 97 more rows
-# i 2 more variables: km_driven &lt;dbl&gt;, ex_showroom_price &lt;dbl&gt;</code></pre>
+ 1         10.3   2015              10.1 Honda …         25000 Individual  1st …
+ 2         10.4   2016              10.5 Hero H…         35000 Individual  1st …
+ 3         10.1   2018              11.0 Yamaha…         60000 Individual  1st …
+ 4         10.4   2013              10.6 Bajaj …         40000 Individual  1st …
+ 5          7.57  2017              12.0 Mahind…        165000 Individual  1st …
+ 6          9.90  2019              11.4 TVS Ap…         90000 Individual  1st …
+ 7          8.52  2017              11.1 Bajaj …         65000 Individual  1st …
+ 8          9.17  2018              11.5 TVS Ap…         95000 Individual  1st …
+ 9          8.61  2016              10.5 Hero G…         38000 Dealer      1st …
+10         10.1   2015              10.7 Yamaha…         45000 Individual  1st …
+# ℹ 97 more rows
+# ℹ 2 more variables: km_driven &lt;dbl&gt;, ex_showroom_price &lt;dbl&gt;</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#remove the test fold from the list</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>folds[[test_number]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
@@ -892,21 +928,21 @@ Recall the <code>purrr:reduce()</code> function. This allows us to iteratively a
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#the other nine folds are now in train</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 954 x 9
+<pre><code># A tibble: 954 × 9
    log_km_driven  year log_selling_price name    selling_price seller_type owner
            &lt;dbl&gt; &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;
- 1         11.2   2012              10.7 Hero H~         45000 Individual  1st ~
- 2         10.4   2014              10.5 Hero I~         35000 Individual  1st ~
- 3          9.62  2017              11.8 Bajaj ~        138000 Individual  1st ~
- 4          8.85  2017              11.9 Royal ~        150000 Individual  1st ~
- 5         10.6   2010              10.5 Bajaj ~         35000 Individual  1st ~
- 6          8.85  2018              11.2 Honda ~         70000 Individual  1st ~
- 7          8.07  2019              11.4 Hero X~         87000 Individual  1st ~
- 8          9.80  2017              11.2 Yamaha~         75000 Individual  1st ~
- 9          9.85  2014              11.5 Honda ~        100000 Individual  1st ~
-10          9.96  2018              11.3 Bajaj ~         80000 Individual  1st ~
-# i 944 more rows
-# i 2 more variables: km_driven &lt;dbl&gt;, ex_showroom_price &lt;dbl&gt;</code></pre>
+ 1         11.2   2012              10.7 Hero H…         45000 Individual  1st …
+ 2         10.4   2014              10.5 Hero I…         35000 Individual  1st …
+ 3          9.62  2017              11.8 Bajaj …        138000 Individual  1st …
+ 4          8.85  2017              11.9 Royal …        150000 Individual  1st …
+ 5         10.6   2010              10.5 Bajaj …         35000 Individual  1st …
+ 6          8.85  2018              11.2 Honda …         70000 Individual  1st …
+ 7          8.07  2019              11.4 Hero X…         87000 Individual  1st …
+ 8          9.80  2017              11.2 Yamaha…         75000 Individual  1st …
+ 9          9.85  2014              11.5 Honda …        100000 Individual  1st …
+10          9.96  2018              11.3 Bajaj …         80000 Individual  1st …
+# ℹ 944 more rows
+# ℹ 2 more variables: km_driven &lt;dbl&gt;, ex_showroom_price &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <ul>
@@ -1124,7 +1160,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1156,29 +1203,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1186,7 +1211,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

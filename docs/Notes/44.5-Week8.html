@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-05-12">
 
-<title>ST 558 Data Science for Statisticians (R) - Modeling Recap</title>
+<title>ST 558 Data Science for Statisticians (R) - Week 8 Overview</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,8 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../Notes/51.5-Week9.html" rel="next">
-<link href="../Notes/50-LASSO_Models_Selecting_Models_CV_Test_Set.html" rel="prev">
+<link href="../Notes/44-Modeling_Concepts_Inference_Prediction_Landing.html" rel="next">
+<link href="../Notes/43-RShiny_Articles_II.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -122,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/44.5-Week8.html">Topic 5: Predictive Modeling</a></li><li class="breadcrumb-item"><a href="../Notes/51-Modeling_Recap_Landing.html">Modeling Recap</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/44.5-Week8.html">Topic 5: Predictive Modeling</a></li><li class="breadcrumb-item"><a href="../Notes/44.5-Week8.html">Week 8 Overview</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -491,7 +491,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/44.5-Week8.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/44.5-Week8.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Week 8 Overview</span></a>
   </div>
 </li>
@@ -539,7 +539,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/51-Modeling_Recap_Landing.html" class="sidebar-item-text sidebar-link active">
+  <a href="../Notes/51-Modeling_Recap_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Modeling Recap</span></a>
   </div>
 </li>
@@ -616,20 +616,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/44.5-Week8.html">Topic 5: Predictive Modeling</a></li><li class="breadcrumb-item"><a href="../Notes/51-Modeling_Recap_Landing.html">Modeling Recap</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/44.5-Week8.html">Topic 5: Predictive Modeling</a></li><li class="breadcrumb-item"><a href="../Notes/44.5-Week8.html">Week 8 Overview</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Modeling Recap</h1>
+<h1 class="title">Week 8 Overview</h1>
 </div>
 
 
@@ -652,19 +646,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The video below recaps the predictive modeling paradigm. This is a pretty big concept so it never hurts to focus on the big picture ideas again!</p>
-<p>I highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer.</p>
-<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=ccd22a5b-1533-4a29-b8a0-b21e00ffbc8d&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="51-Modeling_Data_Recap"></iframe>
-<section id="notes" class="level2">
-<h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<ul>
-<li><a href="51-Modeling_Data_Recap.html" target="_blank">HTML version</a></li>
-<li><a href="PDFs/51-Modeling_Data_Recap.pdf" target="_blank">PDF version</a></li>
-</ul>
-<p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
+<p>More coming soon!</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1078,13 +1062,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Notes/50-LASSO_Models_Selecting_Models_CV_Test_Set.html" class="pagination-link" aria-label="LASSO Models">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">LASSO Models</span>
+      <a href="../Notes/43-RShiny_Articles_II.html" class="pagination-link" aria-label="Useful R Shiny Articles II">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Useful R Shiny Articles II</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Notes/51.5-Week9.html" class="pagination-link" aria-label="Week 9 Overview">
-        <span class="nav-page-text">Week 9 Overview</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../Notes/44-Modeling_Concepts_Inference_Prediction_Landing.html" class="pagination-link" aria-label="Modeling Concepts">
+        <span class="nav-page-text">Modeling Concepts</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
