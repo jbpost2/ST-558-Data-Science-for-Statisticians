@@ -12,7 +12,7 @@ This wraps up the content for week 1. Now we require some practice! You should h
 
 This second week we'll go through a systematic view of the most common data objects you'll see in `R`. We'll see how to access these objects using `Base R` commands. 
 
-We will learn about the idea of R objects and how to investigate an R object via
+We learned, and will continue investigating an R object via
 
 -   `class()`
 -   `typeof()`
