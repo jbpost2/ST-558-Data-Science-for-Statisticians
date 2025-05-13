@@ -1,0 +1,90 @@
+---
+title: "Week 3 Overview"
+format: html
+toc: TRUE
+editor: source
+editor_options: 
+  chunk_output_type: inline
+---
+
+This wraps up the content for week 2. Now we require some practice! You should head back to our <a href = "https://moodle-courses2527.wolfware.ncsu.edu/course/view.php?id=645&bp=s" target = "_blank">Moodle site</a> to check out your homework assignment for this week.
+
+We are now ready to really look at bringing data in and how to handle that data more seamlessly. We'll look at working within the `tidyverse`. This is a suite of packages that all work together and allow you to read in data and do most common data manipulations.
+
+This week we'll also see how we can use the `tidyr` package to change the format of a dataset (long to wide), see how we can connect `R` to a database, learn about SQL style joins
+
+## Week 3 Additional Readings/Learning Materials
+
+### Manipulating Data
+
+- <a href="https://r4ds.hadley.nz/data-transform" target="_blank">Chapters 3, 4, and 5 of R 4 Data Science</a>
+- (Optional) <a href="https://r-pkgs.org/" target="_blank">R Packages book</a>
+- (Optional) <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html" target="_blank">List of CRAN approved packages</a>
+- (Optional) <a href="https://support.posit.co/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages" target="_blank">List of useful R packages</a>
+
+### Reading Data
+
+- <a href = "https://r4ds.hadley.nz/data-import" target = "_blank">Chapter 7 of R 4 Data Science</a>
+- (Optional) <a href = "https://www.w3schools.com/sql/" target = "_blank">SQL syntax</a>
+
+### SQL Joins
+
+- <a href = "https://r4ds.hadley.nz/joins" target = "_blank">Chapter 19 of R 4 Data Science</a>
+
+### Reading Data
+
+1. read delimited data, SAS data files, SPSS files, and other file types into R (CO 2)
+
+    a. describe the term delimiter
+    b. read comma separated value files into R using the readr package
+    c. explain how the read_ functions determine column types
+    d. describe the readxl package and its functions
+    e. compare and contrast tibbles and data frames
+
+2. write a stored data set to a file using different delimiters (CO 2)
+
+### Manipulating Data
+
+1. use logical statements and indexing vectors to subset common data objects using common functions such as `[`, subset, or dplyr::filter functions (CO 2, 3, 4)
+2. list favorable things to look for in an R package (CO 2, 3)
+
+    a. describe the general purpose of the tidyverse package
+    b. outline the difference between require and library
+    c. explicitly use functions from a particular package using the :: operator
+    d. discuss the idea of masking of R functions and objects
+
+3. describe the uses of and program with functions from the dplyr package(CO 2, 3, 4)
+
+    a. explain the benefits of using the dplyr package over base R methods
+    b. program with the arrange, filter, select, and rename functions from the dplyr package
+    c. optimize selecting variables from a data frame using the select function's options (such as starts_with)
+    d. combine functions in the dplry package to subset and summarize a data set in R
+    e. describe the uses of and program with the mutate, group_by, and summarise functions in the dplyr R package
+    f. combine functions in the dplry package to subset and summarize a data set in R
+
+4. program using the chain of commands or chaining/piping operators (CO 1, 4)
+
+### Other ways to connect R to data
+
+1. explain the general process of connecting R to a database, connect R to a database, and request data (CO 2)
+
+    a. define the term SQL and RDBMS
+    b. compare terminology between statistics and SQL (tables vs data sets, etc.)
+    c. extract SQL code from dplyr commands
+    d. write very basic SQL code to select and merge data
+    e. describe why the collect function is required when using R to query a database
+    f. determine the appropriate type of join to extract information of interest from given tables
+
+2. query APIs to return appropriate data (CO 2)
+
+    a. define the term API
+    b. explain the common syntax often used for APIs
+
+### Other Data Manipulations
+
+1.   utilize the tidyr package to manipulate data  (CO 2)
+
+    a. change data between wide to long formats
+    b. split or combine columns using the tidyr package
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

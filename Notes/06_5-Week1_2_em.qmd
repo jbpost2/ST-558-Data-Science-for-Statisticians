@@ -1,0 +1,130 @@
+---
+title: "Week 2 Overview"
+format: html
+toc: TRUE
+editor: source
+editor_options: 
+  chunk_output_type: inline
+---
+
+This wraps up the content for week 1. Now we require some practice! You should head back to our <a href = "https://moodle-courses2527.wolfware.ncsu.edu/course/view.php?id=645&bp=s" target = "_blank">Moodle site</a> to check out your homework assignment for this week.
+
+
+This second week we'll go through a systematic view of the most common data objects you'll see in `R`. We'll see how to access these objects using `Base R` commands. 
+
+We will learn about the idea of R objects and how to investigate an R object via
+
+-   `class()`
+-   `typeof()`
+-   `str()`
+
+We see that R commonly uses the attributes of the object to determine how to apply (or dispatch) a function. We will look at common R objects and how to access their elements:
+
+-   Atomic vectors - `x[ ]`
+-   Matrices - `x[ , ]`
+-   Data Frames - `x[ , ]` or `x$name`
+-   Lists - `x[[ ]]` or `x$name`
+
+and continue to practice documenting our code by using a notebook environment such as Quarto (along with git/github for version control and sharing/collaborating).
+
+Now we want to look at how to control the execution of our code. The three main things we'll look at here are
+
+-   `if/then/else` logic and syntax
+-   looping to repeatedly execute code
+-   vectorized functions for improved efficiency
+
+Then we'll see how to write our own functions! We are already learning a lot of necessary material to be a data scientist. Let's go!!
+
+## Week 2 Additional Readings/Learning Materials
+
+### Common Data Objects in R
+
+-   <a href="https://r4ds.hadley.nz/logicals" target="_blank">Chapter 12 of R 4 Data Science</a>
+-   <a href="https://r4ds.hadley.nz/base-r" target="_blank">Chapter 27 of R 4 Data Science (27.1-27.3)</a>
+
+### Writing Functions
+
+- <a href="https://r4ds.hadley.nz/functions" target="_blank">Chapter 25 of R 4 Data Science</a>
+- <a href = "http://adv-r.had.co.nz/Functions.html" target = "_blank">Chapter 5 of Advanced R</a>
+- <a href = "https://www.r-bloggers.com/consistent-naming-conventions-in-r/" target = "_blank">Consistent naming conventions in R><a/> and <a href="https://google.github.io/styleguide/Rguide.xml" target="_blank">R's style guide</a>
+- <a href="https://modern-rstats.eu/defining-your-own-functions.html#functions-that-take-functions-as-arguments-writing-your-own-higher-order-functions" target="_blank">Chapter 7 of Modern R with the tidyverse</a>
+
+### Loops and Vectorized Functions<br>
+
+- <a href="https://r4ds.hadley.nz/base-r" target="_blank">Chapter 27 of R 4 Data Science (27.4-27.5)</a>
+
+## Week 2 Learning Objectives
+
+Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)
+
+### R Basics
+
+1.    create common data objects such as data frames, matrices, vectors, and lists and subset each of them (CO 1, 2, 3)
+
+    a.  recognize the most appropriate method for accessing an R object b. determine the appropriate type of object in which to save differing types of data c. contrast matrices and data frames d. determine the type of R object you are working with e. compare and contrast the attributes of the common data types
+
+2.    utilize R help and other resources to appropriately use and/or modify an R function or object (CO 3)
+
+
+Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)
+
+### Logicals & if/then/else
+
+1. describe the idea of coercion and compare and contrast the use of implicit and explicit coercion (CO 1, 4)
+
+    a.    outline the rules for implicit coercion
+    b.    use common explicit coercion functions
+    c.    hypothesize the type of coercion implicitly done by a section of R code
+
+### For Loops and Vectorized Functions
+
+1. describe the process of a for loop, while loop, and repeat statement in R (CO 1, 3, 4)
+
+    a.    program R to break from a loop when conditions are met
+    b.    program R to skip an iteration of a loop
+    c.    utilize different “counters” or “iterators” in an R loop
+    d.    explain the use and process of nested for loops
+    e.    program a nested R loop in R
+    f.    explain why loops are not always ideal in R
+
+2.    program using the “apply family” of functions in R (CO 1, 3, 4)
+
+    a.    differentiate between the apply family of functions in R including, but not limited to, mapply, sapply, lapply, apply, and replicate
+    b.    manipulate R code that uses loops to instead use the proper apply function
+    c.    utilize anonymous functions in calls to the apply family of functions in R
+
+3.    recall common “vectorized” functions in R such as colMeans, rowMeans, ifelse, etc. (CO 1, 4)
+4.    write their own vectorized version of a function in R (CO 1, 4)
+5.    describe what an anonymous function is and how it differs from other functions (CO 1, 4)
+
+### Writing Functions 
+
+Note: Not all of these are covered in this week's function writing videos - we'll revisit the topic later!
+
+1. display code from previously written functions in R (CO 1, 3)
+2. describe the parts of an R function (CO 1, 4)
+3. describe the difference between a prefix and an infix function (CO 1, 4)
+
+    a. understand the order of evaluation for user created and built-in infix functions
+
+4. write an R function that has default arguments, allows for additional arguments, and returns a well-structured named object (CO 1, 3, 4)
+
+    a. determine appropriate uses for the stop function
+    b. develop a pipeable function that acts on a data frame and one that produces side effects
+    c. create a custom infix function
+
+5. describe the way that inputs can be specified to a function (CO 1, 3)
+
+    a. describe positional matching and predict what input values will be assigned to which function values
+    b. explain lazy evaluation and give examples of where it may be important
+
+6. use if/then/else logic to conditionally execute code
+7. utilize the switch function and compare and contrast its use against if/then/else logic (CO 1, 3, 4)
+8. define environments including temporary environments (CO 1)
+
+    a. summarize the order in which R attempts to find a requested object
+    b. sketch out the R environment framework and explain the idea of lexical scoping
+    c. discuss the concept of local variables and local environments as compared to global variables and environments
+    d. state the naming conventions for R objects
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-05-12">
+<meta name="dcterms.date" content="2025-05-13">
 
 <title>ST 558 Data Science for Statisticians (R) - Week 3 Overview</title>
 <style>
@@ -122,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.qmd">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/10_5-Week2_3.html">Week 3 Overview</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.qmd">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/10_5-Week2_3_em.html">Week 3 Overview</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -195,7 +195,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/06_5-Week1_2.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/06_5-Week1_2_em.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 2 Overview</span></a>
   </div>
 </li>
@@ -225,7 +225,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/10_5-Week2_3.html" class="sidebar-item-text sidebar-link active">
+  <a href="../Notes/10_5-Week2_3_em.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Week 3 Overview</span></a>
   </div>
 </li>
@@ -622,14 +622,13 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#week-3-additional-readingslearning-materials" id="toc-week-3-additional-readingslearning-materials" class="nav-link active" data-scroll-target="#week-3-additional-readingslearning-materials">Week 3 Additional Readings/Learning Materials</a>
   <ul class="collapse">
-  <li><a href="#writing-functions" id="toc-writing-functions" class="nav-link" data-scroll-target="#writing-functions">Writing Functions</a></li>
-  <li><a href="#loops-and-vectorized-functions" id="toc-loops-and-vectorized-functions" class="nav-link" data-scroll-target="#loops-and-vectorized-functions">Loops and Vectorized Functions<br></a></li>
-  </ul></li>
-  <li><a href="#week-3-learning-objectives" id="toc-week-3-learning-objectives" class="nav-link" data-scroll-target="#week-3-learning-objectives">Week 3 Learning Objectives</a>
-  <ul class="collapse">
-  <li><a href="#logicals-ifthenelse" id="toc-logicals-ifthenelse" class="nav-link" data-scroll-target="#logicals-ifthenelse">Logicals &amp; if/then/else</a></li>
-  <li><a href="#for-loops-and-vectorized-functions" id="toc-for-loops-and-vectorized-functions" class="nav-link" data-scroll-target="#for-loops-and-vectorized-functions">For Loops and Vectorized Functions</a></li>
-  <li><a href="#writing-functions-1" id="toc-writing-functions-1" class="nav-link" data-scroll-target="#writing-functions-1">Writing Functions</a></li>
+  <li><a href="#manipulating-data" id="toc-manipulating-data" class="nav-link" data-scroll-target="#manipulating-data">Manipulating Data</a></li>
+  <li><a href="#reading-data" id="toc-reading-data" class="nav-link" data-scroll-target="#reading-data">Reading Data</a></li>
+  <li><a href="#sql-joins" id="toc-sql-joins" class="nav-link" data-scroll-target="#sql-joins">SQL Joins</a></li>
+  <li><a href="#reading-data-1" id="toc-reading-data-1" class="nav-link" data-scroll-target="#reading-data-1">Reading Data</a></li>
+  <li><a href="#manipulating-data-1" id="toc-manipulating-data-1" class="nav-link" data-scroll-target="#manipulating-data-1">Manipulating Data</a></li>
+  <li><a href="#other-ways-to-connect-r-to-data" id="toc-other-ways-to-connect-r-to-data" class="nav-link" data-scroll-target="#other-ways-to-connect-r-to-data">Other ways to connect R to data</a></li>
+  <li><a href="#other-data-manipulations" id="toc-other-data-manipulations" class="nav-link" data-scroll-target="#other-data-manipulations">Other Data Manipulations</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -637,7 +636,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.qmd">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/10_5-Week2_3.html">Week 3 Overview</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.qmd">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/10_5-Week2_3_em.html">Week 3 Overview</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Week 3 Overview</h1>
 </div>
@@ -650,7 +649,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-05-12</p>
+      <p class="date">2025-05-13</p>
     </div>
   </div>
   
@@ -662,99 +661,96 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This wraps up the content for week 2. Now we require some practice! You should head back to our <a href="https://wolfware.ncsu.edu/" target="_blank">Moodle site</a> to check out your homework assignment for this week.</p>
-<p>Hopefully, you feel like you have an idea about programming in R. We’ve learned about the idea of R objects and how to investigate an R object via</p>
-<ul>
-<li><code>class()</code></li>
-<li><code>typeof()</code></li>
-<li><code>str()</code></li>
-</ul>
-<p>We see that R commonly uses the attributes of the object to determine how to apply (or dispatch) a function. We’ve looked at common R objects and how to access their elements:</p>
-<ul>
-<li>Atomic vectors - <code>x[ ]</code></li>
-<li>Matrices - <code>x[ , ]</code></li>
-<li>Data Frames - <code>x[ , ]</code> or <code>x$name</code></li>
-<li>Lists - <code>x[[ ]]</code> or <code>x$name</code></li>
-</ul>
-<p>and how to document our code by using a notebook environment such as Quarto (along with git/github for version control and sharing/collaborating).</p>
-<p>Now we want to look at how to control the execution of our code. The three main things we’ll look at here are</p>
-<ul>
-<li><code>if/then/else</code> logic and syntax</li>
-<li>looping to repeatedly execute code</li>
-<li>vectorized functions for improved efficiency</li>
-</ul>
-<p>Then we’ll see how to write our own functions! We are already learning a lot of necessary material to be a data scientist. Let’s go!!</p>
+<p>This wraps up the content for week 2. Now we require some practice! You should head back to our <a href="https://moodle-courses2527.wolfware.ncsu.edu/course/view.php?id=645&amp;bp=s" target="_blank">Moodle site</a> to check out your homework assignment for this week.</p>
+<p>We are now ready to really look at bringing data in and how to handle that data more seamlessly. We’ll look at working within the <code>tidyverse</code>. This is a suite of packages that all work together and allow you to read in data and do most common data manipulations.</p>
+<p>This week we’ll also see how we can use the <code>tidyr</code> package to change the format of a dataset (long to wide), see how we can connect <code>R</code> to a database, learn about SQL style joins</p>
 <section id="week-3-additional-readingslearning-materials" class="level2">
 <h2 class="anchored" data-anchor-id="week-3-additional-readingslearning-materials">Week 3 Additional Readings/Learning Materials</h2>
-<section id="writing-functions" class="level3">
-<h3 class="anchored" data-anchor-id="writing-functions">Writing Functions</h3>
+<section id="manipulating-data" class="level3">
+<h3 class="anchored" data-anchor-id="manipulating-data">Manipulating Data</h3>
 <ul>
-<li><a href="https://r4ds.hadley.nz/functions" target="_blank">Chapter 25 of R 4 Data Science</a></li>
-<li><a href="http://adv-r.had.co.nz/Functions.html" target="_blank">Chapter 5 of&nbsp;Advanced R</a></li>
-<li><a href="https://www.r-bloggers.com/consistent-naming-conventions-in-r/" target="_blank">Consistent naming conventions in R&gt;</a><a>&nbsp;and&nbsp;</a><a href="https://google.github.io/styleguide/Rguide.xml" target="_blank">R’s style guide</a></li>
-<li><a href="https://modern-rstats.eu/defining-your-own-functions.html#functions-that-take-functions-as-arguments-writing-your-own-higher-order-functions" target="_blank">Chapter 7 of Modern R with the tidyverse</a></li>
+<li><a href="https://r4ds.hadley.nz/data-transform" target="_blank">Chapters 3, 4, and 5 of R 4 Data Science</a></li>
+<li>(Optional) <a href="https://r-pkgs.org/" target="_blank">R Packages book</a></li>
+<li>(Optional) <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html" target="_blank">List of CRAN approved packages</a></li>
+<li>(Optional) <a href="https://support.posit.co/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages" target="_blank">List of useful R packages</a></li>
 </ul>
 </section>
-<section id="loops-and-vectorized-functions" class="level3">
-<h3 class="anchored" data-anchor-id="loops-and-vectorized-functions">Loops and Vectorized Functions<br></h3>
+<section id="reading-data" class="level3">
+<h3 class="anchored" data-anchor-id="reading-data">Reading Data</h3>
 <ul>
-<li><a href="https://r4ds.hadley.nz/base-r" target="_blank">Chapter 27 of R 4 Data Science (27.4-27.5)</a></li>
+<li><a href="https://r4ds.hadley.nz/data-import" target="_blank">Chapter 7 of R 4 Data Science</a></li>
+<li>(Optional) <a href="https://www.w3schools.com/sql/" target="_blank">SQL syntax</a></li>
 </ul>
 </section>
+<section id="sql-joins" class="level3">
+<h3 class="anchored" data-anchor-id="sql-joins">SQL Joins</h3>
+<ul>
+<li><a href="https://r4ds.hadley.nz/joins" target="_blank">Chapter 19 of R 4 Data Science</a></li>
+</ul>
 </section>
-<section id="week-3-learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="week-3-learning-objectives">Week 3 Learning Objectives</h2>
-<p>Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)</p>
-<section id="logicals-ifthenelse" class="level3">
-<h3 class="anchored" data-anchor-id="logicals-ifthenelse">Logicals &amp; if/then/else</h3>
+<section id="reading-data-1" class="level3">
+<h3 class="anchored" data-anchor-id="reading-data-1">Reading Data</h3>
 <ol type="1">
-<li><p>describe the idea of coercion and compare and contrast the use of implicit and explicit coercion (CO 1, 4)</p>
-<p>a.&nbsp;&nbsp;&nbsp; outline the rules for implicit coercion b.&nbsp;&nbsp;&nbsp; use common explicit coercion functions c.&nbsp;&nbsp;&nbsp; hypothesize the type of coercion implicitly done by a section of R code</p></li>
+<li><p>read delimited data, SAS data files, SPSS files, and other file types into R (CO 2)</p>
+<ol type="a">
+<li>describe the term delimiter</li>
+<li>read comma separated value files into R using the readr package</li>
+<li>explain how the read_ functions determine column types</li>
+<li>describe the readxl package and its functions</li>
+<li>compare and contrast tibbles and data frames</li>
+</ol></li>
+<li><p>write a stored data set to a file using different delimiters (CO 2)</p></li>
 </ol>
 </section>
-<section id="for-loops-and-vectorized-functions" class="level3">
-<h3 class="anchored" data-anchor-id="for-loops-and-vectorized-functions">For Loops and Vectorized Functions</h3>
+<section id="manipulating-data-1" class="level3">
+<h3 class="anchored" data-anchor-id="manipulating-data-1">Manipulating Data</h3>
 <ol type="1">
-<li><p>describe the process of a for loop, while loop, and repeat statement in R (CO 1, 3, 4)</p>
-<p>a.&nbsp;&nbsp;&nbsp; program R to break from a loop when conditions are met b.&nbsp;&nbsp;&nbsp; program R to skip an iteration of a loop c.&nbsp;&nbsp;&nbsp; utilize different “counters” or “iterators” in an R loop d.&nbsp;&nbsp;&nbsp; explain the use and process of nested for loops e.&nbsp;&nbsp;&nbsp; program a nested R loop in R f.&nbsp;&nbsp;&nbsp; explain why loops are not always ideal in R</p></li>
-<li><p>&nbsp;&nbsp; program using the “apply family” of functions in R (CO 1, 3, 4)</p>
-<p>a.&nbsp;&nbsp;&nbsp; differentiate between the apply family of functions in R including, but not limited to, mapply, sapply, lapply, apply, and replicate b.&nbsp;&nbsp;&nbsp; manipulate R code that uses loops to instead use the proper apply function c.&nbsp;&nbsp;&nbsp; utilize anonymous functions in calls to the apply family of functions in R</p></li>
-<li><p>&nbsp;&nbsp; recall common “vectorized” functions in R such as colMeans, rowMeans, ifelse, etc. (CO 1, 4)</p></li>
-<li><p>&nbsp;&nbsp; write their own vectorized version of a function in R (CO 1, 4)</p></li>
-<li><p>&nbsp;&nbsp; describe what an anonymous function is and how it differs from other functions (CO 1, 4)</p></li>
+<li><p>use logical statements and indexing vectors to subset common data objects using common functions such as <code>[</code>, subset, or dplyr::filter functions (CO 2, 3, 4)</p></li>
+<li><p>list favorable things to look for in an R package (CO 2, 3)</p>
+<ol type="a">
+<li>describe the general purpose of the tidyverse package</li>
+<li>outline the difference between require and library</li>
+<li>explicitly use functions from a particular package using the :: operator</li>
+<li>discuss the idea of masking of R functions and objects</li>
+</ol></li>
+<li><p>describe the uses of and program with functions from the dplyr package(CO 2, 3, 4)</p>
+<ol type="a">
+<li>explain the benefits of using the dplyr package over base R methods</li>
+<li>program with the arrange, filter, select, and rename functions from the dplyr package</li>
+<li>optimize selecting variables from a data frame using the select function’s options (such as starts_with)</li>
+<li>combine functions in the dplry package to subset and summarize a data set in R</li>
+<li>describe the uses of and program with the mutate, group_by, and summarise functions in the dplyr R package</li>
+<li>combine functions in the dplry package to subset and summarize a data set in R</li>
+</ol></li>
+<li><p>program using the chain of commands or chaining/piping operators (CO 1, 4)</p></li>
 </ol>
 </section>
-<section id="writing-functions-1" class="level3">
-<h3 class="anchored" data-anchor-id="writing-functions-1">Writing Functions</h3>
-<p>Note: Not all of these are covered in this week’s function writing videos - we’ll revisit the topic later!</p>
+<section id="other-ways-to-connect-r-to-data" class="level3">
+<h3 class="anchored" data-anchor-id="other-ways-to-connect-r-to-data">Other ways to connect R to data</h3>
 <ol type="1">
-<li><p>display code from previously written functions in R (CO 1, 3)</p></li>
-<li><p>describe the parts of an R function (CO 1, 4)</p></li>
-<li><p>describe the difference between a prefix and an infix function (CO 1, 4)</p>
+<li><p>explain the general process of connecting R to a database, connect R to a database, and request data (CO 2)</p>
 <ol type="a">
-<li>understand the order of evaluation for user created and built-in infix functions</li>
+<li>define the term SQL and RDBMS</li>
+<li>compare terminology between statistics and SQL (tables vs data sets, etc.)</li>
+<li>extract SQL code from dplyr commands</li>
+<li>write very basic SQL code to select and merge data</li>
+<li>describe why the collect function is required when using R to query a database</li>
+<li>determine the appropriate type of join to extract information of interest from given tables</li>
 </ol></li>
-<li><p>write an R function that has default arguments, allows for additional arguments, and returns a well-structured named object (CO 1, 3, 4)</p>
+<li><p>query APIs to return appropriate data (CO 2)</p>
 <ol type="a">
-<li>determine appropriate uses for the stop function</li>
-<li>develop a pipeable function that acts on a data frame and one that produces side effects</li>
-<li>create a custom infix function</li>
-</ol></li>
-<li><p>describe the way that inputs can be specified to a function (CO 1, 3)</p>
-<ol type="a">
-<li>describe positional matching and predict what input values will be assigned to which function values</li>
-<li>explain lazy evaluation and give examples of where it may be important</li>
-</ol></li>
-<li><p>use if/then/else logic to conditionally execute code</p></li>
-<li><p>utilize the switch function and compare and contrast its use against if/then/else logic (CO 1, 3, 4)</p></li>
-<li><p>define environments including temporary environments (CO 1)</p>
-<ol type="a">
-<li>summarize the order in which R attempts to find a requested object</li>
-<li>sketch out the R environment framework and explain the idea of lexical scoping</li>
-<li>discuss the concept of local variables and local environments as compared to global variables and environments</li>
-<li>state the naming conventions for R objects</li>
+<li>define the term API</li>
+<li>explain the common syntax often used for APIs</li>
 </ol></li>
 </ol>
+</section>
+<section id="other-data-manipulations" class="level3">
+<h3 class="anchored" data-anchor-id="other-data-manipulations">Other Data Manipulations</h3>
+<ol type="1">
+<li>utilize the tidyr package to manipulate data (CO 2)</li>
+</ol>
+<pre><code>a. change data between wide to long formats
+b. split or combine columns using the tidyr package</code></pre>
 <p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
 
