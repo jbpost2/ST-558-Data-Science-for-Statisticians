@@ -426,6 +426,12 @@ window.Quarto = {
  <span class="menu-text">Numeric Variable Graphs</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/28_5-Week_5_overview_em.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5 Overview</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -803,10 +809,10 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>vectorized_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
-                                       expr    min     lq    mean  median
- colMeans(my_numeric_batting, na.rm = TRUE) 4.0705 4.4999 5.20516 4.67735
-      uq     max neval
- 5.72685 11.3019   100</code></pre>
+                                       expr    min      lq     mean median
+ colMeans(my_numeric_batting, na.rm = TRUE) 4.1625 4.85665 8.184556  5.375
+       uq     max neval
+ 11.52025 24.3477   100</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -814,9 +820,9 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
                                                                 expr     min
- for (i in 1:17) {     mean(my_numeric_batting[, i], na.rm = TRUE) } 13.9648
-       lq     mean median       uq    max neval
- 16.78395 18.23993 17.644 18.71435 65.108   100</code></pre>
+ for (i in 1:17) {     mean(my_numeric_batting[, i], na.rm = TRUE) } 14.0449
+      lq     mean   median       uq     max neval
+ 17.4521 18.66926 18.34655 19.37745 50.7318   100</code></pre>
 </div>
 </div>
 </section>
@@ -943,16 +949,16 @@ window.Quarto = {
 <pre><code>Unit: microseconds
                                                                                                                                                                                                                                                                                                                                  expr
  for (i in seq_len(nrow(airquality))) {     if (airquality$Wind[i] &gt;= 15) {         "HighWind"     }     else if (airquality$Wind[i] &gt;= 10) {         "Windy"     }     else if (airquality$Wind[i] &gt;= 6) {         "LightWind"     }     else if (airquality$Wind[i] &gt;= 0) {         "Calm"     }     else {         "Error"     } }
-    min      lq    mean median      uq    max neval
- 3130.2 3448.75 4015.18 3755.2 4285.65 8011.1   100</code></pre>
+    min     lq     mean  median     uq    max neval
+ 3264.2 3710.4 4537.669 4189.85 5072.8 8837.3   100</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>vectorTime</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
                                                                                                                                                                                   expr
  ifelse(airquality$Wind &gt;= 15, "HighWind", ifelse(airquality$Wind &gt;=      10, "Windy", ifelse(airquality$Wind &gt;= 6, "LightWind", ifelse(airquality$Wind &gt;=      0, "Calm", "Error"))))
-   min     lq    mean median    uq   max neval
- 100.8 110.35 120.069  115.7 125.9 239.2   100</code></pre>
+   min    lq    mean median     uq   max neval
+ 103.7 122.6 129.762  130.3 136.75 173.7   100</code></pre>
 </div>
 </div>
 <p><strong>Note:</strong> There is an <code>if_else()</code> function from the <code>dplry</code> package. This has more restrictions than <code>ifelse()</code> but otherwise is pretty similar.</p>
