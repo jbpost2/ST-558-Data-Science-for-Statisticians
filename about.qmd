@@ -4,3 +4,4 @@ title: "About"
 
 This website houses the learning materials for ST 558 - Data Science for Statisticians at NC State.
 
+<https://jbpost2.github.io/ST-558-Data-Science-for-Statisticians/>
