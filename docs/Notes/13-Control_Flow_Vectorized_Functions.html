@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-05-14">
+<meta name="dcterms.date" content="2025-05-15">
 
 <title>ST 558 Data Science for Statisticians (R) - Control Flow: Vectorized Functions</title>
 <style>
@@ -711,7 +711,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-05-14</p>
+      <p class="date">2025-05-15</p>
     </div>
   </div>
   
@@ -810,9 +810,9 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
                                        expr    min     lq     mean  median
- colMeans(my_numeric_batting, na.rm = TRUE) 4.6465 5.3002 6.088471 5.73115
-     uq     max neval
- 6.2451 11.2656   100</code></pre>
+ colMeans(my_numeric_batting, na.rm = TRUE) 4.1655 4.6739 5.527427 5.08205
+     uq    max neval
+ 6.2518 12.071   100</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -820,9 +820,9 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
                                                                 expr     min
- for (i in 1:17) {     mean(my_numeric_batting[, i], na.rm = TRUE) } 15.2132
-       lq     mean  median      uq     max neval
- 18.63525 19.85912 19.5951 20.5734 54.3791   100</code></pre>
+ for (i in 1:17) {     mean(my_numeric_batting[, i], na.rm = TRUE) } 13.4648
+     lq     mean  median       uq     max neval
+ 17.144 19.00102 18.3816 19.67405 55.5529   100</code></pre>
 </div>
 </div>
 </section>
@@ -949,16 +949,16 @@ window.Quarto = {
 <pre><code>Unit: microseconds
                                                                                                                                                                                                                                                                                                                                  expr
  for (i in seq_len(nrow(airquality))) {     if (airquality$Wind[i] &gt;= 15) {         "HighWind"     }     else if (airquality$Wind[i] &gt;= 10) {         "Windy"     }     else if (airquality$Wind[i] &gt;= 6) {         "LightWind"     }     else if (airquality$Wind[i] &gt;= 0) {         "Calm"     }     else {         "Error"     } }
-  min     lq     mean  median      uq    max neval
- 3233 3584.3 4133.461 3861.95 4254.85 7768.9   100</code></pre>
+    min      lq     mean  median      uq    max neval
+ 3113.1 3335.85 3978.662 3705.55 4091.95 8017.9   100</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>vectorTime</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
                                                                                                                                                                                   expr
  ifelse(airquality$Wind &gt;= 15, "HighWind", ifelse(airquality$Wind &gt;=      10, "Windy", ifelse(airquality$Wind &gt;= 6, "LightWind", ifelse(airquality$Wind &gt;=      0, "Calm", "Error"))))
- min    lq    mean median     uq   max neval
-  93 116.3 119.426  120.8 124.85 171.3   100</code></pre>
+  min   lq   mean median    uq   max neval
+ 91.7 98.5 102.29 101.45 104.6 155.9   100</code></pre>
 </div>
 </div>
 <p><strong>Note:</strong> There is an <code>if_else()</code> function from the <code>dplry</code> package. This has more restrictions than <code>ifelse()</code> but otherwise is pretty similar.</p>

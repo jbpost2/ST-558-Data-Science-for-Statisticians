@@ -42,12 +42,11 @@ To obtain course help there are a number of options:
 +-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+
 | Topic/Week      | Learning Materials                                         | Assignments                    | **Code-alongs**                                |
 +=================+============================================================+================================+================================================+
-| Week 1          | 00 - Watch - Welcome to the Course\                        | HW 1 due Tu 5/20               | Code-alongs (optional attendance) on Thursdays |
-|                 | 01 - Read - What is Data Science?\                         |                                |                                                |
-| 5/14-5/16       | 02 - Watch - Workflows & Git/GitHub Basics\                |                                |                                                |
-|                 | 03 - Read - Git & GitHub Practice\                         |                                |                                                |
-| W-F             | 04 - Watch - R Basics\                                     |                                |                                                |
-|                 | 05 - Read & Watch - R projects and Connecting with Github\ |                                |                                                |
+| Week 1          | 01 - Read - What is Data Science?\                         | HW 1 due Tu 5/20               | Code-alongs (optional attendance) on Thursdays |
+|                 | 02 - Watch - Workflows & Git/GitHub Basics\                |                                |                                                |
+| 5/14-5/16       | 03 - Read - Git & GitHub Practice\                         |                                |                                                |
+|                 | 04 - Watch - R Basics\                                     |                                |                                                |
+| W-F             | 05 - Read & Watch - R projects and Connecting with Github\ |                                |                                                |
 |                 | 06 - Read & Watch - Quarto                                 |                                |                                                |
 +-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+
 | Week 2          | 07 - Base R Data Structures: Vectors\                      | HW 2 due Tu, 5/27              |                                                |
@@ -105,7 +104,7 @@ To obtain course help there are a number of options:
 |                 | 43 - LASSO Models\                                         |                                |                                                |
 |                 | 44 - Models recap                                          |                                |                                                |
 +-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+
-| Week 9          | 45 - Logistic Regression\                                  | HW 5 due Tu, 7/15              |                                                |
+| Week 9          | 45 - Logistic Regression\                                  | HW 5 due Tu, 7/15              |                                                |
 |                 | 46 - Regression and Classification Trees\                  |                                |                                                |
 | M-F             | 47 - Ensemble Trees (Random Forest; Bagged Trees)\         |                                |                                                |
 |                 | 48 - Fitting Classification Trees                          |                                |                                                |
