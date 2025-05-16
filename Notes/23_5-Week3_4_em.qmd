@@ -24,7 +24,7 @@ Week 4 we take on exploring and finding relationships in our data. Anytime we re
 
 - <a href = "https://r4ds.hadley.nz/factors" target = "_blank">Chapters 16 and 18 of R 4 Data Science</a>
 
-## Week 7 Learning Objectives
+## Week 4 Learning Objectives
 
 Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)
 

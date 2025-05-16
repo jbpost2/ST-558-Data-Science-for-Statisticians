@@ -16,23 +16,22 @@ project:
     - Notes/08-Base_R_Data_Structures_Matrices.qmd
     - Notes/09-Base_R_Data_Structures_Data_Frames.qmd
     - Notes/10-Base_R_Data_Structures_Lists.qmd
-    - Notes/10_5-Week2_3_em.qmd
     - Notes/11-Control_Flow_Logicals_if_then_else.qmd
     - Notes/12-Control_Flow_Loops.qmd
     - Notes/13-Control_Flow_Vectorized_Functions.qmd
     - Notes/14-Writing_Functions.qmd
-    - Notes/14_5-Week3_4.qmd
+    - Notes/10_5-Week2_3_em.qmd
+    # - Notes/14_5-Week3_4.qmd
     - Notes/15-Packages_Landing.qmd
     - Notes/16-Tidyverse_Essentials.qmd
     - Notes/17-Reading_Delimited_Data.qmd
     - Notes/18-Reading_Excel_Data.qmd
     - Notes/19-Manipulating_Data_with_dplyr.qmd
-    - Notes/19_5-Week4_5.qmd
+    # - Notes/19_5-Week4_5.qmd
     - Notes/20-Manipulating_Data_with_tidyr.qmd
     - Notes/21-Connecting_to_Databases.qmd
     - Notes/22-SQL_Style_Joins_Landing.qmd
-    - Notes/23-Querying_APIs_Landing.qmd
-    - Notes/23_5-Week4_em.qmd
+    - Notes/23_5-Week3_4_em.qmd
     - Notes/24-EDA_Concepts_Landing.qmd
     - Notes/25-Summarizing_Categorical_Variables.qmd
     - Notes/26-Barplots_ggplot_Basics_Landing.qmd
@@ -43,6 +42,7 @@ project:
     - Notes/30-Apply_Family_Landing.qmd
     - Notes/31-purrr_Landing.qmd
     - Notes/32-Advanced_Function_Writing_Landing.qmd
+    - Notes/23-Querying_APIs_Landing.qmd
     - Notes/33-RShiny_Introduction_Landing.qmd
     - Notes/34-RShiny_Tutorials_I.qmd
     - Notes/35-RShiny_Connecting_UI_Server_Landing.qmd
@@ -103,25 +103,24 @@ website:
           - Notes/08-Base_R_Data_Structures_Matrices.qmd
           - Notes/09-Base_R_Data_Structures_Data_Frames.qmd
           - Notes/10-Base_R_Data_Structures_Lists.qmd
-          - Notes/10_5-Week2_3_em.qmd
           - Notes/11-Control_Flow_Logicals_if_then_else.qmd
           - Notes/12-Control_Flow_Loops.qmd
           - Notes/13-Control_Flow_Vectorized_Functions.qmd
           - Notes/14-Writing_Functions.qmd
       - section: "Topic 2: Tidyverse & EDA"
         contents:
-          - Notes/14_5-Week3_4.qmd
+          - Notes/10_5-Week2_3_em.qmd
+          # - Notes/14_5-Week3_4.qmd
           - Notes/15-Packages_Landing.qmd
           - Notes/16-Tidyverse_Essentials.qmd
           - Notes/17-Reading_Delimited_Data.qmd
           - Notes/18-Reading_Excel_Data.qmd
           - Notes/19-Manipulating_Data_with_dplyr.qmd
-          - Notes/19_5-Week4_5.qmd
+          # - Notes/19_5-Week4_5.qmd
           - Notes/20-Manipulating_Data_with_tidyr.qmd
           - Notes/21-Connecting_to_Databases.qmd
           - Notes/22-SQL_Style_Joins_Landing.qmd
-          - Notes/23-Querying_APIs_Landing.qmd
-          - Notes/23_5-Week4_em.qmd
+          - Notes/23_5-Week3_4_em.qmd
           - Notes/24-EDA_Concepts_Landing.qmd
           - Notes/25-Summarizing_Categorical_Variables.qmd
           - Notes/26-Barplots_ggplot_Basics_Landing.qmd
@@ -134,6 +133,7 @@ website:
           - Notes/30-Apply_Family_Landing.qmd
           - Notes/31-purrr_Landing.qmd
           - Notes/32-Advanced_Function_Writing_Landing.qmd
+          - Notes/23-Querying_APIs_Landing.qmd
       - section: "Topic 4: R Shiny Dashboards"
         contents:
           - Notes/33-RShiny_Introduction_Landing.qmd

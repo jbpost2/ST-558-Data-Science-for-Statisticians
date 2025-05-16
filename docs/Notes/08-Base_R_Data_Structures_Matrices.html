@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-05-15">
+<meta name="dcterms.date" content="2025-05-16">
 
 <title>ST 558 Data Science for Statisticians (R) - Base R Data Structures: Matrices</title>
 <style>
@@ -259,12 +259,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/10_5-Week2_3_em.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 3 Overview</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../Notes/11-Control_Flow_Logicals_if_then_else.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Control Flow: Logicals &amp; if/then/else</span></a>
   </div>
@@ -300,8 +294,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/14_5-Week3_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 4 Overview</span></a>
+  <a href="../Notes/10_5-Week2_3_em.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -336,12 +330,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/19_5-Week4_5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 5 Overview</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../Notes/20-Manipulating_Data_with_tidyr.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Manipulating Data with <code>tidyr</code></span></a>
   </div>
@@ -360,13 +348,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/23-Querying_APIs_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Querying APIs</span></a>
+  <a href="../Notes/23_5-Week3_4_em.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 4 Overview</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
- <span class="menu-text">Notes/23_5-Week4_em.qmd</span>
-  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/24-EDA_Concepts_Landing.html" class="sidebar-item-text sidebar-link">
@@ -436,6 +421,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../Notes/32-Advanced_Function_Writing_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Advanced Function Writing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/23-Querying_APIs_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Querying APIs</span></a>
   </div>
 </li>
       </ul>
@@ -689,7 +680,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-05-15</p>
+      <p class="date">2025-05-16</p>
     </div>
   </div>
   
@@ -1050,17 +1041,17 @@ NULL
 <span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">c</span>(<span class="st">"Uniform"</span>, <span class="st">"Normal"</span>, <span class="st">"Gamma"</span>)))</span>
 <span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>my_mat3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      Uniform     Normal     Gamma
-1  0.52755415  0.6053649 0.9479099
-2  0.05926432 -0.6081623 0.9059400
-3  0.06773068 -1.4773389 0.6864442
-4  0.07350002 -1.4327902 1.0228730
-5  0.16351716  0.3611952 1.9152355
-6  0.84636971  0.3391320 1.4114910
-7  0.31552421  0.5539576 0.1356778
-8  0.92627609 -0.1040823 0.0285949
-9  0.94492357  0.9260348 0.8435218
-10 0.49837867 -0.4890601 0.1587373</code></pre>
+<pre><code>        Uniform      Normal      Gamma
+1  0.6070565146  0.10583601 1.37729371
+2  0.6224814551  0.15280576 0.09856063
+3  0.5569110424 -0.06215512 0.24534711
+4  0.2855647753  1.16247305 0.24361945
+5  0.6203028511 -1.44200994 0.98740481
+6  0.3118354748 -0.14633894 0.32258447
+7  0.0009512787 -1.20713385 0.24811843
+8  0.8701091462 -2.28134502 1.59193920
+9  0.1266399981  1.18843005 0.55073186
+10 0.2724789274  2.71327768 1.62354877</code></pre>
 </div>
 </div>
 </section>
