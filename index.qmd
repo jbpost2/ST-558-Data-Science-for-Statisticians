@@ -90,7 +90,7 @@ To obtain course help there are a number of options:
 | 6/16-6/18, 6/20 |                                                            |                                                     |                                                |           |
 |                 | 32 - Querying APIs & Dealing with JSON Data                |                                                     |                                                |           |
 +-----------------+------------------------------------------------------------+-----------------------------------------------------+------------------------------------------------+-----------+
-| Week 7          | 33 - R Shiny Basics & UI                                   | Project 2 due Tu, 7/8 \| \| \| \| \| \| \| \| \| \| |                                                |           |
+| Week 7          | 33 - R Shiny Basics & UI                                   | Project 2 due Tu, 7/8  |                                                |           |
 |                 |                                                            |                                                     |                                                |           |
 | M-F             | 34 -R Shiny Server\                                        |                                                     |                                                |           |
 |                 | 35 - Dynamic UI\                                           |                                                     |                                                |           |

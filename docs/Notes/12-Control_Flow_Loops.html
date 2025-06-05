@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-06-02">
+<meta name="dcterms.date" content="2025-06-05">
 
 <title>ST 558 Data Science for Statisticians (R) - Control Flow: Loops</title>
 <style>
@@ -675,7 +675,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-06-02</p>
+      <p class="date">2025-06-05</p>
     </div>
   </div>
   
@@ -763,13 +763,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">"The "</span>, words[<span class="dv">2</span>], <span class="st">" data point is "</span>, data[<span class="dv">2</span>], <span class="st">"."</span>, <span class="at">sep =</span> <span class="st">"&amp;"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The &amp;second&amp; data point is &amp;0.270870997803286&amp;."</code></pre>
+<pre><code>[1] "The &amp;second&amp; data point is &amp;0.859265595907345&amp;."</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">"The "</span>, words[<span class="dv">1</span>], <span class="st">" data point is "</span>, data[<span class="dv">1</span>], <span class="st">"."</span>, <span class="at">sep =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The first data point is 0.224760363111272."</code></pre>
+<pre><code>[1] "The first data point is 0.987614890327677."</code></pre>
 </div>
 </div>
 <p>Note: <code>sep = ""</code> is equivalent to using the <code>paste0()</code> function.</p>
@@ -779,11 +779,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"The "</span>, words[i], <span class="st">" data point is "</span>, data[i], <span class="st">"."</span>))</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The first data point is 0.224760363111272."
-[1] "The second data point is 0.270870997803286."
-[1] "The third data point is 0.798820956610143."
-[1] "The fourth data point is 0.512503463542089."
-[1] "The fifth data point is 0.420510207070038."</code></pre>
+<pre><code>[1] "The first data point is 0.987614890327677."
+[1] "The second data point is 0.859265595907345."
+[1] "The third data point is 0.273721627891064."
+[1] "The fourth data point is 0.670056948438287."
+[1] "The fifth data point is 0.184150591958314."</code></pre>
 </div>
 </div>
 <ul>
@@ -949,8 +949,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"The "</span>, words[i], <span class="st">" data point is "</span>, data[i], <span class="st">"."</span>))</span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The first data point is 0.224760363111272."
-[1] "The second data point is 0.270870997803286."</code></pre>
+<pre><code>[1] "The first data point is 0.987614890327677."
+[1] "The second data point is 0.859265595907345."</code></pre>
 </div>
 </div>
 <ul>
@@ -962,10 +962,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">"The "</span>, words[i], <span class="st">" data point is "</span>, data[i], <span class="st">"."</span>))</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "The first data point is 0.224760363111272."
-[1] "The second data point is 0.270870997803286."
-[1] "The fourth data point is 0.512503463542089."
-[1] "The fifth data point is 0.420510207070038."</code></pre>
+<pre><code>[1] "The first data point is 0.987614890327677."
+[1] "The second data point is 0.859265595907345."
+[1] "The fourth data point is 0.670056948438287."
+[1] "The fifth data point is 0.184150591958314."</code></pre>
 </div>
 </div>
 </section>
