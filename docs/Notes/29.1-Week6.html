@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-06-19">
 
-<title>ST 558 Data Science for Statisticians (R) - Modeling Recap</title>
+<title>ST 558 Data Science for Statisticians (R) - Week 6 Overview</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,8 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../Notes/51.5-Week9.html" rel="next">
-<link href="../Notes/50-LASSO_Models_Selecting_Models_CV_Test_Set.html" rel="prev">
+<link href="../Notes/29-Big_Recap_Landing.html" rel="next">
+<link href="../Notes/28_5-Week_5_overview_em.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -122,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/44.5-Week8.html">Topic 5: Predictive Modeling</a></li><li class="breadcrumb-item"><a href="../Notes/51-Modeling_Recap_Landing.html">Modeling Recap</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/29.1-Week6.html">Topic 3: Better Programming</a></li><li class="breadcrumb-item"><a href="../Notes/29.1-Week6.html">Week 6 Overview</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -358,16 +358,16 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
  <span class="menu-text">Topic 3: Better Programming</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/29.1-Week6.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/29.1-Week6.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Week 6 Overview</span></a>
   </div>
 </li>
@@ -482,13 +482,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false">
  <span class="menu-text">Topic 5: Predictive Modeling</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/44.5-Week8.html" class="sidebar-item-text sidebar-link">
@@ -539,7 +539,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/51-Modeling_Recap_Landing.html" class="sidebar-item-text sidebar-link active">
+  <a href="../Notes/51-Modeling_Recap_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Modeling Recap</span></a>
   </div>
 </li>
@@ -620,16 +620,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#week-6-additional-readingslearning-materials" id="toc-week-6-additional-readingslearning-materials" class="nav-link active" data-scroll-target="#week-6-additional-readingslearning-materials">Week 6 Additional Readings/Learning Materials</a>
+  <ul class="collapse">
+  <li><a href="#apply-family" id="toc-apply-family" class="nav-link" data-scroll-target="#apply-family"><code>apply()</code> family</a></li>
+  <li><a href="#purrr" id="toc-purrr" class="nav-link" data-scroll-target="#purrr"><code>purrr</code></a></li>
+  <li><a href="#advanced-function-writing" id="toc-advanced-function-writing" class="nav-link" data-scroll-target="#advanced-function-writing">Advanced Function Writing</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/44.5-Week8.html">Topic 5: Predictive Modeling</a></li><li class="breadcrumb-item"><a href="../Notes/51-Modeling_Recap_Landing.html">Modeling Recap</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/29.1-Week6.html">Topic 3: Better Programming</a></li><li class="breadcrumb-item"><a href="../Notes/29.1-Week6.html">Week 6 Overview</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Modeling Recap</h1>
+<h1 class="title">Week 6 Overview</h1>
 </div>
 
 
@@ -652,18 +657,48 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The video below recaps the predictive modeling paradigm. This is a pretty big concept so it never hurts to focus on the big picture ideas again!</p>
-<p>I highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer.</p>
-<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=ccd22a5b-1533-4a29-b8a0-b21e00ffbc8d&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="51-Modeling_Data_Recap"></iframe>
-<section id="notes" class="level2">
-<h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<ul>
-<li><a href="51-Modeling_Data_Recap.html" target="_blank">HTML version</a></li>
-<li><a href="PDFs/51-Modeling_Data_Recap.pdf" target="_blank">PDF version</a></li>
-</ul>
-<p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
+<p>Welcome to week 6! Please see Moodle for your required videos.</p>
+<p>This week we’ll start off with a recap, and then introduce the <code>apply()</code> functions from Base R, and the (mostly) equivalent tidyverse options from the <code>purrr</code> package. We will then get into advanced function writing and querying APIs.</p>
+<section id="week-6-additional-readingslearning-materials" class="level2">
+<h2 class="anchored" data-anchor-id="week-6-additional-readingslearning-materials">Week 6 Additional Readings/Learning Materials</h2>
+<section id="apply-family" class="level3">
+<h3 class="anchored" data-anchor-id="apply-family"><code>apply()</code> family</h3>
+<p><a href="https://adv-r.hadley.nz/functionals.html#base-functionals">Advanced R: Chapter 9.7</a></p>
+</section>
+<section id="purrr" class="level3">
+<h3 class="anchored" data-anchor-id="purrr"><code>purrr</code></h3>
+<p><a href="https://r4ds.hadley.nz/iteration.html#purrrmap-and-list_rbind">R for Data Science: Chapter 26.3.3</a></p>
+</section>
+<section id="advanced-function-writing" class="level3">
+<h3 class="anchored" data-anchor-id="advanced-function-writing">Advanced Function Writing</h3>
+<p><a href="https://r4ds.had.co.nz/functions.html">R for Data Science: Chapter 19</a></p>
+<p>Upon completion of this week, students will be able to:</p>
+<ol type="1">
+<li><p>query APIs to return appropriate data (CO 2)</p>
+<ol type="a">
+<li>define the term API</li>
+<li>explain the common syntax often used for APIs</li>
+</ol></li>
+<li><p>have a base understanding of the common <code>apply()</code> family of functions</p>
+<ol type="a">
+<li>have a working understanding on how to use common apply functions</li>
+<li>understand when to use which apply function</li>
+</ol></li>
+<li><p>have a base understanding of the <code>purrr</code> package</p>
+<ol type="a">
+<li>have a working understanding on how to use common map functions</li>
+<li>understand when it may be useful to use functions from the purrr pacakge vs Base R</li>
+</ol></li>
+<li><p>Improve function writing skills</p>
+<ol type="a">
+<li>have a working understanding of how to leverage … into our function writing</li>
+<li>how to use stops in function writing</li>
+<li>and more!</li>
+</ol></li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1078,13 +1113,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Notes/50-LASSO_Models_Selecting_Models_CV_Test_Set.html" class="pagination-link" aria-label="LASSO Models">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">LASSO Models</span>
+      <a href="../Notes/28_5-Week_5_overview_em.html" class="pagination-link" aria-label="Week 5 Overview">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Week 5 Overview</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Notes/51.5-Week9.html" class="pagination-link" aria-label="Week 9 Overview">
-        <span class="nav-page-text">Week 9 Overview</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../Notes/29-Big_Recap_Landing.html" class="pagination-link" aria-label="Recap and Direction!">
+        <span class="nav-page-text">Recap and Direction!</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
