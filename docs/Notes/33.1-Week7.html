@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-06-23">
 
-<title>ST 558 Data Science for Statisticians (R) - Packages</title>
+<title>ST 558 Data Science for Statisticians (R) - Week 7 Overview</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,8 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../Notes/16-Tidyverse_Essentials.html" rel="next">
-<link href="../Notes/10_5-Week2_3_em.html" rel="prev">
+<link href="../Notes/33-RShiny_Introduction_Landing.html" rel="next">
+<link href="../Notes/23-Querying_APIs_Landing.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -122,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/10_5-Week2_3_em.html">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/15-Packages_Landing.html">Packages</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/33.1-Week7.html">Topic 4: R Shiny Dashboards</a></li><li class="breadcrumb-item"><a href="../Notes/33.1-Week7.html">Week 7 Overview</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -251,13 +251,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
  <span class="menu-text">Topic 2: Tidyverse &amp; EDA</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/10_5-Week2_3_em.html" class="sidebar-item-text sidebar-link">
@@ -266,7 +266,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link active">
+  <a href="../Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Packages</span></a>
   </div>
 </li>
@@ -405,16 +405,16 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
  <span class="menu-text">Topic 4: R Shiny Dashboards</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/33.1-Week7.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/33.1-Week7.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Week 7 Overview</span></a>
   </div>
 </li>
@@ -626,16 +626,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#week-7-additional-readingslearning-materials" id="toc-week-7-additional-readingslearning-materials" class="nav-link active" data-scroll-target="#week-7-additional-readingslearning-materials">Week 7 Additional Readings/Learning Materials</a>
+  <ul class="collapse">
+  <li><a href="#optional-material" id="toc-optional-material" class="nav-link" data-scroll-target="#optional-material">Optional Material</a></li>
+  </ul></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/10_5-Week2_3_em.html">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/15-Packages_Landing.html">Packages</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/33.1-Week7.html">Topic 4: R Shiny Dashboards</a></li><li class="breadcrumb-item"><a href="../Notes/33.1-Week7.html">Week 7 Overview</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Packages</h1>
+<h1 class="title">Week 7 Overview</h1>
 </div>
 
 
@@ -658,17 +662,29 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The video below formally discusses <code>R</code> packages. Packages are collections of code (or data, etc.) around some topic. Packages (also called modules in other languages) extend what you can do with <code>R</code>.</p>
-<p>I highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer.</p>
-<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=0dd0bac2-e320-4f53-810c-b17a013a4c50&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="15 - R Packages"></iframe>
-<section id="notes" class="level2">
-<h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<ul>
-<li><a href="15-Packages.html" target="_blank">HTML version</a></li>
-<li><a href="PDFs/15-Packages.pdf" target="_blank">PDF version</a></li>
-</ul>
-<p>This wraps up the content for week 3. Now we require some practice! You should head back to our <a href="https://wolfware.ncsu.edu/" target="_blank">Moodle site</a> to check out your homework assignment for this week.</p>
-<p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
+<p>Welcome to week 7!</p>
+<p>This week is all about Shiny! This is one of my favorite topics in 558. R Shiny is a web framework that allows you to build interactive web applications and dashboards using the R programming language. It simplifies the process of creating web applications, especially for data analysis and visualization, by allowing you to work entirely in R without needing extensive knowledge of web development languages like HTML, CSS, or JavaScript.</p>
+<p>Shiny apps can be used in many many different applications.</p>
+<p>Many are used in the education space. Here are a couple examples!</p>
+<p><a href="https://dbuwgu-elijah0meyer.shinyapps.io/r-shiny-randomization-app/">Alina and my app on Bootstrap</a></p>
+<p><a href="https://christianstratton.shinyapps.io/PowerApp/">Power app by Dr.&nbsp;Stratton</a></p>
+<p><a href="https://jbpost2.github.io/pages/ShinyApps.html">Dr.&nbsp;Post Shiny apps</a></p>
+<p>The shiny R Gallery can be seen <a href="https://shiny.posit.co/r/gallery/">here</a></p>
+<section id="week-7-additional-readingslearning-materials" class="level2">
+<h2 class="anchored" data-anchor-id="week-7-additional-readingslearning-materials">Week 7 Additional Readings/Learning Materials</h2>
+<p>This week, we have you go through the R Shiny tutorials that should help you build a foundation to work in the R Shiny space!</p>
+<section id="optional-material" class="level3">
+<h3 class="anchored" data-anchor-id="optional-material">Optional Material</h3>
+<p><a href="https://www.youtube.com/watch?v=HVa42mJYppE">Basic Concept Video</a>: Short 2-minute video on the high level concept of what R Shiny is!</p>
+<p><a href="https://mastering-shiny.org/basic-app.html">Mastering Shiny</a> to be used at your own discretion</p>
+</section>
+</section>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
+<p>– Take the skills we have accumulated thus far, and implement them in the R Shiny space</p>
+<p>– Create an app that has multiple tabs!</p>
+<p>– Understand what a dynamic UI element is</p>
+<p>I look forward to seeing your creations for project 2!</p>
 
 
 </section>
@@ -1085,13 +1101,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Notes/10_5-Week2_3_em.html" class="pagination-link" aria-label="Week 3 Overview">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Week 3 Overview</span>
+      <a href="../Notes/23-Querying_APIs_Landing.html" class="pagination-link" aria-label="Querying APIs">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Querying APIs</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Notes/16-Tidyverse_Essentials.html" class="pagination-link" aria-label="Tidyverse Essentials">
-        <span class="nav-page-text">Tidyverse Essentials</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../Notes/33-RShiny_Introduction_Landing.html" class="pagination-link" aria-label="Introduction to R Shiny">
+        <span class="nav-page-text">Introduction to R Shiny</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

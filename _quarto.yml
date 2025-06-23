@@ -44,6 +44,7 @@ project:
     - Notes/31-purrr_Landing.qmd
     - Notes/32-Advanced_Function_Writing_Landing.qmd
     - Notes/23-Querying_APIs_Landing.qmd
+    - Notes/33.1-Week7.qmd
     - Notes/33-RShiny_Introduction_Landing.qmd
     - Notes/34-RShiny_Tutorials_I.qmd
     - Notes/35-RShiny_Connecting_UI_Server_Landing.qmd
@@ -138,6 +139,7 @@ website:
           - Notes/23-Querying_APIs_Landing.qmd
       - section: "Topic 4: R Shiny Dashboards"
         contents:
+          - Notes/33.1-Week7.qmd
           - Notes/33-RShiny_Introduction_Landing.qmd
           - Notes/34-RShiny_Tutorials_I.qmd
           - Notes/35-RShiny_Connecting_UI_Server_Landing.qmd

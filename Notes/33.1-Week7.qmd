@@ -1,0 +1,48 @@
+---
+title: "Week 7 Overview"
+format: html
+editor: visual
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+Welcome to week 7!
+
+This week is all about Shiny! This is one of my favorite topics in 558. R Shiny is a web framework that allows you to build interactive web applications and dashboards using the R programming language. It simplifies the process of creating web applications, especially for data analysis and visualization, by allowing you to work entirely in R without needing extensive knowledge of web development languages like HTML, CSS, or JavaScript. 
+
+Shiny apps can be used in many many different applications. 
+
+Many are used in the education space. Here are a couple examples! 
+
+[Alina and my app on Bootstrap](https://dbuwgu-elijah0meyer.shinyapps.io/r-shiny-randomization-app/)
+
+[Power app by Dr. Stratton](https://christianstratton.shinyapps.io/PowerApp/)
+
+[Dr. Post Shiny apps](https://jbpost2.github.io/pages/ShinyApps.html)
+
+The shiny R Gallery can be seen [here](https://shiny.posit.co/r/gallery/)
+
+
+
+## Week 7 Additional Readings/Learning Materials
+
+This week, we have you go through the R Shiny tutorials that should help you build a foundation to work in the R Shiny space!
+
+### Optional Material 
+
+[Basic Concept Video](https://www.youtube.com/watch?v=HVa42mJYppE): Short 2-minute video on the high level concept of what R Shiny is!
+
+[Mastering Shiny](https://mastering-shiny.org/basic-app.html) to be used at your own discretion 
+
+
+
+## Learning Objectives 
+
+-- Take the skills we have accumulated thus far, and implement them in the R Shiny space
+
+-- Create an app that has multiple tabs! 
+
+-- Understand what a dynamic UI element is
+
+I look forward to seeing your creations for project 2!
