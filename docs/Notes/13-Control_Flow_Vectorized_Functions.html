@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-06-23">
+<meta name="dcterms.date" content="2025-06-27">
 
 <title>ST 558 Data Science for Statisticians (R) - Control Flow: Vectorized Functions</title>
 <style>
@@ -714,7 +714,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-06-23</p>
+      <p class="date">2025-06-27</p>
     </div>
   </div>
   
@@ -812,10 +812,10 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>vectorized_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
-                                       expr    min      lq     mean median
- colMeans(my_numeric_batting, na.rm = TRUE) 4.2136 4.43205 5.263134 4.7431
-     uq     max neval
- 5.7439 13.2547   100</code></pre>
+                                       expr    min      lq     mean  median
+ colMeans(my_numeric_batting, na.rm = TRUE) 4.8269 5.16775 6.065699 5.68855
+      uq     max neval
+ 6.49505 11.6361   100</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -823,9 +823,9 @@ window.Quarto = {
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: milliseconds
                                                                 expr     min
- for (i in 1:17) {     mean(my_numeric_batting[, i], na.rm = TRUE) } 12.2213
-       lq     mean  median      uq     max neval
- 17.39775 18.60185 18.3934 19.1248 54.2304   100</code></pre>
+ for (i in 1:17) {     mean(my_numeric_batting[, i], na.rm = TRUE) } 15.3225
+       lq     mean   median       uq     max neval
+ 18.43325 19.76326 19.20815 20.36975 57.5773   100</code></pre>
 </div>
 </div>
 </section>
@@ -952,16 +952,16 @@ window.Quarto = {
 <pre><code>Unit: microseconds
                                                                                                                                                                                                                                                                                                                                  expr
  for (i in seq_len(nrow(airquality))) {     if (airquality$Wind[i] &gt;= 15) {         "HighWind"     }     else if (airquality$Wind[i] &gt;= 10) {         "Windy"     }     else if (airquality$Wind[i] &gt;= 6) {         "LightWind"     }     else if (airquality$Wind[i] &gt;= 0) {         "Calm"     }     else {         "Error"     } }
-    min     lq     mean  median     uq  max neval
- 3154.5 3352.6 3884.146 3588.15 4038.6 6573   100</code></pre>
+    min     lq     mean median      uq    max neval
+ 3165.5 3394.5 3954.882 3682.7 4145.75 8478.2   100</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>vectorTime</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Unit: microseconds
                                                                                                                                                                                   expr
  ifelse(airquality$Wind &gt;= 15, "HighWind", ifelse(airquality$Wind &gt;=      10, "Windy", ifelse(airquality$Wind &gt;= 6, "LightWind", ifelse(airquality$Wind &gt;=      0, "Calm", "Error"))))
-   min    lq    mean median    uq   max neval
- 100.9 116.6 129.386  124.1 130.1 387.5   100</code></pre>
+  min   lq   mean median     uq   max neval
+ 89.1 98.7 112.96  104.1 110.75 433.7   100</code></pre>
 </div>
 </div>
 <p><strong>Note:</strong> There is an <code>if_else()</code> function from the <code>dplry</code> package. This has more restrictions than <code>ifelse()</code> but otherwise is pretty similar.</p>
