@@ -7,4 +7,28 @@ editor_options:
   chunk_output_type: inline
 ---
 
-More coming soon!
+Welcome to week !
+
+It's time to continuing working with now more complicated models. This week, we are going over:
+
+-- Logistic Regression
+-- Regression and Classification Trees
+-- Ensemble Trees 
+
+If you would like, here are some optional reading material to additionally help support you through learning these concepts. 
+
+[Logistic Regression:9.1-9.3](https://openintro-ims.netlify.app/model-logistic)
+
+[Regression and Classification Trees article](https://www.nature.com/articles/nmeth.4370)
+
+Keep in mind the learning objectives as we continue working with models:
+
+-- Can you describe the modeling process (at a high level). That is, how would you answer the question "What is logistic regression?"
+
+-- Can you identify when these models are appropriate to use? That is, when would you suggest using logistic regression to a client? 
+
+-- Can you articulate when one type of model is performing better than others? 
+
+-- Can you articulate the model selection process to another statistician? What about a client? 
+
+Let's have a wonderful week 9! As always, please reach out if you have any questions. 
