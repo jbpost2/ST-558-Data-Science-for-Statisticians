@@ -106,7 +106,7 @@ To obtain course help there are a number of options:
 |                 | 43 - LASSO Models\                                         |                                |                                                |           |
 |                 | 44 - Models recap                                          |                                |                                                |           |
 +-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+-----------+
-| Week 9          | 45 - Logistic Regression\                                  | HW 5 due Tu, 7/15              |                                                |           |
+| Week 9          | 45 - Logistic Regression\                                  | HW 5 due Tu, 7/22              |                                                |           |
 |                 | 46 - Regression and Classification Trees\                  |                                |                                                |           |
 | M-F             | 47 - Ensemble Trees (Random Forest; Bagged Trees)\         |                                |                                                |           |
 |                 | 48 - Fitting Classification Trees                          |                                |                                                |           |
