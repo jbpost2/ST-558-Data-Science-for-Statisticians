@@ -18,7 +18,7 @@ I highly recommend watching the video using the 'full' Panopto player. There is 
 
 **Note: The code on slide 21 (same issues as before) and slides 19 & 31 (added `metric = `) of the video differs slightly from the code in the notes below. An older version of the `tidymodels` package was used in the video and that code no longer works. The code in the slides attached is the way to do this now.**
 
-- <a href = "42-RShiny_Debugging_Other_Useful_Things.html" target = "_blank">HTML version</a>
-- <a href = "PDFs/42-RShiny_Debugging_Other_Useful_Things.pdf" target = "_blank">PDF version</a>
+- <a href = "54-Ensemble_Trees_Bagging_Random_Forests.html" target = "_blank">HTML version</a>
+- <a href = "PDFs/54-Ensemble_Trees_Bagging_Random_Forests.pdf" target = "_blank">PDF version</a>
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!
