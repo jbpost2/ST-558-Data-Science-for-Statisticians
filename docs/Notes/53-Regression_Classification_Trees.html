@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-07-09">
+<meta name="dcterms.date" content="2025-07-15">
 
-<title>Regression &amp; Classification Trees – ST 558 Data Science for Statisticians (R)</title>
+<title>ST 558 Data Science for Statisticians (R) - Regression &amp; Classification Trees</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -34,7 +34,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -120,7 +120,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -142,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -153,13 +153,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/44.5-Week8.html">Topic 5: Predictive Modeling</a></li><li class="breadcrumb-item"><a href="../Notes/53-Regression_Classification_Trees.html">Regression &amp; Classification Trees</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -184,9 +184,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
  <span class="menu-text">Topic 1: Data Science &amp; R Basics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -285,9 +285,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
  <span class="menu-text">Topic 2: Tidyverse &amp; EDA</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -392,9 +392,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
  <span class="menu-text">Topic 3: Better Programming</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -439,9 +439,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
  <span class="menu-text">Topic 4: R Shiny Dashboards</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -522,9 +522,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
  <span class="menu-text">Topic 5: Predictive Modeling</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -611,9 +611,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
  <span class="menu-text">Topic 6: APIs &amp; Docker</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -687,7 +687,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-07-09</p>
+      <p class="date">2025-07-15</p>
     </div>
   </div>
   
@@ -724,7 +724,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tree) <span class="co">#rpart is also often used</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'tree' was built under R version 4.1.3</code></pre>
+<pre><code>Warning: package 'tree' was built under R version 4.4.3</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fitTree <span class="ot">&lt;-</span> <span class="fu">tree</span>(dist <span class="sc">~</span> speed, <span class="at">data =</span> cars) <span class="co">#default splitting is deviance</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fitTree)</span>
@@ -851,20 +851,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>bike_test <span class="ot">&lt;-</span> <span class="fu">testing</span>(bike_split)</span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>bike_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 742 x 7
+<pre><code># A tibble: 742 × 7
    name     year seller_type owner km_driven ex_showroom_price log_selling_price
    &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;
- 1 Bajaj ~  2012 Individual  1st ~     50000             54299             10.3 
- 2 Honda ~  2015 Individual  1st ~      7672             54605             10.6 
- 3 Bajaj ~  2005 Individual  1st ~     21885                NA              9.80
- 4 Hero H~  2017 Individual  1st ~     27000                NA             10.5 
- 5 Royal ~  2013 Individual  1st ~     49000                NA             11.4 
- 6 Bajaj ~  2008 Individual  1st ~     19500                NA             10.3 
- 7 Hero C~  2014 Individual  1st ~     38000                NA             10.5 
- 8 Bajaj ~  2009 Individual  1st ~     16000                NA              9.90
- 9 Hero H~  2008 Individual  3rd ~     65000                NA             10.1 
-10 Bajaj ~  2019 Individual  1st ~      7600                NA             12.2 
-# i 732 more rows</code></pre>
+ 1 Bajaj …  2012 Individual  1st …     50000             54299             10.3 
+ 2 Honda …  2015 Individual  1st …      7672             54605             10.6 
+ 3 Bajaj …  2005 Individual  1st …     21885                NA              9.80
+ 4 Hero H…  2017 Individual  1st …     27000                NA             10.5 
+ 5 Royal …  2013 Individual  1st …     49000                NA             11.4 
+ 6 Bajaj …  2008 Individual  1st …     19500                NA             10.3 
+ 7 Hero C…  2014 Individual  1st …     38000                NA             10.5 
+ 8 Bajaj …  2009 Individual  1st …     16000                NA              9.90
+ 9 Hero H…  2008 Individual  3rd …     65000                NA             10.1 
+10 Bajaj …  2019 Individual  1st …      7600                NA             12.2 
+# ℹ 732 more rows</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bike_CV_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(bike_train, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -884,13 +884,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code></code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>-- Recipe ----------------------------------------------------------------------</code></pre>
+<pre><code>── Recipe ──────────────────────────────────────────────────────────────────────</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>-- Inputs </code></pre>
+<pre><code>── Inputs </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Number of variables by role</code></pre>
@@ -904,19 +904,19 @@ ID:        1</code></pre>
 <pre><code></code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>-- Operations </code></pre>
+<pre><code>── Operations </code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>* Log transformation on: km_driven</code></pre>
+<pre><code>• Log transformation on: km_driven</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>* Variables removed: ex_showroom_price</code></pre>
+<pre><code>• Variables removed: ex_showroom_price</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>* Dummy variables from: owner and seller_type</code></pre>
+<pre><code>• Dummy variables from: owner and seller_type</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>* Centering and scaling for: all_numeric() and -all_outcomes()</code></pre>
+<pre><code>• Centering and scaling for: all_numeric() and -all_outcomes()</code></pre>
 </div>
 </div>
 <p>Note: We don’t need to include interaction terms in our tree based models! An interaction would imply that the effect of, say, <code>log_km_driven</code> depends on the <code>year</code> the bike was manufactured (and vice-versa). The tree structure inherently includes this type of relationship! For instance, suppose we first split on <code>log_km_driven</code> &gt; 10. On the branch where <code>log_km_driven</code> &gt; 10 we then split on <code>year</code> &lt; 1990. Suppose those are our only two splits. We can see that the effect of <code>year</code> is different depending on our <code>log_km_driven</code>! For one side of the <code>log_km_driven</code> split we don’t include <code>year</code> at all (hence it doesn’t have an effect when considering those values of <code>log_km_driven</code>) and on the other side of that split we change our prediction based on <code>year</code>. This is exactly the idea of an interaction!</p>
@@ -958,29 +958,29 @@ ID:        1</code></pre>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>temp <span class="sc">|&gt;</span> </span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 20 x 8
+<pre><code># A tibble: 20 × 8
    cost_complexity tree_depth .metric .estimator  mean     n std_err .config    
              &lt;dbl&gt;      &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;      
- 1        7.50e- 6         12 rmse    standard   0.510    10  0.0175 Preprocess~
- 2        7.50e- 6         12 rsq     standard   0.467    10  0.0207 Preprocess~
- 3        2.80e- 8          8 rmse    standard   0.509    10  0.0174 Preprocess~
- 4        2.80e- 8          8 rsq     standard   0.468    10  0.0205 Preprocess~
- 5        1.66e- 3         15 rmse    standard   0.501    10  0.0158 Preprocess~
- 6        1.66e- 3         15 rsq     standard   0.479    10  0.0182 Preprocess~
- 7        5.79e-10          2 rmse    standard   0.538    10  0.0196 Preprocess~
- 8        5.79e-10          2 rsq     standard   0.396    10  0.0209 Preprocess~
- 9        4.05e- 9          3 rmse    standard   0.510    10  0.0181 Preprocess~
-10        4.05e- 9          3 rsq     standard   0.456    10  0.0193 Preprocess~
-11        1.24e- 3          6 rmse    standard   0.503    10  0.0158 Preprocess~
-12        1.24e- 3          6 rsq     standard   0.477    10  0.0193 Preprocess~
-13        5.68e- 2          5 rmse    standard   0.543    10  0.0202 Preprocess~
-14        5.68e- 2          5 rsq     standard   0.382    10  0.0165 Preprocess~
-15        1.82e- 6         12 rmse    standard   0.510    10  0.0175 Preprocess~
-16        1.82e- 6         12 rsq     standard   0.467    10  0.0207 Preprocess~
-17        5.23e- 8          9 rmse    standard   0.509    10  0.0175 Preprocess~
-18        5.23e- 8          9 rsq     standard   0.468    10  0.0208 Preprocess~
-19        5.47e- 5          9 rmse    standard   0.509    10  0.0175 Preprocess~
-20        5.47e- 5          9 rsq     standard   0.468    10  0.0208 Preprocess~</code></pre>
+ 1        7.50e- 6         12 rmse    standard   0.510    10  0.0175 Preprocess…
+ 2        7.50e- 6         12 rsq     standard   0.467    10  0.0207 Preprocess…
+ 3        2.80e- 8          8 rmse    standard   0.509    10  0.0174 Preprocess…
+ 4        2.80e- 8          8 rsq     standard   0.468    10  0.0205 Preprocess…
+ 5        1.66e- 3         15 rmse    standard   0.501    10  0.0158 Preprocess…
+ 6        1.66e- 3         15 rsq     standard   0.479    10  0.0182 Preprocess…
+ 7        5.79e-10          2 rmse    standard   0.538    10  0.0196 Preprocess…
+ 8        5.79e-10          2 rsq     standard   0.396    10  0.0209 Preprocess…
+ 9        4.05e- 9          3 rmse    standard   0.510    10  0.0181 Preprocess…
+10        4.05e- 9          3 rsq     standard   0.456    10  0.0193 Preprocess…
+11        1.24e- 3          6 rmse    standard   0.503    10  0.0158 Preprocess…
+12        1.24e- 3          6 rsq     standard   0.477    10  0.0193 Preprocess…
+13        5.68e- 2          5 rmse    standard   0.543    10  0.0202 Preprocess…
+14        5.68e- 2          5 rsq     standard   0.382    10  0.0165 Preprocess…
+15        1.82e- 6         12 rmse    standard   0.510    10  0.0175 Preprocess…
+16        1.82e- 6         12 rsq     standard   0.467    10  0.0207 Preprocess…
+17        5.23e- 8          9 rmse    standard   0.509    10  0.0175 Preprocess…
+18        5.23e- 8          9 rsq     standard   0.468    10  0.0208 Preprocess…
+19        5.47e- 5          9 rmse    standard   0.509    10  0.0175 Preprocess…
+20        5.47e- 5          9 rsq     standard   0.468    10  0.0208 Preprocess…</code></pre>
 </div>
 </div>
 <p>We can see that the <code>cost_complexity</code> parameter and <code>tree_depth</code> parameters are randomly varied and results are returned.</p>
@@ -999,19 +999,19 @@ ID:        1</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code># Tuning results
 # 10-fold cross-validation 
-# A tibble: 10 x 4
+# A tibble: 10 × 4
    splits           id     .metrics           .notes          
    &lt;list&gt;           &lt;chr&gt;  &lt;list&gt;             &lt;list&gt;          
- 1 &lt;split [667/75]&gt; Fold01 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;
- 2 &lt;split [667/75]&gt; Fold02 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;
- 3 &lt;split [668/74]&gt; Fold03 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;
- 4 &lt;split [668/74]&gt; Fold04 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;
- 5 &lt;split [668/74]&gt; Fold05 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;
- 6 &lt;split [668/74]&gt; Fold06 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;
- 7 &lt;split [668/74]&gt; Fold07 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;
- 8 &lt;split [668/74]&gt; Fold08 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;
- 9 &lt;split [668/74]&gt; Fold09 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;
-10 &lt;split [668/74]&gt; Fold10 &lt;tibble [100 x 6]&gt; &lt;tibble [0 x 3]&gt;</code></pre>
+ 1 &lt;split [667/75]&gt; Fold01 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;
+ 2 &lt;split [667/75]&gt; Fold02 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;
+ 3 &lt;split [668/74]&gt; Fold03 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;
+ 4 &lt;split [668/74]&gt; Fold04 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;
+ 5 &lt;split [668/74]&gt; Fold05 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;
+ 6 &lt;split [668/74]&gt; Fold06 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;
+ 7 &lt;split [668/74]&gt; Fold07 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;
+ 8 &lt;split [668/74]&gt; Fold08 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;
+ 9 &lt;split [668/74]&gt; Fold09 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;
+10 &lt;split [668/74]&gt; Fold10 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;</code></pre>
 </div>
 </div>
 <p>Looking at the <code>tree_fits</code> object isn’t super useful. It has all the info but we need to pull it out. As we see above, we can use <code>collect_metrics()</code> to combine the metrics across the folds.</p>
@@ -1019,20 +1019,20 @@ ID:        1</code></pre>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tree_fits <span class="sc">|&gt;</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 100 x 8
+<pre><code># A tibble: 100 × 8
    cost_complexity tree_depth .metric .estimator  mean     n std_err .config    
              &lt;dbl&gt;      &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;      
- 1    0.0000000001          1 rmse    standard   0.561    10  0.0190 Preprocess~
- 2    0.0000000001          1 rsq     standard   0.338    10  0.0176 Preprocess~
- 3    0.000000001           1 rmse    standard   0.561    10  0.0190 Preprocess~
- 4    0.000000001           1 rsq     standard   0.338    10  0.0176 Preprocess~
- 5    0.00000001            1 rmse    standard   0.561    10  0.0190 Preprocess~
- 6    0.00000001            1 rsq     standard   0.338    10  0.0176 Preprocess~
- 7    0.0000001             1 rmse    standard   0.561    10  0.0190 Preprocess~
- 8    0.0000001             1 rsq     standard   0.338    10  0.0176 Preprocess~
- 9    0.000001              1 rmse    standard   0.561    10  0.0190 Preprocess~
-10    0.000001              1 rsq     standard   0.338    10  0.0176 Preprocess~
-# i 90 more rows</code></pre>
+ 1    0.0000000001          1 rmse    standard   0.561    10  0.0190 Preprocess…
+ 2    0.0000000001          1 rsq     standard   0.338    10  0.0176 Preprocess…
+ 3    0.000000001           1 rmse    standard   0.561    10  0.0190 Preprocess…
+ 4    0.000000001           1 rsq     standard   0.338    10  0.0176 Preprocess…
+ 5    0.00000001            1 rmse    standard   0.561    10  0.0190 Preprocess…
+ 6    0.00000001            1 rsq     standard   0.338    10  0.0176 Preprocess…
+ 7    0.0000001             1 rmse    standard   0.561    10  0.0190 Preprocess…
+ 8    0.0000001             1 rsq     standard   0.338    10  0.0176 Preprocess…
+ 9    0.000001              1 rmse    standard   0.561    10  0.0190 Preprocess…
+10    0.000001              1 rsq     standard   0.338    10  0.0176 Preprocess…
+# ℹ 90 more rows</code></pre>
 </div>
 </div>
 <p>As done in the <a href="https://www.tidymodels.org/start/tuning/">tutorial</a>, we can plot these to gain some insight:</p>
@@ -1061,20 +1061,20 @@ ID:        1</code></pre>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"rmse"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 50 x 8
+<pre><code># A tibble: 50 × 8
    cost_complexity tree_depth .metric .estimator  mean     n std_err .config    
              &lt;dbl&gt;      &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;      
- 1    0.0000000001          4 rmse    standard   0.496    10  0.0163 Preprocess~
- 2    0.000000001           4 rmse    standard   0.496    10  0.0163 Preprocess~
- 3    0.00000001            4 rmse    standard   0.496    10  0.0163 Preprocess~
- 4    0.0000001             4 rmse    standard   0.496    10  0.0163 Preprocess~
- 5    0.000001              4 rmse    standard   0.496    10  0.0163 Preprocess~
- 6    0.00001               4 rmse    standard   0.496    10  0.0163 Preprocess~
- 7    0.0001                4 rmse    standard   0.496    10  0.0163 Preprocess~
- 8    0.001                 4 rmse    standard   0.496    10  0.0162 Preprocess~
- 9    0.01                  4 rmse    standard   0.498    10  0.0176 Preprocess~
-10    0.01                  8 rmse    standard   0.498    10  0.0176 Preprocess~
-# i 40 more rows</code></pre>
+ 1    0.0000000001          4 rmse    standard   0.496    10  0.0163 Preprocess…
+ 2    0.000000001           4 rmse    standard   0.496    10  0.0163 Preprocess…
+ 3    0.00000001            4 rmse    standard   0.496    10  0.0163 Preprocess…
+ 4    0.0000001             4 rmse    standard   0.496    10  0.0163 Preprocess…
+ 5    0.000001              4 rmse    standard   0.496    10  0.0163 Preprocess…
+ 6    0.00001               4 rmse    standard   0.496    10  0.0163 Preprocess…
+ 7    0.0001                4 rmse    standard   0.496    10  0.0163 Preprocess…
+ 8    0.001                 4 rmse    standard   0.496    10  0.0162 Preprocess…
+ 9    0.01                  4 rmse    standard   0.498    10  0.0176 Preprocess…
+10    0.01                  8 rmse    standard   0.498    10  0.0176 Preprocess…
+# ℹ 40 more rows</code></pre>
 </div>
 </div>
 <p>The function <code>select_best()</code> can be used to grab the best model’s tuning parameter values. We also should specify which metric!</p>
@@ -1082,7 +1082,7 @@ ID:        1</code></pre>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>tree_best_params <span class="ot">&lt;-</span> <span class="fu">select_best</span>(tree_fits, <span class="at">metric =</span> <span class="st">"rmse"</span>)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>tree_best_params</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 x 3
+<pre><code># A tibble: 1 × 3
   cost_complexity tree_depth .config              
             &lt;dbl&gt;      &lt;int&gt; &lt;chr&gt;                
 1    0.0000000001          4 Preprocessor1_Model11</code></pre>
@@ -1101,7 +1101,7 @@ ID:        1</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code># Resampling results
 # Manual resampling 
-# A tibble: 1 x 6
+# A tibble: 1 × 6
   splits            id               .metrics .notes   .predictions .workflow 
   &lt;list&gt;            &lt;chr&gt;            &lt;list&gt;   &lt;list&gt;   &lt;list&gt;       &lt;list&gt;    
 1 &lt;split [742/319]&gt; train/test split &lt;tibble&gt; &lt;tibble&gt; &lt;tibble&gt;     &lt;workflow&gt;</code></pre>
@@ -1112,7 +1112,7 @@ ID:        1</code></pre>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>tree_final_fit <span class="sc">|&gt;</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 x 4
+<pre><code># A tibble: 2 × 4
   .metric .estimator .estimate .config             
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
 1 rmse    standard       0.565 Preprocessor1_Model1
@@ -1124,19 +1124,19 @@ ID:        1</code></pre>
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>tree_final_model <span class="ot">&lt;-</span> <span class="fu">extract_workflow</span>(tree_final_fit) </span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>tree_final_model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>== Workflow [trained] ==========================================================
+<pre><code>══ Workflow [trained] ══════════════════════════════════════════════════════════
 Preprocessor: Recipe
 Model: decision_tree()
 
--- Preprocessor ----------------------------------------------------------------
+── Preprocessor ────────────────────────────────────────────────────────────────
 4 Recipe Steps
 
-* step_log()
-* step_rm()
-* step_dummy()
-* step_normalize()
+• step_log()
+• step_rm()
+• step_dummy()
+• step_normalize()
 
--- Model -----------------------------------------------------------------------
+── Model ───────────────────────────────────────────────────────────────────────
 n= 742 
 
 node), split, n, deviance, yval
@@ -1266,7 +1266,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1298,29 +1309,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1328,7 +1317,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

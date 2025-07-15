@@ -7,7 +7,7 @@ editor_options:
   chunk_output_type: inline
 ---
 
-Welcome to week !
+Welcome to week 9!
 
 It's time to continuing working with now more complicated models. This week, we are going over:
 

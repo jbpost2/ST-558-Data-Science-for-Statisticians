@@ -7,4 +7,21 @@ editor_options:
   chunk_output_type: inline
 ---
 
-More coming soon!
+Welcome to week 10!
+
+We are on the home stretch. Thank you all for your hard work. I've really enjoyed our Summer session so far. Let's finish strong!
+
+It's time to get back into more computing content. Specifically, we are going to learn more about: 
+
+-- Creating our own APIs
+-- Docker 
+
+In previous material, we learned how to work with APIs. Now, we are going to create a file that defines an API. This can be done using the `plumber` package in R. The help file for `plumber` can be found [here](https://www.rplumber.io/). Additional `plumber` resources can be found [here](https://rstudio.github.io/cheatsheets/html/plumber.html). There is also a nice `r-bloggers` post on APIs and data science. They specifically talk about *why* would a data scientist want to create an API. [Here](https://www.r-bloggers.com/2022/03/creating-apis-for-data-science-with-plumber/) is the link to it. 
+
+
+Docker is an open-source platform that enables developers to automate the deployment, scaling, and management of applications by using containers. For the purposes of this course, we are going to use static docker images that already contain items for us, and build on top of them. [Here](https://colinfay.me/docker-r-reproducibility/) is a quick docker blog post to help supplement Dr. Post's video, if you would like more information.
+
+In your final project, you are going to be asked to generate a .tar file. [Here](https://www.youtube.com/watch?v=Euub2EAt8jQ) is a very short video on it. You would use a .tar file for your Docker image primarily for portability and offline transfer of your items within the image to another user. 
+
+To save a docker image, you can run `docker image ls`. This will save your image in the respective repo. Then, you'll run the command `docker save_your_image_name > your_image_name.tar` (with the appropriate values inserted). This will export a .tar file in your current directory. The .tar file should be big! Once you have a .tar file, you can now export an image so that someone else can load it and run it. Very cool data science stuff. 
+
