@@ -1,5 +1,5 @@
 ---
-title: "R projects and Connecting with Github"
+title: "`R` projects and Connecting with `GitHub`"
 format: html
 editor: source
 toc: TRUE

@@ -1,5 +1,5 @@
 ---
-title: "Databases and Basic SQL"
+title: "Databases and Basic `SQL`"
 format: html
 editor: source
 toc: TRUE

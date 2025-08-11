@@ -1,5 +1,5 @@
 ---
-title: "Base R Data Structures: Lists"
+title: "Base `R` Data Structures: Lists"
 format: html
 editor: source
 toc: TRUE

@@ -1,5 +1,5 @@
 ---
-title: "Debugging & Other Useful Things"
+title: "Debugging & Useful Things"
 format: html
 toc: TRUE
 editor_options: 

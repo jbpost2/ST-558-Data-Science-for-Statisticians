@@ -1,5 +1,5 @@
 ---
-title: "Quarto Basics"
+title: "`Quarto` Basics"
 format: html
 toc: TRUE
 editor: source

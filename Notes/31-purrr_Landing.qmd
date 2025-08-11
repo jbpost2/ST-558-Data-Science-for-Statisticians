@@ -1,5 +1,5 @@
 ---
-title: "`purrr` Package"
+title: "`purrr` and List Columnns"
 format: html
 toc: TRUE
 editor_options: 

@@ -1,5 +1,5 @@
 ---
-title: "Base R Data Structures: Vectors"
+title: "Base `R` Data Structures: Vectors"
 format: html
 editor: source
 toc: TRUE

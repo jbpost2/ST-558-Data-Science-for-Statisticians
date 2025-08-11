@@ -1,5 +1,5 @@
 ---
-title: "Useful R Shiny Articles I"
+title: "Sharing Apps"
 format: html
 toc: TRUE
 editor_options: 

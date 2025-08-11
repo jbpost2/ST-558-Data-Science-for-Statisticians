@@ -1,0 +1,129 @@
+---
+title: "Data Science for Statisticians"
+---
+
+Welcome to ST 558 - Data Science for Statisticians!
+
+In this course we'll look at common tasks done by data scientists:
+
+-   Reading in raw data and manipulating it
+-   Combining data sources
+-   Summarizing data to glean insights
+-   Applying common analysis methods
+-   Communicating effectively
+
+We'll adopt the R programming language to do so and learn about using `quarto`, `git`, and `github` to ensure our data analysis workflow is reproducible, has version control, and can easily include collaborators.
+
+## Course Learning Outcomes
+
+At the end of this course students will be able to
+
+-   explain the steps and purpose of programs
+-   efficiently read in, combine, and manipulate data
+-   utilize help and other resources to customize programs
+-   write programs using good programming practices
+-   explore data and perform common analyses
+-   create reports, web pages, and dashboards to display and communicate results
+
+## Weekly To-do List
+
+Generally speaking, each week will have a few videos to watch and readings to do as well as corresponding homework assignments. We'll have some projects and exams as well. Please see the syllabus on Moodle for homework policies, project information, and exam information.
+
+## Getting Help!
+
+To obtain course help there are a number of options:
+
+-   Discussion Forum on Moodle - This should be used for any question you feel comfortable asking and having others view. The TA, other students, and I will answer questions on this board. This will be the fastest way to receive a response!
+-   E-mail - If there is a question that you don't feel comfortable asking the whole class you can use e-mail. The TA and I will be checking daily (during the regular work week).
+-   Zoom Office Hour Sessions - These sessions can be used to share screens and have multiple users. You can do text chat, voice, and video. They are great for a class like this!
+
+## Summer 2025 Course Schedule
+
++-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+-----------+
+| # Topic/Week    | # Learning Materials                                       | # Assignments                  | # **Code-alongs**                              |           |
+|                 |                                                            |                                |                                                |           |
+| Week 1          | 01 - Read - What is Data Science?\                         | HW 1 due Tu 5/20               | Code-alongs (optional attendance) on Thursdays |           |
+|                 | 02 - Watch - Workflows & Git/GitHub Basics\                |                                |                                                |           |
+| 5/14-5/16       | 03 - Read - Git & GitHub Practice\                         |                                |                                                |           |
+|                 | 04 - Watch - R Basics\                                     |                                |                                                |           |
+| W-F             | 05 - Read & Watch - R projects and Connecting with Github\ |                                |                                                |           |
+|                 | 06 - Read & Watch - Quarto                                 |                                |                                                |           |
++-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+-----------+
+|                 |                                                            |                                |                                                |           |
++-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+-----------+
+| Week 2          | 07 - Base R Data Structures: Vectors\                      | HW 2 due Tu, 5/27              |                                                |           |
+|                 | 08 - Base R Data Structures: Matrices\                     |                                |                                                |           |
+| 5/19-5/23       | 09 - Base R Data Structures: Data Frames\                  |                                |                                                |           |
+|                 | 10 - Base R Data Structures: Lists                         |                                |                                                |           |
+| M-F             |                                                            |                                |                                                |           |
+|                 | 11 - Control Flow: Logicals & if/then/else\                |                                |                                                |           |
+|                 | 12 - Control Flow: Loops\                                  |                                |                                                |           |
+|                 | 13 - Control Flow: Vectorized Functions\                   |                                |                                                |           |
+|                 | 14 - Writing Functions                                     |                                |                                                |           |
++-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+-----------+
+| Week 3          | 15 - Packages\                                             | HW 3 due Tu, 6/3               |                                                |           |
+|                 | 16 - Tidyverse Essentials\                                 |                                |                                                |           |
+| 5/27-5/30       | 17 - Reading Delimited Data\                               |                                |                                                |           |
+|                 | 18 - Reading Excel Data\                                   |                                |                                                |           |
+| T-F             | 19 - Manipulating Data with dplyr                          |                                |                                                |           |
+|                 |                                                            |                                |                                                |           |
+|                 | 20 - Manipulating Data with tidyr\                         |                                |                                                |           |
+|                 | 21 - Connecting to Databases\                              |                                |                                                |           |
+|                 | 22 - SQL Style Joins                                       |                                |                                                |           |
++-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+-----------+
+| Week 4          | 23 - EDA Concepts\                                         | Project 1 due Tu, 6/17         |                                                |           |
+|                 | 24 - Summarizing Categorical Variables\                    |                                |                                                |           |
+| 6/2-6/6         | 25 - Barplots & ggplot2 Basics\                            |                                |                                                |           |
+|                 | 26 - Numerical Variable Summaries\                         |                                |                                                |           |
+| M-F             | 27 - Numerical Variable Graphs & More ggplot2              |                                |                                                |           |
++-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+-----------+
+| Week 5          | No new material                                            | Exam-1 (Wednesday or Thursday) |                                                |           |
+|                 |                                                            |                                |                                                |           |
+| 6/9-6/13        |                                                            |                                |                                                |           |
+|                 |                                                            |                                |                                                |           |
+| M-F             |                                                            |                                |                                                |           |
++-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+-----------+
+| Week 6          | 28 - Big Recap\                                            | HW 4 due Tu, 6/24              |                                                |           |
+|                 | 29 - Apply Family of Functions\                            |                                |                                                |           |
+| M-W, F          | 30 - purrr & List Columns\                                 |                                |                                                |           |
+|                 | 31 - Advanced Function Writing                             |                                |                                                |           |
+| 6/16-6/18, 6/20 |                                                            |                                |                                                |           |
+|                 | 32 - Querying APIs & Dealing with JSON Data                |                                |                                                |           |
++-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+-----------+
+| Week 7          | 33 - R Shiny Basics & UI                                   | Project 2 due Tu, 7/8          |                                                |           |
+|                 |                                                            |                                |                                                |           |
+| M-F             | 34 -R Shiny Server\                                        |                                |                                                |           |
+|                 | 35 - Dynamic UI\                                           |                                |                                                |           |
+| 6/23-6/27       | 36 - Deploying, Debugging, & Other Useful Stuff\           |                                |                                                |           |
++-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+-----------+
+| Week 8          | 37 - Modeling Concepts\                                    |                                |                                                |           |
+|                 | 38 - Prediction & Training/Test Sets\                      |                                |                                                |           |
+| M-Th            | 39 - Cross Validation\                                     |                                |                                                |           |
+|                 | 40 - Multiple Linear Regression\                           |                                |                                                |           |
+| 6/30-7/3        | 41 - Modeling with tidymodels (caret package)\             |                                |                                                |           |
+|                 | 42 - tidymodels Tutorial                                   |                                |                                                |           |
+|                 |                                                            |                                |                                                |           |
+|                 | 43 - LASSO Models\                                         |                                |                                                |           |
+|                 | 44 - Models recap                                          |                                |                                                |           |
++-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+-----------+
+| Week 9          | 45 - Logistic Regression\                                  | HW 5 due Tu, 7/22              |                                                |           |
+|                 | 46 - Regression and Classification Trees\                  |                                |                                                |           |
+| M-F             | 47 - Ensemble Trees (Random Forest; Bagged Trees)\         |                                |                                                |           |
+|                 | 48 - Fitting Classification Trees                          |                                |                                                |           |
+| 7/7-7/11        |                                                            |                                |                                                |           |
++-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+-----------+
+| Week 10         | 49 - Creating an API\                                      | Exam 2 (Wednesday or Thursday) |                                                |           |
+|                 | 50 - Docker Basics\                                        |                                |                                                |           |
+| M-F             | 51 - Building a Docker Image\                              | Project Final due 7/29         |                                                |           |
+|                 | 52 - Dockerizing Shiny Apps                                |                                |                                                |           |
+| 7/14-7/18       |                                                            |                                |                                                |           |
++-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+-----------+
+| Week 11\        | No new material. Project work time!                        |                                |                                                |           |
+| 7/21-7/25       |                                                            |                                |                                                |           |
++-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+-----------+
+| Week 12         | Final Examinations (Project due 7/29)                      |                                |                                                |           |
+|                 |                                                            |                                |                                                |           |
+| M,Tu            |                                                            |                                |                                                |           |
+|                 |                                                            |                                |                                                |           |
+| 7/28-7/29       |                                                            |                                |                                                |           |
++-----------------+------------------------------------------------------------+--------------------------------+------------------------------------------------+-----------+

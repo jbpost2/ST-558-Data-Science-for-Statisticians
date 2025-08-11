@@ -1,5 +1,5 @@
 ---
-title: "Barplots & `ggplot2` Basics"
+title: "Barplots and `ggplot2` Basics"
 format: html
 toc: TRUE
 editor_options: 

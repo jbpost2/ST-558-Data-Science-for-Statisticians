@@ -1,5 +1,5 @@
 ---
-title: "Tutorials to Complete Part III"
+title: "Tutorials Part III"
 format: html
 toc: TRUE
 editor_options: 

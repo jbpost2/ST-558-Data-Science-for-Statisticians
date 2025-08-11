@@ -1,5 +1,5 @@
 ---
-title: "Tidyverse Essentials"
+title: "`tidyverse` Essentials"
 format: html
 editor: source
 toc: TRUE
