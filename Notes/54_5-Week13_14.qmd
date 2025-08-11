@@ -44,19 +44,19 @@ There is also a nice <a href = "https://www.r-bloggers.com/2022/03/creating-apis
 
 Upon completion of this week, students will be able to:
 
-1.    utilize the plumber package to create your own API through R
+1. utilize the plumber package to create your own API through R
 
     a.    explain why you would want to create an API\
     b.    use appropriate comment formatting to implement different types of requests\
     c.    change the output type of an API request
 
-2.    utilize docker to pull an R image, customize it, and build a custom image or container
+2. utilize docker to pull an R image, customize it, and build a custom image or container
 
     a.    define the terms "container" and "image"\
     b.    explain why containers are useful\
     c.    dockerize a shiny app
 
-3.    list out and apply common methods for putting a model into practice
+3. list out and apply common methods for putting a model into practice
 
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

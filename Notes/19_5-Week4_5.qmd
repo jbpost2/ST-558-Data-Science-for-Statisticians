@@ -44,7 +44,7 @@ Upon completion of this week, students will be able to:
 
 ### Other Data Manipulations
 
-1.   utilize the tidyr package to manipulate data
+1. utilize the tidyr package to manipulate data
 
     a. change data between wide to long formats\
     b. split or combine columns using the tidyr package

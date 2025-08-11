@@ -15,19 +15,12 @@ Statistical modeling is a way to help us and others understand, interpret and ma
 ## Weeks 12 & 13 Additional Readings/Learning Materials
 
 - <a href = "https://www.tidymodels.org/" target = "_blank">tidymodels homepage for you to explore</a>
-
 - <a href = "https://www.youtube.com/watch?v=dSCFk168vmo" target = "_blank">short video on testing vs training data sets</a>
-
 - <a href = "https://openintro-ims.netlify.app/model-mlr" target = "_blank">Linear regression with multiple predictors</a>
-
 - <a href = "https://juliasilge.com/blog/lasso-the-office/" target = "_blank">TidyTuesday LASSO demonstration></a>
-
 - <a href = "https://openintro-ims.netlify.app/model-logistic" target = "_blank">Logistic Regression:9.1-9.3</a>
-
 - <a href = "https://www.nature.com/articles/nmeth.4370" target = "_blank">Regression and Classification Trees article</a>
-
 - <a href = "https://www.youtube.com/watch?v=jbkSRLYSojo&t=121s" target = "_blank">Communicating a story with data (Hans Rosling)</a>
-
 <ul>
   <li><a href="https://www.statlearning.com/" target="_blank"
         rel="noopener">ISLR book</a>: Read section (Big picture ideas) 2.1, 2.2,
@@ -57,11 +50,11 @@ Upon completion of these two weeks, students will be able to:
 
 ### Linear Regression Models
 
-1.    describe the idea of supervised learning and compare and contrast it with unsupervised learning
+1. describe the idea of supervised learning and compare and contrast it with unsupervised learning
 
-2.    conduct an exploratory data analysis
+2. conduct an exploratory data analysis
 
-3.    utilize the lm() function along with formula notation in R to fit linear models
+3. utilize the lm() function along with formula notation in R to fit linear models
 
     a.    lay out the basic simple linear regression model and explain how the models are commonly fit to data in R\
     b.    access elements of a fitted lm object\
@@ -69,20 +62,20 @@ Upon completion of these two weeks, students will be able to:
     d.    utilize the lm() function and formula notation in R to fit multiple linear regression models and polynomial regression models\
     e.    define the terms polynomial regression and multiple linear regression
     
-4.    explain the concept of how a multiple linear regression model is usually fit and what the effect of adding in more predictor terms is on the model
+4. explain the concept of how a multiple linear regression model is usually fit and what the effect of adding in more predictor terms is on the model
 
     a.    find predictions using a multiple linear regression model and provide standard errors, confidence bounds, and prediction bounds\
     b.    explain how adding categorical predictors changes a linear model\
     c.    interpret the coefficients of a general linear model and use it for prediction purposes
 
-5.    describe common methods used to select between models
+5. describe common methods used to select between models
 
-6.    define prediction error, training sets, and test sets
+6. define prediction error, training sets, and test sets
 
     a.    explain why splitting data into training and tests sets is needed\
     b.    discuss the nature/behavior of predicting on your training set vs predicting on a test set
 
-7.    use a linear regression or logistic regression model to perform classification
+7. use a linear regression or logistic regression model to perform classification
 
     a.    describe the type of scenario where logistic regression may be a reasonable modeling choose\
     b.    define the logistic regression model and state its advantages for modeling binary outcomes\
@@ -93,7 +86,7 @@ Upon completion of these two weeks, students will be able to:
 
 ### Nonlinear & Ensemble Models
 
-1.    fit and interpret regression and classification trees in R
+1. fit and interpret regression and classification trees in R
 
     a.    describe the terms regression tree and classification tree\
     b.    explain the difference between using a tree based method and using a linear method\
@@ -105,9 +98,9 @@ Upon completion of these two weeks, students will be able to:
     h.    compare and contrast the fitting and pruning of regression trees vs classification trees\
     i.    describe the pros and cons of using tree based methods
 
-2.    select a final model using cross validation
+2. select a final model using cross validation
 
-3.    fit and interpret bagged tree and random forests models in R
+3. fit and interpret bagged tree and random forests models in R
 
     a.    explain the term ensemble methods and how it can be applied to tree based methods\
     b.    describe why ensemble methods can often improve predictions\

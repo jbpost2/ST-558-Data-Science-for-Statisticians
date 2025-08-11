@@ -31,26 +31,26 @@ Advanced R Chapters
 
 Upon completion of this week, students will be able to:
 
-1.   write an R function that has default arguments, allows for additional arguments, and returns a well-structured named object
+1. write an R function that has default arguments, allows for additional arguments, and returns a well-structured named object  
 
-    a.    determine appropriate uses for the stop function\
-    b.    develop a pipeable function that acts on a data frame and one that produces side effects\
-    c.    create a custom infix function
+    a. determine appropriate uses for the stop function\
+    b. develop a pipeable function that acts on a data frame and one that produces side effects\
+    c. create a custom infix function
 
-2.    define environments including temporary environments
+2. define environments including temporary environments
 
-    a.    summarize the order in which R attempts to find a requested object\
-    b.    sketch out the R environment framework and explain the idea of lexical scoping\
-    c.    discuss the concept of local variables and local environments as compared to global variables and environments\
-    d.    state the naming conventions for R objects
+    a. summarize the order in which R attempts to find a requested object\
+    b. sketch out the R environment framework and explain the idea of lexical scoping\
+    c. discuss the concept of local variables and local environments as compared to global variables and environments\
+    d. state the naming conventions for R objects
 
-3.   program using the “apply family” of functions and the purrr packing in R
+3. program using the “apply family” of functions and the purrr packing in R
 
-    a.    differentiate between the apply family of functions in R including, but not limited to, mapply, sapply, lapply, apply, and replicate\
-    b.    manipulate R code that uses loops to instead use the proper apply function\
-    c.    utilize anonymous functions in calls to the apply family of functions in R\
+    a. differentiate between the apply family of functions in R including, but not limited to, mapply, sapply, lapply, apply, and replicate\
+    b. manipulate R code that uses loops to instead use the proper apply function\
+    c. utilize anonymous functions in calls to the apply family of functions in R\
     d. use functions from purrr to perform data manipulations
 
-4.   describe what an anonymous function is and how it differs from other functions 
+4. describe what an anonymous function is and how it differs from other functions 
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!
