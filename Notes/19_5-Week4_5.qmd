@@ -24,29 +24,29 @@ This week we'll see how we can use the `tidyr` package to change the format of a
 
 ## Week 5 Learning Objectives
 
-Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)
+Upon completion of this week, students will be able to:
 
 ### Other ways to connect R to data
 
-1. explain the general process of connecting R to a database, connect R to a database, and request data (CO 2)
+1. explain the general process of connecting R to a database, connect R to a database, and request data
 
-    a. define the term SQL and RDBMS
-    b. compare terminology between statistics and SQL (tables vs data sets, etc.)
-    c. extract SQL code from dplyr commands
-    d. write very basic SQL code to select and merge data
-    e. describe why the collect function is required when using R to query a database
+    a. define the term SQL and RDBMS\
+    b. compare terminology between statistics and SQL (tables vs data sets, etc.)\
+    c. extract SQL code from dplyr commands\
+    d. write very basic SQL code to select and merge data\
+    e. describe why the collect function is required when using R to query a database\
     f. determine the appropriate type of join to extract information of interest from given tables
 
-2. query APIs to return appropriate data (CO 2)
+2. query APIs to return appropriate data
 
-    a. define the term API
+    a. define the term API\
     b. explain the common syntax often used for APIs
 
 ### Other Data Manipulations
 
-1.   utilize the tidyr package to manipulate data  (CO 2)
+1.   utilize the tidyr package to manipulate data
 
-    a. change data between wide to long formats
+    a. change data between wide to long formats\
     b. split or combine columns using the tidyr package
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

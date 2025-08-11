@@ -1,0 +1,62 @@
+---
+title: "Weeks 14 Through 16 Overview"
+format: html
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+This wraps up the content for weeks 12 & 13. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your assessment for this week.
+
+We are on the home stretch! It's time to get back into more computing content. Specifically, we are going to learn more about:
+
+- Creating our own APIs
+- Containerization through Docker
+
+In previous material, we learned how to work with APIs. Now, we are going to create a file that defines an API. This can be done using the `plumber` package in R. 
+
+Docker is an open-source platform that enables developers to automate the deployment, scaling, and management of applications by using containers. For the purposes of this course, we are going to use static docker images that already contain items for us, and build on top of them. 
+
+
+## Weeks 14 through 16 Additional Readings/Learning Materials
+
+<ul>
+  <li>API/Docker article - <a
+      href="https://medium.com/@heathernolis/r-can-api-c184951a24a3"
+      target="_blank" rel="noopener">part I</a></li>
+  <li>API/Docker article - <a href="https://medium.com/@skyetetra/using-docker-to-deploy-an-r-plumber-api-863ccf91516d"
+      target="_blank" rel="noopener">part II</a> </li>
+  <li>A nice <a
+      href="https://docker-curriculum.com/"
+      target="_blank" rel="noopener">general Docker tutorial</a<</li>
+  <li><a
+      href="https://colinfay.me/docker-r-reproducibility/" target="_blank"
+      rel="noopener">Docker and R Intro</a></li>
+</ul>
+
+
+The help file for `plumber` can be found <a href = "https://www.rplumber.io/" target = "_blank">here</a>. Additional `plumber` resources can be found <a href = "https://rstudio.github.io/cheatsheets/html/plumber.html" target = "_blank">via R Studio's cheatsheet.
+
+There is also a nice <a href = "https://www.r-bloggers.com/2022/03/creating-apis-for-data-science-with-plumber/" target = "_blank">`r-bloggers` post on APIs and data science</a>. They specifically talk about *why* would a data scientist want to create an API.
+
+
+## Learning Objectives
+
+Upon completion of this week, students will be able to:
+
+1.    utilize the plumber package to create your own API through R
+
+    a.    explain why you would want to create an API\
+    b.    use appropriate comment formatting to implement different types of requests\
+    c.    change the output type of an API request
+
+2.    utilize docker to pull an R image, customize it, and build a custom image or container
+
+    a.    define the terms "container" and "image"\
+    b.    explain why containers are useful\
+    c.    dockerize a shiny app
+
+3.    list out and apply common methods for putting a model into practice
+
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

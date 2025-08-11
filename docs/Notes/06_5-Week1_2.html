@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-08-11">
 
-<title>ST 558 Data Science for Statisticians (R) - Week 4 Overview</title>
+<title>ST 558 Data Science for Statisticians (R) - Week 2 Overview</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,8 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../Notes/24-EDA_Concepts_Landing.html" rel="next">
-<link href="../Notes/22-SQL_Style_Joins_Landing.html" rel="prev">
+<link href="../Notes/07-Base_R_Data_Structures_Vectors.html" rel="next">
+<link href="../Notes/06-Quarto.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -116,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/10_5-Week2_3_em.html">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/23_5-Week3_4_em.html">Week 4 Overview</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/06_5-Week1_2.html">Week 2 Overview</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -144,13 +144,19 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
  <span class="menu-text">Topic 1: Data Science &amp; R Basics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/00-Welcome_to_the_Course.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome to the Course!</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/01-What_is_Data_Science.html" class="sidebar-item-text sidebar-link">
@@ -189,7 +195,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/06_5-Week1_2_em.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/06_5-Week1_2.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Week 2 Overview</span></a>
   </div>
 </li>
@@ -215,6 +221,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../Notes/10-Base_R_Data_Structures_Lists.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Base <code>R</code> Data Structures: Lists</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/10_5-Week2_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -245,17 +257,17 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
  <span class="menu-text">Topic 2: Tidyverse &amp; EDA</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/10_5-Week2_3_em.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 3 Overview</span></a>
+  <a href="../Notes/14_5-Week3_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 4 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -290,6 +302,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../Notes/19_5-Week4_5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5 Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../Notes/20-Manipulating_Data_with_tidyr.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Manipulating Data with <code>tidyr</code></span></a>
   </div>
@@ -308,8 +326,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/23_5-Week3_4_em.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Week 4 Overview</span></a>
+  <a href="../Notes/23-Querying_APIs_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Querying APIs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/23_5-Week5_7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 &amp; 7 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -342,12 +366,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Numeric Variable Graphs</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Notes/28_5-Week_5_overview_em.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 5 Overview</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -361,8 +379,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/29.1-Week6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 6 Overview</span></a>
+  <a href="../Notes/29_5-Week7_8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 8 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -389,12 +407,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Advanced Function Writing</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Notes/23-Querying_APIs_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Querying APIs</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -408,8 +420,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/33.1-Week7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 7 Overview</span></a>
+  <a href="../Notes/32_5-Week8_11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weeks 9 Through 11 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -491,8 +503,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/44.5-Week8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 8 Overview</span></a>
+  <a href="../Notes/43_5-Week11_13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weeks 12 &amp; 13 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -545,12 +557,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/51.5-Week9.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 9 Overview</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../Notes/52-Logistic_Regression_Models_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Logistic Regression Models</span></a>
   </div>
@@ -580,8 +586,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/55.5-Week10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 10 Overview</span></a>
+  <a href="../Notes/54_5-Week13_14.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weeks 14 Through 16 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -620,14 +626,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-4-additional-readingslearning-materials" id="toc-week-4-additional-readingslearning-materials" class="nav-link active" data-scroll-target="#week-4-additional-readingslearning-materials">Week 4 Additional Readings/Learning Materials</a>
+  <li><a href="#week-2-additional-readingslearning-materials" id="toc-week-2-additional-readingslearning-materials" class="nav-link active" data-scroll-target="#week-2-additional-readingslearning-materials">Week 2 Additional Readings/Learning Materials</a></li>
+  <li><a href="#week-2-learning-objectives" id="toc-week-2-learning-objectives" class="nav-link" data-scroll-target="#week-2-learning-objectives">Week 2 Learning Objectives</a>
   <ul class="collapse">
-  <li><a href="#eda" id="toc-eda" class="nav-link" data-scroll-target="#eda">EDA</a></li>
-  <li><a href="#factors-and-missing-values" id="toc-factors-and-missing-values" class="nav-link" data-scroll-target="#factors-and-missing-values">Factors and missing values</a></li>
-  </ul></li>
-  <li><a href="#week-4-learning-objectives" id="toc-week-4-learning-objectives" class="nav-link" data-scroll-target="#week-4-learning-objectives">Week 4 Learning Objectives</a>
-  <ul class="collapse">
-  <li><a href="#summarizing-data" id="toc-summarizing-data" class="nav-link" data-scroll-target="#summarizing-data">Summarizing Data</a></li>
+  <li><a href="#r-basics" id="toc-r-basics" class="nav-link" data-scroll-target="#r-basics">R Basics</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -637,7 +639,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 4 Overview</h1>
+<h1 class="title">Week 2 Overview</h1>
 </div>
 
 
@@ -658,35 +660,31 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This wraps up the content for week 3. Now we require some practice! You should head back to our <a href="https://moodle-courses2527.wolfware.ncsu.edu/course/view.php?id=645&amp;bp=s" target="_blank">Moodle site</a> to check out your assessment for this week.</p>
-<p>Week 4 we take on exploring and finding relationships in our data. Anytime we read data into <code>R</code> (or another language), we should do some basic data visualization and get to know our data. These are the basics steps to an exploratory data analysis (EDA). This week we’ll develop the skills to do this!</p>
-<section id="week-4-additional-readingslearning-materials" class="level2">
-<h2 class="anchored" data-anchor-id="week-4-additional-readingslearning-materials">Week 4 Additional Readings/Learning Materials</h2>
-<section id="eda" class="level3">
-<h3 class="anchored" data-anchor-id="eda">EDA</h3>
+<p>This wraps up the content for week 1. Now we require some practice! You should head back to our <a href="https://wolfware.ncsu.edu/" target="_blank">Moodle site</a> to check out your homework assignment for this week.</p>
+<p>This second week we’ll go through a systematic view of the most common data objects you’ll see in <code>R</code>. We’ll see how to access these objects using <code>Base R</code> commands.&nbsp;</p>
+<section id="week-2-additional-readingslearning-materials" class="level2">
+<h2 class="anchored" data-anchor-id="week-2-additional-readingslearning-materials">Week 2 Additional Readings/Learning Materials</h2>
+<p>Common Data Objects in R</p>
 <ul>
-<li><p><a href="https://r4ds.hadley.nz/data-visualize" target="_blank">Chapters 1, 9, 10, and 11 of R 4 Data Science</a></p></li>
-<li><p>(Optional) <a href="http://www.sthda.com/english/wiki/descriptive-statistics-and-graphics#descriptive-statistics-for-a-single-group" target="_blank">Useful site with EDA process example</a></p></li>
-<li><p>(Optional) <a href="https://openintro-ims.netlify.app/explore-categorical.html" target="_blank">Chapters 4 and 5 of Introduction to Modern Statistics</a></p></li>
+<li><a href="https://r4ds.hadley.nz/logicals" target="_blank">Chapter 12 of R 4 Data Science</a></li>
+<li><a href="https://r4ds.hadley.nz/base-r" target="_blank">Chapter 27 of R 4 Data Science (27.1-27.3)</a></li>
 </ul>
 </section>
-<section id="factors-and-missing-values" class="level3">
-<h3 class="anchored" data-anchor-id="factors-and-missing-values">Factors and missing values</h3>
-<ul>
-<li><a href="https://r4ds.hadley.nz/factors" target="_blank">Chapters 16 and 18 of R 4 Data Science</a></li>
-</ul>
-</section>
-</section>
-<section id="week-4-learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="week-4-learning-objectives">Week 4 Learning Objectives</h2>
+<section id="week-2-learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="week-2-learning-objectives">Week 2 Learning Objectives</h2>
 <p>Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)</p>
-<section id="summarizing-data" class="level3">
-<h3 class="anchored" data-anchor-id="summarizing-data">Summarizing Data</h3>
+<section id="r-basics" class="level3">
+<h3 class="anchored" data-anchor-id="r-basics">R Basics</h3>
 <ol type="1">
-<li><p>&nbsp;&nbsp; utilize R to construct basic numeric summaries such as the mean, median, standard deviation, variance, quantiles, correlation, and contingency tables (CO 5)</p>
-<p>a.&nbsp;&nbsp;&nbsp; interpret and pull out relevant pieces of n-way contingency tables created using the table function in R b.&nbsp;&nbsp;&nbsp; calculate common summary statistics for each level of a categorical variable (or combinations of levels of multiple categorical variables)</p></li>
-<li><p>&nbsp;&nbsp; create graphical summaries using base R and the ggplot2 package (CO 5)</p>
-<p>a.&nbsp;&nbsp;&nbsp; explain the idea behind the way plots are created using the ggplot2 package in R b.&nbsp;&nbsp;&nbsp; customize ggplot graphical summaries in R including, but not limited to, changes to axes and title labels, the type of plot, the appearance of points, the addition of lines, the color, shape, and size of points and lines, and the addition of a legend c.&nbsp;&nbsp;&nbsp; create multiple plots using the faceting capabilities of the ggplot2 package d.&nbsp;&nbsp;&nbsp; describe and create the most commonly used plots for categorical data</p></li>
+<li><p>&nbsp; create common data objects such as data frames, matrices, vectors, and lists and subset each of them</p>
+<ol type="a">
+<li>recognize the most appropriate method for accessing an R object<br>
+b.&nbsp;determine the appropriate type of object in which to save differing types of data<br>
+c.&nbsp;contrast matrices and data frames<br>
+d.&nbsp;determine the type of R object you are working with<br>
+e.&nbsp;compare and contrast the attributes of the common data types</li>
+</ol></li>
+<li><p>&nbsp; utilize R help and other resources to appropriately use and/or modify an R function or object</p></li>
 </ol>
 <p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
@@ -930,13 +928,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Notes/22-SQL_Style_Joins_Landing.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><code>SQL</code> Joins</span>
+      <a href="../Notes/06-Quarto.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><code>Quarto</code> Basics</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Notes/24-EDA_Concepts_Landing.html" class="pagination-link">
-        <span class="nav-page-text">EDA Concepts</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../Notes/07-Base_R_Data_Structures_Vectors.html" class="pagination-link">
+        <span class="nav-page-text">Base <code>R</code> Data Structures: Vectors</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

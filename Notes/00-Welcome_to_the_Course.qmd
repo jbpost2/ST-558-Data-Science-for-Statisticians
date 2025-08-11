@@ -1,7 +1,6 @@
 ---
 title: "Welcome to the Course!"
 format: html
-editor: visual
 toc: TRUE
 editor_options: 
   chunk_output_type: inline
@@ -42,7 +41,7 @@ You can find the syllabus, course schedule, how to install `R` and `RStudio`, an
 
 ## Week 1 Learning Objectives
 
-Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)
+Upon completion of this week, students will be able to:
 
 ### Data Science Ideas
 
