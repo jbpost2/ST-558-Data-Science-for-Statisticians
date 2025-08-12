@@ -42,13 +42,13 @@ To obtain course help there are a number of options:
 +-------------------------+-------------------------------------------------------------------+----------------------------+
 | Topic/Week              | Learning Materials                                                | Assignments                |
 +=========================+===================================================================+============================+
-| Week 1\                 | 00 - Watch - Welcome to the Course\                               | HW 1 due W, 8/27           |
-| 8/18-8/22\              | 01 - Read - What is Data Science?\                                |                            |
-| M-F                     | 02 - Watch - Workflows and `Git`/`GitHub` Basics\                 |                            |
-|                         | 03 - Read - `Git` and `GitHub` Practice\                          |                            |
-|                         | 04 - Watch - `R` Basics\                                          |                            |
-|                         | 05 - Read & Watch - `R` Projects and Connecting with `GitHub`\    |                            |
-|                         | 06 - Read & Watch - `Quarto` Basics                               |                            |
+| Week 1\                 | Welcome to the Course\                                            | HW 1 due W, 8/27           |
+| 8/18-8/22\              | 01 - What is Data Science?\                                       |                            |
+| M-F                     | 02 - Workflows and `Git`/`GitHub` Basics\                         |                            |
+|                         | 03 - `Git` and `GitHub` Practice\                                 |                            |
+|                         | 04 - `R` Basics\                                                  |                            |
+|                         | 05 - `R` Projects and Connecting with `GitHub`\                   |                            |
+|                         | 06 - `Quarto` Basics                                              |                            |
 +-------------------------+-------------------------------------------------------------------+----------------------------+
 | Week 2\                 | Week 2 Overview\                                                  | HW 2 due W, 9/3            |
 | 8/25-8/29\              | 07 - Base `R` Data Structures: Vectors\                           |                            |
