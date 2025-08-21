@@ -120,8 +120,8 @@ The syntax is really easy to pick up. Below you'll find some commonly used markd
 -   `**Knit**` or `__Knit__` $\rightarrow$ Bold font (**Knit**)
 -   `*italic*` or `_italic_` $\rightarrow$ Italic font (*italic*)
 -   `*__both__*` $\rightarrow$ Bold and italic (***both***)
--   `<https://rstudio.github.io/cheatsheets/Quarto.pdf>` $\rightarrow$ A hyperlink: <https://rstudio.github.io/cheatsheets/Quarto.pdf>
--   `[Cheat Sheet link](https://rstudio.github.io/cheatsheets/Quarto.pdf)` $\rightarrow$ [Cheat Sheet link](https://rstudio.github.io/cheatsheets/Quarto.pdf)
+-   `<https://rstudio.github.io/cheatsheets/quarto.pdf>` $\rightarrow$ A hyperlink: <https://rstudio.github.io/cheatsheets/quarto.pdf>
+-   `[Cheat Sheet link](https://rstudio.github.io/cheatsheets/quarto.pdf)` $\rightarrow$ [Cheat Sheet link](https://rstudio.github.io/cheatsheets/quarto.pdf)
 
 Check <a href = "https://Quarto.org/docs/authoring/markdown-basics.html" target = "_blank">this site for markdown basics</a>. 
 
