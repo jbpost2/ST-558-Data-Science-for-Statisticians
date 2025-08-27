@@ -403,21 +403,36 @@
     "href": "Notes/14_5-Week3_4.html",
     "title": "Week 4 Overview",
     "section": "",
-    "text": "This wraps up the content for week 3. Now we require some practice! You should head back to our Moodle site to check out your homework assignment for this week.\nWe are now ready to really look at bringing data in and how to handle that data more seamlessly. We’ll look at working within the tidyverse. This is a suite of packages that all work together and allow you to read in data and do most common data manipulations."
+    "text": "This wraps up the content for week 3. Now we require some practice! You should head back to our Moodle site to check out your homework assignment for this week.\nWe are now ready to really look at bringing data in and how to handle that data more seamlessly. We’ll look at working within the tidyverse. This is a suite of packages that all work together and allow you to read in data and do most common data manipulations.",
+    "crumbs": [
+      "Home",
+      "Topic 2: Tidyverse & EDA",
+      "Week 4 Overview"
+    ]
   },
   {
     "objectID": "Notes/14_5-Week3_4.html#week-4-additional-readingslearning-materials",
     "href": "Notes/14_5-Week3_4.html#week-4-additional-readingslearning-materials",
     "title": "Week 4 Overview",
     "section": "Week 4 Additional Readings/Learning Materials",
-    "text": "Week 4 Additional Readings/Learning Materials\n\nManipulating Data\n\nChapters 3, 4, and 5 of R 4 Data Science\n(Optional) R Packages book\n(Optional) List of CRAN approved packages\n(Optional) &lt;a href=“https://support.posit.co/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages” target=“_blank”List of useful R packages\n\n\n\nReading Data\n\nChapter 7 of R 4 Data Science"
+    "text": "Week 4 Additional Readings/Learning Materials\n\nManipulating Data\n\nChapters 3, 4, and 5 of R 4 Data Science\n(Optional) R Packages book\n(Optional) List of CRAN approved packages\n(Optional) List of useful R packages\n\n\n\nReading Data\n\nChapter 7 of R 4 Data Science",
+    "crumbs": [
+      "Home",
+      "Topic 2: Tidyverse & EDA",
+      "Week 4 Overview"
+    ]
   },
   {
     "objectID": "Notes/14_5-Week3_4.html#week-4-learning-objectives",
     "href": "Notes/14_5-Week3_4.html#week-4-learning-objectives",
     "title": "Week 4 Overview",
     "section": "Week 4 Learning Objectives",
-    "text": "Week 4 Learning Objectives\nUpon completion of this week, students will be able to:\n\nReading Data\n\nread delimited data, SAS data files, SPSS files, and other file types into R\n\ndescribe the term delimiter\n\nread comma separated value files into R using the readr package\n\nexplain how the read_ functions determine column types\n\ndescribe the readxl package and its functions\n\ncompare and contrast tibbles and data frames\n\nwrite a stored data set to a file using different delimiters\n\n\n\nManipulating Data\n\nuse logical statements and indexing vectors to subset common data objects using common functions such as [, subset, or dplyr::filter functions\n\nlist favorable things to look for in an R package\n\ndescribe the general purpose of the tidyverse package\n\noutline the difference between require and library\n\nexplicitly use functions from a particular package using the :: operator\n\ndiscuss the idea of masking of R functions and objects\n\ndescribe the uses of and program with functions from the dplyr package\n\nexplain the benefits of using the dplyr package over base R methods\n\nprogram with the arrange, filter, select, and rename functions from the dplyr package\n\noptimize selecting variables from a data frame using the select function’s options (such as starts_with)\n\ncombine functions in the dplry package to subset and summarize a data set in R\n\ndescribe the uses of and program with the mutate, group_by, and summarise functions in the dplyr R package\n\ncombine functions in the dplry package to subset and summarize a data set in R\n\nprogram using the chain of commands or chaining/piping operators\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!"
+    "text": "Week 4 Learning Objectives\nUpon completion of this week, students will be able to:\n\nReading Data\n\nread delimited data, SAS data files, SPSS files, and other file types into R\n\ndescribe the term delimiter\n\nread comma separated value files into R using the readr package\n\nexplain how the read_ functions determine column types\n\ndescribe the readxl package and its functions\n\ncompare and contrast tibbles and data frames\n\nwrite a stored data set to a file using different delimiters\n\n\n\nManipulating Data\n\nuse logical statements and indexing vectors to subset common data objects using common functions such as [, subset, or dplyr::filter functions\n\nlist favorable things to look for in an R package\n\ndescribe the general purpose of the tidyverse package\n\noutline the difference between require and library\n\nexplicitly use functions from a particular package using the :: operator\n\ndiscuss the idea of masking of R functions and objects\n\ndescribe the uses of and program with functions from the dplyr package\n\nexplain the benefits of using the dplyr package over base R methods\n\nprogram with the arrange, filter, select, and rename functions from the dplyr package\n\noptimize selecting variables from a data frame using the select function’s options (such as starts_with)\n\ncombine functions in the dplry package to subset and summarize a data set in R\n\ndescribe the uses of and program with the mutate, group_by, and summarise functions in the dplyr R package\n\ncombine functions in the dplry package to subset and summarize a data set in R\n\nprogram using the chain of commands or chaining/piping operators\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 2: Tidyverse & EDA",
+      "Week 4 Overview"
+    ]
   },
   {
     "objectID": "Notes/13-Control_Flow_Vectorized_Functions.html",

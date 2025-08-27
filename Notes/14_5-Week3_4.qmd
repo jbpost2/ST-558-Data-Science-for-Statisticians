@@ -18,7 +18,7 @@ We are now ready to really look at bringing data in and how to handle that data 
 -   <a href="https://r4ds.hadley.nz/data-transform" target="_blank">Chapters 3, 4, and 5 of R 4 Data Science</a>
 -   (Optional) <a href="https://r-pkgs.org/" target="_blank">R Packages book</a>
 -   (Optional) <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html" target="_blank">List of CRAN approved packages</a>
--   (Optional) \<a href="https://support.posit.co/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages" target="\_blank"List of useful R packages</a>
+-   (Optional) <a href="https://support.posit.co/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages" target="_blank">List of useful R packages</a>
 
 ### Reading Data
 
