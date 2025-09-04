@@ -16,7 +16,7 @@ I highly recommend watching the video using the 'full' Panopto player. There is 
 
 ## Notes
 
-- <a href = "31-Advanced_Function_Writing.html" target = "_blank">HTML version</a>
-- <a href = "PDFs/31-Advanced_Function_Writing.pdf" target = "_blank">PDF version</a>
+- <a href = "32-Advanced_Function_Writing.html" target = "_blank">HTML version</a>
+- <a href = "PDFs/32-Advanced_Function_Writing.pdf" target = "_blank">PDF version</a>
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!
