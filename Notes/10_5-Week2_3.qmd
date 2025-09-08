@@ -43,7 +43,7 @@ Then we'll see how to write our own functions! We are already learning a lot of 
 
 ### Loops and Vectorized Functions<br>
 
--   <a href="https://r4ds.hadley.nz/base-r" target="_blank">Chapter 27 of R 4 Data Science (27.4-27.5)</a>
+-   <a href="https://r4ds.hadley.nz/base-R.html" target="_blank">Chapter 27 of R 4 Data Science (27.4-27.5)</a>
 
 ## Week 3 Learning Objectives
 
