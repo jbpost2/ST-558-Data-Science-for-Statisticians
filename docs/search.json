@@ -270,14 +270,24 @@
     "href": "Notes/28-Numeric_Variable_Graphs_Landing.html",
     "title": "Numeric Variable Graphs",
     "section": "",
-    "text": "The video below discusses how to create graphs for numeric variables using ggplot2.\nI highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer."
+    "text": "The video below discusses how to create graphs for numeric variables using ggplot2.\nI highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer.",
+    "crumbs": [
+      "Home",
+      "Topic 2: Tidyverse & EDA",
+      "Numeric Variable Graphs"
+    ]
   },
   {
     "objectID": "Notes/28-Numeric_Variable_Graphs_Landing.html#notes",
     "href": "Notes/28-Numeric_Variable_Graphs_Landing.html#notes",
     "title": "Numeric Variable Graphs",
     "section": "Notes",
-    "text": "Notes\n\nHTML version\nPDF version\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!"
+    "text": "Notes\n\nHTML version\nPDF version\n\n\nggplot Themes\nThe style of the graphs created by ggplot() are extremely easy to create and apply! These can help all of your plots have the same feel in a presentation.\nLet’s consider a basic plot from the notes above to start. First let’s reread the data:\n\nlibrary(tidyverse)\nlibrary(readxl)\napp_data &lt;- read_excel(\"data/app_data.xlsx\", sheet = 1)\napp_data &lt;- app_data |&gt;\n  mutate(BMI = as.numeric(BMI),\n         US_Number = as.character(US_Number),\n         SexF = factor(Sex, levels = c(\"female\", \"male\"), labels = c(\"Female\", \"Male\")),\n         DiagnosisF = as.factor(Diagnosis),\n         SeverityF = as.factor(Severity))\n\nConsider the graph we created with multiple trend lines:\n\ng &lt;- ggplot(app_data |&gt; drop_na(RBC_Count, Weight, Diagnosis) |&gt; filter(RBC_Count &lt; 8), \n            aes(x = Weight, y = RBC_Count, color = Diagnosis))\ng_scatter &lt;- g + geom_point() +  \n    geom_smooth(method = lm) \ng_scatter\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nThis uses the default theme from ggplot2. While this looks pretty good, we can easily change this using a standard theme.\n\ng_scatter +\n  theme_linedraw()\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nYou can see these just changes the look of the plot a bit. With themes, you can easily change the look of multiple plots with out changing much code.\nIn fact, you can define your own custom theme very easily. For instance, below we create a theme ‘object’ called t (theme courtesy of a former student, John Hinic) which modifies a theme from the ggthemes package (this package must be installed to run this code!).\n\nt &lt;- ggthemes::theme_clean() + \n  theme(plot.background = element_rect(color = NA),\n        axis.title = element_text(size = 14, face = \"bold\"),\n        axis.text = element_text(size = 11),\n        legend.background = element_rect(color = NA),\n        legend.position = 'top',\n        legend.justification.top = 'left',\n        legend.location = 'plot',\n        legend.text = element_text(size = 12),\n        legend.margin = margin(0, 0, 0, 0),\n        plot.title.position = 'plot',\n        strip.text = element_text(size = 14, face = \"bold\"))\n\nNow we can apply this theme using the usual + syntax from ggplot2.\n\ng_scatter + t\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 2: Tidyverse & EDA",
+      "Numeric Variable Graphs"
+    ]
   },
   {
     "objectID": "Notes/26-Barplots_ggplot_Basics_Landing.html",

@@ -19,4 +19,66 @@ I highly recommend watching the video using the 'full' Panopto player. There is 
 - <a href = "28-Numeric_Variable_Graphs.html" target = "_blank">HTML version</a>
 - <a href = "PDFs/28-Numeric_Variable_Graphs.pdf" target = "_blank">PDF version</a>
 
+### `ggplot` Themes
+
+The style of the graphs created by `ggplot()` are extremely easy to create and apply! These can help all of your plots have the same feel in a presentation.
+
+Let's consider a basic plot from the notes above to start. First let's reread the data:
+
+```{r, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(readxl)
+app_data <- read_excel("data/app_data.xlsx", sheet = 1)
+app_data <- app_data |>
+  mutate(BMI = as.numeric(BMI),
+         US_Number = as.character(US_Number),
+         SexF = factor(Sex, levels = c("female", "male"), labels = c("Female", "Male")),
+         DiagnosisF = as.factor(Diagnosis),
+         SeverityF = as.factor(Severity))
+```
+
+Consider the graph we created with multiple trend lines:
+
+```{r,eval = TRUE, echo = TRUE, out.width = "650px", fig.align='center', out.height = '350px', warning = FALSE}
+g <- ggplot(app_data |> drop_na(RBC_Count, Weight, Diagnosis) |> filter(RBC_Count < 8), 
+            aes(x = Weight, y = RBC_Count, color = Diagnosis))
+g_scatter <- g + geom_point() +  
+    geom_smooth(method = lm) 
+g_scatter
+```
+
+This uses the default theme from `ggplot2`. While this looks pretty good, we can easily change this using a <a href = "https://ggplot2.tidyverse.org/reference/ggtheme.html" target = "_blank">standard theme</a>.
+
+
+```{r,eval = TRUE, echo = TRUE, out.width = "650px", fig.align='center', out.height = '350px', warning = FALSE}
+g_scatter +
+  theme_linedraw()
+```
+
+You can see these just changes the look of the plot a bit. With themes, you can easily change the look of multiple plots with out changing much code.
+
+In fact, you can define your own custom theme very easily. For instance, below we create a theme 'object' called `t` (theme courtesy of a former student, John Hinic) which modifies a theme from the `ggthemes` package (this package must be installed to run this code!).
+
+```{r}
+t <- ggthemes::theme_clean() + 
+  theme(plot.background = element_rect(color = NA),
+        axis.title = element_text(size = 14, face = "bold"),
+        axis.text = element_text(size = 11),
+        legend.background = element_rect(color = NA),
+        legend.position = 'top',
+        legend.justification.top = 'left',
+        legend.location = 'plot',
+        legend.text = element_text(size = 12),
+        legend.margin = margin(0, 0, 0, 0),
+        plot.title.position = 'plot',
+        strip.text = element_text(size = 14, face = "bold"))
+```
+
+Now we can apply this theme using the usual `+` syntax from `ggplot2`.
+
+```{r}
+g_scatter + t
+```
+
+
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!
