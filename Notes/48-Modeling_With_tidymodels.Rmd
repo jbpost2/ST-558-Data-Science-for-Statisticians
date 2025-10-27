@@ -106,9 +106,9 @@ bike_test <- testing(bike_split)
 
     + Process keeps track of proper values to use for you!
     
-    + Start with ``recipe()` call
+    + Start with `recipe()` call
     
-        - Denote formula for response/predictors and datato use
+        - Denote formula for response/predictors and data to use
         - `summary()` describes current setup (we don't want all of these as predictors)
     
 ```{r}
@@ -352,7 +352,7 @@ bike_int_rec <- recipe(log_selling_price ~ ., data = bike_train) |>
 
 - Fit the model to the resamples and see our metric
 
-```{r}
+```{r, warning = FALSE, message = FALSE}
 bike_int_CV_fits <- workflow() |>
   add_recipe(bike_int_rec) |>
   add_model(bike_mod) |>

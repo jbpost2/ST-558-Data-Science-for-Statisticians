@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-08-11">
+<meta name="dcterms.date" content="2025-10-24">
 
 <title>ST 558 Data Science for Statisticians (R) - Cross-Validation</title>
 <style>
@@ -686,7 +686,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-08-11</p>
+      <p class="date">2025-10-24</p>
     </div>
   </div>
   
@@ -698,7 +698,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>We’ve discussed the idea of supervised learning. In this paradigm we have a <strong>response</strong> or <strong>target</strong> variable we are trying to predict.</p>
 <ul>
-<li><p>We posit some model for that variable that is a function of our predictor variables.</p></li>
+<li><p>We posit some model for the response variable that is a function of our predictor variables.</p></li>
 <li><p>We fit that model to data (usually can be seen as minimizing some <em>loss</em> function).</p></li>
 <li><p>We judge how well our model does at predicting using some <strong>metric.</strong></p>
 <ul>
@@ -786,7 +786,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <ul>
 <li>
-Each fold will have 106 observations. There will be an extra observation in this case, we’ll lump that into our last fold.
+Each fold, except one, will have 106 observations. There will be an extra observation in this case, we’ll lump that into our last fold.
 </li>
 <li>
 Let’s get our folds by using <code>sample()</code> to reorder the indices.
@@ -807,16 +807,18 @@ Then we’ll use a for loop to cycle through the pieces and save the folds in a 
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#create a list to save our folds in</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>folds <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#now cycle through our random indices vector and take the appropriate observations to each fold</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">&lt;</span> <span class="dv">10</span>) {</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    fold_index <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> (i<span class="dv">-1</span>)<span class="sc">*</span>size_fold <span class="sc">+</span><span class="dv">1</span>, <span class="at">to =</span> i<span class="sc">*</span>size_fold, <span class="at">by =</span> <span class="dv">1</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    folds[[i]] <span class="ot">&lt;-</span> bike_data[random_indices[fold_index], ]</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    fold_index <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> (i<span class="dv">-1</span>)<span class="sc">*</span>size_fold <span class="sc">+</span><span class="dv">1</span>, <span class="at">to =</span> <span class="fu">length</span>(random_indices), <span class="at">by =</span> <span class="dv">1</span>)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    folds[[i]] <span class="ot">&lt;-</span> bike_data[random_indices[fold_index], ]</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>folds[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#you may want to set i to 1 and run the arguments to from and to in the seq() function</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#change i to 2 and do the same thing to see how this works</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">&lt;</span> <span class="dv">10</span>) {</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    fold_index <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> (i<span class="dv">-1</span>)<span class="sc">*</span>size_fold <span class="sc">+</span><span class="dv">1</span>, <span class="at">to =</span> i<span class="sc">*</span>size_fold, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    folds[[i]] <span class="ot">&lt;-</span> bike_data[random_indices[fold_index], ]</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> { <span class="co">#for i = 10 we need to have 1 more observation </span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    fold_index <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> (i<span class="dv">-1</span>)<span class="sc">*</span>size_fold <span class="sc">+</span><span class="dv">1</span>, <span class="at">to =</span> <span class="fu">length</span>(random_indices), <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    folds[[i]] <span class="ot">&lt;-</span> bike_data[random_indices[fold_index], ]</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>folds[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 106 × 9
    log_km_driven  year log_selling_price name    selling_price seller_type owner
@@ -911,10 +913,10 @@ This function will take in a data set and a number of folds (<code>num_folds</co
 # ℹ 97 more rows
 # ℹ 2 more variables: km_driven &lt;dbl&gt;, ex_showroom_price &lt;dbl&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#remove the test fold from the list</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>folds[[test_number]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#note that folds is only length 9 now</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(folds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#remove the test fold from the list and use the rest as training data</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>train_list <span class="ot">&lt;-</span> folds[<span class="sc">-</span>test_number]</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#note that train is only length 9</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(train_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9</code></pre>
 </div>
@@ -928,7 +930,7 @@ Recall the <code>purrr:reduce()</code> function. This allows us to iteratively a
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#combine the other folds into train set</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">reduce</span>(folds, rbind)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">reduce</span>(train_list, rbind)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#the other nine folds are now in train</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -968,7 +970,7 @@ Now we can fit our model and check the metric on the test set
 <ul>
 <ul>
 <li>
-Ok, let’s wrap that into a function for ease! Let <code>y</code> be a string for the response, <code>x</code> a character vector of predictors, and <code>test_number</code> the fold to test on.
+Ok, let’s wrap that into a function for ease! Let <code>y</code> be a string for the response, <code>x</code> a character <em>vector</em> of predictors, and <code>test_number</code> the fold to test on.
 </li>
 </ul>
 </ul>
@@ -977,28 +979,37 @@ Ok, let’s wrap that into a function for ease! Let <code>y</code> be a string f
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#pull out the testing fold</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  test <span class="ot">&lt;-</span> folds[[test_number]]</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#remove the test fold from the list</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  folds[[test_number]] <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  train_list <span class="ot">&lt;-</span> folds[<span class="sc">-</span>test_number]</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#combine the other folds into train set</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  train <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">reduce</span>(folds, rbind)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  train <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">reduce</span>(train_list, rbind)</span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#fit our model. reformulate allows us to take strings and turn that into a formula</span></span>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">reformulate</span>(<span class="at">termlabels =</span> x, <span class="at">response =</span> y), <span class="at">data =</span> train)</span>
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#get test error</span></span>
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  (yardstick<span class="sc">::</span><span class="fu">rmse_vec</span>(test[[y]], <span class="fu">predict</span>(fit, <span class="at">newdata =</span> test)))<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co">#double check it works</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="fu">find_test_metric</span>(<span class="at">y =</span> <span class="st">"log_selling_price"</span>, </span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>                 <span class="at">x =</span> <span class="st">"log_km_driven"</span>, </span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">folds =</span> folds, </span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">test_number =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3318796</code></pre>
+</div>
 </div>
 <ul>
 <ul>
 <li>
-We can use the <code>purrr::map()</code> function to apply this function to <code>1:10</code>. This will use each fold as the test set once.
+We can use the <code>purrr::map()</code> function to apply this function to <code>1:10</code>. This will use each fold as the test set once!
 </li>
 </ul>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>folds <span class="ot">&lt;-</span> <span class="fu">get_cv_splits</span>(bike_data, <span class="dv">10</span>)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, find_test_metric, </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> <span class="st">"log_selling_price"</span>, </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="st">"log_km_driven"</span>, </span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">folds =</span> folds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>folds <span class="ot">&lt;-</span> <span class="fu">get_cv_splits</span>(bike_data, <span class="dv">10</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, find_test_metric, </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> <span class="st">"log_selling_price"</span>, </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="st">"log_km_driven"</span>, </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">folds =</span> folds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 [1] 0.2829525
@@ -1032,19 +1043,19 @@ We can use the <code>purrr::map()</code> function to apply this function to <cod
 </div>
 </div>
 <ol start="3" type="1">
-<li><p>Now we combine these into one value! We’ll average the MSE values across the folds and then take the square root of that to obtain the RMSE (averaging square roots makes less sense, which is why we found MSE first)</p>
+<li><p>Now we combine these into one value! We’ll average the MSE values across the folds and then take the square root of that to obtain the RMSE (averaging square roots makes less sense, which is why we found MSE first)!</p>
 <ul>
 <li>We can again use <code>reduce()</code> to combine all of these values into one number! We average it by dividing by the number of folds and finally find the square root to make it the RMSE!</li>
 </ul></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sum_mse <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, </span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                      find_test_metric, </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y =</span> <span class="st">"log_selling_price"</span>, </span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">x =</span> <span class="st">"log_km_driven"</span>, </span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">folds =</span> folds) <span class="sc">|&gt;</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reduce</span>(<span class="at">.f =</span> sum)</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(sum_mse<span class="sc">/</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>sum_mse <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                      find_test_metric, </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">y =</span> <span class="st">"log_selling_price"</span>, </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">x =</span> <span class="st">"log_km_driven"</span>, </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">folds =</span> folds) <span class="sc">|&gt;</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reduce</span>(<span class="at">.f =</span> sum)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(sum_mse<span class="sc">/</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5956823</code></pre>
 </div>
@@ -1057,16 +1068,16 @@ Let’s put it into a function and make it generic for the number of folds we ha
 </ul>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>find_cv <span class="ot">&lt;-</span> <span class="cf">function</span>(y, x, folds, num_folds){</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  sum_mse <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span>num_folds, </span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>                        find_test_metric, </span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">y =</span> y, </span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">x =</span>x, </span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">folds =</span> folds) <span class="sc">|&gt;</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reduce</span>(<span class="at">.f =</span> sum)</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sqrt</span>(sum_mse<span class="sc">/</span>num_folds))</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="fu">find_cv</span>(<span class="st">"log_selling_price"</span>, <span class="st">"log_km_driven"</span>, folds, <span class="at">num_folds =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>find_cv <span class="ot">&lt;-</span> <span class="cf">function</span>(y, x, folds, num_folds){</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  sum_mse <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span>num_folds, </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                        find_test_metric, </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">y =</span> y, </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">x =</span>x, </span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">folds =</span> folds) <span class="sc">|&gt;</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">reduce</span>(<span class="at">.f =</span> sum)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sqrt</span>(sum_mse<span class="sc">/</span>num_folds))</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="fu">find_cv</span>(<span class="st">"log_selling_price"</span>, <span class="st">"log_km_driven"</span>, folds, <span class="at">num_folds =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5956823</code></pre>
 </div>
@@ -1074,29 +1085,31 @@ Let’s put it into a function and make it generic for the number of folds we ha
 </section>
 <section id="compare-different-models-using-our-cv-functions" class="level3">
 <h3 class="anchored" data-anchor-id="compare-different-models-using-our-cv-functions">Compare Different Models Using Our CV Functions</h3>
-<p>Now let’s compare our three separate models via 10 fold CV! We can use the same <code>folds</code> with different models.</p>
+<p>Now let’s compare our three separate models via 10 fold CV! We can use the same <code>folds</code> with different models. This will make our comparisons better (similar to using a block design if you are familiar with that).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>folds <span class="ot">&lt;-</span> <span class="fu">get_cv_splits</span>(bike_data, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ol type="1">
-<li>First our model with just <code>year</code> as a predictor:</li>
+<li>First let’s find our CV RMSE on our model with just <code>year</code> as a predictor:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>folds <span class="ot">&lt;-</span> <span class="fu">get_cv_splits</span>(bike_data, <span class="dv">10</span>)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>cv_reg_1 <span class="ot">&lt;-</span> <span class="fu">find_cv</span>(<span class="st">"log_selling_price"</span>, <span class="st">"year"</span>, folds, <span class="at">num_folds =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>cv_reg_1 <span class="ot">&lt;-</span> <span class="fu">find_cv</span>(<span class="st">"log_selling_price"</span>, <span class="st">"year"</span>, folds, <span class="at">num_folds =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li>Now for our model with just <code>log_km_driven</code>:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>cv_reg_2 <span class="ot">&lt;-</span> <span class="fu">find_cv</span>(<span class="st">"log_selling_price"</span>, <span class="st">"log_km_driven"</span>, folds, <span class="at">num_folds =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>cv_reg_2 <span class="ot">&lt;-</span> <span class="fu">find_cv</span>(<span class="st">"log_selling_price"</span>, <span class="st">"log_km_driven"</span>, folds, <span class="at">num_folds =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="3" type="1">
 <li>And for the model with both of these (main) effects:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>cv_reg_3 <span class="ot">&lt;-</span> <span class="fu">find_cv</span>(<span class="st">"log_selling_price"</span>, <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"log_km_driven"</span>), folds, <span class="at">num_folds =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>cv_reg_3 <span class="ot">&lt;-</span> <span class="fu">find_cv</span>(<span class="st">"log_selling_price"</span>, <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"log_km_driven"</span>), folds, <span class="at">num_folds =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can then use these CV scores to compare across models and choose the ‘best’ one!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"year"</span> <span class="ot">=</span> cv_reg_1, <span class="st">"log_km_driven"</span> <span class="ot">=</span> cv_reg_2, <span class="st">"both"</span> <span class="ot">=</span> cv_reg_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"year"</span> <span class="ot">=</span> cv_reg_1, <span class="st">"log_km_driven"</span> <span class="ot">=</span> cv_reg_2, <span class="st">"both"</span> <span class="ot">=</span> cv_reg_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         year log_km_driven          both 
     0.5508152     0.5956502     0.5135431 </code></pre>
@@ -1105,8 +1118,8 @@ Let’s put it into a function and make it generic for the number of folds we ha
 <p>We see that the model that has both predictors has the lowest cross-validation RMSE!</p>
 <p><strong>We would now fit this ‘best’ model on the full data set!</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>best_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(log_selling_price <span class="sc">~</span> year <span class="sc">+</span> log_km_driven, <span class="at">data =</span> bike_data)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>best_fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>best_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(log_selling_price <span class="sc">~</span> year <span class="sc">+</span> log_km_driven, <span class="at">data =</span> bike_data)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>best_fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1121,8 +1134,8 @@ Coefficients:
 </section>
 <section id="cv-recap" class="level2">
 <h2 class="anchored" data-anchor-id="cv-recap">CV Recap</h2>
-<p>Nice! We’ve done a comparison of models on how well they predict on data they are not trained on without splitting our data into a train and test set! This is very useful when we don’t have a lot of data.</p>
-<p>Again, we would choose our best model (model 3 here) and refit the model on the full data set! We’ll see how to do this in the <code>tidymodels</code> framework shortly</p>
+<p>Nice! We’ve done a comparison of models on how well they predict on data they are not trained on without splitting our data into a train and test set! This is very useful when we don’t have a lot of data. Again, we would choose our best model (model 3 here) and refit the model on the full data set!</p>
+<p>In some cases, we’ll want to use a train/test split and use CV on the training data only so we still have a separate test set for other comparisons. We’ll discuss this idea shortly! We’ll also see how to do this in the <code>tidymodels</code> framework rather than doing it by hand.</p>
 <p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
 

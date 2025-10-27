@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-08-11">
+<meta name="dcterms.date" content="2025-10-24">
 
 <title>ST 558 Data Science for Statisticians (R) - LASSO Models</title>
 <style>
@@ -694,7 +694,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-08-11</p>
+      <p class="date">2025-10-24</p>
     </div>
   </div>
   
@@ -706,7 +706,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>We’ve seen that using a training/test split can give us a way to judge our model’s effectiveness on data it wasn’t trained on.</p>
 <p>Alternatively, we’ve seen that cross-validation can be used to judge our model’s effectiveness without doing the training/test split. We might do this if we have a smaller data set.</p>
-<p>A third option is to use both CV and a training/test split. We might do this if we had a number of different <em>classes</em> or <em>families</em> of models we were fitting. We could use CV to choose the best from each family solely on the training data. Then we could compare only the best models from each class on the test set.</p>
+<p><strong>A third option is to use both CV and a training/test split.</strong> We might do this if we had a number of different <em>classes</em> or <em>families</em> of models we were fitting. We could use CV on the training data only to choose the best from each family. We refit each of those ‘best’ models on the full training data. Then we could compare those ‘best’ models from each class on the test set to select our final best model! (We would then refit that model to the entire data set.)</p>
 <p>For instance, we might have the following families of models:</p>
 <ul>
 <li>MLR models (say some with interactions, some without)</li>
@@ -715,8 +715,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>A kNN (k nearest neighbor) model (we won’t study this one)</li>
 </ul>
 <p>The latter three model types all have <strong>tuning</strong> parameters that must be selected when fitting the model. CV on the training set is often used to select those tuning parameters! We can also use CV on the training set to determine the best MLR model (or use some other model selection technique).</p>
-<p>Using this process, we would get a best model of each type (or family) using the training set only. Then we can compare the best model from each family of models on the test set to select an overall best model!</p>
-<p>Let’s introduce the LASSO model and then use both CV (on the training set) to select the tuning parameter. We’ll similarly compare some competing MLR models using CV on the training set. Once we have our best LASSO and best MLR model, we’ll then go to the test set to determine an overall best model.</p>
+<p>Using this process, we would get a best model of each type (or family) using the training set only. Then we refit those models on the full training data and can compare the best model from each family of models on the test set to select an overall best model!</p>
+<p>Let’s introduce the LASSO model and then use CV (on the training set) to select the tuning parameter. We’ll similarly compare some competing MLR models using CV on the training set. Once we have our best LASSO and best MLR model, we’ll then go to the test set to determine an overall best model.</p>
 <section id="fitting-models-on-our-bike_data" class="level2">
 <h2 class="anchored" data-anchor-id="fitting-models-on-our-bike_data">Fitting Models on our <code>bike_data</code></h2>
 <p>First, a training/test split on our <code>bike_data</code>:</p>
@@ -735,7 +735,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>bike_train <span class="ot">&lt;-</span> <span class="fu">training</span>(bike_split)</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>bike_test <span class="ot">&lt;-</span> <span class="fu">testing</span>(bike_split)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now we’ll proceed with finding our best LASSO model and best MLR model on just the <code>bike_train</code> data.</p>
+<p>Now we’ll proceed with finding our best MLR model and best LASSO model on just the <code>bike_train</code> data.</p>
 <section id="selecting-the-best-mlr-model-using-cv" class="level3">
 <h3 class="anchored" data-anchor-id="selecting-the-best-mlr-model-using-cv">Selecting the Best MLR Model Using CV</h3>
 <p>Again, it isn’t necessary to use CV to select an MLR model (there are tons of ways to choose between candidate MLR models - AIC, BIC, backward selection, Mallow’s Cp, …). However, CV is a perfectly valid way to choose between MLR models.</p>
@@ -845,7 +845,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mo>min</mo><mrow><mi>β</mi><mi>′</mi><mi>s</mi></mrow></munder><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>β</mi><mn>0</mn></msub><mo>+</mo><msub><mi>β</mi><mn>1</mn></msub><msub><mi>x</mi><mrow><mn>1</mn><mi>i</mi></mrow></msub><mo>+</mo><mi>.</mi><mi>.</mi><mi>.</mi><mo>+</mo><msub><mi>β</mi><mi>p</mi></msub><msub><mi>x</mi><mrow><mi>p</mi><mi>i</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup><mo>+</mo><mi>α</mi><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>p</mi></munderover><mrow><mo stretchy="true" form="prefix">|</mo><msub><mi>β</mi><mi>j</mi></msub><mo stretchy="true" form="postfix">|</mo></mrow></mrow><annotation encoding="application/x-tex">\min\limits_{\beta's}\sum_{i=1}^{n}(y_i-(\beta_0+\beta_1x_{1i}+...+\beta_px_{pi}))^2 + \alpha\sum_{j=1}^{p}|\beta_j|</annotation></semantics></math></p>
 <ul>
-<li>Sets coefficients to 0 as you ‘shrink’ (have a larger and larger <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>)!</li>
+<li>For an <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> of 0 we get the usual least squares estimates. As <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> gets larger we ‘shrink’ the estimates toward 0.</li>
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
@@ -858,9 +858,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li><p>When choosing the tuning parameter (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>), we are really considering a <strong>family of models</strong> for a given set of predictors!</p>
+<li><p>We have a different model fit for each value of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>. When choosing the tuning parameter (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math>), we are really considering a <strong>family of models</strong> for a given set of predictors!</p>
 <ul>
-<li>Consider the MLR model with different intercepts based on <code>owners</code> that includes both <code>log_km_driven</code> and <code>year</code> as predictors. The plot here gives the coefficient profiles (estimates) as a function of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math></li>
+<li>Consider the MLR model with different intercepts based on <code>owners</code> that includes both <code>log_km_driven</code> and <code>year</code> as predictors. The plot here gives the coefficient profiles (estimates) as a function of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> (although and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> of 0 here corresponds to being on the right hand side of the plot).</li>
 </ul></li>
 </ul>
 <div class="cell">
@@ -880,7 +880,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We want to choose which level of shrinkage is appropriate. That is, which value of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> gives us the best model for predicting! A perfect case for using CV!</p>
 <section id="create-our-recipe" class="level4">
 <h4 class="anchored" data-anchor-id="create-our-recipe">Create our Recipe</h4>
-<p>Let’s use 10 fold CV to choose our <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> value (i.e.&nbsp;figure out our best LASSO model with these three predictors). As we are penalizing the magnitude of the slope estimates, LASSO models should really be fit on standardized predictors. Let’s include that step in our recipe!</p>
+<p>Let’s use 10 fold CV to choose our <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> value (i.e.&nbsp;figure out our best LASSO model with these three predictors). As we are penalizing the magnitude of the slope estimates (and the estimates depend on the units of the predictor), LASSO models should really be fit on standardized predictors. Let’s include that step in our recipe!</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#set up how we'll fit our LASSO model</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#code modified from https://juliasilge.com/blog/lasso-the-office/</span></span>
@@ -892,7 +892,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="create-a-model-instance-with-tune" class="level4">
 <h4 class="anchored" data-anchor-id="create-a-model-instance-with-tune">Create a Model Instance with <code>tune()</code></h4>
-<p>Great, now we need to specify a LASSO model. Recall <a href="https://www.tidymodels.org/find/parsnip/">this page</a> allows us to find a type of model to fit along with how to specify it and the engine used to fit the model.</p>
+<p>Great, now we need to specify a LASSO model. Recall <a href="https://www.tidymodels.org/find/parsnip/" target="_blank">this page</a> allows us to find a type of model to fit along with how to specify it and the engine used to fit the model.</p>
 <p>In this case, we still want <code>linear_reg()</code> but we want to use the ‘glmnet’ engine. We also want to specify the <code>penalty</code> parameter (corresponds to a form of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> we mentioned above). “glmnet” actually allows us to fit a more complicated model (the elastic net) so there is a second tuning parameter to deal with (called <code>mixture</code>).</p>
 <ul>
 <li>We set <code>mixture = 1</code> to turn this into a LASSO model (rather than an elastic net model)</li>
@@ -942,119 +942,107 @@ Computational engine: glmnet </code></pre>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#A warning will occur for one value of the tuning parameter, safe to ignore</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>LASSO_grid <span class="ot">&lt;-</span> LASSO_wkf <span class="sc">|&gt;</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(<span class="at">resamples =</span> bike_CV_folds,</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">grid =</span> <span class="fu">grid_regular</span>(<span class="fu">penalty</span>(), <span class="at">levels =</span> <span class="dv">200</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>→ A | warning: A correlation computation is required, but `estimate` is constant and has 0 standard deviation, resulting in a divide by 0 error. `NA` will be returned.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>There were issues with some computations   A: x1</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>There were issues with some computations   A: x10</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code></code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>LASSO_grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">grid =</span> <span class="fu">grid_regular</span>(<span class="fu">penalty</span>(), <span class="at">levels =</span> <span class="dv">200</span>)) </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>LASSO_grid</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Tuning results
 # 10-fold cross-validation 
 # A tibble: 10 × 4
    splits           id     .metrics           .notes          
    &lt;list&gt;           &lt;chr&gt;  &lt;list&gt;             &lt;list&gt;          
- 1 &lt;split [667/75]&gt; Fold01 &lt;tibble [400 × 5]&gt; &lt;tibble [1 × 3]&gt;
- 2 &lt;split [667/75]&gt; Fold02 &lt;tibble [400 × 5]&gt; &lt;tibble [1 × 3]&gt;
- 3 &lt;split [668/74]&gt; Fold03 &lt;tibble [400 × 5]&gt; &lt;tibble [1 × 3]&gt;
- 4 &lt;split [668/74]&gt; Fold04 &lt;tibble [400 × 5]&gt; &lt;tibble [1 × 3]&gt;
- 5 &lt;split [668/74]&gt; Fold05 &lt;tibble [400 × 5]&gt; &lt;tibble [1 × 3]&gt;
- 6 &lt;split [668/74]&gt; Fold06 &lt;tibble [400 × 5]&gt; &lt;tibble [1 × 3]&gt;
- 7 &lt;split [668/74]&gt; Fold07 &lt;tibble [400 × 5]&gt; &lt;tibble [1 × 3]&gt;
- 8 &lt;split [668/74]&gt; Fold08 &lt;tibble [400 × 5]&gt; &lt;tibble [1 × 3]&gt;
- 9 &lt;split [668/74]&gt; Fold09 &lt;tibble [400 × 5]&gt; &lt;tibble [1 × 3]&gt;
-10 &lt;split [668/74]&gt; Fold10 &lt;tibble [400 × 5]&gt; &lt;tibble [1 × 3]&gt;
+ 1 &lt;split [667/75]&gt; Fold01 &lt;tibble [400 × 5]&gt; &lt;tibble [8 × 4]&gt;
+ 2 &lt;split [667/75]&gt; Fold02 &lt;tibble [400 × 5]&gt; &lt;tibble [8 × 4]&gt;
+ 3 &lt;split [668/74]&gt; Fold03 &lt;tibble [400 × 5]&gt; &lt;tibble [8 × 4]&gt;
+ 4 &lt;split [668/74]&gt; Fold04 &lt;tibble [400 × 5]&gt; &lt;tibble [8 × 4]&gt;
+ 5 &lt;split [668/74]&gt; Fold05 &lt;tibble [400 × 5]&gt; &lt;tibble [8 × 4]&gt;
+ 6 &lt;split [668/74]&gt; Fold06 &lt;tibble [400 × 5]&gt; &lt;tibble [8 × 4]&gt;
+ 7 &lt;split [668/74]&gt; Fold07 &lt;tibble [400 × 5]&gt; &lt;tibble [8 × 4]&gt;
+ 8 &lt;split [668/74]&gt; Fold08 &lt;tibble [400 × 5]&gt; &lt;tibble [8 × 4]&gt;
+ 9 &lt;split [668/74]&gt; Fold09 &lt;tibble [400 × 5]&gt; &lt;tibble [8 × 4]&gt;
+10 &lt;split [668/74]&gt; Fold10 &lt;tibble [400 × 5]&gt; &lt;tibble [8 × 4]&gt;
 
 There were issues with some computations:
 
-  - Warning(s) x10: A correlation computation is required, but `estimate` is constant...
+  - Warning(s) x80: A correlation computation is required, but `estimate` is constant...
 
 Run `show_notes(.Last.tune.result)` for more information.</code></pre>
 </div>
 </div>
 <p>This may look like it only has one fit per fold but the list columns hide the fact that we actually have fit 200 separate LASSO models (one for each tuning parameter specified by <code>grid_regular()</code>). Notice this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>LASSO_grid[<span class="dv">1</span>, <span class="st">".metrics"</span>][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>LASSO_grid[<span class="dv">1</span>, <span class="st">".metrics"</span>][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 # A tibble: 400 × 5
-    penalty .metric .estimator .estimate .config               
-      &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;                 
- 1 1   e-10 rmse    standard       0.475 Preprocessor1_Model001
- 2 1.12e-10 rmse    standard       0.475 Preprocessor1_Model002
- 3 1.26e-10 rmse    standard       0.475 Preprocessor1_Model003
- 4 1.41e-10 rmse    standard       0.475 Preprocessor1_Model004
- 5 1.59e-10 rmse    standard       0.475 Preprocessor1_Model005
- 6 1.78e-10 rmse    standard       0.475 Preprocessor1_Model006
- 7 2.00e-10 rmse    standard       0.475 Preprocessor1_Model007
- 8 2.25e-10 rmse    standard       0.475 Preprocessor1_Model008
- 9 2.52e-10 rmse    standard       0.475 Preprocessor1_Model009
-10 2.83e-10 rmse    standard       0.475 Preprocessor1_Model010
+    penalty .metric .estimator .estimate .config          
+      &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;            
+ 1 1   e-10 rmse    standard       0.475 pre0_mod001_post0
+ 2 1   e-10 rsq     standard       0.596 pre0_mod001_post0
+ 3 1.12e-10 rmse    standard       0.475 pre0_mod002_post0
+ 4 1.12e-10 rsq     standard       0.596 pre0_mod002_post0
+ 5 1.26e-10 rmse    standard       0.475 pre0_mod003_post0
+ 6 1.26e-10 rsq     standard       0.596 pre0_mod003_post0
+ 7 1.41e-10 rmse    standard       0.475 pre0_mod004_post0
+ 8 1.41e-10 rsq     standard       0.596 pre0_mod004_post0
+ 9 1.59e-10 rmse    standard       0.475 pre0_mod005_post0
+10 1.59e-10 rsq     standard       0.596 pre0_mod005_post0
 # ℹ 390 more rows</code></pre>
 </div>
 </div>
 <p>This is actually a <code>tibble</code> with 400 metrics (200 <code>rmse</code> values and 200 <code>rsq</code> values).</p>
 <p>Of course, we want to have these metrics computed across the folds for each of our 200 values of the tuning parameter. We use <code>collect_metrics()</code> as before!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>LASSO_grid <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"rmse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>LASSO_grid <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"rmse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 200 × 7
-    penalty .metric .estimator  mean     n std_err .config               
-      &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;                 
- 1 1   e-10 rmse    standard   0.494    10  0.0199 Preprocessor1_Model001
- 2 1.12e-10 rmse    standard   0.494    10  0.0199 Preprocessor1_Model002
- 3 1.26e-10 rmse    standard   0.494    10  0.0199 Preprocessor1_Model003
- 4 1.41e-10 rmse    standard   0.494    10  0.0199 Preprocessor1_Model004
- 5 1.59e-10 rmse    standard   0.494    10  0.0199 Preprocessor1_Model005
- 6 1.78e-10 rmse    standard   0.494    10  0.0199 Preprocessor1_Model006
- 7 2.00e-10 rmse    standard   0.494    10  0.0199 Preprocessor1_Model007
- 8 2.25e-10 rmse    standard   0.494    10  0.0199 Preprocessor1_Model008
- 9 2.52e-10 rmse    standard   0.494    10  0.0199 Preprocessor1_Model009
-10 2.83e-10 rmse    standard   0.494    10  0.0199 Preprocessor1_Model010
+    penalty .metric .estimator  mean     n std_err .config          
+      &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;            
+ 1 1   e-10 rmse    standard   0.494    10  0.0199 pre0_mod001_post0
+ 2 1.12e-10 rmse    standard   0.494    10  0.0199 pre0_mod002_post0
+ 3 1.26e-10 rmse    standard   0.494    10  0.0199 pre0_mod003_post0
+ 4 1.41e-10 rmse    standard   0.494    10  0.0199 pre0_mod004_post0
+ 5 1.59e-10 rmse    standard   0.494    10  0.0199 pre0_mod005_post0
+ 6 1.78e-10 rmse    standard   0.494    10  0.0199 pre0_mod006_post0
+ 7 2.00e-10 rmse    standard   0.494    10  0.0199 pre0_mod007_post0
+ 8 2.25e-10 rmse    standard   0.494    10  0.0199 pre0_mod008_post0
+ 9 2.52e-10 rmse    standard   0.494    10  0.0199 pre0_mod009_post0
+10 2.83e-10 rmse    standard   0.494    10  0.0199 pre0_mod010_post0
 # ℹ 190 more rows</code></pre>
 </div>
 </div>
 <p>Ok, but it is tough to see the values there. Let’s plot it instead.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>LASSO_grid <span class="sc">|&gt;</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"rmse"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(penalty, mean, <span class="at">color =</span> .metric)) <span class="sc">+</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>LASSO_grid <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"rmse"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(penalty, mean, <span class="at">color =</span> .metric)) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="50-LASSO_Models_Selecting_Models_CV_Test_Set_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>This plot is essentially reversed from the plots we looked at previously. For small values of the penalty (left side of the graph) we have no shrinkage. As our penalty gets bigger we have to shrink our coefficients more (further right on the graph has more shrinkage). Having little to no shrinkage is associated with the lower RMSE values based on our CV results!</p>
+<p>For the smallest value of the penalty (left side of the graph) we have no shrinkage. As our penalty gets bigger we have to shrink our coefficients more (further right on the graph has more shrinkage). Having little to no shrinkage is associated with the lower RMSE values based on our CV results!</p>
 </section>
 <section id="pull-out-the-best-model-with-select_best-and-finalize_workflow" class="level4">
 <h4 class="anchored" data-anchor-id="pull-out-the-best-model-with-select_best-and-finalize_workflow">Pull Out the ‘Best’ Model with <code>select_best()</code> and <code>finalize_workflow()</code></h4>
 <p>We can get the tuning parameter corresponding to the best RMSE value and determine which coefficients that model has using <code>select_best()</code> and <code>finalize_workflow()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>lowest_rmse <span class="ot">&lt;-</span> LASSO_grid <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_best</span>(<span class="at">metric =</span> <span class="st">"rmse"</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>lowest_rmse</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>lowest_rmse <span class="ot">&lt;-</span> LASSO_grid <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_best</span>(<span class="at">metric =</span> <span class="st">"rmse"</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>lowest_rmse</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
-  penalty .config               
-    &lt;dbl&gt; &lt;chr&gt;                 
-1  0.0174 Preprocessor1_Model165</code></pre>
+  penalty .config          
+    &lt;dbl&gt; &lt;chr&gt;            
+1  0.0174 pre0_mod165_post0</code></pre>
 </div>
 </div>
 <p>Now fit that ‘best’ LASSO model on the entire training set. <code>finalize_workflow()</code> tells R to finish our training with a specific setting of the terms we set to <code>tune()</code> in our model definition. We can supply the result from the previous code chunk to get the best model.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>LASSO_wkf <span class="sc">|&gt;</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(lowest_rmse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>LASSO_wkf <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(lowest_rmse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>══ Workflow ════════════════════════════════════════════════════════════════════
 Preprocessor: Recipe
@@ -1075,11 +1063,11 @@ Main Arguments:
 
 Computational engine: glmnet </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#fit it to the entire training set to see the model fit</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>LASSO_final <span class="ot">&lt;-</span> LASSO_wkf <span class="sc">|&gt;</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(lowest_rmse) <span class="sc">|&gt;</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(bike_train)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(LASSO_final)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#fit it to the entire training set to see the model fit</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>LASSO_final <span class="ot">&lt;-</span> LASSO_wkf <span class="sc">|&gt;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(lowest_rmse) <span class="sc">|&gt;</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(bike_train)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(LASSO_final)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   term          estimate penalty
@@ -1100,46 +1088,46 @@ Computational engine: glmnet </code></pre>
 <li>This uses the <strong>training set</strong> transformations on the test set and does predictions</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>MLR_wkf3 <span class="sc">|&gt;</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">last_fit</span>(bike_split) <span class="sc">|&gt;</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>MLR_wkf3 <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">last_fit</span>(bike_split) <span class="sc">|&gt;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
-  .metric .estimator .estimate .config             
-  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
-1 rmse    standard       0.546 Preprocessor1_Model1
-2 rsq     standard       0.483 Preprocessor1_Model1</code></pre>
+  .metric .estimator .estimate .config        
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;          
+1 rmse    standard       0.546 pre0_mod0_post0
+2 rsq     standard       0.483 pre0_mod0_post0</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>LASSO_wkf <span class="sc">|&gt;</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(lowest_rmse) <span class="sc">|&gt;</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">last_fit</span>(bike_split) <span class="sc">|&gt;</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>LASSO_wkf <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(lowest_rmse) <span class="sc">|&gt;</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">last_fit</span>(bike_split) <span class="sc">|&gt;</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
-  .metric .estimator .estimate .config             
-  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
-1 rmse    standard       0.557 Preprocessor1_Model1
-2 rsq     standard       0.473 Preprocessor1_Model1</code></pre>
+  .metric .estimator .estimate .config        
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;          
+1 rmse    standard       0.557 pre0_mod0_post0
+2 rsq     standard       0.473 pre0_mod0_post0</code></pre>
 </div>
 </div>
 <p>We see that the MLR model outperforms the LASSO model! This would be our overall best model.</p>
 <ul>
-<li>Just to relate this to how we found this previously, note that we can do this ourselves in the usual manner. That is, use <code>predict()</code> and <code>rmse_vec()</code> from <code>yardstick</code>:</li>
+<li>Just to relate this to how we found this previously, note that we can do this ourselves in the usual manner. That is, we can use our training set fit (<code>MLR_final</code> and <code>LASSO_final</code>) with <code>predict()</code> and <code>rmse_vec()</code> from <code>yardstick</code>:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>MLR_final <span class="sc">|&gt;</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(bike_test) <span class="sc">|&gt;</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>() <span class="sc">|&gt;</span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rmse_vec</span>(<span class="at">truth =</span> bike_test<span class="sc">$</span>log_selling_price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>MLR_final <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(bike_test) <span class="sc">|&gt;</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>() <span class="sc">|&gt;</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rmse_vec</span>(<span class="at">truth =</span> bike_test<span class="sc">$</span>log_selling_price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5460833</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>LASSO_final <span class="sc">|&gt;</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(bike_test) <span class="sc">|&gt;</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>() <span class="sc">|&gt;</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rmse_vec</span>(<span class="at">truth =</span> bike_test<span class="sc">$</span>log_selling_price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>LASSO_final <span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(bike_test) <span class="sc">|&gt;</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>() <span class="sc">|&gt;</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rmse_vec</span>(<span class="at">truth =</span> bike_test<span class="sc">$</span>log_selling_price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5565673</code></pre>
 </div>
@@ -1165,9 +1153,9 @@ Computational engine: glmnet </code></pre>
 <h3 class="anchored" data-anchor-id="final-step">Final Step</h3>
 <p>Now that we have an overall best model from our set of best models :) We would now refit the best model on the full dataset for future use. Again, we want to apply the transformations laid out previously. However, any transforms that depend on the data should now be based on the full data, not just the training data. By using <code>tidymodels</code> this is taken care of for us! We simply <code>fit()</code> the model with the full data set.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>final_model <span class="ot">&lt;-</span> MLR_wkf3 <span class="sc">|&gt;</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(bike_data) </span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(final_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>final_model <span class="ot">&lt;-</span> MLR_wkf3 <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(bike_data) </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(final_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 7 × 5
   term                            estimate std.error statistic       p.value
@@ -1183,9 +1171,9 @@ Computational engine: glmnet </code></pre>
 </div>
 <p>If we want the final model fit in the usual <code>lm</code> form, we can use <code>extract_fit_parsnip()</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>almost_usual_fit <span class="ot">&lt;-</span> <span class="fu">extract_fit_parsnip</span>(final_model)</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>usual_fit <span class="ot">&lt;-</span> almost_usual_fit<span class="sc">$</span>fit</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(usual_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>almost_usual_fit <span class="ot">&lt;-</span> <span class="fu">extract_fit_parsnip</span>(final_model)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>usual_fit <span class="ot">&lt;-</span> almost_usual_fit<span class="sc">$</span>fit</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(usual_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1217,11 +1205,11 @@ F-statistic: 181.4 on 6 and 1054 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h3 class="anchored" data-anchor-id="wrap-up">Wrap-up</h3>
 <ul>
 <li><p>If you are only considering one type of model, you can use just a training/test set or just use k-fold CV to select the best version of that model</p></li>
-<li><p>When you have multiple types of models to choose from, we usually use both!</p>
+<li><p>When you have multiple types of models to choose from, we usually use both! Why?</p>
 <ul>
 <li>When we use the test set too much, we may have ‘<strong>data leakage</strong>’</li>
 <li>Essentially we end up training our models to the test set by using it too much</li>
-<li>Using CV with a training/test set helps us avoid this!</li>
+<li>Using CV on the training set and using the test set as a final comparison helps us avoid this!</li>
 </ul></li>
 </ul>
 </section>

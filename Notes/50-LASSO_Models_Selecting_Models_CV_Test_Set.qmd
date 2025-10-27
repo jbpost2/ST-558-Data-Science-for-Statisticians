@@ -13,7 +13,7 @@ We've seen that using a training/test split can give us a way to judge our model
 
 Alternatively, we've seen that cross-validation can be used to judge our model's effectiveness without doing the training/test split. We might do this if we have a smaller data set.
 
-A third option is to use both CV and a training/test split. We might do this if we had a number of different *classes* or *families* of models we were fitting. We could use CV to choose the best from each family solely on the training data. Then we could compare only the best models from each class on the test set.
+**A third option is to use both CV and a training/test split.** We might do this if we had a number of different *classes* or *families* of models we were fitting. We could use CV on the training data only to choose the best from each family. We refit each of those 'best' models on the full training data. Then we could compare those 'best' models from each class on the test set to select our final best model! (We would then refit that model to the entire data set.)
 
 For instance, we might have the following families of models:
   
@@ -24,9 +24,9 @@ For instance, we might have the following families of models:
 
 The latter three model types all have **tuning** parameters that must be selected when fitting the model. CV on the training set is often used to select those tuning parameters! We can also use CV on the training set to determine the best MLR model (or use some other model selection technique).
 
-Using this process, we would get a best model of each type (or family) using the training set only. Then we can compare the best model from each family of models on the test set to select an overall best model!
+Using this process, we would get a best model of each type (or family) using the training set only. Then we refit those models on the full training data and can compare the best model from each family of models on the test set to select an overall best model!
   
-Let's introduce the LASSO model and then use both CV (on the training set) to select the tuning parameter. We'll similarly compare some competing MLR models using CV on the training set. Once we have our best LASSO and best MLR model, we'll then go to the test set to determine an overall best model. 
+Let's introduce the LASSO model and then use CV (on the training set) to select the tuning parameter. We'll similarly compare some competing MLR models using CV on the training set. Once we have our best LASSO and best MLR model, we'll then go to the test set to determine an overall best model. 
 
 ## Fitting Models on our `bike_data`
 
@@ -48,7 +48,7 @@ bike_train <- training(bike_split)
 bike_test <- testing(bike_split)
 ```
 
-Now we'll proceed with finding our best LASSO model and best MLR model on just the `bike_train` data.
+Now we'll proceed with finding our best MLR model and best LASSO model on just the `bike_train` data.
 
 ### Selecting the Best MLR Model Using CV
 
@@ -158,15 +158,15 @@ A similar model to the MLR model that involves a **tuning** parameter is the LAS
   
     $$\min\limits_{\beta's}\sum_{i=1}^{n}(y_i-(\beta_0+\beta_1x_{1i}+...+\beta_px_{pi}))^2 + \alpha\sum_{j=1}^{p}|\beta_j|$$
   
-  + Sets coefficients to 0 as you 'shrink' (have a larger and larger $\alpha$)!
+  + For an $\alpha$ of 0 we get the usual least squares estimates. As $\alpha$ gets larger we 'shrink' the estimates toward 0.
   
 ```{r, echo = FALSE, fig.align = 'center', out.width = "450px"}
 knitr::include_graphics("img/lasso_path.png")
 ```
 
-- When choosing the tuning parameter ($\alpha$), we are really considering a **family of models** for a given set of predictors!
+- We have a different model fit for each value of $\alpha$. When choosing the tuning parameter ($\alpha$), we are really considering a **family of models** for a given set of predictors!
   
-  - Consider the MLR model with different intercepts based on `owners` that includes both `log_km_driven` and `year` as predictors. The plot here gives the coefficient profiles (estimates) as a function of $\alpha$
+  - Consider the MLR model with different intercepts based on `owners` that includes both `log_km_driven` and `year` as predictors. The plot here gives the coefficient profiles (estimates) as a function of $\alpha$ (although and $\alpha$ of 0 here corresponds to being on the right hand side of the plot).
   
 ```{r, warning = FALSE, message = FALSE, echo = FALSE}
 library(glmnet)
@@ -190,7 +190,7 @@ We want to choose which level of shrinkage is appropriate. That is, which value 
 
 #### Create our Recipe
 
-Let's use 10 fold CV to choose our $\alpha$ value (i.e. figure out our best LASSO model with these three predictors). As we are penalizing the magnitude of the slope estimates, LASSO models should really be fit on standardized predictors. Let's include that step in our recipe!
+Let's use 10 fold CV to choose our $\alpha$ value (i.e. figure out our best LASSO model with these three predictors). As we are penalizing the magnitude of the slope estimates (and the estimates depend on the units of the predictor), LASSO models should really be fit on standardized predictors. Let's include that step in our recipe!
 
 ```{r, warning = FALSE, message = FALSE}
 #set up how we'll fit our LASSO model
@@ -203,7 +203,7 @@ LASSO_recipe <- recipe(log_selling_price ~ log_km_driven + owners + year,
 
 #### Create a Model Instance with `tune()`
 
-Great, now we need to specify a LASSO model. Recall [this page](https://www.tidymodels.org/find/parsnip/) allows us to find a type of model to fit along with how to specify it and the engine used to fit the model.
+Great, now we need to specify a LASSO model. Recall <a href = "https://www.tidymodels.org/find/parsnip/" target = "_blank">this page</a> allows us to find a type of model to fit along with how to specify it and the engine used to fit the model.
 
 In this case, we still want `linear_reg()` but we want to use the 'glmnet' engine. We also want to specify the `penalty` parameter (corresponds to a form of $\alpha$ we mentioned above). "glmnet" actually allows us to fit a more complicated model (the elastic net) so there is a second tuning parameter to deal with (called `mixture`).
 
@@ -234,7 +234,7 @@ We saw how to fit a workflow to a set of CV folds with `fit_resample()`. Since w
 - In the `tune_grid()` function we can specify the values of the tuning parameter with the `grid =` argument. 
 - `grid_regular()` is a function that can be used to choose a grid of reasonable values
 
-```{r}
+```{r, warning = FALSE, message = FALSE}
 #A warning will occur for one value of the tuning parameter, safe to ignore
 LASSO_grid <- LASSO_wkf |>
   tune_grid(resamples = bike_CV_folds,
@@ -268,7 +268,7 @@ LASSO_grid |>
   geom_line()
 ```
 
-This plot is essentially reversed from the plots we looked at previously. For small values of the penalty (left side of the graph) we have no shrinkage. As our penalty gets bigger we have to shrink our coefficients more (further right on the graph has more shrinkage). Having little to no shrinkage is associated with the lower RMSE values based on our CV results!
+For the smallest value of the penalty (left side of the graph) we have no shrinkage. As our penalty gets bigger we have to shrink our coefficients more (further right on the graph has more shrinkage). Having little to no shrinkage is associated with the lower RMSE values based on our CV results!
 
 #### Pull Out the 'Best' Model with `select_best()` and `finalize_workflow()`
 
@@ -315,7 +315,7 @@ LASSO_wkf |>
 
 We see that the MLR model outperforms the LASSO model! This would be our overall best model.
 
-- Just to relate this to how we found this previously, note that we can do this ourselves in the usual manner. That is, use `predict()` and `rmse_vec()` from `yardstick`:
+- Just to relate this to how we found this previously, note that we can do this ourselves in the usual manner. That is, we can use our training set fit (`MLR_final` and `LASSO_final`) with `predict()` and `rmse_vec()` from `yardstick`:
 
 ```{r}
 MLR_final |>
@@ -358,11 +358,11 @@ summary(usual_fit)
   
 - If you are only considering one type of model, you can use just a training/test set or just use k-fold CV to select the best version of that model
 
-- When you have multiple types of models to choose from, we usually use both!
+- When you have multiple types of models to choose from, we usually use both! Why?
   
     + When we use the test set too much, we may have '**data leakage**'
     + Essentially we end up training our models to the test set by using it too much
-    + Using CV with a training/test set helps us avoid this!
+    + Using CV on the training set and using the test set as a final comparison helps us avoid this!
   
   
 ## Recap

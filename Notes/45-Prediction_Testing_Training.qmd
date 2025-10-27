@@ -70,9 +70,9 @@ These basic models find coefficients that minimize the sum of squared residuals 
 
 -   MLR modeling fitting criterion (the 'hats' just imply the parameters are estimates rather than the 'true' underlying values):
 
-$$min_{\hat{\beta}'s}\sum_{i=1}^{n}(y_i-(\hat{\beta}_0+\hat{\beta}_1x_{1i}+...+\hat{\beta}_px_{pi}))^2$$
+$$\underset{\hat{\beta}'s}{min}\sum_{i=1}^{n}(y_i-(\hat{\beta}_0+\hat{\beta}_1x_{1i}+...+\hat{\beta}_px_{pi}))^2$$
 
-This turns out to be equivalent to doing maximum likelihood estimation with the iid error Normal, constant variance, assumption!
+If you are familiar with maximum likelihood, the estimated $\beta$'s turn out to be equivalent to doing maximum likelihood estimation with the iid error Normal, constant variance, assumption!
 
 -   Consider three competing MLR models:
 
@@ -123,16 +123,12 @@ To get predictions from our model, we use the `predict()` function and specify t
 -   We can see the first few predictions on the training data from the first model via the code below
 
 ```{r}
-#year values the predictions are for
-bike_train$year |> head()
+bike_train |>
+  mutate(mod1_preds = predict(reg1)) |>
+  select(log_selling_price, year, mod1_preds)
 ```
 
-```{r}
-#predictions made with our first model
-predict(reg1) |> head()
-```
-
-Let's use RMSE as our metric. Although not how we want to compare our models, we can obtain the training RMSE easily with `predict()`. Let's code it up ourselves and also `yardstick::rmse_vec()` to find it (this is the `tidymodels` way).
+Let's use RMSE as our metric. Although not how we want to compare our models, we can obtain the **training** RMSE easily with `predict()`. Let's code it up ourselves and also use `yardstick::rmse_vec()` to find it (this is the `tidymodels` way).
 
 ```{r}
 #our own calculation for training RMSE
@@ -166,7 +162,7 @@ To do this in R we need to tell `predict()` about the `newdata` being the test s
 ```{r}
 #look at a few observations and predictions
 bike_test |>
-  select(log_km_driven, log_selling_price) |>
+  select(log_selling_price, year) |>
   mutate(model_1_preds = predict(reg1, newdata = bike_test))
 ```
 
@@ -181,9 +177,9 @@ rmse_vec(bike_test$log_selling_price, predict(reg3, newdata = bike_test))
 
 We see that our third model with both `year` and `log_km_driven` gives a better (by our metric) set of predictions!
 
-When choosing a model, if the RMSE values were 'close', we'd want to consider the interpretability of the model (and perhaps the assumptions required by each model if we wanted to do inference too!)
+When choosing a model, if the RMSE values were 'close', we'd want to consider the interpretability of the model (and perhaps the assumptions required by each model if inference was of interest!)
 
--   Note: we can do this with `yardstick::rmse()` if our predictions are in the data frame. `rmse()` takes in the `data` as the first argument, the `truth` column as the second, and the `estimate` (or predictions) as the third.
+-   Note: we can do this with `yardstick::rmse()` rather than `yardstick::rmse_vec()` if our predictions are in the data frame. `rmse()` takes in the `data` as the first argument, the `truth` column as the second, and the `estimate` (or predictions) as the third.
 
 ```{r}
 #look at a few observations and predictions
@@ -197,11 +193,11 @@ bike_test |>
 
 We generally need to go through a few steps when training and testing our model(s):
 
--   Choose form of model
--   Fit model to data using some algorithm
-    -   Usually can be written as a problem where we minimize some loss function
+-   Choose the form of the model
+-   Fit the model to the data using some algorithm
+    -   Usually this can be written as a problem where we minimize some loss function
 -   Evaluate the model using a metric
-    -   RMSE very common for a numeric response
+    -   RMSE is a very common for a numeric response
 -   Ideally we want our model to predict well for observations **it has yet to see**!
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

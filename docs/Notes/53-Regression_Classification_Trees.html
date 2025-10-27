@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-08-11">
+<meta name="dcterms.date" content="2025-10-24">
 
 <title>ST 558 Data Science for Statisticians (R) - Regression &amp; Classification Trees</title>
 <style>
@@ -664,7 +664,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#how-is-a-regression-tree-fit" id="toc-how-is-a-regression-tree-fit" class="nav-link" data-scroll-target="#how-is-a-regression-tree-fit">How Is a Regression Tree Fit?</a></li>
   <li><a href="#fitting-regression-trees-with-tidymodels" id="toc-fitting-regression-trees-with-tidymodels" class="nav-link" data-scroll-target="#fitting-regression-trees-with-tidymodels">Fitting Regression Trees with <code>tidymodels</code></a></li>
-  <li><a href="#comparing-to-our-lasso-and-mlr-fits" id="toc-comparing-to-our-lasso-and-mlr-fits" class="nav-link" data-scroll-target="#comparing-to-our-lasso-and-mlr-fits">Comparing to Our LASSO and MLR Fits</a></li>
   </ul></li>
   <li><a href="#classification-trees" id="toc-classification-trees" class="nav-link" data-scroll-target="#classification-trees">Classification Trees</a></li>
   <li><a href="#recap-and-pros-cons" id="toc-recap-and-pros-cons" class="nav-link" data-scroll-target="#recap-and-pros-cons">Recap and Pros &amp; Cons</a></li>
@@ -687,7 +686,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-08-11</p>
+      <p class="date">2025-10-24</p>
     </div>
   </div>
   
@@ -830,23 +829,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="fitting-regression-trees-with-tidymodels" class="level3">
 <h3 class="anchored" data-anchor-id="fitting-regression-trees-with-tidymodels">Fitting Regression Trees with <code>tidymodels</code></h3>
-<ul>
-<li>Recall the Bike data and <code>log_selling_price</code> as our response</li>
-</ul>
+<p>Recall the Bike data and <code>log_selling_price</code> as our response. We’ll do a training test split and select our regression tree model on the training set using CV. This will allow us to compare the ‘best’ regression tree model to our best MLR and LASSO models from earlier!</p>
+<p>For this setup, our process for fitting a model with <code>tidymodels</code> is</p>
+<ol type="1">
+<li>Split the data into the train and test splits (we’ll use the same seed as previous so we get the same train and test splits!)</li>
+<li>Create CV folds from the training set</li>
+<li>Create our recipe - that is, determine the predictors in our model</li>
+<li>Define our model engine - that is, decide the type of model and how it will be fit</li>
+<li>Create a workflow</li>
+<li>Fit the workflow to our CV folds.</li>
+<li>Collect the metrics and determine the best model on the training data (here best tuning parameter set)</li>
+<li>Finalize our workflow and fit our model to the entire training data set</li>
+<li>Compare models on the test set.</li>
+<li>Fit the overall best model to the entire data set.</li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>bike_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://www4.stat.ncsu.edu/~online/datasets/bikeDetails.csv"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log_selling_price =</span> <span class="fu">log</span>(selling_price)) <span class="sc">|&gt;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>selling_price)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#save creation of new variables for now!</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>bike_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(bike_data, <span class="at">prop =</span> <span class="fl">0.7</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>bike_train <span class="ot">&lt;-</span> <span class="fu">training</span>(bike_split)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>bike_test <span class="ot">&lt;-</span> <span class="fu">testing</span>(bike_split)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>bike_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log_selling_price =</span> <span class="fu">log</span>(selling_price),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">log_km_driven =</span> <span class="fu">log</span>(km_driven),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">owners =</span> <span class="fu">ifelse</span>(owner <span class="sc">==</span> <span class="st">"1st owner"</span>, <span class="st">"single"</span>, <span class="st">"multiple"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>selling_price)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="split-the-data" class="level4">
+<h4 class="anchored" data-anchor-id="split-the-data">1. Split the data</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#save creation of new variables for now!</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>bike_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(bike_data, <span class="at">prop =</span> <span class="fl">0.7</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>bike_train <span class="ot">&lt;-</span> <span class="fu">training</span>(bike_split)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>bike_test <span class="ot">&lt;-</span> <span class="fu">testing</span>(bike_split)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>bike_train</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 742 × 7
+<pre><code># A tibble: 742 × 9
    name     year seller_type owner km_driven ex_showroom_price log_selling_price
    &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;
  1 Bajaj …  2012 Individual  1st …     50000             54299             10.3 
@@ -859,22 +875,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8 Bajaj …  2009 Individual  1st …     16000                NA              9.90
  9 Hero H…  2008 Individual  3rd …     65000                NA             10.1 
 10 Bajaj …  2019 Individual  1st …      7600                NA             12.2 
-# ℹ 732 more rows</code></pre>
+# ℹ 732 more rows
+# ℹ 2 more variables: log_km_driven &lt;dbl&gt;, owners &lt;chr&gt;</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bike_CV_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(bike_train, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can fit a regression tree model in a very similar way to how we fit our MLR models!</p>
-<section id="create-our-recipe-for-data-preprocessing" class="level4">
-<h4 class="anchored" data-anchor-id="create-our-recipe-for-data-preprocessing">Create our Recipe for Data Preprocessing</h4>
-<p>First, let’s create our recipe.</p>
+</section>
+<section id="create-our-cv-folds" class="level4">
+<h4 class="anchored" data-anchor-id="create-our-cv-folds">2. Create our CV Folds</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tree_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(log_selling_price <span class="sc">~</span> ., <span class="at">data =</span> bike_train) <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update_role</span>(name, <span class="at">new_role =</span> <span class="st">"ID"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(km_driven) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_rm</span>(ex_showroom_price) <span class="sc">|&gt;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(owner, seller_type) <span class="sc">|&gt;</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric</span>(), <span class="sc">-</span><span class="fu">all_outcomes</span>())</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>tree_rec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bike_CV_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(bike_train, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="create-our-recipe" class="level4">
+<h4 class="anchored" data-anchor-id="create-our-recipe">3. Create our Recipe</h4>
+<p>We can fit a regression tree model in a very similar way to how we fit our MLR models! Let’s create our recipe.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tree_rec <span class="ot">&lt;-</span> <span class="fu">recipe</span>(log_selling_price <span class="sc">~</span> ., <span class="at">data =</span> bike_train) <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">update_role</span>(name, <span class="at">new_role =</span> <span class="st">"ID"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_log</span>(km_driven) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_rm</span>(ex_showroom_price) <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(owner, seller_type) <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric</span>(), <span class="sc">-</span><span class="fu">all_outcomes</span>())</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>tree_rec</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
 </div>
@@ -892,7 +914,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>outcome:   1
-predictor: 5
+predictor: 7
 ID:        1</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
@@ -908,187 +930,194 @@ ID:        1</code></pre>
 <pre><code>• Variables removed: ex_showroom_price</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>• Dummy variables from: owner, seller_type</code></pre>
+<pre><code>• Dummy variables from: owner seller_type</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>• Centering and scaling for: all_numeric(), -all_outcomes()</code></pre>
+<pre><code>• Centering and scaling for: all_numeric() -all_outcomes()</code></pre>
 </div>
 </div>
 <p>Note: We don’t need to include interaction terms in our tree based models! An interaction would imply that the effect of, say, <code>log_km_driven</code> depends on the <code>year</code> the bike was manufactured (and vice-versa). The tree structure inherently includes this type of relationship! For instance, suppose we first split on <code>log_km_driven</code> &gt; 10. On the branch where <code>log_km_driven</code> &gt; 10 we then split on <code>year</code> &lt; 1990. Suppose those are our only two splits. We can see that the effect of <code>year</code> is different depending on our <code>log_km_driven</code>! For one side of the <code>log_km_driven</code> split we don’t include <code>year</code> at all (hence it doesn’t have an effect when considering those values of <code>log_km_driven</code>) and on the other side of that split we change our prediction based on <code>year</code>. This is exactly the idea of an interaction!</p>
 </section>
 <section id="define-our-model-and-engine" class="level4">
-<h4 class="anchored" data-anchor-id="define-our-model-and-engine">Define our Model and Engine</h4>
-<p>Next, let’s define our model. The <a href="https://parsnip.tidymodels.org//reference/details_linear_reg_lm.html">info page</a> here can be used to determine the right function to call and the possible engines to use for the fit.</p>
-<p>In this case, <code>decision_tree()</code> with <code>rpart</code> as the engine will do the trick. If we click on the <a href="https://parsnip.tidymodels.org//reference/details_decision_tree_rpart.html">link for this model</a> we can see that there are three tuning parameters we can consider:</p>
+<h4 class="anchored" data-anchor-id="define-our-model-and-engine">4. Define our Model and Engine</h4>
+<p>Next, let’s define our model. The <a href="https://parsnip.tidymodels.org//reference/details_linear_reg_lm.html" target="_blank">info page</a> here can be used to determine the right function to call and the possible engines to use for the fit.</p>
+<p>In this case, <code>decision_tree()</code> with <code>rpart</code> as the engine will do the trick. If we click on the <a href="https://parsnip.tidymodels.org//reference/details_decision_tree_rpart.html" target="_blank">link for this model</a> we can see that there are three tuning parameters we can consider:</p>
 <ul>
-<li>tree_depth: Tree Depth (type: integer, default: 30L)</li>
-<li>min_n: Minimal Node Size (type: integer, default: 2L)</li>
-<li>cost_complexity: Cost-Complexity Parameter (type: double, default: 0.01)</li>
+<li><code>tree_depth</code>: Tree Depth (type: integer, default: 30L)</li>
+<li><code>min_n</code>: Minimal Node Size (type: integer, default: 2L)</li>
+<li><code>cost_complexity</code>: Cost-Complexity Parameter (type: double, default: 0.01)</li>
 </ul>
 <p>If we want to use CV to choose one of these, we can set its value to <code>tune()</code> when creating the model. Let’s use <code>tree_depth</code> and <code>cost_complexity</code> as our tuning parameters and set our <code>min_n</code> to 20.</p>
-<p>In the case of <code>decision_tree()</code> we also need to tell tidymodels whether we are doing a <em>regression</em> task vs a <em>classification</em> task. This is done via <code>set_mode()</code>.</p>
+<p>In the case of <code>decision_tree()</code> we also need to tell <code>tidymodels</code> whether we are doing a <em>regression</em> task vs a <em>classification</em> task. This is done via <code>set_mode()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>tree_mod <span class="ot">&lt;-</span> <span class="fu">decision_tree</span>(<span class="at">tree_depth =</span> <span class="fu">tune</span>(),</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">min_n =</span> <span class="dv">20</span>,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">cost_complexity =</span> <span class="fu">tune</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"rpart"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tree_mod <span class="ot">&lt;-</span> <span class="fu">decision_tree</span>(<span class="at">tree_depth =</span> <span class="fu">tune</span>(),</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">min_n =</span> <span class="dv">20</span>,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">cost_complexity =</span> <span class="fu">tune</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"rpart"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_mode</span>(<span class="st">"regression"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="create-our-workflow" class="level4">
-<h4 class="anchored" data-anchor-id="create-our-workflow">Create our Workflow</h4>
+<h4 class="anchored" data-anchor-id="create-our-workflow">5. Create our Workflow</h4>
 <p>Now we use <code>workflow()</code> to create an object to use in our fitting processes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tree_wkf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(tree_rec) <span class="sc">|&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(tree_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>tree_wkf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(tree_rec) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(tree_mod)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="use-cv-to-select-our-tuning-parameters" class="level4">
-<h4 class="anchored" data-anchor-id="use-cv-to-select-our-tuning-parameters">Use CV to Select our Tuning Parameters</h4>
+<section id="fit-the-workflow-to-our-cv-folds" class="level4">
+<h4 class="anchored" data-anchor-id="fit-the-workflow-to-our-cv-folds">6. Fit the Workflow to our CV Folds</h4>
 <p>Now we can use <code>tune_grid()</code> on our <code>bike_CV_folds</code> object. We just need to create a tuning grid to fit our models with. If we don’t specify one, the <code>dials</code> package tries to figure it out for us:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> tree_wkf <span class="sc">|&gt;</span> </span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(<span class="at">resamples =</span> bike_CV_folds)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>temp <span class="sc">|&gt;</span> </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> tree_wkf <span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(<span class="at">resamples =</span> bike_CV_folds) <span class="co">#uses defaults from dials</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>temp <span class="sc">|&gt;</span> </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 20 × 8
    cost_complexity tree_depth .metric .estimator  mean     n std_err .config    
              &lt;dbl&gt;      &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;      
- 1        7.50e- 6         12 rmse    standard   0.510    10  0.0175 Preprocess…
- 2        7.50e- 6         12 rsq     standard   0.467    10  0.0207 Preprocess…
- 3        2.80e- 8          8 rmse    standard   0.509    10  0.0174 Preprocess…
- 4        2.80e- 8          8 rsq     standard   0.468    10  0.0205 Preprocess…
- 5        1.66e- 3         15 rmse    standard   0.501    10  0.0158 Preprocess…
- 6        1.66e- 3         15 rsq     standard   0.479    10  0.0182 Preprocess…
- 7        5.79e-10          2 rmse    standard   0.538    10  0.0196 Preprocess…
- 8        5.79e-10          2 rsq     standard   0.396    10  0.0209 Preprocess…
- 9        4.05e- 9          3 rmse    standard   0.510    10  0.0181 Preprocess…
-10        4.05e- 9          3 rsq     standard   0.456    10  0.0193 Preprocess…
-11        1.24e- 3          6 rmse    standard   0.503    10  0.0158 Preprocess…
-12        1.24e- 3          6 rsq     standard   0.477    10  0.0193 Preprocess…
-13        5.68e- 2          5 rmse    standard   0.543    10  0.0202 Preprocess…
-14        5.68e- 2          5 rsq     standard   0.382    10  0.0165 Preprocess…
-15        1.82e- 6         12 rmse    standard   0.510    10  0.0175 Preprocess…
-16        1.82e- 6         12 rsq     standard   0.467    10  0.0207 Preprocess…
-17        5.23e- 8          9 rmse    standard   0.509    10  0.0175 Preprocess…
-18        5.23e- 8          9 rsq     standard   0.468    10  0.0208 Preprocess…
-19        5.47e- 5          9 rmse    standard   0.509    10  0.0175 Preprocess…
-20        5.47e- 5          9 rsq     standard   0.468    10  0.0208 Preprocess…</code></pre>
+ 1    0.0000000001          5 rmse    standard   0.502    10  0.0154 pre0_mod01…
+ 2    0.0000000001          5 rsq     standard   0.478    10  0.0184 pre0_mod01…
+ 3    0.000000001          11 rmse    standard   0.507    10  0.0169 pre0_mod02…
+ 4    0.000000001          11 rsq     standard   0.474    10  0.0221 pre0_mod02…
+ 5    0.00000001            1 rmse    standard   0.561    10  0.0190 pre0_mod03…
+ 6    0.00000001            1 rsq     standard   0.338    10  0.0176 pre0_mod03…
+ 7    0.0000001             7 rmse    standard   0.506    10  0.0159 pre0_mod04…
+ 8    0.0000001             7 rsq     standard   0.477    10  0.0207 pre0_mod04…
+ 9    0.000001             13 rmse    standard   0.507    10  0.0169 pre0_mod05…
+10    0.000001             13 rsq     standard   0.474    10  0.0221 pre0_mod05…
+11    0.00001               2 rmse    standard   0.538    10  0.0196 pre0_mod06…
+12    0.00001               2 rsq     standard   0.396    10  0.0209 pre0_mod06…
+13    0.0001                8 rmse    standard   0.507    10  0.0167 pre0_mod07…
+14    0.0001                8 rsq     standard   0.474    10  0.0220 pre0_mod07…
+15    0.001                15 rmse    standard   0.507    10  0.0175 pre0_mod08…
+16    0.001                15 rsq     standard   0.473    10  0.0231 pre0_mod08…
+17    0.01                  4 rmse    standard   0.501    10  0.0180 pre0_mod09…
+18    0.01                  4 rsq     standard   0.476    10  0.0220 pre0_mod09…
+19    0.1                  10 rmse    standard   0.561    10  0.0190 pre0_mod10…
+20    0.1                  10 rsq     standard   0.338    10  0.0176 pre0_mod10…</code></pre>
 </div>
 </div>
 <p>We can see that the <code>cost_complexity</code> parameter and <code>tree_depth</code> parameters are randomly varied and results are returned.</p>
 <p>If we want to set the number of the values ourselves, we can use <code>grid_regular()</code> instead. By specifying a vector or <code>levels</code> we can say how many of each tuning parameter we want. <code>grid_regular()</code> then finds all combinations of the values of each (here 10*5 = 50 combinations).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tree_grid <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(<span class="fu">cost_complexity</span>(),</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">tree_depth</span>(),</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>tree_grid <span class="ot">&lt;-</span> <span class="fu">grid_regular</span>(<span class="fu">cost_complexity</span>(),</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">tree_depth</span>(),</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we use <code>tune_grid()</code> with this grid specified.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>tree_fits <span class="ot">&lt;-</span> tree_wkf <span class="sc">|&gt;</span> </span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(<span class="at">resamples =</span> bike_CV_folds,</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">grid =</span> tree_grid)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>tree_fits</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tree_fits <span class="ot">&lt;-</span> tree_wkf <span class="sc">|&gt;</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(<span class="at">resamples =</span> bike_CV_folds,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">grid =</span> tree_grid)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>tree_fits</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Tuning results
 # 10-fold cross-validation 
 # A tibble: 10 × 4
    splits           id     .metrics           .notes          
    &lt;list&gt;           &lt;chr&gt;  &lt;list&gt;             &lt;list&gt;          
- 1 &lt;split [667/75]&gt; Fold01 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;
- 2 &lt;split [667/75]&gt; Fold02 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;
- 3 &lt;split [668/74]&gt; Fold03 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;
- 4 &lt;split [668/74]&gt; Fold04 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;
- 5 &lt;split [668/74]&gt; Fold05 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;
- 6 &lt;split [668/74]&gt; Fold06 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;
- 7 &lt;split [668/74]&gt; Fold07 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;
- 8 &lt;split [668/74]&gt; Fold08 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;
- 9 &lt;split [668/74]&gt; Fold09 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;
-10 &lt;split [668/74]&gt; Fold10 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 3]&gt;</code></pre>
+ 1 &lt;split [667/75]&gt; Fold01 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 4]&gt;
+ 2 &lt;split [667/75]&gt; Fold02 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 4]&gt;
+ 3 &lt;split [668/74]&gt; Fold03 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 4]&gt;
+ 4 &lt;split [668/74]&gt; Fold04 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 4]&gt;
+ 5 &lt;split [668/74]&gt; Fold05 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 4]&gt;
+ 6 &lt;split [668/74]&gt; Fold06 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 4]&gt;
+ 7 &lt;split [668/74]&gt; Fold07 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 4]&gt;
+ 8 &lt;split [668/74]&gt; Fold08 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 4]&gt;
+ 9 &lt;split [668/74]&gt; Fold09 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 4]&gt;
+10 &lt;split [668/74]&gt; Fold10 &lt;tibble [100 × 6]&gt; &lt;tibble [0 × 4]&gt;</code></pre>
 </div>
 </div>
+</section>
+<section id="collect-metrics-and-determine-the-best-model" class="level4">
+<h4 class="anchored" data-anchor-id="collect-metrics-and-determine-the-best-model">7. Collect Metrics and Determine the Best Model</h4>
 <p>Looking at the <code>tree_fits</code> object isn’t super useful. It has all the info but we need to pull it out. As we see above, we can use <code>collect_metrics()</code> to combine the metrics across the folds.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>tree_fits <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tree_fits <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 100 × 8
    cost_complexity tree_depth .metric .estimator  mean     n std_err .config    
              &lt;dbl&gt;      &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;      
- 1    0.0000000001          1 rmse    standard   0.561    10  0.0190 Preprocess…
- 2    0.0000000001          1 rsq     standard   0.338    10  0.0176 Preprocess…
- 3    0.000000001           1 rmse    standard   0.561    10  0.0190 Preprocess…
- 4    0.000000001           1 rsq     standard   0.338    10  0.0176 Preprocess…
- 5    0.00000001            1 rmse    standard   0.561    10  0.0190 Preprocess…
- 6    0.00000001            1 rsq     standard   0.338    10  0.0176 Preprocess…
- 7    0.0000001             1 rmse    standard   0.561    10  0.0190 Preprocess…
- 8    0.0000001             1 rsq     standard   0.338    10  0.0176 Preprocess…
- 9    0.000001              1 rmse    standard   0.561    10  0.0190 Preprocess…
-10    0.000001              1 rsq     standard   0.338    10  0.0176 Preprocess…
+ 1    0.0000000001          1 rmse    standard   0.561    10  0.0190 pre0_mod01…
+ 2    0.0000000001          1 rsq     standard   0.338    10  0.0176 pre0_mod01…
+ 3    0.0000000001          4 rmse    standard   0.496    10  0.0155 pre0_mod02…
+ 4    0.0000000001          4 rsq     standard   0.488    10  0.0189 pre0_mod02…
+ 5    0.0000000001          8 rmse    standard   0.507    10  0.0167 pre0_mod03…
+ 6    0.0000000001          8 rsq     standard   0.474    10  0.0220 pre0_mod03…
+ 7    0.0000000001         11 rmse    standard   0.507    10  0.0169 pre0_mod04…
+ 8    0.0000000001         11 rsq     standard   0.474    10  0.0221 pre0_mod04…
+ 9    0.0000000001         15 rmse    standard   0.507    10  0.0169 pre0_mod05…
+10    0.0000000001         15 rsq     standard   0.474    10  0.0221 pre0_mod05…
 # ℹ 90 more rows</code></pre>
 </div>
 </div>
 <p>As done in the <a href="https://www.tidymodels.org/start/tuning/">tutorial</a>, we can plot these to gain some insight:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tree_fits <span class="sc">%&gt;%</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tree_depth =</span> <span class="fu">factor</span>(tree_depth)) <span class="sc">%&gt;%</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(cost_complexity, mean, <span class="at">color =</span> tree_depth)) <span class="sc">+</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> .metric, <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">nrow =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>()) <span class="sc">+</span></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">option =</span> <span class="st">"plasma"</span>, <span class="at">begin =</span> .<span class="dv">9</span>, <span class="at">end =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>tree_fits <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">tree_depth =</span> <span class="fu">factor</span>(tree_depth)) <span class="sc">|&gt;</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(cost_complexity, mean, <span class="at">color =</span> tree_depth)) <span class="sc">+</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.5</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> .metric, <span class="at">scales =</span> <span class="st">"free"</span>, <span class="at">nrow =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>()) <span class="sc">+</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>(<span class="at">option =</span> <span class="st">"plasma"</span>, <span class="at">begin =</span> .<span class="dv">9</span>, <span class="at">end =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="53-Regression_Classification_Trees_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<p><img src="53-Regression_Classification_Trees_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Ideally, we probably want to sort this by the smallest <code>rmse</code> value. Let’s also filter down to just looking at <code>rmse</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>tree_fits <span class="sc">|&gt;</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"rmse"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tree_fits <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"rmse"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 50 × 8
    cost_complexity tree_depth .metric .estimator  mean     n std_err .config    
              &lt;dbl&gt;      &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;      
- 1    0.0000000001          4 rmse    standard   0.496    10  0.0163 Preprocess…
- 2    0.000000001           4 rmse    standard   0.496    10  0.0163 Preprocess…
- 3    0.00000001            4 rmse    standard   0.496    10  0.0163 Preprocess…
- 4    0.0000001             4 rmse    standard   0.496    10  0.0163 Preprocess…
- 5    0.000001              4 rmse    standard   0.496    10  0.0163 Preprocess…
- 6    0.00001               4 rmse    standard   0.496    10  0.0163 Preprocess…
- 7    0.0001                4 rmse    standard   0.496    10  0.0163 Preprocess…
- 8    0.001                 4 rmse    standard   0.496    10  0.0162 Preprocess…
- 9    0.01                  4 rmse    standard   0.498    10  0.0176 Preprocess…
-10    0.01                  8 rmse    standard   0.498    10  0.0176 Preprocess…
+ 1    0.0000000001          4 rmse    standard   0.496    10  0.0155 pre0_mod02…
+ 2    0.000000001           4 rmse    standard   0.496    10  0.0155 pre0_mod07…
+ 3    0.00000001            4 rmse    standard   0.496    10  0.0155 pre0_mod12…
+ 4    0.0000001             4 rmse    standard   0.496    10  0.0155 pre0_mod17…
+ 5    0.000001              4 rmse    standard   0.496    10  0.0155 pre0_mod22…
+ 6    0.00001               4 rmse    standard   0.496    10  0.0155 pre0_mod27…
+ 7    0.0001                4 rmse    standard   0.496    10  0.0155 pre0_mod32…
+ 8    0.001                 4 rmse    standard   0.497    10  0.0154 pre0_mod37…
+ 9    0.01                  4 rmse    standard   0.501    10  0.0180 pre0_mod42…
+10    0.01                  8 rmse    standard   0.501    10  0.0180 pre0_mod43…
 # ℹ 40 more rows</code></pre>
 </div>
 </div>
 <p>The function <code>select_best()</code> can be used to grab the best model’s tuning parameter values. We also should specify which metric!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tree_best_params <span class="ot">&lt;-</span> <span class="fu">select_best</span>(tree_fits, <span class="at">metric =</span> <span class="st">"rmse"</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>tree_best_params</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tree_best_params <span class="ot">&lt;-</span> <span class="fu">select_best</span>(tree_fits, <span class="at">metric =</span> <span class="st">"rmse"</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>tree_best_params</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
-  cost_complexity tree_depth .config              
-            &lt;dbl&gt;      &lt;int&gt; &lt;chr&gt;                
-1    0.0000000001          4 Preprocessor1_Model11</code></pre>
+  cost_complexity tree_depth .config         
+            &lt;dbl&gt;      &lt;int&gt; &lt;chr&gt;           
+1    0.0000000001          4 pre0_mod02_post0</code></pre>
 </div>
 </div>
-<p>(After this initial phase, we might also want to fit a finer grid of tuning parameter values near the current ‘best’ ones!) Now we can finalize our model on the training set by fitting this chosen model via <code>finalize_workflow()</code>.</p>
+</section>
+<section id="finalize-our-workflow-fit-to-the-entire-training-data" class="level4">
+<h4 class="anchored" data-anchor-id="finalize-our-workflow-fit-to-the-entire-training-data">8. Finalize our Workflow &amp; Fit to the Entire Training Data</h4>
+<p>(After this initial phase, we might also want to fit a finer grid of tuning parameter values near the current ‘best’ ones!)</p>
+<p>Now we can finalize our model on the training set by fitting this chosen model via <code>finalize_workflow()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>tree_final_wkf <span class="ot">&lt;-</span> tree_wkf <span class="sc">|&gt;</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(tree_best_params)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>tree_final_wkf <span class="ot">&lt;-</span> tree_wkf <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(tree_best_params)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now that we’ve set up how to fit the final model, let’s do it via <code>last_fit()</code> on the <code>bike_split</code> object.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>tree_final_fit <span class="ot">&lt;-</span> tree_final_wkf <span class="sc">|&gt;</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">last_fit</span>(bike_split)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>tree_final_fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>tree_final_fit <span class="ot">&lt;-</span> tree_final_wkf <span class="sc">|&gt;</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">last_fit</span>(bike_split)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>tree_final_fit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Resampling results
 # Manual resampling 
@@ -1100,20 +1129,20 @@ ID:        1</code></pre>
 </div>
 <p>This object has information about how the final fitted model (fit on the entire training data set) performs on the test set. We can see the metrics more clearly using <code>collect_metrics()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>tree_final_fit <span class="sc">|&gt;</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>tree_final_fit <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 4
-  .metric .estimator .estimate .config             
-  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
-1 rmse    standard       0.565 Preprocessor1_Model1
-2 rsq     standard       0.445 Preprocessor1_Model1</code></pre>
+  .metric .estimator .estimate .config        
+  &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;          
+1 rmse    standard       0.565 pre0_mod0_post0
+2 rsq     standard       0.445 pre0_mod0_post0</code></pre>
 </div>
 </div>
 <p>As done in the tutorial, we could pull out this fit and learn more about it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>tree_final_model <span class="ot">&lt;-</span> <span class="fu">extract_workflow</span>(tree_final_fit) </span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>tree_final_model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>tree_final_model <span class="ot">&lt;-</span> <span class="fu">extract_workflow</span>(tree_final_fit) </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>tree_final_model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>══ Workflow [trained] ══════════════════════════════════════════════════════════
 Preprocessor: Recipe
@@ -1166,23 +1195,156 @@ node), split, n, deviance, yval
 </div>
 <p>Plotting is definitely the better way to view this!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>tree_final_model <span class="sc">%&gt;%</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  rpart.plot<span class="sc">::</span><span class="fu">rpart.plot</span>(<span class="at">roundint =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>tree_final_model <span class="sc">|&gt;</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>() <span class="sc">|&gt;</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  rpart.plot<span class="sc">::</span><span class="fu">rpart.plot</span>(<span class="at">roundint =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="53-Regression_Classification_Trees_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+<p><img src="53-Regression_Classification_Trees_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
+<section id="compare-models-on-the-test-set" class="level4">
+<h4 class="anchored" data-anchor-id="compare-models-on-the-test-set">9. Compare Models on the Test Set</h4>
+<p>Recall, we fit MLR models and LASSO models to this data set. We can pull those back up to determine which model did the best overall on the test set. Then we can get an overall ‘best’ model!</p>
+<p>Here I’ll reproduce some code from before to get our previous best MLR and LASSO models fit to the training data.</p>
+<p><strong>MLR Model</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#set up how we'll fit our linear model</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>MLR_spec <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">|&gt;</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"lm"</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co">#define the model</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>MLR_recipe3 <span class="ot">&lt;-</span> <span class="fu">recipe</span>(log_selling_price <span class="sc">~</span> log_km_driven <span class="sc">+</span> owners <span class="sc">+</span> year,</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> bike_train) <span class="sc">|&gt;</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(owners) <span class="sc">|&gt;</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_interact</span>(<span class="sc">~</span>log_km_driven<span class="sc">:</span><span class="fu">starts_with</span>(<span class="st">"owner"</span>) <span class="sc">+</span> log_km_driven<span class="sc">:</span>year <span class="sc">+</span> <span class="fu">starts_with</span>(<span class="st">"owner"</span>)<span class="sc">:</span>year)</span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="co">#workflow setup</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>MLR_wkf3 <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(MLR_recipe3) <span class="sc">|&gt;</span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(MLR_spec)</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a><span class="co">#fit model on full training data</span></span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>MLR_final <span class="ot">&lt;-</span>  MLR_wkf3 <span class="sc">|&gt;</span></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">last_fit</span>(bike_split)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>LASSO Model</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#set up how we'll fit our LASSO model</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>LASSO_spec <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>(<span class="at">penalty =</span> <span class="fu">tune</span>(), <span class="at">mixture =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set_engine</span>(<span class="st">"glmnet"</span>)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co">#define the model</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>LASSO_recipe <span class="ot">&lt;-</span> <span class="fu">recipe</span>(log_selling_price <span class="sc">~</span> log_km_driven <span class="sc">+</span> owners <span class="sc">+</span> year, </span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> bike_train) <span class="sc">|&gt;</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(owners) <span class="sc">|&gt;</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(log_km_driven, year)</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co">#workflow setup</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>LASSO_wkf <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(LASSO_recipe) <span class="sc">|&gt;</span></span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(LASSO_spec)</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="co">#find the best tuning parameter</span></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>LASSO_grid <span class="ot">&lt;-</span> LASSO_wkf <span class="sc">|&gt;</span></span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tune_grid</span>(<span class="at">resamples =</span> bike_CV_folds,</span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">grid =</span> <span class="fu">grid_regular</span>(<span class="fu">penalty</span>(), <span class="at">levels =</span> <span class="dv">200</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>→ A | warning: A correlation computation is required, but `estimate` is constant and has 0
+               standard deviation, resulting in a divide by 0 error. `NA` will be returned.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>There were issues with some computations   A: x8</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>There were issues with some computations   A: x16</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>There were issues with some computations   A: x24</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>There were issues with some computations   A: x32</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>There were issues with some computations   A: x40</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>There were issues with some computations   A: x48</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>There were issues with some computations   A: x56</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>There were issues with some computations   A: x64</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>There were issues with some computations   A: x72</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>There were issues with some computations   A: x80
+There were issues with some computations   A: x80</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co">#finalize the workflow and find the best model on the training set</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>LASSO_final <span class="ot">&lt;-</span> LASSO_wkf <span class="sc">|&gt;</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(LASSO_grid <span class="sc">|&gt;</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">select_best</span>(<span class="at">metric =</span> <span class="st">"rmse"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">last_fit</span>(bike_split)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Great - now we can compare our models on the test set!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  MLR_final <span class="sc">|&gt;</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Model =</span> <span class="st">"MLR"</span>, <span class="at">.before =</span> <span class="st">".metric"</span>), </span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  LASSO_final <span class="sc">|&gt;</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Model =</span> <span class="st">"LASSO"</span>, <span class="at">.before =</span> <span class="st">".metric"</span>), </span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>  tree_final_fit <span class="sc">|&gt;</span></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Model =</span> <span class="st">"TREE"</span>, <span class="at">.before =</span> <span class="st">".metric"</span>)</span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  Model .metric .estimator .estimate .config        
+  &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;          
+1 MLR   rmse    standard       0.546 pre0_mod0_post0
+2 MLR   rsq     standard       0.483 pre0_mod0_post0
+3 LASSO rmse    standard       0.557 pre0_mod0_post0
+4 LASSO rsq     standard       0.473 pre0_mod0_post0
+5 TREE  rmse    standard       0.565 pre0_mod0_post0
+6 TREE  rsq     standard       0.445 pre0_mod0_post0</code></pre>
+</div>
+</div>
+<p>We see that the best model (by RMSE) is the MLR model!</p>
 </section>
-<section id="comparing-to-our-lasso-and-mlr-fits" class="level3">
-<h3 class="anchored" data-anchor-id="comparing-to-our-lasso-and-mlr-fits">Comparing to Our LASSO and MLR Fits</h3>
-<p>Recall, we fit MLR models and LASSO models to this data set. We can pull those back up to determine which model did the best overall on the test set. Then we can get an overall ‘best’ model and fit that model to the entire data set!</p>
+<section id="fit-the-best-model-on-the-full-data-set" class="level4">
+<h4 class="anchored" data-anchor-id="fit-the-best-model-on-the-full-data-set">10. Fit the Best Model on the Full Data Set</h4>
+<p>Now fit the MLR model to the entire data set. No tuning parameters here to worry about so this is pretty easy.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>final_model <span class="ot">&lt;-</span> MLR_wkf3 <span class="sc">|&gt;</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(bike_data) </span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(final_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 5
+  term                            estimate std.error statistic       p.value
+  &lt;chr&gt;                              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;
+1 (Intercept)                   -127.       79.6        -1.60  0.110        
+2 log_km_driven                    6.56      7.82        0.839 0.402        
+3 year                             0.0709    0.0396      1.79  0.0738       
+4 owners_single                 -126.       20.8        -6.07  0.00000000179
+5 log_km_driven_x_owners_single    0.281     0.0616      4.57  0.00000555   
+6 log_km_driven_x_year            -0.00348   0.00389    -0.895 0.371        
+7 owners_single_x_year             0.0613    0.0103      5.97  0.00000000333</code></pre>
+</div>
+</div>
+</section>
 </section>
 </section>
 <section id="classification-trees" class="level2">
 <h2 class="anchored" data-anchor-id="classification-trees">Classification Trees</h2>
-<p>Classification trees are very similar to regression trees except, of course, our response is a categorical variable. This means that we don’t use the same loss functions nor metrics, but we still split the predictor space up into regions. We then can make our prediction based on which bin an observation ends up in. Most often, we use the most prevalent class in a bin as our prediction.</p>
+<p>Classification trees are very similar to regression trees except, of course, our response is a categorical variable. This means that we don’t use the same loss functions nor metrics, but we still</p>
+<ul>
+<li>split the predictor space up into regions</li>
+<li>make our prediction based on which bin an observation ends up in</li>
+<li>most often, we use the most prevalent class in a bin as our prediction</li>
+</ul>
 </section>
 <section id="recap-and-pros-cons" class="level2">
 <h2 class="anchored" data-anchor-id="recap-and-pros-cons">Recap and Pros &amp; Cons</h2>

@@ -108,6 +108,8 @@ g <- ggplot(data = cars, aes(x = speed, y = dist)) +
   geom_point(size = 0.75, alpha = 0.75) +
   geom_segment(data = SSE1$info, aes(x = min, xend = split, y = lowmean, yend = lowmean), lwd = 2, color = "Blue") +
   geom_segment(data = SSE1$info, aes(x = split, xend = max, y = highmean, yend = highmean), lwd = 2, color = "Blue") + 
+  geom_segment(data = SSE1$info, aes(x = split, xend = split, y = 0, yend = 85), 
+               lwd = 0.5, color = "Blue", lty = "dashed") +
   geom_text(color = "Blue", x = vals[1], y = 110, label = paste("SSE = ", round(SSE1$info$RSS, 1))) + 
   geom_text(data = SSE1$info, color = "Blue", aes(x = split, label = split), y = 100)
 g
@@ -122,16 +124,22 @@ Is that the smallest it could be? Likely not! Let's try some other splits and se
 g <- g + 
   geom_segment(data = SSE2$info, aes(x = min, xend = split, y = lowmean, yend = lowmean), lwd = 2, color = "Red") +
   geom_segment(data = SSE2$info, aes(x = split, xend = max, y = highmean, yend = highmean), lwd = 2, color = "Red") + 
+  geom_segment(data = SSE2$info, aes(x = split, xend = split, y = 0, yend = 85), 
+               lwd = 0.5, color = "Red", lty = "dashed") +
   geom_text(color = "Red", x = vals[2], y = 110, label = paste("SSE = ", round(SSE2$info$RSS, 1))) + 
   geom_text(data = SSE2$info, color = "Red", aes(x = split, label = split), y = 100)
 g <- g +   
   geom_segment(data = SSE3$info, aes(x = min, xend = split, y = lowmean, yend = lowmean), lwd = 2, color = "Orange") +
   geom_segment(data = SSE3$info, aes(x = split, xend = max, y = highmean, yend = highmean), lwd = 2, color = "Orange") + 
+  geom_segment(data = SSE3$info, aes(x = split, xend = split, y = 0, yend = 85), 
+               lwd = 0.5, color = "Orange", lty = "dashed") +
   geom_text(color = "Orange", x = vals[3], y = 100, label = paste("SSE = ", round(SSE3$info$RSS, 1))) + 
   geom_text(data = SSE3$info, color = "Orange", aes(x = split, label = split), y = 90)
 g <- g +   
   geom_segment(data = SSE4$info, aes(x = min, xend = split, y = lowmean, yend = lowmean), lwd = 2, color = "Brown") +
   geom_segment(data = SSE4$info, aes(x = split, xend = max, y = highmean, yend = highmean), lwd = 2, color = "Brown") + 
+  geom_segment(data = SSE4$info, aes(x = split, xend = split, y = 0, yend = 85), 
+               lwd = 0.5, color = "Brown", lty = "dashed") +
   geom_text(color = "Brown", x = vals[4], y = 110, label = paste("SSE = ", round(SSE4$info$RSS, 1))) + 
   geom_text(data = SSE4$info, color = "Brown", aes(x = split, label = split), y = 100)
 g
@@ -144,6 +152,8 @@ g2 <- ggplot(data = cars, aes(x = speed, y = dist)) +
   geom_point(size = 0.75, alpha = 0.75) +
   geom_segment(data = SSE$info, aes(x = min, xend = split, y = lowmean, yend = lowmean), lwd = 2, color = "Blue") +
   geom_segment(data = SSE$info, aes(x = split, xend = max, y = highmean, yend = highmean), lwd = 2, color = "Blue") + 
+  geom_segment(data = SSE$info, aes(x = split, xend = split, y = 0, yend = 85), 
+               lwd = 0.5, color = "Blue", lty = "dashed") +
   geom_text(color = "Blue", x = 17.5, y = 110, label = paste("SSE = ", round(SSE$info$RSS, 1))) + 
   geom_text(data = SSE$info, color = "Blue", aes(x = split, label = split), y = 100)
 g2
@@ -166,16 +176,22 @@ g3 <- ggplot(data = cars, aes(x = speed, y = dist)) +
   geom_point(size = 0.75, alpha = 0.75) +
   geom_segment(data = SSE1$info, aes(x = min, xend = split, y = lowmean, yend = lowmean), lwd = 2, color = "Red") +
   geom_segment(data = SSE1$info, aes(x = split, xend = max, y = highmean, yend = highmean), lwd = 2, color = "Red") + 
+  geom_segment(data = SSE1$info, aes(x = split, xend = split, y = 0, yend = 55), 
+               lwd = 0.5, color = "Red", lty = "dashed") +
   geom_text(color = "Red", x = vals[1], y = 80, label = paste("SSE = ", round(SSE1$info$RSS, 1))) + 
   geom_text(data = SSE1$info, color = "Red", aes(x = split, label = split), y = 70)
 g3 <- g3 +
   geom_segment(data = SSE2$info, aes(x = min, xend = split, y = lowmean, yend = lowmean), lwd = 2, color = "Orange") +
   geom_segment(data = SSE2$info, aes(x = split, xend = max, y = highmean, yend = highmean), lwd = 2, color = "Orange") + 
+  geom_segment(data = SSE2$info, aes(x = split, xend = split, y = 0, yend = 55), 
+               lwd = 0.5, color = "Orange", lty = "dashed") +
   geom_text(color = "Orange", x = vals[2], y = 90, label = paste("SSE = ", round(SSE2$info$RSS, 1))) + 
   geom_text(data = SSE2$info, color = "Orange", aes(x = split, label = split), y = 80)
 g3 <- g3 +
   geom_segment(data = SSE3$info, aes(x = min, xend = split, y = lowmean, yend = lowmean), lwd = 2, color = "Brown") +
   geom_segment(data = SSE3$info, aes(x = split, xend = max, y = highmean, yend = highmean), lwd = 2, color = "Brown") + 
+  geom_segment(data = SSE3$info, aes(x = split, xend = split, y = 0, yend = 55), 
+               lwd = 0.5, color = "Brown", lty = "dashed") +
   geom_text(color = "Brown", x = vals[3], y = 110, label = paste("SSE = ", round(SSE3$info$RSS, 1))) + 
   geom_text(data = SSE3$info, color = "Brown", aes(x = split, label = split), y = 100)
 g3
@@ -194,28 +210,51 @@ g3
 
 ### Fitting Regression Trees with `tidymodels`
 
-- Recall the Bike data and `log_selling_price` as our response
+Recall the Bike data and `log_selling_price` as our response. We'll do a training test split and select our regression tree model on the training set using CV. This will allow us to compare the 'best' regression tree model to our best MLR and LASSO models from earlier!
+
+For this setup, our process for fitting a model with `tidymodels` is
+
+1. Split the data into the train and test splits (we'll use the same seed as previous so we get the same train and test splits!)
+2. Create CV folds from the training set
+3. Create our recipe - that is, determine the predictors in our model
+4. Define our model engine - that is, decide the type of model and how it will be fit
+5. Create a workflow
+6. Fit the workflow to our CV folds.
+7. Collect the metrics and determine the best model on the training data (here best tuning parameter set)
+8. Finalize our workflow and fit our model to the entire training data set
+9. Compare models on the test set.
+10. Fit the overall best model to the entire data set.
 
 ```{r, warning = FALSE, message = FALSE}
 set.seed(10)
 library(tidyverse)
 library(tidymodels)
 bike_data <- read_csv("https://www4.stat.ncsu.edu/~online/datasets/bikeDetails.csv") |>
-  mutate(log_selling_price = log(selling_price)) |>
+  mutate(log_selling_price = log(selling_price),
+         log_km_driven = log(km_driven),
+         owners = ifelse(owner == "1st owner", "single", "multiple")) |>
   select(-selling_price)
+```
+
+#### 1. Split the data
+
+```{r}
 #save creation of new variables for now!
 bike_split <- initial_split(bike_data, prop = 0.7)
 bike_train <- training(bike_split)
 bike_test <- testing(bike_split)
 bike_train
+```
+
+#### 2. Create our CV Folds
+
+```{r}
 bike_CV_folds <- vfold_cv(bike_train, 10)
 ```
 
-We can fit a regression tree model in a very similar way to how we fit our MLR models! 
+#### 3. Create our Recipe
 
-#### Create our Recipe for Data Preprocessing 
-
-First, let's create our recipe.
+We can fit a regression tree model in a very similar way to how we fit our MLR models! Let's create our recipe.
 
 ```{r}
 tree_rec <- recipe(log_selling_price ~ ., data = bike_train) |>
@@ -229,19 +268,19 @@ tree_rec
 
 Note: We don't need to include interaction terms in our tree based models! An interaction would imply that the effect of, say, `log_km_driven` depends on the `year` the bike was manufactured (and vice-versa). The tree structure inherently includes this type of relationship! For instance, suppose we first split on `log_km_driven` > 10. On the branch where `log_km_driven` > 10 we then split on `year` < 1990. Suppose those are our only two splits. We can see that the effect of `year` is different depending on our `log_km_driven`! For one side of the `log_km_driven` split we don't include `year` at all (hence it doesn't have an effect when considering those values of `log_km_driven`) and on the other side of that split we change our prediction based on `year`. This is exactly the idea of an interaction!
 
-#### Define our Model and Engine
+#### 4. Define our Model and Engine
 
-Next, let's define our model. The [info page](https://parsnip.tidymodels.org//reference/details_linear_reg_lm.html) here can be used to determine the right function to call and the possible engines to use for the fit.
+Next, let's define our model. The <a href = "https://parsnip.tidymodels.org//reference/details_linear_reg_lm.html" target = "_blank">info page</a> here can be used to determine the right function to call and the possible engines to use for the fit.
 
-In this case, `decision_tree()` with `rpart` as the engine will do the trick. If we click on the [link for this model](https://parsnip.tidymodels.org//reference/details_decision_tree_rpart.html) we can see that there are three tuning parameters we can consider:
+In this case, `decision_tree()` with `rpart` as the engine will do the trick. If we click on the <a href = "https://parsnip.tidymodels.org//reference/details_decision_tree_rpart.html" target = "_blank">link for this model</a> we can see that there are three tuning parameters we can consider:
 
-- tree_depth: Tree Depth (type: integer, default: 30L)
-- min_n: Minimal Node Size (type: integer, default: 2L)
-- cost_complexity: Cost-Complexity Parameter (type: double, default: 0.01)
+- `tree_depth`: Tree Depth (type: integer, default: 30L)
+- `min_n`: Minimal Node Size (type: integer, default: 2L)
+- `cost_complexity`: Cost-Complexity Parameter (type: double, default: 0.01)
 
 If we want to use CV to choose one of these, we can set its value to `tune()` when creating the model. Let's use `tree_depth` and `cost_complexity` as our tuning parameters and set our `min_n` to 20. 
 
-In the case of `decision_tree()` we also need to tell tidymodels whether we are doing a *regression* task vs a *classification* task. This is done via `set_mode()`.
+In the case of `decision_tree()` we also need to tell `tidymodels` whether we are doing a *regression* task vs a *classification* task. This is done via `set_mode()`.
 
 ```{r}
 tree_mod <- decision_tree(tree_depth = tune(),
@@ -252,7 +291,7 @@ tree_mod <- decision_tree(tree_depth = tune(),
 ```
 
 
-#### Create our Workflow
+#### 5. Create our Workflow
 
 Now we use `workflow()` to create an object to use in our fitting processes.
 
@@ -262,13 +301,13 @@ tree_wkf <- workflow() |>
   add_model(tree_mod)
 ```
 
-#### Use CV to Select our Tuning Parameters
+#### 6. Fit the Workflow to our CV Folds
 
 Now we can use `tune_grid()` on our `bike_CV_folds` object. We just need to create a tuning grid to fit our models with. If we don't specify one, the `dials` package tries to figure it out for us:
 
 ```{r}
 temp <- tree_wkf |> 
-  tune_grid(resamples = bike_CV_folds)
+  tune_grid(resamples = bike_CV_folds) #uses defaults from dials
 temp |> 
   collect_metrics()
 ```
@@ -292,6 +331,8 @@ tree_fits <- tree_wkf |>
 tree_fits
 ```
 
+#### 7. Collect Metrics and Determine the Best Model
+
 Looking at the `tree_fits` object isn't super useful. It has all the info but we need to pull it out. As we see above, we can use `collect_metrics()` to combine the metrics across the folds.
 
 ```{r}
@@ -302,9 +343,9 @@ tree_fits |>
 As done in the [tutorial](https://www.tidymodels.org/start/tuning/), we can plot these to gain some insight:
 
 ```{r}
-tree_fits %>%
-  collect_metrics() %>%
-  mutate(tree_depth = factor(tree_depth)) %>%
+tree_fits |>
+  collect_metrics() |>
+  mutate(tree_depth = factor(tree_depth)) |>
   ggplot(aes(cost_complexity, mean, color = tree_depth)) +
   geom_line(size = 1.5, alpha = 0.6) +
   geom_point(size = 2) +
@@ -329,7 +370,11 @@ tree_best_params <- select_best(tree_fits, metric = "rmse")
 tree_best_params
 ```
 
-(After this initial phase, we might also want to fit a finer grid of tuning parameter values near the current 'best' ones!) Now we can finalize our model on the training set by fitting this chosen model via `finalize_workflow()`.
+#### 8. Finalize our Workflow & Fit to the Entire Training Data
+
+(After this initial phase, we might also want to fit a finer grid of tuning parameter values near the current 'best' ones!) 
+
+Now we can finalize our model on the training set by fitting this chosen model via `finalize_workflow()`.
 
 ```{r}
 tree_final_wkf <- tree_wkf |>
@@ -361,19 +406,99 @@ tree_final_model
 Plotting is definitely the better way to view this!
 
 ```{r}
-tree_final_model %>%
-  extract_fit_engine() %>%
+tree_final_model |>
+  extract_fit_engine() |>
   rpart.plot::rpart.plot(roundint = FALSE)
 ```
 
-### Comparing to Our LASSO and MLR Fits
+#### 9. Compare Models on the Test Set
 
-Recall, we fit MLR models and LASSO models to this data set. We can pull those back up to determine which model did the best overall on the test set. Then we can get an overall 'best' model and fit that model to the entire data set!
-  
+Recall, we fit MLR models and LASSO models to this data set. We can pull those back up to determine which model did the best overall on the test set. Then we can get an overall 'best' model!
+
+Here I'll reproduce some code from before to get our previous best MLR and LASSO models fit to the training data.
+
+**MLR Model**
+
+```{r}
+#set up how we'll fit our linear model
+MLR_spec <- linear_reg() |>
+  set_engine("lm")
+#define the model
+MLR_recipe3 <- recipe(log_selling_price ~ log_km_driven + owners + year,
+                      data = bike_train) |>
+  step_dummy(owners) |>
+  step_interact(~log_km_driven:starts_with("owner") + log_km_driven:year + starts_with("owner"):year)
+#workflow setup
+MLR_wkf3 <- workflow() |>
+  add_recipe(MLR_recipe3) |>
+  add_model(MLR_spec)
+#fit model on full training data
+MLR_final <-  MLR_wkf3 |>
+  last_fit(bike_split)
+```
+
+**LASSO Model**
+
+```{r}
+#set up how we'll fit our LASSO model
+LASSO_spec <- linear_reg(penalty = tune(), mixture = 1) |>
+  set_engine("glmnet")
+#define the model
+LASSO_recipe <- recipe(log_selling_price ~ log_km_driven + owners + year, 
+                      data = bike_train) |>
+  step_dummy(owners) |>
+  step_normalize(log_km_driven, year)
+#workflow setup
+LASSO_wkf <- workflow() |>
+  add_recipe(LASSO_recipe) |>
+  add_model(LASSO_spec)
+#find the best tuning parameter
+LASSO_grid <- LASSO_wkf |>
+  tune_grid(resamples = bike_CV_folds,
+            grid = grid_regular(penalty(), levels = 200)) 
+#finalize the workflow and find the best model on the training set
+LASSO_final <- LASSO_wkf |>
+  finalize_workflow(LASSO_grid |>
+                      select_best(metric = "rmse")) |>
+  last_fit(bike_split)
+```
+
+Great - now we can compare our models on the test set! 
+
+```{r}
+rbind(
+  MLR_final |>
+    collect_metrics() |> 
+    mutate(Model = "MLR", .before = ".metric"), 
+  LASSO_final |>
+    collect_metrics() |> 
+    mutate(Model = "LASSO", .before = ".metric"), 
+  tree_final_fit |>
+    collect_metrics() |> 
+    mutate(Model = "TREE", .before = ".metric")
+)
+```
+
+We see that the best model (by RMSE) is the MLR model!
+
+#### 10. Fit the Best Model on the Full Data Set
+
+Now fit the MLR model to the entire data set. No tuning parameters here to worry about so this is pretty easy.
+
+```{r}
+final_model <- MLR_wkf3 |>
+  fit(bike_data) 
+tidy(final_model)
+```
+
 
 ## Classification Trees
     
-Classification trees are very similar to regression trees except, of course, our response is a categorical variable. This means that we don't use the same loss functions nor metrics, but we still split the predictor space up into regions. We then can make our prediction based on which bin an observation ends up in. Most often, we use the most prevalent class in a bin as our prediction.
+Classification trees are very similar to regression trees except, of course, our response is a categorical variable. This means that we don't use the same loss functions nor metrics, but we still 
+
+- split the predictor space up into regions
+- make our prediction based on which bin an observation ends up in
+- most often, we use the most prevalent class in a bin as our prediction
 
 ## Recap and Pros & Cons
 

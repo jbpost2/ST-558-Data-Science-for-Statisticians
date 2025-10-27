@@ -8,9 +8,9 @@ editor_options:
 
 This wraps up the content for weeks 10 & 11. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your assessment for this week.
 
-It's time to start modeling data!
+It's time to start modeling data! This section is going to be a quick whirlwind look at machine learning and how to do it in a structured way in `R`. 
 
-Statistical modeling is a way to help us and others understand, interpret and make informed decisions based on data. We will also spend a lot of time on using different techniques to help us pick a best performing model from many. In addition, we will learn how to model data in the tidy framework using tidymodels. R tidymodels aims to do the same but for machine learning. It presents itself as a one-stop shop for everything ML-related, from processing data to training and evaluation models. It's an ecosystem of its own.
+Statistical modeling is a way to help us and others understand, interpret and make informed decisions based on data. We will also spend a lot of time on using different techniques to help us pick a best performing model from many. In addition, we will learn how to model data in the tidy framework using `tidymodels.` `tidymodels` aims to do the same thing the `tidyverse` did for data manipulation but for machine learning. It presents itself as a one-stop shop for everything ML-related, from processing data to training and evaluation models. It's an ecosystem of its own. **It is a little tough to learn but we'll see the basics of it!**
 
 ## Weeks 12 & 13 Additional Readings/Learning Materials
 

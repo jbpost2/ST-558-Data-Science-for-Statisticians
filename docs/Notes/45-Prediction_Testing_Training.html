@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-08-11">
+<meta name="dcterms.date" content="2025-10-24">
 
 <title>ST 558 Data Science for Statisticians (R) - Prediction &amp; Training/Test Sets</title>
 <style>
@@ -685,7 +685,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-08-11</p>
+      <p class="date">2025-10-24</p>
     </div>
   </div>
   
@@ -767,8 +767,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>MLR modeling fitting criterion (the ‘hats’ just imply the parameters are estimates rather than the ‘true’ underlying values):</li>
 </ul>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mi>i</mi><msub><mi>n</mi><mrow><mover><mi>β</mi><mo accent="true">̂</mo></mover><mi>′</mi><mi>s</mi></mrow></msub><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mover><mi>β</mi><mo accent="true">̂</mo></mover><mn>0</mn></msub><mo>+</mo><msub><mover><mi>β</mi><mo accent="true">̂</mo></mover><mn>1</mn></msub><msub><mi>x</mi><mrow><mn>1</mn><mi>i</mi></mrow></msub><mo>+</mo><mi>.</mi><mi>.</mi><mi>.</mi><mo>+</mo><msub><mover><mi>β</mi><mo accent="true">̂</mo></mover><mi>p</mi></msub><msub><mi>x</mi><mrow><mi>p</mi><mi>i</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">min_{\hat{\beta}'s}\sum_{i=1}^{n}(y_i-(\hat{\beta}_0+\hat{\beta}_1x_{1i}+...+\hat{\beta}_px_{pi}))^2</annotation></semantics></math></p>
-<p>This turns out to be equivalent to doing maximum likelihood estimation with the iid error Normal, constant variance, assumption!</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munder><mrow><mi>m</mi><mi>i</mi><mi>n</mi></mrow><mrow><mover><mi>β</mi><mo accent="true">̂</mo></mover><mi>′</mi><mi>s</mi></mrow></munder><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mover><mi>β</mi><mo accent="true">̂</mo></mover><mn>0</mn></msub><mo>+</mo><msub><mover><mi>β</mi><mo accent="true">̂</mo></mover><mn>1</mn></msub><msub><mi>x</mi><mrow><mn>1</mn><mi>i</mi></mrow></msub><mo>+</mo><mi>.</mi><mi>.</mi><mi>.</mi><mo>+</mo><msub><mover><mi>β</mi><mo accent="true">̂</mo></mover><mi>p</mi></msub><msub><mi>x</mi><mrow><mi>p</mi><mi>i</mi></mrow></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\underset{\hat{\beta}'s}{min}\sum_{i=1}^{n}(y_i-(\hat{\beta}_0+\hat{\beta}_1x_{1i}+...+\hat{\beta}_px_{pi}))^2</annotation></semantics></math></p>
+<p>If you are familiar with maximum likelihood, the estimated <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math>’s turn out to be equivalent to doing maximum likelihood estimation with the iid error Normal, constant variance, assumption!</p>
 <ul>
 <li><p>Consider three competing MLR models:</p>
 <ul>
@@ -864,24 +864,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>We can see the first few predictions on the training data from the first model via the code below</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#year values the predictions are for</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>bike_train<span class="sc">$</span>year <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>bike_train <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mod1_preds =</span> <span class="fu">predict</span>(reg1)) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(log_selling_price, year, mod1_preds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2012 2015 2005 2017 2013 2008</code></pre>
+<pre><code># A tibble: 742 × 3
+   log_selling_price  year mod1_preds
+               &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
+ 1             10.3   2012      10.5 
+ 2             10.6   2015      10.8 
+ 3              9.80  2005       9.86
+ 4             10.5   2017      11.0 
+ 5             11.4   2013      10.6 
+ 6             10.3   2008      10.2 
+ 7             10.5   2014      10.7 
+ 8              9.90  2009      10.3 
+ 9             10.1   2008      10.2 
+10             12.2   2019      11.2 
+# ℹ 732 more rows</code></pre>
 </div>
 </div>
+<p>Let’s use RMSE as our metric. Although not how we want to compare our models, we can obtain the <strong>training</strong> RMSE easily with <code>predict()</code>. Let’s code it up ourselves and also use <code>yardstick::rmse_vec()</code> to find it (this is the <code>tidymodels</code> way).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#predictions made with our first model</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(reg1) <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>        1         2         3         4         5         6 
-10.546377 10.839696  9.861968 11.035241 10.644150 10.155287 </code></pre>
-</div>
-</div>
-<p>Let’s use RMSE as our metric. Although not how we want to compare our models, we can obtain the training RMSE easily with <code>predict()</code>. Let’s code it up ourselves and also <code>yardstick::rmse_vec()</code> to find it (this is the <code>tidymodels</code> way).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#our own calculation for training RMSE</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">mean</span>((bike_train<span class="sc">$</span>log_selling_price <span class="sc">-</span> <span class="fu">predict</span>(reg1))<span class="sc">^</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#our own calculation for training RMSE</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">mean</span>((bike_train<span class="sc">$</span>log_selling_price <span class="sc">-</span> <span class="fu">predict</span>(reg1))<span class="sc">^</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5378694</code></pre>
 </div>
@@ -890,19 +896,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Now we can supply the actual responses and the model predictions to <code>yardstick::rmse_vec()</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#using yardstick</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>yardstick<span class="sc">::</span><span class="fu">rmse_vec</span>(bike_train<span class="sc">$</span>log_selling_price, <span class="fu">predict</span>(reg1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#using yardstick</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>yardstick<span class="sc">::</span><span class="fu">rmse_vec</span>(bike_train<span class="sc">$</span>log_selling_price, <span class="fu">predict</span>(reg1))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5378694</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#second and third models</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#using yardstick</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse_vec</span>(bike_train<span class="sc">$</span>log_selling_price, <span class="fu">predict</span>(reg2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#second and third models</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#using yardstick</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse_vec</span>(bike_train<span class="sc">$</span>log_selling_price, <span class="fu">predict</span>(reg2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5669127</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#using yardstick</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse_vec</span>(bike_train<span class="sc">$</span>log_selling_price, <span class="fu">predict</span>(reg3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#using yardstick</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse_vec</span>(bike_train<span class="sc">$</span>log_selling_price, <span class="fu">predict</span>(reg3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.4924924</code></pre>
 </div>
@@ -916,24 +922,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="normal">Test Set RMSE</mtext><mo>=</mo><msqrt><mrow><mfrac><mn>1</mn><msub><mi>n</mi><mrow><mi>t</mi><mi>e</mi><mi>s</mi><mi>t</mi></mrow></msub></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><msub><mi>n</mi><mrow><mi>t</mi><mi>e</mi><mi>s</mi><mi>t</mi></mrow></msub></munderover><msup><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>−</mo><msub><mover><mi>y</mi><mo accent="true">̂</mo></mover><mi>i</mi></msub><mo stretchy="true" form="postfix">)</mo></mrow><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">\mbox{Test Set RMSE} = \sqrt{\frac{1}{n_{test}}\sum_{i=1}^{n_{test}}(y_i-\hat{y}_i)^2}</annotation></semantics></math></p>
 <p>To do this in R we need to tell <code>predict()</code> about the <code>newdata</code> being the test set (<code>bike_test</code>). As this is a data frame with columns for our predictors, we can just pass the entire data frame for ease and <code>predict()</code> uses appropriate/needed columns to find our predictions.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#look at a few observations and predictions</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>bike_test <span class="sc">|&gt;</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(log_km_driven, log_selling_price) <span class="sc">|&gt;</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model_1_preds =</span> <span class="fu">predict</span>(reg1, <span class="at">newdata =</span> bike_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#look at a few observations and predictions</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>bike_test <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(log_selling_price, year) <span class="sc">|&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model_1_preds =</span> <span class="fu">predict</span>(reg1, <span class="at">newdata =</span> bike_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 319 × 3
-   log_km_driven log_selling_price model_1_preds
-           &lt;dbl&gt;             &lt;dbl&gt;         &lt;dbl&gt;
- 1          8.64             10.7           11.0
- 2          9.39             11.9           11.1
- 3          7.03             12.8           11.2
- 4          7.44             12.1           11.3
- 5         10.9              10.1           10.5
- 6         11.0               9.62          10.2
- 7          7.60             12.1           11.2
- 8         10.1              10.6           11.0
- 9          9.21              9.95          10.3
-10          9.95             10.7           11.1
+   log_selling_price  year model_1_preds
+               &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;
+ 1             10.7   2017          11.0
+ 2             11.9   2018          11.1
+ 3             12.8   2019          11.2
+ 4             12.1   2020          11.3
+ 5             10.1   2012          10.5
+ 6              9.62  2008          10.2
+ 7             12.1   2019          11.2
+ 8             10.6   2017          11.0
+ 9              9.95  2009          10.3
+10             10.7   2018          11.1
 # ℹ 309 more rows</code></pre>
 </div>
 </div>
@@ -941,31 +947,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Now let’s find the <strong>test set error</strong> for each model</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#obtain the test set RMSE for each model</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse_vec</span>(bike_test<span class="sc">$</span>log_selling_price, <span class="fu">predict</span>(reg1, <span class="at">newdata =</span> bike_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#obtain the test set RMSE for each model</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse_vec</span>(bike_test<span class="sc">$</span>log_selling_price, <span class="fu">predict</span>(reg1, <span class="at">newdata =</span> bike_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5746992</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse_vec</span>(bike_test<span class="sc">$</span>log_selling_price, <span class="fu">predict</span>(reg2, <span class="at">newdata =</span> bike_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse_vec</span>(bike_test<span class="sc">$</span>log_selling_price, <span class="fu">predict</span>(reg2, <span class="at">newdata =</span> bike_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.6548019</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse_vec</span>(bike_test<span class="sc">$</span>log_selling_price, <span class="fu">predict</span>(reg3, <span class="at">newdata =</span> bike_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rmse_vec</span>(bike_test<span class="sc">$</span>log_selling_price, <span class="fu">predict</span>(reg3, <span class="at">newdata =</span> bike_test))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.554596</code></pre>
 </div>
 </div>
 <p>We see that our third model with both <code>year</code> and <code>log_km_driven</code> gives a better (by our metric) set of predictions!</p>
-<p>When choosing a model, if the RMSE values were ‘close’, we’d want to consider the interpretability of the model (and perhaps the assumptions required by each model if we wanted to do inference too!)</p>
+<p>When choosing a model, if the RMSE values were ‘close’, we’d want to consider the interpretability of the model (and perhaps the assumptions required by each model if inference was of interest!)</p>
 <ul>
-<li>Note: we can do this with <code>yardstick::rmse()</code> if our predictions are in the data frame. <code>rmse()</code> takes in the <code>data</code> as the first argument, the <code>truth</code> column as the second, and the <code>estimate</code> (or predictions) as the third.</li>
+<li>Note: we can do this with <code>yardstick::rmse()</code> rather than <code>yardstick::rmse_vec()</code> if our predictions are in the data frame. <code>rmse()</code> takes in the <code>data</code> as the first argument, the <code>truth</code> column as the second, and the <code>estimate</code> (or predictions) as the third.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#look at a few observations and predictions</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>bike_test <span class="sc">|&gt;</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(log_selling_price, log_km_driven) <span class="sc">|&gt;</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model_1_preds =</span> <span class="fu">predict</span>(reg1, <span class="at">newdata =</span> bike_test)) <span class="sc">|&gt;</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rmse</span>(<span class="at">truth =</span> log_selling_price, <span class="at">estimate =</span> model_1_preds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#look at a few observations and predictions</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>bike_test <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(log_selling_price, log_km_driven) <span class="sc">|&gt;</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model_1_preds =</span> <span class="fu">predict</span>(reg1, <span class="at">newdata =</span> bike_test)) <span class="sc">|&gt;</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rmse</span>(<span class="at">truth =</span> log_selling_price, <span class="at">estimate =</span> model_1_preds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
@@ -978,14 +984,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="recap">Recap</h3>
 <p>We generally need to go through a few steps when training and testing our model(s):</p>
 <ul>
-<li>Choose form of model</li>
-<li>Fit model to data using some algorithm
+<li>Choose the form of the model</li>
+<li>Fit the model to the data using some algorithm
 <ul>
-<li>Usually can be written as a problem where we minimize some loss function</li>
+<li>Usually this can be written as a problem where we minimize some loss function</li>
 </ul></li>
 <li>Evaluate the model using a metric
 <ul>
-<li>RMSE very common for a numeric response</li>
+<li>RMSE is a very common for a numeric response</li>
 </ul></li>
 <li>Ideally we want our model to predict well for observations <strong>it has yet to see</strong>!</li>
 </ul>

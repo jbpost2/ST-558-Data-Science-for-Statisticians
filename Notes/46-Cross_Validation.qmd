@@ -10,7 +10,7 @@ html-math-method: mathml
 
 We've discussed the idea of supervised learning. In this paradigm we have a **response** or **target** variable we are trying to predict. 
 
-- We posit some model for that variable that is a function of our predictor variables. 
+- We posit some model for the response variable that is a function of our predictor variables. 
 - We fit that model to data (usually can be seen as minimizing some *loss* function).
 - We judge how well our model does at predicting using some **metric.** 
 
@@ -85,7 +85,7 @@ size_fold <- floor(nrow(bike_data)/10)
 
 <ul>
   <ul>
-    <li> Each fold will have `r size_fold` observations. There will be an extra observation in this case, we'll lump that into our last fold.</li>
+    <li> Each fold, except one, will have `r size_fold` observations. There will be an extra observation in this case, we'll lump that into our last fold.</li>
     <li>Let's get our folds by using `sample()` to reorder the indices.</li>
     <li>Then we'll use a for loop to cycle through the pieces and save the folds in a `list`</li>
   </ul>
@@ -99,11 +99,13 @@ head(random_indices)
 #create a list to save our folds in
 folds <- list()
 #now cycle through our random indices vector and take the appropriate observations to each fold
+#you may want to set i to 1 and run the arguments to from and to in the seq() function
+#change i to 2 and do the same thing to see how this works
 for(i in 1:10){
   if (i < 10) {
     fold_index <- seq(from = (i-1)*size_fold +1, to = i*size_fold, by = 1)
     folds[[i]] <- bike_data[random_indices[fold_index], ]
-  } else {
+  } else { #for i = 10 we need to have 1 more observation 
     fold_index <- seq(from = (i-1)*size_fold +1, to = length(random_indices), by = 1)
     folds[[i]] <- bike_data[random_indices[fold_index], ]
   }
@@ -150,10 +152,10 @@ test_number <- 10
 #pull out the testing fold
 test <- folds[[test_number]]
 test
-#remove the test fold from the list
-folds[[test_number]] <- NULL
-#note that folds is only length 9 now
-length(folds)
+#remove the test fold from the list and use the rest as training data
+train_list <- folds[-test_number]
+#note that train is only length 9
+length(train_list)
 ```
 
 <ul>
@@ -164,7 +166,7 @@ length(folds)
 
 ```{r}
 #combine the other folds into train set
-train <- purrr::reduce(folds, rbind)
+train <- purrr::reduce(train_list, rbind)
 #the other nine folds are now in train
 train
 ```
@@ -184,7 +186,7 @@ fit <- lm(log_selling_price ~ log_km_driven, data = train)
 
 <ul>
   <ul>
-    <li>Ok, let's wrap that into a function for ease! Let `y` be a string for the response, `x` a character vector of predictors, and `test_number` the fold to test on.</li>
+    <li>Ok, let's wrap that into a function for ease! Let `y` be a string for the response, `x` a character *vector* of predictors, and `test_number` the fold to test on.</li>
   </ul>
 </ul>
 
@@ -193,19 +195,25 @@ find_test_metric <- function(y, x, folds, test_number){
   #pull out the testing fold
   test <- folds[[test_number]]
   #remove the test fold from the list
-  folds[[test_number]] <- NULL
+  train_list <- folds[-test_number]
   #combine the other folds into train set
-  train <- purrr::reduce(folds, rbind)
+  train <- purrr::reduce(train_list, rbind)
   #fit our model. reformulate allows us to take strings and turn that into a formula
   fit <- lm(reformulate(termlabels = x, response = y), data = train)
   #get test error
   (yardstick::rmse_vec(test[[y]], predict(fit, newdata = test)))^2
 }
+
+#double check it works
+find_test_metric(y = "log_selling_price", 
+                 x = "log_km_driven", 
+                 folds = folds, 
+                 test_number = 10)
 ```
 
 <ul>
   <ul>
-    <li>We can use the `purrr::map()` function to apply this function to `1:10`. This will use each fold as the test set once.</li>
+    <li>We can use the `purrr::map()` function to apply this function to `1:10`. This will use each fold as the test set once!</li>
   </ul>
 </ul>
         
@@ -217,7 +225,7 @@ purrr::map(1:10, find_test_metric,
            folds = folds)
 ```
     
-3. Now we combine these into one value! We'll average the MSE values across the folds and then take the square root of that to obtain the RMSE (averaging square roots makes less sense, which is why we found MSE first)
+3. Now we combine these into one value! We'll average the MSE values across the folds and then take the square root of that to obtain the RMSE (averaging square roots makes less sense, which is why we found MSE first)!
 
     + We can again use `reduce()` to combine all of these values into one number! We average it by dividing by the number of folds and finally find the square root to make it the RMSE!
     
@@ -253,12 +261,15 @@ find_cv("log_selling_price", "log_km_driven", folds, num_folds = 10)
         
 ### Compare Different Models Using Our CV Functions
 
-Now let's compare our three separate models via 10 fold CV! We can use the same `folds` with different models.
-
-1. First our model with just `year` as a predictor:
+Now let's compare our three separate models via 10 fold CV! We can use the same `folds` with different models. This will make our comparisons better (similar to using a block design if you are familiar with that).
 
 ```{r}
 folds <- get_cv_splits(bike_data, 10)
+```
+
+1. First let's find our CV RMSE on our model with just `year` as a predictor:
+
+```{r}
 cv_reg_1 <- find_cv("log_selling_price", "year", folds, num_folds = 10)
 ```
 
@@ -292,8 +303,8 @@ best_fit
 
 ## CV Recap
 
-Nice! We've done a comparison of models on how well they predict on data they are not trained on without splitting our data into a train and test set! This is very useful when we don't have a lot of data.
+Nice! We've done a comparison of models on how well they predict on data they are not trained on without splitting our data into a train and test set! This is very useful when we don't have a lot of data. Again, we would choose our best model (model 3 here) and refit the model on the full data set! 
 
-Again, we would choose our best model (model 3 here) and refit the model on the full data set! We'll see how to do this in the `tidymodels` framework shortly
+In some cases, we'll want to use a train/test split and use CV on the training data only so we still have a separate test set for other comparisons. We'll discuss this idea shortly!  We'll also see how to do this in the `tidymodels` framework rather than doing it by hand.
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

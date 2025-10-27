@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-08-11">
+<meta name="dcterms.date" content="2025-10-24">
 
 <title>ST 558 Data Science for Statisticians (R) - Base R Data Structures: Lists</title>
 <style>
@@ -694,7 +694,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-08-11</p>
+      <p class="date">2025-10-24</p>
     </div>
   </div>
   
@@ -794,7 +794,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5      5      e
 
 [[2]]
-[1] -0.97678243 -0.02314416  0.02199044 -0.58241203
+[1]  1.9118667  1.9508529  0.3379946 -0.5242446
 
 [[3]]
 [1] "!" "?"</code></pre>
@@ -816,7 +816,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5      5      e
 
 $normVals
-[1] 1.4727860 2.0134403 0.2769004 0.5555099
+[1]  0.6643841  0.2016515 -1.3898236 -1.5294647
 
 $punctuation
 [1] "!" "?"</code></pre>
@@ -833,7 +833,7 @@ $punctuation
  $ my_data_frame:'data.frame':  5 obs. of  2 variables:
   ..$ number: int [1:5] 1 2 3 4 5
   ..$ letter: chr [1:5] "a" "b" "c" "d" ...
- $ normVals     : num [1:4] 1.473 2.013 0.277 0.556
+ $ normVals     : num [1:4] 0.664 0.202 -1.39 -1.529
  $ punctuation  : chr [1:2] "!" "?"</code></pre>
 </div>
 </div>
@@ -872,7 +872,7 @@ $punctuation
 5      5      e
 
 $normVals
-[1] 1.4727860 2.0134403 0.2769004 0.5555099
+[1]  0.6643841  0.2016515 -1.3898236 -1.5294647
 
 $punctuation
 [1] "!" "?"</code></pre>
@@ -882,7 +882,7 @@ $punctuation
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$normVals
-[1] 1.4727860 2.0134403 0.2769004 0.5555099
+[1]  0.6643841  0.2016515 -1.3898236 -1.5294647
 
 $punctuation
 [1] "!" "?"</code></pre>
@@ -944,13 +944,13 @@ $punctuation
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.4727860 2.0134403 0.2769004 0.5555099</code></pre>
+<pre><code>[1]  0.6643841  0.2016515 -1.3898236 -1.5294647</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="dv">2</span>]][<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2769004 0.5555099</code></pre>
+<pre><code>[1] -1.389824 -1.529465</code></pre>
 </div>
 </div>
 <ul>
@@ -963,14 +963,14 @@ $punctuation
  $ my_data_frame:'data.frame':  5 obs. of  2 variables:
   ..$ number: int [1:5] 1 2 3 4 5
   ..$ letter: chr [1:5] "a" "b" "c" "d" ...
- $ normVals     : num [1:4] 1.473 2.013 0.277 0.556
+ $ normVals     : num [1:4] 0.664 0.202 -1.39 -1.529
  $ punctuation  : chr [1:2] "!" "?"</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>normVals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.4727860 2.0134403 0.2769004 0.5555099</code></pre>
+<pre><code>[1]  0.6643841  0.2016515 -1.3898236 -1.5294647</code></pre>
 </div>
 </div>
 <ul>
@@ -1014,7 +1014,7 @@ $punctuation
  $ my_data_frame:'data.frame':  5 obs. of  2 variables:
   ..$ number: int [1:5] 1 2 3 4 5
   ..$ letter: chr [1:5] "a" "b" "c" "d" ...
- $ normVals     : num [1:4] 1.473 2.013 0.277 0.556
+ $ normVals     : num [1:4] 0.664 0.202 -1.39 -1.529
  $ punctuation  : chr [1:2] "!" "?"</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.list</span>(my_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
