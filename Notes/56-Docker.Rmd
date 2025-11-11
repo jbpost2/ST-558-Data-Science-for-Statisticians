@@ -155,12 +155,12 @@ Download our image of interest via
 
 Steps:
 
-+ 2. Grab `rocker/rstudio` image
-+ 3. Create container with 
++ Grab `rocker/rstudio` image
++ Create container with 
 
 `docker run --rm -ti -e DISABLE_AUTH=true -p 127.0.0.1:8888:8888 rocker/rstudio`
 
-+ 4. Use CTRL/CMD + C, `docker kill _container_name_`, or docker desktop to stop the container
++ Use CTRL/CMD + C, `docker kill _container_name_`, or docker desktop to stop the container
 
 
 ---

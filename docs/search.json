@@ -4,28 +4,48 @@
     "href": "Notes/58-Dockerizing_Shiny_Landing.html",
     "title": "Dockerizing a Shiny App",
     "section": "",
-    "text": "The video below gives an example of dockerizing a shiny app!\nI highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer."
+    "text": "The video below gives an example of dockerizing a shiny app!\nI highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer.",
+    "crumbs": [
+      "Home",
+      "Topic 6: APIs & Docker",
+      "Dockerizing a Shiny App"
+    ]
   },
   {
     "objectID": "Notes/58-Dockerizing_Shiny_Landing.html#notes",
     "href": "Notes/58-Dockerizing_Shiny_Landing.html#notes",
     "title": "Dockerizing a Shiny App",
     "section": "Notes",
-    "text": "Notes\n\nHTML version\nPDF version\napp.R file\nDockerfile\n\nThat’s it! That’s all we have :)"
+    "text": "Notes\n\nHTML version\nPDF version\napp.R file\nDockerfile\n\nThat’s it! That’s all we have :)",
+    "crumbs": [
+      "Home",
+      "Topic 6: APIs & Docker",
+      "Dockerizing a Shiny App"
+    ]
   },
   {
     "objectID": "Notes/56-Docker_Landing.html",
     "href": "Notes/56-Docker_Landing.html",
     "title": "Docker Basics",
     "section": "",
-    "text": "The video below discusses the idea of containerization and the software Docker.\nI highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer."
+    "text": "The video below discusses the idea of containerization and the software Docker.\nI highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer.",
+    "crumbs": [
+      "Home",
+      "Topic 6: APIs & Docker",
+      "Docker Basics"
+    ]
   },
   {
     "objectID": "Notes/56-Docker_Landing.html#notes",
     "href": "Notes/56-Docker_Landing.html#notes",
     "title": "Docker Basics",
     "section": "Notes",
-    "text": "Notes\n\nHTML version\nPDF version\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!"
+    "text": "Notes\n\nHTML version\nPDF version\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 6: APIs & Docker",
+      "Docker Basics"
+    ]
   },
   {
     "objectID": "Notes/54_5-Week13_14.html",
@@ -1159,13 +1179,23 @@
     "href": "Notes/57-Building_Docker_Landing.html",
     "title": "Building a Docker Image",
     "section": "",
-    "text": "The video below looks at how to build a basic Docker image that will run our API.\nI highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer."
+    "text": "The video below looks at how to build a basic Docker image that will run our API.\nI highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer.",
+    "crumbs": [
+      "Home",
+      "Topic 6: APIs & Docker",
+      "Building a Docker Image"
+    ]
   },
   {
     "objectID": "Notes/57-Building_Docker_Landing.html#notes",
     "href": "Notes/57-Building_Docker_Landing.html#notes",
     "title": "Building a Docker Image",
     "section": "Notes",
-    "text": "Notes\n\nHTML version\nPDF version\nmyAPI.R file\nDockerfile\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!"
+    "text": "Notes\n\nHTML version\nPDF version\nmyAPI.R file\nDockerfile\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!",
+    "crumbs": [
+      "Home",
+      "Topic 6: APIs & Docker",
+      "Building a Docker Image"
+    ]
   }
 ]

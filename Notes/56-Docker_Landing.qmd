@@ -16,7 +16,7 @@ I highly recommend watching the video using the 'full' Panopto player. There is 
 
 ## Notes
 
-- <a href = "56-Docker_Basics.html" target = "_blank">HTML version</a>
-- <a href = "PDFs/56-Docker_Basics.pdf" target = "_blank">PDF version</a>
+- <a href = "56-Docker.html" target = "_blank">HTML version</a>
+- <a href = "PDFs/56-Docker.pdf" target = "_blank">PDF version</a>
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!
