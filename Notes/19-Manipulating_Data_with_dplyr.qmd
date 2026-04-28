@@ -415,6 +415,21 @@ Please pop this video out and watch it in the full panopto player!
 
 - <a href = "https://github.com/jbpost2/My_first_repo" target = "_blank">Link to repo with files from video</a>
 
+
+### Cleaning Names
+
+We saw some nasty column names in the video. There's a great function from the `janitor` package to quickly deal with these called `clean_names()`!
+
+```{r}
+library(janitor)
+air_quality_data <- readr::read_csv("https://www4.stat.ncsu.edu/~online/datasets/AirQuality.csv")
+names(air_quality_data)
+clean_names(air_quality_data) |>
+  names()
+```
+
+This function, by default, converts things to lower snake case!
+
 ### Recap!
 
 `dplyr` gives us a ton of functionality for doing common data manipulations

@@ -40,7 +40,9 @@ app_data <- app_data |>
 Consider the graph we created with multiple trend lines:
 
 ```{r,eval = TRUE, echo = TRUE, out.width = "650px", fig.align='center', out.height = '350px', warning = FALSE}
-g <- ggplot(app_data |> drop_na(RBC_Count, Weight, Diagnosis) |> filter(RBC_Count < 8), 
+g <- ggplot(app_data |> 
+              drop_na(RBC_Count, Weight, Diagnosis) |> 
+              filter(RBC_Count < 8), 
             aes(x = Weight, y = RBC_Count, color = Diagnosis))
 g_scatter <- g + geom_point() +  
     geom_smooth(method = lm) 
@@ -80,5 +82,41 @@ Now we can apply this theme using the usual `+` syntax from `ggplot2`.
 g_scatter + t
 ```
 
+### `patchwork` Package
+
+We saw that we can use `facet_wrap()` and `facet_grid()` to make plots laid out in a pretty nice way. However, this generally is done using the same type of plot across a categorical variable. Sometimes we want to put different plot types next to each other. 
+
+The `patchwork` package (likely must be installed to use) is a great package for putting `ggplot`s next to each other in useful ways! We can simply use 
+`+` to separate plot objects we want next to each other.
+
+```{r}
+library(patchwork)
+g_scatter_custom <- g_scatter + t
+g_density <- g + 
+  geom_density_2d() +
+  t
+g_density + g_scatter_custom
+```
+
+We can also place a plot below others if we want using `(objects...)/(objects)`.
+
+```{r}
+g2 <- ggplot(app_data |> 
+               drop_na(RBC_Count, Weight, Diagnosis) |> 
+               filter(RBC_Count < 8, Diagnosis == "appendicitis"), 
+            aes(x = Weight, y = RBC_Count))
+g_density_append <- g2 + 
+  geom_density_2d(color = "red") + 
+  t
+g3 <- ggplot(app_data |> 
+               drop_na(RBC_Count, Weight, Diagnosis) |> 
+               filter(RBC_Count < 8, Diagnosis == "no appendicitis"), 
+            aes(x = Weight, y = RBC_Count))
+g_density_noappend <- g3 + 
+  geom_density_2d() + 
+  t
+(g_density_append + g_density_noappend)/g_scatter_custom
+```
+A super handy package!
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

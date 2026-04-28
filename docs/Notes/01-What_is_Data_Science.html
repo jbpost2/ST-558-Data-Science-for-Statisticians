@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-10-24">
+<meta name="dcterms.date" content="2026-04-28">
 
 <title>ST 558 Data Science for Statisticians (R) - What is Data Science?</title>
 <style>
@@ -26,13 +26,9 @@ ul.task-list li input[type="checkbox"] {
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
 <link href="../Notes/02-Workflows_Git_GitHub_Basics_Landing.html" rel="next">
 <link href="../Notes/00-Welcome_to_the_Course.html" rel="prev">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -43,12 +39,6 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -62,6 +52,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="../site_libs/rquiz-1.0.0/rquiz.css" rel="stylesheet">
+<script src="../site_libs/multiQuestions-binding-1.0.0/multiQuestions.js"></script>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -72,19 +65,14 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">ST 558 Data Science for Statisticians (R)</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
+          <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link active" href="../index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Home</span></a>
@@ -94,21 +82,20 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
+          <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
     <a class="nav-link" href="https://github.com/jbpost2/ST-558-Data-Science-for-Statisticians" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+ <span class="menu-text">Github Repository</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
 </a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
@@ -640,7 +627,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-24</p>
+      <p class="date">2026-04-28</p>
     </div>
   </div>
   
@@ -652,17 +639,18 @@ ul.task-list li input[type="checkbox"] {
 
 <p>First, let’s get some perspectives on what data science is, how statistics and computer science relate, and important items to consider when trying to understand data. To do so, we’ll do some readings.</p>
 <ul>
-<li><a href="https://r4ds.hadley.nz/intro" target="_blank">Introduction of R for Data Science</a></li>
-<li><a href="https://scientistcafe.com/ids/introduction#introduction" target="_blank">Chapters 1 and 2 of the Practitioner’s Guide to Data Science</a></li>
+<li><a href="https://r4ds.hadley.nz/intro" target="_blank">Introduction section of <em>R for Data Science</em></a></li>
+<li><a href="https://scientistcafe.com/ids/introduction#introduction" target="_blank">Chapters 1 and 2 of <em>The Practitioner’s Guide to Data Science</em></a></li>
 <li><a href="https://www.amstat.org/docs/default-source/amstat-documents/the-role-of-statistics-in-data-science-and-artificial-intelligence.pdf" target="_blank">The role of statistics in Data Science and Artificial Intelligence</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Data_science" target="_blank">Data Science wikipedia entry</a></li>
 </ul>
-<p>Some entries from some less reputable/reviewed places are below. Please read these as well but put less weight on the things mentioned in these articles - I’m just assigning these readings so you can see the different perspectives people may have.</p>
-<ul>
-<li><a href="https://www.indeed.com/career-advice/finding-a-job/data-scientist-vs-statistician" target="_blank">https://www.indeed.com/career-advice/finding-a-job/data-scientist-vs-statistician</a></li>
-<li><a href="https://www.simplilearn.com/data-science-vs-data-analytics-vs-machine-learning-article" target="_blank">Data Science vs.&nbsp;Data Analytics vs.&nbsp;Machine Learning - Expert Talk</a></li>
-<li><a href="https://scientistcafe.com/ids/comparison-between-statistician-and-data-scientist.html" target="_blank">https://scientistcafe.com/ids/comparison-between-statistician-and-data-scientist.html</a></li>
-</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div id="htmlwidget-01fa5a63c6a6d03a877f" style="width:100%;height:auto;" class="multiQuestions html-widget"></div>
+<script type="application/json" data-for="htmlwidget-01fa5a63c6a6d03a877f">{"x":{"questions":"[{\"id\":1,\"question\":\"According to the readings, what are some of the common mistakes a data science project may have?\",\"options\":[{\"a\":\"Solving the wrong problem\",\"b\":\"Using too much data\",\"c\":\"Overfitting and obsession with complicated models\",\"d\":\"Fail to scale in real-time applications\",\"e\":\"Finding an answer that goes against the company's plan\",\"f\":\"Too optimistic abou the timeline\"}],\"answer\":[\"Solving the wrong problem\",\"Overfitting and obsession with complicated models\",\"Fail to scale in real-time applications\",\"Too optimistic abou the timeline\"],\"tip\":\"Check the Practioner's guide to data science!\",\"score\":0,\"status\":\"\"},{\"id\":2,\"question\":\"According to R for Data Science, which is the correct order for the steps in the data science process?\",\"options\":[{\"a\":\"Import, Tidy, Understand, Communicate\",\"b\":\"Tidy, Import, Understand, Communicate\",\"c\":\"Communicate, Tidy, Import, Understand\",\"d\":\"Understand, Import, Tidy, Communicate\"}],\"answer\":[\"Import, Tidy, Understand, Communicate\"],\"tip\":\"\",\"score\":0,\"status\":\"\"}]","choice":"multiple","title":"Reading recap","width":"100%","height":"500px","center":"true","scroll":"false","shuffle":"true","inclTimer":"true","showTipBtn":"false","showSolutionBtn":"true","fontFamily":"'Helvetica Neue', Helvetica, Arial, sans-serif","fontSize":16,"titleFontSize":20,"questionFontSize":16,"titleAlign":"left","titleCol":"#FFFFFF","titleBg":"#5F5F5F","questionCol":"#1C1C1C","questionBg":"#F7F7F7","mainCol":"#1C1C1C","mainBg":"#F7F7F7","optionBg":"#ECECEC","timerCol":"#1C1C1C","navBtnCol":"#FFFFFF","navBtnBg":"#28A745","tipBtnCol":"#1C1C1C","tipBtnBg":"#F1F1F1","tipAreaCol":"#1C1C1C","tipAreaBg":"#E7F9E7","tipAreaBorder":"#28A745","solutionBtnCol":"#1C1C1C","solutionBtnBg":"#F1F1F1","solutionAreaCol":"#1C1C1C","solutionAreaBg":"#D6EAF8","solutionAreaBorder":"#3498DB","txtPrevious":"Previous","txtNext":"Next","txtTotalQuestions":"Total Questions","txtTotalScore":"Total Score","txtScore":"Score","txtQuestion":"Q","txtCorrectAnswer":"Correct answer","txtTryAgain":"Try again","txtShowTips":"Show tips","txtHideTips":"Hide tips","txtNumberOfCorrectAnswers":"Number of correct answers","txtShowSolution":"Show solution","txtHideSolution":"Hide solution"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Note: The questions above are just there to help you check in. These don’t count toward your grade!</p>
 <p>You’ll write about these ideas as part of your first homework assignment! For now, onto understanding data workflows and <code>Git</code> and <code>GitHub</code> basics!</p>
 <p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 

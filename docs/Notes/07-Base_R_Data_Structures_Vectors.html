@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-10-24">
+<meta name="dcterms.date" content="2026-04-24">
 
 <title>ST 558 Data Science for Statisticians (R) - Base R Data Structures: Vectors</title>
 <style>
@@ -60,13 +60,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
 <link href="../Notes/08-Base_R_Data_Structures_Matrices.html" rel="next">
 <link href="../Notes/06_5-Week1_2.html" rel="prev">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -77,12 +73,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -106,19 +96,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">ST 558 Data Science for Statisticians (R)</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
+          <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link active" href="../index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Home</span></a>
@@ -128,21 +113,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
+          <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
     <a class="nav-link" href="https://github.com/jbpost2/ST-558-Data-Science-for-Statisticians" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+ <span class="menu-text">Github Repository</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
+          <div class="quarto-navbar-tools">
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
 </a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
@@ -667,6 +651,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#creating-a-vector" id="toc-creating-a-vector" class="nav-link" data-scroll-target="#creating-a-vector">Creating a Vector</a></li>
   <li><a href="#vector-attributes" id="toc-vector-attributes" class="nav-link" data-scroll-target="#vector-attributes">Vector Attributes</a></li>
   <li><a href="#accessing-elements-of-a-vector" id="toc-accessing-elements-of-a-vector" class="nav-link" data-scroll-target="#accessing-elements-of-a-vector">Accessing Elements of a Vector</a></li>
+  <li><a href="#factor-vectors" id="toc-factor-vectors" class="nav-link" data-scroll-target="#factor-vectors">Factor Vectors</a></li>
   <li><a href="#quick-r-video" id="toc-quick-r-video" class="nav-link" data-scroll-target="#quick-r-video">Quick R Video</a></li>
   <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap!</a></li>
   </ul></li>
@@ -690,7 +675,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-10-24</p>
+      <p class="date">2026-04-24</p>
     </div>
   </div>
   
@@ -911,20 +896,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">4</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.58879089 0.01726882 0.33748969 0.44026707</code></pre>
+<pre><code>[1] 0.3533691 0.2772619 0.6893138 0.2494926</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 0.5698890 0.8194682 0.6622415 0.1708174 0.8019541 0.9210170 0.1729794
- [8] 0.5055887 0.1097646 0.8699340</code></pre>
+<pre><code> [1] 0.09273612 0.51524904 0.68469380 0.68017287 0.68890425 0.21982502
+ [7] 0.86653058 0.27007318 0.52050416 0.32689995</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">5</span>, <span class="dv">20</span>, <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 27.08868 22.15286 26.47438 29.05681 25.76188</code></pre>
+<pre><code>[1] 20.05792 22.30742 24.76025 22.94092 29.33778</code></pre>
 </div>
 </div>
 <p>We’ll find this function really useful when we simulate different quantities!</p>
@@ -1048,6 +1033,88 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 1 3 </code></pre>
 </div>
 </div>
+</section>
+<section id="factor-vectors" class="level3">
+<h3 class="anchored" data-anchor-id="factor-vectors">Factor Vectors</h3>
+<p>A <code>factor</code> is a data type used to categorize and store categorical data within a vector. While a standard character string is just a sequence of letters, a factor tells <code>R</code> that the data belongs to a specific, limited set of levels.</p>
+<p>For a character string variable where we know the values can only take on a certain set of values, say <code>pet_type</code>: ‘cat’, ‘dog’, ‘bird’, ‘rodent’, or ‘other’, then factors are great! For a variable like <code>name</code> where new values could come in, these aren’t useful.</p>
+<p>To create a factor vector we can use <code>factor()</code>!</p>
+<pre><code>factor(x = character(), levels, labels = levels,
+       exclude = NA, ordered = is.ordered(x), nmax = NA)</code></pre>
+<p>The first argument is the vector of character strings we want to create a vector from. We can then specify the <code>levels</code> or unique values the factor’s elements can take on (and, optionally, different <code>labels</code> for those levels).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>pets <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cat"</span>, <span class="st">"dog"</span>, <span class="st">"bird"</span>, <span class="st">"cat"</span>, <span class="st">"other"</span>, <span class="st">"bird"</span>, <span class="st">"bird"</span>, <span class="st">"other"</span>, <span class="st">"dog"</span>)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>pets_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(pets,</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"cat"</span>, <span class="st">"dog"</span>, <span class="st">"bird"</span>, <span class="st">"rodent"</span>, <span class="st">"other"</span>))</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>pets_factor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] cat   dog   bird  cat   other bird  bird  other dog  
+Levels: cat dog bird rodent other</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pets_factor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Factor w/ 5 levels "cat","dog","bird",..: 1 2 3 1 5 3 3 5 2</code></pre>
+</div>
+</div>
+<p>It may seem odd that the values are actually integers. This comes from the fact that storing integers is easier than storing a character string. We can also compare integers more easily than comparing full character strings.</p>
+<p>Notice that we are not able to change the values to something outside of the levels.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>pets_factor[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">"parrot"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in `[&lt;-.factor`(`*tmp*`, 1, value = "parrot"): invalid factor level, NA
+generated</code></pre>
+</div>
+</div>
+<p>The <code>levels</code> need to correspond to values within the data. We can use the <code>labels</code> argument to have different values show without changing the underlying values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>pets_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(pets,</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"cat"</span>, <span class="st">"dog"</span>, <span class="st">"bird"</span>, <span class="st">"rodent"</span>, <span class="st">"other"</span>),</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Cat"</span>, <span class="st">"Dog"</span>, <span class="st">"Bird"</span>, <span class="st">"Rodent"</span>, <span class="st">"Others"</span>))</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>pets_factor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Cat    Dog    Bird   Cat    Others Bird   Bird   Others Dog   
+Levels: Cat Dog Bird Rodent Others</code></pre>
+</div>
+</div>
+<p>The other major function to create a factor is <code>as.factor()</code>. This is similar to <code>factor()</code> but doesn’t give the extra arguments (and is sometimes a little faster to run). (In this case, we can’t add the extra level of <code>rodent</code>!)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>pets_factor <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(pets)</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>pets_factor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] cat   dog   bird  cat   other bird  bird  other dog  
+Levels: bird cat dog other</code></pre>
+</div>
+</div>
+<p>Of course the <code>levels</code> can be modified after the fact!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">attributes</span>(pets_factor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$levels
+[1] "bird"  "cat"   "dog"   "other"
+
+$class
+[1] "factor"</code></pre>
+</div>
+</div>
+<p>There’s a special function to deal with the levels.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(pets_factor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "bird"  "cat"   "dog"   "other"</code></pre>
+</div>
+</div>
+<p>We can modify this <strong>attribute</strong> vector!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(pets_factor) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">levels</span>(pets_factor), <span class="st">"rodent"</span>)</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(pets_factor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "bird"   "cat"    "dog"    "other"  "rodent"</code></pre>
+</div>
+</div>
+<p>(<code>levels()</code> is called a <strong>replacement function</strong>. These allow you to modify the object by calling it on the left-hand side.)</p>
+<p>We’ll come back to factors later on when we look at plotting and summarizing data. The levels can also be ordered which is great when we want to change how a plot or summary looks!</p>
 </section>
 <section id="quick-r-video" class="level3">
 <h3 class="anchored" data-anchor-id="quick-r-video">Quick R Video</h3>

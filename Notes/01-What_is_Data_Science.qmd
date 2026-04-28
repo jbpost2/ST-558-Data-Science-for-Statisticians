@@ -6,21 +6,52 @@ editor_options:
   chunk_output_type: inline
 ---
 
+```{r}
+#| include: false
+library(rquiz)
+```
 
 First, let's get some perspectives on what data science is, how statistics and computer science relate, and important items to consider when trying to understand data. To do so, we'll do some readings.
 
-- <a href="https://r4ds.hadley.nz/intro" target="_blank">Introduction of R for Data Science</a>
-- <a href="https://scientistcafe.com/ids/introduction#introduction" target="_blank">Chapters 1 and 2 of the Practitioner's Guide to Data Science</a>
+- <a href="https://r4ds.hadley.nz/intro" target="_blank">Introduction section of *R for Data Science*</a>
+- <a href="https://scientistcafe.com/ids/introduction#introduction" target="_blank">Chapters 1 and 2 of *The Practitioner's Guide to Data Science*</a>
 - <a
       href="https://www.amstat.org/docs/default-source/amstat-documents/the-role-of-statistics-in-data-science-and-artificial-intelligence.pdf"
       target="_blank">The role of statistics in Data Science and Artificial Intelligence</a>
 - <a href="https://en.wikipedia.org/wiki/Data_science" target="_blank">Data Science wikipedia entry</a>
 
-Some entries from some less reputable/reviewed places are below. Please read these as well but put less weight on the things mentioned in these articles - I'm just assigning these readings so you can see the different perspectives people may have.
+```{r, echo =FALSE}
+rquiz::multiQuestions(
+  x = list(
+    q1 = list(
+      question = "According to the readings, what are some of the common mistakes a data science project may have?",
+      options = c("Solving the wrong problem", 
+                  "Using too much data",
+                  "Overfitting and obsession with complicated models",
+                  "Fail to scale in real-time applications",
+                  "Finding an answer that goes against the company's plan",
+                  "Too optimistic abou the timeline"
+                  ),
+      answer = c(1, 3, 4, 6),
+      tip = "Check the Practioner's guide to data science!"
+    ),
+    q2 = list(
+      question = "According to R for Data Science, which is the correct order for the steps in the data science process?",
+      options = c("Import, Tidy, Understand, Communicate",
+                  "Tidy, Import, Understand, Communicate",
+                  "Communicate, Tidy, Import, Understand",
+                  "Understand, Import, Tidy, Communicate"),
+      answer = 1
+    )
+  ),
+  title = "Reading recap",
+#  width = "50%",
+#  fontSize = 14,
+  shuffle = TRUE
+)
+```
 
-- <a href="https://www.indeed.com/career-advice/finding-a-job/data-scientist-vs-statistician" target="_blank">https://www.indeed.com/career-advice/finding-a-job/data-scientist-vs-statistician</a>
-- <a href="https://www.simplilearn.com/data-science-vs-data-analytics-vs-machine-learning-article" target="_blank">Data Science vs. Data Analytics vs. Machine Learning - Expert Talk</a>
-- <a href="https://scientistcafe.com/ids/comparison-between-statistician-and-data-scientist.html" target="_blank">https://scientistcafe.com/ids/comparison-between-statistician-and-data-scientist.html</a>
+Note: The questions above are just there to help you check in. These don't count toward your grade!
 
 You'll write about these ideas as part of your first homework assignment! For now, onto understanding data workflows and `Git` and `GitHub` basics!
 

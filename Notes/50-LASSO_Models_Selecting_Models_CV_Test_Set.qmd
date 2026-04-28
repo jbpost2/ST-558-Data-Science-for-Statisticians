@@ -138,7 +138,7 @@ rbind(MLR_fit1 |> collect_metrics() |> filter(.metric == "rmse"),
 
 Based on RMSE, we see that the last model is the best MLR model of the three we fit! Note again, we've chosen between the three models from the *family* of models (MLR models) using just CV on the training data.
 
-Let's refit that on the entire training set.
+Let's refit that on the entire training set. We can use `fit_best()` for this purpose.
 
 ```{r}
 MLR_final <-  MLR_wkf3 |>
@@ -238,7 +238,8 @@ We saw how to fit a workflow to a set of CV folds with `fit_resample()`. Since w
 #A warning will occur for one value of the tuning parameter, safe to ignore
 LASSO_grid <- LASSO_wkf |>
   tune_grid(resamples = bike_CV_folds,
-            grid = grid_regular(penalty(), levels = 200)) 
+            grid = grid_regular(penalty(), levels = 200),
+            save_workflow = TRUE) 
 LASSO_grid
 ```
 

@@ -173,6 +173,7 @@ Ahh, so the `guess_max` argument tells our function to scan the first `x` number
 -   **Checking column type is a basic data validation step!**
 -   You should check that each column was read in the way you would expect. If not, you may need to clean the data and convert the column to the appropriate data type.
 
+
 ### Reading in Any Delimited File
 
 -   Functions from *readr* and their purpose

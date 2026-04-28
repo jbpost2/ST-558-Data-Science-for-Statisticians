@@ -122,6 +122,7 @@ Lastly, just note that you can supply a data frame instead of the individual vec
 table(app_data[, c("SexF", "DiagnosisF")])
 ```
 
+
 #### Via the `tidyverse`
 
 Ok, great. But we might want to stay in the `tidyverse`. We can use the `dplyr::summarize()` function to compute summaries on a `tibble`. This generally outputs a `tibble` with fewer rows than the original (as we are summarizing the variables to view them in a more compact form). We often use `group_by()` to set a grouping variable. **Any summary done will respect the groupings!**
@@ -182,6 +183,123 @@ app_data |>
   summarize(count = n()) |>
   pivot_wider(names_from = SeverityF, values_from = count)
 ```
+
+### Making it Pretty
+
+When we create these kinds of tables, we often want to include them in some kind of final document. A great way to customize the look of tables is through the <a href = "https://gt.rstudio.com/" target = "_blank">`gt` package</a>!
+
+```{r, message = FALSE, warning = FALSE}
+library(gt)
+```
+
+We can use the `gt()` and `tab_header()` functions (among other things) to easily create nicer looking tables!
+
+```{r}
+gt(app_data[1:10,] |>
+     select(Age, Sex, Height, Severity, Diagnosis)) |>
+  tab_header(
+    title = "First 10 rows of Data",
+    subtitle = "Data describes attributes of hospitalized patients"
+  )
+```
+
+We can take our contingency table and make it look a bit nicer. 
+
+```{r}
+app_data |>
+  drop_na(SexF, DiagnosisF, SeverityF) |>
+  group_by(SexF, DiagnosisF, SeverityF) |>
+  summarize(count = n(), .groups = "drop") |>
+  pivot_wider(names_from = SeverityF, values_from = count) |>
+  gt(groupname_col = "SexF") |> 
+  tab_header(
+    title = "Patient Diagnosis by Severity",
+    subtitle = "Stratified by Biological Sex"
+  ) 
+```
+
+It is easy to add lables on the columns via `cols_label()`.
+
+```{r}
+app_data |>
+  drop_na(SexF, DiagnosisF, SeverityF) |>
+  group_by(SexF, DiagnosisF, SeverityF) |>
+  summarize(count = n(), .groups = "drop") |>
+  pivot_wider(names_from = SeverityF, values_from = count) |>
+  gt(groupname_col = "SexF") |> 
+  tab_header(
+    title = "Patient Diagnosis by Severity",
+    subtitle = "Stratified by Biological Sex"
+  ) |>
+  cols_label(
+    DiagnosisF = "Diagnosis",
+    complicated = "Complicated",
+    uncomplicated = "Uncomplicated"
+  ) 
+```
+
+We can use other functions such as `sub_missing()` to change the `NA` values and put a better label above the `Complicated`/`Uncomplicated` column headers with `tab_spanner()`.
+
+```{r}
+app_data |>
+  drop_na(SexF, DiagnosisF, SeverityF) |>
+  group_by(SexF, DiagnosisF, SeverityF) |>
+  summarize(count = n(), .groups = "drop") |>
+  pivot_wider(names_from = SeverityF, values_from = count) |>
+  gt(groupname_col = "SexF") |> 
+  tab_header(
+    title = "Patient Diagnosis by Severity",
+    subtitle = "Stratified by Biological Sex"
+  ) |>
+  cols_label(
+    DiagnosisF = "Diagnosis",
+    complicated = "Complicated",
+    uncomplicated = "Uncomplicated"
+  ) |>
+  sub_missing(
+    columns = everything(),
+    missing_text = "0"
+  ) |>
+  tab_spanner(
+    label = "Severity Levels",
+    columns = c(complicated, uncomplicated)
+  ) 
+```
+
+Lastly, there are functions for changing the font, width, etc. (`tab_options()`) and there are easy ways to change themes for the table (`opt_stylize()`). 
+
+```{r}
+app_data |>
+  drop_na(SexF, DiagnosisF, SeverityF) |>
+  group_by(SexF, DiagnosisF, SeverityF) |>
+  summarize(count = n(), .groups = "drop") |>
+  pivot_wider(names_from = SeverityF, values_from = count) |>
+  gt(groupname_col = "SexF") |>
+  tab_header(
+    title = "Patient Diagnosis by Severity",
+    subtitle = "Stratified by Biological Sex"
+  ) |>
+  cols_label(
+    DiagnosisF = "Diagnosis",
+    complicated = "Complicated",
+    uncomplicated = "Uncomplicated"
+  ) |>
+  fmt_missing(
+    columns = everything(),
+    missing_text = "0"
+  ) |>
+  tab_spanner(
+    label = "Severity Levels",
+    columns = c(complicated, uncomplicated)
+  ) |>
+  tab_options(
+    row_group.font.weight = "bold",
+    table.width = pct(80)
+  ) |>
+  opt_stylize(style = 1, color = "blue")
+```
+
+Cool - I'm not expecting you to know a lot about this package but it is useful to know that it exists when you want to make a table look clearer!
 
 ### Recap!
 

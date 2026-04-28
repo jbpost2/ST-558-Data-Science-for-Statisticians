@@ -10,9 +10,9 @@ In this course we'll look at common tasks done by data scientists:
 -   Combining data sources
 -   Summarizing data to glean insights
 -   Applying common analysis methods
--   Communicating effectively
+-   Collaborating and communicating effectively
 
-We'll adopt the R programming language to do so and learn about using `quarto`, `git`, and `github` to ensure our data analysis workflow is reproducible, has version control, and can easily include collaborators.
+We'll adopt the `R` programming language to do so and learn about using `quarto`, `git`, and `github` to ensure our data analysis workflow is reproducible, has version control, and can easily include collaborators.
 
 ## Course Learning Outcomes
 
@@ -27,111 +27,96 @@ At the end of this course students will be able to
 
 ## Weekly To-do List
 
-Generally speaking, each week will have a few videos to watch and readings to do as well as corresponding homework assignments. We'll have some projects and exams as well. Please see the syllabus on Moodle for homework policies, project information, and exam information.
+Generally speaking, each week will have a few videos to watch, readings to do, and homework to practice the material. We'll have some projects and exams as well. Please see the syllabus on Moodle for homework policies, and project/exam information.
 
 ## Getting Help!
 
 To obtain course help there are a number of options:
 
--   Discussion Forum on Moodle - This should be used for any question you feel comfortable asking and having others view. The TA, other students, and I will answer questions on this board. This will be the fastest way to receive a response!
+-   Slack - This should be used for any question you feel comfortable asking and having others view. The TA, other students, and I will answer questions on slack. This will be the fastest way to receive a response! (See the <a href = "https://wolfware.ncsu.edu" target = "_blank">Moodle</a> page for how to join the space.)
 -   E-mail - If there is a question that you don't feel comfortable asking the whole class you can use e-mail. The TA and I will be checking daily (during the regular work week).
--   Zoom Office Hour Sessions - These sessions can be used to share screens and have multiple users. You can do text chat, voice, and video. They are great for a class like this! See Moodle for the office hour times and links.
+-   Zoom Office Hour Sessions - These sessions can be used to share screens and have multiple users. You can do text chat, voice, and video. They are great for a class like this!
 
-## Fall 2025 Course Schedule
+## Summer 2026 Course Schedule
 
-+-------------------------+-------------------------------------------------------------------+----------------------------+
-| Topic/Week              | Learning Materials                                                | Assignments                |
-+=========================+===================================================================+============================+
-| Week 1\                 | Welcome to the Course\                                            | HW 1 due W, 8/27           |
-| 8/18-8/22\              | 01 - What is Data Science?\                                       |                            |
-| M-F                     | 02 - Workflows and `Git`/`GitHub` Basics\                         |                            |
-|                         | 03 - `Git` and `GitHub` Practice\                                 |                            |
-|                         | 04 - `R` Basics\                                                  |                            |
-|                         | 05 - `R` Projects and Connecting with `GitHub`\                   |                            |
-|                         | 06 - `Quarto` Basics                                              |                            |
-+-------------------------+-------------------------------------------------------------------+----------------------------+
-| Week 2\                 | Week 2 Overview\                                                  | HW 2 due W, 9/3            |
-| 8/25-8/29\              | 07 - Base `R` Data Structures: Vectors\                           |                            |
-| M-F                     | 08 - Base `R` Data Structures: Matrices\                          |                            |
-|                         | 09 - Base `R` Data Structures: Data Frames\                       |                            |
-|                         | 10 - Base `R` Data Structures: Lists                              |                            |
-+-------------------------+-------------------------------------------------------------------+----------------------------+
-| Week 3\                 | Week 3 Overview\                                                  | HW 3 due W, 9/10           |
-| 9/2-9/5\                | 11 - Control Flow: Logicals & if/then/else\                       |                            |
-| T-F (Off M)             | 12 - Control Flow: Loops\                                         |                            |
-|                         | 13 - Control Flow: Vectorized Functions\                          |                            |
-|                         | 14 - Writing Functions                                            |                            |
-+-------------------------+-------------------------------------------------------------------+----------------------------+
-| Week 4\                 | Week 4 Overview\                                                  | HW 4 due W, 9/17           |
-| 9/8-9/12\               | 15 - Packages\                                                    |                            |
-| M-F                     | 16 - `tidyverse` Essentials\                                      |                            |
-|                         | 17 - Reading Delimited Data\                                      |                            |
-|                         | 18 - Reading Excel Data\                                          |                            |
-|                         | 19 - Manipulating Data with `dplyr`                               |                            |
-+-------------------------+-------------------------------------------------------------------+----------------------------+
-| Week 5\                 | Week 5 Overview\                                                  | Project 1 due W, 10/1      |
-| 9/15-9/19\              | 20 - Manipulating Data with `tidyr`\                              |                            |
-| M, W-F (Off T)          | 21 - Databases and Basic `SQL`\                                   |                            |
-|                         | 22 - `SQL` Joins\                                                 |                            |
-|                         | 23 - Querying APIs                                                |                            |
-+-------------------------+-------------------------------------------------------------------+----------------------------+
-| Week 6\                 | No new material. Exam study time and project work time!           | Exam 1 - T-Th, 9/23-9/25   |
-| 9/22-9/26\              |                                                                   |                            |
-| M-F                     |                                                                   |                            |
-+-------------------------+-------------------------------------------------------------------+----------------------------+
-| Week 7\                 | Weeks 6 & 7 Overview\                                             | HW 5 due W, 10/8           |
-| 9/29-10/3\              | 24 - EDA Concepts\                                                |                            |
-| M-F                     | 25 - Creating Contingency Tables\                                 |                            |
-|                         | 26 - Barplots and `ggplot2` Basics\                               |                            |
-|                         | 27 - Numerical Variable Summaries\                                |                            |
-|                         | 28 - Numerical Variable Graphs                                    |                            |
-+-------------------------+-------------------------------------------------------------------+----------------------------+
-| Week 8\                 | Week 8 Overview\                                                  | HW 6 due W, 10/15          |
-| 10/6-10/10\             | 29 - Recap & Direction!\                                          |                            |
-| M-F                     | 30 - `apply` Family of Functions\                                 |                            |
-|                         | 31 - `purrr` and List Columns\                                    |                            |
-|                         | 32 - Advanced Function Writing                                    |                            |
-+-------------------------+-------------------------------------------------------------------+----------------------------+
-| Week 9\                 | Weeks 9 Through 11 Overview\                                      | HW 7 due W, 10/22          |
-| 10/15-10/17\            | 33 - Introduction to RShiny\                                      |                            |
-| Off M/T                 | 34 - Tutorials Part I\                                            |                            |
-|                         | 35 - Connecting the UI and Server\                                |                            |
-|                         | 36 - Tutorials Part II\                                           |                            |
-|                         | 37 - Reactivity\                                                  |                            |
-|                         | 38 - Tutorials Part III                                           |                            |
-+-------------------------+-------------------------------------------------------------------+----------------------------+
-| Week 10\                | 39 - Dynamic User Interfaces\                                     | Project 2 due W, 11/5      |
-| 10/20-10/24\            | 40 - Flexible UI Layouts & Dashboards\                            |                            |
-| M-F                     | 41 - Sharing Apps\                                                |                            |
-|                         | 42 - Debugging & Useful Things\                                   |                            |
-|                         | 43 - Control Reactivity with `isolate()`                          |                            |
-+-------------------------+-------------------------------------------------------------------+----------------------------+
-| Week 11\                | No new material. Project work time!                               |                            |
-| 10/27-10/31             |                                                                   |                            |
-+-------------------------+-------------------------------------------------------------------+----------------------------+
-| Week 12\                | Weeks 12 & 13 Overview\                                           | HW 8 due W, 11/12          |
-| 11/3-11/7\              | 44 - Modeling Concepts\                                           |                            |
-| M-F                     | 45 - Prediction & Training/Test Sets\                             |                            |
-|                         | 46 - Cross Validation\                                            |                            |
-|                         | 47 - Multiple Linear Regression\                                  |                            |
-|                         | 48 - Modeling with `tidymodels`\                                  |                            |
-|                         | 49 - `tidymodels` Tutorial                                        |                            |
-+-------------------------+-------------------------------------------------------------------+----------------------------+
-| Week 13\                | 50 - LASSO Models\                                                | HW 9 due W, 11/19          |
-| 11/10-11/14\            | 51 - Modeling Recap\                                              |                            |
-| M-F                     | 52 - Logistic Regression Models\                                  |                            |
-|                         | 53 - Regression & Classification Trees\                           |                            |
-|                         | 54 - Ensemble Trees                                               |                            |
-+-------------------------+-------------------------------------------------------------------+----------------------------+
-| Week 14\                | Weeks 14 Through 16 Overview\                                     | Exam 2 - W-F, 11/19-11/21  |
-| 11/17-11/21\            | 55 - Creating an API in `R`\                                      |                            |
-| M-F                     | 56 - Docker Basics\                                               |                            |
-|                         | 57 - Building a Docker Image\                                     |                            |
-|                         | 58 - Dockerizing a Shiny App                                      |                            |
-+-------------------------+-------------------------------------------------------------------+----------------------------+
-| Week 15-16\             | No new material. Final project work time!                         | Final Project due Th, 12/4 |
-| 11/24-11/25, 12/1-12/2\ |                                                                   |                            |
-| M-T, M-T                |                                                                   |                            |
-+-------------------------+-------------------------------------------------------------------+----------------------------+
++-----------------+------------------------------------------------------------+--------------------------------+
+| Week            | Learning Materials                                         | Assignments                    |
++=================+============================================================+================================+
+| Week 1\         | 01 - Read - What is Data Science?\                         | HW 1 due W 5/27                |
+| W-F\            | 02 - Watch - Workflows & Git/GitHub Basics\                |                                |
+| 5/20-5/22       | 03 - Read - Git & GitHub Practice\                         |                                |
+|                 | 04 - Watch - R Basics\                                     |                                |
+|                 | 05 - Read & Watch - R projects and Connecting with Github\ |                                |
+|                 | 06 - Read & Watch - Quarto                                 |                                |
++-----------------+------------------------------------------------------------+--------------------------------+
+| Week 2\         | 07 - Base R Data Structures: Vectors\                      | HW 2 due T, 6/2                |
+| T-F\            | 08 - Base R Data Structures: Matrices\                     |                                |
+| 5/26-5/29       | 09 - Base R Data Structures: Data Frames\                  |                                |
+|                 | 10 - Base R Data Structures: Lists\                        |                                |
+|                 | 11 - Control Flow: Logicals & if/then/else\                |                                |
+|                 | 12 - Control Flow: Loops\                                  |                                |
+|                 | 13 - Control Flow: Vectorized Functions\                   |                                |
+|                 | 14 - Writing Functions                                     |                                |
++-----------------+------------------------------------------------------------+--------------------------------+
+| Week 3\         | 15 - Packages\                                             | HW 3 due T, 6/9                |
+| M-F\            | 16 - Tidyverse Essentials\                                 |                                |
+| 6/1-6/5         | 17 - Reading Delimited Data\                               |                                |
+|                 | 18 - Reading Excel Data\                                   |                                |
+|                 | 19 - Manipulating Data with dplyr\                         |                                |
+|                 | 20 - Manipulating Data with tidyr\                         |                                |
+|                 | 21 - Databases and Basic `SQL`\                            |                                |
+|                 | 22 - `SQL` Joins                                           |                                |
++-----------------+------------------------------------------------------------+--------------------------------+
+| Week 4\         | 23 - Querying APIs\                                        |  HW 4 due T 6/16               |
+| M-F\            | 24 - EDA Concepts\                                         |                                |
+| 6/8-6/12        | 25 - Summarizing Categorical Variables\                    |                                |
+|                 | 26 - Barplots & ggplot2 Basics\                            |                                |
+|                 | 27 - Numerical Variable Summaries\                         |                                |
+|                 | 28 - Numerical Variable Graphs & More ggplot2              |                                |
++-----------------+------------------------------------------------------------+--------------------------------+
+| Week 5\         | No new material                                            | Project 1 due Th, 6/17         |
+| 6/15-6/18\      |                                                            |                                |
+| M-Th            |                                                            |                                |
++-----------------+------------------------------------------------------------+--------------------------------+
+| Week 6\         | 29 - Recap & Direction!\                                   | Exam Window M-T, 6/22-6/23\    |
+| M-W\            | 30 - `apply` Family of Functions\                          | HW 5 due T, 6/30               |
+| 6/22-6/24       | 31 - `purrr` & List Columns\                               |                                |
+|                 | 32 - Advanced Function Writing\                            |                                |
+|                 | 33 - Introduction to RShiny\                               |                                |
+|                 | 34 - Tutorials Part I                                      |                                |
++-----------------+------------------------------------------------------------+--------------------------------+
+| Week 7\         | 35 - Connecting the UI and Server\                         | HW 6 due T 7/7\                |
+| M-Th\           | 36 - Tutorials Part II\                                    |                                |
+| 6/29-7/2        | 37 - Reactivity\                                           |                                |
+|                 | 38 - Tutorials Part III                                    |                                |
+|                 | 39 - Dynamic User Interfaces\                              |                                |
+|                 | 40 - Flexible UI Layouts & Dashboards\                     |                                |
+|                 | 41 - Sharing Apps\                                         |                                |
+|                 | 42 - Debugging & Useful Things\                            |                                |
+|                 | 43 - Control Reactivity with `isolate()`                   |                                |
++-----------------+------------------------------------------------------------+--------------------------------+
+| Week 8\         | No new material                                            | Project 2 due M, 7/13          |
+| M-F\            |                                                            |                                |
+| 7/6-7/10        |                                                            |                                |
+|                 |                                                            |                                |
++-----------------+------------------------------------------------------------+--------------------------------+
+| Week 9\         | 44 - Modeling Concepts\                                    | HW 7 due T, 7/21               |
+| M-F\            | 45 - Prediction & Training/Test Sets\                      |                                |
+| 7/13-7/17       | 46 - Cross Validation\                                     |                                |
+|                 | 47 - Multiple Linear Regression\                           |                                |
+|                 | 48 - Modeling with `tidymodels`\                           |                                |
+|                 | 49 - `tidymodels` Tutorial                                 |                                |
++-----------------+------------------------------------------------------------+--------------------------------+
+| Week 10\        | 50 - LASSO Models\                                         | HW 8 due T, 7/28               |
+| M-F\            | 51 - Modeling Recap\                                       |                                |
+| 7/20-7/24       | 52 - Logistic Regression Models\                           |                                |
+|                 | 53 - Regression & Classification Trees\                    |                                |
+|                 | 54 - Ensemble Trees                                        |                                |
++-----------------+------------------------------------------------------------+--------------------------------+
+| Week 11\        | 55 - Creating an API in `R`\                               | Final Project due M, 8/3       |
+| M-F\            | 56 - Docker Basics\                                        |                                |
+| 7/27-7/31       | 57 - Building a Docker Image\                              |                                |
+|                 | 58 - Dockerizing a Shiny App                               |                                |
++-----------------+------------------------------------------------------------+--------------------------------+
 
-: Schedule {.striped .hover}
+: {.striped .hover}
