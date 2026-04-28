@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-04-24">
+<meta name="dcterms.date" content="2026-04-28">
 
 <title>ST 558 Data Science for Statisticians (R) - Control Flow: Logicals &amp; if/then/else</title>
 <style>
@@ -61,7 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <link href="../Notes/12-Control_Flow_Loops.html" rel="next">
-<link href="../Notes/10_5-Week2_3.html" rel="prev">
+<link href="../Notes/10-Base_R_Data_Structures_Lists.html" rel="prev">
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -174,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/00-Welcome_to_the_Course.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome to the Course!</span></a>
+ <span class="menu-text">Week 1 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -245,12 +245,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/10_5-Week2_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 3 Overview</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../Notes/11-Control_Flow_Logicals_if_then_else.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Control Flow: Logicals &amp; if/then/else</span></a>
   </div>
@@ -286,8 +280,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/14_5-Week3_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 4 Overview</span></a>
+  <a href="../Notes/14_5-Week2_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -322,12 +316,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/19_5-Week4_5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 5 Overview</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../Notes/20-Manipulating_Data_with_tidyr.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Manipulating Data with <code>tidyr</code></span></a>
   </div>
@@ -346,14 +334,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/23-Querying_APIs_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Querying APIs</span></a>
+  <a href="../Notes/22_5-Week3_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 4 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/23_5-Week5_7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 6 &amp; 7 Overview</span></a>
+  <a href="../Notes/23-Querying_APIs_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Querying APIs</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -399,8 +387,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/29_5-Week7_8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 8 Overview</span></a>
+  <a href="../Notes/28_5-Week6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -440,12 +428,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/32_5-Week8_11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Weeks 9 Through 11 Overview</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../Notes/33-RShiny_Introduction_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to R Shiny</span></a>
   </div>
@@ -454,6 +436,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../Notes/34-RShiny_Tutorials_I.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorials Part I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/34_5-Week7_8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weeks 7 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -510,6 +498,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Control Reactivity with <code>isolate()</code></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/43_5-Topic4_Wrap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topic 4 Wrap</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -523,8 +517,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/43_5-Week11_13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Weeks 12 &amp; 13 Overview</span></a>
+  <a href="../Notes/43_5-Week9_10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weeks 9 &amp; 10 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -606,8 +600,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/54_5-Week13_14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Weeks 14 Through 16 Overview</span></a>
+  <a href="../Notes/54_5-Week11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 11 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -677,7 +671,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2026-04-24</p>
+      <p class="date">2026-04-28</p>
     </div>
   </div>
   
@@ -1341,8 +1335,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Notes/10_5-Week2_3.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Week 3 Overview</span>
+      <a href="../Notes/10-Base_R_Data_Structures_Lists.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Base <code>R</code> Data Structures: Lists</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-04-24">
+<meta name="dcterms.date" content="2026-04-28">
 
-<title>ST 558 Data Science for Statisticians (R) - Week 5 Overview</title>
+<title>ST 558 Data Science for Statisticians (R) - Week 11 Overview</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -26,8 +26,8 @@ ul.task-list li input[type="checkbox"] {
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<link href="../Notes/20-Manipulating_Data_with_tidyr.html" rel="next">
-<link href="../Notes/19-Manipulating_Data_with_dplyr.html" rel="prev">
+<link href="../Notes/55-Creating_API_Landing.html" rel="next">
+<link href="../Notes/54-Ensemble_Trees_Bagging_Random_Forests_Landing.html" rel="prev">
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -100,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/14_5-Week3_4.html">Topic 2: Tidyverse &amp; EDA</a></li><li class="breadcrumb-item"><a href="../Notes/19_5-Week4_5.html">Week 5 Overview</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/54_5-Week11.html">Topic 6: APIs &amp; Docker</a></li><li class="breadcrumb-item"><a href="../Notes/54_5-Week11.html">Week 11 Overview</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -138,7 +138,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/00-Welcome_to_the_Course.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Welcome to the Course!</span></a>
+ <span class="menu-text">Week 1 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -209,12 +209,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/10_5-Week2_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 3 Overview</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../Notes/11-Control_Flow_Logicals_if_then_else.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Control Flow: Logicals &amp; if/then/else</span></a>
   </div>
@@ -241,17 +235,17 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
  <span class="menu-text">Topic 2: Tidyverse &amp; EDA</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/14_5-Week3_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 4 Overview</span></a>
+  <a href="../Notes/14_5-Week2_3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -286,12 +280,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/19_5-Week4_5.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Week 5 Overview</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../Notes/20-Manipulating_Data_with_tidyr.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Manipulating Data with <code>tidyr</code></span></a>
   </div>
@@ -310,14 +298,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/23-Querying_APIs_Landing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Querying APIs</span></a>
+  <a href="../Notes/22_5-Week3_4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 4 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/23_5-Week5_7.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 6 &amp; 7 Overview</span></a>
+  <a href="../Notes/23-Querying_APIs_Landing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Querying APIs</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -363,8 +351,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/29_5-Week7_8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 8 Overview</span></a>
+  <a href="../Notes/28_5-Week6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -404,12 +392,6 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/32_5-Week8_11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Weeks 9 Through 11 Overview</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../Notes/33-RShiny_Introduction_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to R Shiny</span></a>
   </div>
@@ -418,6 +400,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../Notes/34-RShiny_Tutorials_I.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorials Part I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/34_5-Week7_8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weeks 7 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -474,6 +462,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Control Reactivity with <code>isolate()</code></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/43_5-Topic4_Wrap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topic 4 Wrap</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -487,8 +481,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/43_5-Week11_13.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Weeks 12 &amp; 13 Overview</span></a>
+  <a href="../Notes/43_5-Week9_10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weeks 9 &amp; 10 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -561,17 +555,17 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
  <span class="menu-text">Topic 6: APIs &amp; Docker</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/54_5-Week13_14.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Weeks 14 Through 16 Overview</span></a>
+  <a href="../Notes/54_5-Week11.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Week 11 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -610,16 +604,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-5-additional-readingslearning-materials" id="toc-week-5-additional-readingslearning-materials" class="nav-link active" data-scroll-target="#week-5-additional-readingslearning-materials">Week 5 Additional Readings/Learning Materials</a>
-  <ul class="collapse">
-  <li><a href="#reading-data" id="toc-reading-data" class="nav-link" data-scroll-target="#reading-data">Reading Data</a></li>
-  <li><a href="#sql-joins" id="toc-sql-joins" class="nav-link" data-scroll-target="#sql-joins">SQL Joins</a></li>
-  </ul></li>
-  <li><a href="#week-5-learning-objectives" id="toc-week-5-learning-objectives" class="nav-link" data-scroll-target="#week-5-learning-objectives">Week 5 Learning Objectives</a>
-  <ul class="collapse">
-  <li><a href="#other-ways-to-connect-r-to-data" id="toc-other-ways-to-connect-r-to-data" class="nav-link" data-scroll-target="#other-ways-to-connect-r-to-data">Other ways to connect R to data</a></li>
-  <li><a href="#other-data-manipulations" id="toc-other-data-manipulations" class="nav-link" data-scroll-target="#other-data-manipulations">Other Data Manipulations</a></li>
-  </ul></li>
+  <li><a href="#week-11-optional-additional-readingslearning-materials" id="toc-week-11-optional-additional-readingslearning-materials" class="nav-link active" data-scroll-target="#week-11-optional-additional-readingslearning-materials">Week 11 (Optional) Additional Readings/Learning Materials</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
   </ul>
 </nav>
     </div>
@@ -628,7 +614,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 5 Overview</h1>
+<h1 class="title">Week 11 Overview</h1>
 </div>
 
 
@@ -639,7 +625,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2026-04-24</p>
+      <p class="date">2026-04-28</p>
     </div>
   </div>
   
@@ -649,66 +635,50 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This wraps up the content for week 4. Now we require some practice! You should head back to our <a href="https://wolfware.ncsu.edu/" target="_blank">Moodle site</a> to check out your assessment for this week.</p>
-<p>This week we’ll see how we can use the <code>tidyr</code> package to change the format of a dataset (long to wide), see how we can connect <code>R</code> to a database, learn about SQL style joins, and then finish up with the difficult topic of querying APIs!</p>
-<section id="week-5-additional-readingslearning-materials" class="level2">
-<h2 class="anchored" data-anchor-id="week-5-additional-readingslearning-materials">Week 5 Additional Readings/Learning Materials</h2>
-<section id="reading-data" class="level3">
-<h3 class="anchored" data-anchor-id="reading-data">Reading Data</h3>
+<p>This wraps up the content for week 10. Now we require some practice! You should head back to our <a href="https://wolfware.ncsu.edu/" target="_blank">Moodle site</a> to check out your assessment for this week.</p>
+<p>We are on the home stretch! It’s time to get back into more computing content. Specifically, we are going to learn more about:</p>
 <ul>
-<li><a href="https://r4ds.hadley.nz/data-import" target="_blank">Chapter 7 of R 4 Data Science</a></li>
-<li>(Optional) <a href="https://www.w3schools.com/sql/" target="_blank">SQL syntax</a></li>
+<li>Creating our own APIs</li>
+<li>Containerization through Docker</li>
 </ul>
-</section>
-<section id="sql-joins" class="level3">
-<h3 class="anchored" data-anchor-id="sql-joins">SQL Joins</h3>
+<p>In previous material, we learned how to work with APIs. Now, we are going to create a file that defines an API. This can be done using the <code>plumber</code> package in R.</p>
+<p>Docker is an open-source platform that enables developers to automate the deployment, scaling, and management of applications by using containers. For the purposes of this course, we are going to use static docker images that already contain items for us, and build on top of them.</p>
+<section id="week-11-optional-additional-readingslearning-materials" class="level2">
+<h2 class="anchored" data-anchor-id="week-11-optional-additional-readingslearning-materials">Week 11 (Optional) Additional Readings/Learning Materials</h2>
 <ul>
-<li><a href="https://r4ds.hadley.nz/joins" target="_blank">Chapter 19 of R 4 Data Science</a></li>
+<li>
+API/Docker article -&nbsp;<a href="https://medium.com/@heathernolis/r-can-api-c184951a24a3" target="_blank" rel="noopener">part I</a>
+</li>
+<li>
+API/Docker article -&nbsp;<a href="https://medium.com/@skyetetra/using-docker-to-deploy-an-r-plumber-api-863ccf91516d" target="_blank" rel="noopener">part II</a>&nbsp;
+</li>
+<li>
+A nice&nbsp;<a href="https://docker-curriculum.com/" target="_blank" rel="noopener">general Docker tutorial&lt;/a&lt;
+</a></li><a href="https://docker-curriculum.com/" target="_blank" rel="noopener">
+</a><li><a href="https://docker-curriculum.com/" target="_blank" rel="noopener">
+</a><a href="https://colinfay.me/docker-r-reproducibility/" target="_blank" rel="noopener">Docker and R Intro</a>
+</li>
 </ul>
+<p>The help file for <code>plumber</code> can be found <a href="https://www.rplumber.io/" target="_blank">here</a>. Additional <code>plumber</code> resources can be found <a href="https://rstudio.github.io/cheatsheets/html/plumber.html" target="_blank">via R Studio’s cheatsheet.</a></p><a href="https://rstudio.github.io/cheatsheets/html/plumber.html" target="_blank">
+</a><p><a href="https://rstudio.github.io/cheatsheets/html/plumber.html" target="_blank">There is also a nice </a><a href="https://www.r-bloggers.com/2022/03/creating-apis-for-data-science-with-plumber/" target="_blank"><code>r-bloggers</code> post on APIs and data science</a>. They specifically talk about <em>why</em> would a data scientist want to create an API.</p>
 </section>
-</section>
-<section id="week-5-learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="week-5-learning-objectives">Week 5 Learning Objectives</h2>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
 <p>Upon completion of this week, students will be able to:</p>
-<section id="other-ways-to-connect-r-to-data" class="level3">
-<h3 class="anchored" data-anchor-id="other-ways-to-connect-r-to-data">Other ways to connect R to data</h3>
 <ol type="1">
-<li><p>explain the general process of connecting R to a database, connect R to a database, and request data</p>
-<ol type="a">
-<li>define the term SQL and RDBMS<br>
-</li>
-<li>compare terminology between statistics and SQL (tables vs data sets, etc.)<br>
-</li>
-<li>extract SQL code from dplyr commands<br>
-</li>
-<li>write very basic SQL code to select and merge data<br>
-</li>
-<li>describe why the collect function is required when using R to query a database<br>
-</li>
-<li>determine the appropriate type of join to extract information of interest from given tables</li>
-</ol></li>
-<li><p>query APIs to return appropriate data</p>
-<ol type="a">
-<li>define the term API<br>
-</li>
-<li>explain the common syntax often used for APIs</li>
-</ol></li>
-</ol>
-</section>
-<section id="other-data-manipulations" class="level3">
-<h3 class="anchored" data-anchor-id="other-data-manipulations">Other Data Manipulations</h3>
-<ol type="1">
-<li><p>utilize the tidyr package to manipulate data</p>
-<ol type="a">
-<li>change data between wide to long formats<br>
-</li>
-<li>split or combine columns using the tidyr package</li>
-</ol></li>
+<li><p>utilize the plumber package to create your own API through R</p>
+<p>a.&nbsp;&nbsp;&nbsp; explain why you would want to create an API<br>
+b.&nbsp;&nbsp;&nbsp; use appropriate comment formatting to implement different types of requests<br>
+c.&nbsp;&nbsp;&nbsp; change the output type of an API request</p></li>
+<li><p>utilize docker to pull an R image, customize it, and build a custom image or container</p>
+<p>a.&nbsp;&nbsp;&nbsp; define the terms “container” and “image”<br>
+b.&nbsp;&nbsp;&nbsp; explain why containers are useful<br>
+&nbsp;&nbsp;&nbsp;&nbsp;c.&nbsp;&nbsp;&nbsp; dockerize a shiny app</p></li>
+<li><p>list out and apply common methods for putting a model into practice</p></li>
 </ol>
 <p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -947,13 +917,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Notes/19-Manipulating_Data_with_dplyr.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Manipulating Data with <code>dplyr</code></span>
+      <a href="../Notes/54-Ensemble_Trees_Bagging_Random_Forests_Landing.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Ensemble Trees</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Notes/20-Manipulating_Data_with_tidyr.html" class="pagination-link">
-        <span class="nav-page-text">Manipulating Data with <code>tidyr</code></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../Notes/55-Creating_API_Landing.html" class="pagination-link">
+        <span class="nav-page-text">Creating an API in <code>R</code></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
