@@ -10,6 +10,6 @@ Now that we have the basics of how the `tidymodels` package works, let's work th
 
 Please read through the <a href = "https://www.tidymodels.org/start/models/" target = "_blank">five part tutorial</a> they have to introduce people to `tidymodels`.
 
-Then head back here for the next content!
+After you finish that, we now require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your assessment for this week.
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

@@ -515,7 +515,7 @@
     "href": "Notes/06_5-Week1_2.html",
     "title": "Week 2 Overview",
     "section": "",
-    "text": "This wraps up the content for week 1. Now we require some practice! You should head back to our Moodle site to check out your homework assignment for this week.\nThis second week we’ll go through a systematic view of the most common data objects you’ll see in R. We’ll see how to access these objects using Base R commands."
+    "text": "This wraps up the content for week 1. Now we require some practice! You should head back to our Moodle site to check out your homework assignment for this week.\nThis second week we’ll go through a systematic view of the most common data objects you’ll see in R. We’ll see how to access these objects using Base R commands.\nWe learned, and will continue investigating an R object via\nWe see that R commonly uses the attributes of the object to determine how to apply (or dispatch) a function. We will look at common R objects and how to access their elements:\nand continue to practice documenting our code by using a notebook environment such as quarto (along with Git/GitHub for version control and sharing/collaborating).\nThen we want to look at how to control the execution of our code. The three main things we’ll look at here are\nThen we’ll see how to write our own functions! We are already learning a lot of necessary material to be a data scientist. Let’s go!!\nWe are already learning a lot of necessary material to be a data scientist. Let’s go!!"
   },
   {
     "objectID": "Notes/06_5-Week1_2.html#week-2-additional-readingslearning-materials",
@@ -529,7 +529,7 @@
     "href": "Notes/06_5-Week1_2.html#week-2-learning-objectives",
     "title": "Week 2 Overview",
     "section": "Week 2 Learning Objectives",
-    "text": "Week 2 Learning Objectives\nUpon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)\n\nR Basics\n\n  create common data objects such as data frames, matrices, vectors, and lists and subset each of them\n\nrecognize the most appropriate method for accessing an R object\nb. determine the appropriate type of object in which to save differing types of data\nc. contrast matrices and data frames\nd. determine the type of R object you are working with\ne. compare and contrast the attributes of the common data types\n\n  utilize R help and other resources to appropriately use and/or modify an R function or object\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!"
+    "text": "Week 2 Learning Objectives\nUpon completion of this week, students will be able to:\n\nR Basics\n\n  create common data objects such as data frames, matrices, vectors, and lists and subset each of them (CO 1, 2, 3)\n\nrecognize the most appropriate method for accessing an R object b. determine the appropriate type of object in which to save differing types of data c. contrast matrices and data frames d. determine the type of R object you are working with e. compare and contrast the attributes of the common data types\n\n  utilize R help and other resources to appropriately use and/or modify an R function or object (CO 3)\n\nUpon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)\n\n\nLogicals & if/then/else\n\ndescribe the idea of coercion and compare and contrast the use of implicit and explicit coercion (CO 1, 4)\na.    outline the rules for implicit coercion b.    use common explicit coercion functions c.    hypothesize the type of coercion implicitly done by a section of R code\n\n\n\nFor Loops and Vectorized Functions\n\ndescribe the process of a for loop, while loop, and repeat statement in R (CO 1, 3, 4)\na.    program R to break from a loop when conditions are met b.    program R to skip an iteration of a loop c.    utilize different “counters” or “iterators” in an R loop d.    explain the use and process of nested for loops e.    program a nested R loop in R f.    explain why loops are not always ideal in R\n   program using the “apply family” of functions in R (CO 1, 3, 4)\na.    differentiate between the apply family of functions in R including, but not limited to, mapply, sapply, lapply, apply, and replicate b.    manipulate R code that uses loops to instead use the proper apply function c.    utilize anonymous functions in calls to the apply family of functions in R\n   recall common “vectorized” functions in R such as colMeans, rowMeans, ifelse, etc. (CO 1, 4)\n   write their own vectorized version of a function in R (CO 1, 4)\n   describe what an anonymous function is and how it differs from other functions (CO 1, 4)\n\n\n\nWriting Functions\nNote: Not all of these are covered in this week’s function writing videos - we’ll revisit the topic later!\n\ndisplay code from previously written functions in R (CO 1, 3)\ndescribe the parts of an R function (CO 1, 4)\ndescribe the difference between a prefix and an infix function (CO 1, 4)\n\nunderstand the order of evaluation for user created and built-in infix functions\n\nwrite an R function that has default arguments, allows for additional arguments, and returns a well-structured named object (CO 1, 3, 4)\n\ndetermine appropriate uses for the stop function\ndevelop a pipeable function that acts on a data frame and one that produces side effects\ncreate a custom infix function\n\ndescribe the way that inputs can be specified to a function (CO 1, 3)\n\ndescribe positional matching and predict what input values will be assigned to which function values\nexplain lazy evaluation and give examples of where it may be important\n\nuse if/then/else logic to conditionally execute code\nutilize the switch function and compare and contrast its use against if/then/else logic (CO 1, 3, 4)\ndefine environments including temporary environments (CO 1)\n\nsummarize the order in which R attempts to find a requested object\nsketch out the R environment framework and explain the idea of lexical scoping\ndiscuss the concept of local variables and local environments as compared to global variables and environments\nstate the naming conventions for R objects\n\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!"
   },
   {
     "objectID": "Notes/05-R_Projects_Connecting_with_GitHub.html",
@@ -592,7 +592,7 @@
     "href": "index.html#course-learning-outcomes",
     "title": "Data Science for Statisticians",
     "section": "Course Learning Outcomes",
-    "text": "Course Learning Outcomes\nAt the end of this course students will be able to\n\nexplain the steps and purpose of programs\nefficiently read in, combine, and manipulate data\nutilize help and other resources to customize programs\nwrite programs using good programming practices\nexplore data and perform common analyses\ncreate reports, web pages, and dashboards to display and communicate results"
+    "text": "Course Learning Outcomes\nAt the end of this course students will be able to\n\nexplain the steps and purpose of programs (CO 1)\nefficiently read in, combine, and manipulate data (CO 2)\nutilize help and other resources to customize programs (CO 3)\nwrite programs using good programming practices (CO 4)\nexplore data and perform common analyses (CO 5)\ncreate reports, web pages, and dashboards to display and communicate results (CO 6)"
   },
   {
     "objectID": "index.html#weekly-to-do-list",
@@ -618,9 +618,9 @@
   {
     "objectID": "Notes/00-Welcome_to_the_Course.html",
     "href": "Notes/00-Welcome_to_the_Course.html",
-    "title": "Welcome to the Course!",
+    "title": "Week 1 Overview",
     "section": "",
-    "text": "You can find the syllabus, course schedule, how to install R and RStudio, and other administrative documents on the Moodle site for the course."
+    "text": "You can find the syllabus, course schedule, how to install R and RStudio, and other administrative documents on the Moodle site for the course.\nThere is also a welcome video there - please go and check this material out!"
   },
   {
     "objectID": "Notes/00-Welcome_to_the_Course.html#syllabus-and-other-useful-information",
@@ -639,9 +639,9 @@
   {
     "objectID": "Notes/00-Welcome_to_the_Course.html#week-1-learning-objectives",
     "href": "Notes/00-Welcome_to_the_Course.html#week-1-learning-objectives",
-    "title": "Welcome to the Course!",
+    "title": "Week 1 Overview",
     "section": "Week 1 Learning Objectives",
-    "text": "Week 1 Learning Objectives\nUpon completion of this week, students will be able to:\n\nData Science Ideas\n\nlist the common duties of a data scientist (CO 5, 6)\ncreate a github repository (CO 6)\nfork, edit, and push changes to a repository (CO 6)\nconnect R Studio with github (CO 6)\n\npush, pull, fork, etc. using the terminal in R or the git tab\n\n\n\n\nR Basics\n\nutilize R as a calculator (CO 1)\ndescribe the term object oriented program and the general idea of methods (CO 1)\n\nstore objects and change their attributes\n\ndescribe the idea of an R package (CO 3)\ndescribe the usefulness of R projects (CO 6)\n\nsave and load an R project\nexplain working directories, change a working directory, and specify paths to files\n\n\n\n\nQuarto\n\nlist and describe the three major parts of a quarto document (YAML header, code chunks, and plain text with formatting syntax) (CO 1, 6) a. outline the idea of a markdown or markup language\ncreate a quarto document (CO 1, 3, 6) a. write plain text in quarto markdown syntax b. create and change options for R code chunks c. explain what global chunk options are and how to set them d. add functionality (such as tables of contents) to outputs\ndescribe the term digital notebook (CO 6) a. explain how R studio can be used as a notebook environment b. run code in the markdown editor\nproduce common types of final documents using quarto (CO 1, 3, 6) a. utilize both code, menus, and shortcuts to create a document type\n\nThere are also arrows at the bottom of each page to navigate to the previous page or the next page in the course!\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!"
+    "text": "Week 1 Learning Objectives\nUpon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)\n\nData Science Ideas\n\nlist the common duties of a data scientist (CO 5, 6)\ncreate a github repository (CO 6)\nfork, edit, and push changes to a repository (CO 6)\nconnect R Studio with github (CO 6)\n\npush, pull, fork, etc. using the terminal in R or the git tab\n\n\n\n\nR Basics\n\nutilize R as a calculator (CO 1)\ndescribe the term object oriented program and the general idea of methods (CO 1)\n\nstore objects and change their attributes\n\ndescribe the idea of an R package (CO 3)\ndescribe the usefulness of R projects (CO 6)\n\nsave and load an R project\nexplain working directories, change a working directory, and specify paths to files\n\n\n\n\nQuarto\n\nlist and describe the three major parts of a quarto document (YAML header, code chunks, and plain text with formatting syntax) (CO 1, 6) a. outline the idea of a markdown or markup language\ncreate a quarto document (CO 1, 3, 6) a. write plain text in quarto markdown syntax b. create and change options for R code chunks c. explain what global chunk options are and how to set them d. add functionality (such as tables of contents) to outputs\ndescribe the term digital notebook (CO 6) a. explain how R studio can be used as a notebook environment b. run code in the markdown editor\nproduce common types of final documents using quarto (CO 1, 3, 6) a. utilize both code, menus, and shortcuts to create a document type\n\nThere are also arrows at the bottom of each page to navigate to the previous page or the next page in the course!\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!"
   },
   {
     "objectID": "Notes/02-Workflows_Git_GitHub_Basics_Landing.html",
@@ -1167,5 +1167,117 @@
     "title": "Building a Docker Image",
     "section": "Notes",
     "text": "Notes\n\nHTML version\nPDF version\nmyAPI.R file\nDockerfile\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!"
+  },
+  {
+    "objectID": "Notes/06_5-Week1_2.html#week-2-optional-additional-readingslearning-materials",
+    "href": "Notes/06_5-Week1_2.html#week-2-optional-additional-readingslearning-materials",
+    "title": "Week 2 Overview",
+    "section": "Week 2 (Optional) Additional Readings/Learning Materials",
+    "text": "Week 2 (Optional) Additional Readings/Learning Materials\n\nCommon Data Objects in R\n\nChapter 12 of R 4 Data Science\nChapter 27 of R 4 Data Science (27.1-27.3)\n\n\n\nLoops and Vectorized Functions\n\nChapter 27 of R 4 Data Science (27.4-27.5)\n\n\n\nWriting Functions\n\nChapter 25 of R 4 Data Science\nChapter 5 of Advanced R\nConsistent naming conventions in R&gt; and R’s style guide\nChapter 7 of Modern R with the tidyverse"
+  },
+  {
+    "objectID": "Notes/00-Welcome_to_the_Course.html#welcome-to-the-course",
+    "href": "Notes/00-Welcome_to_the_Course.html#welcome-to-the-course",
+    "title": "Week 1 Overview",
+    "section": "",
+    "text": "You can find the syllabus, course schedule, how to install R and RStudio, and other administrative documents on the Moodle site for the course.\nThere is also a welcome video there - please go and check this material out!"
+  },
+  {
+    "objectID": "Notes/00-Welcome_to_the_Course.html#week-1-optional-additional-readings-learning-materials",
+    "href": "Notes/00-Welcome_to_the_Course.html#week-1-optional-additional-readings-learning-materials",
+    "title": "Week 1 Overview",
+    "section": "Week 1 (Optional) Additional Readings & Learning Materials",
+    "text": "Week 1 (Optional) Additional Readings & Learning Materials\n\nR Projects and General R \n\nChapter 6 from R for Data Science\n\nQuarto readings:\n\nChapters 28 & 29 from R for Data Science\nQuarto documentation. Specifically, the using R portion)\nQuarto is the next generation of R Markdown. It will run most .Rmd (R markdown) files. Therefore, this awesome R Markdown book is really useful.\n\nGit/GitHub\n\ngithub’s hello-world\nChapter 1 and readings of your choice from Happy Git and GitHub for the useR (formerly happygitwithR)"
+  },
+  {
+    "objectID": "Notes/14_5-Week2_3.html",
+    "href": "Notes/14_5-Week2_3.html",
+    "title": "Week 3 Overview",
+    "section": "",
+    "text": "This wraps up the content for week 2. Now we require some practice! You should head back to our Moodle site to check out your homework assignment for this week.\nWe are now ready to really look at bringing data in and how to handle that data more seamlessly. We’ll look at working within the tidyverse. This is a suite of packages that all work together and allow you to read in data and do most common data manipulations.\nThis week we’ll also see how we can use the tidyr package to change the format of a dataset (long to wide), see how we can connect R to a database, learn about SQL style joins"
+  },
+  {
+    "objectID": "Notes/14_5-Week2_3.html#week-3-additional-readingslearning-materials",
+    "href": "Notes/14_5-Week2_3.html#week-3-additional-readingslearning-materials",
+    "title": "Week 3 Overview",
+    "section": "Week 3 Additional Readings/Learning Materials",
+    "text": "Week 3 Additional Readings/Learning Materials\n\nManipulating Data\n\nChapters 3, 4, and 5 of R 4 Data Science\n(Optional) R Packages book\n(Optional) List of CRAN approved packages\n(Optional) List of useful R packages\n\n\n\nReading Data\n\nChapter 7 of R 4 Data Science\n(Optional) SQL syntax\n\n\n\nSQL Joins\n\nChapter 19 of R 4 Data Science"
+  },
+  {
+    "objectID": "Notes/14_5-Week2_3.html#week-3-learning-objectives",
+    "href": "Notes/14_5-Week2_3.html#week-3-learning-objectives",
+    "title": "Week 3 Overview",
+    "section": "Week 3 Learning Objectives",
+    "text": "Week 3 Learning Objectives\nUpon completion of this week, students will be able to:\n\nReading Data\n\nread delimited data, SAS data files, SPSS files, and other file types into R (CO 2)\n\ndescribe the term delimiter\nread comma separated value files into R using the readr package\nexplain how the read_ functions determine column types\ndescribe the readxl package and its functions\ncompare and contrast tibbles and data frames\n\nwrite a stored data set to a file using different delimiters (CO 2)\n\n\n\nManipulating Data\n\nuse logical statements and indexing vectors to subset common data objects using common functions such as [, subset, or dplyr::filter functions (CO 2, 3, 4)\nlist favorable things to look for in an R package (CO 2, 3)\n\ndescribe the general purpose of the tidyverse package\noutline the difference between require and library\nexplicitly use functions from a particular package using the :: operator\ndiscuss the idea of masking of R functions and objects\n\ndescribe the uses of and program with functions from the dplyr package(CO 2, 3, 4)\n\nexplain the benefits of using the dplyr package over base R methods\nprogram with the arrange, filter, select, and rename functions from the dplyr package\noptimize selecting variables from a data frame using the select function’s options (such as starts_with)\ncombine functions in the dplry package to subset and summarize a data set in R\ndescribe the uses of and program with the mutate, group_by, and summarise functions in the dplyr R package\ncombine functions in the dplry package to subset and summarize a data set in R\n\nprogram using the chain of commands or chaining/piping operators (CO 1, 4)\n\n\n\nOther ways to connect R to data\n\nexplain the general process of connecting R to a database, connect R to a database, and request data (CO 2)\n\ndefine the term SQL and RDBMS\ncompare terminology between statistics and SQL (tables vs data sets, etc.)\nextract SQL code from dplyr commands\nwrite very basic SQL code to select and merge data\ndescribe why the collect function is required when using R to query a database\ndetermine the appropriate type of join to extract information of interest from given tables\n\n\n\n\nOther Data Manipulations\n\nutilize the tidyr package to manipulate data (CO 2)\n\nchange data between wide to long formats\nsplit or combine columns using the tidyr package\n\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!"
+  },
+  {
+    "objectID": "Notes/14_5-Week2_3.html#week-3-optional-additional-readingslearning-materials",
+    "href": "Notes/14_5-Week2_3.html#week-3-optional-additional-readingslearning-materials",
+    "title": "Week 3 Overview",
+    "section": "Week 3 (Optional) Additional Readings/Learning Materials",
+    "text": "Week 3 (Optional) Additional Readings/Learning Materials\n\nManipulating Data\n\nChapters 3, 4, and 5 of R 4 Data Science\nR Packages book\nList of CRAN approved packages\nList of useful R packages\n\n\n\nReading Data\n\nChapter 7 of R 4 Data Science\nSQL syntax\n\n\n\nSQL Joins\n\nChapter 19 of R 4 Data Science"
+  },
+  {
+    "objectID": "Notes/22_5-Week3_4.html",
+    "href": "Notes/22_5-Week3_4.html",
+    "title": "Week 4 Overview",
+    "section": "",
+    "text": "This wraps up the content for week 3. Now we require some practice! You should head back to our Moodle site to check out your assessment for this week.\nWeek 4 we take on exploring and finding relationships in our data. Anytime we read data into R (or another language), we should do some basic data visualization and get to know our data. These are the basics steps to an exploratory data analysis (EDA). This week we’ll develop the skills to do this!"
+  },
+  {
+    "objectID": "Notes/22_5-Week3_4.html#week-4-optional-additional-readingslearning-materials",
+    "href": "Notes/22_5-Week3_4.html#week-4-optional-additional-readingslearning-materials",
+    "title": "Week 4 Overview",
+    "section": "Week 4 (Optional) Additional Readings/Learning Materials",
+    "text": "Week 4 (Optional) Additional Readings/Learning Materials\n\nEDA\n\nChapters 1, 9, 10, and 11 of R 4 Data Science\nUseful site with EDA process example\nChapters 4 and 5 of Introduction to Modern Statistics\n\n\n\nFactors and missing values\n\nChapters 16 and 18 of R 4 Data Science"
+  },
+  {
+    "objectID": "Notes/22_5-Week3_4.html#week-4-learning-objectives",
+    "href": "Notes/22_5-Week3_4.html#week-4-learning-objectives",
+    "title": "Week 4 Overview",
+    "section": "Week 4 Learning Objectives",
+    "text": "Week 4 Learning Objectives\nUpon completion of this week, students will be able to:\n\nQuerying APIs\n\nquery APIs to return appropriate data (CO 2)\n\ndefine the term API\nexplain the common syntax often used for APIs\nconnect to and extract data from an API\n\n\n\n\nSummarizing Data\n\n   utilize R to construct basic numeric summaries such as the mean, median, standard deviation, variance, quantiles, correlation, and contingency tables (CO 5)\na.    interpret and pull out relevant pieces of n-way contingency tables created using the table function in R b.    calculate common summary statistics for each level of a categorical variable (or combinations of levels of multiple categorical variables)\n   create graphical summaries using base R and the ggplot2 package (CO 5)\na.    explain the idea behind the way plots are created using the ggplot2 package in R b.    customize ggplot graphical summaries in R including, but not limited to, changes to axes and title labels, the type of plot, the appearance of points, the addition of lines, the color, shape, and size of points and lines, and the addition of a legend c.    create multiple plots using the faceting capabilities of the ggplot2 package d.    describe and create the most commonly used plots for categorical data\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!"
+  },
+  {
+    "objectID": "Notes/28_5-Week6.html",
+    "href": "Notes/28_5-Week6.html",
+    "title": "Week 6 Overview",
+    "section": "",
+    "text": "This week we’ll start off with a recap, and then introduce the apply() functions from Base R, and the (mostly) equivalent tidyverse options from the purrr package. We will then get into advanced function writing!"
+  },
+  {
+    "objectID": "Notes/28_5-Week6.html#week-6-optional-additional-readingslearning-materials",
+    "href": "Notes/28_5-Week6.html#week-6-optional-additional-readingslearning-materials",
+    "title": "Week 6 Overview",
+    "section": "Week 6 (Optional) Additional Readings/Learning Materials",
+    "text": "Week 6 (Optional) Additional Readings/Learning Materials\n\napply() family and Function Material\nAdvanced R Chapters\n\nAdvanced Function Writing\nFunctional Programming\nFunctionals\nHeirarchical Data\nChapters 7 & 8 from Modern R with Tidyverse\n\n\n\npurrr\nR for Data Science: Chapter 26.3.3"
+  },
+  {
+    "objectID": "Notes/28_5-Week6.html#week-6-learning-objectives",
+    "href": "Notes/28_5-Week6.html#week-6-learning-objectives",
+    "title": "Week 6 Overview",
+    "section": "Week 6 Learning Objectives",
+    "text": "Week 6 Learning Objectives\nUpon completion of this week, students will be able to:\n\nwrite an R function that has default arguments, allows for additional arguments, and returns a well-structured named object\n\ndetermine appropriate uses for the stop function\n\ndevelop a pipeable function that acts on a data frame and one that produces side effects\n\ncreate a custom infix function\n\ndefine environments including temporary environments\n\nsummarize the order in which R attempts to find a requested object\n\nsketch out the R environment framework and explain the idea of lexical scoping\n\ndiscuss the concept of local variables and local environments as compared to global variables and environments\n\nstate the naming conventions for R objects\n\nprogram using the “apply family” of functions and the purrr packing in R\n\ndifferentiate between the apply family of functions in R including, but not limited to, mapply, sapply, lapply, apply, and replicate\n\nmanipulate R code that uses loops to instead use the proper apply function\n\nutilize anonymous functions in calls to the apply family of functions in R\n\nuse functions from purrr to perform data manipulations\n\ndescribe what an anonymous function is and how it differs from other functions\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!"
+  },
+  {
+    "objectID": "Notes/34_5-Week7_8.html",
+    "href": "Notes/34_5-Week7_8.html",
+    "title": "Weeks 7 Overview",
+    "section": "",
+    "text": "This wraps up the content for week 6. Now we require some practice! You should head back to our Moodle site to check out your assessment for this week.\nThe rest of this week continues our discussion of R Shiny! This is one of my favorite topics in 558. R Shiny is a web framework that allows you to build interactive web applications and dashboards using the R programming language. It simplifies the process of creating web applications, especially for data analysis and visualization, by allowing you to work entirely in R without needing extensive knowledge of web development languages like HTML, CSS, or JavaScript."
+  },
+  {
+    "objectID": "Notes/34_5-Week7_8.html#weeks-7-optional-additional-readingslearning-materials",
+    "href": "Notes/34_5-Week7_8.html#weeks-7-optional-additional-readingslearning-materials",
+    "title": "Weeks 7 Overview",
+    "section": "Weeks 7 (Optional) Additional Readings/Learning Materials",
+    "text": "Weeks 7 (Optional) Additional Readings/Learning Materials\nBasic Concept Video: Short 2-minute video on the high level concept of what R Shiny is!\nMastering Shiny: to be used at your own discretion\n\n\nList of all functions for the UI and server\n\n\nShiny tutorial from RStudio\n\n\nShiny Articles\n\n\nNice tutorial by Dean Attali\n\n\n(Optional) Unit testing with shiny\n\n\nDebugging in Shiny"
+  },
+  {
+    "objectID": "Notes/34_5-Week7_8.html#weeks-7-learning-objectives",
+    "href": "Notes/34_5-Week7_8.html#weeks-7-learning-objectives",
+    "title": "Weeks 7 Overview",
+    "section": "Weeks 7 Learning Objectives",
+    "text": "Weeks 7 Learning Objectives\nUpon completion of these two weeks, students will be able to:\n\noutline the creation of a shiny app\n\ndefine the term R Shiny App\n\ndescribe the files/parts needed to create a Shiny app\n\nreference elements in the user interface in the server and vice-versa\n\nutilize debugging techniques for shiny apps\n\ncreate a user interface for a shiny app\n\nadd and customize widgets to the user interface of a shiny app\n\ncustomize a shiny app to have a dynamic user interface\n\ndescribe the three major methods to create a dynamic user interface\n\ncompare, contrast, and choose an appropriate method for creating a dynamic user interface\n\ncreate a custom user interface using fluidRows\n\ncreate a server file to run R code on the backend of a Shiny app\n\nexplain the purpose of the server file\n\nexplain what a reactive context is and why it is important to know about\n\ncompare and contrast reactive and observe\n\nsource files into shiny apps\n\nimprove efficiency of shiny apps through the use of things like isolate\n\ncreate a shiny app with mouse over and click inputs\n\n\nUse the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!"
   }
 ]

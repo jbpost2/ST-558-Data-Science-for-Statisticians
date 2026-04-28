@@ -1,0 +1,11 @@
+---
+title: "Topic 2 Wrap"
+format: html
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+This wraps up the content for week 4! We now have our project and exam covering material up until now. You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> for more information.
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

@@ -1,16 +1,18 @@
 ---
-title: "Welcome to the Course!"
+title: "Week 1 Overview"
 format: html
 toc: TRUE
 editor_options: 
   chunk_output_type: inline
 ---
 
-## Syllabus and Other Useful Information
+## Welcome to the Course!
 
 You can find the syllabus, course schedule, how to install `R` and `RStudio`, and other administrative documents on the <a href = "https://wolfware.ncsu.edu/courses/my-wolfware/" target = "_blank">Moodle site for the course</a>.
 
-## Week 1 Additional Readings & Learning Materials
+There is also a welcome video there - please go and check this material out!
+
+## Week 1 (Optional) Additional Readings & Learning Materials
 
 -   `R` Projects and General `R` 
 
@@ -22,7 +24,7 @@ You can find the syllabus, course schedule, how to install `R` and `RStudio`, an
     -   <a href="https://r4ds.hadley.nz/quarto" target="_blank"
             rel="noopener">Chapters 28 & 29 from *R for Data Science*</a>
 
-    -   (Optional) <a href="https://quarto.org/" target="_blank"
+    -   <a href="https://quarto.org/" target="_blank"
             rel="noopener">Quarto documentation</a>. Specifically, the <a
             href="https://quarto.org/docs/computations/r.html" target="_blank"
             rel="noopener">using `R` portion</a>)
@@ -41,7 +43,7 @@ You can find the syllabus, course schedule, how to install `R` and `RStudio`, an
 
 ## Week 1 Learning Objectives
 
-Upon completion of this week, students will be able to:
+Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)
 
 ### Data Science Ideas
 

@@ -11,14 +11,13 @@ This wraps up the content for week 3. Now we require some practice! You should h
 
 Week 4 we take on exploring and finding relationships in our data. Anytime we read data into `R` (or another language), we should do some basic data visualization and get to know our data. These are the basics steps to an exploratory data analysis (EDA). This week we'll develop the skills to do this!
 
-## Week 4 Additional Readings/Learning Materials
+## Week 4 (Optional) Additional Readings/Learning Materials
 
 ### EDA
 
 - <a href = "https://r4ds.hadley.nz/data-visualize" target = "_blank">Chapters 1, 9, 10, and 11 of R 4 Data Science</a>
-- (Optional) <a href = "http://www.sthda.com/english/wiki/descriptive-statistics-and-graphics#descriptive-statistics-for-a-single-group" target = "_blank">Useful site with EDA process example</a>
-
-- (Optional) <a href = "https://openintro-ims.netlify.app/explore-categorical.html" target = "_blank">Chapters 4 and 5 of Introduction to Modern Statistics</a>
+- <a href = "http://www.sthda.com/english/wiki/descriptive-statistics-and-graphics#descriptive-statistics-for-a-single-group" target = "_blank">Useful site with EDA process example</a>
+- <a href = "https://openintro-ims.netlify.app/explore-categorical.html" target = "_blank">Chapters 4 and 5 of Introduction to Modern Statistics</a>
 
 ### Factors and missing values
 
@@ -26,7 +25,15 @@ Week 4 we take on exploring and finding relationships in our data. Anytime we re
 
 ## Week 4 Learning Objectives
 
-Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)
+Upon completion of this week, students will be able to:
+
+### Querying APIs
+
+1. query APIs to return appropriate data (CO 2)
+
+    a. define the term API
+    b. explain the common syntax often used for APIs
+    c. connect to and extract data from an API
 
 ### Summarizing Data
 

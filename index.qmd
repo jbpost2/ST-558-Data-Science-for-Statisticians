@@ -18,12 +18,12 @@ We'll adopt the `R` programming language to do so and learn about using `quarto`
 
 At the end of this course students will be able to
 
--   explain the steps and purpose of programs
--   efficiently read in, combine, and manipulate data
--   utilize help and other resources to customize programs
--   write programs using good programming practices
--   explore data and perform common analyses
--   create reports, web pages, and dashboards to display and communicate results
+-   explain the steps and purpose of programs (CO 1)
+-   efficiently read in, combine, and manipulate data (CO 2)
+-   utilize help and other resources to customize programs (CO 3)
+-   write programs using good programming practices (CO 4)
+-   explore data and perform common analyses (CO 5)
+-   create reports, web pages, and dashboards to display and communicate results (CO 6)
 
 ## Weekly To-do List
 

@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2026-04-28">
 
-<title>ST 558 Data Science for Statisticians (R) - Recap and Direction!</title>
+<title>ST 558 Data Science for Statisticians (R) - Week 6 Overview</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -26,8 +26,8 @@ ul.task-list li input[type="checkbox"] {
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<link href="../Notes/30-Apply_Family_Landing.html" rel="next">
-<link href="../Notes/28_5-Week6.html" rel="prev">
+<link href="../Notes/29-Big_Recap_Landing.html" rel="next">
+<link href="../Notes/28_5-Topic2_Wrap.qmd" rel="prev">
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -100,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/28_5-Week6.html">Topic 3: Better Programming</a></li><li class="breadcrumb-item"><a href="../Notes/29-Big_Recap_Landing.html">Recap and Direction!</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/28_5-Week6.html">Topic 3: Better Programming</a></li><li class="breadcrumb-item"><a href="../Notes/28_5-Week6.html">Week 6 Overview</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -357,13 +357,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/28_5-Week6.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/28_5-Week6.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Week 6 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/29-Big_Recap_Landing.html" class="sidebar-item-text sidebar-link active">
+  <a href="../Notes/29-Big_Recap_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Recap and Direction!</span></a>
   </div>
 </li>
@@ -604,7 +604,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#week-6-optional-additional-readingslearning-materials" id="toc-week-6-optional-additional-readingslearning-materials" class="nav-link active" data-scroll-target="#week-6-optional-additional-readingslearning-materials">Week 6 (Optional) Additional Readings/Learning Materials</a>
+  <ul class="collapse">
+  <li><a href="#apply-family-and-function-material" id="toc-apply-family-and-function-material" class="nav-link" data-scroll-target="#apply-family-and-function-material"><code>apply()</code> family and Function Material</a></li>
+  <li><a href="#purrr" id="toc-purrr" class="nav-link" data-scroll-target="#purrr"><code>purrr</code></a></li>
+  </ul></li>
+  <li><a href="#week-6-learning-objectives" id="toc-week-6-learning-objectives" class="nav-link" data-scroll-target="#week-6-learning-objectives">Week 6 Learning Objectives</a></li>
   </ul>
 </nav>
     </div>
@@ -613,7 +618,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Recap and Direction!</h1>
+<h1 class="title">Week 6 Overview</h1>
 </div>
 
 
@@ -634,15 +639,59 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>The video below recaps the most important points covered so far and looks ahead at what we’ll cover in the rest of the course.</p>
-<p>I highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer.</p>
-<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=8478e561-ec06-4de1-a16e-b19000db9da6&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=false&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="29 - Big Recap"></iframe>
-<section id="notes" class="level2">
-<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<p>This week we’ll start off with a recap, and then introduce the <code>apply()</code> functions from Base R, and the (mostly) equivalent tidyverse options from the <code>purrr</code> package. We will then get into advanced function writing!</p>
+<section id="week-6-optional-additional-readingslearning-materials" class="level2">
+<h2 class="anchored" data-anchor-id="week-6-optional-additional-readingslearning-materials">Week 6 (Optional) Additional Readings/Learning Materials</h2>
+<section id="apply-family-and-function-material" class="level3">
+<h3 class="anchored" data-anchor-id="apply-family-and-function-material"><code>apply()</code> family and Function Material</h3>
+<p>Advanced R Chapters</p>
 <ul>
-<li><a href="29-Big_Recap.html" target="_blank">HTML version</a></li>
-<li><a href="PDFs/29-Big_Recap.pdf" target="_blank">PDF version</a></li>
+<li><a href="http://adv-r.had.co.nz/Functions.html" target="_blank">Advanced Function Writing</a></li>
+<li><a href="http://adv-r.had.co.nz/Functional-programming.html" target="_blank">Functional Programming</a></li>
+<li><a href="http://adv-r.had.co.nz/Functionals.html" target="_blank">Functionals</a></li>
+<li><a href="https://r4ds.hadley.nz/rectangling" target="_blank">Heirarchical Data</a></li>
+<li><a href="https://modern-rstats.eu/defining-your-own-functions.html" target="_blank">Chapters 7 &amp; 8 from Modern R with Tidyverse</a></li>
 </ul>
+</section>
+<section id="purrr" class="level3">
+<h3 class="anchored" data-anchor-id="purrr"><code>purrr</code></h3>
+<p><a href="https://r4ds.hadley.nz/iteration.html#purrrmap-and-list_rbind" target="_blank">R for Data Science: Chapter 26.3.3</a></p>
+</section>
+</section>
+<section id="week-6-learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="week-6-learning-objectives">Week 6 Learning Objectives</h2>
+<p>Upon completion of this week, students will be able to:</p>
+<ol type="1">
+<li><p>write an R function that has default arguments, allows for additional arguments, and returns a well-structured named object</p>
+<ol type="a">
+<li>determine appropriate uses for the stop function<br>
+</li>
+<li>develop a pipeable function that acts on a data frame and one that produces side effects<br>
+</li>
+<li>create a custom infix function</li>
+</ol></li>
+<li><p>define environments including temporary environments</p>
+<ol type="a">
+<li>summarize the order in which R attempts to find a requested object<br>
+</li>
+<li>sketch out the R environment framework and explain the idea of lexical scoping<br>
+</li>
+<li>discuss the concept of local variables and local environments as compared to global variables and environments<br>
+</li>
+<li>state the naming conventions for R objects</li>
+</ol></li>
+<li><p>program using the “apply family” of functions and the purrr packing in R</p>
+<ol type="a">
+<li>differentiate between the apply family of functions in R including, but not limited to, mapply, sapply, lapply, apply, and replicate<br>
+</li>
+<li>manipulate R code that uses loops to instead use the proper apply function<br>
+</li>
+<li>utilize anonymous functions in calls to the apply family of functions in R<br>
+</li>
+<li>use functions from purrr to perform data manipulations</li>
+</ol></li>
+<li><p>describe what an anonymous function is and how it differs from other functions</p></li>
+</ol>
 <p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
 
@@ -884,13 +933,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Notes/28_5-Week6.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Week 6 Overview</span>
+      <a href="../Notes/28_5-Topic2_Wrap.qmd" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Notes/30-Apply_Family_Landing.html" class="pagination-link">
-        <span class="nav-page-text"><code>apply</code> Family of Functions</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../Notes/29-Big_Recap_Landing.html" class="pagination-link">
+        <span class="nav-page-text">Recap and Direction!</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

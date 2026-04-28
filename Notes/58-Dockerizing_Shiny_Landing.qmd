@@ -21,4 +21,4 @@ I highly recommend watching the video using the 'full' Panopto player. There is 
 - <a href = "docker_shiny/app.R" target = "download">`app.R` file</a>
 - <a href = "docker_shiny/Dockerfile" target = "download">`Dockerfile`</a>
 
-That's it! That's all we have :)
+That's it! That's all we have :) We hope you enjoyed the course and learned a lot!

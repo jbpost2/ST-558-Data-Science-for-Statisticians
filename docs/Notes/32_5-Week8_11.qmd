@@ -1,0 +1,68 @@
+---
+title: "Weeks 9 Through 11 Overview"
+format: html
+toc: TRUE
+editor_options: 
+  chunk_output_type: inline
+---
+
+This wraps up the content for week 8. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your assessment for this week.
+
+This week is all about Shiny! This is one of my favorite topics in 558. R Shiny is a web framework that allows you to build interactive web applications and dashboards using the R programming language. It simplifies the process of creating web applications, especially for data analysis and visualization, by allowing you to work entirely in R without needing extensive knowledge of web development languages like HTML, CSS, or JavaScript.
+
+## Weeks 9 & 10 Additional Readings/Learning Materials
+
+<a href = "https://www.youtube.com/watch?v=HVa42mJYppE" target = "_blank">Basic Concept Video</a>: Short 2-minute video on the high level concept of what R Shiny is!
+
+<a href = "https://mastering-shiny.org/basic-app.html" target = "_blank">Mastering Shiny</a>: to be used at your own discretion
+
+<ul>
+  <li><a href="https://shiny.rstudio.com/reference/shiny/latest/"
+        target="_blank" rel="noopener">List of all functions</a> for the UI and server</li>
+  
+  <li><a href="https://shiny.rstudio.com/tutorial/" target="_blank"
+        rel="noopener">Shiny tutorial</a> from RStudio</li>
+  
+  <li><a href="https://shiny.rstudio.com/articles/#code-quality" target="_blank"
+        rel="noopener">Shiny Articles</a></li>
+  
+  <li><a href="http://deanattali.com/blog/building-shiny-apps-tutorial/"
+        target="_blank" rel="noopener">Nice tutorial </a>by Dean Attali</li>
+  
+  <li>(Optional) <a
+        href="https://shiny.rstudio.com/articles/testing-overview.html"
+        target="_blank" rel="noopener">Unit testing with shiny</a></li>
+  
+  <li><a href="https://shiny.rstudio.com/articles/debugging.html"
+        target="_blank" rel="noopener">Debugging in Shiny</a> </li>
+</ul>
+
+## Weeks 9 & 10 Learning Objectives
+
+Upon completion of these two weeks, students will be able to:
+
+1.  outline the creation of a shiny app
+
+    a.    define the term R Shiny App\
+    b.    describe the files/parts needed to create a Shiny app\
+    c.    reference elements in the user interface in the server and vice-versa\
+    d.    utilize debugging techniques for shiny apps
+
+2.  create a user interface for a shiny app
+
+    a.    add and customize widgets to the user interface of a shiny app\
+    b.    customize a shiny app to have a dynamic user interface\
+    c.    describe the three major methods to create a dynamic user interface\
+    d.    compare, contrast, and choose an appropriate method for creating a dynamic user interface\
+    e.    create a custom user interface using fluidRows
+
+3.  create a server file to run R code on the backend of a Shiny app
+
+    a.    explain the purpose of the server file\
+    b.    explain what a reactive context is and why it is important to know about\
+    c.    compare and contrast reactive and observe\
+    d.    source files into shiny apps\
+    e.    improve efficiency of shiny apps through the use of things like isolate\
+    f.    create a shiny app with mouse over and click inputs
+
+Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!
