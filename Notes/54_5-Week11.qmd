@@ -28,7 +28,7 @@ Docker is an open-source platform that enables developers to automate the deploy
       target="_blank" rel="noopener">part II</a> </li>
   <li>A nice <a
       href="https://docker-curriculum.com/"
-      target="_blank" rel="noopener">general Docker tutorial</a<</li>
+      target="_blank" rel="noopener">general Docker tutorial</a></li>
   <li><a
       href="https://colinfay.me/docker-r-reproducibility/" target="_blank"
       rel="noopener">Docker and R Intro</a></li>
