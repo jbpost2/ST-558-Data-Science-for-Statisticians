@@ -61,7 +61,7 @@ You can see these just changes the look of the plot a bit. With themes, you can 
 
 In fact, you can define your own custom theme very easily. For instance, below we create a theme 'object' called `t` (theme courtesy of a former student, John Hinic) which modifies a theme from the `ggthemes` package (this package must be installed to run this code!).
 
-```{r}
+```{r, warning = FALSE, message = FALSE}
 t <- ggthemes::theme_clean() + 
   theme(plot.background = element_rect(color = NA),
         axis.title = element_text(size = 14, face = "bold"),

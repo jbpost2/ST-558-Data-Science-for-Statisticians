@@ -51,7 +51,7 @@ We are already learning a lot of necessary material to be a data scientist. Let'
 
 - <a href="https://r4ds.hadley.nz/functions" target="_blank">Chapter 25 of R 4 Data Science</a>
 - <a href = "http://adv-r.had.co.nz/Functions.html" target = "_blank">Chapter 5 of Advanced R</a>
-- <a href = "https://www.r-bloggers.com/consistent-naming-conventions-in-r/" target = "_blank">Consistent naming conventions in R><a/> and <a href="https://google.github.io/styleguide/Rguide.xml" target="_blank">R's style guide</a>
+- <a href = "https://www.r-bloggers.com/consistent-naming-conventions-in-r/" target = "_blank">Consistent naming conventions in R<a/> and <a href="https://google.github.io/styleguide/Rguide.xml" target="_blank">R's style guide</a>
 - <a href="https://modern-rstats.eu/defining-your-own-functions.html#functions-that-take-functions-as-arguments-writing-your-own-higher-order-functions" target="_blank">Chapter 7 of Modern R with the tidyverse</a>
 
 

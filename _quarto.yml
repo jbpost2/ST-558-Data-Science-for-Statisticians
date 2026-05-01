@@ -138,7 +138,6 @@ website:
           - Notes/32-Advanced_Function_Writing_Landing.qmd
       - section: "Topic 4: R Shiny Dashboards"
         contents:
-          - Notes/32_5-Week8_11.qmd
           - Notes/33-RShiny_Introduction_Landing.qmd
           - Notes/34-RShiny_Tutorials_I.qmd
           - Notes/34_5-Week7_8.qmd
