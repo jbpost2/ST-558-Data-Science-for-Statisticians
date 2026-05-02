@@ -16,12 +16,13 @@ output:
     self_contained: yes
 editor_options: 
   chunk_output_type: console
+lang: en
 ---
 
 
 layout: true
 
-<div class="my-footer"><img src="img/logo.png" style="height: 60px;"/></div> 
+<div class="my-footer"><img src="img/logo.png" alt = "logo" style="height: 60px;"/></div> 
 
 ---
 
@@ -46,12 +47,12 @@ layout: true
 - Code in `R` through `RStudio`
 
 <div style = "float: left; width: 45%">
-```{r, out.width='20%', echo = FALSE}
+```{r, out.width='20%', echo = FALSE, fig.alt = "R logo"}
 knitr::include_graphics("img/R.png")
 ```
 </div>
 <div style = "float: left; width: 45%">
-```{r, out.width='20%', echo = FALSE}
+```{r, out.width='20%', echo = FALSE, fig.alt = "RStudio logo"}
 knitr::include_graphics("img/RStudio.png")
 ```
 </div>
@@ -70,7 +71,7 @@ In `RStudio`, four main locations
 
 -   Environment (& Connections/Git)
 
-```{r, out.width="450px", echo = FALSE }
+```{r, out.width="450px", echo = FALSE, fig.alt = "An image of the RStudio IDE is shown."}
 knitr::include_graphics("img/RStudioSnip.png")
 ```
 
@@ -93,7 +94,7 @@ log(pi^2) #log is natural log by default
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </div>
 <div style = "float:left; width = 45%;">
-```{r basic, echo = TRUE, out.width = "250px", fig.align='center'}
+```{r basic, echo = TRUE, out.width = "250px", fig.align='center', fig.alt = "A histogram is shown."}
 mean(cars$speed)
 hist(cars$speed)
 ```
@@ -191,7 +192,7 @@ In `RStudio`, four main locations
 
 -   Environment (& Connections/Git)
 
-```{r, out.width="450px", echo = FALSE }
+```{r, out.width="450px", echo = FALSE, fig.alt = "An image of the RStudio IDE is shown."}
 knitr::include_graphics("img/RStudioSnip.png")
 ```
 
@@ -241,7 +242,7 @@ Method: procedures (often 'functions') act on object based on attributes
 
 -   `R` functions like `plot()` act differently depending on object class
 
-```{r eval = FALSE, echo = TRUE}
+```{r eval = FALSE, echo = TRUE, fig.alt = "Two plots are shown. The first is a scatterplot of speed and dist. The second is a plot of the exponential curve from 0 to 1."}
 plot(cars)
 plot(exp)
 ```

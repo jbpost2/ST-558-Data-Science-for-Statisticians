@@ -16,12 +16,13 @@ output:
     self_contained: yes
 editor_options: 
   chunk_output_type: console
+lang: en
 ---
 
 
 layout: true
 
-<div class="my-footer"><img src="img/logo.png" style="height: 60px;"/></div> 
+<div class="my-footer"><img src="img/logo.png" alt = "logo" style="height: 60px;"/></div> 
 
 ```{r setup, include=FALSE,warning=FALSE,message=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -95,7 +96,7 @@ When you open R a few `packages` are loaded
 
 -   When you open R a few `packages` are loaded
 
-```{r loadR, fig.align = 'center', out.width = "200px", echo = FALSE}
+```{r loadR, fig.align = 'center', out.width = "200px", echo = FALSE, fig.alt = "The global environment drop down in RStudio is shown. This lists the order of the packages read into the R session."}
 include_graphics("img/loadR.PNG")
 ```
 
@@ -113,7 +114,7 @@ include_graphics("img/loadR.PNG")
 install.packages("dplyr")
 ```
 
-```{r install2, out.width = "500px",echo=FALSE, fig.align='center'}
+```{r install2, out.width = "500px",echo=FALSE, fig.align='center', fig.alt = "The packages tab in RStudio is shown. This lists the packages installed on your computer and their versions."}
 knitr::include_graphics("img/packages.png")
 ```
 

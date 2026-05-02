@@ -39,7 +39,7 @@ app_data <- app_data |>
 
 Consider the graph we created with multiple trend lines:
 
-```{r,eval = TRUE, echo = TRUE, out.width = "650px", fig.align='center', out.height = '350px', warning = FALSE}
+```{r,eval = TRUE, echo = TRUE, out.width = "650px", fig.align='center', out.height = '350px', warning = FALSE, message = FALSE, fig.alt = "A scatter plot between weight and RBC_Count is shown. The points are colored by the Diagnosis variable. One line is for each Diagnosis group."}
 g <- ggplot(app_data |> 
               drop_na(RBC_Count, Weight, Diagnosis) |> 
               filter(RBC_Count < 8), 
@@ -52,7 +52,7 @@ g_scatter
 This uses the default theme from `ggplot2`. While this looks pretty good, we can easily change this using a <a href = "https://ggplot2.tidyverse.org/reference/ggtheme.html" target = "_blank">standard theme</a>.
 
 
-```{r,eval = TRUE, echo = TRUE, out.width = "650px", fig.align='center', out.height = '350px', warning = FALSE}
+```{r,eval = TRUE, echo = TRUE, out.width = "650px", fig.align='center', out.height = '350px', warning = FALSE, message = FALSE, fig.alt = "A scatter plot between weight and RBC_Count is shown. The points are colored by the Diagnosis variable. One line is for each Diagnosis group. The background of the plot has a grid."}
 g_scatter +
   theme_linedraw()
 ```
@@ -78,7 +78,7 @@ t <- ggthemes::theme_clean() +
 
 Now we can apply this theme using the usual `+` syntax from `ggplot2`.
 
-```{r}
+```{r,eval = TRUE, echo = TRUE, out.width = "650px", fig.align='center', out.height = '350px', warning = FALSE, message = FALSE, fig.alt = "A scatter plot between weight and RBC_Count is shown. The points are colored by the Diagnosis variable. One line is for each Diagnosis group. The background of the plot has dashed lines at each half integer."}
 g_scatter + t
 ```
 
@@ -89,7 +89,7 @@ We saw that we can use `facet_wrap()` and `facet_grid()` to make plots laid out 
 The `patchwork` package (likely must be installed to use) is a great package for putting `ggplot`s next to each other in useful ways! We can simply use 
 `+` to separate plot objects we want next to each other.
 
-```{r}
+```{r,eval = TRUE, echo = TRUE, out.width = "650px", fig.align='center', out.height = '350px', warning = FALSE, message = FALSE, fig.alt = "Two plots are shown. The left plot is a density plot between weight and RBC_Count colored by the Diagnosis varaible. The right plot is a scatter plot between weight and RBC_Count is shown. The points are colored by the Diagnosis variable. One line is for each Diagnosis group. The background of both plots have dashed lines at the half integers."}
 library(patchwork)
 g_scatter_custom <- g_scatter + t
 g_density <- g + 
@@ -100,7 +100,7 @@ g_density + g_scatter_custom
 
 We can also place a plot below others if we want using `(objects...)/(objects)`.
 
-```{r}
+```{r,eval = TRUE, echo = TRUE, out.width = "650px", fig.align='center', out.height = '350px', warning = FALSE, message = FALSE, fig.alt = "Three plots are shown. Two on the top and one below those two. The top two plots are each density plots between weight and RBC_Count. The bottom plot is a scatterplot between weight and RBC_Count."}
 g2 <- ggplot(app_data |> 
                drop_na(RBC_Count, Weight, Diagnosis) |> 
                filter(RBC_Count < 8, Diagnosis == "appendicitis"), 

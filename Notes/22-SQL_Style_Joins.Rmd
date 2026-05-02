@@ -16,12 +16,13 @@ output:
     self_contained: yes
 editor_options: 
   chunk_output_type: console
+lang: en
 ---
 
 
 layout: true
 
-<div class="my-footer"><img src="img/logo.png" style="height: 60px;"/></div> 
+<div class="my-footer"><img src="img/logo.png" alt = "logo" style="height: 60px;"/></div> 
 
 ```{r, include=FALSE,warning=FALSE,message=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -50,7 +51,7 @@ options(dplyr.print_min = 5)
 
 - Often want to combine data from multiple tables to summarize/model
 
-```{r, echo = FALSE, fig.align='center', out.width = '600px'}
+```{r, echo = FALSE, fig.align='center', out.width = '600px', fig.alt = "A database table diagram is shown. Many tables are shown with some sharing 'keys' that link the data tables together."}
 knitr::include_graphics("img/dbDiagram.jpg")
 ```
 
@@ -58,7 +59,7 @@ knitr::include_graphics("img/dbDiagram.jpg")
 
 - The common types of joins we do are given below! (Using `dplyr` not the particular SQL language.)
 
-```{r, echo = FALSE, fig.align='center', out.width="325px"}
+```{r, echo = FALSE, fig.align='center', out.width="325px", fit.alt = "Joins available in dplyr are displayed. See help(inner_join) for more information."}
 knitr::include_graphics("img/joins.PNG")
 ```
 
@@ -67,7 +68,7 @@ knitr::include_graphics("img/joins.PNG")
 
 - We often need some different logic to make our joins work. That exists in `dplyr` as well!
 
-```{r, echo = FALSE, fig.align='center', out.width="400px"}
+```{r, echo = FALSE, fig.align='center', out.width="400px", fit.alt = "Set operations and other ways to combine data frames in dplyr are shown. See help(intersect) and help(bind_rows) for more information."}
 knitr::include_graphics("img/joins2.PNG")
 ```
 
@@ -81,7 +82,7 @@ knitr::include_graphics("img/joins2.PNG")
 
 - Inner Join: Returns records with matching keys in both tables
 
-```{r, echo = FALSE, fig.align='center', out.width="350px"}
+```{r, echo = FALSE, fig.align='center', out.width="350px", fig.alt= "An inner join relationship is displayed with a venn diagram. Two circles are shown with the left representing table 1 and the right table 2. The inner join represents the intersection between these sets."}
 knitr::include_graphics("img/inner_join.png")
 ```
 
@@ -155,7 +156,7 @@ WHERE b.yearID = 2000 AND p.yearID = 2000"
 
 - Left Join: Returns all records from the 'left' table and any matching records from the 'right' table
 
-```{r, echo = FALSE, fig.align='center', out.width="350px"}
+```{r, echo = FALSE, fig.align='center', out.width="350px", fig.alt= "A left join relationship is displayed with a venn diagram. Two circles are shown with the left representing table 1 and the right table 2. The left join represents the entire left table including the intersection between these sets."}
 knitr::include_graphics("img/left_join.png")
 ```
 
@@ -179,7 +180,7 @@ left_join(tbl(con, "Batting") |> filter(yearID == 2000),
 
 - Right Join: Returns all records from the 'right' table and any matching records from the 'left' table
 
-```{r, echo = FALSE, fig.align='center', out.width="350px"}
+```{r, echo = FALSE, fig.align='center', out.width="350px", fig.alt= "A right join relationship is displayed with a venn diagram. Two circles are shown with the left representing table 1 and the right table 2. The right join represents the entire right table including the intersection between these sets."}
 knitr::include_graphics("img/right_join.png")
 ```
 
@@ -205,7 +206,7 @@ right_join(tbl(con, "Batting") |> filter(yearID == 2000),
 
 - Outer Join: Returns all records when there is a match from the 'left' or 'right' table (also called a **full join**)
 
-```{r, echo = FALSE, fig.align='center', out.width="350px"}
+```{r, echo = FALSE, fig.align='center', out.width="350px", fig.alt= "A full outer join relationship is displayed with a venn diagram. Two circles are shown with the left representing table 1 and the right table 2. The entirety of both tables is filled in, including their intersection."}
 knitr::include_graphics("img/outer_join.png")
 ```
 

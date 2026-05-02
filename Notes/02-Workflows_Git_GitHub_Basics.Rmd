@@ -16,6 +16,7 @@ output:
     self_contained: yes
 editor_options: 
   chunk_output_type: console
+lang: en
 ---
 
 
@@ -166,7 +167,7 @@ Git and RStudio work great together!
 
 - Everyone can work on the same `branch` and just take turns working
 
-```{r, echo = FALSE, fig.align='center', out.width = "500px"}
+```{r, echo = FALSE, fig.align='center', out.width = "500px", fig.alt = "Flow chart with four bubbles moving from left to right. The first bubble is the initial repo, then the second represents a commit, the third and fourth also represent future commits."}
 knitr::include_graphics("img/git_diagram.png")
 ```
 
@@ -177,7 +178,7 @@ knitr::include_graphics("img/git_diagram.png")
 
 - Alternatively, you can have separate **branches** of the repo
 
-```{r, echo = FALSE, fig.align='center', out.width = "500px"}
+```{r, echo = FALSE, fig.align='center', out.width = "500px", fig.alt = "Flow chart with many bubbles moving from left to right. The first bubble is the initial repo, the other bubbles represent different commits. On one commit a 'branch' comes off and has a separate flow with its own commits. It then 'merges' back to the main branch at a later commit."}
 knitr::include_graphics("img/git_branch_diagram.png")
 ```
 
@@ -198,7 +199,7 @@ knitr::include_graphics("img/git_branch_diagram.png")
 
 - If you do a commit on your branch, you may notice something like this
 
-```{r, fig.align='center', out.width="45%", echo = FALSE}
+```{r, fig.align='center', out.width="45%", echo = FALSE, fig.alt = "A message on github shows a message saying 'This branch is 1 commit ahead of jbpost2:main.'"}
 knitr::include_graphics("img/forkcommit.png")
 ```
 
@@ -213,7 +214,7 @@ Suppose you like your commit and you think the original owner will too!
 
 - You can do a `pull` request  
 
-```{r, fig.align='center', out.width="79%", echo = FALSE}
+```{r, fig.align='center', out.width="79%", echo = FALSE, fig.alt = "The 'Pull requests' tab on github is shown. Any pull requests are listed there."}
 knitr::include_graphics("img/pullrequest.png")
 ```
 
@@ -226,7 +227,7 @@ Suppose you like your commit and you think the original owner will too!
 
 - You can do a `pull` request  
 
-```{r, fig.align='center', out.width="75%", echo = FALSE}
+```{r, fig.align='center', out.width="75%", echo = FALSE, fig.alt = "A pull request is shown. A file and its changes are displayed."}
 knitr::include_graphics("img/pullinfo.png")
 ```
 
@@ -241,7 +242,7 @@ If you are lucky, there won't be any merge conflicts.
 
 - The owner will get a notification that a pull request has been made
 
-```{r, fig.align='center', out.width="45%", echo = FALSE}
+```{r, fig.align='center', out.width="45%", echo = FALSE, fig.alt = "A notification on github is shown next to the 'pull requests' menu item."}
 knitr::include_graphics("img/pullrequestnoted.png")
 ```
 
@@ -252,7 +253,7 @@ knitr::include_graphics("img/pullrequestnoted.png")
 
 Owner can then investigate the request and choose whether or not to accept it or they can ask for more details
 
-```{r, fig.align='center', out.width="70%", echo = FALSE}
+```{r, fig.align='center', out.width="70%", echo = FALSE, fig.alt = "The github pull request screen is shown. Here one can choose to merge a pull request."}
 knitr::include_graphics("img/pullcheck2.png")
 ```
 
@@ -262,7 +263,7 @@ knitr::include_graphics("img/pullcheck2.png")
 
 - Sometimes changes requested conflict with changes already made  
 
-```{r, fig.align='center', out.width="70%", echo = FALSE}
+```{r, fig.align='center', out.width="70%", echo = FALSE, fig.alt = "An example of a pull request that cannot be merged automatically is shown. The user must then manage the merge themselves."}
 knitr::include_graphics("img/mergeconflict.png")
 ```
 
@@ -273,7 +274,7 @@ knitr::include_graphics("img/mergeconflict.png")
 
 Owner sees a notification about conflicts that must be resolved  
 
-```{r, fig.align='center', out.width="70%", echo = FALSE}
+```{r, fig.align='center', out.width="70%", echo = FALSE, fig.alt = "A list of conflicts on github is shown. A 'resolve conflicts' button appears, allowing the user to resolve issues."}
 knitr::include_graphics("img/resolve.png")
 ```
 
@@ -286,7 +287,7 @@ They can view the issues and pick which to include or to include both with a mod
 
 `<<<<<<<` is a conflict marker  
 
-```{r, fig.align='center', out.width="70%", echo = FALSE}
+```{r, fig.align='center', out.width="70%", echo = FALSE, fig.alt = "An example conflict is shown with <<<< ===== >>>> designating the areas that must be manually selected."}
 knitr::include_graphics("img/resolve2.png")
 ```
 

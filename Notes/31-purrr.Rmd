@@ -16,12 +16,13 @@ output:
     self_contained: yes
 editor_options: 
   chunk_output_type: console
+lang: en
 ---
 
 
 layout: true
 
-<div class="my-footer"><img src="img/logo.png" style="height: 60px;"/></div> 
+<div class="my-footer"><img src="img/logo.png" alt = "logo" style="height: 60px;"/></div> 
 
 ```{r, include=FALSE,warning=FALSE,message=FALSE}
 options(htmltools.dir.version = FALSE)

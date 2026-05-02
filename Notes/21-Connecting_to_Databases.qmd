@@ -13,7 +13,7 @@ However, we often have multiple data sources around one problem. For instance, o
 
 There are many data tables (essentially each could be a data frame). Below is information about the structure of these data tables and how they relate.
 
-```{r, out.width = "600px", echo = FALSE, fig.align='center'}
+```{r, out.width = "600px", echo = FALSE, fig.align='center', fig.alt = "A database table diagram is shown. Many tables are shown with some sharing 'keys' that link the data tables together."}
 knitr::include_graphics("img/dbDiagram.jpg")
 ```
 
@@ -27,7 +27,7 @@ For most standard databases, we usually think of a bunch of 2D tables that are r
 
 Consider the Lahman diagram:
 
-```{r, out.width = "600px", echo = FALSE, fig.align='center'}
+```{r, out.width = "600px", echo = FALSE, fig.align='center', fig.alt = "A database table diagram is shown. Many tables are shown with some sharing 'keys' that link the data tables together."}
 knitr::include_graphics("img/Lahman-db-diagram.jpg")
 ```
 

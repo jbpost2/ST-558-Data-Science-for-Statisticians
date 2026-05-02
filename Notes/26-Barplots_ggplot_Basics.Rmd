@@ -16,12 +16,13 @@ output:
     self_contained: yes
 editor_options:
   chunk_output_type: console
+lang: en
 ---
 
 
 layout: true
 
-<div class="my-footer"><img src="img/logo.png" style="height: 60px;"/></div> 
+<div class="my-footer"><img src="img/logo.png" alt = "logo" style="height: 60px;"/></div> 
 
 ```{r, include=FALSE,warning=FALSE,message=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -163,7 +164,7 @@ To get started:
 
 -   Across x-axis we want our categories - specify with `aes(x = ...)`
 
-```{r, eval=TRUE, out.width = "650px", fig.align='center', out.height = '350px'}
+```{r, eval=TRUE, out.width = "650px", fig.align='center', out.height = '350px', fig.alt = "A blankplot with SexF on the x-axis and two categories is shown."}
 ggplot(data = app_data |> drop_na(SexF), aes(x = SexF))
 ```
 
@@ -175,7 +176,7 @@ ggplot(data = app_data |> drop_na(SexF), aes(x = SexF))
 
 -   Must add geom (or stat) layer!
 
-```{r,eval=TRUE, out.width = "650px", fig.align='center', out.height = '350px'}
+```{r,eval=TRUE, out.width = "600px", fig.align='center', out.height = '350px', fig.alt = "A bar plot with SexF on the x-axis is shown."}
 ggplot(data = app_data |> drop_na(SexF), aes(x = SexF)) + 
   geom_bar()
 ```
@@ -186,7 +187,7 @@ ggplot(data = app_data |> drop_na(SexF), aes(x = SexF)) +
 
 -   Generally: Save base object with **global** `aes()` assignments, then add layers
 
-```{r,eval = TRUE, out.width = "650px", fig.align='center', out.height = '350px'}
+```{r,eval = TRUE, out.width = "600px", fig.align='center', out.height = '350px', fig.alt = "A bar plot with SexF on the x-axis is shown."}
 g <- ggplot(data = app_data |> drop_na(SexF), aes(x = SexF))
 g + geom_bar()
 ```
@@ -197,7 +198,7 @@ g + geom_bar()
 
 - We can easily improve the labeling on the x-axis variable (see the 2nd page of cheat sheet on the right!)
 
-```{r,eval = TRUE, echo = TRUE, out.width = "650px", fig.align='center', out.height = '350px'}
+```{r,eval = TRUE, echo = TRUE, out.width = "600px", fig.align='center', out.height = '350px', fig.alt = "A bar plot with Sex on the x-axis is shown."}
 g <- ggplot(data = app_data |> drop_na(SexF), aes(x = SexF))
 g + geom_bar() +
     labs(x = "Sex")
@@ -228,7 +229,7 @@ g + geom_bar() +
 
 -   Automatic assignment of colors and creation of legends for `aes` elements (except group)
 
-```{r,eval = TRUE, echo = TRUE, out.height = "300px", fig.align='center'}
+```{r,eval = TRUE, echo = TRUE, out.height = "300px", fig.align='center', fig.alt = "A bar plot with Sex on the x-axis is shown. The bars are colored by the DiagnosisF variable. The legend title says DiagnosisF"}
 g <- ggplot(data = app_data |> drop_na(SexF, DiagnosisF), aes(x = SexF, fill = DiagnosisF))
 g + geom_bar()+
     labs(x = "Sex")
@@ -241,7 +242,7 @@ g + geom_bar()+
 
 - Can change automatically created labels/legend
 
-```{r,eval = TRUE, echo = TRUE, out.height = "300px", fig.align='center'}
+```{r,eval = TRUE, echo = TRUE, out.height = "300px", fig.align='center', fig.alt = "A bar plot with Sex on the x-axis is shown. The bars are colored by the Diagnosis variable. The legend title now says Diagnosis."}
 g <- ggplot(data = app_data |> drop_na(SexF, DiagnosisF), aes(x = SexF, fill = DiagnosisF))
 g + geom_bar() + 
   labs(x = "Sex")+ 
@@ -294,7 +295,7 @@ ggplot(data = app_data |> drop_na(SexF, DiagnosisF)) +
 
 -   Easy to rotate a plot with `coord_flip()`
 
-```{r,eval = TRUE, echo = TRUE, out.width = "650px", fig.align='center', out.height = '300px'}
+```{r,eval = TRUE, echo = TRUE, out.width = "650px", fig.align='center', out.height = '300px', fig.alt = "A bar plot with Sex on the y-axis is shown. The bars are colored by the Diagnosis variable."}
 ggplot(data = app_data |> drop_na(SexF, DiagnosisF), aes(x = SexF, fill = DiagnosisF)) + 
   geom_bar() + 
   labs(x = "Sex")+ 
@@ -338,7 +339,7 @@ ggplot(data = app_data |> drop_na(SexF, DiagnosisF), aes(x = SexF, fill = Diagno
 
 -   Can modify the stat: if you have summary data, specify `y` and use `stat = identity`
 
-```{r,eval = TRUE, echo = TRUE, out.height = "300px", fig.align='center', message = FALSE, warning = FALSE}
+```{r,eval = TRUE, echo = TRUE, out.height = "300px", fig.align='center', message = FALSE, warning = FALSE, fig.alt = "A bar plot with SexF on the x-axis is shown. The bars are colored by the DiagnosisF variable."}
 ggplot(data = app_data |> 
          drop_na(SexF, DiagnosisF) |>
          group_by(SexF, DiagnosisF) |>
@@ -363,7 +364,7 @@ ggplot(data = app_data |>
 
 -   **Side-by-side barplot** created by via `position` aesthetic
 
-```{r,eval = TRUE, echo = TRUE, out.width = "650px", fig.align='center', out.height = '350px'}
+```{r,eval = TRUE, echo = TRUE, out.width = "600px", fig.align='center', out.height = '350px', fig.alt = "Side-by-side bar plots with Sex on the x-axis is shown. The female group has two bars, one for each diagnosis setting. Similarly, for the male group."}
 ggplot(data = app_data |> drop_na(SexF, DiagnosisF), aes(x = SexF, fill = DiagnosisF)) + 
   geom_bar(position = "dodge") + 
   labs(x = "Sex")+ 
@@ -376,7 +377,7 @@ ggplot(data = app_data |> drop_na(SexF, DiagnosisF), aes(x = SexF, fill = Diagno
 
 -   `position = fill` stacks bars and standardizes each stack to have constant height (especially useful with equal group sizes)
 
-```{r,eval = TRUE, echo = TRUE, fig.align='center', out.height = '300px'}
+```{r,eval = TRUE, echo = TRUE, fig.align='center', out.height = '300px', fig.alt = "A bar plot with SexF on the x-axis is shown. The bars are colored by the DiagnosisF variable. The total bar height for each group is 1."}
 ggplot(data = app_data |> drop_na(SexF, DiagnosisF), aes(x = SexF, fill = DiagnosisF)) + 
   geom_bar(position = "fill") + 
   labs(x = "Sex")+ 

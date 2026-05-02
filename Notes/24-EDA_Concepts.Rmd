@@ -16,12 +16,13 @@ output:
     self_contained: yes
 editor_options: 
   chunk_output_type: console
+lang: en
 ---
 
 
 layout: true
 
-<div class="my-footer"><img src="img/logo.png" style="height: 60px;"/></div> 
+<div class="my-footer"><img src="img/logo.png" alt = "logo" style="height: 60px;"/></div> 
 
 ```{r, include=FALSE,warning=FALSE,message=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -264,7 +265,7 @@ layout: false
 
 layout: true
 
-<div class="my-footer"><img src="img/logo.png" style="height: 60px;"/></div> 
+<div class="my-footer"><img src="img/logo.png" alt = "logo" style="height: 60px;"/></div> 
 
 ---
 
@@ -393,7 +394,7 @@ app_data |>
 
 - Main visual used is a bar plot! Simply displays our counts with bars.
 
-```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center'}
+```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center', fig.alt = "A bar chart of the Sex variable is shown."}
 ggplot(app_data |>
   group_by(SexF) |>
   drop_na(SexF) |>
@@ -408,7 +409,7 @@ ggplot(app_data |>
 
 - Main visual used is a bar plot! Simply displays our counts with bars.
 
-```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center'}
+```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center', fig.alt = "A bar chart of the Sex variable is shown. The bars are colored by the Diagnosis variable."}
 ggplot(app_data |>
   group_by(SexF, DiagnosisF) |>
   drop_na(SexF, DiagnosisF) |>
@@ -424,7 +425,7 @@ ggplot(app_data |>
 
 - Main visual used is a bar plot! Simply displays our counts with bars.
 
-```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center'}
+```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center', fig.alt = "Two bar charts of the Sex variable are shown, one for those with appendicitis and one for those without. The bars are colored by the Severity variable."}
 ggplot(app_data |>
   group_by(SexF, DiagnosisF, SeverityF) |>
   drop_na(SexF, DiagnosisF, SeverityF) |>
@@ -465,7 +466,7 @@ For two numeric variables, describe the distribution via
 
     + Consider the distributions of `Weight` for those with appendicitis and those without
 
-```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center'}
+```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center', fig.alt = "Two density plots for the weight variable are overlayed, one curve for each value of the diagnosis variable."}
 ggplot(app_data |> drop_na(Weight, Diagnosis), aes(x = Weight, fill = Diagnosis)) + 
   geom_density(alpha = 0.5)
 ```
@@ -511,14 +512,14 @@ app_data |>
     + Histograms are more variable, which can be bad!
 
 <div style = "float:left; width = '40%'">
-```{r, echo = FALSE, out.width = "400px", fig.align='center'}
+```{r, echo = FALSE, out.width = "400px", fig.align='center', fig.alt = "Two density plots for the weight variable are overlayed, one curve for each value of the diagnosis variable."}
 ggplot(app_data |> drop_na(Weight, Diagnosis), aes(x = Weight, fill = Diagnosis)) + 
   geom_density(alpha = 0.5)
 ```
 </div>
 
 <div style = "float:right; width = '40%'">
-```{r, echo = FALSE, out.width = "400px", fig.align='center'}
+```{r, echo = FALSE, out.width = "400px", fig.align='center', fig.alt = "Two histogram plots for the weight variable are shown, one curve for each value of the diagnosis variable."}
 ggplot(app_data |> drop_na(Weight, Diagnosis), aes(x = Weight)) + 
   geom_histogram() +
   facet_wrap(~Diagnosis)
@@ -532,7 +533,7 @@ ggplot(app_data |> drop_na(Weight, Diagnosis), aes(x = Weight)) +
 
 - To look at the distribution of two numeric variables together, we usually look at a scatter plot!
 
-```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center'}
+```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center', fig.alt = "A scatter plot between the age and weight variables is shown. A general positive increasing patther in an exponential manner is shown."}
 ggplot(app_data |> drop_na(Weight, Age), aes(x = Age, y = Weight)) +
   geom_point()
 ```
@@ -575,7 +576,7 @@ app_data |>
 
 - Of course we want to bring in subgroups to compare them!
 
-```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center'}
+```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center', fig.alt = "A scatter plot between the age and weight variables is shown. The points are colored by the diagnosis variable."}
 ggplot(app_data |> drop_na(Weight, Age, Diagnosis), aes(x = Age, y = Weight, color = Diagnosis)) +
   geom_point()
 ```
@@ -601,7 +602,7 @@ app_data |>
 
 - We can do really interesting stuff to add in additional variables (like a third numeric variable)
 
-```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center'}
+```{r, echo = FALSE, out.width = "700px", out.height = "400px", fig.align='center', fig.alt = "A scatter plot between the age and weight variables is shown. The points are colored by the diagnosis variable. The size of the points vary based on the length of stay variable."}
 ggplot(app_data |> drop_na(Weight, Age, Diagnosis, Length_of_Stay), aes(x = Age, y = Weight, color = Diagnosis, size = Length_of_Stay)) +
   geom_point(alpha = 0.5)
 ```

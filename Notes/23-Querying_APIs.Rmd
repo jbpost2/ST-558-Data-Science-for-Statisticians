@@ -16,12 +16,13 @@ output:
     self_contained: yes
 editor_options: 
   chunk_output_type: console
+lang: en
 ---
 
 
 layout: true
 
-<div class="my-footer"><img src="img/logo.png" style="height: 60px;"/></div> 
+<div class="my-footer"><img src="img/logo.png" alt = "logo" style="height: 60px;"/></div> 
 
 ```{r, include=FALSE,warning=FALSE,message=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -135,7 +136,7 @@ rent_data |>
 
 ---
 
-```{r, echo = FALSE, eval = FALSE}
+```{r, echo = TRUE, eval = FALSE}
 #install mapview
 rent_data |> 
   mapview::mapview(zcol = "estimate", 
@@ -274,7 +275,7 @@ Function    | Description
 - First we want to build the URL to contact a particular end point of the API
 - Suppose we first want team information. Documentation says
 
-```{r, out.width = "500px", fig.align='center', echo = FALSE}
+```{r, out.width = "500px", fig.align='center', echo = FALSE, fig.alt = "Information about the 'Teams' endpoint is shown."}
 knitr::include_graphics("img/team_info.png")
 ```
 
@@ -318,7 +319,7 @@ team_info
 
 - Now we can get some team stats through the same process! 
 
-```{r, out.width = "500px", fig.align='center', echo = FALSE}
+```{r, out.width = "500px", fig.align='center', echo = FALSE, fig.alt = "Information about the 'Team Stats' endpoint is shown."}
 knitr::include_graphics("img/team_stats.png")
 ```
 
