@@ -20,7 +20,7 @@ First, let's get some perspectives on what data science is, how statistics and c
       target="_blank">The role of statistics in Data Science and Artificial Intelligence</a>
 - <a href="https://en.wikipedia.org/wiki/Data_science" target="_blank">Data Science wikipedia entry</a>
 
-```{r, echo =FALSE}
+```{r, echo =FALSE, eval = FALSE}
 rquiz::multiQuestions(
   x = list(
     q1 = list(
@@ -51,7 +51,7 @@ rquiz::multiQuestions(
 )
 ```
 
-Note: The questions above are just there to help you check in. These don't count toward your grade!
+<!-- Note: The questions above are just there to help you check in. These don't count toward your grade! -->
 
 You'll write about these ideas as part of your first homework assignment! For now, onto understanding data workflows and `Git` and `GitHub` basics!
 

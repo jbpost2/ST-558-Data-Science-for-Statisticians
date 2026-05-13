@@ -34,7 +34,7 @@ There are two major tools to enhance how we program that work very well with `RS
     -   Created via a `.qmd` (Quarto markdown file)
     -   Renders most `.Rmd` files as is!
 
-We'll go through the basics to get you started. Much more is available on the [Quarto docs page](https://Quarto.org/docs/get-started/hello/rstudio.html), the [`RStudio` Quarto integration page](https://docs.posit.co/ide/user/ide/guide/documents/Quarto-project.html), and in the [*`R` for Data Science book*](https://r4ds.hadley.nz/Quarto).
+We'll go through the basics to get you started. Much more is available on the <a href= "https://Quarto.org/docs/get-started/hello/rstudio.html" target = "_blank">Quarto docs page</a>, the <a href = "https://docs.posit.co/ide/user/ide/guide/documents/Quarto-project.html" target = "_blank">`RStudio` Quarto integration page</a>, and in the <a href = "https://r4ds.hadley.nz/Quarto" target = "_blank">*`R` for Data Science book*</a>.
 
 ## Markdown Idea
 
@@ -55,7 +55,7 @@ Where `R` markdown and Quarto go beyond is in the ability to weave `R` code into
 -   The `R` code runs and output can be included in the final document!
 -   It is very *awesome*.
 
-Quarto is designed to be used in three ways ([*`R` for Data Science*](https://r4ds.hadley.nz/Quarto))
+Quarto is designed to be used in three ways (<a href = "https://r4ds.hadley.nz/quarto.html" target= "_blank">*`R` for Data Science*</a>)
 
 -   To communicate to decision makers (focus on conclusions not code)
 -   To collaborate with other data scientists (including future you!)

@@ -19,6 +19,4 @@ I highly recommend watching the video using the 'full' Panopto player. There is 
 - <a href = "15-Packages.html" target = "_blank">HTML version</a>
 - <a href = "PDFs/15-Packages.pdf" target = "_blank">PDF version</a>
 
-This wraps up the content for week 3. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your homework assignment for this week.
-
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

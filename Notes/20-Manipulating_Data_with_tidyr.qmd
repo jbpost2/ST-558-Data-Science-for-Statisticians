@@ -197,6 +197,6 @@ chicago_data |>
 
 -   `unite()` & `separate_wider_*()` nice for dealing with columns
 
--   [`tidyr` Cheat Sheet](https://rstudio.github.io/cheatsheets/html/tidyr.html)
+-   <a href = "https://rstudio.github.io/cheatsheets/html/tidyr.html" target = "_blank">`tidyr` Cheat Sheet</a>
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

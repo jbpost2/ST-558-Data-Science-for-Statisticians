@@ -39,12 +39,12 @@ Currently, the Lahman data sets are not in a data base. They are simply stored i
 
 There are many common types of relational databases management systems (RDBMS). Some of the more popular database types are:
 
--   [Oracle](https://docs.oracle.com/cd/E11882_01/server.112/e40540/intro.htm#CNCPT001)
--   [MySQL](https://dev.mysql.com/doc/)
--   [SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/databases/databases?view=sql-server-ver15)
--   [PostgreSQL](https://www.postgresql.org/about/)
--   [SQLite](https://www.sqlite.org/index.html)
--   [Azure SQL](https://docs.microsoft.com/en-us/azure/azure-sql/)
+-   <a href = "https://docs.oracle.com/cd/E11882_01/server.112/e40540/intro.htm#CNCPT001Oracle" target = "_blank">Oracle</a>
+-   <a href = "https://dev.mysql.com/doc/" target = "_blank">MySQL</a>
+-   <a href = "https://docs.microsoft.com/en-us/sql/relational-databases/databases/databases?view=sql-server-ver15" target = "_blank">SQL Server</a>
+-   <a href = "https://www.postgresql.org/about/" target = "_blank">PostgreSQL</a>
+-   <a href = "https://www.sqlite.org/index.html" target = "_blank">SQLite</a>
+-   <a href = "https://docs.microsoft.com/en-us/azure/azure-sql/" target = "_blank">Azure SQL</a>
 
 Most of these RDBMS have their own **Structured Query Language** (SQL) that provides a language for getting information from tables in the database. The SQL languages have the same core functionality and syntax that is vital to learn as a data scientist!
 

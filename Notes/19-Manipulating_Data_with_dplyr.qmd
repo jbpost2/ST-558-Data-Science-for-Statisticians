@@ -443,7 +443,7 @@ This function, by default, converts things to lower snake case!
 
 The functionality of selecting columns described in the help for `select()` can be used in many places across the `tidyverse` and the functions `group_by()` and `ifelse()` are really useful as well!
 
--   [`dplyr` Cheat Sheet](https://rstudio.github.io/cheatsheets/html/data-transformation.html) (PDF version on the right hand side of the page)
+-   <a href = "https://rstudio.github.io/cheatsheets/html/data-transformation.html" target = "_blank">`dplyr` Cheat Sheet</a> (PDF version on the right hand side of the page)
 
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

@@ -82,6 +82,6 @@ Upon completion of this week, students will be able to: (CO is the corresponding
 
 4.  produce common types of final documents using quarto (CO 1, 3, 6) a. utilize both code, menus, and shortcuts to create a document type
 
-**There are also arrows at the bottom of each page to navigate to the previous page or the next page in the course!**
+**There are arrows at the bottom of each page to navigate to the previous page or the next page in the course!**
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

@@ -13,10 +13,10 @@ As one of our goals is to read in and wrangle data, we need to learn how to effe
 
 Data comes in many formats such as
 
--   'Delimited' data: Character (such as [','](https://www4.stat.ncsu.edu/~online/datasets/scoresFull.csv) , ['\>'](https://www4.stat.ncsu.edu/~online/datasets/umps2012.txt), or \[' '\]) separated data
--   [Fixed field](https://www4.stat.ncsu.edu/~online/datasets/cigarettes.txt) data
--   [Excel](https://www4.stat.ncsu.edu/~online/datasets/Dry_Bean_Dataset.xlsx) data
--   From other statistical software, Ex: [SPSS formatted](https://www4.stat.ncsu.edu/~online/datasets/bodyFat.sav) data or [SAS data sets](https://www4.stat.ncsu.edu/~online/datasets/house.sas7bdat)
+-   'Delimited' data: Character (such as <a href ="https://www4.stat.ncsu.edu/~online/datasets/scoresFull.csv" target = "_blank">','</a>, <a href ="https://www4.stat.ncsu.edu/~online/datasets/umps2012.txt" target = "_blank">'\>'</a>, or \[' '\]) separated data
+-   <a href ="https://www4.stat.ncsu.edu/~online/datasets/cigarettes.txt" target = "_blank">Fixed field</a> data
+-   <a href ="https://www4.stat.ncsu.edu/~online/datasets/Dry_Bean_Dataset.xlsx" target = "_blank">Excel</a> data
+-   From other statistical software, Ex: <a href ="https://www4.stat.ncsu.edu/~online/datasets/bodyFat.sav" target = "_blank">SPSS formatted</a> data or <a href ="https://www4.stat.ncsu.edu/~online/datasets/house.sas7bdat" target = "_blank">SAS data sets</a>
 -   From a database
 -   From an Application Programming Interface (API)
 
@@ -186,7 +186,7 @@ Ahh, so the `guess_max` argument tells our function to scan the first `x` number
 | semi-colon ';' | read_csv2() (This uses `;` instead of commas, which is common in many countries) |
 | other | read_delim(...,delim = ,...) |
 
-Consider the `umps.txt` file available at: <https://www4.stat.ncsu.edu/~online/datasets/umps2012.txt>
+Consider the `umps.txt` file available at: <a href = "https://www4.stat.ncsu.edu/~online/datasets/umps2012.txt" download>https://www4.stat.ncsu.edu/~online/datasets/umps2012.txt</a>
 
 -   Download the file or open it in your browser.
 -   Note that the delimiter is a `>` sign!
@@ -319,7 +319,7 @@ Sometimes our raw data will be in a `.txt` type file but not in a super nice for
 
     -   reads a file into a character vector with one element per line
 
-Once the data is read into an `R` object, we can then usually parse it with [**regular expressions**](https://en.wikipedia.org/wiki/Regular_expression). Hopefully, that's not something you need to do very often!
+Once the data is read into an `R` object, we can then usually parse it with <a href = "https://en.wikipedia.org/wiki/Regular_expression" target = "_blank">**regular expressions**</a>. Hopefully, that's not something you need to do very often!
 
 ### Quick R Video
 
