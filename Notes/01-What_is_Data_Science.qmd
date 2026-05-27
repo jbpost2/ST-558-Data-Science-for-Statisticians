@@ -8,7 +8,7 @@ editor_options:
 
 ```{r}
 #| include: false
-library(rquiz)
+#library(rquiz)
 ```
 
 First, let's get some perspectives on what data science is, how statistics and computer science relate, and important items to consider when trying to understand data. To do so, we'll do some readings.

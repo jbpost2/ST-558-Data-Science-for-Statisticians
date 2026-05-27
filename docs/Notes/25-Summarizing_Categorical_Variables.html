@@ -2,14 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-05-01">
+<meta name="dcterms.date" content="2026-05-27">
 
 <title>Creating Contingency Tables – ST 558 Data Science for Statisticians (R)</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -22,8 +25,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +38,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -63,15 +67,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../Notes/26-Barplots_ggplot_Basics_Landing.html" rel="next">
 <link href="../Notes/24-EDA_Concepts_Landing.html" rel="prev">
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6a5cdfb3d7ad1aaef3b443595b27434a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -92,7 +97,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -669,7 +674,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2026-05-01</p>
+      <p class="date">2026-05-27</p>
     </div>
   </div>
   
@@ -699,7 +704,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To do so visually, we use bar plots.</p>
 <p>First, let’s read in the appendicitis data from the previous lecture.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>app_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/app_data.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">1</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>app_data <span class="ot">&lt;-</span> app_data <span class="sc">|&gt;</span></span>
@@ -708,9 +713,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">SexF =</span> <span class="fu">factor</span>(Sex, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"female"</span>, <span class="st">"male"</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Female"</span>, <span class="st">"Male"</span>)),</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">DiagnosisF =</span> <span class="fu">as.factor</span>(Diagnosis),</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">SeverityF =</span> <span class="fu">as.factor</span>(Severity))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>app_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>app_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 782 x 61
+<pre><code># A tibble: 782 × 61
      Age   BMI Sex    Height Weight Length_of_Stay Management   Severity     
    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;          &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;        
  1 12.7   16.9 female    148   37                3 conservative uncomplicated
@@ -723,13 +728,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8  7.06  NA   female     NA   21.5              2 conservative uncomplicated
  9  7.9   15.7 male      131   26.7              3 conservative uncomplicated
 10 14.3   14.9 male      174   45.5              3 conservative uncomplicated
-# i 772 more rows
-# i 53 more variables: Diagnosis_Presumptive &lt;chr&gt;, Diagnosis &lt;chr&gt;,
+# ℹ 772 more rows
+# ℹ 53 more variables: Diagnosis_Presumptive &lt;chr&gt;, Diagnosis &lt;chr&gt;,
 #   Alvarado_Score &lt;dbl&gt;, Paedriatic_Appendicitis_Score &lt;dbl&gt;,
 #   Appendix_on_US &lt;chr&gt;, Appendix_Diameter &lt;dbl&gt;, Migratory_Pain &lt;chr&gt;,
 #   Lower_Right_Abd_Pain &lt;chr&gt;, Contralateral_Rebound_Tenderness &lt;chr&gt;,
 #   Coughing_Pain &lt;chr&gt;, Nausea &lt;chr&gt;, Loss_of_Appetite &lt;chr&gt;,
-#   Body_Temperature &lt;dbl&gt;, WBC_Count &lt;dbl&gt;, Neutrophil_Percentage &lt;dbl&gt;, ...</code></pre>
+#   Body_Temperature &lt;dbl&gt;, WBC_Count &lt;dbl&gt;, Neutrophil_Percentage &lt;dbl&gt;, …</code></pre>
 </div>
 </div>
 <p>Let’s go!</p>
@@ -751,7 +756,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Ok, so we can just pass it the vectors we want or we could pass it a data frame (which remember, is just a list of equal length vectors!).</p>
 <p>Let’s create some contingency tables for the <code>SexF</code>, <code>DiagnosisF</code>, and <code>SeverityF</code> variables.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(app_data<span class="sc">$</span>SexF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(app_data<span class="sc">$</span>SexF)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Female   Male 
@@ -760,7 +765,7 @@ Female   Male
 </div>
 <p>We can include <code>NA</code> if we want to via the <code>useNA</code> argument:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(app_data<span class="sc">$</span>SexF, <span class="at">useNA =</span> <span class="st">"always"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(app_data<span class="sc">$</span>SexF, <span class="at">useNA =</span> <span class="st">"always"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Female   Male   &lt;NA&gt; 
@@ -769,7 +774,7 @@ Female   Male   &lt;NA&gt;
 </div>
 <p>We can create a two-way table (two-way for two variables) by adding the second variable in:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(app_data<span class="sc">$</span>SexF, app_data<span class="sc">$</span>DiagnosisF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(app_data<span class="sc">$</span>SexF, app_data<span class="sc">$</span>DiagnosisF)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        
          appendicitis no appendicitis
@@ -780,8 +785,8 @@ Female   Male   &lt;NA&gt;
 <p>What is returned from when we create a table? An array! (homogenous data structure - 1D array is a vector, 2D is a matrix)</p>
 <p>That means we can subset them if want to! Let’s return the <em>conditional</em> one-way table of Sex based on only those that had appendicitis:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>two_way_sex_diag <span class="ot">&lt;-</span> <span class="fu">table</span>(app_data<span class="sc">$</span>SexF, app_data<span class="sc">$</span>DiagnosisF)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>two_way_sex_diag[,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>two_way_sex_diag <span class="ot">&lt;-</span> <span class="fu">table</span>(app_data<span class="sc">$</span>SexF, app_data<span class="sc">$</span>DiagnosisF)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>two_way_sex_diag[,<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Female   Male 
    200    262 </code></pre>
@@ -789,7 +794,7 @@ Female   Male   &lt;NA&gt;
 </div>
 <p>Nice! Things do get more complicated if we add in a third variable as it is tough to display that info compactly.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(app_data<span class="sc">$</span>SexF, app_data<span class="sc">$</span>DiagnosisF, app_data<span class="sc">$</span>SeverityF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(app_data<span class="sc">$</span>SexF, app_data<span class="sc">$</span>DiagnosisF, app_data<span class="sc">$</span>SeverityF)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>, ,  = complicated
 
@@ -809,16 +814,16 @@ Female   Male   &lt;NA&gt;
 <p>If you look at the output you see <code>, , = complicated</code>. This is <code>R</code> hinting at how to access this 3D array!</p>
 <p>We can return the conditional two-way table of Sex and Diagnosis for only those with an uncomplicated situation:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>three_way <span class="ot">&lt;-</span> <span class="fu">table</span>(app_data<span class="sc">$</span>SexF, app_data<span class="sc">$</span>DiagnosisF, app_data<span class="sc">$</span>SeverityF)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>three_way[, , <span class="st">"uncomplicated"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>three_way <span class="ot">&lt;-</span> <span class="fu">table</span>(app_data<span class="sc">$</span>SexF, app_data<span class="sc">$</span>DiagnosisF, app_data<span class="sc">$</span>SeverityF)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>three_way[, , <span class="st">"uncomplicated"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        
          appendicitis no appendicitis
   Female          145             175
   Male            199             141</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#or</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>three_way[, , <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#or</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>three_way[, , <span class="dv">2</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        
          appendicitis no appendicitis
@@ -828,7 +833,7 @@ Female   Male   &lt;NA&gt;
 </div>
 <p>We can also get a one-way table conditional on two of the variables. Here is the one-way table for sex for only those with an uncomplicated situation and no appendicitis:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>three_way[, <span class="dv">2</span>, <span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>three_way[, <span class="dv">2</span>, <span class="dv">2</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Female   Male 
    175    141 </code></pre>
@@ -836,7 +841,7 @@ Female   Male   &lt;NA&gt;
 </div>
 <p>Lastly, just note that you can supply a data frame instead of the individual vectors.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(app_data[, <span class="fu">c</span>(<span class="st">"SexF"</span>, <span class="st">"DiagnosisF"</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(app_data[, <span class="fu">c</span>(<span class="st">"SexF"</span>, <span class="st">"DiagnosisF"</span>)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        DiagnosisF
 SexF     appendicitis no appendicitis
@@ -851,11 +856,11 @@ SexF     appendicitis no appendicitis
 <p>Any of the common summarization functions you can think of are likely permissible in <code>summarize()</code>. The one for counting values is simply <code>n()</code>. Let’s recreate all of our above tables under the <code>tidyverse</code> method.</p>
 <p>One-way table:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SexF) <span class="sc">|&gt;</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 x 2
+<pre><code># A tibble: 3 × 2
   SexF   count
   &lt;fct&gt;  &lt;int&gt;
 1 Female   377
@@ -865,12 +870,12 @@ SexF     appendicitis no appendicitis
 </div>
 <p>Notice that <code>NA</code> values are included by default (probably a good thing). We can remove those with <code>tidyr::drop_na()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(SexF) <span class="sc">|&gt;</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SexF) <span class="sc">|&gt;</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 x 2
+<pre><code># A tibble: 2 × 2
   SexF   count
   &lt;fct&gt;  &lt;int&gt;
 1 Female   377
@@ -879,16 +884,20 @@ SexF     appendicitis no appendicitis
 </div>
 <p>Two-way table: Simply add another grouping variable. The <code>summarize()</code> function respects these groups when counting!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(SexF, DiagnosisF) <span class="sc">|&gt;</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SexF, DiagnosisF) <span class="sc">|&gt;</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'SexF'. You can override using the
-`.groups` argument.</code></pre>
+<pre><code>`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by SexF and DiagnosisF.
+ℹ Output is grouped by SexF.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(SexF, DiagnosisF))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 x 3
+<pre><code># A tibble: 4 × 3
 # Groups:   SexF [2]
   SexF   DiagnosisF      count
   &lt;fct&gt;  &lt;fct&gt;           &lt;int&gt;
@@ -900,17 +909,21 @@ SexF     appendicitis no appendicitis
 </div>
 <p>Nice. But that isn’t in the best way for viewing (i.e.&nbsp;a wider format would be more compact for displaying). Let’s use <code>tidyr::pivot_wider()</code> to fix that!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(SexF, DiagnosisF) <span class="sc">|&gt;</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SexF, DiagnosisF) <span class="sc">|&gt;</span></span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> DiagnosisF, <span class="at">values_from =</span> count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> DiagnosisF, <span class="at">values_from =</span> count)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'SexF'. You can override using the
-`.groups` argument.</code></pre>
+<pre><code>`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by SexF and DiagnosisF.
+ℹ Output is grouped by SexF.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(SexF, DiagnosisF))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 x 3
+<pre><code># A tibble: 2 × 3
 # Groups:   SexF [2]
   SexF   appendicitis `no appendicitis`
   &lt;fct&gt;         &lt;int&gt;             &lt;int&gt;
@@ -920,16 +933,20 @@ SexF     appendicitis no appendicitis
 </div>
 <p>Three-way table: Again, just add more grouping variables!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(SexF, DiagnosisF, SeverityF) <span class="sc">|&gt;</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SexF, DiagnosisF, SeverityF) <span class="sc">|&gt;</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'SexF', 'DiagnosisF'. You can override
-using the `.groups` argument.</code></pre>
+<pre><code>`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by SexF, DiagnosisF, and SeverityF.
+ℹ Output is grouped by SexF and DiagnosisF.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(SexF, DiagnosisF, SeverityF))` for per-operation
+  grouping (`?dplyr::dplyr_by`) instead.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 x 4
+<pre><code># A tibble: 7 × 4
 # Groups:   SexF, DiagnosisF [4]
   SexF   DiagnosisF      SeverityF     count
   &lt;fct&gt;  &lt;fct&gt;           &lt;fct&gt;         &lt;int&gt;
@@ -944,17 +961,21 @@ using the `.groups` argument.</code></pre>
 </div>
 <p>We can also pivot this, although there is no great way to get all the info there. We’ll just move the severity variable across the top.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(SexF, DiagnosisF, SeverityF) <span class="sc">|&gt;</span></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SexF, DiagnosisF, SeverityF) <span class="sc">|&gt;</span></span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> SeverityF, <span class="at">values_from =</span> count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> SeverityF, <span class="at">values_from =</span> count)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'SexF', 'DiagnosisF'. You can override
-using the `.groups` argument.</code></pre>
+<pre><code>`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by SexF, DiagnosisF, and SeverityF.
+ℹ Output is grouped by SexF and DiagnosisF.
+ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+ℹ Use `summarise(.by = c(SexF, DiagnosisF, SeverityF))` for per-operation
+  grouping (`?dplyr::dplyr_by`) instead.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 x 4
+<pre><code># A tibble: 4 × 4
 # Groups:   SexF, DiagnosisF [4]
   SexF   DiagnosisF      complicated uncomplicated
   &lt;fct&gt;  &lt;fct&gt;                 &lt;int&gt;         &lt;int&gt;
@@ -970,25 +991,37 @@ using the `.groups` argument.</code></pre>
 <h3 class="anchored" data-anchor-id="making-it-pretty">Making it Pretty</h3>
 <p>When we create these kinds of tables, we often want to include them in some kind of final document. A great way to customize the look of tables is through the <a href="https://gt.rstudio.com/" target="_blank"><code>gt</code> package</a>!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can use the <code>gt()</code> and <code>tab_header()</code> functions (among other things) to easily create nicer looking tables!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(app_data[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,] <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(app_data[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,] <span class="sc">|&gt;</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">select</span>(Age, Sex, Height, Severity, Diagnosis)) <span class="sc">|&gt;</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"First 10 rows of Data"</span>,</span>
 <span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Data describes attributes of hospitalized patients"</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="rtgexzznmc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div id="ubnrezozjk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ubnrezozjk table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-:where(#rtgexzznmc) .gt_table {
+#ubnrezozjk thead, #ubnrezozjk tbody, #ubnrezozjk tfoot, #ubnrezozjk tr, #ubnrezozjk td, #ubnrezozjk th {
+  border-style: none;
+}
+
+#ubnrezozjk p {
+  margin: 0;
+  padding: 0;
+}
+
+#ubnrezozjk .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -1011,24 +1044,12 @@ using the `.groups` argument.</code></pre>
   border-left-color: #D3D3D3;
 }
 
-:where(#rtgexzznmc) .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#rtgexzznmc) .gt_caption {
+#ubnrezozjk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#rtgexzznmc) .gt_title {
+#ubnrezozjk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1040,25 +1061,37 @@ using the `.groups` argument.</code></pre>
   border-bottom-width: 0;
 }
 
-:where(#rtgexzznmc) .gt_subtitle {
+#ubnrezozjk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-:where(#rtgexzznmc) .gt_bottom_border {
+#ubnrezozjk .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ubnrezozjk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#rtgexzznmc) .gt_col_headings {
+#ubnrezozjk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1073,7 +1106,7 @@ using the `.groups` argument.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#rtgexzznmc) .gt_col_heading {
+#ubnrezozjk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1093,7 +1126,7 @@ using the `.groups` argument.</code></pre>
   overflow-x: hidden;
 }
 
-:where(#rtgexzznmc) .gt_column_spanner_outer {
+#ubnrezozjk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1105,15 +1138,15 @@ using the `.groups` argument.</code></pre>
   padding-right: 4px;
 }
 
-:where(#rtgexzznmc) .gt_column_spanner_outer:first-child {
+#ubnrezozjk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#rtgexzznmc) .gt_column_spanner_outer:last-child {
+#ubnrezozjk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#rtgexzznmc) .gt_column_spanner {
+#ubnrezozjk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1125,7 +1158,11 @@ using the `.groups` argument.</code></pre>
   width: 100%;
 }
 
-:where(#rtgexzznmc) .gt_group_heading {
+#ubnrezozjk .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ubnrezozjk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1151,7 +1188,7 @@ using the `.groups` argument.</code></pre>
   text-align: left;
 }
 
-:where(#rtgexzznmc) .gt_empty_group_heading {
+#ubnrezozjk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1166,15 +1203,15 @@ using the `.groups` argument.</code></pre>
   vertical-align: middle;
 }
 
-:where(#rtgexzznmc) .gt_from_md > :first-child {
+#ubnrezozjk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#rtgexzznmc) .gt_from_md > :last-child {
+#ubnrezozjk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#rtgexzznmc) .gt_row {
+#ubnrezozjk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1193,7 +1230,7 @@ using the `.groups` argument.</code></pre>
   overflow-x: hidden;
 }
 
-:where(#rtgexzznmc) .gt_stub {
+#ubnrezozjk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1206,7 +1243,7 @@ using the `.groups` argument.</code></pre>
   padding-right: 5px;
 }
 
-:where(#rtgexzznmc) .gt_stub_row_group {
+#ubnrezozjk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1220,11 +1257,15 @@ using the `.groups` argument.</code></pre>
   vertical-align: top;
 }
 
-:where(#rtgexzznmc) .gt_row_group_first td {
+#ubnrezozjk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#rtgexzznmc) .gt_summary_row {
+#ubnrezozjk .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ubnrezozjk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1234,16 +1275,16 @@ using the `.groups` argument.</code></pre>
   padding-right: 5px;
 }
 
-:where(#rtgexzznmc) .gt_first_summary_row {
+#ubnrezozjk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#rtgexzznmc) .gt_first_summary_row.thick {
+#ubnrezozjk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#rtgexzznmc) .gt_last_summary_row {
+#ubnrezozjk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1253,7 +1294,7 @@ using the `.groups` argument.</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-:where(#rtgexzznmc) .gt_grand_summary_row {
+#ubnrezozjk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1263,7 +1304,7 @@ using the `.groups` argument.</code></pre>
   padding-right: 5px;
 }
 
-:where(#rtgexzznmc) .gt_first_grand_summary_row {
+#ubnrezozjk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1273,11 +1314,21 @@ using the `.groups` argument.</code></pre>
   border-top-color: #D3D3D3;
 }
 
-:where(#rtgexzznmc) .gt_striped {
+#ubnrezozjk .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ubnrezozjk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#rtgexzznmc) .gt_table_body {
+#ubnrezozjk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1286,7 +1337,7 @@ using the `.groups` argument.</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-:where(#rtgexzznmc) .gt_footnotes {
+#ubnrezozjk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1300,30 +1351,8 @@ using the `.groups` argument.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#rtgexzznmc) .gt_footnote {
+#ubnrezozjk .gt_footnote {
   margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#rtgexzznmc) .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#rtgexzznmc) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1331,146 +1360,194 @@ using the `.groups` argument.</code></pre>
   padding-right: 5px;
 }
 
-:where(#rtgexzznmc) .gt_left {
+#ubnrezozjk .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ubnrezozjk .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ubnrezozjk .gt_left {
   text-align: left;
 }
 
-:where(#rtgexzznmc) .gt_center {
+#ubnrezozjk .gt_center {
   text-align: center;
 }
 
-:where(#rtgexzznmc) .gt_right {
+#ubnrezozjk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#rtgexzznmc) .gt_font_normal {
+#ubnrezozjk .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#rtgexzznmc) .gt_font_bold {
+#ubnrezozjk .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#rtgexzznmc) .gt_font_italic {
+#ubnrezozjk .gt_font_italic {
   font-style: italic;
 }
 
-:where(#rtgexzznmc) .gt_super {
+#ubnrezozjk .gt_super {
   font-size: 65%;
 }
 
-:where(#rtgexzznmc) .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
+#ubnrezozjk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
-:where(#rtgexzznmc) .gt_asterisk {
+#ubnrezozjk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#rtgexzznmc) .gt_indent_1 {
+#ubnrezozjk .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#rtgexzznmc) .gt_indent_2 {
+#ubnrezozjk .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#rtgexzznmc) .gt_indent_3 {
+#ubnrezozjk .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#rtgexzznmc) .gt_indent_4 {
+#ubnrezozjk .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#rtgexzznmc) .gt_indent_5 {
+#ubnrezozjk .gt_indent_5 {
   text-indent: 25px;
 }
+
+#ubnrezozjk .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ubnrezozjk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
-<table class="gt_table">
-  <thead class="gt_header">
-    <tr>
-      <td colspan="5" class="gt_heading gt_title gt_font_normal" style="">First 10 rows of Data</td>
-    </tr>
-    <tr>
-      <td colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Data describes attributes of hospitalized patients</td>
-    </tr>
-  </thead>
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Age">Age</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Sex">Sex</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Height">Height</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Severity">Severity</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Diagnosis">Diagnosis</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Age" class="gt_row gt_right">12.68</td>
-<td headers="Sex" class="gt_row gt_left">female</td>
-<td headers="Height" class="gt_row gt_right">148</td>
-<td headers="Severity" class="gt_row gt_left">uncomplicated</td>
-<td headers="Diagnosis" class="gt_row gt_left">appendicitis</td></tr>
-    <tr><td headers="Age" class="gt_row gt_right">14.10</td>
-<td headers="Sex" class="gt_row gt_left">male</td>
-<td headers="Height" class="gt_row gt_right">147</td>
-<td headers="Severity" class="gt_row gt_left">uncomplicated</td>
-<td headers="Diagnosis" class="gt_row gt_left">no appendicitis</td></tr>
-    <tr><td headers="Age" class="gt_row gt_right">14.14</td>
-<td headers="Sex" class="gt_row gt_left">female</td>
-<td headers="Height" class="gt_row gt_right">163</td>
-<td headers="Severity" class="gt_row gt_left">uncomplicated</td>
-<td headers="Diagnosis" class="gt_row gt_left">no appendicitis</td></tr>
-    <tr><td headers="Age" class="gt_row gt_right">16.37</td>
-<td headers="Sex" class="gt_row gt_left">female</td>
-<td headers="Height" class="gt_row gt_right">165</td>
-<td headers="Severity" class="gt_row gt_left">uncomplicated</td>
-<td headers="Diagnosis" class="gt_row gt_left">no appendicitis</td></tr>
-    <tr><td headers="Age" class="gt_row gt_right">11.08</td>
-<td headers="Sex" class="gt_row gt_left">female</td>
-<td headers="Height" class="gt_row gt_right">163</td>
-<td headers="Severity" class="gt_row gt_left">uncomplicated</td>
-<td headers="Diagnosis" class="gt_row gt_left">appendicitis</td></tr>
-    <tr><td headers="Age" class="gt_row gt_right">11.05</td>
-<td headers="Sex" class="gt_row gt_left">male</td>
-<td headers="Height" class="gt_row gt_right">121</td>
-<td headers="Severity" class="gt_row gt_left">uncomplicated</td>
-<td headers="Diagnosis" class="gt_row gt_left">no appendicitis</td></tr>
-    <tr><td headers="Age" class="gt_row gt_right">8.98</td>
-<td headers="Sex" class="gt_row gt_left">female</td>
-<td headers="Height" class="gt_row gt_right">140</td>
-<td headers="Severity" class="gt_row gt_left">uncomplicated</td>
-<td headers="Diagnosis" class="gt_row gt_left">no appendicitis</td></tr>
-    <tr><td headers="Age" class="gt_row gt_right">7.06</td>
-<td headers="Sex" class="gt_row gt_left">female</td>
-<td headers="Height" class="gt_row gt_right">NA</td>
-<td headers="Severity" class="gt_row gt_left">uncomplicated</td>
-<td headers="Diagnosis" class="gt_row gt_left">no appendicitis</td></tr>
-    <tr><td headers="Age" class="gt_row gt_right">7.90</td>
-<td headers="Sex" class="gt_row gt_left">male</td>
-<td headers="Height" class="gt_row gt_right">131</td>
-<td headers="Severity" class="gt_row gt_left">uncomplicated</td>
-<td headers="Diagnosis" class="gt_row gt_left">no appendicitis</td></tr>
-    <tr><td headers="Age" class="gt_row gt_right">14.34</td>
-<td headers="Sex" class="gt_row gt_left">male</td>
-<td headers="Height" class="gt_row gt_right">174</td>
-<td headers="Severity" class="gt_row gt_left">uncomplicated</td>
-<td headers="Diagnosis" class="gt_row gt_left">appendicitis</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="5" class="gt_heading gt_title gt_font_normal">First 10 rows of Data</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="5" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Data describes attributes of hospitalized patients</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="Age" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Age</th>
+<th id="Sex" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Sex</th>
+<th id="Height" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Height</th>
+<th id="Severity" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Severity</th>
+<th id="Diagnosis" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Diagnosis</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="Age">12.68</td>
+<td class="gt_row gt_left" headers="Sex">female</td>
+<td class="gt_row gt_right" headers="Height">148</td>
+<td class="gt_row gt_left" headers="Severity">uncomplicated</td>
+<td class="gt_row gt_left" headers="Diagnosis">appendicitis</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Age">14.10</td>
+<td class="gt_row gt_left" headers="Sex">male</td>
+<td class="gt_row gt_right" headers="Height">147</td>
+<td class="gt_row gt_left" headers="Severity">uncomplicated</td>
+<td class="gt_row gt_left" headers="Diagnosis">no appendicitis</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Age">14.14</td>
+<td class="gt_row gt_left" headers="Sex">female</td>
+<td class="gt_row gt_right" headers="Height">163</td>
+<td class="gt_row gt_left" headers="Severity">uncomplicated</td>
+<td class="gt_row gt_left" headers="Diagnosis">no appendicitis</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Age">16.37</td>
+<td class="gt_row gt_left" headers="Sex">female</td>
+<td class="gt_row gt_right" headers="Height">165</td>
+<td class="gt_row gt_left" headers="Severity">uncomplicated</td>
+<td class="gt_row gt_left" headers="Diagnosis">no appendicitis</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Age">11.08</td>
+<td class="gt_row gt_left" headers="Sex">female</td>
+<td class="gt_row gt_right" headers="Height">163</td>
+<td class="gt_row gt_left" headers="Severity">uncomplicated</td>
+<td class="gt_row gt_left" headers="Diagnosis">appendicitis</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Age">11.05</td>
+<td class="gt_row gt_left" headers="Sex">male</td>
+<td class="gt_row gt_right" headers="Height">121</td>
+<td class="gt_row gt_left" headers="Severity">uncomplicated</td>
+<td class="gt_row gt_left" headers="Diagnosis">no appendicitis</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Age">8.98</td>
+<td class="gt_row gt_left" headers="Sex">female</td>
+<td class="gt_row gt_right" headers="Height">140</td>
+<td class="gt_row gt_left" headers="Severity">uncomplicated</td>
+<td class="gt_row gt_left" headers="Diagnosis">no appendicitis</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Age">7.06</td>
+<td class="gt_row gt_left" headers="Sex">female</td>
+<td class="gt_row gt_right" headers="Height">NA</td>
+<td class="gt_row gt_left" headers="Severity">uncomplicated</td>
+<td class="gt_row gt_left" headers="Diagnosis">no appendicitis</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Age">7.90</td>
+<td class="gt_row gt_left" headers="Sex">male</td>
+<td class="gt_row gt_right" headers="Height">131</td>
+<td class="gt_row gt_left" headers="Severity">uncomplicated</td>
+<td class="gt_row gt_left" headers="Diagnosis">no appendicitis</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Age">14.34</td>
+<td class="gt_row gt_left" headers="Sex">male</td>
+<td class="gt_row gt_right" headers="Height">174</td>
+<td class="gt_row gt_left" headers="Severity">uncomplicated</td>
+<td class="gt_row gt_left" headers="Diagnosis">appendicitis</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <p>We can take our contingency table and make it look a bit nicer.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(SexF, DiagnosisF, SeverityF) <span class="sc">|&gt;</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SexF, DiagnosisF, SeverityF) <span class="sc">|&gt;</span></span>
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
@@ -1479,16 +1556,28 @@ using the `.groups` argument.</code></pre>
 <span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
 <span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Patient Diagnosis by Severity"</span>,</span>
 <span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Stratified by Biological Sex"</span></span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>  ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="uwlnviscem" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div id="xlmwcansqn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xlmwcansqn table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-:where(#uwlnviscem) .gt_table {
+#xlmwcansqn thead, #xlmwcansqn tbody, #xlmwcansqn tfoot, #xlmwcansqn tr, #xlmwcansqn td, #xlmwcansqn th {
+  border-style: none;
+}
+
+#xlmwcansqn p {
+  margin: 0;
+  padding: 0;
+}
+
+#xlmwcansqn .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -1511,24 +1600,12 @@ using the `.groups` argument.</code></pre>
   border-left-color: #D3D3D3;
 }
 
-:where(#uwlnviscem) .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#uwlnviscem) .gt_caption {
+#xlmwcansqn .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#uwlnviscem) .gt_title {
+#xlmwcansqn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1540,25 +1617,37 @@ using the `.groups` argument.</code></pre>
   border-bottom-width: 0;
 }
 
-:where(#uwlnviscem) .gt_subtitle {
+#xlmwcansqn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-:where(#uwlnviscem) .gt_bottom_border {
+#xlmwcansqn .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xlmwcansqn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#uwlnviscem) .gt_col_headings {
+#xlmwcansqn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1573,7 +1662,7 @@ using the `.groups` argument.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#uwlnviscem) .gt_col_heading {
+#xlmwcansqn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1593,7 +1682,7 @@ using the `.groups` argument.</code></pre>
   overflow-x: hidden;
 }
 
-:where(#uwlnviscem) .gt_column_spanner_outer {
+#xlmwcansqn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1605,15 +1694,15 @@ using the `.groups` argument.</code></pre>
   padding-right: 4px;
 }
 
-:where(#uwlnviscem) .gt_column_spanner_outer:first-child {
+#xlmwcansqn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#uwlnviscem) .gt_column_spanner_outer:last-child {
+#xlmwcansqn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#uwlnviscem) .gt_column_spanner {
+#xlmwcansqn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1625,7 +1714,11 @@ using the `.groups` argument.</code></pre>
   width: 100%;
 }
 
-:where(#uwlnviscem) .gt_group_heading {
+#xlmwcansqn .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#xlmwcansqn .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1651,7 +1744,7 @@ using the `.groups` argument.</code></pre>
   text-align: left;
 }
 
-:where(#uwlnviscem) .gt_empty_group_heading {
+#xlmwcansqn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1666,15 +1759,15 @@ using the `.groups` argument.</code></pre>
   vertical-align: middle;
 }
 
-:where(#uwlnviscem) .gt_from_md > :first-child {
+#xlmwcansqn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#uwlnviscem) .gt_from_md > :last-child {
+#xlmwcansqn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#uwlnviscem) .gt_row {
+#xlmwcansqn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1693,7 +1786,7 @@ using the `.groups` argument.</code></pre>
   overflow-x: hidden;
 }
 
-:where(#uwlnviscem) .gt_stub {
+#xlmwcansqn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1706,7 +1799,7 @@ using the `.groups` argument.</code></pre>
   padding-right: 5px;
 }
 
-:where(#uwlnviscem) .gt_stub_row_group {
+#xlmwcansqn .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1720,11 +1813,15 @@ using the `.groups` argument.</code></pre>
   vertical-align: top;
 }
 
-:where(#uwlnviscem) .gt_row_group_first td {
+#xlmwcansqn .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#uwlnviscem) .gt_summary_row {
+#xlmwcansqn .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#xlmwcansqn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1734,16 +1831,16 @@ using the `.groups` argument.</code></pre>
   padding-right: 5px;
 }
 
-:where(#uwlnviscem) .gt_first_summary_row {
+#xlmwcansqn .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#uwlnviscem) .gt_first_summary_row.thick {
+#xlmwcansqn .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#uwlnviscem) .gt_last_summary_row {
+#xlmwcansqn .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1753,7 +1850,7 @@ using the `.groups` argument.</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-:where(#uwlnviscem) .gt_grand_summary_row {
+#xlmwcansqn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1763,7 +1860,7 @@ using the `.groups` argument.</code></pre>
   padding-right: 5px;
 }
 
-:where(#uwlnviscem) .gt_first_grand_summary_row {
+#xlmwcansqn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1773,11 +1870,21 @@ using the `.groups` argument.</code></pre>
   border-top-color: #D3D3D3;
 }
 
-:where(#uwlnviscem) .gt_striped {
+#xlmwcansqn .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xlmwcansqn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#uwlnviscem) .gt_table_body {
+#xlmwcansqn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1786,7 +1893,7 @@ using the `.groups` argument.</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-:where(#uwlnviscem) .gt_footnotes {
+#xlmwcansqn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1800,30 +1907,8 @@ using the `.groups` argument.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#uwlnviscem) .gt_footnote {
+#xlmwcansqn .gt_footnote {
   margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#uwlnviscem) .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#uwlnviscem) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1831,112 +1916,148 @@ using the `.groups` argument.</code></pre>
   padding-right: 5px;
 }
 
-:where(#uwlnviscem) .gt_left {
+#xlmwcansqn .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xlmwcansqn .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xlmwcansqn .gt_left {
   text-align: left;
 }
 
-:where(#uwlnviscem) .gt_center {
+#xlmwcansqn .gt_center {
   text-align: center;
 }
 
-:where(#uwlnviscem) .gt_right {
+#xlmwcansqn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#uwlnviscem) .gt_font_normal {
+#xlmwcansqn .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#uwlnviscem) .gt_font_bold {
+#xlmwcansqn .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#uwlnviscem) .gt_font_italic {
+#xlmwcansqn .gt_font_italic {
   font-style: italic;
 }
 
-:where(#uwlnviscem) .gt_super {
+#xlmwcansqn .gt_super {
   font-size: 65%;
 }
 
-:where(#uwlnviscem) .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
+#xlmwcansqn .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
-:where(#uwlnviscem) .gt_asterisk {
+#xlmwcansqn .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#uwlnviscem) .gt_indent_1 {
+#xlmwcansqn .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#uwlnviscem) .gt_indent_2 {
+#xlmwcansqn .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#uwlnviscem) .gt_indent_3 {
+#xlmwcansqn .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#uwlnviscem) .gt_indent_4 {
+#xlmwcansqn .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#uwlnviscem) .gt_indent_5 {
+#xlmwcansqn .gt_indent_5 {
   text-indent: 25px;
 }
+
+#xlmwcansqn .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#xlmwcansqn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
-<table class="gt_table">
-  <thead class="gt_header">
-    <tr>
-      <td colspan="3" class="gt_heading gt_title gt_font_normal" style="">Patient Diagnosis by Severity</td>
-    </tr>
-    <tr>
-      <td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Stratified by Biological Sex</td>
-    </tr>
-  </thead>
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="DiagnosisF">DiagnosisF</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="complicated">complicated</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="uncomplicated">uncomplicated</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="Female">Female</th>
-    </tr>
-    <tr class="gt_row_group_first"><td headers="Female  DiagnosisF" class="gt_row gt_center">appendicitis</td>
-<td headers="Female  complicated" class="gt_row gt_right">55</td>
-<td headers="Female  uncomplicated" class="gt_row gt_right">145</td></tr>
-    <tr><td headers="Female  DiagnosisF" class="gt_row gt_center">no appendicitis</td>
-<td headers="Female  complicated" class="gt_row gt_right">1</td>
-<td headers="Female  uncomplicated" class="gt_row gt_right">175</td></tr>
-    <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="Male">Male</th>
-    </tr>
-    <tr class="gt_row_group_first"><td headers="Male  DiagnosisF" class="gt_row gt_center">appendicitis</td>
-<td headers="Male  complicated" class="gt_row gt_right">63</td>
-<td headers="Male  uncomplicated" class="gt_row gt_right">199</td></tr>
-    <tr><td headers="Male  DiagnosisF" class="gt_row gt_center">no appendicitis</td>
-<td headers="Male  complicated" class="gt_row gt_right">NA</td>
-<td headers="Male  uncomplicated" class="gt_row gt_right">141</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="3" class="gt_heading gt_title gt_font_normal">Patient Diagnosis by Severity</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Stratified by Biological Sex</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="DiagnosisF" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">DiagnosisF</th>
+<th id="complicated" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">complicated</th>
+<th id="uncomplicated" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">uncomplicated</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="3" id="Female" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Female</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_center" headers="Female  DiagnosisF">appendicitis</td>
+<td class="gt_row gt_right" headers="Female  complicated">55</td>
+<td class="gt_row gt_right" headers="Female  uncomplicated">145</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Female  DiagnosisF">no appendicitis</td>
+<td class="gt_row gt_right" headers="Female  complicated">1</td>
+<td class="gt_row gt_right" headers="Female  uncomplicated">175</td>
+</tr>
+<tr class="gt_group_heading_row even">
+<th colspan="3" id="Male" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Male</th>
+</tr>
+<tr class="gt_row_group_first odd">
+<td class="gt_row gt_center" headers="Male  DiagnosisF">appendicitis</td>
+<td class="gt_row gt_right" headers="Male  complicated">63</td>
+<td class="gt_row gt_right" headers="Male  uncomplicated">199</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Male  DiagnosisF">no appendicitis</td>
+<td class="gt_row gt_right" headers="Male  complicated">NA</td>
+<td class="gt_row gt_right" headers="Male  uncomplicated">141</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <p>It is easy to add lables on the columns via <code>cols_label()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(SexF, DiagnosisF, SeverityF) <span class="sc">|&gt;</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SexF, DiagnosisF, SeverityF) <span class="sc">|&gt;</span></span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
@@ -1950,16 +2071,28 @@ using the `.groups` argument.</code></pre>
 <span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">DiagnosisF =</span> <span class="st">"Diagnosis"</span>,</span>
 <span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">complicated =</span> <span class="st">"Complicated"</span>,</span>
 <span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">uncomplicated =</span> <span class="st">"Uncomplicated"</span></span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>  ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="dkckejezhq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div id="mgmjygabgd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mgmjygabgd table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-:where(#dkckejezhq) .gt_table {
+#mgmjygabgd thead, #mgmjygabgd tbody, #mgmjygabgd tfoot, #mgmjygabgd tr, #mgmjygabgd td, #mgmjygabgd th {
+  border-style: none;
+}
+
+#mgmjygabgd p {
+  margin: 0;
+  padding: 0;
+}
+
+#mgmjygabgd .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -1982,24 +2115,12 @@ using the `.groups` argument.</code></pre>
   border-left-color: #D3D3D3;
 }
 
-:where(#dkckejezhq) .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#dkckejezhq) .gt_caption {
+#mgmjygabgd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#dkckejezhq) .gt_title {
+#mgmjygabgd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2011,25 +2132,37 @@ using the `.groups` argument.</code></pre>
   border-bottom-width: 0;
 }
 
-:where(#dkckejezhq) .gt_subtitle {
+#mgmjygabgd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-:where(#dkckejezhq) .gt_bottom_border {
+#mgmjygabgd .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mgmjygabgd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#dkckejezhq) .gt_col_headings {
+#mgmjygabgd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2044,7 +2177,7 @@ using the `.groups` argument.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#dkckejezhq) .gt_col_heading {
+#mgmjygabgd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2064,7 +2197,7 @@ using the `.groups` argument.</code></pre>
   overflow-x: hidden;
 }
 
-:where(#dkckejezhq) .gt_column_spanner_outer {
+#mgmjygabgd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2076,15 +2209,15 @@ using the `.groups` argument.</code></pre>
   padding-right: 4px;
 }
 
-:where(#dkckejezhq) .gt_column_spanner_outer:first-child {
+#mgmjygabgd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#dkckejezhq) .gt_column_spanner_outer:last-child {
+#mgmjygabgd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#dkckejezhq) .gt_column_spanner {
+#mgmjygabgd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2096,7 +2229,11 @@ using the `.groups` argument.</code></pre>
   width: 100%;
 }
 
-:where(#dkckejezhq) .gt_group_heading {
+#mgmjygabgd .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mgmjygabgd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2122,7 +2259,7 @@ using the `.groups` argument.</code></pre>
   text-align: left;
 }
 
-:where(#dkckejezhq) .gt_empty_group_heading {
+#mgmjygabgd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2137,15 +2274,15 @@ using the `.groups` argument.</code></pre>
   vertical-align: middle;
 }
 
-:where(#dkckejezhq) .gt_from_md > :first-child {
+#mgmjygabgd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#dkckejezhq) .gt_from_md > :last-child {
+#mgmjygabgd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#dkckejezhq) .gt_row {
+#mgmjygabgd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2164,7 +2301,7 @@ using the `.groups` argument.</code></pre>
   overflow-x: hidden;
 }
 
-:where(#dkckejezhq) .gt_stub {
+#mgmjygabgd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2177,7 +2314,7 @@ using the `.groups` argument.</code></pre>
   padding-right: 5px;
 }
 
-:where(#dkckejezhq) .gt_stub_row_group {
+#mgmjygabgd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2191,11 +2328,15 @@ using the `.groups` argument.</code></pre>
   vertical-align: top;
 }
 
-:where(#dkckejezhq) .gt_row_group_first td {
+#mgmjygabgd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#dkckejezhq) .gt_summary_row {
+#mgmjygabgd .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mgmjygabgd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2205,16 +2346,16 @@ using the `.groups` argument.</code></pre>
   padding-right: 5px;
 }
 
-:where(#dkckejezhq) .gt_first_summary_row {
+#mgmjygabgd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#dkckejezhq) .gt_first_summary_row.thick {
+#mgmjygabgd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#dkckejezhq) .gt_last_summary_row {
+#mgmjygabgd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2224,7 +2365,7 @@ using the `.groups` argument.</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-:where(#dkckejezhq) .gt_grand_summary_row {
+#mgmjygabgd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2234,7 +2375,7 @@ using the `.groups` argument.</code></pre>
   padding-right: 5px;
 }
 
-:where(#dkckejezhq) .gt_first_grand_summary_row {
+#mgmjygabgd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2244,11 +2385,21 @@ using the `.groups` argument.</code></pre>
   border-top-color: #D3D3D3;
 }
 
-:where(#dkckejezhq) .gt_striped {
+#mgmjygabgd .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mgmjygabgd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#dkckejezhq) .gt_table_body {
+#mgmjygabgd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2257,7 +2408,7 @@ using the `.groups` argument.</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-:where(#dkckejezhq) .gt_footnotes {
+#mgmjygabgd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2271,30 +2422,8 @@ using the `.groups` argument.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#dkckejezhq) .gt_footnote {
+#mgmjygabgd .gt_footnote {
   margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#dkckejezhq) .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#dkckejezhq) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2302,112 +2431,148 @@ using the `.groups` argument.</code></pre>
   padding-right: 5px;
 }
 
-:where(#dkckejezhq) .gt_left {
+#mgmjygabgd .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mgmjygabgd .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mgmjygabgd .gt_left {
   text-align: left;
 }
 
-:where(#dkckejezhq) .gt_center {
+#mgmjygabgd .gt_center {
   text-align: center;
 }
 
-:where(#dkckejezhq) .gt_right {
+#mgmjygabgd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#dkckejezhq) .gt_font_normal {
+#mgmjygabgd .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#dkckejezhq) .gt_font_bold {
+#mgmjygabgd .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#dkckejezhq) .gt_font_italic {
+#mgmjygabgd .gt_font_italic {
   font-style: italic;
 }
 
-:where(#dkckejezhq) .gt_super {
+#mgmjygabgd .gt_super {
   font-size: 65%;
 }
 
-:where(#dkckejezhq) .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
+#mgmjygabgd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
-:where(#dkckejezhq) .gt_asterisk {
+#mgmjygabgd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#dkckejezhq) .gt_indent_1 {
+#mgmjygabgd .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#dkckejezhq) .gt_indent_2 {
+#mgmjygabgd .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#dkckejezhq) .gt_indent_3 {
+#mgmjygabgd .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#dkckejezhq) .gt_indent_4 {
+#mgmjygabgd .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#dkckejezhq) .gt_indent_5 {
+#mgmjygabgd .gt_indent_5 {
   text-indent: 25px;
 }
+
+#mgmjygabgd .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mgmjygabgd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
-<table class="gt_table">
-  <thead class="gt_header">
-    <tr>
-      <td colspan="3" class="gt_heading gt_title gt_font_normal" style="">Patient Diagnosis by Severity</td>
-    </tr>
-    <tr>
-      <td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Stratified by Biological Sex</td>
-    </tr>
-  </thead>
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Diagnosis">Diagnosis</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Complicated">Complicated</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Uncomplicated">Uncomplicated</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="Female">Female</th>
-    </tr>
-    <tr class="gt_row_group_first"><td headers="Female  DiagnosisF" class="gt_row gt_center">appendicitis</td>
-<td headers="Female  complicated" class="gt_row gt_right">55</td>
-<td headers="Female  uncomplicated" class="gt_row gt_right">145</td></tr>
-    <tr><td headers="Female  DiagnosisF" class="gt_row gt_center">no appendicitis</td>
-<td headers="Female  complicated" class="gt_row gt_right">1</td>
-<td headers="Female  uncomplicated" class="gt_row gt_right">175</td></tr>
-    <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="Male">Male</th>
-    </tr>
-    <tr class="gt_row_group_first"><td headers="Male  DiagnosisF" class="gt_row gt_center">appendicitis</td>
-<td headers="Male  complicated" class="gt_row gt_right">63</td>
-<td headers="Male  uncomplicated" class="gt_row gt_right">199</td></tr>
-    <tr><td headers="Male  DiagnosisF" class="gt_row gt_center">no appendicitis</td>
-<td headers="Male  complicated" class="gt_row gt_right">NA</td>
-<td headers="Male  uncomplicated" class="gt_row gt_right">141</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="3" class="gt_heading gt_title gt_font_normal">Patient Diagnosis by Severity</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Stratified by Biological Sex</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="DiagnosisF" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Diagnosis</th>
+<th id="complicated" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Complicated</th>
+<th id="uncomplicated" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Uncomplicated</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="3" id="Female" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Female</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_center" headers="Female  DiagnosisF">appendicitis</td>
+<td class="gt_row gt_right" headers="Female  complicated">55</td>
+<td class="gt_row gt_right" headers="Female  uncomplicated">145</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Female  DiagnosisF">no appendicitis</td>
+<td class="gt_row gt_right" headers="Female  complicated">1</td>
+<td class="gt_row gt_right" headers="Female  uncomplicated">175</td>
+</tr>
+<tr class="gt_group_heading_row even">
+<th colspan="3" id="Male" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Male</th>
+</tr>
+<tr class="gt_row_group_first odd">
+<td class="gt_row gt_center" headers="Male  DiagnosisF">appendicitis</td>
+<td class="gt_row gt_right" headers="Male  complicated">63</td>
+<td class="gt_row gt_right" headers="Male  uncomplicated">199</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Male  DiagnosisF">no appendicitis</td>
+<td class="gt_row gt_right" headers="Male  complicated">NA</td>
+<td class="gt_row gt_right" headers="Male  uncomplicated">141</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <p>We can use other functions such as <code>sub_missing()</code> to change the <code>NA</code> values and put a better label above the <code>Complicated</code>/<code>Uncomplicated</code> column headers with <code>tab_spanner()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(SexF, DiagnosisF, SeverityF) <span class="sc">|&gt;</span></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SexF, DiagnosisF, SeverityF) <span class="sc">|&gt;</span></span>
 <span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
@@ -2429,16 +2594,28 @@ using the `.groups` argument.</code></pre>
 <span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(</span>
 <span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"Severity Levels"</span>,</span>
 <span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(complicated, uncomplicated)</span>
-<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>  ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="iwcwgewoha" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div id="ypkdkdpuuk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ypkdkdpuuk table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-:where(#iwcwgewoha) .gt_table {
+#ypkdkdpuuk thead, #ypkdkdpuuk tbody, #ypkdkdpuuk tfoot, #ypkdkdpuuk tr, #ypkdkdpuuk td, #ypkdkdpuuk th {
+  border-style: none;
+}
+
+#ypkdkdpuuk p {
+  margin: 0;
+  padding: 0;
+}
+
+#ypkdkdpuuk .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -2461,24 +2638,12 @@ using the `.groups` argument.</code></pre>
   border-left-color: #D3D3D3;
 }
 
-:where(#iwcwgewoha) .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#iwcwgewoha) .gt_caption {
+#ypkdkdpuuk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#iwcwgewoha) .gt_title {
+#ypkdkdpuuk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2490,25 +2655,37 @@ using the `.groups` argument.</code></pre>
   border-bottom-width: 0;
 }
 
-:where(#iwcwgewoha) .gt_subtitle {
+#ypkdkdpuuk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-:where(#iwcwgewoha) .gt_bottom_border {
+#ypkdkdpuuk .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ypkdkdpuuk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#iwcwgewoha) .gt_col_headings {
+#ypkdkdpuuk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2523,7 +2700,7 @@ using the `.groups` argument.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#iwcwgewoha) .gt_col_heading {
+#ypkdkdpuuk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2543,7 +2720,7 @@ using the `.groups` argument.</code></pre>
   overflow-x: hidden;
 }
 
-:where(#iwcwgewoha) .gt_column_spanner_outer {
+#ypkdkdpuuk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2555,15 +2732,15 @@ using the `.groups` argument.</code></pre>
   padding-right: 4px;
 }
 
-:where(#iwcwgewoha) .gt_column_spanner_outer:first-child {
+#ypkdkdpuuk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#iwcwgewoha) .gt_column_spanner_outer:last-child {
+#ypkdkdpuuk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#iwcwgewoha) .gt_column_spanner {
+#ypkdkdpuuk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2575,7 +2752,11 @@ using the `.groups` argument.</code></pre>
   width: 100%;
 }
 
-:where(#iwcwgewoha) .gt_group_heading {
+#ypkdkdpuuk .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ypkdkdpuuk .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2601,7 +2782,7 @@ using the `.groups` argument.</code></pre>
   text-align: left;
 }
 
-:where(#iwcwgewoha) .gt_empty_group_heading {
+#ypkdkdpuuk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2616,15 +2797,15 @@ using the `.groups` argument.</code></pre>
   vertical-align: middle;
 }
 
-:where(#iwcwgewoha) .gt_from_md > :first-child {
+#ypkdkdpuuk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#iwcwgewoha) .gt_from_md > :last-child {
+#ypkdkdpuuk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#iwcwgewoha) .gt_row {
+#ypkdkdpuuk .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2643,7 +2824,7 @@ using the `.groups` argument.</code></pre>
   overflow-x: hidden;
 }
 
-:where(#iwcwgewoha) .gt_stub {
+#ypkdkdpuuk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2656,7 +2837,7 @@ using the `.groups` argument.</code></pre>
   padding-right: 5px;
 }
 
-:where(#iwcwgewoha) .gt_stub_row_group {
+#ypkdkdpuuk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2670,11 +2851,15 @@ using the `.groups` argument.</code></pre>
   vertical-align: top;
 }
 
-:where(#iwcwgewoha) .gt_row_group_first td {
+#ypkdkdpuuk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#iwcwgewoha) .gt_summary_row {
+#ypkdkdpuuk .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ypkdkdpuuk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2684,16 +2869,16 @@ using the `.groups` argument.</code></pre>
   padding-right: 5px;
 }
 
-:where(#iwcwgewoha) .gt_first_summary_row {
+#ypkdkdpuuk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#iwcwgewoha) .gt_first_summary_row.thick {
+#ypkdkdpuuk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#iwcwgewoha) .gt_last_summary_row {
+#ypkdkdpuuk .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2703,7 +2888,7 @@ using the `.groups` argument.</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-:where(#iwcwgewoha) .gt_grand_summary_row {
+#ypkdkdpuuk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2713,7 +2898,7 @@ using the `.groups` argument.</code></pre>
   padding-right: 5px;
 }
 
-:where(#iwcwgewoha) .gt_first_grand_summary_row {
+#ypkdkdpuuk .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2723,11 +2908,21 @@ using the `.groups` argument.</code></pre>
   border-top-color: #D3D3D3;
 }
 
-:where(#iwcwgewoha) .gt_striped {
+#ypkdkdpuuk .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ypkdkdpuuk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#iwcwgewoha) .gt_table_body {
+#ypkdkdpuuk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2736,7 +2931,7 @@ using the `.groups` argument.</code></pre>
   border-bottom-color: #D3D3D3;
 }
 
-:where(#iwcwgewoha) .gt_footnotes {
+#ypkdkdpuuk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2750,30 +2945,8 @@ using the `.groups` argument.</code></pre>
   border-right-color: #D3D3D3;
 }
 
-:where(#iwcwgewoha) .gt_footnote {
+#ypkdkdpuuk .gt_footnote {
   margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#iwcwgewoha) .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#iwcwgewoha) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2781,117 +2954,158 @@ using the `.groups` argument.</code></pre>
   padding-right: 5px;
 }
 
-:where(#iwcwgewoha) .gt_left {
+#ypkdkdpuuk .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ypkdkdpuuk .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ypkdkdpuuk .gt_left {
   text-align: left;
 }
 
-:where(#iwcwgewoha) .gt_center {
+#ypkdkdpuuk .gt_center {
   text-align: center;
 }
 
-:where(#iwcwgewoha) .gt_right {
+#ypkdkdpuuk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#iwcwgewoha) .gt_font_normal {
+#ypkdkdpuuk .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#iwcwgewoha) .gt_font_bold {
+#ypkdkdpuuk .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#iwcwgewoha) .gt_font_italic {
+#ypkdkdpuuk .gt_font_italic {
   font-style: italic;
 }
 
-:where(#iwcwgewoha) .gt_super {
+#ypkdkdpuuk .gt_super {
   font-size: 65%;
 }
 
-:where(#iwcwgewoha) .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
+#ypkdkdpuuk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
-:where(#iwcwgewoha) .gt_asterisk {
+#ypkdkdpuuk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#iwcwgewoha) .gt_indent_1 {
+#ypkdkdpuuk .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#iwcwgewoha) .gt_indent_2 {
+#ypkdkdpuuk .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#iwcwgewoha) .gt_indent_3 {
+#ypkdkdpuuk .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#iwcwgewoha) .gt_indent_4 {
+#ypkdkdpuuk .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#iwcwgewoha) .gt_indent_5 {
+#ypkdkdpuuk .gt_indent_5 {
   text-indent: 25px;
 }
+
+#ypkdkdpuuk .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ypkdkdpuuk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
-<table class="gt_table">
-  <thead class="gt_header">
-    <tr>
-      <td colspan="3" class="gt_heading gt_title gt_font_normal" style="">Patient Diagnosis by Severity</td>
-    </tr>
-    <tr>
-      <td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Stratified by Biological Sex</td>
-    </tr>
-  </thead>
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="2" colspan="1" scope="col" id="Diagnosis">Diagnosis</th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="Severity Levels">
-        <span class="gt_column_spanner">Severity Levels</span>
-      </th>
-    </tr>
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Complicated">Complicated</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Uncomplicated">Uncomplicated</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="Female">Female</th>
-    </tr>
-    <tr class="gt_row_group_first"><td headers="Female  DiagnosisF" class="gt_row gt_center">appendicitis</td>
-<td headers="Female  complicated" class="gt_row gt_right">55</td>
-<td headers="Female  uncomplicated" class="gt_row gt_right">145</td></tr>
-    <tr><td headers="Female  DiagnosisF" class="gt_row gt_center">no appendicitis</td>
-<td headers="Female  complicated" class="gt_row gt_right">1</td>
-<td headers="Female  uncomplicated" class="gt_row gt_right">175</td></tr>
-    <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="Male">Male</th>
-    </tr>
-    <tr class="gt_row_group_first"><td headers="Male  DiagnosisF" class="gt_row gt_center">appendicitis</td>
-<td headers="Male  complicated" class="gt_row gt_right">63</td>
-<td headers="Male  uncomplicated" class="gt_row gt_right">199</td></tr>
-    <tr><td headers="Male  DiagnosisF" class="gt_row gt_center">no appendicitis</td>
-<td headers="Male  complicated" class="gt_row gt_right">0</td>
-<td headers="Male  uncomplicated" class="gt_row gt_right">141</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="gt_heading header">
+<td colspan="3" class="gt_heading gt_title gt_font_normal">Patient Diagnosis by Severity</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Stratified by Biological Sex</td>
+</tr>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="DiagnosisF" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Diagnosis</th>
+<th colspan="2" id="Severity Levels" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+Severity Levels
+</div></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="complicated" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Complicated</th>
+<th id="uncomplicated" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Uncomplicated</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="3" id="Female" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Female</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_center" headers="Female  DiagnosisF">appendicitis</td>
+<td class="gt_row gt_right" headers="Female  complicated">55</td>
+<td class="gt_row gt_right" headers="Female  uncomplicated">145</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="Female  DiagnosisF">no appendicitis</td>
+<td class="gt_row gt_right" headers="Female  complicated">1</td>
+<td class="gt_row gt_right" headers="Female  uncomplicated">175</td>
+</tr>
+<tr class="gt_group_heading_row even">
+<th colspan="3" id="Male" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Male</th>
+</tr>
+<tr class="gt_row_group_first odd">
+<td class="gt_row gt_center" headers="Male  DiagnosisF">appendicitis</td>
+<td class="gt_row gt_right" headers="Male  complicated">63</td>
+<td class="gt_row gt_right" headers="Male  uncomplicated">199</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="Male  DiagnosisF">no appendicitis</td>
+<td class="gt_row gt_right" headers="Male  complicated">0</td>
+<td class="gt_row gt_right" headers="Male  uncomplicated">141</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <p>Lastly, there are functions for changing the font, width, etc. (<code>tab_options()</code>) and there are easy ways to change themes for the table (<code>opt_stylize()</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>app_data <span class="sc">|&gt;</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(SexF, DiagnosisF, SeverityF) <span class="sc">|&gt;</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SexF, DiagnosisF, SeverityF) <span class="sc">|&gt;</span></span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">count =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
@@ -2918,21 +3132,33 @@ using the `.groups` argument.</code></pre>
 <span id="cb43-25"><a href="#cb43-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">row_group.font.weight =</span> <span class="st">"bold"</span>,</span>
 <span id="cb43-26"><a href="#cb43-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">table.width =</span> <span class="fu">pct</span>(<span class="dv">80</span>)</span>
 <span id="cb43-27"><a href="#cb43-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb43-28"><a href="#cb43-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_stylize</span>(<span class="at">style =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb43-28"><a href="#cb43-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_stylize</span>(<span class="at">style =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: Since gt v0.6.0 the `fmt_missing()` function is deprecated and will soon be
-removed.
-* Use the `sub_missing()` function instead.</code></pre>
+<pre><code>Warning: Since gt v0.6.0 `fmt_missing()` is deprecated and will soon be removed.
+ℹ Use `sub_missing()` instead.
+This warning is displayed once every 8 hours.</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="cjauggqksy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div id="armmqfifnz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#armmqfifnz table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-:where(#cjauggqksy) .gt_table {
+#armmqfifnz thead, #armmqfifnz tbody, #armmqfifnz tfoot, #armmqfifnz tr, #armmqfifnz td, #armmqfifnz th {
+  border-style: none;
+}
+
+#armmqfifnz p {
+  margin: 0;
+  padding: 0;
+}
+
+#armmqfifnz .gt_table {
   display: table;
   border-collapse: collapse;
+  line-height: normal;
   margin-left: auto;
   margin-right: auto;
   color: #333333;
@@ -2955,24 +3181,12 @@ removed.
   border-left-color: #D3D3D3;
 }
 
-:where(#cjauggqksy) .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#cjauggqksy) .gt_caption {
+#armmqfifnz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-:where(#cjauggqksy) .gt_title {
+#armmqfifnz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2984,25 +3198,37 @@ removed.
   border-bottom-width: 0;
 }
 
-:where(#cjauggqksy) .gt_subtitle {
+#armmqfifnz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
 
-:where(#cjauggqksy) .gt_bottom_border {
+#armmqfifnz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#armmqfifnz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #0076BA;
 }
 
-:where(#cjauggqksy) .gt_col_headings {
+#armmqfifnz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #0076BA;
@@ -3017,7 +3243,7 @@ removed.
   border-right-color: #D3D3D3;
 }
 
-:where(#cjauggqksy) .gt_col_heading {
+#armmqfifnz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3037,7 +3263,7 @@ removed.
   overflow-x: hidden;
 }
 
-:where(#cjauggqksy) .gt_column_spanner_outer {
+#armmqfifnz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3049,15 +3275,15 @@ removed.
   padding-right: 4px;
 }
 
-:where(#cjauggqksy) .gt_column_spanner_outer:first-child {
+#armmqfifnz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#cjauggqksy) .gt_column_spanner_outer:last-child {
+#armmqfifnz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#cjauggqksy) .gt_column_spanner {
+#armmqfifnz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #0076BA;
@@ -3069,7 +3295,11 @@ removed.
   width: 100%;
 }
 
-:where(#cjauggqksy) .gt_group_heading {
+#armmqfifnz .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#armmqfifnz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3095,7 +3325,7 @@ removed.
   text-align: left;
 }
 
-:where(#cjauggqksy) .gt_empty_group_heading {
+#armmqfifnz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3110,15 +3340,15 @@ removed.
   vertical-align: middle;
 }
 
-:where(#cjauggqksy) .gt_from_md > :first-child {
+#armmqfifnz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#cjauggqksy) .gt_from_md > :last-child {
+#armmqfifnz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#cjauggqksy) .gt_row {
+#armmqfifnz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3137,7 +3367,7 @@ removed.
   overflow-x: hidden;
 }
 
-:where(#cjauggqksy) .gt_stub {
+#armmqfifnz .gt_stub {
   color: #FFFFFF;
   background-color: #0076BA;
   font-size: 100%;
@@ -3150,7 +3380,7 @@ removed.
   padding-right: 5px;
 }
 
-:where(#cjauggqksy) .gt_stub_row_group {
+#armmqfifnz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3164,11 +3394,15 @@ removed.
   vertical-align: top;
 }
 
-:where(#cjauggqksy) .gt_row_group_first td {
+#armmqfifnz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#cjauggqksy) .gt_summary_row {
+#armmqfifnz .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#armmqfifnz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3178,16 +3412,16 @@ removed.
   padding-right: 5px;
 }
 
-:where(#cjauggqksy) .gt_first_summary_row {
+#armmqfifnz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #0076BA;
 }
 
-:where(#cjauggqksy) .gt_first_summary_row.thick {
+#armmqfifnz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#cjauggqksy) .gt_last_summary_row {
+#armmqfifnz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3197,7 +3431,7 @@ removed.
   border-bottom-color: #0076BA;
 }
 
-:where(#cjauggqksy) .gt_grand_summary_row {
+#armmqfifnz .gt_grand_summary_row {
   color: #333333;
   background-color: #89D3FE;
   text-transform: inherit;
@@ -3207,7 +3441,7 @@ removed.
   padding-right: 5px;
 }
 
-:where(#cjauggqksy) .gt_first_grand_summary_row {
+#armmqfifnz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3217,11 +3451,21 @@ removed.
   border-top-color: #0076BA;
 }
 
-:where(#cjauggqksy) .gt_striped {
+#armmqfifnz .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #0076BA;
+}
+
+#armmqfifnz .gt_striped {
   background-color: #F4F4F4;
 }
 
-:where(#cjauggqksy) .gt_table_body {
+#armmqfifnz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #0076BA;
@@ -3230,7 +3474,7 @@ removed.
   border-bottom-color: #0076BA;
 }
 
-:where(#cjauggqksy) .gt_footnotes {
+#armmqfifnz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3244,30 +3488,8 @@ removed.
   border-right-color: #D3D3D3;
 }
 
-:where(#cjauggqksy) .gt_footnote {
+#armmqfifnz .gt_footnote {
   margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-:where(#cjauggqksy) .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-:where(#cjauggqksy) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3275,111 +3497,152 @@ removed.
   padding-right: 5px;
 }
 
-:where(#cjauggqksy) .gt_left {
+#armmqfifnz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#armmqfifnz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#armmqfifnz .gt_left {
   text-align: left;
 }
 
-:where(#cjauggqksy) .gt_center {
+#armmqfifnz .gt_center {
   text-align: center;
 }
 
-:where(#cjauggqksy) .gt_right {
+#armmqfifnz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#cjauggqksy) .gt_font_normal {
+#armmqfifnz .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#cjauggqksy) .gt_font_bold {
+#armmqfifnz .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#cjauggqksy) .gt_font_italic {
+#armmqfifnz .gt_font_italic {
   font-style: italic;
 }
 
-:where(#cjauggqksy) .gt_super {
+#armmqfifnz .gt_super {
   font-size: 65%;
 }
 
-:where(#cjauggqksy) .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
+#armmqfifnz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
+  position: initial;
 }
 
-:where(#cjauggqksy) .gt_asterisk {
+#armmqfifnz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#cjauggqksy) .gt_indent_1 {
+#armmqfifnz .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#cjauggqksy) .gt_indent_2 {
+#armmqfifnz .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#cjauggqksy) .gt_indent_3 {
+#armmqfifnz .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#cjauggqksy) .gt_indent_4 {
+#armmqfifnz .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#cjauggqksy) .gt_indent_5 {
+#armmqfifnz .gt_indent_5 {
   text-indent: 25px;
 }
+
+#armmqfifnz .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#armmqfifnz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
 </style>
-<table class="gt_table">
-  <thead class="gt_header">
-    <tr>
-      <td colspan="3" class="gt_heading gt_title gt_font_normal" style="">Patient Diagnosis by Severity</td>
-    </tr>
-    <tr>
-      <td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Stratified by Biological Sex</td>
-    </tr>
-  </thead>
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="2" colspan="1" scope="col" id="Diagnosis">Diagnosis</th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="Severity Levels">
-        <span class="gt_column_spanner">Severity Levels</span>
-      </th>
-    </tr>
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Complicated">Complicated</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Uncomplicated">Uncomplicated</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="Female">Female</th>
-    </tr>
-    <tr class="gt_row_group_first"><td headers="Female  DiagnosisF" class="gt_row gt_center">appendicitis</td>
-<td headers="Female  complicated" class="gt_row gt_right">55</td>
-<td headers="Female  uncomplicated" class="gt_row gt_right">145</td></tr>
-    <tr><td headers="Female  DiagnosisF" class="gt_row gt_center gt_striped">no appendicitis</td>
-<td headers="Female  complicated" class="gt_row gt_right gt_striped">1</td>
-<td headers="Female  uncomplicated" class="gt_row gt_right gt_striped">175</td></tr>
-    <tr class="gt_group_heading_row">
-      <th colspan="3" class="gt_group_heading" scope="colgroup" id="Male">Male</th>
-    </tr>
-    <tr class="gt_row_group_first"><td headers="Male  DiagnosisF" class="gt_row gt_center">appendicitis</td>
-<td headers="Male  complicated" class="gt_row gt_right">63</td>
-<td headers="Male  uncomplicated" class="gt_row gt_right">199</td></tr>
-    <tr><td headers="Male  DiagnosisF" class="gt_row gt_center gt_striped">no appendicitis</td>
-<td headers="Male  complicated" class="gt_row gt_right gt_striped">0</td>
-<td headers="Male  uncomplicated" class="gt_row gt_right gt_striped">141</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="gt_heading header">
+<td colspan="3" class="gt_heading gt_title gt_font_normal">Patient Diagnosis by Severity</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Stratified by Biological Sex</td>
+</tr>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="DiagnosisF" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Diagnosis</th>
+<th colspan="2" id="Severity Levels" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+Severity Levels
+</div></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="complicated" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Complicated</th>
+<th id="uncomplicated" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Uncomplicated</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="3" id="Female" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Female</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_center" headers="Female  DiagnosisF">appendicitis</td>
+<td class="gt_row gt_right" headers="Female  complicated">55</td>
+<td class="gt_row gt_right" headers="Female  uncomplicated">145</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center gt_striped" headers="Female  DiagnosisF">no appendicitis</td>
+<td class="gt_row gt_right gt_striped" headers="Female  complicated">1</td>
+<td class="gt_row gt_right gt_striped" headers="Female  uncomplicated">175</td>
+</tr>
+<tr class="gt_group_heading_row even">
+<th colspan="3" id="Male" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Male</th>
+</tr>
+<tr class="gt_row_group_first odd">
+<td class="gt_row gt_center" headers="Male  DiagnosisF">appendicitis</td>
+<td class="gt_row gt_right" headers="Male  complicated">63</td>
+<td class="gt_row gt_right" headers="Male  uncomplicated">199</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center gt_striped" headers="Male  DiagnosisF">no appendicitis</td>
+<td class="gt_row gt_right gt_striped" headers="Male  complicated">0</td>
+<td class="gt_row gt_right gt_striped" headers="Male  uncomplicated">141</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -3400,239 +3663,243 @@ removed.
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -3640,185 +3907,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../Notes/24-EDA_Concepts_Landing.html" class="pagination-link" aria-label="EDA Concepts">
