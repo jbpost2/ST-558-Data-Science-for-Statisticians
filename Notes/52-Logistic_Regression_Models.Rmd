@@ -101,7 +101,7 @@ heart_data |> select(HeartDisease, everything()) #Cholesterol has many values se
 
 ---
 
-# Potability Summary
+# Heart Disease Summary
 
 - Summarize heart disease prevalence
 
@@ -124,7 +124,7 @@ heart_data |>
 # Linear Regression Isn't Appropriate
 
 
-```{r, out.width = "400px", fig.align = 'center', message = FALSE, warning = FALSE}
+```{r, out.width = "400px", fig.align = 'center', message = FALSE, warning = FALSE, fig.alt = "A scatterplot between Age (x-axis) and Heart Disease (y-axis) is shown with a simple linear regression model overlayed. All of the Heart disease values are either 0 or 1. As such, the line doesn't really go through the 'middle' of the points indicating that linear regression isn't the best model to use here."}
 ggplot(heart_data, aes(x = Age, y = HeartDisease, color = RestingBP)) +
          geom_point() +
   geom_smooth(method = "lm")
@@ -136,7 +136,7 @@ ggplot(heart_data, aes(x = Age, y = HeartDisease, color = RestingBP)) +
 
 # Linear Regression Isn't Appropriate
 
-```{r, out.width = "400px", fig.align = 'center', message = FALSE, warning = FALSE}
+```{r, out.width = "400px", fig.align = 'center', message = FALSE, warning = FALSE,  fig.alt = "A scatterplot between Age (x-axis) and Heart Disease (y-axis) is shown with a simple linear regression model overlayed. The heart disease values are jittered so we can see them more easily. In this setup, we can see how the line sort of goes throught he points, but clearly this isn't the ideal model in this situation."}
 ggplot(heart_data, aes(x = Age, y = HeartDisease, color = RestingBP)) +
          geom_jitter() +
   geom_smooth(method = "lm")
@@ -165,7 +165,7 @@ heart_data_grouped
 # Linear Regression Isn't Appropriate
 
 
-```{r, out.width = '400px', fig.align = 'center'}
+```{r, out.width = '400px', fig.align = 'center',fig.alt = "A scatterplot between Age (x-axis) and Heart Disease (y-axis) is shown with a simple linear regression model overlayed. The heart disease values are jittered so we can see them more easily. The proportion of those with heart disease is also plotted. The regression line roughly models these means, indicating there is some usefulness in modeling the means with a line, but this model still isn't ideal."}
 ggplot(data = heart_data, aes(x = Age, y = HeartDisease)) +
   geom_jitter(aes(color = RestingBP)) +
   geom_point(data = heart_data_grouped, aes(x = Age_x, y = HeartDisease_mean, size = counts)) +
@@ -261,7 +261,7 @@ $$log\left(\frac{P(success|x)}{1-P(success|x)}\right) = \beta_0+\beta_1 x$$
 
 Using `Age` to predict `HeartDisease` via a logistic regression model:
 
-```{r, echo = FALSE, fig.align='center', out.width = '400px', message = FALSE, warning = FALSE}
+```{r, echo = FALSE, fig.align='center', out.width = '400px', message = FALSE, warning = FALSE, fig.alt = "A plot of the proportion of those with heart disease for different age groups is plotted along with the logistic regression fit overlayed. The logistic model is non-linear and roughly goes through these sample proportions."}
 log_reg_fit <- glm(factor(HeartDisease) ~ Age, data = heart_data, family = "binomial")
 x <- seq(from = min(heart_data$Age), to = max(heart_data$Age), length = 200)
 plot_df <- tibble(Age = x, Logistic_Pred = predict(log_reg_fit, newdata = data.frame(Age = x), type = "response"))
@@ -277,7 +277,7 @@ ggplot(plot_df, aes(x = Age, y = Logistic_Pred)) +
 
 A sigmoid function that looks linear close up!
 
-```{r, echo = FALSE, fig.align='center', out.width = '400px', message = FALSE, warning = FALSE}
+```{r, echo = FALSE, fig.align='center', out.width = '400px', message = FALSE, warning = FALSE,  fig.alt = "A plot of the proportion of those with heart disease for different age groups is plotted along with the logistic regression fit overlayed. The logistic model is non-linear and roughly goes through these sample proportions. The plot is zoomed further out and the non-linearity is more present. Predictions never go below 0 and never above 1."}
 x <- seq(from = -0, to = 120, length = 2000)
 plot_df <- tibble(Age = x, Logistic_Pred = predict(log_reg_fit, newdata = data.frame(Age = x), type = "response"))
 ggplot(plot_df, aes(x = Age, y = Logistic_Pred)) + 
@@ -295,7 +295,7 @@ As with linear regression, we can include multiple predictors and interaction te
 
 - Adding a dummy variable corresponding to a binary variable just changes the 'intercept'
 
-```{r, echo = FALSE, fig.align='center', out.width = '400px', message = FALSE, warning = FALSE}
+```{r, echo = FALSE, fig.align='center', out.width = '400px', message = FALSE, warning = FALSE, fig.alt = "A plot of the proportion of those with heart disease for different age groups, grouped by sex, is plotted along with the logistic regression fits overlayed. "}
 Age_x <- seq(from = min(heart_data$Age), to = max(heart_data$Age), length = 20)
 heart_data2 <- heart_data |>
   mutate(Age_groups = cut(Age, breaks = Age_x))
@@ -327,7 +327,7 @@ As with linear regression, we can include multiple predictors and interaction te
 
 - Not a constant shift
 
-```{r, echo = FALSE, fig.align='center', out.width = '400px', message = FALSE, warning = FALSE}
+```{r, echo = FALSE, fig.align='center', out.width = '400px', message = FALSE, warning = FALSE, fig.alt = "A plot of the proportion of those with heart disease for different age groups, grouped by sex, is plotted along with the logistic regression fits overlayed. This plot is more zoomed out and it is clear that the difference in prediction is not a simple numeric shift but separate fitted curves."}
 x <- seq(from = 0, to = 125, length = 200)
 plot_df <- tibble(Age = rep(x, times = 2), Sex = factor(rep(c("F", "M"), length(x))),
                   Logistic_Pred = predict(log_reg_fit, 
@@ -353,7 +353,7 @@ ggplot(plot_df, aes(x = Age, y = Logistic_Pred, color = Sex)) +
 
 - Adding in polynomial terms increases flexibility as well!
 
-```{r, echo = FALSE, out.width = '200px', fig.align = 'center'}
+```{r, echo = FALSE, out.width = '200px', fig.align = 'center', fig.alt = "An example logit model with logit equal to -1 +3*x-x^2 is shown. This model starts near 0, rises, and then drops back down towards 0 indicating that our logistic model does not have to start low and end high with more complicated predictors included."}
 x <- seq(-1, 5, 0.01)
 b0 <- -1
 b1 <- 3

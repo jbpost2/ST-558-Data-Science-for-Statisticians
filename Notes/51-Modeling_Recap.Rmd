@@ -95,7 +95,7 @@ Our Goal: Understand what it means to be a good predictive model (not make infer
 
 Given a model, we **fit** or **train** it using the data
 
-```{r, echo = FALSE, out.width='500px', fig.align='center'}
+```{r, echo = FALSE, out.width='500px', fig.align='center', fig.alt = "A scatter plot between speed (x) and distance (y) is shown with a simple linear regression model overlayed."}
 knitr::include_graphics('img/slr.png')
 ```
 
@@ -153,7 +153,7 @@ One method is to split the data into a **training set** and **test set**
 - On the training set we can fit (or train) our models
 - We can then predict for the test set observations and judge effectiveness with RMSE
 
-```{r, echo = FALSE, out.width="600px"}
+```{r, echo = FALSE, out.width="600px", fig.alt = "A dataset is represented as a rectangle. A large portion of the rectangle represents the training data and a small section represents the testing (or holdout) sample."}
 knitr::include_graphics("img/trainingtest.png")
 ```
 

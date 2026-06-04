@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang xml:lang>
+<html lang="en" xml:lang="en">
   <head>
     <title>Modeling with the tidymodels Framework</title>
     <meta charset="utf-8" />
@@ -207,7 +207,7 @@ General flow for modeling
     - **If doing a *non-learned* transformation, do those first outside of `tidymodels`**
 
 
-```r
+``` r
 library(tidyverse)
 library(tidymodels)
 bike_data &lt;- read_csv(&quot;https://www4.stat.ncsu.edu/~online/datasets/bikeDetails.csv&quot;) |&gt;
@@ -235,7 +235,7 @@ bike_test &lt;- testing(bike_split)
         - `summary()` describes current setup (we don&#39;t want all of these as predictors)
     
 
-```r
+``` r
 recipe(log_selling_price ~ ., data = bike_train) |&gt;
   summary()
 ```
@@ -264,7 +264,7 @@ recipe(log_selling_price ~ ., data = bike_train) |&gt;
     + This keeps the variable around even when not used in a model
     
 
-```r
+``` r
 recipe(log_selling_price ~ ., data = bike_train) |&gt;
   update_role(name, new_role = &quot;ID&quot;) |&gt;
   summary()
@@ -295,7 +295,7 @@ recipe(log_selling_price ~ ., data = bike_train) |&gt;
     + `step_normalize()` to center and scale numeric predictors
 
 
-```r
+``` r
 recipe(log_selling_price ~ ., data = bike_train) |&gt;
   update_role(name, new_role = &quot;ID&quot;) |&gt;
   step_log(km_driven) |&gt;
@@ -312,7 +312,7 @@ recipe(log_selling_price ~ ., data = bike_train) |&gt;
 - `bake()` applies the computations to data
 
 
-```r
+``` r
 recipe(log_selling_price ~ ., data = bike_train) |&gt;
   update_role(name, new_role = &quot;ID&quot;) |&gt;
   step_log(km_driven) |&gt;
@@ -365,7 +365,7 @@ recipe(log_selling_price ~ ., data = bike_train) |&gt;
 - [Info page](https://parsnip.tidymodels.org//reference/details_linear_reg_lm.html)
 
 
-```r
+``` r
 linear_reg() %&gt;% 
   set_engine(&quot;lm&quot;) %&gt;% 
   translate()
@@ -388,7 +388,7 @@ linear_reg() %&gt;%
 - Set up our model and recipes
 
 
-```r
+``` r
 bike_rec &lt;- recipe(log_selling_price ~ ., data = bike_train) |&gt;
   update_role(name, new_role = &quot;ID&quot;) |&gt;
   step_log(km_driven) |&gt;
@@ -411,7 +411,7 @@ bike_mod &lt;- linear_reg() %&gt;%
     + Add our recipe and model with their corresponding functions
 
 
-```r
+``` r
 bike_wfl &lt;- workflow() |&gt;
   add_recipe(bike_rec) |&gt;
   add_model(bike_mod)
@@ -446,7 +446,7 @@ bike_wfl
 - `tidy()` puts the results into a `tibble`
     
 
-```r
+``` r
 bike_fit &lt;- bike_wfl |&gt;
   fit(bike_train)
 bike_fit |&gt;
@@ -455,15 +455,15 @@ bike_fit |&gt;
 
 ```
 ## # A tibble: 7 × 5
-##   term                   estimate std.error statistic  p.value
-##   &lt;chr&gt;                     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept)            10.7        0.0179   598.    0       
-## 2 year                    0.336      0.0210    16.0   1.00e-49
-## 3 km_driven              -0.241      0.0204   -11.8   1.80e-29
-## 4 owner_X2nd.owner        0.00538    0.0183     0.293 7.69e- 1
-## 5 owner_X3rd.owner        0.0740     0.0183     4.03  6.08e- 5
-## 6 owner_X4th.owner        0.0333     0.0180     1.85  6.52e- 2
-## 7 seller_type_Individual  0.00835    0.0180     0.464 6.43e- 1
+##   term                   estimate std.error statistic   p.value
+##   &lt;chr&gt;                     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)            10.7        0.0179   598.    0        
+## 2 year                    0.336      0.0210    16.0   1.000e-49
+## 3 km_driven              -0.241      0.0204   -11.8   1.80 e-29
+## 4 owner_X2nd.owner        0.00538    0.0183     0.293 7.69 e- 1
+## 5 owner_X3rd.owner        0.0740     0.0183     4.03  6.08 e- 5
+## 6 owner_X4th.owner        0.0333     0.0180     1.85  6.52 e- 2
+## 7 seller_type_Individual  0.00835    0.0180     0.464 6.43 e- 1
 ```
 
 ---
@@ -475,7 +475,7 @@ bike_fit |&gt;
 - `collect_metrics()` returns the metrics on the test set!
 
 
-```r
+``` r
 bike_wfl |&gt;
   last_fit(bike_split) |&gt;
   collect_metrics()
@@ -498,7 +498,7 @@ bike_wfl |&gt;
 - `collect_metrics()` returns the metrics on the test set!
 
 
-```r
+``` r
 bike_wfl |&gt;
   last_fit(bike_split) |&gt;
   collect_metrics()
@@ -538,7 +538,7 @@ bike_wfl |&gt;
 - Use `vfold_cv()` to split the data up and use `fit_resamples()` to fit the model appropriately
 
 
-```r
+``` r
 bike_10_fold &lt;- vfold_cv(bike_train, 10)
 bike_CV_fits &lt;- bike_wfl |&gt;
   fit_resamples(bike_10_fold)
@@ -570,7 +570,7 @@ bike_CV_fits
 - Combine the metrics using `collect_metrics()`
 
 
-```r
+``` r
 bike_CV_fits |&gt; 
    collect_metrics()
 ```
@@ -593,7 +593,7 @@ bike_CV_fits |&gt;
 - Let&#39;s build another recipe that includes interaction terms
 
 
-```r
+``` r
 bike_int_rec &lt;- recipe(log_selling_price ~ ., data = bike_train) |&gt;
   update_role(name, new_role = &quot;ID&quot;) |&gt;
   step_log(km_driven) |&gt;
@@ -611,7 +611,7 @@ bike_int_rec &lt;- recipe(log_selling_price ~ ., data = bike_train) |&gt;
 - Fit the model to the resamples and see our metric
 
 
-```r
+``` r
 bike_int_CV_fits &lt;- workflow() |&gt;
   add_recipe(bike_int_rec) |&gt;
   add_model(bike_mod) |&gt;
@@ -631,7 +631,7 @@ rbind(bike_CV_fits |&gt; collect_metrics(),
 ```
 
 - Simpler model is better here
-- Could now compare its perofrmance on the test set to some other &#39;best&#39; models
+- Could now compare its performance on the test set to some other &#39;best&#39; models
 
 
 ---
@@ -655,10 +655,10 @@ remark.macros.scale = function (percentage) {
   return '<img src="' + url + '" style="width: ' + percentage + '" />';
 };</script>
 <script>var slideshow = remark.create({
-"highlightStyle": "github",
-"highlightLines": true,
-"countIncrementalSlides": false,
-"ratio": "16:9"
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false,
+  "ratio": "16:9"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

@@ -51,7 +51,7 @@ Docker - a 'container' to easily transport your code/program to others
 
 - No chance of surprise bugs!
 
-```{r, echo = FALSE, fig.align = "center", out.width = "550px"}
+```{r, echo = FALSE, fig.align = "center", out.width = "550px", fig.alt =""}
 knitr::include_graphics("img/Docker-Containers.jpg")
 ```
 
@@ -65,7 +65,7 @@ Run on a linux kernel
 
 - Once built, you can run or deploy the image, creating a container
 
-```{r, echo = FALSE, fig.align = "center", out.width = "550px"}
+```{r, echo = FALSE, fig.align = "center", out.width = "550px", fig.alt = "The flow of creating a Dockerfile, building a docker image, and running a docker container is shown."}
 knitr::include_graphics("img/build_docker.png")
 ```
 

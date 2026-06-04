@@ -363,7 +363,7 @@ rbind(bike_CV_fits |> collect_metrics(),
 ```
 
 - Simpler model is better here
-- Could now compare its perofrmance on the test set to some other 'best' models
+- Could now compare its performance on the test set to some other 'best' models
 
 
 ---

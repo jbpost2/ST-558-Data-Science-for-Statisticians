@@ -39,7 +39,7 @@ One method to obtain a better idea about model performance is to *randomly* spli
 -   On the training set we can fit (or train) our models
 -   We can then predict for the test set observations and judge effectiveness with our metric
 
-```{r, echo = FALSE, out.width="600px"}
+```{r, echo = FALSE, out.width="600px", fig.alt = "A dataset is represented as a rectangle. A large portion of the rectangle represents the training data and a small section represents the testing (or holdout) sample."}
 knitr::include_graphics("img/trainingtest.png")
 ```
 

@@ -160,7 +160,7 @@ A similar model to the MLR model that involves a **tuning** parameter is the LAS
   
   + For an $\alpha$ of 0 we get the usual least squares estimates. As $\alpha$ gets larger we 'shrink' the estimates toward 0.
   
-```{r, echo = FALSE, fig.align = 'center', out.width = "450px"}
+```{r, echo = FALSE, fig.align = 'center', out.width = "450px", fig.alt = "A graph of the standardized regression coefficients as a function of alpha is shown. On the left (small alpha), the coefficients are all non-zero. As the value of alpha increases, the values of the coefficients shrink toward zero with some being set to zero earlier than others. However, for a large enough alpha, all the coefficients are set to zero."}
 knitr::include_graphics("img/lasso_path.png")
 ```
 
@@ -168,7 +168,7 @@ knitr::include_graphics("img/lasso_path.png")
   
   - Consider the MLR model with different intercepts based on `owners` that includes both `log_km_driven` and `year` as predictors. The plot here gives the coefficient profiles (estimates) as a function of $\alpha$ (although and $\alpha$ of 0 here corresponds to being on the right hand side of the plot).
   
-```{r, warning = FALSE, message = FALSE, echo = FALSE}
+```{r, warning = FALSE, message = FALSE, echo = FALSE, fig.alt = "A plot of the regression coefficients as a function of -log(lambda) is shown. For small values of -log(lambda) the coefficients are all 0 and they grow as the value increases."}
 library(glmnet)
 fit_lasso_1 <- glmnet(bike_train[c("log_km_driven", "year", "owners")],
                       bike_train$log_selling_price, 
@@ -261,7 +261,7 @@ LASSO_grid |>
 
 Ok, but it is tough to see the values there. Let's plot it instead.
 
-```{r}
+```{r, fig.alt = "A plot of the penalty parameter (x-axis) and RMSE (y-axis) is shown. The value of the metric starts a little higher, drops down and then increases. The minimum value of the curve occurs near a penalty of 0.017."}
 LASSO_grid |>
   collect_metrics() |>
   filter(.metric == "rmse") |>

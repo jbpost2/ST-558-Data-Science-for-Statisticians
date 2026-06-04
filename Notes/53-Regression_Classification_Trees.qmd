@@ -34,7 +34,7 @@ Recall that we have two separate tasks we could do in a supervised learning situ
 
 These models are very easy for people to interpret! For instance, consider the tree below relating a predictor (`speed`) to stopping distance (`dist`).
 
-```{r, fig.align='center', out.width='400px'}
+```{r, fig.align='center', out.width='400px', fig.alt = "A basic tree model is shown that first splits on speed (less than 17.5 or larger) and then has further splits down each of those lines. The final value at the end of each tree is the mean for that group of observations."}
 library(tree) #rpart is also often used
 fitTree <- tree(dist ~ speed, data = cars) #default splitting is deviance
 plot(fitTree)
@@ -43,7 +43,7 @@ text(fitTree)
 
 We can compare this to the simple linear regression fit to see the increased flexibility of a regression tree model.
 
-```{r, message = FALSE, warning = FALSE, fig.align='center', out.width='400px'}
+```{r, message = FALSE, warning = FALSE, fig.align='center', out.width='400px', fig.alt = "A scatterplot between speed (x-axis) and distance (y-axis is shown). The simple linear regression model is shown overlayed along with a step function representing the tree model fit is shown."}
 library(tidyverse)
 ggplot(cars, aes(x = speed, y = dist)) + 
   geom_point() +
@@ -84,7 +84,7 @@ find_SSE <- function(df, response, predictor, split){
 ```
 
 
-```{r, fig.align='center', out.width='400px'}
+```{r, fig.align='center', out.width='400px', fig.alt = "A scatterplot between speed (x-axis) and distance (y-axis is shown)."}
 ggplot(cars, aes(x = speed, y = dist)) + 
   geom_point()
 ```
@@ -102,7 +102,7 @@ SSE <- find_SSE(df = cars, response = "dist", predictor = "speed", split = 17.5)
 
 Let's first try a split at `speed` = `r vals[1]`. The sum of squared errors based on this split is `r round(SSE1$info$RSS, 2)`.
 
-```{r, echo = FALSE, fig.align='center', out.width='400px'}
+```{r, echo = FALSE, fig.align='center', out.width='400px', fig.alt = "A scatterplot between speed (x-axis) and distance (y-axis is shown). An example split at x = 7 shows the SSE for this split is 27665.5."}
 #plot and put on split
 g <- ggplot(data = cars, aes(x = speed, y = dist)) + 
   geom_point(size = 0.75, alpha = 0.75) +
@@ -119,7 +119,7 @@ Again, this is found by taking all the points in the first region, finding the r
 
 Is that the smallest it could be? Likely not! Let's try some other splits and see what SSE they give.
 
-```{r, echo = FALSE, fig.align='center', out.width='400px'}
+```{r, echo = FALSE, fig.align='center', out.width='400px', fig.alt = "A scatterplot between speed (x-axis) and distance (y-axis is shown). An example split at x = 7 shows the SSE for this split is 27665.5, a split at x = 12 shows the SSE is 19380.8, a split at x = 15 shows the SSE is 19559, and a split at x = 20 gives SSE of 19595."}
 #plot and put on   
 g <- g + 
   geom_segment(data = SSE2$info, aes(x = min, xend = split, y = lowmean, yend = lowmean), lwd = 2, color = "Red") +
@@ -147,7 +147,7 @@ g
 
 - We would try this for all possible splits (across each predictor) and choose the split that minimizes the sum of squared errors as our first split.  It turns out that `speed` = 17.5 is the optimal splitting point for this data set.
 
-```{r, echo = FALSE, fig.align='center', out.width='400px'}
+```{r, echo = FALSE, fig.align='center', out.width='400px', fig.alt = "A scatterplot between speed (x-axis) and distance (y-axis is shown). An best split at x = 17.5 shows the SSE for this split is 17322.5."}
 g2 <- ggplot(data = cars, aes(x = speed, y = dist)) + 
   geom_point(size = 0.75, alpha = 0.75) +
   geom_segment(data = SSE$info, aes(x = min, xend = split, y = lowmean, yend = lowmean), lwd = 2, color = "Blue") +
@@ -161,7 +161,7 @@ g2
 
 - Next, we'd go down the first branch of that split to that 'node'. This node has all the observations corresponding to that branch. Now we repeat this process there!
 
-```{r, echo = FALSE, fig.align='center', out.width='400px'}
+```{r, echo = FALSE, fig.align='center', out.width='400px', fig.alt = "A scatterplot between speed (x-axis) and distance (y-axis is shown). The data is first split at x = 7. After that split, splits on the lower side are shown with their corresponding SSE values. This is the process of fitting a regression tree."}
 cars_r1 <- cars |>
   filter(speed < 17.5)
 vals <- c(7, 12, 15)
@@ -342,7 +342,7 @@ tree_fits |>
 
 As done in the [tutorial](https://www.tidymodels.org/start/tuning/), we can plot these to gain some insight:
 
-```{r}
+```{r, fig.alt = "A plot of the metric RMSE vs cost complexity and R-squared vs cost complexity are shown. The values of the metrics for different values of the tuning parameter tree depth are plotted."}
 tree_fits |>
   collect_metrics() |>
   mutate(tree_depth = factor(tree_depth)) |>
@@ -405,7 +405,7 @@ tree_final_model
 
 Plotting is definitely the better way to view this!
 
-```{r}
+```{r, fig.alt = "A tree diagram is shown that represents the model fit. This shows all the splits at different variables and the corresponding prediction within the nodes."}
 tree_final_model |>
   extract_fit_engine() |>
   rpart.plot::rpart.plot(roundint = FALSE)
