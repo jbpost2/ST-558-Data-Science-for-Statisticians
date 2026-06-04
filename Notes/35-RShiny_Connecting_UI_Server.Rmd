@@ -77,7 +77,7 @@ options(dplyr.print_min = 5)
 
     - Can add plain strings and formatted text (using HTML type functions)  
 
-```{r, out.width = "100%", fig.align='center', echo = FALSE}
+```{r, out.width = "100%", fig.align='center', echo = FALSE, fig.alt = "A list of shiny functions and their corresponding HTML functions is shown. Please visit https://shiny.posit.co/r/getstarted/build-an-app/customizing-ui/interface.html for more information."}
 knitr::include_graphics("img/tags.png")
 ```
 
@@ -117,7 +117,7 @@ layout: false
 
 - These correspond to a particular `render*` function in the server
 
-```{r, fig.align='center', out.width="60%", echo = FALSE}
+```{r, fig.align='center', out.width="60%", echo = FALSE, fig.alt = "Outputs and their corresponding render functions are shown. For instance, renderPlot and plotOutput are paired to create a plot (plotOutput) and show the plot (renderPlot). See https://shiny.posit.co/r/getstarted/build-an-app/hello-shiny/server-function.html for more information."}
 knitr::include_graphics("img/outputsUI.png")
 ```
 
@@ -153,7 +153,7 @@ output$plot1 <- renderPlot({...
 
 - Each `render*` function tries to coerce the last code run to the appropriate type of output
 
-```{r, fig.align='center', out.width="60%", echo = FALSE}
+```{r, fig.align='center', out.width="60%", echo = FALSE, fig.alt = "Outputs and their corresponding render functions are shown. For instance, renderPlot and plotOutput are paired to create a plot (plotOutput) and show the plot (renderPlot). See https://shiny.posit.co/r/getstarted/build-an-app/hello-shiny/server-function.html for more information."}
 knitr::include_graphics("img/outputsUI.png")
 ```
 

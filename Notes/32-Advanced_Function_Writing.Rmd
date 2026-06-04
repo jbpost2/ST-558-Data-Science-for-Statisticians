@@ -523,7 +523,16 @@ search()
 - Don't need to fully understand environments but some things are important
 
 ```{r,message = FALSE}
-library(pryr) #install if needed
+library(rlang)#install if needed., pryr has been retired
+where <- function(name, env = caller_env()) {
+  if (identical(env, empty_env())) {
+    stop("Can't find ", name, call. = FALSE) # Base case
+  } else if (env_has(env, name)) {
+    env # Success case
+  } else {
+    where(name, env_parent(env)) # Recursive case
+  }
+} #taken from https://adv-r.hadley.nz/environments.html
 x <- "hey"
 where("x")
 where("mean")

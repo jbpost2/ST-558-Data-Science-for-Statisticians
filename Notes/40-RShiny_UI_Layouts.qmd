@@ -38,7 +38,7 @@ ui <- fluidPage(
 )
 ```
 
-```{r, echo = FALSE, out.width="800px", fig.align='center'}
+```{r, echo = FALSE, out.width="800px", fig.align='center', fig.alt = "An R shiny window is shown where the first fourth of the window correponds to 'content!---...', a small space exists, and the last two-thirds of the window is taken up by 'more content!----...'."}
 knitr::include_graphics("img/custom_layout.png")
 ```
 
@@ -64,7 +64,7 @@ ui <- fluidPage(#using shinyUI so it will show here but you'd save this as ui in
 )
 ```
 
-```{r, echo = FALSE, out.width="800px", fig.align='center'}
+```{r, echo = FALSE, out.width="800px", fig.align='center', fig.alt = "An R shiny window is shown where two rows exist. The first row has three columns of varying widths. The second row has two columns each of width 6. The second column of the second row has a row within it split up into a column of width 3 and a column of width 9."}
 knitr::include_graphics("img/custom_layout2.png")
 ```
 
@@ -79,7 +79,7 @@ tabsetPanel(
 )
 ```
 
-```{r, echo = FALSE, out.width="800px", fig.align='center'}
+```{r, echo = FALSE, out.width="800px", fig.align='center', fig.alt = "An R shiny window is shown where two tabs exists."}
 knitr::include_graphics("img/tabs.png")
 ```
 
@@ -112,7 +112,7 @@ ui <- dashboardPage(
   )
 ```
 
-```{r, echo = FALSE, out.width="800px", fig.align='center'}
+```{r, echo = FALSE, out.width="800px", fig.align='center', fig.alt = "An R shiny window is shown that uses the shinydashboard set up. This, by default, has a title at the top and a menu bar on the left."}
 knitr::include_graphics("img/dashboard.png")
 ```
 
@@ -132,7 +132,7 @@ fluidRow(
 )
 ```
 
-```{r, echo = FALSE, out.width="800px", fig.align='center'}
+```{r, echo = FALSE, out.width="800px", fig.align='center', fig.alt = "An R shiny window is shown that uses the shinydashboard set up. Within the window there are tabs in the main section of the app."}
 knitr::include_graphics("img/tabs2.png")
 ```
 
