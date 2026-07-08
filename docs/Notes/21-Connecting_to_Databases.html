@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-06-04">
+<meta name="dcterms.date" content="2026-07-08">
 
 <title>Databases and Basic SQL – ST 558 Data Science for Statisticians (R)</title>
 <style>
@@ -679,7 +679,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2026-06-04</p>
+      <p class="date">2026-07-08</p>
     </div>
   </div>
   
@@ -833,7 +833,7 @@ Attaching package: 'dplyr'</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tbl</span>(con, <span class="st">"Pitching"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   table&lt;`Pitching`&gt; [?? x 30]
-# Database: sqlite 3.53.1 [C:\Users\jbpost2\ST-558-Data-Science-for-Statisticians\Notes\data\lahman.db]
+# Database: sqlite 3.53.3 [C:\Users\jbpost2\repos\ST-558-Data-Science-for-Statisticians\Notes\data\lahman.db]
    playerID  yearID stint teamID lgID      W     L     G    GS    CG   SHO    SV
    &lt;chr&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
  1 bechtge01   1871     1 PH1    NA        1     2     3     3     2     0     0
@@ -858,7 +858,7 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(yearID <span class="sc">==</span> <span class="dv">2010</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   SQL [?? x 4]
-# Database: sqlite 3.53.1 [C:\Users\jbpost2\ST-558-Data-Science-for-Statisticians\Notes\data\lahman.db]
+# Database: sqlite 3.53.3 [C:\Users\jbpost2\repos\ST-558-Data-Science-for-Statisticians\Notes\data\lahman.db]
    playerID  yearID teamID lgID 
    &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;
  1 aardsda01   2010 SEA    AL   
@@ -925,7 +925,7 @@ WHERE (`yearID` = 2010.0)</code></pre>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Source:   SQL [?? x 4]
-# Database: sqlite 3.53.1 [C:\Users\jbpost2\ST-558-Data-Science-for-Statisticians\Notes\data\lahman.db]
+# Database: sqlite 3.53.3 [C:\Users\jbpost2\repos\ST-558-Data-Science-for-Statisticians\Notes\data\lahman.db]
    playerID  yearID teamID lgID 
    &lt;chr&gt;      &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;
  1 aardsda01   2010 SEA    AL   
