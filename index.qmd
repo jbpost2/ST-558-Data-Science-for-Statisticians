@@ -42,39 +42,39 @@ To obtain course help there are a number of options:
 +-----------------+------------------------------------------------------------+-----------------------------------+
 | Week            | Learning Materials                                         | Assignments                       |
 +=================+============================================================+===================================+
-| Week 1\         | 01 - Read - What is Data Science?\                         | HW 1 (individual) due W 8/26      |
-| M-F\            | 02 - Watch - Workflows & Git/GitHub Basics\                |                                   |
+| Week 1\         | 01 - Read - What is Data Science?\                         | HW 1 (individual) due W, 8/26\    |
+| M-F\            | 02 - Watch - Workflows & Git/GitHub Basics\                | Introductions due F, 8/21         |
 | 8/17-8/21       | 03 - Read - Git & GitHub Practice\                         |                                   |
 |                 | 04 - Watch - R Basics\                                     |                                   |
 |                 | 05 - Read & Watch - R projects and Connecting with Github\ |                                   |
 |                 | 06 - Read & Watch - Quarto                                 |                                   |
 +-----------------+------------------------------------------------------------+-----------------------------------+
 | Week 2\         | 07 - Base R Data Structures: Vectors\                      | HW 2 due M, 8/31 (group W, 9/2)   |
-| M-F\            | 08 - Base R Data Structures: Matrices\                     |                                   |
+| M-F\            | 08 - Base R Data Structures: Matrices\                     | Select meeting time due F, 8/28   |
 | 8/24-8/28       | 09 - Base R Data Structures: Data Frames\                  |                                   |
 |                 | 10 - Base R Data Structures: Lists\                        |                                   |
 |                 | 11 - Control Flow: Logicals & if/then/else\                |                                   |
 |                 | 12 - Control Flow: Loops                                   |                                   |
 +-----------------+------------------------------------------------------------+-----------------------------------+
-| Week 3\         | 13 - Control Flow: Vectorized Functions\                   | HW 3 due T, 9/8 (group W, 9/10)   |
-| M-F\            | 14 - Writing Functions\                                    |                                   |
+| Week 3\         | 13 - Control Flow: Vectorized Functions\                   | HW 3 due T, 9/8 (group W, 9/9)    |
+| M-F\            | 14 - Writing Functions\                                    | Team meeting 1                    |
 | 8/31-9/4        | 15 - Packages\                                             |                                   |
 |                 | 16 - Tidyverse Essentials\                                 |                                   |
 |                 | 17 - Reading Delimited Data\                               |                                   |
 |                 | 18 - Reading Excel Data                                    |                                   |
 +-----------------+------------------------------------------------------------+-----------------------------------+
 | Week 4\         | 19 - Manipulating Data with dplyr\                         | HW 4 due M, 9/14 (group W, 9/16)  |
-| T-F\            | 20 - Manipulating Data with tidyr\                         |                                   |
+| T-F\            | 20 - Manipulating Data with tidyr\                         | Team meeting 2                    |
 | 9/8-9/11        | 21 - Databases and Basic `SQL`\                            |                                   |
 |                 | 22 - `SQL` Joins                                           |                                   |
 +-----------------+------------------------------------------------------------+-----------------------------------+
 | Week 5\         | 23 - Querying APIs\                                        | HW 5 due M, 9/21 (group W, 9/23)  |
-| M-F\            | 24 - EDA Concepts\                                         |                                   |
+| M-F\            | 24 - EDA Concepts\                                         | Team meeting 3                    |
 | 9/14-9/18       | 25 - Summarizing Categorical Variables\                    |                                   |
 |                 | 26 - Barplots & ggplot2 Basics                             |                                   |
 +-----------------+------------------------------------------------------------+-----------------------------------+
 | Week 6\         | 27 - Numerical Variable Summaries\                         | Project 1 due W, 9/30             |
-| M-F\            | 28 - Numerical Variable Graphs & More ggplot2              |                                   |
+| M-F\            | 28 - Numerical Variable Graphs & More ggplot2              | Team meeting 4                    |
 | 9/21-9/25       |                                                            |                                   |
 +-----------------+------------------------------------------------------------+-----------------------------------+
 | Week 7\         | 29 - Recap & Direction!\                                   | Exam Window Th-F, 10/1-10/2\      |
@@ -83,13 +83,13 @@ To obtain course help there are a number of options:
 |                 | 32 - Advanced Function Writing                             |                                   |
 +-----------------+------------------------------------------------------------+-----------------------------------+
 | Week 8\         | 33 - Introduction to RShiny\                               | HW 7 due M, 10/12 (group W, 10/14)|
-| M-F\            | 34 - Tutorials Part I                                      |                                   |
+| M-F\            | 34 - Tutorials Part I                                      | Team meeting 5                    |
 | 10/5-10/9       | 35 - Connecting the UI and Server\                         |                                   |
 |                 | 36 - Tutorials Part II\                                    |                                   |
 |                 | 37 - Reactivity                                            |                                   |
 +-----------------+------------------------------------------------------------+-----------------------------------+
-| Week 9\         | 38 - Tutorials Part III\                                   | HW 8 (individual) due W, 10/2     |
-| M-F\            | 39 - Dynamic User Interfaces\                              |                                   |
+| Week 9\         | 38 - Tutorials Part III\                                   | HW 8 (individual) due W, 10/21    |
+| M-F\            | 39 - Dynamic User Interfaces\                              | Team meeting 6                    |
 | 10/12-10/16     | 40 - Flexible UI Layouts & Dashboards                      |                                   |
 +-----------------+------------------------------------------------------------+-----------------------------------+
 | Week 10\        | 41 - Sharing Apps\                                         | Project 2 due W, 10/28            |
@@ -102,7 +102,7 @@ To obtain course help there are a number of options:
 |                 | 47 - Multiple Linear Regression                            |                                   |
 +-----------------+------------------------------------------------------------+-----------------------------------+
 | Week 12\        | 48 - Modeling with `tidymodels`\                           | HW 10 due M, 11/9 (group W, 11/11)|
-| M-F\            | 49 - `tidymodels` Tutorial\                                |                                   |
+| M-F\            | 49 - `tidymodels` Tutorial\                                | Team meeting 7                    |
 | 11/2-11/6       | 50 - LASSO Models\                                         |                                   |
 |                 | 51 - Modeling Recap\                                       |                                   |
 |                 | 52 - Logistic Regression Models\                           |                                   |
