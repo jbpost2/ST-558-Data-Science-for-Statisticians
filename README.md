@@ -9,4 +9,3 @@ Things to consider:
 - Add automating quarto docs
 - Fill out the docker section a bit more
 - Add Github actions
-- Create custom ggplot themes

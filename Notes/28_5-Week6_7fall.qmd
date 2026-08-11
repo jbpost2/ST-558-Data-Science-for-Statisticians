@@ -1,16 +1,15 @@
 ---
-title: "Week 8 Overview"
+title: "Week 7 Overview"
 format: html
 toc: TRUE
 editor_options: 
   chunk_output_type: inline
 ---
 
-This wraps up the content for week 7. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your assessment for this week.
 
-This week we'll start off with a recap, and then introduce the `apply()` functions from Base R, and the (mostly) equivalent tidyverse options from the `purrr` package. We will then get into advanced function writing and querying APIs.
+This week we'll start off with a recap, and then introduce the `apply()` functions from Base R, and the (mostly) equivalent tidyverse options from the `purrr` package. We will then get into advanced function writing!
 
-## Week 8 Additional Readings/Learning Materials
+## Week 7 Additional Readings/Learning Materials
 
 ### `apply()` family and Function Material
 
@@ -20,14 +19,14 @@ Advanced R Chapters
 - <a href = "http://adv-r.had.co.nz/Functional-programming.html" target = "_blank">Functional Programming</a>
 - <a href = "http://adv-r.had.co.nz/Functionals.html" target = "_blank">Functionals</a>
 - <a href = "https://r4ds.hadley.nz/rectangling" target = "_blank">Heirarchical Data</a>
-
-<a href = "https://modern-rstats.eu/defining-your-own-functions.html" target = "_blank">Chapters 7 & 8 from Modern R with Tidyverse</a>
+- <a href = "https://modern-rstats.eu/defining-your-own-functions.html" target = "_blank">Chapters 7 & 8 from Modern R with Tidyverse</a>
 
 ### `purrr`
 
 <a href = "https://r4ds.hadley.nz/iteration.html#purrrmap-and-list_rbind" target = "_blank">R for Data Science: Chapter 26.3.3</a>
 
-## Week 8 Learning Objectives
+
+## Week 7 Learning Objectives
 
 Upon completion of this week, students will be able to:
 
@@ -52,5 +51,6 @@ Upon completion of this week, students will be able to:
     d. use functions from purrr to perform data manipulations
 
 4. describe what an anonymous function is and how it differs from other functions 
+
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

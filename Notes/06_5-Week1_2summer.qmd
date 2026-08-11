@@ -7,8 +7,7 @@ editor_options:
   chunk_output_type: inline
 ---
 
-This wraps up the content for week 1. Now we require some practice! You should head back to our <a href = "https://moodle-courses2527.wolfware.ncsu.edu/course/view.php?id=645&bp=s" target = "_blank">Moodle site</a> to check out your homework assignment for this week.
-
+This wraps up the content for week 1. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your homework assignment for this week.
 
 This second week we'll go through a systematic view of the most common data objects you'll see in `R`. We'll see how to access these objects using `Base R` commands. 
 
@@ -18,16 +17,16 @@ We learned, and will continue investigating an R object via
 -   `typeof()`
 -   `str()`
 
-We see that R commonly uses the attributes of the object to determine how to apply (or dispatch) a function. We will look at common R objects and how to access their elements:
+We see that `R` commonly uses the attributes of the object to determine how to apply (or dispatch) a function. We will look at common `R` objects and how to access their elements:
 
 -   Atomic vectors - `x[ ]`
 -   Matrices - `x[ , ]`
 -   Data Frames - `x[ , ]` or `x$name`
 -   Lists - `x[[ ]]` or `x$name`
 
-and continue to practice documenting our code by using a notebook environment such as Quarto (along with git/github for version control and sharing/collaborating).
+and continue to practice documenting our code by using a notebook environment such as `quarto` (along with `Git`/`GitHub` for version control and sharing/collaborating).
 
-Now we want to look at how to control the execution of our code. The three main things we'll look at here are
+Then we want to look at how to control the execution of our code. The three main things we'll look at here are
 
 -   `if/then/else` logic and syntax
 -   looping to repeatedly execute code
@@ -35,27 +34,28 @@ Now we want to look at how to control the execution of our code. The three main 
 
 Then we'll see how to write our own functions! We are already learning a lot of necessary material to be a data scientist. Let's go!!
 
-## Week 2 Additional Readings/Learning Materials
+## Week 2 (Optional) Additional Readings/Learning Materials
 
 ### Common Data Objects in R
 
 -   <a href="https://r4ds.hadley.nz/logicals" target="_blank">Chapter 12 of R 4 Data Science</a>
--   <a href="https://r4ds.hadley.nz/base-r" target="_blank">Chapter 27 of R 4 Data Science (27.1-27.3)</a>
+-   <a href="https://r4ds.hadley.nz/base-R.html" target="_blank">Chapter 27 of R 4 Data Science (27.1-27.3)</a>
+
+### Loops and Vectorized Functions<br>
+
+- <a href="https://r4ds.hadley.nz/base-R.html" target="_blank">Chapter 27 of R 4 Data Science (27.4-27.5)</a>
 
 ### Writing Functions
 
 - <a href="https://r4ds.hadley.nz/functions" target="_blank">Chapter 25 of R 4 Data Science</a>
 - <a href = "http://adv-r.had.co.nz/Functions.html" target = "_blank">Chapter 5 of Advanced R</a>
-- <a href = "https://www.r-bloggers.com/consistent-naming-conventions-in-r/" target = "_blank">Consistent naming conventions in R><a/> and <a href="https://google.github.io/styleguide/Rguide.xml" target="_blank">R's style guide</a>
+- <a href = "https://www.r-bloggers.com/consistent-naming-conventions-in-r/" target = "_blank">Consistent naming conventions in R<a/> and <a href="https://google.github.io/styleguide/Rguide.xml" target="_blank">R's style guide</a>
 - <a href="https://modern-rstats.eu/defining-your-own-functions.html#functions-that-take-functions-as-arguments-writing-your-own-higher-order-functions" target="_blank">Chapter 7 of Modern R with the tidyverse</a>
 
-### Loops and Vectorized Functions<br>
-
-- <a href="https://r4ds.hadley.nz/base-r" target="_blank">Chapter 27 of R 4 Data Science (27.4-27.5)</a>
 
 ## Week 2 Learning Objectives
 
-Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)
+Upon completion of this week, students will be able to:
 
 ### R Basics
 
@@ -126,5 +126,6 @@ Note: Not all of these are covered in this week's function writing videos - we'l
     b. sketch out the R environment framework and explain the idea of lexical scoping
     c. discuss the concept of local variables and local environments as compared to global variables and environments
     d. state the naming conventions for R objects
+
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

@@ -1,16 +1,16 @@
 ---
-title: "Weeks 9 Through 11 Overview"
+title: "Weeks 8-10 Overview"
 format: html
 toc: TRUE
 editor_options: 
   chunk_output_type: inline
 ---
 
-This wraps up the content for week 8. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your assessment for this week.
+This wraps up the content for week 7. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your assessment for this week.
 
-This week is all about Shiny! This is one of my favorite topics in 558. R Shiny is a web framework that allows you to build interactive web applications and dashboards using the R programming language. It simplifies the process of creating web applications, especially for data analysis and visualization, by allowing you to work entirely in R without needing extensive knowledge of web development languages like HTML, CSS, or JavaScript.
+These next few weeks are all about Shiny! This is one of my favorite topics in 558. R Shiny is a web framework that allows you to build interactive web applications and dashboards using the R programming language. It simplifies the process of creating web applications, especially for data analysis and visualization, by allowing you to work entirely in R without needing extensive knowledge of web development languages like HTML, CSS, or JavaScript.
 
-## Weeks 9 & 10 Additional Readings/Learning Materials
+## Weeks 8, 9, & 10 Additional Readings/Learning Materials
 
 <a href = "https://www.youtube.com/watch?v=HVa42mJYppE" target = "_blank">Basic Concept Video</a>: Short 2-minute video on the high level concept of what R Shiny is!
 
@@ -37,7 +37,7 @@ This week is all about Shiny! This is one of my favorite topics in 558. R Shiny 
         target="_blank" rel="noopener">Debugging in Shiny</a> </li>
 </ul>
 
-## Weeks 9 & 10 Learning Objectives
+## Weeks 8, 9, & 10 Learning Objectives
 
 Upon completion of these two weeks, students will be able to:
 
@@ -64,5 +64,6 @@ Upon completion of these two weeks, students will be able to:
     d.    source files into shiny apps\
     e.    improve efficiency of shiny apps through the use of things like isolate\
     f.    create a shiny app with mouse over and click inputs
+
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!

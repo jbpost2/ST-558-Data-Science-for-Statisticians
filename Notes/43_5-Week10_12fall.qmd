@@ -1,23 +1,23 @@
 ---
-title: "Weeks 12 & 13 Overview"
+title: "Weeks 11 & 12 Overview"
 format: html
 toc: TRUE
 editor_options: 
   chunk_output_type: inline
 ---
 
-This wraps up the content for weeks 10 & 11. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your assessment for this week.
-
 It's time to start modeling data! This section is going to be a quick whirlwind look at machine learning and how to do it in a structured way in `R`. 
 
-Statistical modeling is a way to help us and others understand, interpret and make informed decisions based on data. We will also spend a lot of time on using different techniques to help us pick a best performing model from many. In addition, we will learn how to model data in the tidy framework using `tidymodels.` `tidymodels` aims to do the same thing the `tidyverse` did for data manipulation but for machine learning. It presents itself as a one-stop shop for everything ML-related, from processing data to training and evaluation models. It's an ecosystem of its own. **It is a little tough to learn but we'll see the basics of it!**
+Statistical modeling is a way to help us and others understand, interpret and make informed decisions based on data. We will also spend a lot of time on using different techniques to help us pick a best performing model from many. 
 
-## Weeks 12 & 13 Additional Readings/Learning Materials
+In addition, we will learn how to model data in the tidy framework using `tidymodels.` `tidymodels` aims to do the same thing the `tidyverse` did for data manipulation but for machine learning. It presents itself as a one-stop shop for everything ML-related, from processing data to training and evaluation models. It's an ecosystem of its own. **It is a little tough to learn but we'll see the basics of it!**
+
+## Weeks 11 & 12 (Optional) Additional Readings/Learning Materials
 
 - <a href = "https://www.tidymodels.org/" target = "_blank">tidymodels homepage for you to explore</a>
 - <a href = "https://www.youtube.com/watch?v=dSCFk168vmo" target = "_blank">short video on testing vs training data sets</a>
 - <a href = "https://openintro-ims.netlify.app/model-mlr" target = "_blank">Linear regression with multiple predictors</a>
-- <a href = "https://juliasilge.com/blog/lasso-the-office/" target = "_blank">TidyTuesday LASSO demonstration></a>
+- <a href = "https://juliasilge.com/blog/lasso-the-office/" target = "_blank">TidyTuesday LASSO demonstration</a>
 - <a href = "https://openintro-ims.netlify.app/model-logistic" target = "_blank">Logistic Regression:9.1-9.3</a>
 - <a href = "https://www.nature.com/articles/nmeth.4370" target = "_blank">Regression and Classification Trees article</a>
 - <a href = "https://www.youtube.com/watch?v=jbkSRLYSojo&t=121s" target = "_blank">Communicating a story with data (Hans Rosling)</a>

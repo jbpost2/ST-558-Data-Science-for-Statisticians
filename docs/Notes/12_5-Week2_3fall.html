@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2026-08-11">
 
-<title>Introduction to R Shiny – ST 558 Data Science for Statisticians (R)</title>
+<title>Week 3 Overview – ST 558 Data Science for Statisticians (R)</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,8 +29,8 @@ ul.task-list li input[type="checkbox"] {
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<link href="../Notes/34-RShiny_Tutorials_I.html" rel="next">
-<link href="../Notes/32_5-Week7_10fall.html" rel="prev">
+<link href="../Notes/13-Control_Flow_Vectorized_Functions.html" rel="next">
+<link href="../Notes/12-Control_Flow_Loops.html" rel="prev">
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -104,7 +104,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/32_5-Week7_10fall.html">Topic 4: R Shiny Dashboards</a></li><li class="breadcrumb-item"><a href="../Notes/33-RShiny_Introduction_Landing.html">Introduction to R Shiny</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/12_5-Week2_3fall.html">Week 3 Overview</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -132,13 +132,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Topic 1: Data Science &amp; R Basics</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/00-Welcome_to_the_Course.html" class="sidebar-item-text sidebar-link">
@@ -225,7 +225,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/12_5-Week2_3fall.html" class="sidebar-item-text sidebar-link">
+  <a href="../Notes/12_5-Week2_3fall.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Week 3 Overview</span></a>
   </div>
 </li>
@@ -399,13 +399,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Topic 4: R Shiny Dashboards</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/32_5-Week7_10fall.html" class="sidebar-item-text sidebar-link">
@@ -414,7 +414,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/33-RShiny_Introduction_Landing.html" class="sidebar-item-text sidebar-link active">
+  <a href="../Notes/33-RShiny_Introduction_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to R Shiny</span></a>
   </div>
 </li>
@@ -614,16 +614,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#notes" id="toc-notes" class="nav-link active" data-scroll-target="#notes">Notes</a></li>
+  <li><a href="#week-3-optional-additional-readingslearning-materials" id="toc-week-3-optional-additional-readingslearning-materials" class="nav-link active" data-scroll-target="#week-3-optional-additional-readingslearning-materials">Week 3 (Optional) Additional Readings/Learning Materials</a>
+  <ul class="collapse">
+  <li><a href="#loops-and-vectorized-functions" id="toc-loops-and-vectorized-functions" class="nav-link" data-scroll-target="#loops-and-vectorized-functions">Loops and Vectorized Functions<br></a></li>
+  <li><a href="#writing-functions" id="toc-writing-functions" class="nav-link" data-scroll-target="#writing-functions">Writing Functions</a></li>
+  <li><a href="#reading-data" id="toc-reading-data" class="nav-link" data-scroll-target="#reading-data">Reading Data</a></li>
+  </ul></li>
+  <li><a href="#week-3-learning-objectives" id="toc-week-3-learning-objectives" class="nav-link" data-scroll-target="#week-3-learning-objectives">Week 3 Learning Objectives</a>
+  <ul class="collapse">
+  <li><a href="#vectorized-functions" id="toc-vectorized-functions" class="nav-link" data-scroll-target="#vectorized-functions">Vectorized Functions</a></li>
+  <li><a href="#writing-functions-1" id="toc-writing-functions-1" class="nav-link" data-scroll-target="#writing-functions-1">Writing Functions</a></li>
+  <li><a href="#reading-data-1" id="toc-reading-data-1" class="nav-link" data-scroll-target="#reading-data-1">Reading Data</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/32_5-Week7_10fall.html">Topic 4: R Shiny Dashboards</a></li><li class="breadcrumb-item"><a href="../Notes/33-RShiny_Introduction_Landing.html">Introduction to R Shiny</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/12_5-Week2_3fall.html">Week 3 Overview</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Introduction to R Shiny</h1>
+<h1 class="title">Week 3 Overview</h1>
 </div>
 
 
@@ -646,18 +657,95 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The video below introduces the <code>shiny</code> package. This package allows for us to make interactive web-based applications that can run <code>R</code> code dynamically! These can be great ways to allow users to explore your data, model, etc.</p>
-<p>I highly recommend watching the video using the ‘full’ Panopto player. There is a ‘pop out’ button in the bottom right of the video to enter this viewer.</p>
-<iframe src="https://ncsu.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=2a505a94-83a2-4ade-9ac2-b20600c58c9a&amp;autoplay=false&amp;offerviewer=true&amp;showtitle=true&amp;showbrand=true&amp;captions=false&amp;interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen="" allow="autoplay" aria-label="Panopto Embedded Video Player" aria-description="33-RShiny-Introduction"></iframe>
-<section id="notes" class="level2">
-<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<p>This wraps up the content for week 2. Now we require some practice! You should head back to our <a href="https://wolfware.ncsu.edu/" target="_blank">Moodle site</a> to check out your homework assignment for this week.</p>
+<p>This third week we tackle improved repeated computation through <em>vectorized</em> functions, how to write our own functions, and reading in data through the <code>tidyverse</code>. The <code>tidyverse</code> is a widely used suite of packages that all work together and allow you to read in data and do most common data manipulations.</p>
+<section id="week-3-optional-additional-readingslearning-materials" class="level2">
+<h2 class="anchored" data-anchor-id="week-3-optional-additional-readingslearning-materials">Week 3 (Optional) Additional Readings/Learning Materials</h2>
+<section id="loops-and-vectorized-functions" class="level3">
+<h3 class="anchored" data-anchor-id="loops-and-vectorized-functions">Loops and Vectorized Functions<br></h3>
 <ul>
-<li><a href="33-RShiny_Introduction.html" target="_blank">HTML version</a></li>
-<li><a href="PDFs/33-RShiny_Introduction.pdf" target="_blank">PDF version</a></li>
+<li><a href="https://r4ds.hadley.nz/base-R.html" target="_blank">Chapter 27 of R 4 Data Science (27.4-27.5)</a></li>
 </ul>
+</section>
+<section id="writing-functions" class="level3">
+<h3 class="anchored" data-anchor-id="writing-functions">Writing Functions</h3>
+<ul>
+<li><a href="https://r4ds.hadley.nz/functions" target="_blank">Chapter 25 of R 4 Data Science</a></li>
+<li><a href="http://adv-r.had.co.nz/Functions.html" target="_blank">Chapter 5 of&nbsp;Advanced R</a></li>
+<li><a href="https://www.r-bloggers.com/consistent-naming-conventions-in-r/" target="_blank">Consistent naming conventions in R</a><a>&nbsp;and&nbsp;</a><a href="https://google.github.io/styleguide/Rguide.xml" target="_blank">R’s style guide</a></li>
+<li><a href="https://modern-rstats.eu/defining-your-own-functions.html#functions-that-take-functions-as-arguments-writing-your-own-higher-order-functions" target="_blank">Chapter 7 of Modern R with the tidyverse</a></li>
+</ul>
+</section>
+<section id="reading-data" class="level3">
+<h3 class="anchored" data-anchor-id="reading-data">Reading Data</h3>
+<ul>
+<li><a href="https://r4ds.hadley.nz/data-import" target="_blank">Chapter 7 of R 4 Data Science</a></li>
+<li><a href="https://www.w3schools.com/sql/" target="_blank">SQL syntax</a></li>
+</ul>
+</section>
+</section>
+<section id="week-3-learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="week-3-learning-objectives">Week 3 Learning Objectives</h2>
+<p>Upon completion of this week, students will be able to:</p>
+<section id="vectorized-functions" class="level3">
+<h3 class="anchored" data-anchor-id="vectorized-functions">Vectorized Functions</h3>
+<ol type="1">
+<li><p>&nbsp;&nbsp; program using the “apply family” of functions in R (CO 1, 3, 4)</p>
+<p>a.&nbsp;&nbsp;&nbsp; differentiate between the apply family of functions in R including, but not limited to, mapply, sapply, lapply, apply, and replicate b.&nbsp;&nbsp;&nbsp; manipulate R code that uses loops to instead use the proper apply function c.&nbsp;&nbsp;&nbsp; utilize anonymous functions in calls to the apply family of functions in R</p></li>
+<li><p>&nbsp;&nbsp; recall common “vectorized” functions in R such as colMeans, rowMeans, ifelse, etc. (CO 1, 4)</p></li>
+<li><p>&nbsp;&nbsp; write their own vectorized version of a function in R (CO 1, 4)</p></li>
+<li><p>&nbsp;&nbsp; describe what an anonymous function is and how it differs from other functions (CO 1, 4)</p></li>
+</ol>
+</section>
+<section id="writing-functions-1" class="level3">
+<h3 class="anchored" data-anchor-id="writing-functions-1">Writing Functions</h3>
+<p>Note: Not all of these are covered in this week’s function writing videos - we’ll revisit the topic later!</p>
+<ol type="1">
+<li><p>display code from previously written functions in R (CO 1, 3)</p></li>
+<li><p>describe the parts of an R function (CO 1, 4)</p></li>
+<li><p>describe the difference between a prefix and an infix function (CO 1, 4)</p>
+<ol type="a">
+<li>understand the order of evaluation for user created and built-in infix functions</li>
+</ol></li>
+<li><p>write an R function that has default arguments, allows for additional arguments, and returns a well-structured named object (CO 1, 3, 4)</p>
+<ol type="a">
+<li>determine appropriate uses for the stop function</li>
+<li>develop a pipeable function that acts on a data frame and one that produces side effects</li>
+<li>create a custom infix function</li>
+</ol></li>
+<li><p>describe the way that inputs can be specified to a function (CO 1, 3)</p>
+<ol type="a">
+<li>describe positional matching and predict what input values will be assigned to which function values</li>
+<li>explain lazy evaluation and give examples of where it may be important</li>
+</ol></li>
+<li><p>use if/then/else logic to conditionally execute code</p></li>
+<li><p>utilize the switch function and compare and contrast its use against if/then/else logic (CO 1, 3, 4)</p></li>
+<li><p>define environments including temporary environments (CO 1)</p>
+<ol type="a">
+<li>summarize the order in which R attempts to find a requested object</li>
+<li>sketch out the R environment framework and explain the idea of lexical scoping</li>
+<li>discuss the concept of local variables and local environments as compared to global variables and environments</li>
+<li>state the naming conventions for R objects</li>
+</ol></li>
+</ol>
+</section>
+<section id="reading-data-1" class="level3">
+<h3 class="anchored" data-anchor-id="reading-data-1">Reading Data</h3>
+<ol type="1">
+<li><p>read delimited data, SAS data files, SPSS files, and other file types into R (CO 2)</p>
+<ol type="a">
+<li>describe the term delimiter</li>
+<li>read comma separated value files into R using the readr package</li>
+<li>explain how the read_ functions determine column types</li>
+<li>describe the readxl package and its functions</li>
+<li>compare and contrast tibbles and data frames</li>
+</ol></li>
+<li><p>write a stored data set to a file using different delimiters (CO 2)</p></li>
+</ol>
 <p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1063,13 +1151,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Notes/32_5-Week7_10fall.html" class="pagination-link" aria-label="Weeks 8-10 Overview">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Weeks 8-10 Overview</span>
+      <a href="../Notes/12-Control_Flow_Loops.html" class="pagination-link" aria-label="Control Flow: Loops">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Control Flow: Loops</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Notes/34-RShiny_Tutorials_I.html" class="pagination-link" aria-label="Tutorials Part I">
-        <span class="nav-page-text">Tutorials Part I</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../Notes/13-Control_Flow_Vectorized_Functions.html" class="pagination-link" aria-label="Control Flow: Vectorized Functions">
+        <span class="nav-page-text">Control Flow: Vectorized Functions</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

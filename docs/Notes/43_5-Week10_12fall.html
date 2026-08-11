@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-07-08">
+<meta name="dcterms.date" content="2026-08-11">
 
-<title>Week 2 Overview – ST 558 Data Science for Statisticians (R)</title>
+<title>Weeks 11 &amp; 12 Overview – ST 558 Data Science for Statisticians (R)</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,8 +29,8 @@ ul.task-list li input[type="checkbox"] {
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<link href="../Notes/07-Base_R_Data_Structures_Vectors.html" rel="next">
-<link href="../Notes/06-Quarto.html" rel="prev">
+<link href="../Notes/44-Modeling_Concepts_Inference_Prediction_Landing.html" rel="next">
+<link href="../Notes/43_5-Topic4_Wrap.html" rel="prev">
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -104,7 +104,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/06_5-Week1_2.html">Week 2 Overview</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/43_5-Week10_12fall.html">Topic 5: Predictive Modeling</a></li><li class="breadcrumb-item"><a href="../Notes/43_5-Week10_12fall.html">Weeks 11 &amp; 12 Overview</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -132,13 +132,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Topic 1: Data Science &amp; R Basics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/00-Welcome_to_the_Course.html" class="sidebar-item-text sidebar-link">
@@ -183,7 +183,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/06_5-Week1_2.html" class="sidebar-item-text sidebar-link active">
+  <a href="../Notes/06_5-Week1_2fall.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 2 Overview</span></a>
   </div>
 </li>
@@ -225,6 +225,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../Notes/12_5-Week2_3fall.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3 Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../Notes/13-Control_Flow_Vectorized_Functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Control Flow: Vectorized Functions</span></a>
   </div>
@@ -248,12 +254,6 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/14_5-Week2_3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 3 Overview</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../Notes/15-Packages_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Packages</span></a>
   </div>
@@ -274,6 +274,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../Notes/18-Reading_Excel_Data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reading Excel Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/18_5-Week3_4fall.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 4 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -302,8 +308,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/22_5-Week3_4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 4 Overview</span></a>
+  <a href="../Notes/22_5-Week4_6fall.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weeks 5 &amp; 6 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -361,8 +367,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/28_5-Week6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 6 Overview</span></a>
+  <a href="../Notes/28_5-Week6_7fall.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 7 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -402,6 +408,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../Notes/32_5-Week7_10fall.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weeks 8-10 Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../Notes/33-RShiny_Introduction_Landing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction to R Shiny</span></a>
   </div>
@@ -410,12 +422,6 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="../Notes/34-RShiny_Tutorials_I.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorials Part I</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Notes/34_5-Week7_8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Weeks 7 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -482,17 +488,17 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Topic 5: Predictive Modeling</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/43_5-Week9_10.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Weeks 9 &amp; 10 Overview</span></a>
+  <a href="../Notes/43_5-Week10_12fall.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Weeks 11 &amp; 12 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -574,8 +580,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Notes/54_5-Week11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 11 Overview</span></a>
+  <a href="../Notes/54_5-Week13_14fall.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weeks 14 Overview</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -614,18 +620,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-2-optional-additional-readingslearning-materials" id="toc-week-2-optional-additional-readingslearning-materials" class="nav-link active" data-scroll-target="#week-2-optional-additional-readingslearning-materials">Week 2 (Optional) Additional Readings/Learning Materials</a>
+  <li><a href="#weeks-11-12-optional-additional-readingslearning-materials" id="toc-weeks-11-12-optional-additional-readingslearning-materials" class="nav-link active" data-scroll-target="#weeks-11-12-optional-additional-readingslearning-materials">Weeks 11 &amp; 12 (Optional) Additional Readings/Learning Materials</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives">Learning Objectives</a>
   <ul class="collapse">
-  <li><a href="#common-data-objects-in-r" id="toc-common-data-objects-in-r" class="nav-link" data-scroll-target="#common-data-objects-in-r">Common Data Objects in R</a></li>
-  <li><a href="#loops-and-vectorized-functions" id="toc-loops-and-vectorized-functions" class="nav-link" data-scroll-target="#loops-and-vectorized-functions">Loops and Vectorized Functions<br></a></li>
-  <li><a href="#writing-functions" id="toc-writing-functions" class="nav-link" data-scroll-target="#writing-functions">Writing Functions</a></li>
-  </ul></li>
-  <li><a href="#week-2-learning-objectives" id="toc-week-2-learning-objectives" class="nav-link" data-scroll-target="#week-2-learning-objectives">Week 2 Learning Objectives</a>
-  <ul class="collapse">
-  <li><a href="#r-basics" id="toc-r-basics" class="nav-link" data-scroll-target="#r-basics">R Basics</a></li>
-  <li><a href="#logicals-ifthenelse" id="toc-logicals-ifthenelse" class="nav-link" data-scroll-target="#logicals-ifthenelse">Logicals &amp; if/then/else</a></li>
-  <li><a href="#for-loops-and-vectorized-functions" id="toc-for-loops-and-vectorized-functions" class="nav-link" data-scroll-target="#for-loops-and-vectorized-functions">For Loops and Vectorized Functions</a></li>
-  <li><a href="#writing-functions-1" id="toc-writing-functions-1" class="nav-link" data-scroll-target="#writing-functions-1">Writing Functions</a></li>
+  <li><a href="#linear-regression-models" id="toc-linear-regression-models" class="nav-link" data-scroll-target="#linear-regression-models">Linear Regression Models</a></li>
+  <li><a href="#nonlinear-ensemble-models" id="toc-nonlinear-ensemble-models" class="nav-link" data-scroll-target="#nonlinear-ensemble-models">Nonlinear &amp; Ensemble Models</a></li>
+  <li><a href="#tidymodels-framework-and-model-fitting" id="toc-tidymodels-framework-and-model-fitting" class="nav-link" data-scroll-target="#tidymodels-framework-and-model-fitting">Tidymodels Framework and Model Fitting</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -633,9 +633,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/00-Welcome_to_the_Course.html">Topic 1: Data Science &amp; R Basics</a></li><li class="breadcrumb-item"><a href="../Notes/06_5-Week1_2.html">Week 2 Overview</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Notes/43_5-Week10_12fall.html">Topic 5: Predictive Modeling</a></li><li class="breadcrumb-item"><a href="../Notes/43_5-Week10_12fall.html">Weeks 11 &amp; 12 Overview</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Week 2 Overview</h1>
+<h1 class="title">Weeks 11 &amp; 12 Overview</h1>
 </div>
 
 
@@ -646,7 +646,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2026-07-08</p>
+      <p class="date">2026-08-11</p>
     </div>
   </div>
   
@@ -658,118 +658,143 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This wraps up the content for week 1. Now we require some practice! You should head back to our <a href="https://wolfware.ncsu.edu/" target="_blank">Moodle site</a> to check out your homework assignment for this week.</p>
-<p>This second week we’ll go through a systematic view of the most common data objects you’ll see in <code>R</code>. We’ll see how to access these objects using <code>Base R</code> commands.&nbsp;</p>
-<p>We learned, and will continue investigating an R object via</p>
+<p>It’s time to start modeling data! This section is going to be a quick whirlwind look at machine learning and how to do it in a structured way in <code>R</code>.</p>
+<p>Statistical modeling is a way to help us and others understand, interpret and make informed decisions based on data. We will also spend a lot of time on using different techniques to help us pick a best performing model from many.</p>
+<p>In addition, we will learn how to model data in the tidy framework using <code>tidymodels.</code> <code>tidymodels</code> aims to do the same thing the <code>tidyverse</code> did for data manipulation but for machine learning. It presents itself as a one-stop shop for everything ML-related, from processing data to training and evaluation models. It’s an ecosystem of its own. <strong>It is a little tough to learn but we’ll see the basics of it!</strong></p>
+<section id="weeks-11-12-optional-additional-readingslearning-materials" class="level2">
+<h2 class="anchored" data-anchor-id="weeks-11-12-optional-additional-readingslearning-materials">Weeks 11 &amp; 12 (Optional) Additional Readings/Learning Materials</h2>
 <ul>
-<li><code>class()</code></li>
-<li><code>typeof()</code></li>
-<li><code>str()</code></li>
-</ul>
-<p>We see that <code>R</code> commonly uses the attributes of the object to determine how to apply (or dispatch) a function. We will look at common <code>R</code> objects and how to access their elements:</p>
+<li><a href="https://www.tidymodels.org/" target="_blank">tidymodels homepage for you to explore</a></li>
+<li><a href="https://www.youtube.com/watch?v=dSCFk168vmo" target="_blank">short video on testing vs training data sets</a></li>
+<li><a href="https://openintro-ims.netlify.app/model-mlr" target="_blank">Linear regression with multiple predictors</a></li>
+<li><a href="https://juliasilge.com/blog/lasso-the-office/" target="_blank">TidyTuesday LASSO demonstration</a></li>
+<li><a href="https://openintro-ims.netlify.app/model-logistic" target="_blank">Logistic Regression:9.1-9.3</a></li>
+<li><a href="https://www.nature.com/articles/nmeth.4370" target="_blank">Regression and Classification Trees article</a></li>
+<li><a href="https://www.youtube.com/watch?v=jbkSRLYSojo&amp;t=121s" target="_blank">Communicating a story with data (Hans Rosling)</a>
 <ul>
-<li>Atomic vectors - <code>x[ ]</code></li>
-<li>Matrices - <code>x[ , ]</code></li>
-<li>Data Frames - <code>x[ , ]</code> or <code>x$name</code></li>
-<li>Lists - <code>x[[ ]]</code> or <code>x$name</code></li>
-</ul>
-<p>and continue to practice documenting our code by using a notebook environment such as <code>quarto</code> (along with <code>Git</code>/<code>GitHub</code> for version control and sharing/collaborating).</p>
-<p>Then we want to look at how to control the execution of our code. The three main things we’ll look at here are</p>
-<ul>
-<li><code>if/then/else</code> logic and syntax</li>
-<li>looping to repeatedly execute code</li>
-<li>vectorized functions for improved efficiency</li>
-</ul>
-<p>Then we’ll see how to write our own functions! We are already learning a lot of necessary material to be a data scientist. Let’s go!!</p>
-<p>We are already learning a lot of necessary material to be a data scientist. Let’s go!!</p>
-<section id="week-2-optional-additional-readingslearning-materials" class="level2">
-<h2 class="anchored" data-anchor-id="week-2-optional-additional-readingslearning-materials">Week 2 (Optional) Additional Readings/Learning Materials</h2>
-<section id="common-data-objects-in-r" class="level3">
-<h3 class="anchored" data-anchor-id="common-data-objects-in-r">Common Data Objects in R</h3>
-<ul>
-<li><a href="https://r4ds.hadley.nz/logicals" target="_blank">Chapter 12 of R 4 Data Science</a></li>
-<li><a href="https://r4ds.hadley.nz/base-R.html" target="_blank">Chapter 27 of R 4 Data Science (27.1-27.3)</a></li>
-</ul>
-</section>
-<section id="loops-and-vectorized-functions" class="level3">
-<h3 class="anchored" data-anchor-id="loops-and-vectorized-functions">Loops and Vectorized Functions<br></h3>
-<ul>
-<li><a href="https://r4ds.hadley.nz/base-R.html" target="_blank">Chapter 27 of R 4 Data Science (27.4-27.5)</a></li>
+<li>
+<a href="https://www.statlearning.com/" target="_blank" rel="noopener">ISLR book</a>: Read section (Big picture ideas) 2.1, 2.2, (Basic regression) 3.1, 3.2, 3.3, (Basic logistic regression) 4.1, 4.2, 4.3, (CV) 5.1, (Regularized models) 6.2
+</li>
+<li id="yui_3_17_2_1_1720810704083_4783">
+Chapters 4-15 of the <a href="https://www.tmwr.org/performance" target="_blank" rel="noopener">tidymodels</a> (especially chapter 9)
+</li>
+<li>
+Google’s open course materials has information about these models, loss functions, metrics, etc:&nbsp;<a href="https://developers.google.com/machine-learning/crash-course/classification/video-lecture" target="_blank" rel="noopener">https://developers.google.com/machine-learning/crash-course/classification/video-lecture</a>
+</li>
+<li>
+(Optional)&nbsp; <a href="https://web.stanford.edu/~hastie/ElemStatLearn/download.html" target="_blank" rel="noopener">Elements of Statistical Learning</a> (see table of contents - similar readings, just more advanced)
+</li>
+<li>
+(Optional) <a href="https://www.tidyverse.org/tags/tidymodels/" target="_blank" rel="noopener">tidymodels blog</a>
+</li>
+</ul></li>
 </ul>
 </section>
-<section id="writing-functions" class="level3">
-<h3 class="anchored" data-anchor-id="writing-functions">Writing Functions</h3>
-<ul>
-<li><a href="https://r4ds.hadley.nz/functions" target="_blank">Chapter 25 of R 4 Data Science</a></li>
-<li><a href="http://adv-r.had.co.nz/Functions.html" target="_blank">Chapter 5 of&nbsp;Advanced R</a></li>
-<li><a href="https://www.r-bloggers.com/consistent-naming-conventions-in-r/" target="_blank">Consistent naming conventions in R</a><a>&nbsp;and&nbsp;</a><a href="https://google.github.io/styleguide/Rguide.xml" target="_blank">R’s style guide</a></li>
-<li><a href="https://modern-rstats.eu/defining-your-own-functions.html#functions-that-take-functions-as-arguments-writing-your-own-higher-order-functions" target="_blank">Chapter 7 of Modern R with the tidyverse</a></li>
-</ul>
-</section>
-</section>
-<section id="week-2-learning-objectives" class="level2">
-<h2 class="anchored" data-anchor-id="week-2-learning-objectives">Week 2 Learning Objectives</h2>
-<p>Upon completion of this week, students will be able to:</p>
-<section id="r-basics" class="level3">
-<h3 class="anchored" data-anchor-id="r-basics">R Basics</h3>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
+<p>Upon completion of these two weeks, students will be able to:</p>
+<section id="linear-regression-models" class="level3">
+<h3 class="anchored" data-anchor-id="linear-regression-models">Linear Regression Models</h3>
 <ol type="1">
-<li><p>&nbsp; create common data objects such as data frames, matrices, vectors, and lists and subset each of them (CO 1, 2, 3)</p>
+<li><p>describe the idea of supervised learning and compare and contrast it with unsupervised learning</p></li>
+<li><p>conduct an exploratory data analysis</p></li>
+<li><p>utilize the lm() function along with formula notation in R to fit linear models</p>
 <ol type="a">
-<li>recognize the most appropriate method for accessing an R object b.&nbsp;determine the appropriate type of object in which to save differing types of data c.&nbsp;contrast matrices and data frames d.&nbsp;determine the type of R object you are working with e.&nbsp;compare and contrast the attributes of the common data types</li>
+<li>lay out the basic simple linear regression model and explain how the models are commonly fit to data in R<br>
+</li>
+<li>access elements of a fitted lm object<br>
+</li>
+<li>find predictions using a simple linear regression model and provide standard errors, confidence bounds, and prediction bounds<br>
+</li>
+<li>utilize the lm() function and formula notation in R to fit multiple linear regression models and polynomial regression models<br>
+</li>
+<li>define the terms polynomial regression and multiple linear regression</li>
 </ol></li>
-<li><p>&nbsp; utilize R help and other resources to appropriately use and/or modify an R function or object (CO 3)</p></li>
+<li><p>explain the concept of how a multiple linear regression model is usually fit and what the effect of adding in more predictor terms is on the model</p>
+<ol type="a">
+<li>find predictions using a multiple linear regression model and provide standard errors, confidence bounds, and prediction bounds<br>
+</li>
+<li>explain how adding categorical predictors changes a linear model<br>
+</li>
+<li>interpret the coefficients of a general linear model and use it for prediction purposes</li>
+</ol></li>
+<li><p>describe common methods used to select between models</p></li>
+<li><p>define prediction error, training sets, and test sets</p>
+<ol type="a">
+<li>explain why splitting data into training and tests sets is needed<br>
+</li>
+<li>discuss the nature/behavior of predicting on your training set vs predicting on a test set</li>
+</ol></li>
+<li><p>use a linear regression or logistic regression model to perform classification</p>
+<ol type="a">
+<li>describe the type of scenario where logistic regression may be a reasonable modeling choose<br>
+</li>
+<li>define the logistic regression model and state its advantages for modeling binary outcomes<br>
+</li>
+<li>create visuals to help explore binary outcome data appropriate for logistic regression<br>
+</li>
+<li>interpret model coefficients from a logistic regression model<br>
+</li>
+<li>fit logistic regression models in R and use them for prediction purposes (probability, link, odds, or classification)<br>
+</li>
+<li>predict for new data using a logistic regression model</li>
+</ol></li>
 </ol>
-<p>Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)</p>
 </section>
-<section id="logicals-ifthenelse" class="level3">
-<h3 class="anchored" data-anchor-id="logicals-ifthenelse">Logicals &amp; if/then/else</h3>
+<section id="nonlinear-ensemble-models" class="level3">
+<h3 class="anchored" data-anchor-id="nonlinear-ensemble-models">Nonlinear &amp; Ensemble Models</h3>
 <ol type="1">
-<li><p>describe the idea of coercion and compare and contrast the use of implicit and explicit coercion (CO 1, 4)</p>
-<p>a.&nbsp;&nbsp;&nbsp; outline the rules for implicit coercion b.&nbsp;&nbsp;&nbsp; use common explicit coercion functions c.&nbsp;&nbsp;&nbsp; hypothesize the type of coercion implicitly done by a section of R code</p></li>
+<li><p>fit and interpret regression and classification trees in R</p>
+<ol type="a">
+<li>describe the terms regression tree and classification tree<br>
+</li>
+<li>explain the difference between using a tree based method and using a linear method<br>
+</li>
+<li>provide visuals of tree fits in R<br>
+</li>
+<li>predict using a tree fit in R<br>
+</li>
+<li>roughly break down the steps used in fitting a regression tree<br>
+</li>
+<li>explain the term “greedy” algorithm<br>
+</li>
+<li>prune a fitted tree and describe why this is often needed<br>
+</li>
+<li>compare and contrast the fitting and pruning of regression trees vs classification trees<br>
+</li>
+<li>describe the pros and cons of using tree based methods</li>
+</ol></li>
+<li><p>select a final model using cross validation</p></li>
+<li><p>fit and interpret bagged tree and random forests models in R</p>
+<ol type="a">
+<li>explain the term ensemble methods and how it can be applied to tree based methods<br>
+</li>
+<li>describe why ensemble methods can often improve predictions<br>
+</li>
+<li>give the cons of using ensemble methods<br>
+</li>
+<li>investigate variable importance measures for ensemble trees<br>
+</li>
+<li>Outline the bagging algorithm<br>
+</li>
+<li>outline the random forest algorithm</li>
+</ol></li>
 </ol>
 </section>
-<section id="for-loops-and-vectorized-functions" class="level3">
-<h3 class="anchored" data-anchor-id="for-loops-and-vectorized-functions">For Loops and Vectorized Functions</h3>
+<section id="tidymodels-framework-and-model-fitting" class="level3">
+<h3 class="anchored" data-anchor-id="tidymodels-framework-and-model-fitting">Tidymodels Framework and Model Fitting</h3>
 <ol type="1">
-<li><p>describe the process of a for loop, while loop, and repeat statement in R (CO 1, 3, 4)</p>
-<p>a.&nbsp;&nbsp;&nbsp; program R to break from a loop when conditions are met b.&nbsp;&nbsp;&nbsp; program R to skip an iteration of a loop c.&nbsp;&nbsp;&nbsp; utilize different “counters” or “iterators” in an R loop d.&nbsp;&nbsp;&nbsp; explain the use and process of nested for loops e.&nbsp;&nbsp;&nbsp; program a nested R loop in R f.&nbsp;&nbsp;&nbsp; explain why loops are not always ideal in R</p></li>
-<li><p>&nbsp;&nbsp; program using the “apply family” of functions in R (CO 1, 3, 4)</p>
-<p>a.&nbsp;&nbsp;&nbsp; differentiate between the apply family of functions in R including, but not limited to, mapply, sapply, lapply, apply, and replicate b.&nbsp;&nbsp;&nbsp; manipulate R code that uses loops to instead use the proper apply function c.&nbsp;&nbsp;&nbsp; utilize anonymous functions in calls to the apply family of functions in R</p></li>
-<li><p>&nbsp;&nbsp; recall common “vectorized” functions in R such as colMeans, rowMeans, ifelse, etc. (CO 1, 4)</p></li>
-<li><p>&nbsp;&nbsp; write their own vectorized version of a function in R (CO 1, 4)</p></li>
-<li><p>&nbsp;&nbsp; describe what an anonymous function is and how it differs from other functions (CO 1, 4)</p></li>
-</ol>
-</section>
-<section id="writing-functions-1" class="level3">
-<h3 class="anchored" data-anchor-id="writing-functions-1">Writing Functions</h3>
-<p>Note: Not all of these are covered in this week’s function writing videos - we’ll revisit the topic later!</p>
-<ol type="1">
-<li><p>display code from previously written functions in R (CO 1, 3)</p></li>
-<li><p>describe the parts of an R function (CO 1, 4)</p></li>
-<li><p>describe the difference between a prefix and an infix function (CO 1, 4)</p>
+<li><p>Use the tidymodels framework to fit and evaluate models</p>
 <ol type="a">
-<li>understand the order of evaluation for user created and built-in infix functions</li>
+<li>describe how recipes work and why they are useful when fitting models<br>
+</li>
+<li>outline the purpose of how tidymodels creates models by specifying the model type and engine<br>
+</li>
+<li>utilize workflows for fitting models</li>
 </ol></li>
-<li><p>write an R function that has default arguments, allows for additional arguments, and returns a well-structured named object (CO 1, 3, 4)</p>
-<ol type="a">
-<li>determine appropriate uses for the stop function</li>
-<li>develop a pipeable function that acts on a data frame and one that produces side effects</li>
-<li>create a custom infix function</li>
-</ol></li>
-<li><p>describe the way that inputs can be specified to a function (CO 1, 3)</p>
-<ol type="a">
-<li>describe positional matching and predict what input values will be assigned to which function values</li>
-<li>explain lazy evaluation and give examples of where it may be important</li>
-</ol></li>
-<li><p>use if/then/else logic to conditionally execute code</p></li>
-<li><p>utilize the switch function and compare and contrast its use against if/then/else logic (CO 1, 3, 4)</p></li>
-<li><p>define environments including temporary environments (CO 1)</p>
-<ol type="a">
-<li>summarize the order in which R attempts to find a requested object</li>
-<li>sketch out the R environment framework and explain the idea of lexical scoping</li>
-<li>discuss the concept of local variables and local environments as compared to global variables and environments</li>
-<li>state the naming conventions for R objects</li>
-</ol></li>
+<li><p>Compare and contrast using a training/test set, using cross-validation only, and using both the training set with CV and a test set</p></li>
+<li><p>Describe and explain the pros and cons of commonly used model metrics</p></li>
+<li><p>Explain the difference between a loss function and a model metric</p></li>
 </ol>
 <p>Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!</p>
 
@@ -1180,13 +1205,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Notes/06-Quarto.html" class="pagination-link" aria-label="`Quarto` Basics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><code>Quarto</code> Basics</span>
+      <a href="../Notes/43_5-Topic4_Wrap.html" class="pagination-link" aria-label="Topic 4 Wrap">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Topic 4 Wrap</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Notes/07-Base_R_Data_Structures_Vectors.html" class="pagination-link" aria-label="Base `R` Data Structures: Vectors">
-        <span class="nav-page-text">Base <code>R</code> Data Structures: Vectors</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../Notes/44-Modeling_Concepts_Inference_Prediction_Landing.html" class="pagination-link" aria-label="Modeling Concepts">
+        <span class="nav-page-text">Modeling Concepts</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

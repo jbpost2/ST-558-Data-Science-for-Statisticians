@@ -1,12 +1,14 @@
 ---
-title: "Weeks 14 Through 16 Overview"
+title: "Weeks 14 Overview"
 format: html
 toc: TRUE
 editor_options: 
   chunk_output_type: inline
 ---
 
-This wraps up the content for weeks 12 & 13. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your assessment for this week.
+This wraps up the content for weeks 11 & 12. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your assessment for this week.
+
+This wraps up the content for week 10. Now we require some practice! You should head back to our <a href = "https://wolfware.ncsu.edu/" target = "_blank">Moodle site</a> to check out your assessment for this week.
 
 We are on the home stretch! It's time to get back into more computing content. Specifically, we are going to learn more about:
 
@@ -18,7 +20,7 @@ In previous material, we learned how to work with APIs. Now, we are going to cre
 Docker is an open-source platform that enables developers to automate the deployment, scaling, and management of applications by using containers. For the purposes of this course, we are going to use static docker images that already contain items for us, and build on top of them. 
 
 
-## Weeks 14 through 16 Additional Readings/Learning Materials
+## Week 11 (Optional) Additional Readings/Learning Materials
 
 <ul>
   <li>API/Docker article - <a
@@ -28,14 +30,14 @@ Docker is an open-source platform that enables developers to automate the deploy
       target="_blank" rel="noopener">part II</a> </li>
   <li>A nice <a
       href="https://docker-curriculum.com/"
-      target="_blank" rel="noopener">general Docker tutorial</a<</li>
+      target="_blank" rel="noopener">general Docker tutorial</a></li>
   <li><a
       href="https://colinfay.me/docker-r-reproducibility/" target="_blank"
       rel="noopener">Docker and R Intro</a></li>
 </ul>
 
 
-The help file for `plumber` can be found <a href = "https://www.rplumber.io/" target = "_blank">here</a>. Additional `plumber` resources can be found <a href = "https://rstudio.github.io/cheatsheets/html/plumber.html" target = "_blank">via R Studio's cheatsheet.
+The help file for `plumber` can be found <a href = "https://www.rplumber.io/" target = "_blank">here</a>. Additional `plumber` resources can be found <a href = "https://rstudio.github.io/cheatsheets/html/plumber.html" target = "_blank">via R Studio's cheatsheet</a>.
 
 There is also a nice <a href = "https://www.r-bloggers.com/2022/03/creating-apis-for-data-science-with-plumber/" target = "_blank">`r-bloggers` post on APIs and data science</a>. They specifically talk about *why* would a data scientist want to create an API.
 

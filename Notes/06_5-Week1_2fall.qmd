@@ -11,12 +11,40 @@ This wraps up the content for week 1. Now we require some practice! You should h
 
 This second week we'll go through a systematic view of the most common data objects you'll see in `R`. We'll see how to access these objects using `Base R` commands. 
 
+We learned, and will continue investigating an R object via
+
+-   `class()`
+-   `typeof()`
+-   `str()`
+
+We see that `R` commonly uses the attributes of the object to determine how to apply (or dispatch) a function. We will look at common `R` objects and how to access their elements:
+
+-   Atomic vectors - `x[ ]`
+-   Matrices - `x[ , ]`
+-   Data Frames - `x[ , ]` or `x$name`
+-   Lists - `x[[ ]]` or `x$name`
+
+and continue to practice documenting our code by using a notebook environment such as `quarto` (along with `Git`/`GitHub` for version control and sharing/collaborating).
+
+Then we want to look at how to control the execution of our code. The three main things we'll look at here are
+
+-   `if/then/else` logic and syntax
+-   looping to repeatedly execute code
+-   vectorized functions for improved efficiency (next week)
+
+Then, next week, we'll see how to write our own functions! We are already learning a lot of necessary material to be a data scientist. Let's go!!
+
+
 ## Week 2 (Optional) Additional Readings/Learning Materials
 
-Common Data Objects in R
+### Common Data Objects in R
 
 -   <a href="https://r4ds.hadley.nz/logicals" target="_blank">Chapter 12 of R 4 Data Science</a>
--   <a href="https://r4ds.hadley.nz/base-r" target="_blank">Chapter 27 of R 4 Data Science (27.1-27.3)</a>
+-   <a href="https://r4ds.hadley.nz/base-R.html" target="_blank">Chapter 27 of R 4 Data Science (27.1-27.3)</a>
+
+### Loops and Vectorized Functions<br>
+
+- <a href="https://r4ds.hadley.nz/base-R.html" target="_blank">Chapter 27 of R 4 Data Science (27.4-27.5)</a>
 
 ## Week 2 Learning Objectives
 
@@ -24,14 +52,33 @@ Upon completion of this week, students will be able to:
 
 ### R Basics
 
-1.    create common data objects such as data frames, matrices, vectors, and lists and subset each of them
+1.    create common data objects such as data frames, matrices, vectors, and lists and subset each of them (CO 1, 2, 3)
 
-    a.  recognize the most appropriate method for accessing an R object\
-    b. determine the appropriate type of object in which to save differing types of data\
-    c. contrast matrices and data frames\
-    d. determine the type of R object you are working with\
-    e. compare and contrast the attributes of the common data types
+    a.  recognize the most appropriate method for accessing an R object b. determine the appropriate type of object in which to save differing types of data c. contrast matrices and data frames d. determine the type of R object you are working with e. compare and contrast the attributes of the common data types
 
-2.    utilize R help and other resources to appropriately use and/or modify an R function or object
+2.    utilize R help and other resources to appropriately use and/or modify an R function or object (CO 3)
+
+
+Upon completion of this week, students will be able to: (CO is the corresponding course learning objective this helps build toward)
+
+### Logicals & if/then/else
+
+1. describe the idea of coercion and compare and contrast the use of implicit and explicit coercion (CO 1, 4)
+
+    a.    outline the rules for implicit coercion
+    b.    use common explicit coercion functions
+    c.    hypothesize the type of coercion implicitly done by a section of R code
+
+### For Loops
+
+1. describe the process of a for loop, while loop, and repeat statement in R (CO 1, 3, 4)
+
+    a.    program R to break from a loop when conditions are met
+    b.    program R to skip an iteration of a loop
+    c.    utilize different “counters” or “iterators” in an R loop
+    d.    explain the use and process of nested for loops
+    e.    program a nested R loop in R
+    f.    explain why loops are not always ideal in R
+
 
 Use the table of contents on the left or the arrows at the bottom of this page to navigate to the next learning material!
