@@ -531,8 +531,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
- <span class="menu-text">Notes/43_5-Week10-12fall.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/43_5-Week10_12fall.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weeks 11 &amp; 12 Overview</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/44-Modeling_Concepts_Inference_Prediction_Landing.html" class="sidebar-item-text sidebar-link">
@@ -611,8 +614,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
- <span class="menu-text">Notes/54_5-Week13-14fall.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="../Notes/54_5-Week13_14fall.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 14 Overview</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Notes/55-Creating_API_Landing.html" class="sidebar-item-text sidebar-link">
@@ -785,7 +791,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5      5      e
 
 [[2]]
-[1]  0.2399894  0.9411366 -0.6442506 -1.5695309
+[1] -1.0402379  0.1037653 -0.2931964  0.7086244
 
 [[3]]
 [1] "!" "?"</code></pre>
@@ -807,7 +813,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5      5      e
 
 $normVals
-[1] -0.4776707 -1.6709530 -1.0637374  0.1923296
+[1] -0.08892317 -0.74808998  0.85888379 -0.44862100
 
 $punctuation
 [1] "!" "?"</code></pre>
@@ -824,7 +830,7 @@ $punctuation
  $ my_data_frame:'data.frame':  5 obs. of  2 variables:
   ..$ number: int [1:5] 1 2 3 4 5
   ..$ letter: chr [1:5] "a" "b" "c" "d" ...
- $ normVals     : num [1:4] -0.478 -1.671 -1.064 0.192
+ $ normVals     : num [1:4] -0.0889 -0.7481 0.8589 -0.4486
  $ punctuation  : chr [1:2] "!" "?"</code></pre>
 </div>
 </div>
@@ -863,7 +869,7 @@ $punctuation
 5      5      e
 
 $normVals
-[1] -0.4776707 -1.6709530 -1.0637374  0.1923296
+[1] -0.08892317 -0.74808998  0.85888379 -0.44862100
 
 $punctuation
 [1] "!" "?"</code></pre>
@@ -873,7 +879,7 @@ $punctuation
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$normVals
-[1] -0.4776707 -1.6709530 -1.0637374  0.1923296
+[1] -0.08892317 -0.74808998  0.85888379 -0.44862100
 
 $punctuation
 [1] "!" "?"</code></pre>
@@ -935,13 +941,13 @@ $punctuation
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="dv">2</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.4776707 -1.6709530 -1.0637374  0.1923296</code></pre>
+<pre><code>[1] -0.08892317 -0.74808998  0.85888379 -0.44862100</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="dv">2</span>]][<span class="dv">3</span><span class="sc">:</span><span class="dv">4</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -1.0637374  0.1923296</code></pre>
+<pre><code>[1]  0.8588838 -0.4486210</code></pre>
 </div>
 </div>
 <ul>
@@ -954,14 +960,14 @@ $punctuation
  $ my_data_frame:'data.frame':  5 obs. of  2 variables:
   ..$ number: int [1:5] 1 2 3 4 5
   ..$ letter: chr [1:5] "a" "b" "c" "d" ...
- $ normVals     : num [1:4] -0.478 -1.671 -1.064 0.192
+ $ normVals     : num [1:4] -0.0889 -0.7481 0.8589 -0.4486
  $ punctuation  : chr [1:2] "!" "?"</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>normVals</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.4776707 -1.6709530 -1.0637374  0.1923296</code></pre>
+<pre><code>[1] -0.08892317 -0.74808998  0.85888379 -0.44862100</code></pre>
 </div>
 </div>
 <ul>
@@ -1005,7 +1011,7 @@ $punctuation
  $ my_data_frame:'data.frame':  5 obs. of  2 variables:
   ..$ number: int [1:5] 1 2 3 4 5
   ..$ letter: chr [1:5] "a" "b" "c" "d" ...
- $ normVals     : num [1:4] -0.478 -1.671 -1.064 0.192
+ $ normVals     : num [1:4] -0.0889 -0.7481 0.8589 -0.4486
  $ punctuation  : chr [1:2] "!" "?"</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.list</span>(my_list)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
